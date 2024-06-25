@@ -1,0 +1,36 @@
+<ng-container *ngIf="asAggregatedValueField(field) as aggField">
+    <o3-pane-control-point-aggregation-field [label]="aggField.label" [controlPointGroup]="aggField.value" [range]="aggRange"></o3-pane-control-point-aggregation-field>
+</ng-container>
+
+<ng-container *ngIf="asAlertCountField(field) as alertCountField">
+    <o3-pane-alert-count-field [alertCount]="alertCountField" [range]="aggRange"></o3-pane-alert-count-field>
+</ng-container>
+
+<ng-container *ngIf="asAlertFeedField(field) as alertFeedField">
+    <o3-pane-alert-feed-field [alertFeed]="alertFeedField"></o3-pane-alert-feed-field>
+</ng-container>
+
+<ng-container *ngIf="asChartField(field) as chartField">
+    <o3-context-pane-chart-field [label]="chartField.label" [range]="aggRange" [chart]="chartField.value"></o3-context-pane-chart-field>
+</ng-container>
+
+<ng-container *ngIf="asCurrentValueField(field) as currField">
+    <o3-pane-control-point-current-value-field [label]="currField.label" [controlPointId]="currField.value" [units]="currField.unitsFactors"
+                                               [suffix]="currField.suffix"></o3-pane-control-point-current-value-field>
+</ng-container>
+
+<ng-container *ngIf="asGaugeField(field) as gaugeField">
+    <o3-pane-gauge-field class="wide" [label]="gaugeField.label" [severity]="gaugeField.value"></o3-pane-gauge-field>
+</ng-container>
+
+<ng-container *ngIf="asNumberField(field) as numberField">
+    <o3-context-pane-field [label]="field.label" [text]="numberField.value + ''"></o3-context-pane-field>
+</ng-container>
+
+<ng-container *ngIf="asPathMapField(field) as mapField">
+    <o3-pane-path-map-field [deviceId]="mapField.value" [range]="aggRange"></o3-pane-path-map-field>
+</ng-container>
+
+<ng-container *ngIf="asStringField(field) as stringField">
+    <o3-context-pane-field [label]="field.label" [text]="stringField.value"></o3-context-pane-field>
+</ng-container>

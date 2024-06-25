@@ -1,0 +1,8 @@
+Hello ${param.FIRST_NAME} ${param.LAST_NAME}, here's your reset token:
+
+ ${param.TOKEN}
+
+Go to ${param.SITE_URL} to reset your password.
+
+Have a nice day,
+ the Optio3 team

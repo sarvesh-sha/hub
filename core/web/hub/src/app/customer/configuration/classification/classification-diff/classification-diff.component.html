@@ -1,0 +1,93 @@
+<o3-standard-form label="Comparing {{titleA}} and {{titleB}}" [showPrimary]="false" secondaryButtonText="Close" (cancelled)="dialogRef.close()">
+    <mat-accordion [@.disabled]="disableAnimations">
+        <mat-expansion-panel *ngIf="abbreviationRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Abbreviations</mat-panel-title>
+                <mat-panel-description>
+                    {{abbreviationRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="abbreviationRows" titleKey="Term" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="disambiguationsRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Disambiguations</mat-panel-title>
+                <mat-panel-description>
+                    {{disambiguationsRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="disambiguationsRows" titleKey="Term" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="startsWithRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Starts With</mat-panel-title>
+                <mat-panel-description>
+                    {{startsWithRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="startsWithRows" titleKey="Term" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="endsWithRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Ends With</mat-panel-title>
+                <mat-panel-description>
+                    {{endsWithRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="endsWithRows" titleKey="Term" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="containsRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Contains</mat-panel-title>
+                <mat-panel-description>
+                    {{containsRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="containsRows" titleKey="Term" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="termScoringRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Term Scoring</mat-panel-title>
+                <mat-panel-description>
+                    {{termScoringRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="termScoringRows" titleKey="Term" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="pointClassRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Point Classes</mat-panel-title>
+                <mat-panel-description>
+                    {{pointClassRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="pointClassRows" titleKey="Class ID" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="equipmentClassRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Equipment Classes</mat-panel-title>
+                <mat-panel-description>
+                    {{equipmentClassRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="equipmentClassRows" titleKey="Class ID" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="locationClassRows?.length > 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Location Classes</mat-panel-title>
+                <mat-panel-description>
+                    {{locationClassRows.length}} change(s)
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <o3-classification-diff-table [rows]="locationClassRows" titleKey="Class ID" [titleA]="titleA" [titleB]="titleB"></o3-classification-diff-table>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Logic</mat-panel-title>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+                <o3-logic-diff [rulesA]="a" [titleA]="titleA" [rulesB]="b" [titleB]="titleB"></o3-logic-diff>
+            </ng-template>
+        </mat-expansion-panel>
+    </mat-accordion>
+</o3-standard-form>

@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <createTable tableName="BACKUP_TO_IMAGE_V2">
+            <column name="SERVICE" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="IMAGE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="architecture" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createTable tableName="SERVICE_TO_IMAGE_V2">
+            <column name="SERVICE" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="IMAGE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="architecture" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <createIndex indexName="FKi9fih11ayhvjfrwpvoqvcdsby" tableName="SERVICE_TO_IMAGE_V2">
+            <column name="IMAGE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <createIndex indexName="FKlmqu70r6veny60s5obsy3htdu" tableName="BACKUP_TO_IMAGE_V2">
+            <column name="IMAGE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addForeignKeyConstraint baseColumnNames="SERVICE" baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKgtsgjh4oipxrhsgn6d82mo8ih" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="CUSTOMER_SERVICE_BACKUP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <addForeignKeyConstraint baseColumnNames="IMAGE" baseTableName="SERVICE_TO_IMAGE_V2" constraintName="FKi9fih11ayhvjfrwpvoqvcdsby" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="REGISTRY_TAGGED_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <addForeignKeyConstraint baseColumnNames="IMAGE" baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKlmqu70r6veny60s5obsy3htdu" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="REGISTRY_TAGGED_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <addForeignKeyConstraint baseColumnNames="SERVICE" baseTableName="SERVICE_TO_IMAGE_V2" constraintName="FKrc1oh47va97xls8s99krkietr" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="CUSTOMER_SERVICE" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cli/decoder-cli/optio3-decoder-cli.iml" filepath="$PROJECT_DIR$/cli/decoder-cli/optio3-decoder-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dropwizard-shell-db/optio3-dropwizard-shell-db.iml" filepath="$PROJECT_DIR$/dropwizard-shell-db/optio3-dropwizard-shell-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dropwizard-shell-db-test/optio3-dropwizard-shell-db-test.iml" filepath="$PROJECT_DIR$/dropwizard-shell-db-test/optio3-dropwizard-shell-db-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product/builder/optio3-product-builder.iml" filepath="$PROJECT_DIR$/product/builder/optio3-product-builder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product/deployer/optio3-product-deployer.iml" filepath="$PROJECT_DIR$/product/deployer/optio3-product-deployer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product/gateway/optio3-product-gateway.iml" filepath="$PROJECT_DIR$/product/gateway/optio3-product-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product/hub/optio3-product-hub.iml" filepath="$PROJECT_DIR$/product/hub/optio3-product-hub.iml" />
+    </modules>
+  </component>
+</project>

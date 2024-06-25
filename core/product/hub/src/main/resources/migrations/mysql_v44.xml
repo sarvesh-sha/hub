@@ -1,0 +1,90 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <addColumn tableName="ASSET_DEVICE">
+            <column name="manufacturer_name" type="VARCHAR(4000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <addColumn tableName="ASSET_DEVICE">
+            <column name="model_name" type="VARCHAR(4000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <addColumn tableName="ASSET_DEVICE">
+            <column name="product_name" type="VARCHAR(4000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <dropUniqueConstraint constraintName="UK_kutmydk5qns4cw48g4mywd8mi" tableName="DEVICE_MANUFACTURER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <dropForeignKeyConstraint baseTableName="DEVICE_CLASSIFICATION" constraintName="DEVICECLASSIFICATION__DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <dropForeignKeyConstraint baseTableName="DEVICE_CLASSIFICATION" constraintName="DEVICECLASSIFICATION__DEVICE__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <dropForeignKeyConstraint baseTableName="DEVICE_CERTIFICATION" constraintName="DEVICE_CERTIFICATION__DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <dropForeignKeyConstraint baseTableName="DEVICE_IMAGE_LINK" constraintName="DEVICE_IMAGE_LINK__DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <dropForeignKeyConstraint baseTableName="ASSET_DEVICE" constraintName="DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <dropForeignKeyConstraint baseTableName="DEVICE_MANUAL" constraintName="DEVICE_MANUAL__DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <dropForeignKeyConstraint baseTableName="DEVICE_PROTOCOL" constraintName="DEVICE_PROTOCOL__DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <dropForeignKeyConstraint baseTableName="DEVICE_RECALL" constraintName="DEVICE_RECALL__DEVICE_INFO__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <dropForeignKeyConstraint baseTableName="DeviceProtocolRecord_properties" constraintName="FK5yb4aj5xdag7jv50gq7iwofln"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <dropForeignKeyConstraint baseTableName="DEVICE_CLASSIFICATION__REASONS" constraintName="FKq5wgrtbwwdi6sy7od9m900wny"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <dropForeignKeyConstraint baseTableName="DEVICE_INFO" constraintName="MANUFACTURER__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-34">
+        <dropColumn columnName="device_info" tableName="ASSET_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23">
+        <dropTable tableName="BACNET_VENDOR"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-24">
+        <dropTable tableName="DEVICE_CERTIFICATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-25">
+        <dropTable tableName="DEVICE_CLASSIFICATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-26">
+        <dropTable tableName="DEVICE_CLASSIFICATION__REASONS"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-27">
+        <dropTable tableName="DEVICE_IMAGE_LINK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-28">
+        <dropTable tableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-29">
+        <dropTable tableName="DEVICE_MANUAL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-30">
+        <dropTable tableName="DEVICE_MANUFACTURER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-31">
+        <dropTable tableName="DEVICE_PROTOCOL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-32">
+        <dropTable tableName="DEVICE_RECALL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-33">
+        <dropTable tableName="DeviceProtocolRecord_properties"/>
+    </changeSet>
+</databaseChangeLog>

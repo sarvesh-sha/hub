@@ -1,0 +1,77 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Color Picker">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <h2>Color Builder</h2>
+            <div class="row">
+                <o3-color-builder class="col-sm-6" [(color)]="color" [disabled]="true"></o3-color-builder>
+                <o3-color-builder class="col-sm-6" [(color)]="color" [disabled]="false"></o3-color-builder>
+            </div>
+
+            <h2>Color Mixer</h2>
+            <div class="row">
+                <o3-color-builder class="col-sm-4" [(color)]="colorMix1" (colorChange)="updateMix()"></o3-color-builder>
+                <o3-color-builder class="col-sm-4" [(color)]="colorMix2" (colorChange)="updateMix()"></o3-color-builder>
+                <o3-color-builder class="col-sm-4" [color]="mixedColor"></o3-color-builder>
+            </div>
+
+            <h2>Gradient Palette Builder</h2>
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="brightenAmt" (ngModelChange)="updateGradientPalette()" placeholder="Brighten Amount"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="darkenAmt" (ngModelChange)="updateGradientPalette()" placeholder="Darken Amount"/>
+            </mat-form-field>
+
+            <div class="row">
+                <o3-color-builder class="col-sm-6" [(color)]="paletteStart" (colorChange)="updateGradientPalette()"></o3-color-builder>
+                <o3-color-builder class="col-sm-6" [(color)]="paletteEnd" (colorChange)="updateGradientPalette()"></o3-color-builder>
+
+                <o3-color-palette [interactable]="false" style="width: 320px" [options]="paletteOptions"></o3-color-palette>
+            </div>
+
+            <h2>Base Color Picker</h2>
+            <div class="row">
+                <mat-form-field class="col-sm-3">
+                    <o3-color-picker [(ngModel)]="checklistSingle" placeholder="color input" name="algo-otro"></o3-color-picker>
+                </mat-form-field>
+                <mat-form-field class="col-sm-3">
+                    <input matInput type="text" [(ngModel)]="text" placeholder="text input" name="algo">
+                </mat-form-field>
+            </div>
+
+            <div class="debug">{{stringify(checklistSingle)}}</div>
+
+            <h2>Single Color</h2>
+            <div class="mock-modal">
+                <o3-color-picker-flat [(color)]="checklistSingle"></o3-color-picker-flat>
+            </div>
+            <div class="debug">{{stringify(checklistSingle)}}</div>
+
+            <h2>Gradient</h2>
+            <div class="mock-modal">
+                <o3-color-picker-gradient [(model)]="gradient"></o3-color-picker-gradient>
+            </div>
+            <div class="debug">{{stringify(gradient)}}</div>
+
+            <h2>Color Configuration</h2>
+            <button (click)="onlyPalette = !onlyPalette">toggle</button>
+            <div class="mock-modal">
+                <o3-color-picker-configuration [(model)]="colorConfig" [forFlat]="true" [forGradient]="true" [onlyPalette]="onlyPalette"></o3-color-picker-configuration>
+            </div>
+            <div class="debug">{{stringify(colorConfig)}}</div>
+
+            <h2>Color Picker Gradient Stop</h2>
+            <o3-color-picker-gradient-stop [(stops)]="stops" [interpolation]="interpolation"></o3-color-picker-gradient-stop>
+            <div class="debug">{{stringify(stops)}}</div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

@@ -1,0 +1,8 @@
+<div #mapContainer class="o3-map--container"></div>
+<button *ngIf="showZoomReset" mat-icon-button class="o3-map--control-button o3-map--reset-zoom" [disableRipple]="true" (click)="updateZoom()" matTooltip="Reset zoom">
+    <mat-icon>location_searching</mat-icon>
+</button>
+
+<div #popupContent *ngIf="popupTemplate">
+    <ng-container *ngTemplateOutlet="popupTemplate"></ng-container>
+</div>

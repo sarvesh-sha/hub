@@ -1,0 +1,17 @@
+$muted-color: #aeaeae;
+
+:host {
+    display: block;
+    height: calc(100% - 2px);
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    padding: 0px !important;
+    min-height: 23px;
+    min-width: unset;
+    height: 100%;
+    margin-bottom: -6px;
+    border: 1px solid $muted-color;
+}

@@ -1,0 +1,32 @@
+<ng-container *ngIf="activeExt && dashboardOptions">
+    <mat-form-field>
+        <o3-select #test_dashboardSelect name="dashboard-select" [ngModel]="activeExt.dashboardId" (ngModelChange)="changeActiveDashboard($event)"
+                   [options]="dashboardOptions" [disabled]="dashboardEditing || dashboardOptions.length < 2"
+                   [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"></o3-select>
+    </mat-form-field>
+
+    <mat-menu #dashboardControl="matMenu">
+        <ng-container *ngIf="!mobileView">
+            <button mat-menu-item (click)="editDashboard()">Edit</button>
+            <button mat-menu-item (click)="addWidget()">Add Widget</button>
+            <hr>
+            <button mat-menu-item (click)="newDashboard()">New</button>
+            <button mat-menu-item (click)="cloneDashboard()">Clone</button>
+            <button mat-menu-item (click)="deleteDashboard()">Delete</button>
+        </ng-container>
+
+        <button mat-menu-item (click)="importDashboard()">Import</button>
+        <button mat-menu-item (click)="exportDashboard()">Export</button>
+        <button mat-menu-item (click)="exportAllDashboards()" [disabled]="!allowExportAll">Export All</button>
+
+        <ng-container *ngIf="isPublisher">
+            <hr>
+            <button mat-menu-item (click)="pushDashboardToUsers(false)">Update All Users</button>
+            <button mat-menu-item (click)="pushDashboardToUsers(true)">Push To All Users</button>
+        </ng-container>
+    </mat-menu>
+
+    <button #test_menuTrigger mat-icon-button [matMenuTriggerFor]="dashboardControl" [disabled]="dashboardEditing">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</ng-container>

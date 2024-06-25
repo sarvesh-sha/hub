@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    min-height: 44px;
+}
+
+div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > button.color-option {
+        color: #FFFFFF;
+        display: inline-flex;
+        justify-content: center;
+        align-content: center;
+        border-radius: 0px;
+        height: 44px;
+        float: left;
+        overflow: hidden;
+    }
+
+    &.o3-color-palette--not-iteractable {
+        > button.mat-flat-button {
+            cursor: default !important;
+        }
+    }
+}

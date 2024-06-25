@@ -1,0 +1,44 @@
+@import "../app.variables.scss";
+
+$half-border: 0.5px solid rgba(0, 0, 0, 0.12);
+
+:host {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    border: $default-border;
+}
+
+.o3-grid-background--row {
+    display: flex;
+    width: 100%;
+    flex: 1 1 0px;
+    flex-direction: row;
+    border-bottom: $half-border;
+    border-top: $half-border;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:first-child {
+        border-top: none;
+    }
+
+    > .o3-grid-background--cell {
+        display: inline-flex;
+        flex: 1 1 0px;
+        height: 100%;
+        border-left: $half-border;
+        border-right: $half-border;
+
+        &:first-child {
+            border-left: 0px;
+        }
+
+        &:last-child {
+            border-right: 0px;
+        }
+    }
+}

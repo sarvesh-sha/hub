@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <createTable tableName="DEPLOYMENT_HOST_FILE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_BF_v34"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTENTS" type="BLOB"/>
+            <column name="DOWNLOADED_ON" type="TIMESTAMP"/>
+            <column name="PATH" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="UPLOADED_ON" type="TIMESTAMP"/>
+            <column name="CURRENT_TRANSFER" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <createIndex indexName="CURRENT_TRANSFER__FK_INDEX_B" tableName="DEPLOYMENT_HOST_FILE">
+            <column name="CURRENT_TRANSFER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <createIndex indexName="FILE__DEPLOYMENT__FK_INDEX_B" tableName="DEPLOYMENT_HOST_FILE">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <addForeignKeyConstraint baseColumnNames="CURRENT_TRANSFER" baseTableName="DEPLOYMENT_HOST_FILE" constraintName="CURRENT_TRANSFER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_HOST_FILE" constraintName="FILE__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="BACKUP_TRIGGER" tableName="CUSTOMER_SERVICE_BACKUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="CUSTOMER_SERVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="RELEASE_STATUS" tableName="REGISTRY_TAGGED_IMAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_PROBER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_TASK"/>
+    </changeSet>
+</databaseChangeLog>

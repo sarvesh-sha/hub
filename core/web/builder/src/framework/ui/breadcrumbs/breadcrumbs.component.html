@@ -1,0 +1,4 @@
+<nav class="breadcrumb">
+    <a *ngFor="let item of navigation.breadcrumbs" class="breadcrumb-item clickable" (click)="go(item)">{{item.title}}</a>
+    <span class="breadcrumb-item active not-clickable">{{label}}</span>
+</nav>

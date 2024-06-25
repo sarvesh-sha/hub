@@ -1,0 +1,67 @@
+@use "sass:math";
+
+@import "../../app.variables.scss";
+
+.o3-skeleton-screen--content, .o3-skeleton-screen--container {
+    height: 100%;
+    width: 100%;
+}
+
+.o3-skeleton-screen--content.o3-skeleton-screen--loading {
+    position: absolute;
+    opacity: 0;
+}
+
+.o3-skeleton-screen--container {
+    display: flex;
+    flex-direction: column;
+
+    &.o3-skeleton-screen--horizontal-bounce .o3-skeleton-screen--indicator {
+        $bar-width-decimal: 0.4;
+        $start-position: math.div(1 - $bar-width-decimal, 2);
+        @function left($position) {
+            @return math.div(100% * ($position - $start-position), $bar-width-decimal);
+        }
+
+        @keyframes horizontal-bounce {
+            0% {
+                transform: scaleX($bar-width-decimal) translateX(left(0));
+            }
+            50% {
+                transform: scaleX($bar-width-decimal) translateX(left(1 - $bar-width-decimal));
+            }
+            100% {
+                transform: scaleX($bar-width-decimal) translateX(left(0));
+            }
+        }
+
+        transform: scaleX($bar-width-decimal) translateX(left(0));
+        animation: horizontal-bounce 2.5s linear infinite;
+    }
+
+    &.o3-skeleton-screen--fading .o3-skeleton-screen--indicator {
+        opacity: 1;
+        animation: fadeInOut 2.5s linear infinite;
+    }
+
+    &.o3-skeleton-screen--done-loading {
+        display: none;
+    }
+
+    > .o3-skeleton-screen--row {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+
+        &.o3-skeleton-screen--out-of-view > .o3-skeleton-screen--indicator {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .o3-skeleton-screen--indicator {
+            background-color: rgba(215, 215, 215, .65);
+            width: 100%;
+            min-height: calc(100% - 20px);
+        }
+    }
+}

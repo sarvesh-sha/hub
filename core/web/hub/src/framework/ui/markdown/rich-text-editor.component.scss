@@ -1,0 +1,98 @@
+@import '~quill/dist/quill.snow.css';
+
+$quill-toolbar-height: 42px;
+
+o3-rich-text-editor {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+}
+
+body.light {
+    section.bs {
+        .ql-toolbar, .ql-container {
+            a {
+                color: #06c;
+                text-decoration: underline;
+            }
+
+            button {
+                padding: 3px 5px;
+            }
+
+        }
+
+        .ql-container {
+            height: auto;
+            flex: 1 1 auto;
+
+            // default font size
+            font-size: 14px;
+
+            .ql-size-small {
+                font-size: 10px;
+            }
+
+            .ql-size-12 {
+                font-size: 12px;
+            }
+
+            .ql-size-16 {
+                font-size: 16px;
+            }
+
+            .ql-size-large {
+                font-size: 18px;
+            }
+
+            .ql-size-20 {
+                font-size: 20px;
+            }
+
+            .ql-size-24 {
+                font-size: 24px;
+            }
+
+            .ql-size-28 {
+                font-size: 28px;
+            }
+
+            .ql-size-huge {
+                font-size: 32px;
+            }
+
+            .ql-size-36 {
+                font-size: 36px;
+            }
+
+            .custom-blot {
+                background-color: #f8f8f8;
+                padding: 2px 4px;
+                border: 1px solid #dddddd;
+                border-radius: 3px;
+            }
+        }
+
+        .ql-container.disabled {
+            border: none;
+
+            .ql-editor > * {
+                cursor: pointer;
+            }
+
+            .custom-blot {
+                background-color: transparent;
+                padding: 0px;
+                border: none;
+            }
+        }
+
+        .ql-editor {
+            * {
+                line-height: 1.35;
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,37 @@
+<ng-template o3-wizard-step-template>
+    <section *ngIf="data.machineTemplate">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Template Name" name="templateName" [(ngModel)]="data.machineTemplate.name" #templateName='ngModel'
+                   [o3UniqueValues]="notAllowed" required autocomplete="off">
+            <mat-error *ngIf="templateName.invalid && templateName.errors.o3NotUnique">Name already used</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="equipmentClass"
+                       [o3EquipmentClassSelector]="true"
+                       [(ngModel)]="equipmentClass" required></o3-select>
+        </mat-form-field>
+
+        <div class="row" *ngFor="let device of data.machineTemplate.deviceTemplates; let i = index;">
+            <div class="col-sm-1">
+                <button mat-icon-button type="button" (click)="removeDevice(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
+            <div class="col-sm-5">
+                <mat-form-field>
+                    <o3-select [o3DigineousDeviceTemplateSelector]="true" [(ngModel)]="data.machineTemplate.deviceTemplates[i]" name="deviceTemplate_{{i}}"></o3-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-1">
+                <button mat-icon-button type="button" (click)="addDevice()">
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+            </div>
+        </div>
+    </section>
+</ng-template>

@@ -1,0 +1,18 @@
+<div *ngIf="values" class="summary-widget--outer">
+    <div class="primary clickable" (click)="viewDevices()">
+        <div class="o3-device-color">
+            {{values.missing}}
+            <label>Missing Devices</label>
+        </div>
+    </div>
+    <div *ngIf="secondRowEnabled" class="secondary">
+        <div class="left">
+            {{values.addedLast30}}
+            <label>Last 30 days</label>
+        </div>
+        <div class="right">
+            {{values.total}}
+            <label>Devices</label>
+        </div>
+    </div>
+</div>

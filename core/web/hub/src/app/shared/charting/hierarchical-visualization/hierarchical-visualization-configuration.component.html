@@ -1,0 +1,39 @@
+<div class="component-container">
+    <div class="row">
+        <mat-form-field class="col-12">
+            <o3-select #test_type placeholder="Visualization Type" [options]="types"
+                       singleClick preventDeselection [multiSelect]="false"
+                       name="type" [(ngModel)]="type" (ngModelChange)="ensureAxisSizing(); write()"></o3-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field class="col-12">
+            <o3-select #test_rowSizing placeholder="Row Sizing Strategy" [options]="sizings"
+                       singleClick preventDeselection [multiSelect]="false"
+                       name="sizing" [(ngModel)]="sizing" (ngModelChange)="write()"></o3-select>
+        </mat-form-field>
+    </div>
+    <div class="row sub-section" *ngIf="fixedSizing">
+        <mat-form-field class="col-6">
+            <input matNativeControl placeholder="Row Size" type="number" name="size" [min]="minRowHeight"
+                   [ngModel]="size" (ngModelChange)="updateSize($event)">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field class="col-12">
+            <o3-select [placeholder]="axisScalingPlaceholder" [disabled]="isHeatmap" [options]="axisSizings"
+                       singleClick preventDeselection [multiSelect]="false"
+                       name="axis-sizing" [(ngModel)]="axisSizing" (ngModelChange)="write()"></o3-select>
+        </mat-form-field>
+    </div>
+    <div class="row sub-section" *ngIf="fixedAxisSizing">
+        <mat-form-field class="col-6">
+            <input matNativeControl placeholder="Axis Min" type="number" name="axisMin"
+                   [(ngModel)]="axisRange.min" (ngModelChange)="inputChangeDebouncer.invoke()">
+        </mat-form-field>
+        <mat-form-field class="col-6">
+            <input matNativeControl placeholder="Axis Max" type="number" name="maxisMax"
+                   [(ngModel)]="axisRange.max" (ngModelChange)="inputChangeDebouncer.invoke()">
+        </mat-form-field>
+    </div>
+</div>

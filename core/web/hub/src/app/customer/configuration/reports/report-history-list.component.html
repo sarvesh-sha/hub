@@ -1,0 +1,17 @@
+<o3-datatable [table]="table">
+    <o3-datatable-column id="type" sortId="reason" prop="extended.model.reason" name="Type">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+            <span matTooltip="{{value|o3TitleCase}}" matTooltipShowDelay="500">{{value|o3TitleCase}}</span>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="action" sortId="status" prop="extended.model.status" name="Action"></o3-datatable-column>
+    <o3-datatable-column id="reportRange" sortId="rangeStart,rangeEnd" prop="extended.rangeDescription" name="Report Range"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="!createdOn" sortStart="desc" prop="extended.model.createdOn" name="Date" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="version" sortId="version" prop="version" name="Version"></o3-datatable-column>
+    <o3-datatable-column id="view" name="View" [maxWidth]="48" [minWidth]="48">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+            <div *ngIf="row.extended.isFinished" class="text-center hidden-xs-down"><i class="fa fa-search"></i></div>
+            <div *ngIf="row.extended.isFailed" matTooltip="Retry failed report" class="text-center hidden-xs-down"><i class="fa fa-refresh"></i></div>
+        </ng-template>
+    </o3-datatable-column>
+</o3-datatable>

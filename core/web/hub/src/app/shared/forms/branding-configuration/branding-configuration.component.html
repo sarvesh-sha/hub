@@ -1,0 +1,34 @@
+<div class="o3-branding-configuration--logo-control">
+    <mat-form-field>
+        <mat-select placeholder="Logo Placement" [(ngModel)]="data.horizontalPlacement" name="logo-location">
+            <mat-option value="Left">Left</mat-option>
+            <mat-option value="Right">Right</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="button" (click)="uploadLogo()">
+        {{data.logoBase64 ? 'Change' : 'Add'}} Logo
+    </button>
+</div>
+
+<div *ngIf="data.logoBase64" class="o3-branding-configuration--logo-container">
+    <div [style.height.px]="logoContainerHeight" [style.background-color]="data.primaryColor || defaultPrimaryColor">
+        <div [style.justify-content]="data.horizontalPlacement == 'Left' ? 'flex-start' : 'flex-end'">
+            <o3-safe-image [data]="data.logoBase64"></o3-safe-image>
+        </div>
+    </div>
+
+    <button mat-icon-button (click)="data.logoBase64 = ''">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>
+
+<div class="o3-branding-configuration--color-select">
+    <mat-form-field>
+        <o3-color-picker [ngModel]="data.primaryColor || defaultPrimaryColor" (ngModelChange)="data.primaryColor = $event"
+                         placeholder="Background Color"></o3-color-picker>
+    </mat-form-field>
+    <mat-form-field>
+        <o3-color-picker [ngModel]="data.secondaryColor || defaultSecondaryColor" (ngModelChange)="data.secondaryColor = $event"
+                         placeholder="Text Color"></o3-color-picker>
+    </mat-form-field>
+</div>

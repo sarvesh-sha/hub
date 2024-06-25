@@ -1,0 +1,87 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Restart hardware..." (click)="restart()"></o3-tab-action>
+
+        <o3-tab label="Welcome to Optio3 Waypoint!">
+
+            <o3-tab-action label="Check Again" priority="secondary" type="button" (click)="checkAll()" *ngIf="!checkingNetwork && !checkingDestinations"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <label class="mb-3 area-color" *ngIf="checkingDestinations">Checking network destinations...</label>
+                    <label class="mb-3 area-color" *ngIf="!checkingDestinations && checkedDestinations">Network destinations</label>
+
+                    <div *ngIf="networkDestinations">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Site</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let site of networkDestinations">
+                                <td>{{site.url}}</td>
+                                <td>{{site.result}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <label class="mb-3 area-color" *ngIf="checkingNetwork">Checking network status...</label>
+                    <label class="mb-3 area-color" *ngIf="!checkingNetwork && checkedNetwork">Network status</label>
+
+                    <div *ngIf="networkStatus">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Interface</th>
+                                <th>Address</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let itf of networkStatus.interfaces | o3KeysOf">
+                                <td>{{itf}}</td>
+                                <td>{{networkStatus.interfaces[itf]}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </o3-tab>
+
+        <o3-tab label="Static IP Configuration">
+            <o3-tab-action label="Set" priority="secondary" type="button" (click)="setStaticIp()" [disabled]="!waypointForm.valid" *ngIf="!waypointForm.pristine && staticIp"></o3-tab-action>
+            <o3-tab-action label="Unset" priority="secondary" type="button" (click)="unsetStaticIp()" *ngIf="waypointForm.pristine && staticIp"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" type="button" (click)="resetStaticIp()" *ngIf="!waypointForm.pristine"></o3-tab-action>
+
+            <form #waypointForm="ngForm">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Static IP" [(ngModel)]="staticIp" cidr name="staticIp">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Internet Gateway" [(ngModel)]="gateway" ipAddress name="gateway">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+    </o3-tab-group>
+
+</section>

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Premain-Class: com.optio3.asyncawait.bootstrap.Agent
+Agent-Class: com.optio3.asyncawait.bootstrap.Agent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+

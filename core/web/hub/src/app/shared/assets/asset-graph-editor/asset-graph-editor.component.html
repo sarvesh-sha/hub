@@ -1,0 +1,121 @@
+<div class="o3-asset-graph-editor--container">
+    <div class="o3-asset-graph-editor--inner-container" o3-pan-zoom [autoZoomDelay]="500">
+        <div class="o3-asset-graph-editor--node-container">
+            <div class="o3-asset-graph-editor--node">
+                <div class="o3-asset-graph-editor--button-wrapper add">
+                    <button mat-mini-fab type="button" #test_newNode
+                            [disabled]="!allowMultipleRoots && data.model.nodes?.length >= 1" [o3-dialog-toggle]="nodeDialog"
+                            (mousedown)="$event.stopPropagation()" (click)="createNew()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="o3-asset-graph-editor--connections" *ngIf="nodes.length > 1">
+                <div class="vertical"></div>
+            </div>
+
+            <div class="o3-asset-graph-editor--child-nodes">
+                <ng-container *ngFor="let node of nodes; let first = first; let last = last;">
+                    <ng-container *ngTemplateOutlet="nodeTemplate; context: { node: node, first: first, last: last, only: nodes.length === 1 }"></ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #nodeTemplate let-node="node" let-first="first" let-last="last" let-only="only">
+    <div class="o3-asset-graph-editor--node-container">
+        <div class="o3-asset-graph-editor--connections" [class.first]="first" [class.last]="last" [class.only]="only">
+            <div class="vertical"></div>
+            <div class="horizontal"></div>
+        </div>
+        <div class="o3-asset-graph-editor--node">
+            <div class="o3-asset-graph-editor--button-wrapper remove"
+                 matTooltip="Binding in use" [matTooltipDisabled]="!cannotDeleteNode(node)">
+                <button mat-mini-fab type="button" [disabled]="cannotDeleteNode(node)"
+                        (mousedown)="$event.stopPropagation()" (click)="deleteNode(node)">
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </div>
+
+            <div class="o3-asset-graph-editor--inner">
+                <div *ngIf="node.optional">
+                    Optional
+                </div>
+                <div *ngIf="node.allowMultiple">
+                    Multiple
+                </div>
+                <div *ngIf="!node.allowMultiple && !node.optional">
+                    &nbsp;
+                </div>
+                <div class="o3-asset-graph-editor--node-title">{{node.label}}</div>
+                <button type="button" mat-icon-button [o3-dialog-toggle]="nodeDialog" #test_configureNode
+                        class="o3-asset-graph-editor--menu" [ngClass]="editNodeClass(node.id)"
+                        (mousedown)="$event.stopPropagation()" (click)="edit(node.id)">
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </div>
+            <div class="o3-asset-graph-editor--button-wrapper add">
+                <button type="button" mat-mini-fab #test_newNode [ngClass]="newNodeClass(node.id)"
+                        [disabled]="!node.canAddChild" [o3-dialog-toggle]="nodeDialog"
+                        (mousedown)="$event.stopPropagation()" (click)="createNew(node.id)">
+                    <mat-icon matTooltip="A node that allows multiple matches cannot have children." [matTooltipDisabled]="node.canAddChild">add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="o3-asset-graph-editor--connections" *ngIf="node.children.length > 0">
+            <div class="vertical"></div>
+        </div>
+        <div class="o3-asset-graph-editor--child-nodes">
+            <ng-container *ngFor="let childNode of node.children; let first = first; let last = last;">
+                <ng-container *ngTemplateOutlet="nodeTemplate; context: {node: childNode, first: first, last: last, only: node.children.length === 1}"></ng-container>
+            </ng-container>
+        </div>
+    </div>
+</ng-template>
+
+<o3-standard-form-overlay #nodeDialog
+                          label="Configure Node"
+                          [primaryButtonDisabled]="!nodeValid || pristine"
+                          [showSecondary]="true"
+                          [secondaryButtonText]="pristine ? 'Close' : 'Cancel'"
+                          [confirmSecondaryButton]="!pristine"
+                          (submitted)="saveNode()"
+                          (cancelled)="cancelNode()"
+                          [overlayConfig]="overlayConfig">
+    <ng-container *ngIf="editNode">
+        <mat-form-field *ngIf="editTransform">
+            <mat-select placeholder="Relationship" [(ngModel)]="editTransform.relationship" (ngModelChange)="evaluate()">
+                <mat-option value="controls">Controls</mat-option>
+                <mat-option value="structural">Structural</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="name" #test_nodeName
+                   [(ngModel)]="editNode.name" (ngModelChange)="updatePristine()"
+                   [o3UniqueValues]="existingNodeNames" [o3UniqueValuesAllowSelfMatch]="true"
+                   placeholder="Name" required #nameControl="ngModel"/>
+            <mat-error *ngIf="nameControl.invalid && editNode.name">Node name must be unique</mat-error>
+        </mat-form-field>
+        <div>
+            <mat-checkbox [checked]="editNode.optional" (change)="editNode.optional = $event.checked; evaluate()">Is Optional</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox [checked]="editNode.allowMultiple" (change)="editNode.allowMultiple = $event.checked; evaluate()" [disabled]="existingHasChildren"
+                          matTooltip="A node with children cannot allow multiple matches." [matTooltipDisabled]="!existingHasChildren">Allow Multiple
+            </mat-checkbox>
+        </div>
+        <o3-tag-condition-builder #test_tagBuilder [(model)]="editNode.condition" (modelChange)="conditionUpdated(test_tagBuilder)"
+                                  (validChange)="updateValid($event)"></o3-tag-condition-builder>
+        <div class="mt-4">
+            <mat-expansion-panel expanded="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Matches</mat-panel-title>
+                    <mat-panel-description>Assets Matching the Condition</mat-panel-description>
+                </mat-expansion-panel-header>
+                <o3-asset-graph-matches-list [holder]="holder" [node]="editNode" [relationship]="editTransform?.relationship" [parentNode]="parentNode"></o3-asset-graph-matches-list>
+            </mat-expansion-panel>
+        </div>
+    </ng-container>
+</o3-standard-form-overlay>

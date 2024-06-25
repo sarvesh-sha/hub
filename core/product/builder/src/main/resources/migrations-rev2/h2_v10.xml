@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_PROBER_OPERATION_LOG" constraintName="OWNING_OP__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_PROBER_OPERATION" constraintName="PROBER_OPERATION__PROBER__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_PROBER_OPERATION" constraintName="PROBER__CURRENT_ACTIVITY__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_PROBER" constraintName="PROBER__DEPLOYMENT__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <dropTable tableName="DEPLOYMENT_PROBER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropTable tableName="DEPLOYMENT_PROBER_OPERATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropTable tableName="DEPLOYMENT_PROBER_OPERATION_LOG"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,17 @@
+<o3-wizard *ngIf="data?.graphs" [data]="data" label="Field Settings"
+           [modalMode]="true" (viewWindowUpdated)="viewWindow = $event"
+           (wizardCancelled)="wizardCancel()" (wizardCommitted)="wizardCommit()">
+    <o3-custom-report-field-type-step></o3-custom-report-field-type-step>
+    <o3-custom-report-field-graph-step></o3-custom-report-field-graph-step>
+
+    <o3-custom-report-field-aggregation-trend-step></o3-custom-report-field-aggregation-trend-step>
+    <o3-custom-report-field-aggregated-value-step></o3-custom-report-field-aggregated-value-step>
+    <o3-custom-report-field-alert-feed-step></o3-custom-report-field-alert-feed-step>
+    <o3-custom-report-field-alert-table-step></o3-custom-report-field-alert-table-step>
+    <o3-custom-report-field-chart-set-step [viewWindow]="viewWindow"></o3-custom-report-field-chart-set-step>
+    <o3-custom-report-field-data-aggregation-step></o3-custom-report-field-data-aggregation-step>
+    <o3-custom-report-field-device-element-list-step></o3-custom-report-field-device-element-list-step>
+    <o3-custom-report-field-rich-text-step></o3-custom-report-field-rich-text-step>
+
+    <o3-custom-report-field-name-step></o3-custom-report-field-name-step>
+</o3-wizard>

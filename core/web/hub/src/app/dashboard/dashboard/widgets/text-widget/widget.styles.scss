@@ -1,0 +1,30 @@
+.o3-text-widget--outer {
+    height: 100%;
+    width: 100%;
+
+    &.o3-text-widget--wrap {
+        display: table;
+        white-space: pre-line;
+
+        > div {
+            display: table-cell;
+
+            &.o3-text-widget--text-fits {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &.o3-text-widget--no-wrap {
+        display: flex;
+        white-space: pre;
+        align-items: center;
+
+        > div {
+            height: fit-content;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

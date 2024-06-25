@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <addColumn tableName="JOB">
+            <column name="branch" type="VARCHAR(255 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <addColumn tableName="JOB">
+            <column name="commit" type="VARCHAR(255 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="JOB">
+            <column name="triggered_by" type="VARCHAR(255 BYTE)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

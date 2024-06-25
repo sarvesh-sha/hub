@@ -1,0 +1,30 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Sensor Diagnostics">
+
+            <o3-tab-action label="Rerun" priority="secondary" type="button" (click)="checkPorts()" *ngIf="doneChecking"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let port of checkedPorts">
+                            <td>{{port.id}}</td>
+                            <td [style.background-color]="port.color">{{port.status}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+
+</section>

@@ -1,0 +1,115 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group>
+        <o3-tab-action label="Export State" (click)="exportState()"></o3-tab-action>
+        <o3-tab-action label="Import State" (click)="importState()"></o3-tab-action>
+
+        <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+        <o3-tab-action label="Perform Action..." priority="secondary" [disabled]="operationExecuting" (click)="newOperation()"></o3-tab-action>
+
+        <o3-tab label="Prober Details">
+
+            <div class="row" *ngIf="operationExecuting">
+                <div class="col-sm-12">
+                    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+                </div>
+            </div>
+
+            <o3-gateway-probers-device-list [allowSelection]="false" [devices]="discoveredDevices" [enableFiltering]="true" *ngIf="discoveredDevices.length > 0" [viewStatePrefix]="'Devices'"
+            ></o3-gateway-probers-device-list>
+
+            <o3-gateway-probers-object-list [allowSelection]="false" [objects]="discoveredObjects" [enableFiltering]="true" *ngIf="discoveredObjects.length > 0" [viewStatePrefix]="'Objects'"
+                                            (objectClicked)="selectObject($event)"></o3-gateway-probers-object-list>
+
+            <o3-gateway-probers-bdt-list [enableFiltering]="true" [bdt]="discoveredBDTEntries" *ngIf="discoveredBDTEntries.length > 0" [viewStatePrefix]="'BDT'"></o3-gateway-probers-bdt-list>
+            <o3-gateway-probers-fdt-list [enableFiltering]="true" [fdt]="discoveredFDTEntries" *ngIf="discoveredFDTEntries.length > 0" [viewStatePrefix]="'BDT'"></o3-gateway-probers-fdt-list>
+
+            <div class="o3-fieldset-with-border" *ngIf="selectedObject && selectedObject.propertyKeys.length > 0">
+                <fieldset>
+                    <legend>Properties of {{selectedObject.objectId}} on {{selectedObject.device.textForIdentity}}</legend>
+
+                    <table class="table table-striped table-bordered selectable">
+                        <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let key of selectedObject.propertyKeys">
+                            <td class="propertyKey">
+                                {{key}}
+                            </td>
+                            <td>
+                                <div [ngClass]="selectedObject.getPropertyClass(key)" (click)="selectedObject.toggleProperty(key)">{{selectedObject.getPropertyValue(key)}}</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+
+            <!-- -->
+
+            <o3-gateway-probers-frame-list [frames]="sampledFrames" [enableFiltering]="true" *ngIf="sampledFrames.length > 0"
+                                           (frameClicked)="selectFrame($event)"></o3-gateway-probers-frame-list>
+
+            <div class="o3-fieldset-with-border" *ngIf="selectedFrame && selectedFrame.propertyKeys.length > 0">
+                <fieldset>
+                    <legend>Properties of {{selectedFrame.id}}</legend>
+
+                    <table class="table table-striped table-bordered selectable">
+                        <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let key of selectedFrame.propertyKeys">
+                            <td class="propertyKey">
+                                {{key}}
+                            </td>
+                            <td>
+                                <div [ngClass]="selectedFrame.getPropertyClass(key)" (click)="selectedFrame.toggleProperty(key)">{{selectedFrame.getPropertyValue(key)}}</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        </o3-tab>
+
+        <o3-tab label="Network Status">
+
+            <div class="row" *ngIf="networkInterfaceKeys">
+                <table class="table table-striped table-bordered selectable">
+                    <thead>
+                    <tr>
+                        <th>Network Interface</th>
+                        <th>Address</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let itf of networkInterfaceKeys">
+                        <td>{{itf}}</td>
+                        <td>{{getNetworkInterfaceValue(itf)}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </o3-tab>
+
+        <o3-tab label="Operation Log" (selected)="log.enableKeyDownHandler()" (unselected)="log.disableKeyDownHandler()">
+
+            <o3-tab-action label="Download Session" priority="secondary" (click)="prepareDownload()"></o3-tab-action>
+
+            <section o3-expand>
+                <o3-console-log #log [scrollLockEnabled]="logLockScroll"></o3-console-log>
+            </section>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

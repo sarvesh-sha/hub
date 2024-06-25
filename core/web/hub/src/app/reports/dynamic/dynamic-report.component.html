@@ -1,0 +1,29 @@
+<section class="report">
+    <ng-container *ngFor="let section of sections">
+        <ng-template [ngTemplateOutlet]="sectionTemplate" [ngTemplateOutletContext]="{section: section}"></ng-template>
+    </ng-container>
+    <section *ngIf="reportProgress < 100" class="report-progress">
+        <h3>Generating Report</h3>
+        <mat-progress-bar [value]="reportProgress"></mat-progress-bar>
+    </section>
+</section>
+
+<ng-template #sectionTemplate let-section="section">
+    <section [class.report-section]="!section.header" class="report-section">
+        <o3-report-element-container [model]="elementModel" (renderComplete)="renderComplete($event)" *ngFor="let elementModel of section.models"></o3-report-element-container>
+        <div class="report-section-column-container">
+            <ng-container *ngFor="let sectionColumn of section.columns">
+                <div *ngIf="asSectionColumn(sectionColumn) as column" class="report-section-column" [style.width.%]="column.widthPercent">
+                    <ng-container *ngFor="let model of column.models">
+                        <ng-container *ngIf="asReportSection(model) as section">
+                            <ng-template [ngTemplateOutlet]="sectionTemplate" [ngTemplateOutletContext]="{section: section}"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="asElementModel(model) as element">
+                            <o3-report-element-container [model]="element" (renderComplete)="renderComplete($event)"></o3-report-element-container>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+</ng-template>

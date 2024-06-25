@@ -1,0 +1,6 @@
+<o3-collapsible-filter-button *ngIf="filterable" [(model)]="filterText" (modelChange)="table.refreshData()"></o3-collapsible-filter-button>
+
+<o3-datatable [table]="table" [showRowNumbers]="showRowNumbers" [showViewIcons]="false" [constantRowLayout]="true"
+              [showHeader]="showHeader" [showFooter]="showFooter" [showConfig]="false" [clickableRows]="true">
+    <o3-datatable-column id="name" prop="option.label" secondaryProp="option.description" name="Name" [hideTooltip]="true"></o3-datatable-column>
+</o3-datatable>

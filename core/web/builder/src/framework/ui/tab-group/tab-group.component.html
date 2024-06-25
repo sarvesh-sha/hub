@@ -1,0 +1,111 @@
+<div #projectorContainer class="projector-container">
+    <ng-template [ngTemplateOutlet]="negativeTabsSpace"></ng-template>
+</div>
+
+<div class="mat-tabbed-page" [ngClass]="{'has-actions': menuOptions?.length,
+                                         'o3-tab-group--single-tab': activeTabs.length === 1,
+                                         'o3-tab-group--no-underline': noUnderline,
+                                         'o3-tab-group--fit-container': fitContainer}">
+    <mat-tab-group persist-tab [(selectedIndex)]="selectedIndex">
+        <mat-tab *ngFor="let tab of activeTabs" [disabled]="noUnderline">
+            <ng-template mat-tab-label>
+                <div class="tab-label-wrapper" *ngIf="tab.indicator">
+                    <div class="tab-indicator" [style.background]="tab.indicator"></div>
+                    <div class="tab-text">{{tab.label}}</div>
+                </div>
+                <span *ngIf="!tab.indicator" style="color: rgba(0, 0, 0, 0.87)">{{tab.label}}</span>
+            </ng-template>
+
+            <mat-card class="page-card" [ngClass]="cardClass" [class.o3-flex]="fitContainer">
+                <mat-card-actions class="secondary-fields" *ngIf="tab.meta?.template">
+                    <ng-template [ngTemplateOutlet]="tab.meta.template.templateRef"></ng-template>
+                </mat-card-actions>
+                <mat-card-content #contentContainer (scroll)="publishViewWindow($any($event.target))">
+                    <ng-template [cdkPortalOutlet]="tab.active ? tab.portal : undefined"></ng-template>
+                    <ng-template [ngTemplateOutlet]="tab.template.templateRef"></ng-template>
+                </mat-card-content>
+                <mat-card-actions *ngIf="sharedActions?.length || tab.actions?.length">
+
+                    <!-- Desktop Buttons -->
+                    <!--div wrapper is used on these to allow tooltip even when button is disabled - known bug: issue #5040-->
+                    <div class="row hidden-xs-down">
+                        <div class="col">
+                            <ng-container *ngFor="let action of tab.primaryActions(sharedActions)">
+                                <div *ngIf="!action.icon" class="o3-tooltip-wrapper" [matTooltip]="action.tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <button mat-raised-button color="primary" type="button" [optio3TestId]="action.optio3TestId"
+                                            [disabled]="action.disabled" (click)="action.onClick($event)">
+                                        {{action.label}}
+                                    </button>
+                                </div>
+                                <div *ngIf="action.icon" class="o3-tooltip-wrapper" [matTooltip]="action.tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <button mat-icon-button type="button" [optio3TestId]="action.optio3TestId"
+                                            [disabled]="action.disabled" (click)="action.onClick($event)">
+                                        <mat-icon>{{action.icon}}</mat-icon>
+                                    </button>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngFor="let action of tab.secondaryActions(sharedActions)">
+                                <div *ngIf="!action.icon" class="o3-tooltip-wrapper" [matTooltip]="action.tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <button mat-raised-button type="button" [optio3TestId]="action.optio3TestId"
+                                            [disabled]="action.disabled" (click)="action.onClick($event)">
+                                        {{action.label}}
+                                    </button>
+                                </div>
+                                <div *ngIf="action.icon" class="o3-tooltip-wrapper" [matTooltip]="action.tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <button mat-icon-button type="button" [optio3TestId]="action.optio3TestId"
+                                            [disabled]="action.disabled" (click)="action.onClick($event)">
+                                        <mat-icon>{{action.icon}}</mat-icon>
+                                    </button>
+                                </div>
+                            </ng-container>
+                            <div *ngIf="tab.informative(sharedActions)" class="informative">
+                                <div class="o3-tooltip-wrapper" [matTooltip]="tab.informative(sharedActions).tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <div class="hidden-xs-down">{{tab.informative(sharedActions).label}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="tab.tertiaryActions(sharedActions).length > 0" class="col text-right tab-group-tertiary">
+                            <ng-container *ngFor="let action of tab.tertiaryActions(sharedActions)">
+                                <div *ngIf="!action.icon" class="o3-tooltip-wrapper" [matTooltip]="action.tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <button mat-raised-button class="hidden-xs-down" type="button" [optio3TestId]="action.optio3TestId"
+                                            [disabled]="action.disabled" (click)="action.onClick($event)">
+                                        {{action.label}}
+                                    </button>
+                                </div>
+                                <div *ngIf="action.icon" class="o3-tooltip-wrapper" [matTooltip]="action.tooltip" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                                    <button mat-icon-button type="button" [optio3TestId]="action.optio3TestId"
+                                            [disabled]="action.disabled" (click)="action.onClick($event)">
+                                        <mat-icon>{{action.icon}}</mat-icon>
+                                    </button>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Buttons -->
+                    <div class="hidden-sm-up">
+                        <ng-container *ngFor="let action of tab.primaryActions(sharedActions)">
+                            <button *ngIf="!action.icon" mat-raised-button color="primary" type="button" (click)="action.onClick($event)" [disabled]="action.disabled">{{action.label}}</button>
+                            <button *ngIf="action.icon" mat-icon-button type="button" [disabled]="action.disabled" (click)="action.onClick($event)">
+                                <mat-icon>{{action.icon}}</mat-icon>
+                            </button>
+                        </ng-container>
+                        <ng-container *ngFor="let action of tab.secondaryActions(sharedActions)">
+                            <button *ngIf="!action.icon" mat-raised-button type="button" (click)="action.onClick($event)" [disabled]="action.disabled">{{action.label}}</button>
+                            <button *ngIf="action.icon" mat-icon-button type="button" [disabled]="action.disabled" (click)="action.onClick($event)">
+                                <mat-icon>{{action.icon}}</mat-icon>
+                            </button>
+                        </ng-container>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+
+    <div class="mat-tab-group-actions" *ngIf="menuOptions.length">
+        <o3-menu #menu [options]="menuOptions"></o3-menu>
+        <button *ngIf="menu.menu" #test_menuTrigger mat-icon-button [matMenuTriggerFor]="menu.menu" type="button" class="pull-right">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </div>
+</div>

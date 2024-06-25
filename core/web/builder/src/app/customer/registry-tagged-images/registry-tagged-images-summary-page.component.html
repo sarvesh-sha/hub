@@ -1,0 +1,23 @@
+﻿<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            Images
+        </mat-card-title>
+        <mat-card-content>
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="Filter Images" [(ngModel)]="filterImages">
+            </mat-form-field>
+
+            <o3-registry-tagged-images-list #childList [filter]="filterImages">
+            </o3-registry-tagged-images-list>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button type="button" (click)="childList.clearAll()" [disabled]="!childList.anyImageSelected()">Clear All</button>
+            <button mat-raised-button type="button" (click)="childList.markUnused()">Mark Old &amp; Unused</button>
+
+            <button mat-raised-button class="pull-right" type="button" (click)="childList.deleteImages()" *ngIf="childList.anyImageSelected()">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</section>

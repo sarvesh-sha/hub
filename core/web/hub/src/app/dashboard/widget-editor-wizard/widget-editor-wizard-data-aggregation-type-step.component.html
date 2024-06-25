@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <p>How would you like to define the data to be aggregated?</p>
+    <o3-control-option-list #test_types [(selection)]="typeSelections" (selectionChange)="typeChanged()"
+                            [options]="data.editor.dataAggregationExt.options" [single]="true"></o3-control-option-list>
+</ng-template>

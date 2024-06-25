@@ -1,0 +1,197 @@
+{{>licenseInfo}}
+import { Inject, Injectable, Optional }  from '@angular/core';
+
+import * as models               from '../model/models';
+import { COLLECTION_FORMATS    } from '../variables';
+import { ApiClient, ApiRequest } from 'framework/services/api.client';
+
+/* tslint:disable:no-unused-variable member-ordering */
+
+{{#operations}}
+
+{{#description}}
+/**
+ * {{&description}}
+ */
+{{/description}}
+@Injectable()
+export class {{classname}}
+{
+    constructor(private client: ApiClient, protected basePath: string)
+    {
+    }
+
+{{#operation}}
+    /**
+    * {{summary}}
+    * {{notes}}
+    {{#pathParams}}* @param {{paramName}} {{description}}
+    {{/pathParams}}*/
+    public {{nickname}}__generateUrl({{#pathParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{#hasMore}}, {{/hasMore}}{{/pathParams}}): string
+    {
+        return this.basePath + '{{path}}'{{#pathParams}}
+                   .replace('${' + '{{baseName}}' + '}', encodeURIComponent(String({{paramName}}))){{/pathParams}};
+    }
+
+    /**
+     * {{summary}}
+     * {{notes}}
+     {{#allParams}}* @param {{paramName}} {{description}}
+     {{/allParams}}*/
+{{#vendorExtensions}}
+    {{#x-optio3-fixup}}
+    public async {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{#hasMore}}, {{/hasMore}}{{/allParams}}): Promise<{{>returnTypesInner}}>
+    {{/x-optio3-fixup}}
+    {{^x-optio3-fixup}}
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{#hasMore}}, {{/hasMore}}{{/allParams}}): Promise<{{>returnTypesInner}}>
+    {{/x-optio3-fixup}}
+{{/vendorExtensions}}
+    {
+{{#allParams}}
+    {{#required}}
+        // verify required parameter '{{paramName}}' is not null or undefined
+        if ({{paramName}} === null || {{paramName}} === undefined)
+        {
+            throw new Error('Required parameter {{paramName}} was null or undefined when calling {{nickname}}.');
+        }
+    {{/required}}
+{{/allParams}}
+
+        const __path = this.{{nickname}}__generateUrl({{#pathParams}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/pathParams}});
+
+        let __requestOptions = new ApiRequest();
+
+{{#queryParams}}
+        {{#isListContainer}}
+        if ({{paramName}})
+        {
+        {{#isCollectionFormatMulti}}
+            {{paramName}}.forEach((element) => __requestOptions.setQueryParam('{{baseName}}', <any>element));
+        {{/isCollectionFormatMulti}}
+        {{^isCollectionFormatMulti}}
+            __requestOptions.setQueryParam('{{baseName}}', {{paramName}}.join(COLLECTION_FORMATS['{{collectionFormat}}']));
+        {{/isCollectionFormatMulti}}
+        }
+        {{/isListContainer}}
+        {{^isListContainer}}
+        if ({{paramName}} !== undefined)
+        {
+        {{#isDateTime}}
+            __requestOptions.setQueryParam('{{baseName}}', <any>{{paramName}}.toISOString());
+        {{/isDateTime}}
+        {{^isDateTime}}
+            {{#isDate}}
+            __requestOptions.setQueryParam('{{baseName}}', <any>{{paramName}}.toISOString());
+            {{/isDate}}
+            {{^isDate}}
+            __requestOptions.setQueryParam('{{baseName}}', <any>{{paramName}});
+            {{/isDate}}
+        {{/isDateTime}}
+        }
+        {{/isListContainer}}
+
+{{/queryParams}}
+{{#headerParams}}
+        {{#isListContainer}}
+        if ({{paramName}})
+        {
+            __requestOptions.setHeader('{{baseName}}', {{paramName}}.join(COLLECTION_FORMATS['{{collectionFormat}}']));
+        }
+        {{/isListContainer}}
+        {{^isListContainer}}
+        __requestOptions.setHeader('{{baseName}}', String({{paramName}}));
+        {{/isListContainer}}
+
+{{/headerParams}}
+{{#consumes}}
+        __requestOptions.setConsume('{{{mediaType}}}');
+{{/consumes}}
+{{#produces}}
+        __requestOptions.setProduce('{{{mediaType}}}');
+{{/produces}}
+{{#hasFormParams}}
+        __requestOptions.hasFormParams = true;
+{{/hasFormParams}}
+{{#formParams}}
+        {{#isListContainer}}
+        if ({{paramName}})
+        {
+        {{#isCollectionFormatMulti}}
+            {{paramName}}.forEach((element) => __requestOptions.setFormParam('{{baseName}}', <any>element));
+        {{/isCollectionFormatMulti}}
+        {{^isCollectionFormatMulti}}
+            __requestOptions.setFormParam('{{baseName}}', {{paramName}}.join(COLLECTION_FORMATS['{{collectionFormat}}']));
+        {{/isCollectionFormatMulti}}
+        }
+        {{/isListContainer}}
+        {{^isListContainer}}
+        if ({{paramName}} !== undefined)
+        {
+            __requestOptions.setFormParam('{{baseName}}', <any>{{paramName}});
+        }
+        {{/isListContainer}}
+{{/formParams}}
+{{#bodyParam}}
+        __requestOptions.body = {{paramName}};
+        __requestOptions.hasBodyParam = true;
+{{/bodyParam}}
+        __requestOptions.method = "{{httpMethod}}";
+
+{{#vendorExtensions}}
+    {{#x-optio3-fixup}}
+        let __res = <{{{returnType}}}> await this.client.callWithOptions(__path, __requestOptions);
+    {{#x-optio3-fixup-simple}}
+        if (__res)
+        {
+            {{returnBaseType}}.fixupPrototype(__res);
+        }
+    {{/x-optio3-fixup-simple}}
+    {{#x-optio3-fixup-array}}
+        if (__res)
+        {
+            for (let val of __res)
+            {
+                {{returnBaseType}}.fixupPrototype(val);
+            }
+        }
+    {{/x-optio3-fixup-array}}
+    {{#x-optio3-fixup-array-array}}
+        if (__res)
+        {
+            for (let val of __res)
+            {
+                if (val)
+                {
+                    for (let subVal of val)
+                    {
+                        {{returnBaseType}}.fixupPrototype(subVal);
+                    }
+                }
+            }
+        }
+    {{/x-optio3-fixup-array-array}}
+    {{#x-optio3-fixup-map}}
+        if (__res)
+        {
+            for (let key in __res)
+            {
+                let val = __res[key];
+                if (val)
+                {
+                    {{returnBaseType}}.fixupPrototype(val);
+                }
+            }
+        }
+    {{/x-optio3-fixup-map}}
+
+        return __res;
+    {{/x-optio3-fixup}}
+    {{^x-optio3-fixup}}
+        return this.client.callWithOptions(__path, __requestOptions);
+    {{/x-optio3-fixup}}
+{{/vendorExtensions}}
+    }
+
+{{/operation}}
+}
+{{/operations}}

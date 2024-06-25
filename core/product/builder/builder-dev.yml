@@ -1,0 +1,143 @@
+##########################################
+#
+# Database settings:
+#
+
+database:
+
+  enableEvents: true
+
+  hibernateSearchIndexLocation: ${env.TMPDIR?/optio3-scratch}/hibernate-builder-search-index
+  hibernateSearchIndexingDelay: 0
+
+#  # For testing, don't use Liquibase by default
+#  skipMigration: true
+
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+
+  # the JDBC URL (use DB2 mode for 'offset x rows' support)
+  url: jdbc:h2:./builder_db;MODE=DB2;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE
+#  url: jdbc:h2:./builder_db;MODE=DB2;IGNORECASE=TRUE;TRACE_LEVEL_SYSTEM_OUT=3;TRACE_LEVEL_FILE=3
+
+#  driverClass: org.mariadb.jdbc.Driver
+#  url: jdbc:mysql://localhost:3306/builder_db?createDatabaseIfNotExist=true
+#  user: root
+#  password:
+
+# Uncomment to display SQL statements
+#  showSql: true
+#  formatSql: true
+
+# Uncomment to set any properties specific to your JDBC driver:
+#  properties:
+## Uncomment to turn on statistics.
+#    hibernate.generate_statistics: true
+
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+#  # Logger-specific levels.
+#  loggers:
+#
+# Uncomment to see the queries that Hibernate sends to the database. 
+#    "org.hibernate.SQL": DEBUG
+# Uncomment to see the parameters as well. 
+#    "org.hibernate.type": TRACE
+    
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+    
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 8180
+  adminConnectors:
+    - type: http
+      port: 8181
+  requestLog:
+    type: optio3
+
+##########################################
+
+loadDemoJobs: true
+
+# Uncomment to get build output sent to the console.
+#dumpBuildLogs: true
+
+# This is a secret key used by GitHub to sign the payloads for our webhook
+gitHubSignatureKey: zpcoMsIvVoshsHttw6NF7jSwsN5WYrdb
+
+host:
+  sysId: 42597b36-a482-41ff-905f-70c768272a56
+  domainName: localhost
+
+credentialFile: ${env.HOME}/git/infra/identity/masterFat.key
+
+##Uncomment for self-host
+#selfhost:
+#  emailAddress: <user>@optio3.com
+#  password: <pwd>
+
+scratchDirectory: ${env.HOME}/optio3.test/builder.tmp
+
+# In production, this needs to be mapped to a volume, or Docker-on-Docker won't work properly.
+managedDirectoriesRoot: ${env.HOME}/optio3.test/builder.db.dev
+
+#########################
+
+developerSettings:
+  developerMode: true
+
+  # Comment to only send output to the database
+  forceLogToConsole: true
+
+#  useLocalhostAsNexus: true
+
+# Comment to use a dedicated Maven repository instead of the one from the Host.
+  useLocalMaven: true
+
+# Uncomment to use a local repo instead of cloning from GitHub directly.
+#  sourceRepo: ${env.HOME}/git/core
+
+# Uncomment for local MariaDB testing. This also exposes port 13306 on the MariaDB container, to allow external connections.
+  databasePasswordOverride: test
+
+  disableEmails: true
+  disableImagePruning: true
+
+# Comment to execute Push step.
+  dontPushImages: true
+
+# Don't generate automatic backups during development.
+  disableAutomaticBackups: true
+
+#########################
+
+# Uncomment for local testing. Builder will use ngrok to establish a connection between the cloud and the localhost.
+deployerConnectionMode: TunnelToLocalhost
+
+# Uncomment for local testing of cloud instances. Builder will report the URL for ngrok to establish a connection between the cloud and the localhost.
+#deployerConnectionMode: TunnelThroughNGrok
+## Copy the URL from the NGrok window
+#ngrokTunnelUrl: tcp://<url>
+
+# Uncomment for local testing only, when Deployer is started manually.
+#deployerConnectionMode: Localhost
+
+# NOTE: This doesn't work with NGrok, since it's only configured for TCP redirection.
+#enableMessageBusOverUDPforIntel: true
+enableMessageBusOverUDP: false

@@ -1,0 +1,246 @@
+@import '~@circlon/angular-tree-component/css/angular-tree-component.css';
+
+$selected-color: #2196f3;
+
+@mixin dropdowntreeview($theme) {
+    .with-dropdowns div.overlay-input button.btn.btn-secondary.dropdown-toggle {
+        padding-bottom: .55em;
+    }
+
+    div.overlay-input {
+        position: relative;
+        padding: 0.44em 0 0.7em 0;
+        width: 100%;
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: calc(.7em - 1px);
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 0, 0, .42);
+        }
+
+        .input-label {
+            position: absolute;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        > label {
+            margin-bottom: 0 !important;
+            font-size: 14px;
+            transform: scale(.75);
+            transform-origin: 0 0;
+            color: rgba(0, 0, 0, 0.54);
+
+            &.input-label {
+                margin-top: -.11em;
+            }
+        }
+
+        button.dropdown-toggle::after {
+            top: 0;
+            margin-left: 1em;
+            color: rgba(0, 0, 0, 0.38);
+        }
+
+        button.btn.btn-secondary.dropdown-toggle {
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left;
+            text-transform: none;
+            box-shadow: none;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0.45em 20px calc(0.4em - 3.4px) 0;
+            font-family: sans-serif;
+            border-left: none;
+            border-right: none;
+            border-top: 0.63828em solid transparent;
+
+            &:active,
+            &:focus {
+                box-shadow: none;
+                background-color: transparent;
+                outline: none;
+            }
+
+            &:after {
+                top: 12px;
+            }
+        }
+    }
+
+    tree-viewport {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+        tree-node {
+            .tree-node {
+                .node-content-wrapper-active,
+                .node-content-wrapper-focused,
+                .node-content-wrapper:hover {
+                    background: transparent;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    tree-root {
+        &.o3-flat {
+            tree-viewport {
+                span.toggle-children-placeholder-custom {
+                    width: 0px;
+                    min-width: 0px;
+                    max-width: 0px;
+                    padding: 0px;
+                }
+
+                .option-row {
+                    padding-left: 11px;
+
+                    &.o3-filterable-tree--checkbox-node {
+                        mat-checkbox {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.o3-not-flat tree-viewport .node-content-wrapper {
+            height: 100%;
+            width: calc(100% - 30px);
+
+            .option-row {
+                &.o3-filterable-tree--checkbox-node {
+                    mat-checkbox {
+                        margin-right: 5px;
+                    }
+                }
+
+                &:not(.o3-filterable-tree--checkbox-node) {
+                    margin-left: -30px;
+                    padding-left: 30px;
+
+                    width: calc(100% + 30px);
+                }
+            }
+        }
+    }
+
+    o3-filterable-tree {
+        background-color: #fff;
+
+        .dropdown-filter {
+            padding: 4px 8px;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+        }
+
+        tree-viewport {
+            .angular-tree-component {
+                margin-top: -2px;
+            }
+
+            tree-node-wrapper {
+                tree-node-expander {
+                    .toggle-children-wrapper {
+                        line-height: 41px;
+                    }
+
+                    .toggle-children-placeholder {
+                        width: 23px;
+                    }
+                }
+            }
+
+            .tree-node .tree-node-drop-slot {
+                display: none;
+            }
+
+            .tree-node > tree-node-wrapper .node-wrapper {
+                transition: background-color 0.2s ease;
+                background-color: transparent;
+            }
+
+            .tree-node > tree-node-wrapper .node-wrapper {
+                &:focus-within, &:hover {
+                    background-color: rgb(242, 242, 242);
+                }
+            }
+
+            .node-content-wrapper-active,
+            .node-content-wrapper.node-content-wrapper-active:hover,
+            .node-content-wrapper-active.node-content-wrapper-focused,
+            .node-content-wrapper-focused {
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .toggle-children-wrapper {
+                margin-left: 10px;
+                line-height: 31px;
+            }
+
+            .node-content-wrapper {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0px;
+                padding: 0px;
+                height: 100%;
+
+                font-family: "Open Sans", "Helvetica Neue", sans-serif;
+                font-size: 14px !important;
+
+                div.option-row.o3-filterable-tree--selected-node {
+                    &:not(.o3-filterable-tree--checkbox-node) {
+                        background-color: #dedede;
+                        color: $selected-color !important;
+                    }
+                }
+            }
+
+            .node-wrapper:hover {
+                background: rgba(0, 0, 0, 0.04);
+            }
+        }
+    }
+
+    .o3-overlay--dropdown-container, o3-filterable-tree {
+        .input-container,
+        .button-container {
+            padding: 0 10px 10px 10px;
+        }
+
+        hr {
+            margin-top: .5rem !important;
+            margin-bottom: .5rem !important;
+        }
+
+        .btn-primary {
+            line-height: 18px;
+            font-size: 14px;
+        }
+    }
+
+    .o3-overlay--dropdown-container tree-viewport {
+        max-height: 35vh;
+    }
+
+    section.bs .dropdown-toggle::after,
+    section.bs .menu-toggle::after {
+        border-top: 0.25em solid;
+        border-right: 0.25em solid transparent;
+        border-left: 0.25em solid transparent;
+        font-size: 16px;
+        content: "";
+        vertical-align: middle;
+    }
+}

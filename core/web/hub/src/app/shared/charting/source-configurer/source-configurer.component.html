@@ -1,0 +1,54 @@
+<o3-standard-form-overlay [label]="'Configure: ' + (source?.name || 'Source')" [overlayConfig]="config" [actions]="tabActions"
+                          [primaryButtonText]="primaryButtonText" [primaryButtonDisabled]="!source || pristine" (submitted)="submitted()"
+                          [showSecondary]="true" [secondaryButtonText]="pristine ? 'Close' : 'Cancel'" (cancelled)="cancelled()">
+    <ng-container *cdkPortal>
+        <ng-container *ngIf="source">
+            <mat-form-field>
+                <o3-color-picker #test_color placeholder="Configure color" [palette]="typedPalette" (paletteChange)="palette = $event"
+                                 name="color" [(ngModel)]="source.model.color" (ngModelChange)="update()"></o3-color-picker>
+            </mat-form-field>
+
+            <ng-container *ngIf="!source.valid || !source.getChartData().isDiscrete()">
+                <div class="spread-override">
+                    <div class="input-label">Show spread override</div>
+
+                    <mat-slide-toggle name="show-spread" [(ngModel)]="source.model.showDecimation" (ngModelChange)="update()"
+                                      matTooltip="To turn off spread, go to chart config"></mat-slide-toggle>
+                </div>
+
+                <mat-form-field>
+                    <o3-select placeholder="Spread highlighting" name="spread-highlight" [(ngModel)]="source.model.decimationDisplay" (ngModelChange)="update()"
+                               [options]="highlightOptions" [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"></o3-select>
+                </mat-form-field>
+            </ng-container>
+
+            <mat-form-field>
+                <o3-select [(ngModel)]="movingAverageKind" (ngModelChange)="movingAverageChanged()"
+                           [ngModelOptions]="{standalone: true}" name="averageType"
+                           [options]="movingAverageOptions" placeholder="Moving average"
+                           [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"></o3-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="movingAverageValueEnabled">
+                <input type="number" matInput placeholder="Moving average window" name="movingAverageWindow"
+                       [(ngModel)]="movingAverageValue" (ngModelChange)="movingAverageChanged()"/>
+            </mat-form-field>
+
+            <div class="moving-override" *ngIf="movingAverageValueEnabled">
+                <div class="input-label">Only Show Moving Average</div>
+                <mat-slide-toggle name="show-moving-average" [(ngModel)]="source.model.onlyShowMovingAverage" (ngModelChange)="update()"></mat-slide-toggle>
+            </div>
+
+            <div class="range-override">
+                <div class="input-label">Custom range</div>
+                <o3-range-override name="range" [(model)]="source.model.range" (modelChange)="update()"></o3-range-override>
+            </div>
+            <o3-duration-selector amountPlaceholder="Time shift amount" unitPlaceholder="Time shift unit"
+                                  [(amount)]="source.model.timeOffset.amount" [(units)]="source.model.timeOffset.unit"
+                                  (amountChange)="timeShifted()" (unitsChange)="timeShifted()">
+            </o3-duration-selector>
+        </ng-container>
+    </ng-container>
+</o3-standard-form-overlay>
+
+<o3-add-related-source [source]="source" [sources]="sources" (addSource)="addSource.emit($event)"></o3-add-related-source>

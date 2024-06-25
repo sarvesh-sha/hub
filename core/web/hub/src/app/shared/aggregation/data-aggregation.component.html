@@ -1,0 +1,23 @@
+<ng-container *ngIf="config">
+    <o3-aggregation-groups
+        *ngIf="config.groups.length"
+        [config]="config"
+        [mode]="mode"
+        [rangeIdx]="rangeIdx"
+        [enableTooltips]="enableTooltips"
+        [viewport]="viewport"
+        (aggregationSelected)="aggregationSelected($event)"
+        (interactableCharts)="interactableCharts.emit($event)">
+    </o3-aggregation-groups>
+
+    <o3-node-binding-aggregation-table
+        *ngIf="config.graph && config.columns?.length"
+        [graph]="config.graph"
+        [columns]="config.columns"
+        [range]="config.filterableRanges[0]"
+        [mode]="mode"
+        [contextDisplay]="config.controlPointDisplayType"
+        [initialSort]="config.initialSort"
+        (cellSelected)="cellSelected($event)">
+    </o3-node-binding-aggregation-table>
+</ng-container>

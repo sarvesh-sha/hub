@@ -1,0 +1,152 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <o3-tab-action [label]="bookmarkOptionLabel" (click)="openBookmarkOverlay()"></o3-tab-action>
+        <o3-tab-action *ngIf="counts?.numChildControlPoints > 0" label="Export Control Point to Excel" (click)="exportControlPointsToExcel()"></o3-tab-action>
+        <o3-tab-action *ngIf="counts?.numChildEquipment > 0" label="Export Child Equipment to Excel" (click)="exportEquipmentToExcel()"></o3-tab-action>
+        <o3-tab-action label="Request Change" (click)="workflowOverlay.toggleOverlay()"></o3-tab-action>
+
+        <o3-tab label="Equipment Details">
+            <ng-container *ngIf="counts && counts.numChildEquipment === 0 && counts.numChildControlPoints === 0">
+                <o3-tab-action label="Update" priority="primary" type="submit" [form]="equipmentForm"
+                               [disabled]="!equipmentForm.valid || pristine || !!equipmentNoUpdateReason"
+                               [tooltip]="equipmentNoUpdateReason"></o3-tab-action>
+                <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="pristine"></o3-tab-action>
+                <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!pristine"></o3-tab-action>
+                <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()" [disabled]="!!equipmentNoDeleteReason"
+                               [tooltip]="equipmentNoDeleteReason"></o3-tab-action>
+            </ng-container>
+
+            <o3-tab-section [withSeparator]="false">
+                <form #equipmentForm="ngForm" (ngSubmit)="save()" novalidate>
+                    <div class="row input-fields">
+                        <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Name" name="name"
+                                       [(ngModel)]="equipment?.model.name" (ngModelChange)="equipment.refreshDisplayName()">
+                            </mat-form-field>
+                            <mat-form-field class="clickable-input" *ngIf="locationModel">
+                                <o3-select [o3LocationSelector]="true" enableNavigation name="location" [multiSelect]="false"
+                                           [ready]="locationModelReady" [(ngModel)]="locationModel.sysId" (ngModelChange)="locationChanged($event)"></o3-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <o3-select placeholder="Operational Status" name="operational-status" defaultValueDescription="No Status Specified"
+                                                   [(ngModel)]="equipment?.model.state" [options]="operationalStates" [multiSelect]="false" [singleClick]="true"></o3-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Equipment Class" readonly [value]="equipmentClassDisplayName" name="equipment-class">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <o3-string-set [(value)]="equipment?.model.classificationTags" placeholder="Classification Tags" readonly></o3-string-set>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <o3-string-set [(value)]="equipment?.model.manualTags" placeholder="Manual Tags"></o3-string-set>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <mat-form-field *ngIf="!!parentEquipment" [class.clickable]="true" (click)="navigateTo(parentEquipment)">
+                                <input matInput [class.clickable]="true" placeholder="Parent Equipment" readonly
+                                       [value]="parentEquipment ? parentEquipment.model.name : 'No Parent Equipment'">
+                            </mat-form-field>
+                            <mat-form-field *ngIf="!parentEquipment">
+                                <input matInput placeholder="Parent Equipment" readonly value="" name="parent-name">
+                            </mat-form-field>
+
+                            <ng-container *ngIf="counts">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput type="text" placeholder="Num child equipment" readonly value="{{counts.numChildEquipment}}" name="numChildEquipment"
+                                            >
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput type="text" placeholder="Num control points" readonly value="{{counts.numChildControlPoints}}" name="numChildControlPoints"
+                                            >
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </form>
+            </o3-tab-section>
+        </o3-tab>
+        <o3-tab label="Notes">
+            <mat-form-field class="o3-textarea-border o3-page-color-border">
+                <textarea matInput rows="4" placeholder="Notes" name="customer_notes"
+                          [(ngModel)]="equipment?.typedModel.customerNotes"></textarea>
+            </mat-form-field>
+        </o3-tab>
+    </o3-tab-group>
+
+    <ng-container *ngIf="counts">
+        <ng-container *ngIf="counts.numChildEquipment > 0">
+            <o3-tab-group noUnderline>
+                <ng-template #negativeTabsSpace>
+                    <o3-filter-chips-container *ngIf="filteringLoaded"
+                                               [chips]="equipmentChips" (editFilterRequested)="equipmentFiltersAdapter.openOverlay()"></o3-filter-chips-container>
+                </ng-template>
+
+                <o3-tab label="Child Equipment">
+                    <ng-container *ngIf="counts.numChildControlPoints === 0">
+                        <o3-tab-action label="Update" priority="primary" type="submit" [form]="equipmentForm" [disabled]="!equipmentForm.valid || pristine"></o3-tab-action>
+                        <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="pristine"></o3-tab-action>
+                        <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!pristine"></o3-tab-action>
+                        <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()" [disabled]="!!equipmentNoDeleteReason"
+                                       [tooltip]="equipmentNoDeleteReason"></o3-tab-action>
+                    </ng-container>
+
+                    <o3-equipment-list [parent]="equipment?.model" [filters]="equipmentFilters" [withFiltering]="true" itemName="Child Equipment"></o3-equipment-list>
+                </o3-tab>
+            </o3-tab-group>
+
+            <o3-equipment-filters-adapter *ngIf="filteringLoaded" [(request)]="equipmentFilters" [excludeLocation]="true" [local]="true"
+                                          (filterChipsChange)="equipmentChips = $event"></o3-equipment-filters-adapter>
+        </ng-container>
+
+        <ng-container *ngIf="counts.numChildControlPoints > 0">
+            <o3-tab-group noUnderline>
+                <ng-template #negativeTabsSpace>
+                    <o3-filter-chips-container *ngIf="filteringLoaded" [chips]="deviceElemChips"
+                                               (editFilterRequested)="deviceElemFiltersAdapter.openOverlay()"></o3-filter-chips-container>
+                </ng-template>
+
+                <o3-tab label="Control Points" [disabled]="counts.numChildControlPoints == 0">
+                    <o3-tab-action label="Update" priority="primary" type="submit" [form]="equipmentForm" [disabled]="!equipmentForm.valid || pristine"></o3-tab-action>
+                    <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="pristine"></o3-tab-action>
+                    <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!pristine"></o3-tab-action>
+                    <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()" [disabled]="!!equipmentNoDeleteReason"
+                                   [tooltip]="equipmentNoDeleteReason"></o3-tab-action>
+
+                    <o3-device-elements-list [parent]="equipment?.model" [filters]="deviceElemFilters" [excludeHidden]="true"></o3-device-elements-list>
+                </o3-tab>
+            </o3-tab-group>
+
+            <o3-device-element-filters-adapter *ngIf="filteringLoaded" [(request)]="deviceElemFilters" [excludeLocation]="true" [local]="deviceElemLocalFiltering"
+                                               (filterChipsChange)="deviceElemChips = $event"></o3-device-element-filters-adapter>
+        </ng-container>
+    </ng-container>
+</section>
+
+<o3-overlay #workflowOverlay [config]="workflowOverlayConfig">
+    <div *cdkPortal>
+        <o3-workflow-wizard [equipmentContext]="equipment" (wizardFinished)="workflowOverlay.closeOverlay();"></o3-workflow-wizard>
+    </div>
+</o3-overlay>

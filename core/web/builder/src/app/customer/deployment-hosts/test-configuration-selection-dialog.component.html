@@ -1,0 +1,33 @@
+<o3-standard-form label="Select run configuration for {{data.dialogPurpose}}?"
+                  [primaryButtonText]="data.dialogOkButton"
+                  [primaryButtonDisabled]="selectedItemIndex === undefined"
+                  (submitted)="clicked()"
+                  (cancelled)="dialogRef.close()">
+    <div #dialogContent [style.min-width.px]="700">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-checkbox [(ngModel)]="result.cfg.privileged">Privileged</mat-checkbox>
+            </div>
+            <div class="col-sm-6">
+                <mat-checkbox [(ngModel)]="result.cfg.useHostNetwork">Access Host Network</mat-checkbox>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Command Line" [(ngModel)]="result.cfg.commandLine" name="commandLine">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Override Entrypoint" [(ngModel)]="result.cfg.entrypoint" name="entryPoint">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</o3-standard-form>

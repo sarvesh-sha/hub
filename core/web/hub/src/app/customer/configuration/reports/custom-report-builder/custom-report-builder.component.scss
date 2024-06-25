@@ -1,0 +1,215 @@
+$row-color: rgba(25, 75, 200, .4);
+$row-color-dark: rgba(25, 75, 200, .6);
+$col-color: rgba(96, 125, 139, 0.4);
+$col-color-dark: rgba(96, 125, 139, 0.6);
+
+.report {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .report-section.o3-report-builder--dragging {
+        &, .item-frame {
+            cursor: grabbing;
+        }
+
+        .o3-custom-report-builder--button-row, .o3-custom-report--button {
+            visibility: hidden;
+        }
+    }
+}
+
+.self-drop-area {
+    width: 100%;
+    height: 100%;
+}
+
+.layout-row, .layout-col {
+    display: flex;
+}
+
+.layout-row {
+    width: 100%;
+
+    > .drop-area {
+        width: 9px;
+
+        &.only {
+            width: 100%;
+        }
+    }
+
+    > .cdk-drop-list-dragging {
+        background: $row-color;
+
+        &.self-drop-area {
+            background: $col-color-dark;
+        }
+    }
+}
+
+.layout-col {
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 0;
+
+    > * {
+        width: 100%;
+    }
+}
+
+.report-section, .layout-col {
+    > .drop-area {
+        height: 9px;
+
+        &.only {
+            height: 100%;
+
+            > span {
+                margin-top: -4px;
+            }
+        }
+    }
+
+    > .cdk-drop-list-dragging {
+        background: $col-color;
+
+        &.self-drop-area {
+            background: $row-color-dark;
+        }
+    }
+}
+
+.drop-area {
+    margin: 1.5px;
+
+    &.top-level {
+        height: 16px !important;
+        margin-top: -20px;
+        margin-bottom: 4px;
+    }
+
+    > span {
+        visibility: hidden;
+    }
+
+    &.only {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > span {
+            visibility: visible;
+            color: #a7a7a7;
+        }
+    }
+}
+
+.item-frame {
+    &:not(.cdk-drag-disabled) {
+        cursor: grab;
+    }
+
+    border: 2px solid $row-color;
+
+    &.column-like {
+        border-color: $col-color;
+    }
+
+    position: relative;
+    border-radius: 4px;
+    height: 100%;
+    padding: 10px;
+}
+
+.report-actions {
+    position: absolute;
+}
+
+.o3-custom-report--button {
+    width: 24px;
+    height: 24px;
+    font-size: 20px !important;
+    padding: 0 !important;
+    cursor: pointer;
+
+    i {
+        &.o3-configure {
+            color: unset;
+        }
+    }
+
+    &.top-level {
+        margin: 2px 0px;
+
+        &.add-new {
+            color: $col-color-dark;
+            top: 0px !important;
+            left: calc(50% - 11.5px);
+        }
+    }
+}
+
+.item-frame {
+    .o3-custom-report-builder--button-row {
+        display: flex;
+        justify-content: flex-end;
+
+        position: absolute;
+        top: -13px;
+        right: 12px;
+        height: 24px;
+        margin-right: -2px;
+
+        background-color: white;
+    }
+
+    // row-like
+    .o3-custom-report--button.add-new {
+        position: absolute;
+        top: calc(50% - 12px);
+        right: -13px;
+
+        color: $row-color-dark;
+        background-color: white;
+    }
+
+    &.column-like {
+        > .o3-custom-report--button.add-new {
+            top: unset;
+            right: calc(50% - 13px);
+            bottom: -13px;
+            color: $col-color-dark;
+        }
+    }
+}
+
+.inner-container, .self-drop-area {
+    min-height: 40px;
+}
+
+.inner-container {
+    background: white;
+    height: 100%;
+    width: 100% !important;
+
+    &.layout-row {
+        padding: 12px 0px;
+    }
+
+    &.layout-col {
+        padding: 0px 12px;
+    }
+}
+
+.cdk-drag-placeholder {
+    display: none !important;
+}
+
+.cdk-drag-preview {
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}

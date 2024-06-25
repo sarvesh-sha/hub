@@ -1,0 +1,52 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-6">
+            <o3-delivery-options [deliveryOptions]="data.schedulingOptions.deliveryOptions"></o3-delivery-options>
+        </div>
+    </div>
+
+    <hr/>
+
+    <form *ngIf="data.reportDefinition && data.schedulingOptions">
+        <div class="row">
+            <mat-form-field class="col-xl-4 col-6">
+                <o3-select placeholder="How often do you want this report to be generated?"
+                           name="schedule"
+                           singleClick
+                           preventDeselection
+                           [multiSelect]="false"
+                           [(ngModel)]="data.schedulingOptions.schedulingType"
+                           [options]="scheduleOptions"></o3-select>
+            </mat-form-field>
+            <div class="col-xl-4 col-6">
+                <ng-container *ngIf="data.schedulingOptions.schedulingType === 'Daily'">
+                    <div style="padding-top: 15px;">
+                        <o3-day-picker [(selection)]="data.schedulingOptions.daysOfWeek"></o3-day-picker>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="data.schedulingOptions.schedulingType === 'Weekly'">
+                    <div style="padding-top: 15px;">
+                        <o3-day-picker [(selection)]="data.schedulingOptions.daysOfWeek" [singleSelect]="true"></o3-day-picker>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="data.schedulingOptions.schedulingType === 'Monthly'">
+                    <div>
+                        Day
+                        <mat-form-field style="display: inline-block; width: 40px">
+                            <input matInput name="dayOfMonth" type="number" style="padding-left: 5px" [(ngModel)]="data.schedulingOptions.dayOfMonth" min="1" max="31"/>
+                        </mat-form-field>
+                        of the month
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="row" *ngIf="data.schedulingOptions.schedulingType !== 'OnDemand'">
+            <div class="col-xl-4 col-6">
+                <o3-date-picker label="When to generate report" display="Time" [(model)]="data.schedulingOptions.timeOfDay"></o3-date-picker>
+            </div>
+            <o3-time-zone-selector class="col-xl-4 col-6" [(zone)]="data.schedulingOptions.model.schedule.zoneDesired"></o3-time-zone-selector>
+        </div>
+    </form>
+</ng-template>

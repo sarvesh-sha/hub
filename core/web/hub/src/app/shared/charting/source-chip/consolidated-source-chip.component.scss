@@ -1,0 +1,65 @@
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.o3-consolidated-source-chip--chip-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    > o3-source-chip {
+        max-width: 100%;
+        margin-right: 8px;
+
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+
+    &.o3-consolidated-source-chip--reflowing {
+        > o3-source-chip {
+            visibility: hidden;
+        }
+    }
+
+    > .o3-watermark-caption {
+        padding: 9px;
+    }
+}
+
+.o3-source-chip {
+    background-color: unset;
+
+    &::after {
+        background: unset;
+    }
+
+    .circular-chip-siders {
+        min-width: 24px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chip-indicator {
+        border-radius: 999px;
+    }
+}
+
+.filter-input {
+    padding: 0px 9px;
+
+    .source-filter {
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+.chip-list {
+    max-height: 392px; // 500 - 108 ... 500 is maxHeight of overlay and 108 is sum height of title and filtering
+    overflow-y: auto;
+}

@@ -1,0 +1,4 @@
+<ng-template o3-wizard-step-template>
+    <o3-multiple-graph-configuration #test_localGraphs [host]="graphsHost" (graphsUpdated)="graphUpdated()"
+                                     [singularGraph]="!!dataAggregationWidget" [readonlyGraphNames]="!!dataAggregationWidget"></o3-multiple-graph-configuration>
+</ng-template>

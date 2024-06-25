@@ -1,0 +1,242 @@
+#!/bin/bash
+
+TARGET_DIR=${PWD}
+
+########################################
+
+function getFilePart() {
+	echo ${1##*/}
+}
+
+function getDirPart() {
+	local dir
+	local dirLen
+	local filePart
+	local filePartLen
+	local dirPart
+	dir=${1}
+
+	dirLen=${#dir}
+	filePart=${dir##*/}
+	filePartLen=${#filePart}
+
+	if [ "${dir}" == "${filePart}" ]; then
+		# No slashes.
+		dirPart=${PWD}
+	else
+		dirPart=${dir:0:${dirLen} - ${filePartLen} - 1}
+		if [ -z "${dirPart}" ]; then
+			dirPart=/
+		else
+			dirPart=$(normalizePath ${dirPart})
+		fi
+	fi
+
+	echo ${dirPart}
+}
+
+function joinDirAndFileParts() {
+	local dirPart
+	local filePart
+	dirPart=${1}
+	filePart=${2}
+
+	if [ "${filePart}" == "" ]; then
+		echo "${dirPart}"
+	elif [ "${dirPart}" == "/" ]; then
+		echo "/${filePart}"
+	else
+		echo "${dirPart}/${filePart}"
+	fi
+}
+
+function normalizePath() {
+	local dir
+	local dirPart
+	local filePart
+	dir=${1}
+
+	filePart=$(getFilePart ${dir})
+	dirPart=$(getDirPart ${dir})
+	
+	if [ "${filePart}" == ".." ]; then
+		echo $(getDirPart ${dirPart})
+		return
+	fi
+
+	joinDirAndFileParts ${dirPart} ${filePart}
+}
+
+########################################
+
+function addToPath() {
+	local target
+	target=${1}
+	
+	for i in ${PATH//:/$'\n'}; do {
+		if [ "$i" == "${target}" ]; then
+			return
+		fi
+	}; done
+	export PATH="${PATH}:${target}"
+}
+
+function makeHomeRelative() {
+	local target noprefix
+	target=${1}
+
+	noprefix=${target#${HOME}}
+	if [ "${noprefix}" != "${target}" ]; then
+		echo "~${noprefix}"
+	else
+		echo "${target}"
+	fi
+}
+
+########################################
+
+O3_SCRIPT_DIR=`dirname $0`
+O3_ROOT_DIR=$(normalizePath ${O3_SCRIPT_DIR}/..)
+
+addToPath $(makeHomeRelative $(normalizePath ${O3_SCRIPT_DIR}))
+addToPath /usr/local/bin
+
+declare -a TMP_FILES
+
+# deletes the temp files
+function cleanup {
+	for tmpFile in ${TMP_FILES[*]}; do {
+		if [ -f "${tmpFile}" ]; then
+			rm "${tmpFile}"
+		fi
+	}; done
+}
+
+# register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
+
+
+function newTempFile() {
+	local varName=$1
+	local tmpFile
+
+	tmpFile=`mktemp $TMPDIR/o3.XXXXXX`
+	TMP_FILES+=( "$tmpFile" )
+	
+	eval ${varName}=\"${tmpFile}\" || exit $?
+}
+
+function listCommands() {
+	for s in $1/*; do {
+		if [ -d $s ]; then
+			echo ${s##*/}
+		fi
+	}; done
+}
+
+function listAvailableCommands() {
+	if [ ! -z "$1" ]; then
+		echo
+		echo Command \'$1\' not found
+		echo
+	else
+		echo
+		echo "Welcome to the Optio3 command line!"
+		echo
+	fi
+
+	echo "Available commands:"
+	for cmd in $(listCommands ${O3_SCRIPT_DIR}); do {
+		echo "   ${cmd}"
+	}; done
+}
+
+function isHelpRequested() {
+	if [ "$1" == "-h" -o "$1" == "--help" -o "$1" == "help" ]; then
+		return 1
+	fi
+	return 0
+}
+
+function parseSettings() {
+	if [ ! -z "${__CONFIG_LOADED}" ]; then
+	   return 0
+	fi
+	if [ ! -f "${TARGET_DIR}/o3.config" ]; then
+		echo
+		echo "Missing o3.config file. Did you forget to configure the project?"
+		echo
+		exit 10
+	fi
+
+	source "${TARGET_DIR}/o3.config"
+	__CONFIG_LOADED=1
+}	
+
+function getSetting() {
+	local varName=$1
+	local optName=$2
+
+	parseSettings
+	if [ -z "${!optName}" ]; then
+		echo
+		echo "Setting '${optName}' missing from o3.config file. Did you forget to configure the project?"
+		echo
+		exit 10
+	fi
+
+	eval ${varName}=\"${!optName}\" || exit $?
+}	
+
+function getOptionalSetting() {
+	local varName=$1
+	local optName=$2
+
+	parseSettings
+	eval ${varName}=\"${!optName}\" || exit $?
+}	
+
+function getOptionalSettingWithDefault() {
+	local varName=$1
+	local optName=$2
+	local defaultValue=$3
+
+	parseSettings
+	if [ -z "${!optName}" ]; then
+		eval ${varName}=\"${defaultValue}\" || exit $?
+	else
+		eval ${varName}=\"${!optName}\" || exit $?
+	fi
+}	
+
+
+########################################
+
+dirPath=${O3_SCRIPT_DIR}
+
+while true; do {
+	if [ -f "${dirPath}/cmd.sh" ]; then
+		quotedArgs=
+		while [ $# -gt 0 ]; do quotedArgs="$quotedArgs \"$1\""; shift; done
+		eval . "${dirPath}/cmd.sh" $quotedArgs || exit $?
+		exit 0
+	fi
+
+	isHelpRequested $1 || {
+		echo "Welcome to the Optio3 command line!"
+		echo
+		listAvailableCommands
+		exit 10
+	}
+
+	nextCmd=$1
+
+	if [ -d "${dirPath}/${nextCmd}" ]; then
+		dirPath="${dirPath}/${nextCmd}"
+		shift
+	else
+		listAvailableCommands $1
+		exit 10
+	fi
+}; done
+

@@ -1,0 +1,19 @@
+<ng-template o3-wizard-step-template>
+    <mat-radio-group [value]="selectedType" (change)="typeChange($event.value)">
+        <table class="table table-striped" *ngIf="types?.length > 0">
+            <thead>
+            <tr>
+                <th>Type of change</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let type of types">
+                <td>
+                    <mat-radio-button [value]="type.id">{{type.label}}</mat-radio-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </mat-radio-group>
+</ng-template>

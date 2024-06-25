@@ -1,0 +1,41 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 8280
+  adminConnectors:
+    - type: http
+      port: 8281
+  requestLog:
+    type: optio3
+
+##########################################
+
+scratchDirectory: ${env.HOME}/optio3.test/provisioner.tmp.server
+
+#productionMode: true
+factoryFloorMode: true
+
+# To override, configure the environment variable CONNECTION_URL, e.g. set CONNECTION_URL=http://localhost:8180
+connectionUrl: ${env.CONNECTION_URL?https://builder.dev.optio3.io}
+
+# Uncomment to enable firmware download
+#hostId: 00:01:02:03:04:05
+
+flashSource: ${env.HOME}/dumps/provisioner/fakeFlashSource
+flashLocal: ${env.HOME}/git/infra/gateway-image-generation/deploy/edgeV1-tester.opt3firmware
+

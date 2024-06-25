@@ -1,0 +1,20 @@
+{{>licenseInfo}}
+
+package {{package}};
+
+// OPTIO3_LICENSE_END
+{{#imports}}import {{import}};
+{{/imports}}
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.*;
+
+{{#models}}
+{{#model}}
+{{#isEnum}}
+{{>enumOuterClass}}
+{{/isEnum}}
+{{^isEnum}}
+{{>pojo}}
+{{/isEnum}}
+{{/model}}
+{{/models}}

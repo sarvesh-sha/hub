@@ -1,0 +1,20 @@
+<ng-template o3-wizard-step-template>
+    <o3-control-point-grouping-step
+        #test_groupingStep
+        forDashboard
+        [graphsHost]="graphsHost"
+        [isAggregationSummary]="!!aggregationSummaryWidget"
+        [isAggregationTrend]="!!aggregationTrendWidget"
+        [isAggregationTable]="!!aggregationTableWidget"
+        [controlPointGroups]="data.editor.controlPointGroups"
+        (unitsUpdated)="data.editor.syncAggregationConfig()"
+        [selectorNameLookup]="data.editor.newSelectorNameLookup"
+        [(visualizationMode)]="visualizationMode"
+        [(visualizationLegend)]="data.editor.visualizationLegend" (visualizationLegendChange)="data.editor.syncTableConfigs()"
+        [(controlPointDisplayType)]="data.editor.controlPointDisplayType" (controlPointDisplayTypeChange)="data.editor.syncTableConfigs()"
+        [(compareBetweenGroups)]="data.editor.compareBetweenGroups" (compareBetweenGroupsChange)="data.editor.syncTableConfigs()"
+        [(aggregationTrendShowLegend)]="data.editor.aggregationTrendShowLegend" (aggregationTrendShowLegendChange)="data.editor.syncAggregationTrendConfig()"
+        [(aggregationTrendShowYAxis)]="data.editor.aggregationTrendShowYAxis" (aggregationTrendShowYAxisChange)="data.editor.syncAggregationTrendConfig()"
+        [(aggregationTrendVisualizationMode)]="data.editor.aggregationTrendVisualizationMode" (aggregationTrendVisualizationModeChange)="data.editor.syncAggregationTrendConfig()">
+    </o3-control-point-grouping-step>
+</ng-template>

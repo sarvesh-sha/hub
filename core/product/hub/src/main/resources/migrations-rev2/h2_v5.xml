@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <addColumn tableName="HOST">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <addColumn tableName="ASSET_NETWORK">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <addColumn tableName="ASSET_GATEWAY">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <addColumn tableName="ALERT_DEFINITION">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropIndex indexName="IDX9KMUBKJ1M7EVRPTOLXUU5U723" tableName="ASSET_GATEWAY_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropIndex indexName="IDXE4FTKCKUN09HA40DHU4POPTV0" tableName="ASSET_NETWORK_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropIndex indexName="IDXL43JPCHW33AXEPQK4ABR2ANES" tableName="HOST_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <dropIndex indexName="IDXP9DQ4BYIJQWY4GJUBW7YYS6F9" tableName="ALERT_DEFINITION_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <dropIndex indexName="IDXQYYLJKWVJ54Q9YKL86LIA5TD8" tableName="ALERT_DEFINITION_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <dropIndex indexName="IDXSO5VPT5023Y9RTGSKL2EAXFLT" tableName="ASSET_GATEWAY_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <dropIndex indexName="IDXT6EMETXO6GWB2E2PFX1UCD2KT" tableName="HOST_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <dropIndex indexName="IDXT6FBIJLR5F7B5GYI72UOU9BD6" tableName="ASSET_NETWORK_LOG"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,63 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab label="Waypoint Provisioning">
+
+            <o3-tab-action label="Upload Notes" priority="secondary" (click)="uploadNotes()" [disabled]="alreadyAssociatedWithCustomer"></o3-tab-action>
+            <o3-tab-action label="Mark As Shipping" priority="secondary" (click)="markAsShipping()" *ngIf="!alreadyShipped && !alreadyAssociatedWithCustomer"></o3-tab-action>
+            <o3-tab-action label="Mark As Ready" priority="secondary" (click)="confirmReady.toggleOverlay()" [disabled]="alreadyAssociatedWithCustomer"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Host Id" [value]="hostDisplay" name="hostId" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <form #notesForm="ngForm" novalidate *ngIf="!alreadyAssociatedWithCustomer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="What customer and deployment is this for?" [(ngModel)]="customerInfo" name="customerInfo">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <textarea matInput [(ngModel)]="noteText" placeholder="Add notes about the deployment" name="noteTextContents" rows="5" wrap="off"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+
+
+<o3-overlay #confirmReady>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label=" Make sure that all these steps have been completed:">
+            <div class="row">
+                <div class="col">
+                    <mat-checkbox [(ngModel)]="fullyInstalled" name="fullyInstalled">The hardware has been fully installed</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-checkbox [(ngModel)]="sensorsVerified" name="sensorsVerified">The Sensors page in the Wifi hotspot has all greens for the expected units</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-checkbox [(ngModel)]="notesUploaded" name="notesUploaded">Notes about the deployment (trailer #, location, etc.) have been uploaded</mat-checkbox>
+                </div>
+            </div>
+
+            <o3-tab-action label="Confirm" priority="primary" (click)="confirmReady.closeOverlay();markAsReady();" [disabled]="!fullyInstalled || !sensorsVerified || !notesUploaded"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="confirmReady.closeOverlay();"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

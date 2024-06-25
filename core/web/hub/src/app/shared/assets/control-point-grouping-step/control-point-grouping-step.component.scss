@@ -1,0 +1,116 @@
+@import "../../../../framework/ui/app.variables.scss";
+
+td {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+        flex: 1 1 0px;
+    }
+
+    &.buttons {
+        justify-content: center;
+        width: 35px;
+
+        > span {
+            margin-left: -7px;
+
+            > mat-icon {
+
+                &.drag {
+                    cursor: grab;
+                }
+            }
+        }
+
+        &.o3-grouping-step--multiple {
+            width: 70px;
+        }
+    }
+
+    > section.bs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+
+        > div {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+
+            > mat-form-field {
+                width: 100%;
+            }
+
+            &.o3-grouping-step--name-editable {
+                flex-grow: 1.5;
+            }
+
+            &.o3-grouping-step--row-message {
+                min-width: 220px;
+
+                > div {
+                    height: 55px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            &.o3-grouping-step--static {
+                flex-grow: 0;
+            }
+
+            &.o3-grouping-step--select-control-points {
+                text-align: center;
+                font-size: 12px;
+                width: 85px;
+                padding-left: 6px;
+                padding-right: 6px;
+                display: block;
+            }
+        }
+    }
+}
+
+.row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.additional-options {
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+
+    > * {
+        margin-right: 15px;
+    }
+
+    > .slide-toggle-options {
+        min-width: 100%;
+        height: 58px;
+        padding-top: 7px;
+
+        > mat-slide-toggle {
+            padding-right: 17px;
+
+            &:last-child {
+                padding-right: 0px;
+            }
+        }
+    }
+
+    > mat-checkbox {
+        display: flex;
+        align-items: center;
+    }
+
+    @media only screen and (max-width: $sm) {
+        flex-direction: column;
+    }
+}

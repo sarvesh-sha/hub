@@ -1,0 +1,45 @@
+<mat-menu #menu="matMenu" (closed)="closed.emit()">
+    <ng-content></ng-content>
+    <ng-container *ngFor="let firstLevelOption of hierarchicalOptions">
+        <!-- 1st Level Menu Items -->
+        <ng-container *ngIf="firstLevelOption.subOptions.length == 0"
+                      [ngTemplateOutlet]="noSubOptionsRef" [ngTemplateOutletContext]="{option: firstLevelOption}"></ng-container>
+        <div *ngIf="firstLevelOption.subOptions.length != 0" class="o3-tooltip-wrapper"
+             [matTooltip]="firstLevelOption.tooltip" matTooltipShowDelay="500">
+            <button mat-menu-item [matMenuTriggerFor]="secondLevelMenu" [disabled]="allChildrenDisabled(firstLevelOption)">
+                <span>{{firstLevelOption.label}}</span>
+            </button>
+        </div>
+
+        <!-- 2nd Level Menu -->
+        <mat-menu #secondLevelMenu="matMenu">
+            <div *ngFor="let secondLevelOption of firstLevelOption.subOptions">
+                <!-- 2nd Level Menu Items -->
+                <ng-container *ngIf="secondLevelOption.subOptions.length == 0"
+                              [ngTemplateOutlet]="noSubOptionsRef" [ngTemplateOutletContext]="{option: secondLevelOption}"></ng-container>
+                <div *ngIf="secondLevelOption.subOptions.length != 0" class="o3-tooltip-wrapper"
+                     [matTooltip]="secondLevelOption.tooltip" matTooltipShowDelay="500">
+                    <button mat-menu-item [matMenuTriggerFor]="thirdLevelMenu" [disabled]="allChildrenDisabled(secondLevelOption)">
+                        <span>{{secondLevelOption.label}}</span>
+                    </button>
+                </div>
+
+                <!-- 3rd Level Menu -->
+                <mat-menu #thirdLevelMenu="matMenu">
+                    <ng-container *ngFor="let thirdLevelOption of secondLevelOption.subOptions"
+                                  [ngTemplateOutlet]="noSubOptionsRef" [ngTemplateOutletContext]="{option: thirdLevelOption}"></ng-container>
+                </mat-menu>
+            </div>
+        </mat-menu>
+    </ng-container>
+</mat-menu>
+
+<ng-template #noSubOptionsRef let-option="option">
+    <div class="o3-tooltip-wrapper" [matTooltip]="option.tooltip" [matTooltipShowDelay]="500">
+        <button *ngIf="!option.option.template" mat-menu-item (click)="option.option.onClick($event)" [disabled]="option.option.disabled">
+            <span>{{option.option.label}}</span>
+        </button>
+    </div>
+
+    <ng-container *ngIf="option.option.template" [ngTemplateOutlet]="option.option.template"></ng-container>
+</ng-template>

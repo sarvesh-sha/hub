@@ -1,0 +1,18 @@
+<o3-tab-subsection *ngIf="parent || pointIds" [label]="label" [withFiltering]="true" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable *ngIf="table"
+              [table]="table"
+              (onShowingContextMenu)="contextMenu($event)">
+    <o3-datatable-column id="name" prop="extended.model.name" name="Name" sortId="!name" [grow]="2">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+        <ng-container *o3DatatableCellSuffix="let row">
+            <o3-preview-invoker [id]="row.extended.typedModel.sysId" class="o3-datatable--inline-button"></o3-preview-invoker>
+        </ng-container>
+    </o3-datatable-column>
+    <o3-datatable-column id="pointClass" prop="pointClass" name="Point Class" sortId="pointClassId"></o3-datatable-column>
+    <o3-datatable-column id="message" prop="message" name="Message" [grow]="2" *ngIf="messages"></o3-datatable-column>
+    <o3-datatable-column id="equipment" prop="equipment" secondaryProp="equipmentPath" name="Equipment" sortId="equipment"></o3-datatable-column>
+    <o3-datatable-column id="equipmentClass" prop="equipmentClass" name="Equipment Class" sortId="parentEquipmentClassId" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="location" prop="location.model.name" secondaryProp="locationPath" name="Location" sortId="location" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="identifier" prop="extended.typedModel.identifier" name="Identifier" sortId="identifier"></o3-datatable-column>
+</o3-datatable>

@@ -1,0 +1,172 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Forms">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+            <o3-tab-action label="Tour" priority="secondary" (click)="launchTour()"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="mb-3 area-color bold" [o3Tooltip]="tooltip">Datepickers</label>
+                    <ng-template #tooltip>
+                        This is a <em style="color:red;">red</em> tooltip
+                    </ng-template>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <o3-date-picker id="datePicker1" [(model)]="selectedDateTime" [minimumDate]="minimumDate" label="Pick a Date & Time" hintLabel="Date/timepicker hint label">
+                            </o3-date-picker>
+                        </div>
+                        <div class="col-sm-6" style="padding-top: 10px;">
+                            <strong>Selected Date &amp; Time:</strong><br/>
+                            {{selectedDateTime}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <o3-date-picker [(model)]="selectedTime" [minimumDate]="minimumDate" label="Pick a Time" display="Time" hintLabel="Timepicker hint label">
+                            </o3-date-picker>
+                        </div>
+                        <div class="col-sm-6" style="padding-top: 10px;">
+                            <strong>Selected Time:</strong><br/>
+                            {{selectedTime}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <o3-date-picker id="datePicker2" [(model)]="selectedDate" [minimumDate]="minimumDate" label="Pick a Date" display="Date" hintLabel="Datepicker hint label">
+                            </o3-date-picker>
+                        </div>
+                        <div class="col-sm-6" style="padding-top: 10px;">
+                            <strong>Selected Date:</strong><br/>
+                            {{selectedDate}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <o3-unit-editor placeholder="Units" [(ngModel)]="units"></o3-unit-editor>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <o3-select placeholder="Test select" [options]="sampleOptions" [multiSelect]="false"></o3-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <label class="mb-3 area-color bold">Overlays</label>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <o3-overlay-input label="test" [valueText]="dropdownValue" [overlay]="dropdown" #dropdownInput hintLabel="This is a hint label">
+                            </o3-overlay-input>
+                        </div>
+                    </div>
+
+                    <o3-overlay #dropdown [config]="dropdownConfig">
+                        <div class="row" style="margin: 1em;">
+                            <div class="col-sm-12">
+                                <form (ngSubmit)="dropdown.toggleOverlay()" novalidate>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Enter Value" [(ngModel)]="dropdownValue" name="dropdownValue">
+                                    </mat-form-field>
+                                    <button mat-raised-button color="primary" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </o3-overlay>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <o3-overlay-input label="test" [valueText]="dialogValue" iconClass="o3 o3-search" [overlay]="dialog">
+                            </o3-overlay-input>
+                        </div>
+                    </div>
+
+                    <o3-overlay #dialog [config]="dialogConfig">
+                        <div class="row" style="margin: 1em;">
+                            <div class="col-sm-12">
+                                <form (ngSubmit)="dialog.toggleOverlay()" novalidate>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Enter Value" [(ngModel)]="dialogValue" name="dialogValue">
+                                    </mat-form-field>
+                                    <button mat-raised-button color="primary" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </o3-overlay>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <o3-overlay-input label="test" [valueText]="draggableDialogValue" iconClass="o3 o3-search" [overlay]="draggable">
+                            </o3-overlay-input>
+                        </div>
+                    </div>
+
+                    <o3-overlay #draggable [config]="draggableDialogConfig">
+                        <div class="row" style="margin: 1em;">
+                            <div class="col-sm-12">
+                                <form (ngSubmit)="draggable.toggleOverlay()" novalidate>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Enter Value" [(ngModel)]="draggableDialogValue" name="draggableDialogValue">
+                                    </mat-form-field>
+                                    <button mat-raised-button color="primary" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </o3-overlay>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <label class="mb-3 area-color bold">Standard Form Controls</label>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field hintLabel="Input hint label">
+                                <input matInput placeholder="Input"/>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field hintLabel="Select hint label">
+                                <mat-select id="select" placeholder="Select">
+                                    <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field hintLabel="Text area hint label">
+                                <textarea matInput placeholder="Text Area"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6" style="height: 300px;">
+                    <o3-rich-text-editor [(data)]="editorData" [host]="this"></o3-rich-text-editor>
+                </div>
+                <div class="col-6">
+                    {{editorData | json}}
+                </div>
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

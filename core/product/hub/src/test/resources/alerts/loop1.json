@@ -1,0 +1,202 @@
+{
+  "definition": {
+    "title": "ForEach loop Break Continue",
+    "purpose": "Definition",
+    "description": "Break Continue in forEach loop",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": ")Q?go$z~dmw%Fa(%y[e_",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "list",
+                  "type": "List"
+                },
+                {
+                  "name": "result",
+                  "type": "Number"
+                },
+                {
+                  "name": "i",
+                  "type": null
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "PRVmO_6{=6[R)eGq},2c",
+                  "variable": {
+                    "name": "list",
+                    "type": "List"
+                  },
+                  "value": {
+                    "__type": "EngineLiteralList",
+                    "id": "@S-B@oQRD4@Wm!!{,i-r",
+                    "value": [
+                      {
+                        "__type": "EngineLiteralNumber",
+                        "id": "@hl`E76HYsPqZN2,Q(Ir",
+                        "value": 1
+                      },
+                      {
+                        "__type": "EngineLiteralNumber",
+                        "id": "`M3MLu#4K`C_q=:J5},~",
+                        "value": 2
+                      },
+                      {
+                        "__type": "EngineLiteralNumber",
+                        "id": "B45JcG$@k*UTQ07,6P~X",
+                        "value": 3
+                      },
+                      {
+                        "__type": "EngineLiteralNumber",
+                        "id": "sEW]P-#q8w^z#O~j$TgF",
+                        "value": 4
+                      },
+                      {
+                        "__type": "EngineLiteralNumber",
+                        "id": ":SN#;}f{Km3u$V$k~dWx",
+                        "value": 5
+                      }
+                    ]
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "%ObxDsq?0/9-IUAl;;M+",
+                  "variable": {
+                    "name": "result",
+                    "type": "Number"
+                  },
+                  "value": {
+                    "__type": "EngineLiteralNumber",
+                    "id": "D/Os~eUf7~8rL=J|]9U5",
+                    "value": 0
+                  }
+                },
+                {
+                  "__type": "EngineStatementForEach",
+                  "id": "+Q,.pcQ0$+k9S2}H,s9T",
+                  "list": {
+                    "__type": "EngineExpressionGetVariable",
+                    "id": "Nlj3|etY,YQc0*|:oGxy",
+                    "variable": {
+                      "name": "list"
+                    }
+                  },
+                  "variable": {
+                    "name": "i",
+                    "type": null
+                  },
+                  "statements": [
+                    {
+                      "__type": "EngineStatementLogicIf",
+                      "id": "QeO:5;yMB[Gp1?gLGVja",
+                      "ifElseBlocks": [
+                        {
+                          "condition": {
+                            "__type": "EngineExpressionBinaryLogicCompare",
+                            "id": "UJz5_wieT#1Y#NMzO~kK",
+                            "a": {
+                              "__type": "EngineExpressionGetVariable",
+                              "id": "$DQ0s04h=vBcm6tv2JTa",
+                              "variable": {
+                                "name": "i"
+                              }
+                            },
+                            "b": {
+                              "__type": "EngineLiteralNumber",
+                              "id": "ElHF!i1qkrq9[gSl$ukL",
+                              "value": 1
+                            },
+                            "operation": "Equal"
+                          },
+                          "statements": [
+                            {
+                              "__type": "EngineStatementContinue",
+                              "id": "z=]+vFJ]trK(2z^@bPox"
+                            }
+                          ]
+                        }
+                      ],
+                      "elseStatements": null
+                    },
+                    {
+                      "__type": "EngineStatementLogicIf",
+                      "id": "*eN.b#x9[EcyTT51;NBm",
+                      "ifElseBlocks": [
+                        {
+                          "condition": {
+                            "__type": "EngineExpressionBinaryLogicCompare",
+                            "id": "fvTn:B!.nWdz(~WwIN8c",
+                            "a": {
+                              "__type": "EngineExpressionGetVariable",
+                              "id": "~}D!E_vRaIpr^$o#eHw.",
+                              "variable": {
+                                "name": "i"
+                              }
+                            },
+                            "b": {
+                              "__type": "EngineLiteralNumber",
+                              "id": "Y9xw_hIyQ)#Bm:Ugvg-,",
+                              "value": 4
+                            },
+                            "operation": "Equal"
+                          },
+                          "statements": [
+                            {
+                              "__type": "EngineStatementBreak",
+                              "id": "V0d_n+F)em-k-#NhVveO"
+                            }
+                          ]
+                        }
+                      ],
+                      "elseStatements": null
+                    },
+                    {
+                      "__type": "EngineVariableAssignment",
+                      "id": "5qGv.|5pfGg4hs))UQJ-",
+                      "variable": {
+                        "name": "result",
+                        "type": "Number"
+                      },
+                      "value": {
+                        "__type": "EngineArithmeticOperatorBinary",
+                        "id": "?rqz,Wt`$=Cb~(3Vu$uq",
+                        "a": {
+                          "__type": "EngineExpressionGetVariable",
+                          "id": "rBz$,RF;^8-QCws(F{`)",
+                          "variable": {
+                            "name": "result"
+                          }
+                        },
+                        "b": {
+                          "__type": "EngineExpressionGetVariable",
+                          "id": "AI_OmFwFGhD}WIjwrSSe",
+                          "variable": {
+                            "name": "i"
+                          }
+                        },
+                        "operation": "Plus"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

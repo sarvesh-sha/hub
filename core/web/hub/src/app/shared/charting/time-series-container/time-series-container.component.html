@@ -1,0 +1,149 @@
+<mat-card class="timeseries-container" [class.o3-time-series-container--embedded]="embedded">
+    <mat-card-title #chartHeader class="header" *ngIf="!readonly">
+        <div class="asset-structure-context row">
+            <ng-container *ngIf="usesAssetStructure && !configurationOnly">
+                <ng-container *ngIf="!isMap">
+                    <ng-container *ngIf="configExt.assetSelectionHelper">
+                        <mat-form-field *ngFor="let entry of configExt.assetSelectionHelper.currentAssetOptions; trackBy: configExt.assetSelectionHelper.trackOptionList" class="col">
+                            <o3-select #test_contexts [name]="entry.rootId" [options]="entry.list" [placeholder]="entry.name"
+                                       [multiSelect]="configExt.assetSelectionHelper.getInitialAssetStructurePlurality(entry.binding)"
+                                       allowSingleOrMulti preventDeselection singleClick
+                                       [ngModel]="configExt.assetSelectionHelper.getAssetNodeSelections(entry.binding)"
+                                       (ngModelChange)="configExt.assetSelectionHelper.setAssetNodeSelections(entry.binding, $event)"></o3-select>
+                        </mat-form-field>
+                    </ng-container>
+                    <ng-container *ngIf="configExt.externalContextUpdaters">
+                        <mat-form-field *ngFor="let externalSelector of configExt.externalContextUpdaters" class="col">
+                            <o3-select [name]="'external-' + externalSelector.selectorId" [options]="externalSelector.options" [placeholder]="externalSelector.name"
+                                       [multiSelect]="false" preventDeselection singleClick
+                                       [(ngModel)]="externalSelector.contextId"></o3-select>
+                        </mat-form-field>
+                    </ng-container>
+                </ng-container>
+                <mat-form-field class="col" *ngIf="isMap">
+                    <o3-select *ngIf="!configExt.hasExternalBindings" [options]="configExt.assetSelectionHelper.gpsOptions" placeholder="GPS"
+                               [multiSelect]="configExt.assetSelectionHelper.initialGpsContextPlurality"
+                               allowSingleOrMulti preventDeselection singleClick name="gps-id"
+                               [ngModel]="configExt.assetSelectionHelper.selectedGps" (ngModelChange)="configExt.assetSelectionHelper.setSelectedGps($event)"></o3-select>
+                    <o3-select *ngIf="configExt.hasExternalBindings" [options]="configExt.externalContextUpdaters[0].options" placeholder="GPS"
+                               [multiSelect]="false" preventDeselection singleClick name="gps-id"
+                               [(ngModel)]="configExt.externalContextUpdaters[0].contextId"></o3-select>
+                </mat-form-field>
+            </ng-container>
+        </div>
+        <div class="right">
+            <a mat-icon-button (click)="configureSources(isAssetStructureLine)" #test_addSources
+               class="hideable topnav-menu-btn" [class.hide]="configurationOnly || isMap || isAssetStructureScatter || isHierarchical"
+               matTooltip="Add independent data source(s)" matTooltipShowDelay="750">
+                <mat-icon>add_circle</mat-icon>
+            </a>
+            <a mat-icon-button (click)="configureSources(isStandardLine)" #test_editSources
+               class="hideable topnav-menu-btn" [class.hide]="configurationOnly || isMap || isStandardScatter || !hasSources"
+               matTooltip="Configure data sources" matTooltipShowDelay="750">
+                <mat-icon>edit</mat-icon>
+            </a>
+            <a *o3MinWidth="600; or: !!configExt.model?.annotations?.length" #test_annotations
+               mat-icon-button class="hideable topnav-menu-btn" [class.hide]="hideAnnotationsButton"
+               matTooltip="Annotations" matTooltipShowDelay="750" (click)="chartElement.toggleAnnotations()">
+                <mat-icon>speaker_notes</mat-icon>
+            </a>
+            <ng-container *o3MinWidth="600">
+                <a mat-icon-button #test_colors (click)="toggleColorConfig()"
+                   class="hideable topnav-menu-btn" [class.hide]="configurationOnly || !hasSources || !editableColors"
+                   matTooltip="Chart colors" matTooltipShowDelay="750">
+                    <mat-icon>color_lens</mat-icon>
+                </a>
+                <a mat-icon-button #test_settings (click)="toggleConfig()"
+                   class="hideable topnav-menu-btn o3-for-web" [class.hide]="!hasSources || !configExt?.model"
+                   matTooltip="Chart settings" matTooltipShowDelay="750">
+                    <mat-icon>settings</mat-icon>
+                </a>
+            </ng-container>
+            <button mat-icon-button class="hideable topnav-menu-btn" matTooltip="Delete chart" [class.hide]="configurationOnly"
+                    [disabled]="!deletable" matTooltipShowDelay="750" (click)="delete()">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <a mat-icon-button class="hideable topnav-menu-btn" [class.hide]="configurationOnly || !hasSources" matTooltip="Additional actions" matTooltipShowDelay="750"
+               [matMenuTriggerFor]="additionalOptions">
+                <mat-icon>more_vert</mat-icon>
+            </a>
+
+            <mat-menu #additionalOptions="matMenu">
+                <button *ngIf="allowDashboardAdd" mat-menu-item [o3-dialog-toggle]="addWidgetDialog.overlay">Add Chart to Dashboard</button>
+                <ng-container *ngIf="hasSources">
+                    <button *ngIf="isLine || isHierarchical" mat-menu-item (click)="exportToExcel()">Export to Excel</button>
+                    <button *ngIf="exportablePng" mat-menu-item (click)="exportVisualizationPNG()">Export as .png</button>
+                </ng-container>
+            </mat-menu>
+        </div>
+    </mat-card-title>
+
+    <mat-card-content class="visualization-content" #resizeContainer [ngResizable]="isResizable"
+                      [class.o3-time-series-container--no-source-chips]="!showSourceBar" [style.height.px]="chartHeight()"
+                      rzHandles="s" [rzMinHeight]="smallest()" (rzResizing)="updateChartHeight($event.size.height)" (rzStop)="refreshSize()">
+        <div *ngIf="hasSources" class="has-sources" [class.no-padding]="hasNoPadding">
+            <o3-time-series-chart *ngIf="isLine"
+                                  [(configExt)]="configExt" (configExtChange)="lineChartChanged()"
+                                  [range]="range" [selectionHandler]="rangeHandler"
+                                  [allowAnnotations]="!disableAnnotations" [zoomable]="zoomable"
+                                  (chartUpdated)="handleChartUpdated($event)"
+                                  (hideSourcesOverriden)="hideSourcePillsOverride = $event"
+                                  (sourceStatesUpdated)="sourceStatesUpdated.emit($event)"
+                                  (startedFetchingData)="startedFetchingData.emit()"
+                                  (stoppedFetchingData)="stoppedFetchingData.emit()"></o3-time-series-chart>
+
+            <o3-hierarchical-visualization *ngIf="isHierarchical"
+                                           [table]="table" [range]="range" [viewWindow]="viewWindow"
+                                           [interactionBehavior]="handleInteractions && configExt.model.hierarchy.interactionBehavior"
+                                           [bindings]="configExt.model.hierarchy.bindings" (bindingsChange)="resetResizeContainer()"
+                                           (minHeightChange)="minHeight = $event"
+                                           (startedFetchingData)="startedFetchingData.emit()"
+                                           (stoppedFetchingData)="stoppedFetchingData.emit()"></o3-hierarchical-visualization>
+
+            <o3-gps-map *ngIf="isMap" [configExt]="configExt" [range]="range"
+                        (chartUpdated)="chartUpdated.emit()"
+                        (sourceStatesUpdated)="sourceStatesUpdated.emit($event)"
+                        (stoppedFetchingData)="stoppedFetchingData.emit()"></o3-gps-map>
+
+            <o3-scatter-plot-container *ngIf="isScatter"
+                                       [(configExt)]="configExt" (configExtChange)="emitChange()"
+                                       [range]="range" [allowZoom]="zoomable"
+                                       (chartUpdated)="updateTupleIds($event)"
+                                       (sourceStatesUpdated)="sourceStatesUpdated.emit($event)"
+                                       (stoppedFetchingData)="stoppedFetchingData.emit()"></o3-scatter-plot-container>
+        </div>
+
+        <div *ngIf="!hasSources" class="no-sources o3-watermark-caption">
+            {{noSourcesMessage}}
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions *ngIf="showSources" class="header timeseries-sources" [class.printable]="printable">
+        <span *ngIf="!hasSources" class="mat-caption no-sources">No Sources</span>
+        <ng-container *ngIf="hasSources">
+            <div class="printable-sources" *ngIf="printable">
+                <ng-container *ngIf="isScatter">
+                    <ng-container *ngFor="let tupleIds of tupleIdsByPanel; let panelIdx = index">
+                        <o3-source-chip *ngFor="let tupleId of tupleIds" [chart]="scatterElement"
+                                        [sourceId]="tupleId" [deletable]="false" [printable]="true"></o3-source-chip>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!isScatter">
+                    <ng-container *ngFor="let source of configExt.sourcesExt">
+                        <o3-source-chip *ngIf="source.valid" [chart]="isMap ? mapElement : chartElement" [sourceId]="source.identifier"
+                                        [deletable]="false" [printable]="true" [showTooltips]="!isMap"></o3-source-chip>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <o3-consolidated-source-chip *ngIf="!printable" #test_consolidatedChips [chart]="interactableChart"
+                                         [consolidatedChipTooltip]="consolidatedChipTooltip" [showSingleChipTooltips]="!isMap" [dataSourceType]="dataSourceType"
+                                         [actions]="sourceActions" [deletable]="sourcesAreDeletable"
+                                         (deleteTriggered)="deleteSource($any($event))" (deleteCancelled)="cancelSourceDelete($any($event))"
+                                         (opened)="sourcesOverlayOpened()" (consolidatedChange)="updateConsolidated($event)"></o3-consolidated-source-chip>
+        </ng-container>
+    </mat-card-actions>
+
+    <o3-add-widget-overlay #addWidgetDialog (addWidgetNotifier)="addWidget($event)"></o3-add-widget-overlay>
+</mat-card>
+

@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <p>Which alert statuses should be included?</p>
+    <o3-control-option-list [options]="alertStatusOptions" [single]="false" [(selection)]="alertStatusSelection"
+                            (selectionChangeSummary)="onOptionChange($event)"></o3-control-option-list>
+</ng-template>

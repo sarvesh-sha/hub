@@ -1,0 +1,26 @@
+.timeseries-set {
+    &, o3-time-series-container {
+        border-radius: inherit;
+    }
+
+    > o3-time-series-container {
+        display: block;
+        margin-bottom: 11px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+
+    &.o3-time-series-set--embedded {
+        margin-bottom: 0px;
+
+        > o3-time-series-container {
+            border-bottom: 1px solid #aeaeae;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

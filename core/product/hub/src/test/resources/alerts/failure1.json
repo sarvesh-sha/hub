@@ -1,0 +1,53 @@
+{
+  "definition": {
+    "title": "Failures",
+    "purpose": "Definition",
+    "description": "failure1",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": "PQ{4ARfX*Oob8_:Q{ZEO",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "result",
+                  "type": "Number"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "y9t[^}9nH]vy}t6C!=B,",
+                  "variable": {
+                    "name": "result",
+                    "type": "Number"
+                  },
+                  "value": {
+                    "__type": "EngineArithmeticOperatorBinary",
+                    "id": "`ifL3]-V2y9DH{jhQ/=)",
+                    "a": {
+                      "__type": "EngineLiteralNumber",
+                      "id": "qd--?Z}5@}ij:62AgFk[",
+                      "value": 123
+                    },
+                    "b": null,
+                    "operation": "Plus"
+                  }
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

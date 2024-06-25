@@ -1,0 +1,66 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="dataAggregationExt && typedElement as dataAggregation">
+        <div class="row">
+            <mat-form-field class="col-sm-6">
+                <o3-select
+                    name="data-aggregation-graph"
+                    [(ngModel)]="dataAggregationExt.type" (ngModelChange)="dataAggregationTypeChanged()"
+                    [options]="dataAggregationExt.options"
+                    placeholder="How will you select your data?"
+                    [multiSelect]="false"
+                    preventDeselection
+                    singleClick>
+                </o3-select>
+            </mat-form-field>
+        </div>
+
+        <o3-control-point-grouping-step *ngIf="dataAggregationExt.type == 'Groups'"
+                                        forReport
+                                        isAggregationTable
+                                        [controlPointGroups]="data.controlPointGroups"
+                                        [(controlPointDisplayType)]="dataAggregation.controlPointDisplayType"
+                                        [(visualizationMode)]="dataAggregation.visualizationMode"
+                                        [(compareBetweenGroups)]="compareBetweenGroups"
+                                        [graphsHost]="data.graphsHost">
+        </o3-control-point-grouping-step>
+
+        <ng-container *ngIf="dataAggregationExt.type == 'Bindings'">
+            <div class="row">
+                <div class="col-sm-6" style="align-items: center">
+                    <button mat-raised-button (click)="graphConfigurer.toggleOverlay()" type="button">
+                        Configure available asset structures
+                    </button>
+                </div>
+                <mat-form-field class="col-sm-6" *ngIf="data.graphOptions.length">
+                    <o3-select
+                        placeholder="Connected Asset Structure"
+                        [options]="data.graphOptions"
+                        [multiSelect]="false"
+                        preventDeselection
+                        singleClick
+                        [(ngModel)]="dataAggregation.graphId"
+                        (ngModelChange)="makeGraphSelection()">
+                    </o3-select>
+                </mat-form-field>
+            </div>
+
+            <o3-aggregation-node-binding-configurer
+                *ngIf="dataAggregationExt.model.graph"
+                [graph]="dataAggregationExt.model.graph"
+                [(nodes)]="dataAggregation.columns"
+                [(displayType)]="dataAggregation.controlPointDisplayType"
+                [(visualizationMode)]="dataAggregation.visualizationMode"
+                [(initialSort)]="dataAggregation.initialSort"
+                configurableInitialSort>
+            </o3-aggregation-node-binding-configurer>
+        </ng-container>
+    </ng-container>
+
+    <o3-overlay [config]="graphConfigurerOverlayConfig" (closed)="attemptGraphSelection()">
+        <o3-tab-group noUnderline>
+            <o3-tab label="Report Asset Structures">
+                <o3-multiple-graph-configuration [host]="data.graphsHost"></o3-multiple-graph-configuration>
+            </o3-tab>
+        </o3-tab-group>
+    </o3-overlay>
+</ng-template>

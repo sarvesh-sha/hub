@@ -1,0 +1,84 @@
+$sm: 600px;
+
+.o3-message-date {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.o3-message-subject {
+    display: inline-block;
+}
+
+.o3-message-unread {
+    font-weight: bold;
+}
+
+o3-modifiable-table {
+    cursor: pointer;
+}
+
+td {
+    flex-grow: 1;
+
+    > div {
+        display: flex;
+
+        > div {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            padding: 1rem 0.7rem;
+            justify-content: flex-end;
+
+            &.icon-cell {
+                flex: 0 0 30px;
+            }
+
+            &.content-cell {
+                display: block;
+
+                small {
+                    display: block;
+                }
+
+                .o3-message-date {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $sm) {
+    td > div > div {
+        padding: .5rem .35rem;
+
+        &.icon-cell {
+            display: flex;
+            align-items: center;
+            padding-left: 0.7rem;
+        }
+
+        &.content-cell {
+            small {
+                line-height: 120%;
+                margin-bottom: 3px;
+            }
+
+            .o3-message-subject {
+                display: block;
+                font-size: 12px;
+            }
+
+            .o3-message-date {
+                display: block;
+                font-size: 10px;
+                font-style: normal;
+            }
+        }
+
+        &.date-cell {
+            display: none;
+        }
+    }
+}

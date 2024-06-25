@@ -1,0 +1,108 @@
+﻿<section class="bs page-content">
+
+    <h2>Welcome to the Optio3 Builder!</h2>
+
+    <hr>
+
+    <h3>Last Visited Services:</h3>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Service</th>
+            <th>Customer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="clickable-input" (click)="goToService(svc.ext)" *ngFor="let svc of getLastServices() | async">
+            <td>{{svc.ext.model.name}}</td>
+            <td>{{svc.getCustomerName() | async}}</td>
+        </tr>
+        <tr class="clickable-input" (click)="increaseServiceLimit()" *ngIf="hasMoreServices">
+            <td>View more...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3>Last Visited Hosts:</h3>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Host Id</th>
+            <th>Last Heartbeat</th>
+            <th>Status</th>
+            <th>Service</th>
+            <th>Customer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="clickable-input" (click)="goToHost(host.ext)" *ngFor="let host of getLastHosts() | async">
+            <td>{{host.ext.displayName}}</td>
+            <td>{{host.ext.model.hostId}}</td>
+            <td>
+                <span>{{host.ext.model.lastHeartbeat|o3ShortDate}}</span>
+                <small>{{host.ext.model.lastHeartbeat|o3Time}}</small>
+            </td>
+            <td>{{host.ext.getComplexStatus() | async}}</td>
+            <td>{{host.getServiceName() | async}}</td>
+            <td>{{host.getCustomerName() | async}}</td>
+        </tr>
+        <tr class="clickable-input" (click)="increaseHostLimit()" *ngIf="hasMoreHosts">
+            <td>View more...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3>Last Visited Agents:</h3>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Agent</th>
+            <th>Host</th>
+            <th>Status</th>
+            <th>Service</th>
+            <th>Customer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="clickable-input" (click)="goToAgent(agent.ext)" *ngFor="let agent of getLastAgents() | async">
+            <td>{{agent.ext.model.instanceId}}</td>
+            <td>{{agent.getHostName() | async}}</td>
+            <td>{{agent.ext.getStatusDesc() | async}}</td>
+            <td>{{agent.getServiceName() | async}}</td>
+            <td>{{agent.getCustomerName() | async}}</td>
+        </tr>
+        <tr class="clickable-input" (click)="increaseAgentLimit()" *ngIf="hasMoreAgents">
+            <td>View more...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3>Last Visited Customers:</h3>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Customer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="clickable-input" (click)="goToCustomer(cust.ext)" *ngFor="let cust of getLastCustomers() | async">
+            <td>{{cust.ext.model.name}}</td>
+        </tr>
+        <tr class="clickable-input" (click)="increaseCustomerLimit()" *ngIf="hasMoreCustomers">
+            <td>View more...</td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>

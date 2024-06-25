@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <dropForeignKeyConstraint baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKgtsgjh4oipxrhsgn6d82mo8ih"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="BACKUP_TO_IMAGE_V2">
+            <column name="BACKUP" type="VARCHAR(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <!-- Fixup for bad column name in MariaDB-->
+    <changeSet author="Optio3 Manual" id="fixup_BACKUP_TO_IMAGE_V2">
+        <sql>update BACKUP_TO_IMAGE_V2 set BACKUP = SERVICE</sql>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <dropPrimaryKey tableName="BACKUP_TO_IMAGE_V2"/>
+        <addPrimaryKey columnNames="BACKUP, architecture, role" constraintName="PRIMARY" tableName="BACKUP_TO_IMAGE_V2"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addForeignKeyConstraint baseColumnNames="BACKUP" baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKe5j36x6r3wjp7vql4b67y0535" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="CUSTOMER_SERVICE_BACKUP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropForeignKeyConstraint baseTableName="SERVICE_TO_IMAGE" constraintName="FK2d3817lq6023i0s33t4ye4cam"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropForeignKeyConstraint baseTableName="SERVICE_TO_IMAGE" constraintName="FK36s49ll066u2davkd55wwipfs"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropForeignKeyConstraint baseTableName="BACKUP_TO_IMAGE" constraintName="FK3v20upxbotpu87f9gy23a083s"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropForeignKeyConstraint baseTableName="BACKUP_TO_IMAGE" constraintName="FKkbl0lvrgtiitqjpxbgeulnu78"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <dropColumn columnName="SERVICE" tableName="BACKUP_TO_IMAGE_V2"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropTable tableName="BACKUP_TO_IMAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <dropTable tableName="SERVICE_TO_IMAGE"/>
+    </changeSet>
+</databaseChangeLog>

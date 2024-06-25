@@ -1,0 +1,11 @@
+button.copy-button {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    padding: 7px 2px 3px 5px !important;
+    top: 0 !important;
+
+    mat-icon {
+        font-size: 20px !important;
+    }
+}

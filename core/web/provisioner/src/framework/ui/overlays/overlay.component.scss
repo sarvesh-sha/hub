@@ -1,0 +1,106 @@
+$background-shadowing: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+.o3-overlay--container {
+    display: flex;
+    width: 100%;
+
+    &.cdk-drag-dragging > .o3-overlay--content-container > .o3-overlay--dialog-drag {
+        cursor: grabbing;
+    }
+}
+
+.o3-overlay--content-container {
+    background-color: white;
+    box-shadow: $background-shadowing;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    margin: 0;
+    z-index: 80;
+    list-style: none;
+    min-width: 7rem;
+    text-align: start;
+    height: 100%;
+    width: 100%;
+}
+
+.o3-overlay--dialog-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 30px;
+    border-radius: 50%;
+    color: #607d8b;
+    cursor: pointer;
+    z-index: 10;
+
+    &:before {
+        background-color: #fff;
+        border-radius: 50%;
+        content: '';
+        display: block;
+        position: absolute;
+        top: 3px;
+        bottom: 3px;
+        left: 3px;
+        right: 3px;
+        z-index: -1;
+    }
+}
+
+.o3-overlay--dialog-drag {
+    position: absolute;
+    top: 4px;
+    right: 30px;
+    font-size: 20px;
+    cursor: grab;
+    color: #607d8b;
+    z-index: 10;
+}
+
+.on-top-grip {
+    .o3-overlay--dialog-drag {
+        top: -8px;
+        right: calc(50% - 16px);
+        border-radius: 8px;
+        width: 32px;
+        height: 16px;
+        z-index: 3;
+
+        &.o3-overlay--for-shadow {
+            box-shadow: $background-shadowing;
+            z-index: -2;
+        }
+
+        > mat-icon {
+            background-color: white;
+            line-height: 16px;
+            border-radius: 8px;
+            width: 32px;
+            text-align: center;
+            height: 16px;
+        }
+    }
+}
+
+.bottom-right-grip {
+    .o3-overlay--dialog-drag {
+        bottom: 4px;
+        right: 30px;
+    }
+}
+
+.bottom-left-grip {
+    .o3-overlay--dialog-drag {
+        bottom: 4px;
+        left: 30px;
+    }
+}
+
+.bottom-left-grip {
+    .o3-overlay--dialog-drag {
+        top: 4px;
+        left: 30px;
+    }
+}

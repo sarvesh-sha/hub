@@ -1,0 +1,7 @@
+<o3-wizard label="Configure Alert Rule" [modalMode]="true" [data]="data" (wizardCancelled)="wizardCancel()" (wizardCommitted)="wizardCommit()">
+    <!-- Disabled for now until library concept is revisted -->
+    <!--<o3-alert-rule-library-step *ngIf="data.isNew"></o3-alert-rules-library-step>-->
+    <o3-alert-rule-name-step></o3-alert-rule-name-step>
+    <o3-alert-rule-graph-step></o3-alert-rule-graph-step>
+    <o3-alert-rule-input-step *ngIf="data.showRulesInputStep()"></o3-alert-rule-input-step>
+</o3-wizard>

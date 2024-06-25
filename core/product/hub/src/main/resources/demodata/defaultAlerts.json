@@ -1,0 +1,1177 @@
+{
+  "alerts": [
+    {
+      "__type": "Alert",
+      "sysId": "046f4540-2fec-3c3f-bace-d33184e5039f",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "132a5be8-5059-48e8-805e-e922620eade1"
+      },
+      "sequenceNumber": 1113,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T09:15:41.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "e666543c-d542-3752-98ae-35fb8f10ce72",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "e60e38eb-910d-491d-ba24-9bc56198105e"
+      },
+      "sequenceNumber": 1115,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "A new firmware is available for the device",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T09:52:58.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "6ee7d341-3fcd-3eff-b782-999f057fc638",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "89519e3a-760f-4f23-a8a9-489d64d02ac9"
+      },
+      "sequenceNumber": 1118,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T10:37:15.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "ed573f42-63fa-3cfa-9a60-594c487129fd",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "f7648950-ff82-4473-8483-84dfc403ba1c"
+      },
+      "sequenceNumber": 1120,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T11:24:50.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "642bb8ef-804e-39c8-b560-28e95f9e5e73",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "5d552a44-7332-4a91-8972-dcb01d93e28f"
+      },
+      "sequenceNumber": 1124,
+      "type": "THRESHOLD_EXCEEDED",
+      "severity": "NORMAL",
+      "description": "Min/Max temperature threshold exceeded",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T11:44:52.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "7bf8fb14-97e1-3142-b61d-9b171338a74d",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "ec5013bc-f930-42a0-bf20-77b75e9a5fca"
+      },
+      "sequenceNumber": 1126,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T11:54:53.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "486b1874-5975-381b-a522-a0391f79b432",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "e67a21a3-2dc2-4ff9-a4f7-47f7309da931"
+      },
+      "sequenceNumber": 1130,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T13:06:08.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "757cd503-3cd3-3106-a322-7cd4d99845b2",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "9268e5b0-b60f-4c86-b9d6-c063f06afc5d"
+      },
+      "sequenceNumber": 1134,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T13:30:12.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "d5920a1f-a52a-3082-a9f5-ff25dbbfb1d3",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "0c64d2d7-f06f-4368-92bf-20397a5084d8"
+      },
+      "sequenceNumber": 1136,
+      "type": "THRESHOLD_EXCEEDED",
+      "severity": "NORMAL",
+      "description": "Min/Max temperature threshold exceeded",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T14:12:51.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "9227d5db-4396-3135-9808-66747fbb049e",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "410f5907-8ab4-4caa-9f87-954783f045ef"
+      },
+      "sequenceNumber": 1137,
+      "type": "THRESHOLD_EXCEEDED",
+      "severity": "NORMAL",
+      "description": "Min/Max temperature threshold exceeded",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T15:12:15.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "95700384-6ca9-3285-8017-19c8f0273135",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "a35f5ed5-fc5a-41fe-91bb-6d0aed4170c2"
+      },
+      "sequenceNumber": 1140,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T16:03:31.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "70523c6d-522f-3124-aaa1-5069812c77c9",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "34b2963b-d1b3-412c-9884-6639b4ed8f40"
+      },
+      "sequenceNumber": 1144,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T17:01:09.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "355ceb4c-dec9-372e-ad60-f5d474e8acd5",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "e6a5aa3c-e38b-446a-9881-12a8f9e3afdf"
+      },
+      "sequenceNumber": 1148,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Drive not functioning as expected",
+      "extendedDescription": "Device reported an error code ER63. Details can be found in the manufacturer's user manual.",
+      "createdOn": "2018-02-14T17:51:47.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "439f3995-e846-398a-91ab-76e39955849c",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "3d54ef69-150d-41f2-ab9c-99e9d6861710"
+      },
+      "sequenceNumber": 1152,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T18:07:29.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "d3ff9f48-46b2-36cf-860d-6945928d0b76",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "05c324fb-4b2f-4b8e-8f65-52f1d0e7c235"
+      },
+      "sequenceNumber": 1153,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Drive not functioning as expected",
+      "extendedDescription": "Device reported an error code ER73. Details can be found in the manufacturer's user manual.",
+      "createdOn": "2018-02-14T18:56:31.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "821e18d4-6e2b-36fd-aa22-bc71c9615cfe",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "6884f731-1630-4020-a79b-c2b77fc484d9"
+      },
+      "sequenceNumber": 1157,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "A new firmware is available for the device",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T19:03:27.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "70006b75-fdcf-3c65-aecc-5e22203c5588",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "c90e0801-86f7-4a1c-b207-de54b2136d51"
+      },
+      "sequenceNumber": 1159,
+      "type": "THRESHOLD_EXCEEDED",
+      "severity": "NORMAL",
+      "description": "Min/Max temperature threshold exceeded",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T19:19:59.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "db1f216b-6e61-30fc-bffa-c17b3b40bde2",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "549f0a64-d30a-4f5d-8e0c-3342f0279819"
+      },
+      "sequenceNumber": 1161,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T19:51:15.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "09ee5f78-044a-3ffb-8020-381e67153bd8",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "2200e364-bd72-4a79-988b-382dc05b01db"
+      },
+      "sequenceNumber": 1163,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T20:10:03.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "2f4382a0-3896-3a37-8216-4e0a97269068",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "aafe4945-35a5-4ce0-ba3c-08cb2a6da774"
+      },
+      "sequenceNumber": 1166,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Drive not functioning as expected",
+      "extendedDescription": "Device reported an error code ER63. Details can be found in the manufacturer's user manual.",
+      "createdOn": "2018-02-14T20:24:54.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "5b7426ee-64ba-3725-9595-c02433686f6f",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "f7357d55-e5c3-4ebc-80b9-b1c9bffb7cfb"
+      },
+      "sequenceNumber": 1167,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T20:55:57.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "ea42db37-2e7d-3ef3-92c7-96311fbcc749",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "23be6975-2f75-4328-900c-007efe91e549"
+      },
+      "sequenceNumber": 1170,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T21:06:02.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "3e67f8b8-6bb3-39e1-bf1e-ee66806c0a24",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "b2853e25-80e4-4d5d-a497-b82859308844"
+      },
+      "sequenceNumber": 1171,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T21:17:01.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "fae83fbf-0c20-3c4f-8f3e-4459b1b32cbd",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "9e5c0d20-70a7-41e3-a757-30c752e14187"
+      },
+      "sequenceNumber": 1178,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "A new firmware is available for the device",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T22:00:46.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "8062ba25-74bb-386d-9b10-3ea1a739e4ff",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "dc06151f-0cbc-4f0b-a119-a0100d9caf7b"
+      },
+      "sequenceNumber": 1180,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Drive not functioning as expected",
+      "extendedDescription": "Device reported an error code ER4. Details can be found in the manufacturer's user manual.",
+      "createdOn": "2018-02-14T22:55:45.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "7ebb7b52-335a-3b6a-a143-6483423fc60e",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "9e5c0d20-70a7-41e3-a757-30c752e14187"
+      },
+      "sequenceNumber": 1188,
+      "type": "THRESHOLD_EXCEEDED",
+      "severity": "NORMAL",
+      "description": "Min/Max temperature threshold exceeded",
+      "extendedDescription": null,
+      "createdOn": "2018-02-14T23:27:35.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "a31ec0cf-8057-365d-9259-de4eeb15f89e",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "7d01ffe6-5ad4-44b5-be37-1fb259995134"
+      },
+      "sequenceNumber": 1191,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Manufacturer issued a recall",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T00:11:46.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "03c43f31-eb46-3990-84e0-e88c4405087d",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "0a3a3d27-7348-42a8-84a9-22aa0fe383a7"
+      },
+      "sequenceNumber": 1192,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T00:33:45.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "b96bd4d3-783c-35f2-8421-f0d658051e31",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "327772e3-7260-464c-90fc-90ee03be0a73"
+      },
+      "sequenceNumber": 1193,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T01:11:20.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "9a252ab9-9e3e-32b3-b460-e41cfbb6b62c",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "a35f5ed5-fc5a-41fe-91bb-6d0aed4170c2"
+      },
+      "sequenceNumber": 1194,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T01:19:06.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "e80bcb33-d4d2-393c-9fff-d05b52080505",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "429dcad8-f5b1-4392-9f3e-bed4076f267d"
+      },
+      "sequenceNumber": 1199,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "This device is no longer supported",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T02:58:39.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "cb567146-d2ed-3c4e-ab08-79bc1feee844",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "549f0a64-d30a-4f5d-8e0c-3342f0279819"
+      },
+      "sequenceNumber": 1200,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T03:15:14.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "69c46af7-3315-3b3c-a4fb-ce20ea8225ad",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "97b55357-1b93-4534-a018-2d6ab959fb42"
+      },
+      "sequenceNumber": 1204,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T03:34:05.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "22c36389-92e7-30cd-949a-6b2771d90736",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "12d4be30-e40e-4f4a-b3e8-46b821991776"
+      },
+      "sequenceNumber": 1205,
+      "type": "WARNING",
+      "severity": "LOW",
+      "description": "Device warranty is about to expire",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T04:16:25.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "6e64822c-a4fe-3c5e-8113-d20598134454",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "36b3b5b3-4e07-489d-9825-7a2fc487045b"
+      },
+      "sequenceNumber": 1209,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T05:09:56.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "e582964b-cc6a-337b-9a7a-7f9ee632ea4b",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "e85b3f8a-caa6-45e6-9853-73bff71b2116"
+      },
+      "sequenceNumber": 1210,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Room Automation Controller EY-RC500F001 is not functioning as expected",
+      "extendedDescription": "Device reported an error code ER35. Details can be found in the manufacturer's user manual.",
+      "createdOn": "2018-02-15T05:27:41.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "b471ec66-dad7-34b4-a637-c9abfc2444a3",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "a1157336-ae4a-4355-9148-d021e6b41f96"
+      },
+      "sequenceNumber": 1213,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Cylon Controls Ltd. issued a recall on 1STMS001 Operator Workstation",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T05:39:26.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "179a90bb-17e3-3317-a8e0-5b407420205a",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "7eafed81-03b1-45bb-a449-16fcafe2dffd"
+      },
+      "sequenceNumber": 1217,
+      "type": "WARRANTY",
+      "severity": "LOW",
+      "description": "Device warranty has expired for device ENC-4XX-XXX installed at Lincoln Square building",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T06:25:16.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "fc69d883-b058-3c0c-b7b4-33ab74b63480",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "3d7ae666-0b55-4bea-b8dc-34791627c983"
+      },
+      "sequenceNumber": 1221,
+      "type": "THRESHOLD_EXCEEDED",
+      "severity": "NORMAL",
+      "description": "Min/Max temperature threshold exceeded on RIBMNWX2401B-BC",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T06:53:04.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "15c82e31-c964-390c-92b0-6744cca114bd",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "97547a5b-090c-49ae-8641-7f26a3ec2a11"
+      },
+      "sequenceNumber": 1224,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Drive RDT815F022 is not functioning as expected",
+      "extendedDescription": "Device reported an error. Details can be found in the manufacturer's user manual - http://www.sauter-controls.com/uploads/tx_cabagpdm/940682.pdf.",
+      "createdOn": "2018-02-15T07:00:56.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "ad3e2865-9545-3ac7-ad6c-22c8b1564572",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "ac58e2b6-6363-41ef-a090-1ef22a11d112"
+      },
+      "sequenceNumber": 1228,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "Tridium has published a new firmware (optional) for T-NXT-FL-AX building controller",
+      "extendedDescription": "Tridium announced a new version of the firmware for this device. V1.21 is an optional upgrade with additional language support.",
+      "createdOn": "2018-02-15T07:32:07.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "52cc0eb3-3443-3e10-a29c-7e7d0ca3683b",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "0c97e1df-b463-4b1e-afe8-469f898f07c0"
+      },
+      "sequenceNumber": 1231,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "Honeywell has published a new firmware (mandatory) for DR-NS-BAC-AWS driver",
+      "extendedDescription": "This firmware has security updates. Honeywell recommends all customers to upgrade to the latest version of the firmware v3.22.",
+      "createdOn": "2018-02-15T07:52:14.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "4e9482f6-9f40-3c44-b846-8039e70ae841",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "6ce0d6d8-89ec-4182-b2f7-75ef5b44b801"
+      },
+      "sequenceNumber": 1233,
+      "type": "END_OF_LIFE",
+      "severity": "SIGNIFICANT",
+      "description": "Carrier has announced end of support for OPN-RTUM Application Controller",
+      "extendedDescription": null,
+      "createdOn": "2018-02-15T08:00:23.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "f29257f4-ac18-3edd-ac8f-9f7242518f93",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "354bc02b-0177-450d-b487-30af89cf9138"
+      },
+      "sequenceNumber": 1237,
+      "type": "RECALL",
+      "severity": "SIGNIFICANT",
+      "description": "Alerton issued a recall on BCM-MSTP Building Controller",
+      "extendedDescription": "Refer to recall details and recommendations - https://www.cpsc.gov/ko/recalls/2007/atmel-corp-recalls-to-upgrade-software-in-microcontrollers-of-honeywell-digital-cellular-communicators",
+      "createdOn": "2018-02-15T08:06:48.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "5fe3d2f0-ebee-355c-9826-409381981234",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "fde2481f-992c-43a1-8fc3-ebc8541f9c16"
+      },
+      "sequenceNumber": 1238,
+      "type": "DEVICE_FAILURE",
+      "severity": "CRITICAL",
+      "description": "Room Automation Controller EY-RC500F001 is not functioning as expected",
+      "extendedDescription": "Device reported an error code ER24. Details can be found in the manufacturer's user manual.",
+      "createdOn": "2018-02-15T08:20:37.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "5b8030a1-1052-4375-ad45-48ac6afae560",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "5119c6d5-cafb-4f4f-83d0-a067ba43e603"
+      },
+      "sequenceNumber": 1113,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "A new firmware is available for the device",
+      "extendedDescription": "Firmware version 2.4.1 is less than the latest firmware version 2.4.3",
+      "createdOn": "2018-02-15T07:58:41.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "db372f29-5e5a-4ba1-90c8-52e7d45208fb",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "d0e4f784-f095-4f04-ac07-fc36ed513477"
+      },
+      "sequenceNumber": 1113,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "A new firmware is available for the device",
+      "extendedDescription": "Firmware version 1.6 is less than the latest firmware version 1.7",
+      "createdOn": "2018-02-15T09:15:41.739-07:00"
+    },
+    {
+      "__type": "Alert",
+      "sysId": "064c848c-b870-48fe-9bd6-b96ce5d34483",
+      "asset": {
+        "table": "ASSET",
+        "sysId": "18755beb-9b6e-40bc-8829-7078d5cea9eb"
+      },
+      "sequenceNumber": 1113,
+      "type": "INFORMATIONAL",
+      "severity": "LOW",
+      "description": "A new firmware is available for the device",
+      "extendedDescription": "Firmware version 1.1 is less than the latest firmware version 1.2",
+      "createdOn": "2018-02-15T08:15:41.739-07:00"
+    }
+  ],
+  "alertsHistory": [
+    {
+      "sysId": "a1ea517c-d399-3d84-9f75-a7f52410be11",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-14T09:15:41.739-07:00",
+      "alert": {
+        "sysId": "046f4540-2fec-3c3f-bace-d33184e5039f"
+      }
+    },
+    {
+      "sysId": "440804e8-eea5-3e2d-b54a-a1664dfca959",
+      "level": "info",
+      "type": "created",
+      "text": "A new firmware is available for the device",
+      "createdOn": "2018-02-14T09:52:58.739-07:00",
+      "alert": {
+        "sysId": "e666543c-d542-3752-98ae-35fb8f10ce72"
+      }
+    },
+    {
+      "sysId": "0649631c-4bef-3f61-905b-ab17bf3682e9",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-14T10:37:15.739-07:00",
+      "alert": {
+        "sysId": "6ee7d341-3fcd-3eff-b782-999f057fc638"
+      }
+    },
+    {
+      "sysId": "d8da7088-4f36-3f34-af5f-dbfd48f2fa9a",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-14T11:24:50.739-07:00",
+      "alert": {
+        "sysId": "ed573f42-63fa-3cfa-9a60-594c487129fd"
+      }
+    },
+    {
+      "sysId": "a6a4a029-8173-3e39-bd71-0dfe3fcfca09",
+      "level": "failure",
+      "type": "created",
+      "text": "Min/Max temperature threshold exceeded",
+      "createdOn": "2018-02-14T11:44:52.739-07:00",
+      "alert": {
+        "sysId": "642bb8ef-804e-39c8-b560-28e95f9e5e73"
+      }
+    },
+    {
+      "sysId": "6f1a8bce-9387-38f9-b223-98f93e9aadfe",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-14T11:54:53.739-07:00",
+      "alert": {
+        "sysId": "7bf8fb14-97e1-3142-b61d-9b171338a74d"
+      }
+    },
+    {
+      "sysId": "ce9a9ea4-b9cc-3c9c-aa8a-c1c7a69bf09f",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-14T13:06:08.739-07:00",
+      "alert": {
+        "sysId": "486b1874-5975-381b-a522-a0391f79b432"
+      }
+    },
+    {
+      "sysId": "e556b2f6-0285-3f3e-8f78-0a628d73f8e6",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-14T13:30:12.739-07:00",
+      "alert": {
+        "sysId": "757cd503-3cd3-3106-a322-7cd4d99845b2"
+      }
+    },
+    {
+      "sysId": "da17dbc5-60de-3ba2-bc99-b284c6b363e9",
+      "level": "failure",
+      "type": "created",
+      "text": "Min/Max temperature threshold exceeded",
+      "createdOn": "2018-02-14T14:12:51.739-07:00",
+      "alert": {
+        "sysId": "d5920a1f-a52a-3082-a9f5-ff25dbbfb1d3"
+      }
+    },
+    {
+      "sysId": "d010cec1-a5bc-35ab-b1dc-01991c485773",
+      "level": "failure",
+      "type": "created",
+      "text": "Min/Max temperature threshold exceeded",
+      "createdOn": "2018-02-14T15:12:15.739-07:00",
+      "alert": {
+        "sysId": "9227d5db-4396-3135-9808-66747fbb049e"
+      }
+    },
+    {
+      "sysId": "16ee7402-e478-3547-b85d-5870a069467d",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-14T16:03:31.739-07:00",
+      "alert": {
+        "sysId": "95700384-6ca9-3285-8017-19c8f0273135"
+      }
+    },
+    {
+      "sysId": "0ba9bd01-13ca-39d1-9821-7bd1a91106cd",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired",
+      "createdOn": "2018-02-14T17:01:09.739-07:00",
+      "alert": {
+        "sysId": "70523c6d-522f-3124-aaa1-5069812c77c9"
+      }
+    },
+    {
+      "sysId": "fe8fe55f-8d6d-36a1-8d21-84c9fd7f5815",
+      "level": "failure",
+      "type": "created",
+      "text": "Drive not functioning as expected",
+      "createdOn": "2018-02-14T17:51:47.739-07:00",
+      "alert": {
+        "sysId": "355ceb4c-dec9-372e-ad60-f5d474e8acd5"
+      }
+    },
+    {
+      "sysId": "346360ce-ba3a-3811-8fe5-0a3f150d585f",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired",
+      "createdOn": "2018-02-14T18:07:29.739-07:00",
+      "alert": {
+        "sysId": "439f3995-e846-398a-91ab-76e39955849c"
+      }
+    },
+    {
+      "sysId": "a3e1b3c3-9e76-33a5-b20e-f7d515ef1af4",
+      "level": "failure",
+      "type": "created",
+      "text": "Drive not functioning as expected",
+      "createdOn": "2018-02-14T18:56:31.739-07:00",
+      "alert": {
+        "sysId": "d3ff9f48-46b2-36cf-860d-6945928d0b76"
+      }
+    },
+    {
+      "sysId": "f0c67f28-7d8d-3b06-ad09-30a19235060d",
+      "level": "info",
+      "type": "created",
+      "text": "A new firmware is available for the device",
+      "createdOn": "2018-02-14T19:03:27.739-07:00",
+      "alert": {
+        "sysId": "821e18d4-6e2b-36fd-aa22-bc71c9615cfe"
+      }
+    },
+    {
+      "sysId": "7638c1da-8d6c-3a90-a804-28b312d0bd8d",
+      "level": "failure",
+      "type": "created",
+      "text": "Min/Max temperature threshold exceeded",
+      "createdOn": "2018-02-14T19:19:59.739-07:00",
+      "alert": {
+        "sysId": "70006b75-fdcf-3c65-aecc-5e22203c5588"
+      }
+    },
+    {
+      "sysId": "37bccf87-d772-3419-8ee6-0f2f3c416a24",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-14T19:51:15.739-07:00",
+      "alert": {
+        "sysId": "db1f216b-6e61-30fc-bffa-c17b3b40bde2"
+      }
+    },
+    {
+      "sysId": "e5c68e55-e3c9-3bfc-a8ba-7207ea5e6e6b",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired",
+      "createdOn": "2018-02-14T20:10:03.739-07:00",
+      "alert": {
+        "sysId": "09ee5f78-044a-3ffb-8020-381e67153bd8"
+      }
+    },
+    {
+      "sysId": "62480cfb-1c0d-38b9-850c-b9a64c063329",
+      "level": "failure",
+      "type": "created",
+      "text": "Drive not functioning as expected",
+      "createdOn": "2018-02-14T20:24:54.739-07:00",
+      "alert": {
+        "sysId": "2f4382a0-3896-3a37-8216-4e0a97269068"
+      }
+    },
+    {
+      "sysId": "3abf0531-8b87-3fbd-aecf-2dd27549a1aa",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-14T20:55:57.739-07:00",
+      "alert": {
+        "sysId": "5b7426ee-64ba-3725-9595-c02433686f6f"
+      }
+    },
+    {
+      "sysId": "75b09b88-38a0-3790-902b-e8798e88f783",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-14T21:06:02.739-07:00",
+      "alert": {
+        "sysId": "ea42db37-2e7d-3ef3-92c7-96311fbcc749"
+      }
+    },
+    {
+      "sysId": "06fa6a93-ba2f-33d3-9780-c5b5c940835c",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-14T21:17:01.739-07:00",
+      "alert": {
+        "sysId": "3e67f8b8-6bb3-39e1-bf1e-ee66806c0a24"
+      }
+    },
+    {
+      "sysId": "f7f28add-b5f7-3ee1-8698-a3feb961592c",
+      "level": "info",
+      "type": "created",
+      "text": "A new firmware is available for the device",
+      "createdOn": "2018-02-14T22:00:46.739-07:00",
+      "alert": {
+        "sysId": "fae83fbf-0c20-3c4f-8f3e-4459b1b32cbd"
+      }
+    },
+    {
+      "sysId": "5bf92e2b-4650-38af-8075-7700643e084b",
+      "level": "failure",
+      "type": "created",
+      "text": "Drive not functioning as expected",
+      "createdOn": "2018-02-14T22:55:45.739-07:00",
+      "alert": {
+        "sysId": "8062ba25-74bb-386d-9b10-3ea1a739e4ff"
+      }
+    },
+    {
+      "sysId": "5a01531a-6246-37f0-a3e2-64af3c7c1d31",
+      "level": "failure",
+      "type": "created",
+      "text": "Min/Max temperature threshold exceeded",
+      "createdOn": "2018-02-14T23:27:35.739-07:00",
+      "alert": {
+        "sysId": "7ebb7b52-335a-3b6a-a143-6483423fc60e"
+      }
+    },
+    {
+      "sysId": "4c8585c3-a94a-3e12-879f-c69a1d0bb2b8",
+      "level": "recall",
+      "type": "created",
+      "text": "Manufacturer issued a recall",
+      "createdOn": "2018-02-11T00:11:46.739-07:00",
+      "alert": {
+        "sysId": "a31ec0cf-8057-365d-9259-de4eeb15f89e"
+      }
+    },
+    {
+      "sysId": "8a583de1-b13a-32fc-b7db-33b3b5ab576b",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-11T00:33:45.739-07:00",
+      "alert": {
+        "sysId": "03c43f31-eb46-3990-84e0-e88c4405087d"
+      }
+    },
+    {
+      "sysId": "575f8412-ae1f-3255-a721-bbbf4e368c3d",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired",
+      "createdOn": "2018-02-11T01:11:20.739-07:00",
+      "alert": {
+        "sysId": "b96bd4d3-783c-35f2-8421-f0d658051e31"
+      }
+    },
+    {
+      "sysId": "81f1ffdd-d6ee-32d7-bb61-636614c042ee",
+      "level": "certification",
+      "type": "created",
+      "text": "This device is no longer supported",
+      "createdOn": "2018-02-11T01:19:06.739-07:00",
+      "alert": {
+        "sysId": "9a252ab9-9e3e-32b3-b460-e41cfbb6b62c"
+      }
+    },
+    {
+      "sysId": "93c9dd41-9e6d-3220-b02f-07a154916063",
+      "level": "failure",
+      "type": "created",
+      "text": "Room Automation Controller EY-RC500F001 is not functioning as expected",
+      "createdOn": "2018-02-11T08:20:37.739-07:00",
+      "alert": {
+        "sysId": "5fe3d2f0-ebee-355c-9826-409381981234"
+      }
+    },
+    {
+      "sysId": "dd766642-0bec-36da-849a-9a1aa2244b89",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired",
+      "createdOn": "2018-02-12T03:15:14.739-07:00",
+      "alert": {
+        "sysId": "cb567146-d2ed-3c4e-ab08-79bc1feee844"
+      }
+    },
+    {
+      "sysId": "44538093-d228-323a-8841-3f88434a1270",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired",
+      "createdOn": "2018-02-12T03:34:05.739-07:00",
+      "alert": {
+        "sysId": "69c46af7-3315-3b3c-a4fb-ce20ea8225ad"
+      }
+    },
+    {
+      "sysId": "19fce0ce-88ee-3a96-b752-b938d6857571",
+      "level": "failure",
+      "type": "created",
+      "text": "Device warranty is about to expire",
+      "createdOn": "2018-02-12T04:16:25.739-07:00",
+      "alert": {
+        "sysId": "22c36389-92e7-30cd-949a-6b2771d90736"
+      }
+    },
+    {
+      "sysId": "93c9dd41-9e6d-3220-b02f-07a154916062",
+      "level": "failure",
+      "type": "created",
+      "text": "Room Automation Controller EY-RC500F001 is not functioning as expected",
+      "createdOn": "2018-02-12T08:20:37.739-07:00",
+      "alert": {
+        "sysId": "5fe3d2f0-ebee-355c-9826-409381981234"
+      }
+    },
+    {
+      "sysId": "e8b0b313-1163-31a4-9534-735a476fd551",
+      "level": "failure",
+      "type": "created",
+      "text": "Room Automation Controller EY-RC500F001 is not functioning as expected",
+      "createdOn": "2018-02-15T05:27:41.739-07:00",
+      "alert": {
+        "sysId": "e582964b-cc6a-337b-9a7a-7f9ee632ea4b"
+      }
+    },
+    {
+      "sysId": "f52ffd49-f6f9-3173-9b19-caf227274d09",
+      "level": "recall",
+      "type": "created",
+      "text": "Cylon Controls Ltd. issued a recall on 1STMS001 Operator Workstation",
+      "createdOn": "2018-02-15T05:39:26.739-07:00",
+      "alert": {
+        "sysId": "b471ec66-dad7-34b4-a637-c9abfc2444a3"
+      }
+    },
+    {
+      "sysId": "d03242cd-322c-35cd-8f83-3eb101bce2d4",
+      "level": "certification",
+      "type": "created",
+      "text": "Device warranty has expired for device ENC-4XX-XXX installed at Lincoln Square building",
+      "createdOn": "2018-02-15T06:25:16.739-07:00",
+      "alert": {
+        "sysId": "179a90bb-17e3-3317-a8e0-5b407420205a"
+      }
+    },
+    {
+      "sysId": "f5faa028-5193-35e2-ace0-81d6a6a64f34",
+      "level": "failure",
+      "type": "created",
+      "text": "Min/Max temperature threshold exceeded on RIBMNWX2401B-BC",
+      "createdOn": "2018-02-15T06:53:04.739-07:00",
+      "alert": {
+        "sysId": "fc69d883-b058-3c0c-b7b4-33ab74b63480"
+      }
+    },
+    {
+      "sysId": "aa01b9ea-08e7-3c69-a2a8-2ef49bccd805",
+      "level": "failure",
+      "type": "created",
+      "text": "Drive RDT815F022 is not functioning as expected",
+      "createdOn": "2018-02-15T07:00:56.739-07:00",
+      "alert": {
+        "sysId": "15c82e31-c964-390c-92b0-6744cca114bd"
+      }
+    },
+    {
+      "sysId": "35454e6d-e2b3-33d1-83e8-0f74c277d2d6",
+      "level": "info",
+      "type": "created",
+      "text": "Tridium has published a new firmware (optional) for T-NXT-FL-AX building controller",
+      "createdOn": "2018-02-15T07:32:07.739-07:00",
+      "alert": {
+        "sysId": "ad3e2865-9545-3ac7-ad6c-22c8b1564572"
+      }
+    },
+    {
+      "sysId": "4d8edf0b-85ab-3cdb-9eff-a393538c34d1",
+      "level": "info",
+      "type": "created",
+      "text": "Honeywell has published a new firmware (mandatory) for DR-NS-BAC-AWS driver",
+      "createdOn": "2018-02-15T07:52:14.739-07:00",
+      "alert": {
+        "sysId": "52cc0eb3-3443-3e10-a29c-7e7d0ca3683b"
+      }
+    },
+    {
+      "sysId": "f8071397-b970-41a3-b82c-4cd762840982",
+      "level": "info",
+      "type": "created",
+      "text": "A new firmware is available for the device",
+      "createdOn": "2018-02-15T07:58:41.739-07:00",
+      "alert": {
+        "sysId": "5b8030a1-1052-4375-ad45-48ac6afae560"
+      }
+    },
+    {
+      "sysId": "09b58037-0a93-3d36-bd56-73caf871dfa4",
+      "level": "certification",
+      "type": "created",
+      "text": "Carrier has announced end of support for OPN-RTUM Application Controller",
+      "createdOn": "2018-02-15T08:00:23.739-07:00",
+      "alert": {
+        "sysId": "4e9482f6-9f40-3c44-b846-8039e70ae841"
+      }
+    },
+    {
+      "sysId": "3d7599ef-e898-33d4-8772-53990f82f032",
+      "level": "recall",
+      "type": "created",
+      "text": "Alerton issued a recall on BCM-MSTP Building Controller",
+      "createdOn": "2018-02-15T08:06:48.739-07:00",
+      "alert": {
+        "sysId": "f29257f4-ac18-3edd-ac8f-9f7242518f93"
+      }
+    },
+    {
+      "sysId": "6d245d08-5f4b-4ed7-9a94-0d3cbecb7c0b",
+      "level": "info",
+      "type": "created",
+      "text": "A new firmware is available for the device",
+      "createdOn": "2018-02-15T08:15:41.739-07:00",
+      "alert": {
+        "sysId": "064c848c-b870-48fe-9bd6-b96ce5d34483"
+      }
+    },
+    {
+      "sysId": "93c9dd41-9e6d-3220-b02f-07a154916064",
+      "level": "failure",
+      "type": "created",
+      "text": "Room Automation Controller EY-RC500F001 is not functioning as expected",
+      "createdOn": "2018-02-15T08:20:37.739-07:00",
+      "alert": {
+        "sysId": "5fe3d2f0-ebee-355c-9826-409381981234"
+      }
+    },
+    {
+      "sysId": "ded56fdc-5cea-4815-9319-a08435b773062",
+      "level": "info",
+      "type": "created",
+      "text": "A new firmware is available for the device",
+      "createdOn": "2018-02-15T09:15:41.739-07:00",
+      "alert": {
+        "sysId": "db372f29-5e5a-4ba1-90c8-52e7d45208fb"
+      }
+    }
+  ],
+  "userMessages": [
+    {
+      "sysId": "642bb8ef-804e-39c8-b560-28e95f9e5e73-msg",
+      "createdOn": "2018-02-14T11:44:52.739-07:00",
+      "__type": "UserMessageAlert",
+      "subject": "A new alert for Min/Max Temperature Threshold, Alert #1112 occured.",
+      "body": "Location: Lincoln Square.",
+      "flagNew": "true",
+      "flagActive": "true",
+      "user": {
+        "table": "USER",
+        "sysId": "b2b1ca60-b637-4359-a5be-3d6686bc5704"
+      },
+      "alert": {
+        "table": "ALERT",
+        "sysId": "642bb8ef-804e-39c8-b560-28e95f9e5e73"
+      }
+    }
+  ]
+}

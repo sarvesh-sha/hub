@@ -1,0 +1,23 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="data.editor.widget">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <input #test_nameInput matInput type="text" placeholder="Widget Title" [(ngModel)]="data.editor.widget.name" name="report-title" [required]="!data.editor.forSubgroup">
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput type="text" placeholder="Description" [(ngModel)]="data.editor.widget.description" name="report-description"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <o3-select #test_toolbarBehavior placeholder="Toolbar Behavior" [options]="toolbarBehaviorOptions"
+                               singleClick preventDeselection [multiSelect]="false"
+                               name="toolbar-behavior" [(ngModel)]="toolbarBehavior"></o3-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>

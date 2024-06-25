@@ -1,0 +1,11 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <o3-tab label="Control Point Search">
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <h2>Condition Builder</h2>
+            <o3-tag-condition-builder [(model)]="builderTest"></o3-tag-condition-builder>
+            <div class="debug">{{stringify(builderTest)}}</div>
+        </o3-tab>
+    </o3-tab-group>
+</section>

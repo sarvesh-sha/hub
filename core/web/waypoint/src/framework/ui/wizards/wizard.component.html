@@ -1,0 +1,33 @@
+<mat-card class="o3-wizard page-card" [ngClass]="wizardClasses()">
+    <mat-card-title *ngIf="label">
+        <span>{{label}}</span>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-tab-group [(selectedIndex)]="selectedIndex" class="wizard-tabs" [class.o3-one-tab]="availableSteps.length === 1" (selectedTabChange)="onStepSelected()">
+            <mat-tab *ngFor="let step of availableSteps; trackBy: getStepId; let i = index;" [disabled]="!canJumpToStep(step, i)">
+                <ng-template mat-tab-label>
+                    <div class="wizard-step-num">{{(i + 1)}}</div>
+                    {{step.component.getLabel()}}
+                </ng-template>
+                <div class="tab-body-content">
+                    <ng-template [ngTemplateOutlet]="i === selectedIndex ? step.component.contentTemplate : undefined">
+                    </ng-template>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions class="clearfix">
+        <div *ngIf="hasNext()" class="float-sm-right" [matTooltipDisabled]="isValid() && !getInvalidExplanation()" [matTooltip]="getInvalidExplanation()">
+            <button mat-raised-button (click)="next()" color="primary" [disabled]="!isValid()">
+                NEXT
+            </button>
+        </div>
+        <div *ngIf="!hasNext()" class="float-sm-right" [matTooltipDisabled]="isValid() && !getInvalidExplanation()" [matTooltip]="getInvalidExplanation()">
+            <button optio3TestId="finish" mat-raised-button (click)="save()" color="primary" [disabled]="!isValid()">
+                {{finishButtonText}}
+            </button>
+        </div>
+        <button mat-raised-button [disabled]="!hasPrev()" (click)="prev()" class="mx-0 mr-sm-2 float-sm-right">PREV</button>
+        <button mat-raised-button (click)="cancel()" class="mx-0 mr-sm-1">CANCEL</button>
+    </mat-card-actions>
+</mat-card>

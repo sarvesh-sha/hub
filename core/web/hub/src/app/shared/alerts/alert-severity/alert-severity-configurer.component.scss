@@ -1,0 +1,15 @@
+$min-width: 180px;
+
+mat-form-field {
+    min-width: $min-width;
+    padding-right: 10px;
+
+    &.o3-alert-severity-configurer--select {
+        width: 25%;
+    }
+}
+
+.o3-alert-severity-configurer--color-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+}

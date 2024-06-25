@@ -1,0 +1,55 @@
+<o3-overlay [config]="dialogConfig">
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Upgrade Summary">
+
+            <mat-accordion *ngIf="data">
+
+                <mat-expansion-panel (expandedChange)="data.started.bindTable()" *ngIf="data.started.entries.length > 0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{data.started.title}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <o3-datatable [table]="data.started.table" [showViewIcons]="false">
+                        <o3-datatable-column id="displayNamePos" sortId="displayName" prop="displayName" name="Host"></o3-datatable-column>
+                        <o3-datatable-column id="lastHeartbeatPos" sortId="lastHeartbeat" prop="lastHeartbeat" name="Last Heartbeat" [width]="150" [maxWidth]="150"
+                                             format="DATELONG"></o3-datatable-column>
+                    </o3-datatable>
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel *ngFor="let obj of data.notStartedPos" (expandedChange)="obj.bindTable()">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{obj.title}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <o3-datatable [table]="obj.table" [showViewIcons]="false">
+                        <o3-datatable-column id="displayNameNeg" sortId="displayName" prop="displayName" name="Host"></o3-datatable-column>
+                        <o3-datatable-column id="lastHeartbeatNeg" sortId="lastHeartbeat" prop="lastHeartbeat" name="Last Heartbeat" [width]="150" [maxWidth]="150"
+                                             format="DATELONG"></o3-datatable-column>
+                    </o3-datatable>
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel *ngFor="let obj of data.notStartedNeg" (expandedChange)="obj.bindTable()">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{obj.title}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <o3-datatable [table]="obj.table" [showViewIcons]="false">
+                        <o3-datatable-column id="displayName" sortId="displayName" prop="displayName" name="Host"></o3-datatable-column>
+                        <o3-datatable-column id="lastHeartbeat" sortId="lastHeartbeat" prop="lastHeartbeat" name="Last Heartbeat" [width]="150" [maxWidth]="150"
+                                             format="DATELONG"></o3-datatable-column>
+                    </o3-datatable>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

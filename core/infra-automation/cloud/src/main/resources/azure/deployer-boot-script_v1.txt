@@ -1,0 +1,97 @@
+#!/bin/bash                                                                                                             
+
+CUSTOMER_ID=$[param.CUSTOMER_ID]
+HOST_ID=$[param.HOST_ID]
+CONFIG_VALUE=$[param.CONFIG_VALUE]
+CONFIG_FILE=config.tgz
+
+REPO_ACCOUNT=$[param.REPO_ACCOUNT]
+REPO_PASSWORD=$[param.REPO_PASSWORD]
+IMAGE_TAG=$[param.IMAGE_TAG]
+
+####
+
+DST_DIR=/optio3
+DOCKER_REGISTRY="repo.dev.optio3.io:5000"
+CONFIG_VOLUME_NAME="config-${HOST_ID}"
+SCRATCH_VOLUME_NAME="scratch-${HOST_ID}"
+
+BINDS="-v /var/run/docker.sock:/var/run/docker.sock -v ${CONFIG_VOLUME_NAME}:/optio3-config -v ${SCRATCH_VOLUME_NAME}:/optio3-scratch"
+SELFBIND="-e OPTIO3_DOCKER_SELFID=${RANDOM}"
+LABELS="--label Optio3_Deployment_Purpose=deployer --label Optio3_Deployment_ContextId=${HOST_ID}"
+
+####
+
+function cleanup {
+	if [ -f "${DST_DIR}/${CONFIG_FILE}" ]; then
+		rm ${DST_DIR}/${CONFIG_FILE}
+	fi
+}
+
+# register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
+
+#################
+#
+# Install Docker.
+#
+curl -fsSL https://get.docker.com | sh
+
+systemctl enable docker.service
+systemctl start docker.service
+#
+#################
+
+
+#################
+#
+# Create Volumes for configuration and scratch data.
+#
+docker volume create --name ${CONFIG_VOLUME_NAME} ${LABELS} || exit $?
+docker volume create --name ${SCRATCH_VOLUME_NAME} ${LABELS} || exit $?
+#
+#################
+
+
+#################
+#
+# Populate configuration from BASE64 value.
+#
+mkdir -p ${DST_DIR}
+echo ${CONFIG_VALUE} | base64 -d >${DST_DIR}/${CONFIG_FILE}
+
+docker run --rm -v ${CONFIG_VOLUME_NAME}:/optio3-config -v ${DST_DIR}/${CONFIG_FILE}:/cfg.tgz busybox sh -c "cd /optio3-config && tar xfz /cfg.tgz" || exit $?
+
+rm ${DST_DIR}/${CONFIG_FILE}
+#
+#################
+
+
+#################
+#
+# Pull initial image from Docker registry.
+#
+docker login -u ${REPO_ACCOUNT} -p ${REPO_PASSWORD} ${DOCKER_REGISTRY} || exit $?
+docker pull ${DOCKER_REGISTRY}/${IMAGE_TAG} || exit $?
+docker logout ${DOCKER_REGISTRY} || exit $?
+#
+#################
+
+
+#################
+#
+# Start Deployer container.
+#
+docker run --restart=always -d ${BINDS} ${SELFBIND} ${LABELS} ${DOCKER_REGISTRY}/${IMAGE_TAG} deployer /optio3-config/deployer-prod.yml || exit $?
+
+
+#################
+#
+# Create a small SWAP file, just in case.
+#
+SWAP_FILE=/mnt/resource/swapfile
+dd if=/dev/zero of=${SWAP_FILE} bs=1M count=1024
+chmod 600 ${SWAP_FILE}
+mkswap ${SWAP_FILE}
+echo ${SWAP_FILE} swap swap defaults 0 0 >>/etc/fstab
+swapon -a

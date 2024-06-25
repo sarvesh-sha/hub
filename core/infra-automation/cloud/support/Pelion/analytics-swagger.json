@@ -1,0 +1,902 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Retrieve statistical information about company and subscriber data usage and session counts.<p>You can use the Analytics endpoints to view the following information for a specified date range&#58;</p> <ul><li>Company-wide data usage</li><li>A specific subscriber's data usage</li><li>Company-wide session count</li><li>A specific subscriber's session count</li><li>Company-wide data usage per network protocol</li><li>Company-wide data usage per IP address</li><li>A specified subscriber's data usage per IP address</li>",
+    "title": "Analytics",
+    "version": "1.0.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/analytics/data-usage": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns your company's data usage.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/FormattedDataUsageByDirection"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> permission enabled.</p><br><p>The response breaks down data usage into two categories&#58;</p> <ul><li><em>Mobile Originated (MO) data</em> is the amount of data sent from the subscriber.</li><li><em>Mobile Terminated (MT) data</em> is the amount of data received by the subscriber.</li></ul>",
+        "operationId": "AnalyticsController.getDataUsageForCompany",
+        "summary": "Returns your company's data usage for the specified date range."
+      }
+    },
+    "/analytics/data-usage-by-subscriber": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns data usage per subscriber.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "$ref": "#/definitions/FormattedDataUsageBySubscriber"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> permission enabled.</p>",
+        "operationId": "AnalyticsController.getDataUsageSubscriberBreakdownForCompany",
+        "summary": "For the specified date range, returns your company's data usage per subscriber."
+      }
+    },
+    "/analytics/data-usage-ip-address": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns your company's data usage per IP address to which data was sent.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/FormattedCompanyDataUsageByIpAddress"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> permission enabled.</p>",
+        "operationId": "AnalyticsController.getDataUsageByIpAddressForCompany",
+        "summary": "For the specified date range, returns your company's data usage per IP address to which data was sent."
+      }
+    },
+    "/analytics/data-usage-ip-address/{physicalId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "query",
+            "name": "physicalId",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The unique subscriber ID.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the subscriber's data usage totals per IP address to which data was sent.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/FormattedSubscriberDataUsageByIpAddress"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> and <strong>View a Device</strong> permissions enabled.</p><br><p>The response breaks down data usage into two categories&#58; <ul><li><em>Mobile Originated (MO) data</em> is the amount of data sent from the subscriber.</li><li><em>Mobile Terminated (MT) data</em> is the amount of data received by the subscriber.</li></ul></p>",
+        "operationId": "AnalyticsController.getDataUsageByIpAddressForSubscriber",
+        "summary": "For the specified date range, returns the  subscriber's data usage totals per IP address to which data was sent."
+      }
+    },
+    "/analytics/data-usage-network-protocol": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns your company's data usage per protocol.",
+            "schema": {
+              "$ref": "#/definitions/FormattedDataUsageByNetworkProtocol"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> permission enabled.</p>",
+        "operationId": "AnalyticsController.getDataUsagePerNetworkProtocolForCompany",
+        "summary": "For the specified date range, returns your company's data usage per network protocol."
+      }
+    },
+    "/analytics/data-usage/{physicalId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "query",
+            "name": "physicalId",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the subscriber's data usage.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/FormattedDataUsageByDirection"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> and <strong>View a Device</strong> permissions enabled.</p><br><p>The response breaks down data usage into two categories&#58; <ul><li><em>Mobile Originated (MO) data</em> is the amount of data sent from the subscriber.</li><li><em>Mobile Terminated (MT) data</em> is the amount of data received by the subscriber.</li></ul></p>",
+        "operationId": "AnalyticsController.getDataUsageForSubscriber",
+        "summary": "Returns the subscriber's data usage for the specified date range."
+      }
+    },
+    "/analytics/session-count": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns your company's session count.",
+            "schema": {
+              "$ref": "#/definitions/FormattedCompanySessionCount"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> permission enabled.</p>",
+        "operationId": "AnalyticsController.getSessionCountForCompany",
+        "summary": "Returns your company's session count for the specified date range."
+      }
+    },
+    "/analytics/session-count/{physicalId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "query",
+            "name": "physicalId",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "The start date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The end date in the format YYYY-MM-DDTHH:MM:SS+/-HH:MM.",
+            "format": "YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The unique subscriber ID.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the subscriber's session count.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/FormattedCompanySessionCount"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "description": "<p>To define the date range, pass the startDate and endDate as parameters using the ISO 8601 format (YYYY-MM-DDTHH:MM:SS+/-HH:MM).</p><br><p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View Statistics</strong> and <strong>View a Device</strong> permissions enabled.</p><br><p>The response breaks down data usage into two categories&#58; <ul><li><em>Mobile Originated (MO) data</em> is the amount of data sent from the subscriber.</li><li><em>Mobile Terminated (MT) data</em> is the amount of data received by the subscriber.</li></ul></p>",
+        "operationId": "AnalyticsController.getSessionCountForSubscriber",
+        "summary": "Returns the subscriber's session count for the specified date range."
+      }
+    }
+  },
+  "definitions": {
+    "FormattedCompanyDataUsageByIpAddress": {
+      "example": {
+        "dataUsageByIp": {
+          "8.8.8.4": {
+            "bytes": "2182"
+          },
+          "8.8.8.5": {
+            "bytes": "1234"
+          }
+        },
+        "totalData": "3416"
+      },
+      "properties": {
+        "dataUsageByIp": {
+          "description": "For the specified date range, the IP addresses to which data was sent and the amount of data sent to each address, in bytes.",
+          "example": {
+            "8.8.8.4": {
+              "bytes": "2182",
+              "lastSeen": "2017-08-17T13:15:00+00:1"
+            }
+          },
+          "format": "json",
+          "type": "string"
+        },
+        "totalData": {
+          "description": "For the specified date range, your company's total data usage.",
+          "example": 2182,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dataUsageByIp",
+        "totalData"
+      ],
+      "type": "object"
+    },
+    "FormattedCompanySessionCount": {
+      "properties": {
+        "content": {
+          "description": "For the specified date range, the number of sessions for each hour during which a session occurred.",
+          "example": {
+            "2016-12-16T10:00:00+00:00": "3",
+            "2017-01-01T00:00:00+00:00": "1"
+          },
+          "format": "json",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FormattedDataUsageByDirection": {
+      "description": "For the specified date range, the MO and MT data usage totals.",
+      "example": {
+        "mobileOriginated": {
+          "2016-11-28T11:00:00+00:00": "420",
+          "2016-11-29T10:00:00+00:00": "316"
+        },
+        "mobileTerminated": {
+          "2016-11-28T11:00:00+00:00": "420",
+          "2016-11-29T10:00:00+00:00": "316"
+        }
+      },
+      "properties": {
+        "mobileOriginated": {
+          "description": "MO data usage by time period.",
+          "example": {
+            "2013-11-23T11:00:00+00:00": "523",
+            "2013-11-23T11:30:00+00:00": "245"
+          },
+          "type": "object"
+        },
+        "mobileTerminated": {
+          "description": "MT data usage by time period.",
+          "example": {
+            "2013-11-23T11:00:00+00:00": "2453",
+            "2013-11-23T11:30:00+00:00": "2453"
+          },
+          "type": "object"
+        }
+      }
+    },
+    "FormattedDataUsageByNetworkProtocol": {
+      "properties": {
+        "content": {
+          "description": "For the specified date range, the data usage per network protocol. For each protocol, the response shows the data usage per hour.",
+          "example": {
+            "TCP": {
+              "2016-12-16T10:00:00+00:00": "132",
+              "2017-01-01T00:00:00+00:00": "2000"
+            },
+            "UDP": {
+              "2017-12-16T10:00:00+00:00": "5311",
+              "2018-01-01T00:00:00+00:00": "6001"
+            }
+          },
+          "format": "json",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FormattedDataUsageBySubscriber": {
+      "example": {
+        "subscriberDataUsage": {
+          "447500000001": {
+            "2016-12-06T10:30:00+00:00": "2182"
+          },
+          "447500000002": {
+            "2016-12-29T10:30:00+00:00": "1212"
+          },
+          "447500000003": {
+            "2016-12-01T13:00:00+00:00": "1735"
+          }
+        },
+        "totalData": 5129
+      },
+      "properties": {
+        "subscriberDataUsage": {
+          "description": "<p>For the specified date range, a list of subscriber identifiers with&#58;</p><ul><li>the date and time of each subscriber's last network connection, and</li><li>data usage in bytes.</li></ul>",
+          "example": {
+            "447500000001": {
+              "2016-12-06T10:30:00+00:00": "2182"
+            },
+            "447500000002": {
+              "2016-12-29T10:30:00+00:00": "1212"
+            },
+            "447500000003": {
+              "2016-12-01T13:00:00+00:00": "1735"
+            }
+          },
+          "format": "json",
+          "type": "string"
+        },
+        "totalDataUsage": {
+          "description": "For the specified date range, the total data usage of all subscribers, in bytes.",
+          "example": 5129,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "subscriberDataUsage",
+        "totalDataUsage"
+      ],
+      "type": "object"
+    },
+    "FormattedSubscriberDataUsageByIpAddress": {
+      "example": {
+        "dataUsageByIp": {
+          "8.8.8.4": {
+            "bytes": "2182"
+          },
+          "8.8.8.5": {
+            "bytes": "1234"
+          }
+        },
+        "totalData": "3416"
+      },
+      "properties": {
+        "dataUsageByIp": {
+          "description": "For the specified date range, a list of IP addresses to which data was sent, the unit used to report usage (bytes), and the amount of data sent to each address.",
+          "example": {
+            "8.8.8.4": {
+              "bytes": "2182",
+              "lastSeen": "2016-12-29T10:30:00+00:00"
+            }
+          },
+          "format": "json",
+          "type": "string"
+        },
+        "totalData": {
+          "description": "For the specified date range, your company's total data usage.",
+          "example": 2182,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dataUsageByIp",
+        "totalData"
+      ],
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}

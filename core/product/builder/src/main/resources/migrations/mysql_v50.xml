@@ -1,0 +1,227 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="sys_created_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sys_created_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <addColumn tableName="DEPLOYMENT_TASK_LOG">
+            <column name="sys_created_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addColumn tableName="JOB_STEP_LOG">
+            <column name="sys_created_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <addColumn tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="sys_updated_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <addColumn tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sys_updated_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <addColumn tableName="DEPLOYMENT_TASK_LOG">
+            <column name="sys_updated_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <addColumn tableName="JOB_STEP_LOG">
+            <column name="sys_updated_on" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <addColumn tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="block" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <addColumn tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="block" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <addColumn tableName="DEPLOYMENT_TASK_LOG">
+            <column name="block" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <addColumn tableName="JOB_STEP_LOG">
+            <column name="block" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <addColumn tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="sequence_end" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <addColumn tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sequence_end" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-17">
+        <addColumn tableName="DEPLOYMENT_TASK_LOG">
+            <column name="sequence_end" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-18">
+        <addColumn tableName="JOB_STEP_LOG">
+            <column name="sequence_end" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-19">
+        <addColumn tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="sequence_start" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-20">
+        <addColumn tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sequence_start" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-21">
+        <addColumn tableName="DEPLOYMENT_TASK_LOG">
+            <column name="sequence_start" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-22">
+        <addColumn tableName="JOB_STEP_LOG">
+            <column name="sequence_start" type="INT"/>
+        </addColumn>
+    </changeSet>
+	<!-- -->
+    <changeSet author="Optio3 Manual" id="logMigration1">
+        <sql>update DEPLOYMENT_HOST_IMAGE_PULL_LOG  a inner join COMMON_LOG b on a.sys_id = b.sys_id set a.sys_created_on = b.sys_created_on, a.sys_updated_on = b.sys_updated_on, a.block = b.block, a.sequence_start = b.sequence_start, a.sequence_end = b.sequence_end</sql>
+        <sql>update DEPLOYMENT_PROBER_OPERATION_LOG a inner join COMMON_LOG b on a.sys_id = b.sys_id set a.sys_created_on = b.sys_created_on, a.sys_updated_on = b.sys_updated_on, a.block = b.block, a.sequence_start = b.sequence_start, a.sequence_end = b.sequence_end</sql>
+        <sql>update DEPLOYMENT_TASK_LOG             a inner join COMMON_LOG b on a.sys_id = b.sys_id set a.sys_created_on = b.sys_created_on, a.sys_updated_on = b.sys_updated_on, a.block = b.block, a.sequence_start = b.sequence_start, a.sequence_end = b.sequence_end</sql>
+        <sql>update JOB_STEP_LOG                    a inner join COMMON_LOG b on a.sys_id = b.sys_id set a.sys_created_on = b.sys_created_on, a.sys_updated_on = b.sys_updated_on, a.block = b.block, a.sequence_start = b.sequence_start, a.sequence_end = b.sequence_end</sql>
+    </changeSet>
+	<!-- -->
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3b">
+        <addNotNullConstraint tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" columnName="sys_created_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4b">
+        <addNotNullConstraint tableName="DEPLOYMENT_PROBER_OPERATION_LOG" columnName="sys_created_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5b">
+        <addNotNullConstraint tableName="DEPLOYMENT_TASK_LOG" columnName="sys_created_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6b">
+        <addNotNullConstraint tableName="JOB_STEP_LOG" columnName="sys_created_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7b">
+        <addNotNullConstraint tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" columnName="sys_updated_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8b">
+        <addNotNullConstraint tableName="DEPLOYMENT_PROBER_OPERATION_LOG" columnName="sys_updated_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9b">
+        <addNotNullConstraint tableName="DEPLOYMENT_TASK_LOG" columnName="sys_updated_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10b">
+        <addNotNullConstraint tableName="JOB_STEP_LOG" columnName="sys_updated_on" columnDataType="DATETIME"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11b">
+        <addNotNullConstraint tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" columnName="block" columnDataType="LONGBLOB(2147483647)"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12b">
+        <addNotNullConstraint tableName="DEPLOYMENT_PROBER_OPERATION_LOG" columnName="block" columnDataType="LONGBLOB(2147483647)"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13b">
+        <addNotNullConstraint tableName="DEPLOYMENT_TASK_LOG" columnName="block" columnDataType="LONGBLOB(2147483647)"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14b">
+        <addNotNullConstraint tableName="JOB_STEP_LOG" columnName="block" columnDataType="LONGBLOB(2147483647)"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15b">
+        <addNotNullConstraint tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" columnName="sequence_end" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16b">
+        <addNotNullConstraint tableName="DEPLOYMENT_PROBER_OPERATION_LOG" columnName="sequence_end" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-17b">
+        <addNotNullConstraint tableName="DEPLOYMENT_TASK_LOG" columnName="sequence_end" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-18b">
+        <addNotNullConstraint tableName="JOB_STEP_LOG" columnName="sequence_end" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-19b">
+        <addNotNullConstraint tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" columnName="sequence_start" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-20b">
+        <addNotNullConstraint tableName="DEPLOYMENT_PROBER_OPERATION_LOG" columnName="sequence_start" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-21b">
+        <addNotNullConstraint tableName="DEPLOYMENT_TASK_LOG" columnName="sequence_start" columnDataType="INT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-22b">
+        <addNotNullConstraint tableName="JOB_STEP_LOG" columnName="sequence_start" columnDataType="INT"/>
+    </changeSet>
+	<!-- -->
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-23">
+        <createIndex indexName="IDX545ue1l53whqj6t6asqhy4555" tableName="JOB_STEP_LOG">
+            <column name="sequence_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-24">
+        <createIndex indexName="IDXfaso40l959s8q60rrboe2r6sc" tableName="DEPLOYMENT_TASK_LOG">
+            <column name="sequence_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-25">
+        <createIndex indexName="IDXi7o9yhkdx3xp2pf5131384h95" tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sequence_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-26">
+        <createIndex indexName="IDXjlfeyeai4r53ge6vel5raws1q" tableName="JOB_STEP_LOG">
+            <column name="sequence_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-27">
+        <createIndex indexName="IDXjntajcb19vagre3ml92ky2g26" tableName="DEPLOYMENT_TASK_LOG">
+            <column name="sequence_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-28">
+        <createIndex indexName="IDXn6hkjfmrcyia6fph2t5tg928g" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="sequence_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-29">
+        <createIndex indexName="IDXna1ldw00a785egrmcx4xjbjpp" tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sequence_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-30">
+        <createIndex indexName="IDXtjnp08f92f4nruybi94nqalk2" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="sequence_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-31">
+        <dropForeignKeyConstraint baseTableName="JOB_STEP_LOG" constraintName="FK79shroao6bwb99lrimamiy8ih"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-32">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_PROBER_OPERATION_LOG" constraintName="FKcp324cn2arxjnk1fnhsu82e7e"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-33">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_TASK_LOG" constraintName="FKqmfd904cog3kq4cfw4v7vkp0l"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-34">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" constraintName="FKrtku2sb8l2tqoe0a760bbdnn0"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-35">
+        <dropTable tableName="COMMON_LOG"/>
+    </changeSet>
+</databaseChangeLog>

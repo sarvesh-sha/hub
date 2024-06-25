@@ -1,0 +1,180 @@
+$enabled-color: #2196f3;
+$no-zoom-border-color: #e1e1e1;
+$zoom-border-color: #c3c3c3;
+$background-color: white;
+
+:host {
+    color: rgba(0, 0, 0, 0.75);
+    text-transform: uppercase;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 15px;
+}
+
+mat-option span {
+    font-style: italic;
+}
+
+
+div.outer {
+    padding: 8px 8px 0 20px;
+
+    > div.header {
+        margin-left: 110px;
+        margin-right: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        &.no-legend {
+            justify-content: flex-end;
+        }
+
+        > div:first-child { // legend
+            display: flex;
+
+            > div {
+                display: flex;
+                align-items: center;
+                padding-top: 10px;
+                margin-right: 17px;
+
+                > span { // color box
+                    width: 30.73px;
+                    height: 30.73px;
+                    border: 1px solid $no-zoom-border-color;
+                    margin-right: 10px;
+                }
+            }
+
+            > div:first-child > span { // enabled color
+                background-color: $enabled-color;
+            }
+
+            > div:last-child > span { // disabled color
+                background-color: $background-color
+            }
+        }
+
+        > div:last-child { // preset dropdown
+            width: 214px;
+        }
+    }
+
+    > div.shading-sector {
+        > div { // row
+            > span { // day label
+                width: 110px;
+                line-height: 30px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            &:last-child > div {
+                border-bottom: 1px solid $no-zoom-border-color;
+                height: 31px;
+            }
+
+            > div { // day row
+                height: 30px;
+                width: 738px;
+                border-right: 1px solid $no-zoom-border-color;
+                cursor: crosshair;
+
+                > div { // grid square (hour or quarter hour)
+                    border-top: 1px solid $no-zoom-border-color;
+                    border-left: 1px solid $no-zoom-border-color;
+                    height: 100%;
+                    width: 4.166%;
+
+                    &.is-12th-square {
+                        border-right: 1px solid $no-zoom-border-color;
+                    }
+
+                    &.is-13th-square {
+                        border-left-width: 2px;
+                    }
+
+                    > div { // 15min quarter grid square
+                        width: 25%;
+                        height: 100%;
+                        background-color: $background-color;
+
+                        &.is-active {
+                            background-color: $enabled-color;
+                        }
+                    }
+                }
+            }
+
+            * {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    > div.hour-axis {
+        display: flex;
+        width: 862px;
+        padding-left: 93px;
+
+        > div {
+            display: flex;
+            flex: 1 1 0;
+            line-height: 30px;
+            height: 30px;
+            font-size: 14px;
+            justify-content: center;
+            cursor: zoom-in;
+        }
+    }
+
+    &.zoomed-in {
+        > div.shading-sector > div > div {
+            border-left: 1px solid $zoom-border-color;
+            border-right-color: $zoom-border-color;
+
+            > div {
+                background-color: $background-color;
+
+                &.is-active {
+                    background-color: $enabled-color;
+                }
+
+                &.is-3rd-quarter-hour {
+                    border-right: 1px solid $zoom-border-color;
+                }
+
+                &.is-0th-quarter-hour {
+                    border-left-color: $zoom-border-color;
+                }
+            }
+        }
+
+        > div.hour-axis > div {
+            cursor: zoom-out;
+        }
+    }
+
+    > div:last-child {
+        display: flex;
+        margin-left: 110px;
+        margin-right: 15px;
+
+        > div {
+            display: flex;
+            justify-content: center;
+            font-size: 16px;
+            flex-basis: 0;
+            flex-grow: 1;
+
+            &.of-5-hours {
+                flex-grow: 5;
+            }
+
+            &.of-4-hours {
+                flex-grow: 2;
+            }
+        }
+    }
+}

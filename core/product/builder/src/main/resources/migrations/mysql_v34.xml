@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <createTable tableName="DEPLOYMENT_HOST_FILE">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sys_created_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="contents" type="LONGBLOB"/>
+            <column defaultValueComputed="NULL" name="downloaded_on" type="datetime"/>
+            <column name="path" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="uploaded_on" type="datetime"/>
+            <column name="current_transfer" type="VARCHAR(255)"/>
+            <column name="deployment" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createIndex indexName="CURRENT_TRANSFER__FK" tableName="DEPLOYMENT_HOST_FILE">
+            <column name="current_transfer"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <createIndex indexName="FILE__DEPLOYMENT__FK" tableName="DEPLOYMENT_HOST_FILE">
+            <column name="deployment"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <addForeignKeyConstraint baseColumnNames="current_transfer" baseTableName="DEPLOYMENT_HOST_FILE" constraintName="CURRENT_TRANSFER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addForeignKeyConstraint baseColumnNames="deployment" baseTableName="DEPLOYMENT_HOST_FILE" constraintName="FILE__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

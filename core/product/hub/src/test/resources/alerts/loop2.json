@@ -1,0 +1,196 @@
+{
+  "definition": {
+    "title": "While Loop Break Continue",
+    "purpose": "Definition",
+    "description": "Break Continue in while loop",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": "5}4pqmS[TOMOx~}m/g2=",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "x",
+                  "type": "Number"
+                },
+                {
+                  "name": "result",
+                  "type": "Number"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "IRH~QQIo9bHdstM[Q9!;",
+                  "variable": {
+                    "name": "x",
+                    "type": "Number"
+                  },
+                  "value": {
+                    "__type": "EngineLiteralNumber",
+                    "id": "7*(]0oE6`z3W$-Q4Xed4",
+                    "value": 5
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "}]?_m${PBGV=m?XmPy/!",
+                  "variable": {
+                    "name": "result",
+                    "type": "Number"
+                  },
+                  "value": {
+                    "__type": "EngineLiteralNumber",
+                    "id": "Rd6Oq.|fH__1=BJfxA2%",
+                    "value": 0
+                  }
+                },
+                {
+                  "__type": "EngineStatementRepeatWhile",
+                  "id": "/UQbrkWRKiJU=r2.3O1B",
+                  "condition": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "kNy93!)||VXfot-muGo5",
+                    "a": {
+                      "__type": "EngineExpressionGetVariable",
+                      "id": "nB#GT;nUu.A97P(fZ7Cx",
+                      "variable": {
+                        "name": "x"
+                      }
+                    },
+                    "b": {
+                      "__type": "EngineLiteralNumber",
+                      "id": "H5GtPNUIF/o=k9!^Ms?J",
+                      "value": 0
+                    },
+                    "operation": "GreaterThanOrEqual"
+                  },
+                  "statements": [
+                    {
+                      "__type": "EngineVariableAssignment",
+                      "id": "v)RiO_20z3m5l-9xT%uN",
+                      "variable": {
+                        "name": "x",
+                        "type": "Number"
+                      },
+                      "value": {
+                        "__type": "EngineArithmeticOperatorBinary",
+                        "id": "@z?^Uub8`{jPi,@bzx+e",
+                        "a": {
+                          "__type": "EngineExpressionGetVariable",
+                          "id": "X2w?cX))c@`cW-wZs-PH",
+                          "variable": {
+                            "name": "x"
+                          }
+                        },
+                        "b": {
+                          "__type": "EngineLiteralNumber",
+                          "id": "w7g`+46!#qm;Q3Peg`A,",
+                          "value": 1
+                        },
+                        "operation": "Minus"
+                      }
+                    },
+                    {
+                      "__type": "EngineStatementLogicIf",
+                      "id": "H[^Tjr9R[[Eaiy9iH1.V",
+                      "ifElseBlocks": [
+                        {
+                          "condition": {
+                            "__type": "EngineExpressionBinaryLogicCompare",
+                            "id": "A{bIwIb}]p*u6rxifUg}",
+                            "a": {
+                              "__type": "EngineExpressionGetVariable",
+                              "id": "QP(u69fh/A(]!elO:hDq",
+                              "variable": {
+                                "name": "result"
+                              }
+                            },
+                            "b": {
+                              "__type": "EngineLiteralNumber",
+                              "id": ",MDr(3_!YAMaab?Ton)3",
+                              "value": 5
+                            },
+                            "operation": "GreaterThan"
+                          },
+                          "statements": [
+                            {
+                              "__type": "EngineStatementBreak",
+                              "id": "y37w##.c6gvJ6ioxfw`/"
+                            }
+                          ]
+                        },
+                        {
+                          "condition": {
+                            "__type": "EngineExpressionBinaryLogicCompare",
+                            "id": "7^8_8#ztXVe-1X8H=6{E",
+                            "a": {
+                              "__type": "EngineExpressionGetVariable",
+                              "id": "]=;?g,7O#(qQ;W?B6m,o",
+                              "variable": {
+                                "name": "x"
+                              }
+                            },
+                            "b": {
+                              "__type": "EngineLiteralNumber",
+                              "id": "JDGimEGHGePm,u6amqGk",
+                              "value": 3
+                            },
+                            "operation": "Equal"
+                          },
+                          "statements": [
+                            {
+                              "__type": "EngineStatementContinue",
+                              "id": "!kzbF5IaJH,U(._S|56o"
+                            }
+                          ]
+                        }
+                      ],
+                      "elseStatements": null
+                    },
+                    {
+                      "__type": "EngineVariableAssignment",
+                      "id": "Z{si$r)~O3Wg(#bPzkVa",
+                      "variable": {
+                        "name": "result",
+                        "type": "Number"
+                      },
+                      "value": {
+                        "__type": "EngineArithmeticOperatorBinary",
+                        "id": "sPHIPfaY*tjP8m|2~VJp",
+                        "a": {
+                          "__type": "EngineExpressionGetVariable",
+                          "id": "b2:qlNOh,$b(c[TW|5gr",
+                          "variable": {
+                            "name": "result"
+                          }
+                        },
+                        "b": {
+                          "__type": "EngineExpressionGetVariable",
+                          "id": "_2p^$KhgjrjuTSpW*0ob",
+                          "variable": {
+                            "name": "x"
+                          }
+                        },
+                        "operation": "Plus"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

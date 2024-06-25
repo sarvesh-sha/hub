@@ -1,0 +1,18 @@
+<mat-card class="error-list" *ngIf="errors.hasAny()">
+    <ul>
+        <li *ngFor="let error of errors.errors" #test_toast class="animated slideInUp item" [ngClass]="messageClass(error)" (click)="dismiss(error)">
+            {{error.message}}
+            <ul>
+                <li *ngFor="let detail of error.details" class="detail">
+                    &nbsp; {{detail}}
+                </li>
+            </ul>
+            <div *ngIf="error.actions?.length" class="error-actions-container">
+                <button *ngFor="let action of error.actions" type="button"
+                        mat-raised-button [color]="action.color" (click)="handleAction(error, action)">
+                    {{action.label}}
+                </button>
+            </div>
+        </li>
+    </ul>
+</mat-card>

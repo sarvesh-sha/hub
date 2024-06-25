@@ -1,0 +1,671 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "APIs and Definitions for the Optio3 Provisioner product.",
+        "version": "1.0.0",
+        "title": "Optio3 Provisioner APIs"
+    },
+    "basePath": "/api/v1",
+    "tags": [
+        {
+            "name": "AdminTasks"
+        },
+        {
+            "name": "Networks"
+        },
+        {
+            "name": "Provision"
+        }
+    ],
+    "paths": {
+        "/admin-tasks/app-version": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "getAppVersion",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/factor-floor-mode": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "isFactoryFloorMode",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/log": {
+            "post": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "log",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "level",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "Error",
+                            "Warn",
+                            "Info",
+                            "Debug",
+                            "DebugVerbose",
+                            "DebugObnoxious"
+                        ]
+                    },
+                    {
+                        "name": "text",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/production-mode": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "isProductionMode",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/networks/check-destination": {
+            "post": {
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "checkDestination",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/NetworkDestinationRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/NetworkDestinationResponse"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/networks/check-status": {
+            "get": {
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "checkStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/NetworkStatus"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/board/detect": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "detectBoard",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/board/power-off": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "boardPowerOff",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/board/power-on": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "boardPowerOn",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/board/power-switch-supported": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "powerSwitchSupported",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/board/write/progress": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "checkBoardFlashing",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/FlashingProgress"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/board/write/start/{serialNumber}": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "startBoardFlashing",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "serialNumber",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/FlashingProgress"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/checkin/create": {
+            "post": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "performCheckin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProvisionReport"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/checkin/print/{hostId}": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "printCheckin",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+                    {
+                        "name": "hostId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/checkins": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "getNewCheckins",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "when",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProvisionReportExt"
+                            }
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/firmware/downloading": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "downloadingFirmware",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/firmware/trigger": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "triggerFirmwareDownload",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "FlashingProgress": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "type": "string",
+                    "enum": [
+                        "NoBoard",
+                        "DownloadingFirmware",
+                        "AlreadyFlashing",
+                        "Flashing",
+                        "Done",
+                        "Failed"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.provisioner.model.FlashingStatus"
+                },
+                "failureReason": {
+                    "type": "string"
+                },
+                "imageSize": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "imageOffset": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "phase": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "phaseName": {
+                    "type": "string"
+                }
+            }
+        },
+        "NetworkDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "NetworkDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "NetworkStatus": {
+            "type": "object",
+            "properties": {
+                "interfaces": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ProvisionReport": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "manufacturingLocation": {
+                    "type": "string"
+                },
+                "stationNumber": {
+                    "type": "string"
+                },
+                "stationProgram": {
+                    "type": "string"
+                },
+                "boardHardwareVersion": {
+                    "type": "string"
+                },
+                "boardFirmwareVersion": {
+                    "type": "string"
+                },
+                "boardSerialNumber": {
+                    "type": "string"
+                },
+                "modemModule": {
+                    "type": "string"
+                },
+                "modemRevision": {
+                    "type": "string"
+                },
+                "firmwareVersion": {
+                    "type": "string"
+                },
+                "architecture": {
+                    "type": "string",
+                    "enum": [
+                        "UNKNOWN",
+                        "X86",
+                        "ARM",
+                        "ARMv6",
+                        "ARMv7"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.client.builder.model.DockerImageArchitecture"
+                },
+                "hostId": {
+                    "type": "string"
+                },
+                "imsi": {
+                    "type": "string"
+                },
+                "imei": {
+                    "type": "string"
+                },
+                "iccid": {
+                    "type": "string"
+                },
+                "tests": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProvisionTest"
+                    }
+                }
+            }
+        },
+        "ProvisionReportExt": {
+            "type": "object",
+            "properties": {
+                "info": {
+                    "$ref": "#/definitions/ProvisionReport"
+                },
+                "printed": {
+                    "type": "boolean"
+                },
+                "uploaded": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ProvisionTest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string",
+                    "enum": [
+                        "Skipped",
+                        "Passed",
+                        "Failed"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.client.builder.model.ProvisionTestResult"
+                }
+            }
+        }
+    }
+}

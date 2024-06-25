@@ -1,0 +1,36 @@
+﻿label {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .65);
+    display: block !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.border-left {
+    border-left: 1px solid #EAEAEA;
+}
+
+.row {
+    padding: 12px 0;
+    margin: 0px !important;
+}
+
+o3-time-series-container {
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .border-left {
+        border-left: none;
+        margin: 10px 0 0;
+        border-top: 1px solid #EAEAEA;
+        padding-top: 20px;
+    }
+}
+
+.o3-gateways-detail-page--logger-container {
+    padding: 8px 12px;
+}

@@ -1,0 +1,3 @@
+<div class="node-container" [class.condition]="isCondition()">
+    <o3-tag-condition-node #test_conditionNode [(model)]="root" (modelChange)="write()" (validChange)="validate($event)"></o3-tag-condition-node>
+</div>

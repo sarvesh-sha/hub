@@ -1,0 +1,598 @@
+@import "../app.variables.scss";
+
+$resize-cursor: col-resize;
+
+@mixin datatables($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    $background-normal: #fff;
+    $background-zebra: #fafafa;
+    $border: $default-border;
+
+    $highlight: rgba(0, 0, 0, 0.04);
+    $highlight-2: rgba(0, 0, 0, 0.07);
+
+    .o3-datatable {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+
+        .table-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            line-height: 0;
+            font-size: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mat-table {
+            min-width: 100%;
+            background: $background-normal;
+            line-height: initial;
+            overflow-y: auto;
+
+            .mat-row, .mat-header-row {
+                .mat-cell {
+                    border-top: $border;
+
+                    &.mat-column-selection {
+                        overflow: visible;
+
+                        .selectable {
+                            display: flex;
+
+                            .mat-radio-label {
+                                display: flex;
+                                margin-bottom: 0px;
+                            }
+                        }
+                    }
+
+                    o3-safe-image, o3-spark-line {
+                        height: 45px;
+                    }
+
+                    o3-safe-image {
+                        display: flex;
+                        align-items: center;
+                        padding: 6px 6px 6px 0px;
+                    }
+
+                    o3-datatable-subtext-cell {
+                        width: 0px;
+                        flex-grow: 1;
+                    }
+                }
+
+                .mat-header-cell {
+                    border-bottom: $border;
+                    font-size: 14px;
+                    background: $background-zebra;
+
+                    > .mat-sort-header-container {
+                        &, > .mat-sort-header-button {
+                            overflow: visible;
+                            height: 100%;
+                        }
+                    }
+
+                    div.gripper {
+                        display: flex;
+                        opacity: 0;
+                        position: absolute;
+                        width: 17px;
+                        height: 40px;
+                        cursor: $resize-cursor;
+
+                        > span {
+                            &:first-child {
+                                border-right: $border;
+                            }
+
+                            flex: 1 1 0px;
+                            height: 40px;
+                        }
+                    }
+                }
+
+                .o3-datatable-icon {
+                    display: flex;
+                }
+
+                border-bottom-width: 0;
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: stretch;
+                width: 100%;
+                min-height: 45px;
+
+                &.empty-row {
+                    display: block;
+                    cursor: default !important;
+                }
+            }
+
+            &.o3-datatable--showing-grippers {
+                .mat-header-row .mat-header-cell div.gripper {
+                    opacity: 1;
+                }
+            }
+
+            .mat-row:first-of-type .mat-cell {
+                border-top-width: 0;
+            }
+
+            .standard-row .mat-cell:not(.mat-column-selection),
+            .mat-header-row .mat-header-cell:not(.mat-column-selection) {
+                padding: 0 .5rem;
+                overflow: hidden;
+                white-space: nowrap;
+
+                > span, span:not([class*="mat-"]), pre, small {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -webkit-user-drag: auto !important;
+                    touch-action: auto !important;
+                    width: 100%;
+
+                    &.selectable {
+                        .mat-radio-button {
+                            width: 20px;
+                            height: 20px;
+
+                            .mat-radio-label {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    &.o3-column-suffix {
+                        overflow: visible;
+                        width: auto;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                        line-height: 1 !important;
+
+                        mat-icon {
+                            width: 20px;
+                            height: 20px;
+                            line-height: 20px;
+                            font-size: 20px;
+                        }
+
+                        &.hover-only {
+                            display: none;
+                        }
+                    }
+                }
+
+                &:hover span.o3-column-suffix.hover-only {
+                    display: inline;
+                }
+
+                &:first-child {
+                    padding-left: 1rem;
+                }
+
+                small {
+                    display: block;
+                    font-size: 80%;
+                    color: #aeaeae;
+                }
+
+                pre {
+                    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+                    font-size: 100%;
+                    margin: 0px;
+                }
+            }
+
+            .mat-column-selection {
+                justify-content: center;
+            }
+
+            .mat-header-cell {
+                span {
+                    // unable to have ellipsis with sortable headers because sortable mat header cells' internal structure is different
+                    // and in order to make grippers viewable, overflow must not be hidden - setting to clip for consistency across all column headers
+                    text-overflow: clip !important;
+                }
+
+                .mat-sort-header-container,
+                button {
+                    font-size: inherit;
+                    font-family: inherit;
+                    font-weight: inherit;
+                    padding: 0px;
+                    overflow: hidden;
+                }
+
+                label.mat-checkbox-layout {
+                    margin-bottom: 0;
+                }
+            }
+
+            .mobile-label {
+                display: none;
+            }
+
+            .mat-column-rowNumber,
+            .mat-column-viewIcon,
+            .mat-column-selection,
+            .mat-column-expandToggle {
+                width: 48px;
+                min-width: 48px;
+                max-width: 48px;
+            }
+
+            .mat-column-rowNumber {
+                justify-content: flex-end;
+            }
+
+            &.zebra {
+                .mat-row:nth-of-type(even) {
+                    background-color: $background-zebra;
+                }
+            }
+
+            &.clickable-rows .mat-row {
+                cursor: pointer;
+
+                &.checked-row .mat-cell {
+                    background-color: $highlight;
+                }
+
+                &.standard-row:hover {
+                    z-index: 1;
+
+                    .mat-cell {
+                        box-shadow: 0 2px rgba(0, 0, 0, .12);
+                        background-color: $highlight;
+                    }
+
+                    &.checked-row .mat-cell {
+                        background-color: $highlight-2;
+                    }
+                }
+            }
+
+            &.expandable-rows {
+                .mat-row {
+                    &.checked-row .mat-cell {
+                        background: $highlight;
+                    }
+
+                    &.standard-row:not(.expanded-row):hover {
+                        .mat-cell {
+                            background: $highlight;
+                        }
+
+                        &.checked-row .mat-cell {
+                            background: $highlight-2;
+                        }
+                    }
+
+                    &.standard-row.expanded-row:hover .mat-cell {
+                        box-shadow: none;
+                    }
+                }
+
+                .detail-row {
+                    min-height: 0px;
+
+                    .mat-column-expandedDetail {
+                        border-top-width: 0px;
+                        padding: 0px;
+                    }
+                }
+
+                .expanded-detail {
+                    padding: 12px;
+                    display: flex;
+                    overflow: hidden;
+                    width: 100%;
+                }
+            }
+        }
+
+        .loading-row {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+        }
+
+        .footer-row {
+            position: relative;
+            overflow: hidden;
+            background: $background-zebra;
+            font-size: 14px;
+            border-top: $border;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+
+            .total-items {
+                font-weight: 400;
+                color: #757575;
+                padding-left: 1rem;
+            }
+
+            .footer-warning {
+                font-weight: 400;
+                color: #757575;
+                padding-left: 1rem;
+            }
+
+            .pages {
+                display: flex;
+                align-items: center;
+
+                .mat-paginator {
+                    display: inline-block;
+
+                    .mat-paginator-container {
+                        min-height: 40px;
+                        background: $background-zebra;
+                    }
+
+                    .mat-paginator-page-size {
+                        padding-top: 5px;
+                    }
+                }
+
+                .mat-icon-button {
+                    margin-right: 1px;
+
+                    i {
+                        color: rgba(0, 0, 0, 0.54);
+                    }
+                }
+            }
+
+            &.condense-paginator {
+                .mat-paginator-range-label {
+                    display: none;
+                }
+            }
+
+            mat-paginator {
+                font-size: 14px;
+            }
+
+            mat-form-field {
+                width: 56px;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .mat-form-field-infix {
+                border: none;
+                padding-top: 0px;
+                line-height: 0px;
+            }
+
+            mat-select {
+                min-width: 0px;
+
+                .mat-select-value-text {
+                    font-size: 14px;
+                }
+            }
+
+            .pages,
+            .mat-paginator,
+            .mat-paginator-outer-container,
+            .mat-paginator-container {
+                height: 100%;
+            }
+        }
+
+        .empty-row {
+            height: 60px;
+            padding: 20px 0px;
+            text-align: center;
+            font-size: 14px;
+            border-top: $border;
+        }
+
+        &.compact {
+            .mat-table {
+                .standard-row, .mat-header-row {
+                    min-height: 32px;
+                    max-height: 32px;
+
+                    .mat-cell {
+                        min-height: unset;
+                        max-height: unset;
+                    }
+                }
+
+                .standard-row .mat-cell,
+                .mat-header-row .mat-header-cell {
+                    padding: 0 0.25rem;
+
+                    > span, > o3-datatable-subtext-cell {
+                        font-size: 90%;
+                    }
+
+                    mat-checkbox {
+                        overflow: hidden;
+                    }
+
+                    &:first-child {
+                        padding-left: 0.5rem;
+
+                        > div {
+                            font-size: 90%;
+                        }
+                    }
+
+                    small {
+                        line-height: 1em;
+                        font-size: 70%;
+                        margin-bottom: 0.2em;
+                    }
+
+                    o3-safe-image, o3-spark-line {
+                        height: 32px;
+                    }
+                }
+
+                .mat-column-rowNumber,
+                .mat-column-viewIcon,
+                .mat-column-selection,
+                .mat-column-expandToggle {
+                    width: 35px;
+                    min-width: 35px;
+                    max-width: 35px;
+                }
+            }
+
+            .footer-row {
+                max-height: 35px;
+
+                .total-items {
+                    padding-left: 0.5rem;
+                }
+            }
+        }
+
+        &.o3-datatable--resizing {
+            &, .mat-sort-header-container, mat-checkbox, .clickable-rows .mat-row {
+                cursor: $resize-cursor;
+            }
+        }
+    }
+
+    // make normal chevron on desktop
+    i.o3-view-item:before {
+        content: '\f002';
+    }
+
+    @media only screen and (max-width: $sm) {
+        // reformat the table rows on mobile to be stacked values
+        .o3-datatable.flexible-rows {
+            .mat-table:not(.collapse-mobile-rows-disabled) {
+                display: block;
+                text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+                -moz-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+
+                .mat-header-row,
+                .mat-column-rowNumber,
+                .mat-row.standard-row:after {
+                    display: none;
+                }
+
+                .mobile-label {
+                    display: block !important;
+                    color: rgba(0, 0, 0, .54);
+                    font-size: 12px;
+                }
+
+                .mat-row.standard-row,
+                .mat-row.standard-row .mat-cell {
+                    display: block;
+                }
+
+                .mat-row.standard-row {
+                    min-height: 40px;
+                    padding: 10px 0px 0px 0px;
+                    position: relative;
+                    border-top: $border;
+
+                    .mat-cell {
+                        border: none;
+                        line-height: normal;
+                        width: 100% !important;
+                        padding: 0px 40px 5px 10px;
+
+                        > span {
+                            width: auto;
+                            max-width: 80%;
+                            display: inline-block;
+                        }
+
+                        o3-safe-image.has-text {
+                            max-width: 100%;
+                        }
+
+                        &:hover span.o3-column-suffix.hover-only {
+                            display: inline-block !important;
+                        }
+
+                        &.mat-column-checkbox {
+                            padding-right: 15px;
+                        }
+                    }
+
+                    .mat-column-selection {
+                        display: inline;
+                    }
+
+                    .mat-column-viewIcon {
+                        position: absolute;
+                        height: 100%;
+                        right: 0px;
+                        top: 0px;
+                        padding: 0;
+
+                        .collapse-right {
+                            height: 100%;
+                            position: absolute;
+                            width: auto !important;
+                            top: 0px;
+                            right: 0px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            i.o3-view-item {
+                                color: rgba(0, 0, 0, 0.38);
+                                // make then chevron on mobile
+                                &:before {
+                                    content: '\f030';
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .mat-row:first-of-type .mat-cell {
+                    border-top-width: 1px;
+                }
+
+                .mat-row.standard-row:hover {
+                    .mat-cell {
+                        box-shadow: none;
+                    }
+                }
+            }
+
+            .footer-row {
+                .mat-paginator-range-label {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: $md) {
+        .footer-row {
+            .mat-paginator-page-size {
+                display: none;
+            }
+        }
+    }
+}

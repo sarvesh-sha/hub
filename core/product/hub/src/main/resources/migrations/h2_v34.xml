@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <createTable tableName="ASSET_LOCATION">
+            <column name="TYPE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_1_v34"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="ASSET_LOCATION" constraintName="FK8K125NJK5VUT09KBU5I4NX5IC" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="ASSET" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Manual" id="locationMigration1">
+        <sql>insert into ASSET(SYS_ID,SYS_CREATED_ON,SYS_UPDATED_ON,NAME,STATE) select SYS_ID,SYS_CREATED_ON,SYS_UPDATED_ON,NAME,'operational' from LOCATION</sql>
+        <sql>insert into ASSET_LOCATION(SYS_ID,TYPE) select SYS_ID,TYPE from LOCATION</sql>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="PURPOSE" tableName="ALERT_DEFINITION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="REASON" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATE" tableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="TYPE" tableName="ALERT_HISTORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <dropForeignKeyConstraint baseTableName="EVENT" constraintName="EVENT__LOCATION__FK"/>
+        <addForeignKeyConstraint baseColumnNames="LOCATION" baseTableName="EVENT" constraintName="EVENT__LOCATION__FK" referencedColumnNames="SYS_ID" referencedTableName="ASSET_LOCATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <dropForeignKeyConstraint baseTableName="ASSET" constraintName="LOCATION__FK"/>
+        <addForeignKeyConstraint baseColumnNames="LOCATION" baseTableName="ASSET" constraintName="LOCATION__FK" referencedColumnNames="SYS_ID" referencedTableName="ASSET_LOCATION"/>
+    </changeSet>
+</databaseChangeLog>

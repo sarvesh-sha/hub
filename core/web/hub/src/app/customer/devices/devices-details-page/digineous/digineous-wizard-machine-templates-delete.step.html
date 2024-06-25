@@ -1,0 +1,7 @@
+<ng-template o3-wizard-step-template>
+    <mat-form-field>
+        <o3-select [o3DigineousMachineTemplateSelector]="true" name="template" [(ngModel)]="data.machineTemplateId" (valueChange)="selectTemplate()" #template=ngModel
+                   [o3UniqueValues]="inUse"></o3-select>
+        <mat-error *ngIf="template.invalid && template.errors.o3NotUnique">Machine Template in use, cannot delete</mat-error>
+    </mat-form-field>
+</ng-template>

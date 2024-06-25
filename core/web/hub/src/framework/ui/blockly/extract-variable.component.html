@@ -1,0 +1,6 @@
+<o3-standard-form label="New Variable Name" (submitted)="dialogRef.close(newVariableName)" (cancelled)="dialogRef.close()">
+    <mat-form-field>
+        <input matInput name="variableName" placeholder="New Variable Name" o3InteractiveErrors [(ngModel)]="newVariableName" required [o3UniqueValues]="data.variableNames"/>
+        <mat-error>Variable must be unique</mat-error>
+    </mat-form-field>
+</o3-standard-form>

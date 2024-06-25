@@ -1,0 +1,13 @@
+####################
+# Hub notification #
+####################
+
+WARNING!!
+
+These IPN devices are unresponsive${param.EXTRA}:
+
+${param.DETAILS}
+
+Details: ${param.SITE_URL}/#/alerts
+
+Optio3

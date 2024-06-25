@@ -1,0 +1,118 @@
+.o3-dashboard-banner--container {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .o3-dashboard-banner--segment {
+        display: flex;
+        width: 0px;
+        flex-grow: 1;
+        padding: 4px;
+        justify-content: center;
+
+        &:first-child {
+            padding-left: 8px;
+        }
+
+        &:last-child {
+            padding-right: 8px
+        }
+
+        > .o3-dashboard-banner--segment-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.new-segment-trigger {
+    position: absolute;
+    left: 50%;
+}
+
+td {
+    padding: 4px 8px;
+    flex: 1 1 0px;
+
+    &.o3-dashboard-banner--segment-image {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > .o3-dashboard-banner--image-upload {
+            margin-top: -1px;
+            margin-right: 8px;
+
+            > .input-label {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            > .mat-raised-button {
+                padding: 6px;
+                margin-top: -10px;
+            }
+        }
+
+        > .o3-dashboard-banner--image-preview {
+            height: 50px;
+            max-width: calc(100% - 40px);
+            align-items: center;
+            flex-grow: 1;
+        }
+    }
+
+    &.o3-dashboard-banner--segment-configs {
+        display: flex;
+        flex-grow: 2;
+
+        > mat-form-field {
+            width: 0px;
+            flex: 1 1 0px;
+            padding: 0px 6px;
+
+            &:first-child {
+                padding-left: 0px;
+            }
+        }
+
+        .o3-dashboard-banner--color {
+            width: 0px;
+            padding: 0px;
+            flex: 2 1 0px;
+
+            > mat-form-field {
+                display: inline-block;
+                width: 50%;
+
+                &.o3-dashboard-banner--background-color {
+                    padding-left: 6px;
+                    padding-right: 3px
+                }
+
+                &.o3-dashboard-banner--text-color {
+                    padding-left: 9px;
+                    padding-right: 0px;
+                }
+            }
+
+            &.o3-dashboard-banner--no-text-color > mat-form-field {
+                width: 100%;
+
+                &.o3-dashboard-banner--background-color {
+                    padding-right: 0px;
+                }
+
+                &.o3-dashboard-banner--text-color {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    mat-form-field {
+        height: 58px;
+    }
+}

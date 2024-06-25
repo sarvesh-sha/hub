@@ -1,0 +1,68 @@
+.range-controls {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    &.vertical {
+        flex-direction: column;
+
+        .toggle, .inputs {
+            width: 100%;
+        }
+    }
+
+    &.horizontal {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .toggle {
+            flex: 0 0 auto;
+            padding-right: 15px;
+        }
+
+        .inputs {
+            flex: 1 1 auto;
+        }
+    }
+
+    &.inactive {
+        .inputs {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    &.disabled {
+        .inputs {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .toggle {
+            opacity: 0.5;
+        }
+    }
+
+    .toggle {
+        white-space: nowrap;
+        line-height: 1em;
+    }
+
+    .inputs {
+        display: flex;
+        justify-content: space-between;
+        white-space: nowrap;
+        overflow: hidden;
+
+        .min, .max {
+            display: flex;
+            flex: 0 0 calc(50% - 8px);
+            max-width: calc(50% - 8px);
+            overflow: hidden;
+
+            .mat-form-field-wrapper {
+                width: 100%;
+            }
+        }
+    }
+}

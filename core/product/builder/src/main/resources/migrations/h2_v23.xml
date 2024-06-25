@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <addColumn tableName="CUSTOMER_SERVICE">
+            <column name="DISK_SIZE" type="INTEGER(10)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="BACKUP_TRIGGER" tableName="CUSTOMER_SERVICE_BACKUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+</databaseChangeLog>

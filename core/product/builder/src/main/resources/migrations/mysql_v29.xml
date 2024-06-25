@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createTable tableName="CUSTOMER_SHARED_USER">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sys_created_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="password_contents" type="LONGBLOB"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="roles" type="VARCHAR(255)"/>
+            <column name="customer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="REGISTRY_TAGGED_IMAGE">
+            <column defaultValue="None" name="release_status" type="VARCHAR(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <createIndex indexName="CUSTOMER_SHARED_USER__CUSTOMER__FK" tableName="CUSTOMER_SHARED_USER">
+            <column name="customer"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addForeignKeyConstraint baseColumnNames="customer" baseTableName="CUSTOMER_SHARED_USER" constraintName="CUSTOMER_SHARED_USER__CUSTOMER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="CUSTOMER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="status" tableName="DEPLOYMENT_TASK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropColumn columnName="pinned" tableName="REGISTRY_TAGGED_IMAGE"/>
+    </changeSet>
+</databaseChangeLog>

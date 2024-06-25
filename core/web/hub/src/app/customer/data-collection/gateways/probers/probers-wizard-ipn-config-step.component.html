@@ -1,0 +1,144 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="config" class="o3-fieldset-with-border">
+        <fieldset>
+            <legend>Interface Configuration</legend>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Accelerometer Frequency" [(ngModel)]="config.accelerometerFrequency" name="ipn_accelerometerFrequency">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Accelerometer Range (millig)" [(ngModel)]="config.accelerometerRange" name="ipn_accelerometerRange">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Accelerometer Threshold" hint="Percent delta to trigger a new sample" [(ngModel)]="config.accelerometerThreshold" name="ipn_accelerometerThreshold">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="BlueSky port" [(ngModel)]="config.ipnPort" name="ipn_ipnPort">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="BlueSky baud rate" [(ngModel)]="config.ipnBaudrate" name="ipn_ipnBaudrate" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-checkbox [(ngModel)]="config.ipnInvert" name="ipn_ipnInvert">Invert</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="CAN port" [(ngModel)]="config.canPort" name="ipn_canPort">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Clock Speed" [(ngModel)]="config.canFrequency" name="ipn_canFrequency" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-checkbox [(ngModel)]="config.canNoTermination" name="ipn_canNoTermination">Disable Termination</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="EpSolar port" [(ngModel)]="config.epsolarPort" name="ipn_epsolarPort">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-checkbox [(ngModel)]="config.epsolarInvert" name="ipn_epsolarInvert">Invert</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="GPS port" [(ngModel)]="config.gpsPort" name="ipn_gpsPort">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Holykell port" [(ngModel)]="config.holykellPort" name="ipn_holykellPort">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-checkbox [(ngModel)]="config.holykellInvert" name="ipn_holykellInvert">Invert</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="OBD-II port" [(ngModel)]="config.obdiiPort" name="ipn_obdiiPort">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Clock Speed" [(ngModel)]="config.obdiiFrequency" name="ipn_obdiiFrequency">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="ArgoHytos port" [(ngModel)]="config.argohytosPort" name="ipn_argohytosPort">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="StealthPower port" [(ngModel)]="config.stealthpowerPort" name="ipn_stealthpowerPort">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="TriStar port" [(ngModel)]="config.tristarPort" name="ipn_tristarPort">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Victron port" [(ngModel)]="config.victronPort" name="ipn_victronPort">
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <div>
+            <h3 class="border-top" style="margin-top: 8px; margin-bottom: 8px"></h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="# of Seconds to Sample" [(ngModel)]="config.samplingSeconds" name="sampling" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

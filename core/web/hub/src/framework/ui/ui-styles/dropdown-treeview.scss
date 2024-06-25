@@ -1,0 +1,198 @@
+@import '~@circlon/angular-tree-component/css/angular-tree-component.css';
+
+$selected-color: #2196f3;
+
+@mixin dropdowntreeview($theme) {
+
+    div.overlay-input {
+        position: relative;
+        padding: 0.44em 0 0.7em 0;
+        width: 100%;
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: calc(.7em - 1px);
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 0, 0, .42);
+        }
+
+        .input-label {
+            position: absolute;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        > label {
+            margin-bottom: 0 !important;
+            font-size: 14px;
+            transform: scale(.75);
+            transform-origin: 0 0;
+            color: rgba(0, 0, 0, 0.54);
+
+            &.input-label {
+                margin-top: -.11em;
+            }
+        }
+    }
+
+    tree-viewport {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+        tree-node {
+            .tree-node {
+                .node-content-wrapper-active,
+                .node-content-wrapper-focused,
+                .node-content-wrapper:hover {
+                    background: transparent;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .o3-select--filterable-tree tree-viewport > div {
+        height: unset !important;
+    }
+
+    tree-root {
+        &.o3-flat {
+            tree-viewport {
+                span.toggle-children-placeholder-custom {
+                    width: 0px;
+                    min-width: 0px;
+                    max-width: 0px;
+                    padding: 0px;
+                }
+
+                .option-row {
+                    padding-left: 11px;
+
+                    &.o3-filterable-tree--checkbox-node {
+                        mat-checkbox {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.o3-not-flat tree-viewport .node-content-wrapper {
+            height: 100%;
+            width: calc(100% - 30px);
+
+            .option-row {
+                &.o3-filterable-tree--checkbox-node {
+                    mat-checkbox {
+                        margin-right: 5px;
+                    }
+                }
+
+                &:not(.o3-filterable-tree--checkbox-node) {
+                    margin-left: -30px;
+                    padding-left: 30px;
+
+                    width: calc(100% + 30px);
+                }
+            }
+        }
+    }
+
+    o3-filterable-tree {
+        background-color: #fff;
+
+        .dropdown-filter {
+            padding: 4px 8px;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+        }
+
+        tree-viewport {
+            .angular-tree-component {
+                margin-top: -2px;
+            }
+
+            tree-node-wrapper {
+                tree-node-expander {
+                    .toggle-children-wrapper {
+                        line-height: 41px;
+                    }
+
+                    .toggle-children-placeholder {
+                        width: 23px;
+                    }
+                }
+            }
+
+            .tree-node .node-drop-slot {
+                display: none;
+            }
+
+            .tree-node > tree-node-wrapper .node-wrapper {
+                transition: background-color 0.2s ease;
+                background-color: transparent;
+            }
+
+            .tree-node > tree-node-wrapper .node-wrapper {
+                &:focus-within, &:hover {
+                    background-color: rgb(242, 242, 242);
+                }
+            }
+
+            .node-content-wrapper-active,
+            .node-content-wrapper.node-content-wrapper-active:hover,
+            .node-content-wrapper-active.node-content-wrapper-focused,
+            .node-content-wrapper-focused {
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .toggle-children-wrapper {
+                margin-left: 10px;
+                line-height: 31px;
+            }
+
+            .node-content-wrapper {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0px;
+                padding: 0px;
+                height: 100%;
+
+                font-family: "Open Sans", "Helvetica Neue", sans-serif;
+                font-size: 14px !important;
+
+                div.option-row.o3-filterable-tree--selected-node {
+                    &:not(.o3-filterable-tree--checkbox-node) {
+                        background-color: #dedede;
+                        color: $selected-color !important;
+                    }
+                }
+            }
+
+            .node-wrapper:hover {
+                background: rgba(0, 0, 0, 0.04);
+            }
+        }
+    }
+
+    .o3-overlay--dropdown-container, o3-filterable-tree {
+        .input-container,
+        .button-container {
+            padding: 10px 10px 10px 10px;
+        }
+
+        hr {
+            margin-top: .5rem !important;
+            margin-bottom: .5rem !important;
+        }
+    }
+
+    .o3-overlay--dropdown-container tree-viewport {
+        max-height: 35vh;
+    }
+}

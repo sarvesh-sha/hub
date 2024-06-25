@@ -1,0 +1,9 @@
+<o3-tab-subsection *ngIf="withFiltering" [withFiltering]="withFiltering" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable [table]="table" [showRowNumbers]="false" [showViewIcons]="withNavigation"
+              (onShowingContextMenu)="contextMenu($event)">
+    <o3-datatable-column id="name" sortId="!name" prop="name" name="Name" [grow]="2"></o3-datatable-column>
+    <o3-datatable-column id="type" name="Type" prop="extended.model.type"></o3-datatable-column>
+    <o3-datatable-column id="creationDate" prop="extended.model.createdOn" name="Creation Date" format="DATE" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="updateDate" prop="extended.model.updatedOn" name="Update Date" format="DATE" [enabled]="false"></o3-datatable-column>
+</o3-datatable>

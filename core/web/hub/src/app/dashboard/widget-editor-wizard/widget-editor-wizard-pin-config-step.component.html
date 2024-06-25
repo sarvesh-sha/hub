@@ -1,0 +1,86 @@
+<ng-template o3-wizard-step-template>
+    <div class="settings-section">
+        <p>Pin size:</p>
+        <mat-slider class="size-slider" [(ngModel)]="pinSize" (ngModelChange)="updatePinConfig()" thumbLabel [step]="2"
+                    tickInterval="2" min="16" max="64"></mat-slider>
+    </div>
+
+    <div class="settings-section">
+        <p>Pin icon:</p>
+        <mat-radio-group [(ngModel)]="pinIcon" (ngModelChange)="updatePinConfig()">
+            <div class="icon-options mat-elevation-z2">
+                <div class="icon-option o3-default-border-left" *ngFor="let icon of icons">
+                    <div class="icon-example" [innerHTML]="getExample(icon)"></div>
+                    <mat-radio-button #test_iconTypeRadio [value]="icon.id" [aria-label]="icon.label"></mat-radio-button>
+                    <span class="icon-option-label">{{icon.label}}</span>
+                </div>
+            </div>
+        </mat-radio-group>
+    </div>
+
+    <div class="settings-section">
+        <p>Data and color:</p>
+        <mat-button-toggle-group [value]="toggleMode" (valueChange)="colorToggleChange($event)">
+            <mat-button-toggle [value]="ToggleModes.Count" matTooltip="Color the tooltip based on the number of alerts">Color By Alert Count</mat-button-toggle>
+            <mat-button-toggle [value]="ToggleModes.Severity" matTooltip="Color tooltip based on the highest severity alert">Color By Alert Severity</mat-button-toggle>
+            <mat-button-toggle [value]="ToggleModes.Fixed" matTooltip="Color every tooltip the same color">Fixed Color</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <!-- Count mode options -->
+    <div class="row" *ngIf="toggleMode === ToggleModes.Count">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="input-wrapper">
+                <div class="input-label">Count Colors</div>
+                <o3-color-picker-gradient-stop [(stops)]="countColors" (stopsChange)="updatePinConfig()" [interpolation]="interpolationMode"
+                                               [palette]="palette" [lockEndModes]="true" [disableMidpoint]="true"></o3-color-picker-gradient-stop>
+            </div>
+        </div>
+    </div>
+
+    <!-- Severity mode options -->
+    <div class="row" *ngIf="toggleMode === ToggleModes.Severity">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <mat-form-field class="color-input">
+                <o3-color-picker [placeholder]="severityLabel(AlertSeverity.LOW)" [(ngModel)]="severityColorsMap.get(AlertSeverity.LOW).color"
+                                 (ngModelChange)="onSeverityColorChange(); updatePinConfig()" [palette]="palette"></o3-color-picker>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="toggleMode === ToggleModes.Severity">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <mat-form-field class="color-input">
+                <o3-color-picker [placeholder]="severityLabel(AlertSeverity.NORMAL)" [(ngModel)]="severityColorsMap.get(AlertSeverity.NORMAL).color"
+                                 (ngModelChange)="onSeverityColorChange(); updatePinConfig()" [palette]="palette"></o3-color-picker>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="toggleMode === ToggleModes.Severity">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <mat-form-field class="color-input">
+                <o3-color-picker [placeholder]="severityLabel(AlertSeverity.SIGNIFICANT)" [(ngModel)]="severityColorsMap.get(AlertSeverity.SIGNIFICANT).color"
+                                 (ngModelChange)="onSeverityColorChange(); updatePinConfig()" [palette]="palette"></o3-color-picker>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="toggleMode === ToggleModes.Severity">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <mat-form-field class="color-input">
+                <o3-color-picker [placeholder]="severityLabel(AlertSeverity.CRITICAL)" [(ngModel)]="severityColorsMap.get(AlertSeverity.CRITICAL).color"
+                                 (ngModelChange)="onSeverityColorChange(); updatePinConfig()" [palette]="palette"></o3-color-picker>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- Fixed mode options -->
+    <div class="row" *ngIf="toggleMode === ToggleModes.Fixed">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <mat-form-field class="color-input">
+                <o3-color-picker placeholder="Pin Color" [(ngModel)]="staticColor" (ngModelChange)="updatePinConfig()" [palette]="palette"></o3-color-picker>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

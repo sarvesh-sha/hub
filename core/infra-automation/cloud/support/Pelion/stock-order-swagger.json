@@ -1,0 +1,333 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Order stock and view your company's order history.<p>You can use these endpoints to place orders and retrieve&#58;<ul>\n<li>Your company's order history</li>\n<li>The details of a specific order</li>\n<li>A list of operators your company can order stock from</li>\n<li>A list of the type of stock your company can order from each operator</li>\n<li>A spreadsheet listing every subscriber included in a specific order</li>\n</ul>",
+    "title": "Stock Order",
+    "version": "1.0.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/available-operators": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of operators and stock types.",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AvailableOperators"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "available-operators"
+        ],
+        "description": "This endpoint returns a list containing&#58;<ul><li>The operators your company can order stock from</li><li>The type of stock your company can order from each operator</li></ul></p><p> To use this endpoint, your user account must have the <strong>Order New Stock</strong> permission enabled.",
+        "summary": "Retrieves a list of available stock types for each operator."
+      }
+    },
+    "/stock-orders": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success - returns the company's order history.",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/StockOrders"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "stock-orders"
+        ],
+        "description": "The results include each order's&#58;<ul><li>Unique ID</li><li>Recipient name and address</li><li>Item total</li><li>Operator</li><li>Date and time at which the order was placed</li><li>Delivery method</li><li>Tracking number</li><li>Unique ID of the user who placed the order</li><li>Status</li></ul><p>To use this endpoint, your user account must have the <strong>View Stock Order History</strong> permission enabled.</p>",
+        "summary": "Retrieves your company's order history."
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateStockOrder"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the order's ID.",
+            "schema": {
+              "properties": {
+                "orderId": {
+                  "description": "The order's unique identifier.",
+                  "example": "124755-29C7C77D1D",
+                  "pattern": "[0-9]+",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "stock-orders"
+        ],
+        "description": "In the request body, you must provide the&#58;<ul><li>Recipient's name</li><li>Recipient's address</li><li>Operator to order from</li><li>Type of stock to order</li><li>Amount of stock to order</li></ul><p>A successful request places the order and returns its <em>orderId</em>.<p><br>To use this endpoint, your user account must have the <strong>Order New Stock</strong> permission enabled.\n",
+        "operationId": "create-api-key",
+        "summary": "Creates a stock order."
+      }
+    },
+    "/stock-orders/{orderId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The order's unique identifier.",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns information about the specified order.",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/StockOrders"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "stock-orders"
+        ],
+        "description": "This endpoint returns information about a specific order. The results include the order's&#58;<ul><li>Unique ID</li><li>Recipient name and address</li><li>Item total</li><li>Operator</li><li>Date and time at which the order was placed</li><li>Delivery method</li><li>Tracking number</li><li>Unique ID of the user who placed the order</li></ul><p>You must provide the <em>orderId</em> as a parameter in the request. This is the unique order identifier. This value is returned by the GET/available-operators endpoint.<p><br> To use this endpoint, your user account must have the <strong>View Stock Order History</strong> permission enabled.",
+        "summary": "Retrieves the details of a specific order."
+      }
+    },
+    "/stock-orders/{orderId}/subscribers/download": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The order's unique identifier.",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a spreadsheet in XLSX format."
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "stock-orders"
+        ],
+        "description": "The spreadsheet returned by this endpoint is in XLSX format.<p><br>You must provide the <em>orderId</em> as a parameter in the request. This is the unique order identifier. This value is returned by the GET/available-operators endpoint.<p><p><br>To use this endpoint, your user account must have the <strong>View Stock Order History</strong> permission enabled.</p>",
+        "summary": "Downloads a spreadsheet listing every subscriber in a specific order."
+      }
+    }
+  },
+  "definitions": {
+    "AvailableOperators": {
+      "properties": {
+        "operatorId": {
+          "description": "The operator's unique identifier.",
+          "example": "412",
+          "type": "string"
+        },
+        "operatorName": {
+          "description": "The operator's name.",
+          "example": "Operator One",
+          "type": "string"
+        },
+        "simTypes": {
+          "items": {
+            "properties": {
+              "id": {
+                "description": "The stock type's identifier.",
+                "example": "99",
+                "pattern": "[0-9]+",
+                "type": "integer"
+              },
+              "operator": {
+                "description": "The operator's name.",
+                "example": "Operator One",
+                "type": "string"
+              },
+              "simType": {
+                "description": "A description of the stock type, such as the SIM form factor.",
+                "example": "2FF",
+                "type": "string"
+              }
+            }
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateStockOrder": {
+      "properties": {
+        "operatorName": {
+          "description": "The operator's name.",
+          "example": "Operator One",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The number of stock items in the order.",
+          "example": 200,
+          "pattern": "[0-9]+",
+          "type": "integer"
+        },
+        "recipientAddress": {
+          "description": "The recipient's postal address.",
+          "example": "Apt 56B, Whitehaven Mansions, Sandhurst Square, London, SE15 5RS",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "recipientName": {
+          "description": "The recipient's name.",
+          "example": "Jane Doe",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "simTypeId": {
+          "description": "The stock type's identifier.",
+          "example": "99",
+          "pattern": "[0-9]+",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ErrorResponse": {
+      "properties": {
+        "error": {
+          "properties": {
+            "message": {
+              "description": "An error message describing what went wrong.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "StockOrders": {
+      "properties": {
+        "address": {
+          "description": "The recipient's postal address.",
+          "example": "Apt 56B, Whitehaven Mansions, Sandhurst Square, London, SE15 5RS",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "dateCreated": {
+          "description": "The date and time at which the order was placed.",
+          "example": "2018-09-13 15:05:54",
+          "format": "date-time",
+          "type": "string"
+        },
+        "method": {
+          "description": "The delivery method.",
+          "example": "UPS",
+          "type": "string"
+        },
+        "name": {
+          "description": "The recipient's name.",
+          "example": "Jane Doe",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "network": {
+          "description": "The operator's name.",
+          "example": "Operator One",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The order's unique identifier.",
+          "example": "124755-29C7C77D1D",
+          "pattern": "[0-9]+",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The number of stock items in the order.",
+          "example": 200,
+          "pattern": "[0-9]+",
+          "type": "integer"
+        },
+        "status": {
+          "description": "The status of the order.",
+          "example": "Complete",
+          "type": "string"
+        },
+        "trackingNumber": {
+          "description": "The tracking number",
+          "example": "F113610A7UK",
+          "type": "string"
+        },
+        "userRequestedId": {
+          "description": "The unique identifier of the user who placed the order.",
+          "example": 14,
+          "pattern": "[0-9]+",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}

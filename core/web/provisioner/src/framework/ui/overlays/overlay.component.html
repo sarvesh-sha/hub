@@ -1,0 +1,28 @@
+<ng-template>
+    <section class="bs o3-overlay--container"
+             cdkDrag
+             [cdkDragFreeDragPosition]="dragPosition"
+             [cdkDragConstrainPosition]="dragConstrainFn"
+             [cdkDragDisabled]="!config.isDraggable"
+             [cdkDragRootElement]="overlayId"
+             optio3TestId="overlay-dialog"
+             [ngClass]="config.overlayClass"
+             [@.disabled]="!config.isAnimationsEnabled"
+             (@transformDropdown.done)="onAnimationDone()"
+             (@transformDialog.done)="onAnimationDone()"
+             [@transformDropdown]="overlayOrigin ? animationState : 'none'"
+             [@transformDialog]="!overlayOrigin ? animationState : 'none'">
+        <div class="o3-overlay--content-container"
+             [class.o3-overlay--dropdown-container]="!!overlayOrigin"
+             [ngClass]="config.containerClasses"
+             [cdkTrapFocus]="trapFocus" [cdkTrapFocusAutoCapture]="trapFocus">
+            <div class="o3-overlay--dialog-drag o3-overlay--for-shadow"></div> <!-- for use when handle is placed outside main overlay -->
+            <div class="o3-overlay--dialog-drag" *ngIf="config.isDraggable" cdkDragHandle (mousedown)="setDragConstraints($event)">
+                <mat-icon>drag_handle</mat-icon>
+            </div>
+            <div class="o3-overlay--dialog-close" *ngIf="config.showCloseButton" (click)="closeOverlay()"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+            <ng-content></ng-content>
+            <ng-template [cdkPortalOutlet]="portal"></ng-template>
+        </div>
+    </section>
+</ng-template>

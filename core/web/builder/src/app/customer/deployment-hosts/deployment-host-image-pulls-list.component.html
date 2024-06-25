@@ -1,0 +1,39 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <form class="row mb-2" name="filterForm">
+            <div class="col-sm-8">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Filter List..." name="filterInput" [(ngModel)]="filterText">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field>
+                    <o3-select placeholder="Status"
+                               defaultValueDescription="Select Status"
+                               [multiSelect]="false"
+                               [singleClick]="true"
+                               [options]="states"
+                               [(ngModel)]="filterStatus"
+                               [ngModelOptions]="{standalone: true}">
+                    </o3-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</div>
+
+<o3-datatable [table]="table" [showRowNumbers]="false" (onShowingContextMenu)="handleContextMenu($event)" [showViewIcons]="showHost">
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="ext.model.createdOn" name="Started" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="status" sortId="status" prop="ext.model.status" name="Status" [width]="120" [maxWidth]="120" [minWidth]="110"></o3-datatable-column>
+
+    <o3-datatable-column id="duration" name="Duration" format="TEMPLATE" [width]="140" [maxWidth]="140">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span>{{row.ext.model.updatedOn|o3Elapsed: row.ext.model.createdOn}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="updatedOn" sortId="updatedOn" prop="ext.model.updatedOn" name="Last Updated" [width]="140" [maxWidth]="140" format="DATE"></o3-datatable-column>
+
+    <o3-datatable-column id="image" sortId="image" prop="ext.model.image" name="Image" ></o3-datatable-column>
+    <o3-datatable-column id="host" sortId="host" prop="hostName" name="Host" *ngIf="showHost"></o3-datatable-column>
+</o3-datatable>

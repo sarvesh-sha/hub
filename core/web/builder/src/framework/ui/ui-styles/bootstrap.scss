@@ -1,0 +1,78 @@
+@import "../app.variables.scss";
+
+@mixin bootstrap($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Bootstrap
+    //-----------------------------
+    h3 {
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .row > .col:first-child {
+        padding-left: 12px;
+    }
+
+    .col:first-child {
+        padding-left: 0;
+    }
+
+    .table {
+        td {
+            vertical-align: middle;
+
+            &:first-child {
+                padding-left: 1rem;
+            }
+
+            .mat-slide-toggle {
+                margin: 8px 0;
+            }
+
+            small {
+                display: block;
+                font-size: 80%;
+                color: #aeaeae;
+                line-height: 85%;
+
+                @media only screen and (max-width: $md) {
+                    line-height: 110%;
+                }
+
+                @media only screen and (max-width: $sm) {
+                    line-height: 150%;
+                }
+            }
+        }
+
+        th {
+            text-transform: uppercase;
+            color: #757575;
+            line-height: 1.75;
+
+            &:first-child {
+                padding-left: 1rem;
+            }
+        }
+    }
+
+    button:not(.mat-icon-button):not(.mat-menu-item),
+    input,
+    select,
+    textarea {
+        line-height: 20px;
+        font-size: 16px;
+    }
+
+    section.bs.mat-dialog-content {
+        .table {
+            margin-bottom: 10px;
+        }
+    }
+}

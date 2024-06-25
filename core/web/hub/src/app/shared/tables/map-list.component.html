@@ -1,0 +1,32 @@
+<div class="row" *ngIf="(provider.table.count > 5) || provider.filter">
+    <div class="col-sm-6">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Filter Terms" [(ngModel)]="provider.filter" name="filter">
+        </mat-form-field>
+    </div>
+</div>
+
+<o3-datatable [clickableRows]="true" [table]="provider.table" [showRowNumbers]="false" [showViewIcons]="false" [details]="details" [useExpandToggle]="false">
+    <o3-datatable-column id="reorderer" *ngIf="provider.isOrdered()" prop="index" name="" [minWidth]="75" [maxWidth]="75">
+        <ng-template o3-datatable-cell-template let-row="row" let-value="value">
+            <mat-icon class="reorder-button" (click)="provider.reorder($event, value, value - 1)">arrow_upward</mat-icon>
+            <mat-icon class="reorder-button" (click)="provider.reorder($event, value, value + 1)">arrow_downward</mat-icon>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="key" prop="keyText" [name]="provider.labelForKey" [sortId]="!provider.isOrdered() ? '!key' : undefined"></o3-datatable-column>
+    <o3-datatable-column id="value" prop="text" [name]="provider.labelForValue" [sortId]="!provider.isOrdered()? 'text' : undefined"></o3-datatable-column>
+</o3-datatable>
+
+<o3-standard-form-overlay label="Edit"
+                          [dialogClass]="dialogClass"
+                          [primaryButtonDisabled]="!provider.modified || !provider.valid"
+                          [showExtraButton]="!!provider.selected"
+                          [extraButtonDisabled]="provider.modified"
+                          extraButtonText="Remove Entry"
+                          (submitted)="provider.save()"
+                          (cancelled)="provider.cancel()"
+                          (extraButtonPressed)="overlay.closeOverlay(); provider.remove()">
+    <div *ngIf="provider.edited && form">
+        <ng-template [ngTemplateOutlet]="form.template" [ngTemplateOutletContext]="{ $implicit: provider.edited, row: provider.edited }"></ng-template>
+    </div>
+</o3-standard-form-overlay>

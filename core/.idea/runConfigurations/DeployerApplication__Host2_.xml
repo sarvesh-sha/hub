@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DeployerApplication (Host2)" type="Application" factoryName="Application" folderName="Builder" singleton="true">
+    <envs>
+      <env name="DEPLOYER_ENDPOINT" value="ws://localhost:8180" />
+      <env name="DEPLOYER_HOSTID" value="VM-2" />
+      <env name="DEPLOYER_TMP" value="-2" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.optio3.cloud.deployer.DeployerApplication" />
+    <module name="optio3-product-deployer" />
+    <option name="PROGRAM_PARAMETERS" value="deployer deployer.yml" />
+    <option name="VM_PARAMETERS" value="-Djdk.attach.allowAttachSelf --add-reads java.base=java.instrument" />
+    <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

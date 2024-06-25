@@ -1,0 +1,21 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab label="Images Summary" (selected)="imagePullLog.enableKeyDownHandler()" (unselected)="imagePullLog.disableKeyDownHandler()">
+
+            <div class="col-sm-12">
+                <o3-deployment-host-image-pulls-list #imagePulls [viewStatePrefix]="'Image Pulls'" (imageClicked)="selectImagePull($event)" (imageMenu)="selectImagePullMenu($event)" [showHost]="true">
+                </o3-deployment-host-image-pulls-list>
+
+                <section o3-expand>
+                    <o3-console-log #imagePullLog [scrollLockEnabled]="imagePullLogLockScroll">
+                        <o3-console-log-column type="lineNumber" name="#" [enabled]="true"></o3-console-log-column>
+                        <o3-console-log-column type="timestamp" name="Timestamp" [enabled]="true"></o3-console-log-column>
+                    </o3-console-log>
+                </section>
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

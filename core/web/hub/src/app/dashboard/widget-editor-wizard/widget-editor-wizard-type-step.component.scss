@@ -1,0 +1,54 @@
+.preview {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    overflow: hidden;
+    height: 100%;
+
+    .preview-details {
+        flex: 0 1 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        max-width: 25%;
+        min-width: 200px;
+        margin-right: 20px;
+
+        .preview-title {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .preview-description {
+            flex: 0 1 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: justify;
+        }
+    }
+
+    .preview-examples {
+        flex: 1 1 auto;
+        display: flex;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+
+        .preview-example {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+
+            .no-preview {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+

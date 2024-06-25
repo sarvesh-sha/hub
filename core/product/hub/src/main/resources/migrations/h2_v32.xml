@@ -1,0 +1,123 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <createTable tableName="USER_MESSAGE_WORKFLOW">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_8A"/>
+            </column>
+            <column name="WORKFLOW" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <createTable tableName="WORKFLOW">
+            <column name="DETAILS" type="BLOB"/>
+            <column name="PRIORITY" type="INT"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_30"/>
+            </column>
+            <column name="ASSIGNEDTO" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="CREATEDBY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <createTable tableName="WORKFLOW_HISTORY">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_9FB"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEXT" type="CLOB"/>
+            <column name="TYPE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WORKFLOW" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <createIndex indexName="USER_MESSAGE_WORKFLOW__WORKFLOW__FK_INDEX_8" tableName="USER_MESSAGE_WORKFLOW">
+            <column name="WORKFLOW"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <createIndex indexName="WORKFLOW_HISTORY__OCCURRED" tableName="WORKFLOW_HISTORY">
+            <column name="SYS_CREATED_ON"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <createIndex indexName="WORKFLOW__ASSIGNEDTO__FK_INDEX_3" tableName="WORKFLOW">
+            <column name="ASSIGNEDTO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <createIndex indexName="WORKFLOW__CREATEDBY__FK_INDEX_3" tableName="WORKFLOW">
+            <column name="CREATEDBY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <createIndex indexName="WORKFLOW__FK_INDEX_9" tableName="WORKFLOW_HISTORY">
+            <column name="WORKFLOW"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <createIndex indexName="WORKFLOW__STATUS" tableName="WORKFLOW">
+            <column name="STATUS"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <createIndex indexName="WORKFLOW__TYPE" tableName="WORKFLOW">
+            <column name="TYPE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="USER_MESSAGE_WORKFLOW" constraintName="FKHFUFT9Y0MRHSSJT3OY1612XBO" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER_MESSAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="WORKFLOW" constraintName="FKQN0VWGK9NDM49QXBGA7U9PAV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="EVENT" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23">
+        <addForeignKeyConstraint baseColumnNames="WORKFLOW" baseTableName="USER_MESSAGE_WORKFLOW" constraintName="USER_MESSAGE_WORKFLOW__WORKFLOW__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="WORKFLOW" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-24">
+        <addForeignKeyConstraint baseColumnNames="ASSIGNEDTO" baseTableName="WORKFLOW" constraintName="WORKFLOW__ASSIGNEDTO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-25">
+        <addForeignKeyConstraint baseColumnNames="CREATEDBY" baseTableName="WORKFLOW" constraintName="WORKFLOW__CREATEDBY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-26">
+        <addForeignKeyConstraint baseColumnNames="WORKFLOW" baseTableName="WORKFLOW_HISTORY" constraintName="WORKFLOW__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="WORKFLOW" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="PURPOSE" tableName="ALERT_DEFINITION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="REASON" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATE" tableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="TYPE" tableName="ALERT_HISTORY"/>
+    </changeSet>
+</databaseChangeLog>

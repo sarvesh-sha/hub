@@ -1,0 +1,150 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-30">
+        <dropIndex indexName="ALERT__OCCURRED" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-29">
+        <dropColumn columnName="date_occurred" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <addColumn tableName="ALERT_HISTORY">
+            <column defaultValue="created" name="type" type="VARCHAR(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <addColumn tableName="ALERT">
+            <column defaultValue="active" name="status" type="VARCHAR(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <addColumn tableName="ALERT">
+            <column name="asset" type="VARCHAR(255 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <addColumn tableName="ASSET">
+            <column defaultValue="operational" name="state" type="VARCHAR(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <addColumn tableName="ALERT">
+            <column name="location" type="VARCHAR(255 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createIndex indexName="ALERT__ASSET__FK" tableName="ALERT">
+            <column name="asset"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createIndex indexName="ALERT__CREATEDON" tableName="ALERT">
+            <column name="sys_created_on"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <createIndex indexName="ALERT__LOCATION__FK" tableName="ALERT">
+            <column name="location"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <createIndex indexName="ALERT__SEQUENCE" tableName="ALERT">
+            <column name="sequence_number"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <createIndex indexName="ALERT__STATUS" tableName="ALERT">
+            <column name="status"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <createIndex indexName="DEVICECLASSIFICATION__DEVICE_INFO__FK" tableName="DEVICE_CLASSIFICATION">
+            <column name="device_info"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <createIndex indexName="DEVICECLASSIFICATION__DEVICE__FK" tableName="DEVICE_CLASSIFICATION">
+            <column name="device"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <createIndex indexName="DEVICE_CERTIFICATION__DEVICE_INFO__FK" tableName="DEVICE_CERTIFICATION">
+            <column name="device_info"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <createIndex indexName="DEVICE_IMAGE_LINK__DEVICE_INFO__FK" tableName="DEVICE_IMAGE_LINK">
+            <column name="device_info"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <createIndex indexName="DEVICE_MANUAL__DEVICE_INFO__FK" tableName="DEVICE_MANUAL">
+            <column name="device_info"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <createIndex indexName="DEVICE_PROTOCOL__DEVICE_INFO__FK" tableName="DEVICE_PROTOCOL">
+            <column name="deviceInfo"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <createIndex indexName="DEVICE_RECALL__DEVICE_INFO__FK" tableName="DEVICE_RECALL">
+            <column name="device_info"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <createIndex indexName="LOCATION__PARENT__FK" tableName="LOCATION">
+            <column name="parent"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <addForeignKeyConstraint baseColumnNames="asset" baseTableName="ALERT" constraintName="ALERT__ASSET__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="ALERT" constraintName="ALERT__LOCATION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="LOCATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <addForeignKeyConstraint baseColumnNames="device_info" baseTableName="DEVICE_CLASSIFICATION" constraintName="DEVICECLASSIFICATION__DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <addForeignKeyConstraint baseColumnNames="device" baseTableName="DEVICE_CLASSIFICATION" constraintName="DEVICECLASSIFICATION__DEVICE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23">
+        <addForeignKeyConstraint baseColumnNames="device_info" baseTableName="DEVICE_CERTIFICATION" constraintName="DEVICE_CERTIFICATION__DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-24">
+        <addForeignKeyConstraint baseColumnNames="device_info" baseTableName="DEVICE_IMAGE_LINK" constraintName="DEVICE_IMAGE_LINK__DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-25">
+        <addForeignKeyConstraint baseColumnNames="device_info" baseTableName="DEVICE_MANUAL" constraintName="DEVICE_MANUAL__DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-26">
+        <addForeignKeyConstraint baseColumnNames="deviceInfo" baseTableName="DEVICE_PROTOCOL" constraintName="DEVICE_PROTOCOL__DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-27">
+        <addForeignKeyConstraint baseColumnNames="device_info" baseTableName="DEVICE_RECALL" constraintName="DEVICE_RECALL__DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-28">
+        <addForeignKeyConstraint baseColumnNames="parent" baseTableName="LOCATION" constraintName="LOCATION__PARENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="LOCATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-31">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="device" tableName="ALERT"/>
+        <addDefaultValue columnDataType="varchar(255)" columnName="device" defaultValue="NULL" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-37">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="level" tableName="ALERT_HISTORY"/>
+        <dropDefaultValue columnDataType="varchar(255)" columnName="level" tableName="ALERT_HISTORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-89">
+        <modifyDataType columnName="text" newDataType="clob" tableName="ALERT_HISTORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-90">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="type" tableName="ALERT"/>
+        <dropDefaultValue columnDataType="varchar(255)" columnName="type" tableName="ALERT"/>
+    </changeSet>
+</databaseChangeLog>

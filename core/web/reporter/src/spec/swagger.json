@@ -1,0 +1,277 @@
+{
+  "swagger": "2.0",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "info": {
+    "title": "Api documentation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/reports": {
+      "post": {
+        "operationId": "create",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReportIdentity"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReportCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/api/v1/reports/health": {
+      "get": {
+        "operationId": "getReportsHealth",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReportsHealthCheck"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/api/v1/reports/{reportId}/status": {
+      "get": {
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReportStatusCheck"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/api/v1/reports/{reportId}/download": {
+      "get": {
+        "operationId": "download",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Report"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/api/v1/reports/{reportId}": {
+      "delete": {
+        "operationId": "delete",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Reports"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Reports"
+    }
+  ],
+  "definitions": {
+    "ReportIdentity": {
+      "type": "object",
+      "properties": {
+        "reportId": {
+          "type": "string",
+          "description": "Identifier used to access the report"
+        }
+      }
+    },
+    "ReportCreateRequest": {
+      "type": "object",
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reportToken": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sessionToken": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reportTime": {
+          "type": "string"
+        },
+        "pdfFormat": {
+          "type": "string",
+          "x-optio3-enum-type": "com.optio3.reporter.PaperFormat",
+          "enum": [
+            "letter",
+            "legal",
+            "tabloid",
+            "ledger",
+            "a0",
+            "a1",
+            "a2",
+            "a3",
+            "a4",
+            "a5",
+            "a6"
+          ]
+        },
+        "landscape": {
+          "type": "boolean"
+        },
+        "maxWaitTimeSeconds": {
+          "type": "integer",
+          "multipleOf": 1
+        },
+        "screenWidth": {
+          "type": "integer",
+          "multipleOf": 1
+        },
+        "screenHeight": {
+          "type": "integer",
+          "multipleOf": 1
+        }
+      },
+      "required": [
+        "baseUrl",
+        "reportToken",
+        "sessionToken"
+      ]
+    },
+    "ReportsHealthCheck": {
+      "type": "object",
+      "properties": {
+        "reportsGenerated": {
+          "type": "integer",
+          "multipleOf": 1
+        },
+        "reportsFailed": {
+          "type": "integer",
+          "multipleOf": 1
+        },
+        "reportsQueued": {
+          "type": "integer",
+          "multipleOf": 1
+        }
+      }
+    },
+    "ReportStatusCheck": {
+      "type": "object",
+      "properties": {
+        "reportId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "x-optio3-enum-type": "com.optio3.reporter.ReportStatus",
+          "enum": [
+            "UNKNOWN",
+            "QUEUED",
+            "PROCESSING",
+            "SUCCESS",
+            "FAILURE"
+          ]
+        }
+      }
+    },
+    "Report": {
+      "type": "object",
+      "properties": {
+        "reportId": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+reports:
+  directory: /home/pptruser/scratch
+  storageTimeMinutes: 10
+  maxConcurrentPages: 3
+  allowedDomains:
+    - optio3.com
+    - optio3.io
+
+# SSL configuration. If present, only https port will be used
+ssl:
+  port: 8443
+  keyPath: /optio3-config${param.KEY_PATH}
+  certPath: /optio3-config${param.CERT_PATH}

@@ -1,0 +1,9 @@
+<o3-standard-form label="Rename Variable" (submitted)="data.renameVariable(selectedVariable, newName); dialogRef.close()" (cancelled)="dialogRef.close()">
+    <mat-form-field>
+        <o3-select placeholder="Variable to rename" name="oldVar" [multiSelect]="false" singleClick [options]="options" [(ngModel)]="selectedVariable" required></o3-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="New Name" name="newVar" o3InteractiveErrors [(ngModel)]="newName" required [o3UniqueValues]="data.variables" />
+        <mat-error>Variable must be unique</mat-error>
+    </mat-form-field>
+</o3-standard-form>

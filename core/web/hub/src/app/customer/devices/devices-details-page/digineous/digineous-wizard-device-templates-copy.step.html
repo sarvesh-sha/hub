@@ -1,0 +1,10 @@
+<ng-template o3-wizard-step-template>
+    <mat-form-field>
+        <o3-select [o3DigineousDeviceTemplateSelector]="true" name="template" [(ngModel)]="data.deviceTemplateId" (valueChange)="selectTemplate()"></o3-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="New Template Name" name="templateName" [(ngModel)]="data.deviceTemplateName" #templateName='ngModel'
+               [o3UniqueValues]="notAllowed" required autocomplete="off">
+        <mat-error *ngIf="templateName.invalid && templateName.errors.o3NotUnique">Name already used</mat-error>
+    </mat-form-field>
+</ng-template>

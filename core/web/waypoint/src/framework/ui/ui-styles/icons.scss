@@ -1,0 +1,24 @@
+﻿@import "../app.variables.scss";
+
+@mixin icons($theme) {
+
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Icons
+    //-----------------------------
+    .o3 {
+        font-size: 24px;
+        max-width: 26px;
+    }
+
+    .mat-menu-item .o3 {
+        color: rgba(0, 0, 0, 0.54);
+        vertical-align: middle;
+        margin-right: 16px;
+    }
+}

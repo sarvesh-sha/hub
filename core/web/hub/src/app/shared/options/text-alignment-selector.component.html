@@ -1,0 +1,11 @@
+<mat-button-toggle-group [(ngModel)]="alignment" (ngModelChange)="alignmentChange.emit($event)" [disabled]="disabled">
+    <mat-button-toggle value="Left" aria-label="Text align left">
+        <mat-icon>format_align_left</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="Center" aria-label="Text align center">
+        <mat-icon>format_align_center</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="Right" aria-label="Text align right">
+        <mat-icon>format_align_right</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>

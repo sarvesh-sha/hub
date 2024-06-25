@@ -1,0 +1,21 @@
+<o3-alert-map [pinConfig]="config.pin" [alertTypes]="config.alertTypes" [locationIds]="config.locations" [rollupType]="config.rollupType"
+              [popupOpen]="!!selectedPin" [disablePopup]="hasPaneConfig" (alertFocused)="handleAlertFocus($event)">
+    <ng-template #popupTemplate>
+        <mat-card>
+            <mat-card-title>
+                <a href="{{selectedPin?.alertUrl}}">
+                    <span style="text-transform: none">{{popupTitle}}</span>
+                </a>
+            </mat-card-title>
+            <mat-card-content>
+                <a href="{{selectedPin?.locationUrl}}">
+                    <o3-key-value-item class="clickable" key="Location" [value]="selectedPin?.alert.locationName"></o3-key-value-item>
+                </a>
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
+</o3-alert-map>
+
+<o3-overlay *ngIf="contextPaneDialogConfig" [config]="contextPaneDialogConfig">
+    <o3-dynamic-pane *cdkPortal [models]="paneModels" [loading]="!paneModels"></o3-dynamic-pane>
+</o3-overlay>

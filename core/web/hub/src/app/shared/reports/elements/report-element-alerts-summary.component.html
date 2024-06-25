@@ -1,0 +1,25 @@
+<h2>Here is the risks summary:</h2>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="row">
+            <div class="col">
+                <div class="report-box">
+                    <span>{{data?.aggregates?.percentChangedLast30}}</span>
+                    <label>Recent Change</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="report-box">
+                    <span>{{data?.aggregates?.critical}}</span>
+                    <label>Critical Alerts</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="report-box">
+                    <span>{{data?.aggregates?.total}}</span>
+                    <label>Total Alerts</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

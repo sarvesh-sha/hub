@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-sm-12">
+        <mat-form-field>
+            <input matInput type="text" #test_searchInput [placeholder]="label" [(ngModel)]="term" (ngModelChange)="termChange.emit(term)">
+            <div class="suffix" matSuffix>
+                <mat-chip-list class="filters">
+                    <mat-chip *ngIf="maxNumFilterChips < chips.length" class="o3-device-element-search-filters--consolidated-chip" (click)="chipListOverlay.toggleOverlay()">
+                        {{chips.length + ' filters'}}
+                    </mat-chip>
+
+                    <ng-container *ngIf="maxNumFilterChips >= chips.length">
+                        <mat-chip *ngFor="let chip of chips" [disableRipple]="true">
+                            <span class="o3-device-element-search-filters--label">{{chip.label}}</span>
+                            <button mat-icon-button class="mat-icon-small o3-no-ripple" disableRipple (click)="removeFilter(chip, $event)">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                    </ng-container>
+                </mat-chip-list>
+
+                <button mat-icon-button class="o3-device-element-search-filters--options" (click)="editFilters()">
+                    <i class="o3 o3-filter-outline"></i>
+                </button>
+            </div>
+        </mat-form-field>
+    </div>
+
+    <o3-chip-list-overlay #chipListOverlay label="Search Filters" [chips]="chips" (chipDeleted)="removeFilter($event)"></o3-chip-list-overlay>
+
+    <o3-overlay #filtersDialog [config]="filtersDialogConfig">
+        <o3-tab-group noUnderline>
+            <o3-tab label="Search Filters">
+                <mat-form-field *ngIf="classificationFilter">
+                    <mat-select placeholder="Classification" name="classificationType" [(ngModel)]="classificationFilter.value" (ngModelChange)="update()">
+                        <mat-option *ngFor="let option of classificationFilter.options" [value]="option.id">{{ option.label }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="visibilityFilter">
+                    <mat-select placeholder="Visibility" name="visibilityType" [(ngModel)]="visibilityFilter.value" (ngModelChange)="update()">
+                        <mat-option *ngFor="let option of visibilityFilter.options" [value]="option.id">{{ option.label }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="input-wrapper">
+                    <div class="input-label">Sampling</div>
+                    <mat-checkbox class="active" [(ngModel)]="samplingFilter.value" (ngModelChange)="update()">{{samplingFilter.label}}</mat-checkbox>
+                </div>
+            </o3-tab>
+        </o3-tab-group>
+    </o3-overlay>
+</div>

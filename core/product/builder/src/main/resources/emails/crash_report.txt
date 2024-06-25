@@ -1,0 +1,15 @@
+########################
+# Builder notification #
+########################
+
+Crash reported on ${param.TIME} for Job '${param.JOB} - ${param.JOB_ID}'
+
+Link: ${param.URL}
+
+Site: ${param.CRASH_SITE}
+Page: ${param.CRASH_PAGE}
+User: ${param.CRASH_USER}
+
+${param.CRASH_STACK}
+
+Optio3

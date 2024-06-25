@@ -1,0 +1,4 @@
+<h2>{{data?.label}}</h2>
+<div style="min-height: 400px; display: flex; flex-direction: column;">
+    <o3-data-aggregation *ngIf="data?.config as dataAggregation" [config]="dataAggregation"></o3-data-aggregation>
+</div>

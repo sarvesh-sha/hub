@@ -1,0 +1,59 @@
+.date-time-picker {
+    min-width: 220px;
+}
+
+.date-time-picker table mat-form-field.date-set {
+    min-width: 120px;
+}
+
+.date-time-picker table mat-form-field.time-set {
+    min-width: 100px;
+}
+
+.date-time-picker label {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 75%;
+    margin-bottom: -20px;
+    margin-top: 6px;
+    display: block;
+    line-height: normal;
+}
+
+.date-time-picker table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.date-time-picker table td {
+    padding: 0;
+}
+
+.date-time-picker .mat-form-field-infix {
+    width: unset;
+}
+
+.time-picker-toggle .mat-icon {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.time-picker {
+    width: 200px;
+}
+
+.time-picker .mat-form-field {
+    white-space: nowrap;
+}
+
+.time-picker .mat-select {
+    min-width: 80%;
+    width: 80%;
+    text-align: center;
+}
+
+.time-picker .mat-select.am-pm {
+    width: 100%;
+}
+
+.date-time-picker .row.no-gutters .col table tr {
+    background-color: inherit;
+}

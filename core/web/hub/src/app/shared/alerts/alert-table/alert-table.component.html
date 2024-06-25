@@ -1,0 +1,35 @@
+<cdk-virtual-scroll-viewport *ngIf="alertSummaries.length"
+                             [itemSize]="itemSize" [style.height.px]="alertSummaries.length * itemSize + 51">
+    <table class="table-striped">
+        <tr class="o3-alert-table-widget--header">
+            <th [style.top.px]="virtualScrollTranslationInverse">
+                {{groupByLabel}}
+                <o3-sort-arrow firstToggle="asc" [active]="sortColumnIdx === 0"
+                               initialDirection="asc" (directionChange)="updateSort(0, $event)"></o3-sort-arrow>
+            </th>
+            <th *ngFor="let range of ranges; let rangeIndex = index;" [style.top.px]="virtualScrollTranslationInverse">
+                <div>{{rangeDescriptions[rangeIndex]}}</div>
+                <o3-sort-arrow firstToggle="desc" [active]="sortColumnIdx === rangeIndex + 1"
+                               initialDirection="desc" (directionChange)="updateSort(rangeIndex + 1, $event)"></o3-sort-arrow>
+            </th>
+        </tr>
+
+        <tr *cdkVirtualFor="let summary of alertSummaries">
+            <td>
+                <div [matTooltip]="summary.label" matTooltipPosition="left">
+                    {{summary.label}}
+                </div>
+            </td>
+            <td *ngFor="let range of ranges; let rangeIndex = index" class="clickable o3-alert-table-widget--value"
+                [style.background]="summary.colors[rangeIndex]" (click)="rowSelected.emit(summary.summary)">
+                <div>
+                    {{summary.numAlerts[rangeIndex]}}
+                </div>
+            </td>
+        </tr>
+    </table>
+</cdk-virtual-scroll-viewport>
+
+<div *ngIf="alertSummaries.length === 0" class="o3-watermark-caption">
+    No alerts to show
+</div>

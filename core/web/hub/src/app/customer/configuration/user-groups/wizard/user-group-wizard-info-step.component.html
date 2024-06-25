@@ -1,0 +1,17 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Name" [(ngModel)]="data.userGroup.name" name="naame" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Description" [(ngModel)]="data.userGroup.description" name="description" required>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

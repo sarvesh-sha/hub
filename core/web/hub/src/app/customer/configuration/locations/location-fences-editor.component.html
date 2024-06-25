@@ -1,0 +1,15 @@
+<o3-tab-group class="o3-no-content-padding">
+    <o3-tab label="Edit Geo Fences">
+        <o3-tab-action label="Update" priority="primary" (click)="wizardCommit()" [disabled]="!hasChanges"></o3-tab-action>
+        <o3-tab-action label="Close" priority="secondary" (click)="wizardCancel()" *ngIf="!hasChanges"></o3-tab-action>
+        <o3-tab-action label="Cancel" priority="secondary" (click)="wizardCancel()" *ngIf="hasChanges"></o3-tab-action>
+        <o3-tab-action label="Add Fence..." priority="secondary" (click)="addFence()" *ngIf="!editingMode"></o3-tab-action>
+        <o3-tab-action label="Remove Fence..." priority="secondary" (click)="removeFence()" *ngIf="!editingMode"></o3-tab-action>
+        <o3-tab-action label="Reset Fences" priority="secondary" (click)="resetFences()" *ngIf="!editingMode"></o3-tab-action>
+        <o3-tab-action *ngIf="editHelpText" priority="informative" [label]="editHelpText"></o3-tab-action>
+
+        <div class="fence-map-container" o3-expand (expansionCompleted)="resizeMap()" container=".mat-tab-body-content">
+            <div class="fence-map" #mapContainer></div>
+        </div>
+    </o3-tab>
+</o3-tab-group>

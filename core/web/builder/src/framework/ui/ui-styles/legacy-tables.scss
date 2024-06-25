@@ -1,0 +1,135 @@
+@use "sass:math";
+
+@import "../app.variables";
+
+$font-weight-medium: 500 !default;
+$font-weight-regular: 400 !default;
+$font-weight-light: 300 !default;
+
+$white: #ffffff !default;
+$black-primary: rgba(0, 0, 0, .87) !default;
+$black-secondary: rgba(0, 0, 0, .54) !default;
+
+$line-height-base: 1.428572 !default;
+
+$material-color-grey-100: #f5f5f5 !default;
+$material-color-grey-200: #eeeeee !default;
+$material-color-grey-300: #e0e0e0 !default;
+
+$table-bg: $white !default;
+$table-bg-active: $material-color-grey-200 !default;
+$table-bg-active-hover: $material-color-grey-300 !default;
+$table-bg-accent: $material-color-grey-100 !default;
+$table-bg-hover: $material-color-grey-200 !default;
+$table-border-color: $border-color-solid !default;
+$table-border-width: $border-width !default;
+$table-cell-padding-x: .5rem !default;
+$table-cell-padding-x-alt: 1.5rem !default;
+$table-line-height: $line-height-base !default;
+$table-margin-y: $spacer !default;
+$table-striped-order: odd !default;
+
+
+$table-tbody-cell-height: 3rem !default;
+$table-tbody-color: $black-primary !default;
+$table-tbody-font-size: 0.8125rem !default;
+$table-tbody-font-weight: $font-weight-regular !default;
+$table-tbody-padding-y: math.div($table-tbody-cell-height - $table-tbody-font-size * $table-line-height, 2) !default;
+
+$table-tfoot-cell-height: 3.5rem !default;
+$table-tfoot-color: $black-secondary !default;
+$table-tfoot-font-size: 0.75rem !default;
+$table-tfoot-font-weight: $font-weight-regular !default;
+$table-tfoot-padding-y: math.div($table-tfoot-cell-height - $table-tfoot-font-size * $table-line-height, 2) !default;
+
+$table-thead-bg: $table-bg-accent !default;
+$table-thead-cell-height: $table-tfoot-cell-height !default;
+$table-thead-color: $table-tfoot-color !default;
+$table-thead-font-size: $table-tfoot-font-size !default;
+$table-thead-font-weight: $font-weight-medium !default;
+$table-thead-padding-y: math.div($table-thead-cell-height - $table-thead-font-size * $table-line-height, 2) !default;
+
+
+// Line height
+// Based on https://material.google.com/style/typography.html#typography-line-height
+
+@mixin legacy-table($theme) {
+
+    .table {
+        background-color: $table-bg;
+        border: 0;
+        margin-bottom: $table-margin-y;
+        max-width: 100%;
+        width: 100%;
+
+        td,
+        th {
+            border-top: $table-border-width solid $table-border-color;
+            line-height: $table-line-height;
+            padding-right: $table-cell-padding-x;
+            padding-left: $table-cell-padding-x;
+            vertical-align: top;
+
+            &:first-child {
+                padding-left: $table-cell-padding-x-alt;
+            }
+
+            &:last-child {
+                padding-right: $table-cell-padding-x-alt;
+            }
+        }
+
+        tbody {
+            color: $table-tbody-color;
+
+            td,
+            th {
+                font-size: $table-tbody-font-size;
+                font-weight: $table-tbody-font-weight;
+                height: $table-tbody-cell-height;
+                padding-top: $table-tbody-padding-y;
+                padding-bottom: $table-tbody-padding-y;
+            }
+        }
+
+        tfoot {
+            color: $table-tfoot-color;
+
+            td,
+            th {
+                font-size: $table-tfoot-font-size;
+                font-weight: $table-tfoot-font-weight;
+                height: $table-tfoot-cell-height;
+                padding-top: $table-tfoot-padding-y;
+                padding-bottom: $table-tfoot-padding-y;
+            }
+        }
+
+        thead {
+            color: $table-thead-color;
+
+            td,
+            th {
+                font-size: $table-thead-font-size;
+                font-weight: $table-thead-font-weight;
+                height: $table-thead-cell-height;
+                padding-top: $table-thead-padding-y;
+                padding-bottom: $table-thead-padding-y;
+            }
+        }
+    }
+
+    .table-striped {
+        tr:nth-of-type(odd) {
+            background-color: #fafafa;
+        }
+
+        tbody tr:nth-of-type(#{$table-striped-order}) {
+            background-color: $table-bg-accent;
+        }
+    }
+
+    .table-bordered {
+        border: $table-border-width solid $table-border-color;
+    }
+}

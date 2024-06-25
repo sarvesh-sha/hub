@@ -1,0 +1,106 @@
+$arrow-color: #757575;
+
+:host {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+div.o3-arrow-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 0;
+
+    &:hover {
+        opacity: 0.54;
+    }
+
+    &.o3-arrow-visible {
+        &.o3-sort-asc, &.o3-sort-desc {
+            opacity: 1;
+        }
+    }
+
+    > div.o3-arrow {
+        position: relative;
+        display: flex;
+        height: 12px;
+        width: 12px;
+        margin-left: 0px;
+        margin-right: 4px;
+
+        > div.o3-stem {
+            width: 2px;
+            height: 10px;
+            background-color: $arrow-color;
+            margin: auto;
+        }
+
+        > div.o3-arrowhead {
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 2px;
+            top: 0px;
+            left: 0px;
+
+            > div.o3-left-pointer, > div.o3-right-pointer {
+                width: 6px;
+                height: 2px;
+                background-color: $arrow-color;
+                top: 0px;
+                position: absolute;
+            }
+
+            > div.o3-center-pointer {
+                background-color: $arrow-color;
+                height: 2px;
+                width: 2px;
+                transform: rotate(45deg);
+                margin: auto;
+            }
+
+            > div.o3-left-pointer {
+                transform: rotate(-45deg);
+                left: 0;
+                transform-origin: right;
+            }
+
+            > div.o3-right-pointer {
+                transform: rotate(45deg);
+                right: 0;
+                transform-origin: left;
+            }
+        }
+    }
+
+    &.o3-sort-desc {
+        > div.o3-arrow {
+            > div.o3-arrowhead {
+                transform: translateY(10px);
+
+                > div.o3-left-pointer {
+                    transform: rotate(45deg);
+                }
+
+                > div.o3-right-pointer {
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    &.o3-arrow-position-left {
+        justify-content: flex-start;
+
+        > div.o3-arrow {
+            margin-left: 4px;
+            margin-right: 0px;
+        }
+    }
+}

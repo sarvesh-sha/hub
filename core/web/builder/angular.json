@@ -1,0 +1,282 @@
+{
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "optio3-web": {
+            "root": "",
+            "projectType": "application",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "output/dist",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "tsConfig": "src/tsconfig.json",
+                        "sourceMap": true,
+                        "vendorChunk": true,
+                        "localize": false,
+                        "allowedCommonJsDependencies": [
+                            "blockly",
+                            "moment-timezone",
+                            "core-js",
+                            "panzoom",
+                            "amator",
+                            "zone.js"
+                        ],
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "favicon.ico",
+                                "input": "src",
+                                "output": "/"
+                            },
+                            {
+                                "glob": "styles.startup.css",
+                                "input": "src",
+                                "output": "/"
+                            },
+                            "src/manifest.webmanifest"
+                        ],
+                        "styles": [
+                            {
+                                "input": "node_modules/@fortawesome/fontawesome-free/css/all.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/material-design-icons-iconfont/dist/material-design-icons.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/animate.css/animate.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/azure-maps-control/dist/atlas.min.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "src/styles.scss",
+                                "inject": true
+                            }
+                        ],
+                        "scripts": [
+                            {
+                                "input": "node_modules/moment/min/moment-with-locales.min.js",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/moment-timezone/builds/moment-timezone-with-data.min.js",
+                                "inject": true
+                            }
+                        ],
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "optimization": false,
+                        "namedChunks": true
+                    },
+                    "configurations": {
+                        "localhost": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "30kb"
+                                },
+                                {
+                                    "type": "bundle",
+                                    "name": "main",
+                                    "maximumWarning": "6.0MB",
+                                    "maximumError": "7.9MB"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.localhost.ts"
+                                }
+                            ]
+                        },
+                        "localhost-h2": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "30kb"
+                                },
+                                {
+                                    "type": "bundle",
+                                    "name": "main",
+                                    "maximumWarning": "6.0MB",
+                                    "maximumError": "7.9MB"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.localhost-h2.ts"
+                                }
+                            ]
+                        },
+                        "localhost-noaot": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.localhost.ts"
+                                }
+                            ]
+                        },
+                        "test": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "outputHashing": "all",
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "sourceMap": false,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.test.ts"
+                                }
+                            ]
+                        },
+                        "test-aot": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "30kb"
+                                },
+                                {
+                                    "type": "bundle",
+                                    "name": "main",
+                                    "maximumWarning": "6.0MB",
+                                    "maximumError": "7.9MB"
+                                },
+                                {
+                                    "type": "bundle",
+                                    "name": "vendor",
+                                    "maximumWarning": "7.0MB",
+                                    "maximumError": "7.9MB"
+                                }
+                            ],
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.test.ts"
+                                }
+                            ]
+                        },
+                        "prod": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "prod-aot": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "30kb"
+                                },
+                                {
+                                    "type": "bundle",
+                                    "name": "main",
+                                    "maximumWarning": "4.1MB",
+                                    "maximumError": "7.9MB"
+                                },
+                                {
+                                    "type": "bundle",
+                                    "name": "vendor",
+                                    "maximumWarning": "5.5MB",
+                                    "maximumError": "7.9MB"
+                                }
+                            ],
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "optio3-web:build",
+                        "port": 4201,
+                        "host": "0.0.0.0"
+                    },
+                    "configurations": {
+                        "localhost": {
+                            "browserTarget": "optio3-web:build:localhost"
+                        },
+                        "localhost-h2": {
+                            "browserTarget": "optio3-web:build:localhost-h2"
+                        },
+                        "localhost-noaot": {
+                            "browserTarget": "optio3-web:build:localhost-aot"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "optio3-web:build"
+                    }
+                }
+            },
+            "i18n": {
+                "sourceLocale": "en-US",
+                "locales": {
+                    "it": "src/locale/messages.it.xlf"
+                }
+            }
+        }
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "prefix": "app",
+            "style": "scss"
+        },
+        "@schematics/angular:directive": {
+            "prefix": "app"
+        }
+    }
+}

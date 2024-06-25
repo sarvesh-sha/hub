@@ -1,0 +1,40 @@
+<ng-template o3-wizard-step-template>
+    <mat-form-field>
+        <o3-select [o3DigineousMachineSelector]="true" name="machine" [(ngModel)]="data.machineId" (valueChange)="selectMachine()"></o3-select>
+    </mat-form-field>
+    <section *ngIf="data.machine">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Machine Id" name="machineId" [(ngModel)]="data.machine.machineId" #machineId='ngModel'
+                   [o3UniqueValues]="notAllowedId" [o3UniqueValuesAllowSelfMatch]="true" required autocomplete="off">
+            <mat-error *ngIf="machineId.invalid && machineId.errors.o3NotUnique">Id already used</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" placeholder="Machine Name" name="machineName" [(ngModel)]="data.machine.machineName" #machineName='ngModel'
+                   [o3UniqueValues]="notAllowedName" [o3UniqueValuesAllowSelfMatch]="true" required autocomplete="off">
+            <mat-error *ngIf="machineName.invalid && machineName.errors.o3NotUnique">Name already used</mat-error>
+        </mat-form-field>
+
+        <div class="row" *ngFor="let pair of pairs; let i = index;">
+            <div class="col-sm-1">
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Device Index" [ngModel]="i+1" name="deviceIndex_{{i}}" readonly>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-5">
+                <mat-form-field *ngIf="pair.isBlackBox">
+                    <input matInput type="number" placeholder="Device ID" name="deviceId_{{i}}" [(ngModel)]="pair.config.deviceId" #deviceId='ngModel'
+                           [o3UniqueValues]="notAllowedDeviceId" [o3UniqueValuesAllowSelfMatch]="true" required autocomplete="off">
+                    <mat-error *ngIf="deviceId.invalid && deviceId.errors.o3NotUnique">Device already used</mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="!pair.isBlackBox">
+                    <o3-select name="deviceId_{{i}}" #deviceId='ngModel'
+                               [o3DigineousVibrationMonitorSelector]="true"
+                               [o3UniqueValues]="notAllowedDeviceId" [o3UniqueValuesAllowSelfMatch]="true"
+                               [(ngModel)]="pair.config.deviceId" required></o3-select>
+                    <mat-error *ngIf="deviceId.invalid && deviceId.errors.o3NotUnique">Device already used</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </section>
+</ng-template>

@@ -1,0 +1,71 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Restart hardware..." (click)="restart()"></o3-tab-action>
+        <o3-tab-action label="Check for new firmware..." (click)="checkFirmware()"></o3-tab-action>
+        <o3-tab-action label="Screen saver..." (click)="startScreenSaver()"></o3-tab-action>
+
+        <o3-tab label="Optio3 Waypoint Provisioning">
+
+            <mat-form-field>
+                <mat-label>Select a unit</mat-label>
+                <mat-select [(value)]="checkinSelected">
+                    <mat-optgroup [label]="'New'">
+                        <mat-option *ngFor="let checkin of checkinsNotPrinted" [value]="checkin">{{ labelForCheckin(checkin) }}</mat-option>
+                    </mat-optgroup>
+                    <mat-optgroup [label]="'Already Printed'">
+                        <mat-option *ngFor="let checkin of checkinsPrinted" [value]="checkin">{{ labelForCheckin(checkin) }}</mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Station Number" [value]="checkinSelected?.info.stationNumber" name="stationNumber" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Station Program" [value]="checkinSelected?.info.stationProgram" name="stationProgram" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Serial Number" [value]="checkinSelected?.info.hostId" name="hostId" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="IMEI" [value]="checkinSelected?.info.imei" name="imei" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-card-actions>
+                <button mat-raised-button type="button" [disabled]="!readyForPrint" (click)="print()" [class.o3-info]="readyForPrint">Print Labels</button>
+                <button mat-raised-button type="button" [disabled]="!readyForReprint" (click)="print()">Re-print Labels</button>
+                <button mat-raised-button type="button" [disabled]="!readyForCard" (click)="flash()" [class.o3-info]="readyForCard">Flash Card</button>
+                <div class="mat-button" style="cursor: default" *ngIf="flashingInProgress && isFlashing">
+                    <span>Progress: {{flashingInProgress.imageOffset / flashingInProgress.imageSize | percent}} of {{flashingInProgress.imageSize | number}} bytes</span>
+                </div>
+                <div class="mat-button" style="cursor: default" *ngIf="isFlashingDone">
+                    <span><b [class.o3-info]="true">Done, remove card!!</b></span>
+                </div>
+                <div class="mat-button" style="cursor: default" *ngIf="hasFlashingFailed">
+                    <span><b [class.o3-warn]="true">Flashing failed!!</b></span>
+                </div>
+                <div class="mat-button" style="cursor: default" *ngIf="downloadTotal > 0">
+                    <span [class.warn]="true">Downloading new firmware: {{downloadTotal | number}} bytes</span>
+                </div>
+            </mat-card-actions>
+
+        </o3-tab>
+    </o3-tab-group>
+
+</section>
+
+<o3-overlay #screenSaverOverlay [config]="overlayConfig">
+    <canvas #screenSaver (click)="stopScreenSaver()"></canvas>
+</o3-overlay>

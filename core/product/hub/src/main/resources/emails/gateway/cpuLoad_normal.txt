@@ -1,0 +1,12 @@
+####################
+# Hub notification #
+####################
+
+UPDATE!
+
+The CPU load on Gateway '${param.GATEWAY_ID}' has dropped back under ${param.CPU_LOAD_THRESHOLD}, now at ${param.CPU_LOAD}!
+
+Details: ${param.SITE_URL}/#/gateways/gateway/${param.GATEWAY_SYSID}
+
+
+Optio3

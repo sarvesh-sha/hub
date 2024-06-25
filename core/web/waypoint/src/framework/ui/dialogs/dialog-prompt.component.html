@@ -1,0 +1,5 @@
+<o3-standard-form [label]="title" primaryButtonText="Save" secondaryButtonText="Cancel" (submitted)="dialogRef.close(value)" (cancelled)="dialogRef.close(null)">
+    <mat-form-field>
+        <input matInput [(ngModel)]="value" [placeholder]="text" />
+    </mat-form-field>
+</o3-standard-form>

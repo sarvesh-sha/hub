@@ -1,0 +1,86 @@
+{
+  "definition": {
+    "title": "Function No Arguments",
+    "purpose": "Definition",
+    "description": "Simple function that calls a function with no arguments",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": "rvw(yWcXf]w$/D)qu:kq",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "result"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "OfR1akRsJ2;Fx$L%8BJQ",
+                  "variable": {
+                    "name": "result"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionFunctionCall",
+                    "id": "35|GcBe4w}o]T_d!YtH^",
+                    "functionName": "test",
+                    "arguments": []
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "__type": "EngineProcedureDeclaration",
+              "id": "}wU^q%6LU;U|df]Q|mm*",
+              "x": 17,
+              "y": 90,
+              "variables": [
+                {
+                  "name": "dummy",
+                  "type": "Number"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "NoNdX`[za{/d]GA7kOs1",
+                  "variable": {
+                    "name": "dummy",
+                    "type": "Number"
+                  },
+                  "value": {
+                    "__type": "EngineLiteralNumber",
+                    "id": "~1`xtV_8Sa}mgN9bnZ|B",
+                    "value": 10
+                  }
+                },
+                {
+                  "__type": "EngineStatementFunctionReturnValue",
+                  "id": "K3j`u}AmDxnux/k3O0^#",
+                  "value": {
+                    "__type": "EngineLiteralNumber",
+                    "id": "-,/Cb}Cj3mZC%#,Q`uum",
+                    "value": 5
+                  }
+                }
+              ],
+              "name": "test",
+              "arguments": []
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

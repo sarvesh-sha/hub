@@ -1,0 +1,17 @@
+<o3-standard-form-overlay #formOverlay label="Column Weights" [overlayConfig]="rowLayoutConfig" [showSecondary]="true"
+                          [primaryButtonDisabled]="!formOverlay.formIsValid || colWidthsPristine" (submitted)="updateWidthRatios()"
+                          [secondaryButtonText]="colWidthsPristine ? 'Close' : 'Cancel'">
+    <div *ngIf="row" class="row-layout-outer-container">
+        <div class="row-layout-container">
+            <div *ngFor="let child of row.children; let i = index" class="inner-container layout-row" [style.flex-grow]="colWidths[i] || 1">
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Weight" [name]="'col-' + i" [(ngModel)]="colWidths[i]" min="1" max="9" autocomplete="off" required>
+                </mat-form-field>
+
+                <div class="layout-col">
+                    <ng-template [ngTemplateOutlet]="layoutTemplate" [ngTemplateOutletContext]="{parent: row, layout: child, configuringColumnWidths: true}"></ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</o3-standard-form-overlay>

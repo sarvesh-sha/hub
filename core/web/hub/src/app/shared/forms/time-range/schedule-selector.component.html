@@ -1,0 +1,56 @@
+<div class="outer" (mouseleave)="deconstructShader()" (mouseup)="deconstructShader()" [class.zoomed-in]="zoomInTarget !== null">
+    <div class="header" [class.no-legend]="!showLegend">
+        <div *ngIf="showLegend">
+            <div>
+                <span></span>{{onWord}}
+            </div>
+            <div>
+                <span></span>{{offWord}}
+            </div>
+        </div>
+        <div>
+            <mat-form-field floatLabel="never">
+                <mat-select placeholder="Select preset schedule">
+                    <ng-container *ngIf="otherSchedules">
+                        <ng-container *ngFor="let filterableRange of otherSchedules">
+                            <mat-option *ngIf="filterableRange.filter !== model" (click)="setToCustom(filterableRange.filter)">
+                                Copy from <span>{{filterableRange.name}}</span>
+                            </mat-option>
+                        </ng-container>
+                    </ng-container>
+                    <mat-option (click)="setToPreset('none')">Deselect All</mat-option>
+                    <mat-option (click)="setToPreset('all')">Select All</mat-option>
+                    <mat-option (click)="setToPreset('business hours')">Business Hours</mat-option>
+                    <mat-option (click)="setToPreset('weekdays')">Weekdays</mat-option>
+                    <mat-option (click)="setToPreset('weekend')">Weekends</mat-option>
+                    <mat-option (click)="setToPreset('days')">Daytime</mat-option>
+                    <mat-option (click)="setToPreset('nights')">Nighttime</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="shading-sector">
+        <div *ngFor="let day of state; let dayIndex = index">
+            <span>{{day.name}}</span>
+            <div>
+                <div *ngFor="let hour of day.schedule; let hourIndex = index" (mousedown)="setUpShader(dayIndex, hourIndex);" (mouseenter)="shadeSquare(dayIndex, hourIndex)"
+                     [class.is-active]="getZoomedState(dayIndex, hourIndex)" [class.is-3rd-quarter-hour]="hourIndex % 4 === 3" [class.is-0th-quarter-hour]="hourIndex % 4 === 0"
+                     [class.is-12th-square]="hourIndex === 11" [class.is-13th-square]="hourIndex === 12">
+                    <ng-container *ngIf="zoomInTarget === null">
+                        <div *ngFor="let quarterHour of hour" [class.is-active]="quarterHour"></div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hour-axis">
+        <div *ngFor="let hour of hoursOfDay" (click)="setZoom(hour)">
+            {{getTimeLabel(hour)}}
+        </div>
+        <div (click)="setZoom(24)">{{getTimeLabel(24)}}</div>
+    </div>
+    <div>
+        <div *ngIf="zoomInTarget === null || zoomInTarget <= 14" [class.of-5-hours]="zoomInTarget === 10" [class.of-4-hours]="zoomInTarget === 11">AM</div>
+        <div *ngIf="zoomInTarget === null || zoomInTarget >= 10" [class.of-5-hours]="zoomInTarget === 14" [class.of-4-hours]="zoomInTarget === 13">PM</div>
+    </div>
+</div>

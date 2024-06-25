@@ -1,0 +1,294 @@
+<ng-template o3-wizard-step-template>
+    <div class="row" *ngIf="data.networkModel">
+        <div class="col-sm-6">
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="Name" [value]="data.networkModel.physicalName" name="instance_name" readonly>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Subnet Mask" [value]="data.networkModel.cidr" name="network_address" readonly>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Static Address" [value]="data.networkModel.staticAddress || 'Use DHCP'" name="static_address" readonly>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Network Interface" [value]="data.networkModel.networkInterface || 'Auto Select Network Interface'" name="network_interface" readonly>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" placeholder="Sampling Period (in seconds)" [ngModel]="data.networkModel.samplingPeriod" name="sampling_period" readonly>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="Location" [value]="(data.location?.model?.name || 'No Location Selected')" name="locationName" readonly>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+    <mat-accordion *ngIf="stepSelected && (data.bacnet || data.ipn)">
+
+        <mat-expansion-panel *ngIf="data.bacnet">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    BACnet
+                </mat-panel-title>
+                <mat-panel-description>
+                    Configuration for BACnet devices
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="row o3-checkbox-container">
+                <div>
+                    <mat-checkbox [(ngModel)]="data.bacnet.useUDP" name="enable_udp" disabled="true">Enable UDP</mat-checkbox>
+                </div>
+                <div>
+                    <mat-checkbox [(ngModel)]="data.bacnet.useEthernet" name="enable_ethernet" disabled="true">Enable Ethernet</mat-checkbox>
+                </div>
+                <div>
+                    <mat-checkbox [(ngModel)]="data.bacnet.disableBroadcast" name="disable_broadcast" disabled="true">Disable Broadcast Discovery</mat-checkbox>
+                </div>
+                <div>
+                    <mat-checkbox [(ngModel)]="data.bacnet.sweepSubnet" name="enable_sweep_subnet" disabled="true">Sweep Subnet</mat-checkbox>
+                </div>
+                <div>
+                    <mat-checkbox [(ngModel)]="data.bacnet.sweepMSTP" name="enable_sweep_mstp" disabled="true">Deep Sweep Of MS/TP Networks</mat-checkbox>
+                </div>
+                <div>
+                    <mat-checkbox [(ngModel)]="data.bacnet.includeNetworksFromRouters" name="include_networks_from_routers" disabled="true">Discover Routers for MS/TP networks</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="data.bacnet.useUDP && data.bacnet.networkPort">
+                <div class="col-sm-12">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Network Port" [(ngModel)]="data.bacnet.networkPort" name="bacnet_port" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="data.bacnetLimitScanLow || data.bacnetLimitScanHigh">
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Limit Scan - Lowest Device Instance Number" [(ngModel)]="data.bacnetLimitScanLow" name="bacnet_limitScan_low" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Limit Scan - Highest Device Instance Number" [(ngModel)]="data.bacnetLimitScanHigh" name="bacnet_limitScan_high" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div *ngIf="data.bacnet.bbmds.length > 0">
+                <div class="row">
+                    <label>BBMDs</label>
+                </div>
+                <o3-bacnet-bbmd-table [rows]="data.bacnet.bbmds" [readonly]="true"></o3-bacnet-bbmd-table>
+            </div>
+
+            <div *ngIf="data.bacnet.scanSubnets.length > 0">
+                <div class="row">
+                    <label>Forced Subnet Scans</label>
+                </div>
+                <o3-bacnet-subnet-table [rows]="data.bacnet.scanSubnets" [readonly]="true"></o3-bacnet-subnet-table>
+            </div>
+
+            <div *ngIf="data.bacnet.nonDiscoverableDevices.length > 0">
+                <div class="row">
+                    <label>Non-Discoverable Devices</label>
+                </div>
+
+                <div class="mb-2">
+                    <o3-non-discoverable-device-table [rows]="data.bacnet.nonDiscoverableDevices" [readonly]="true"></o3-non-discoverable-device-table>
+                </div>
+            </div>
+
+            <div *ngIf="data.bacnet.nonDiscoverableMstpTrunks.length > 0">
+                <div class="row">
+                    <label>Non-Discoverable MS/TP Trunks</label>
+                </div>
+                <o3-non-discoverable-mstp-table [rows]="data.bacnet.nonDiscoverableMstpTrunks" [readonly]="true"></o3-non-discoverable-mstp-table>
+            </div>
+
+            <div *ngIf="data.bacnet.skippedDevices.length > 0">
+                <div class="row">
+                    <label>Skipped Devices</label>
+                </div>
+
+                <o3-skipped-device-table [rows]="data.bacnet.skippedDevices" [readonly]="true"></o3-skipped-device-table>
+            </div>
+
+            <div *ngIf="data.bacnet.filterSubnets.length > 0">
+                <div class="row">
+                    <label>Filtered Subnets</label>
+                </div>
+
+                <o3-bacnet-subnet-table [rows]="data.bacnet.filterSubnets" [readonly]="true"></o3-bacnet-subnet-table>
+            </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="data.ipn">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    IPN
+                </mat-panel-title>
+                <mat-panel-description>
+                    Configuration for IPN devices
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Accelerometer Frequency" [ngModel]="data.ipn.accelerometerFrequency" name="ipn_accelerometerFrequency" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Accelerometer Range" [ngModel]="data.ipn.accelerometerRange" name="ipn_accelerometerRange" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Accelerometer Threshold" matTooltip="Percent delta to trigger a new sample" [ngModel]="data.ipn.accelerometerThreshold"
+                               name="ipn_accelerometerThreshold" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="BlueSky Port" [value]="data.ipn.ipnPort" name="ipn_ipnPort" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="BlueSky baud rate" [ngModel]="data.ipn.ipnBaudrate" name="ipn_ipnBaudrate" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2 slide-toggle">
+                    <mat-slide-toggle [checked]="data.ipn.ipnInvert" name="ipn_ipnInvert" disabled>Flip wires</mat-slide-toggle>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="CAN port" [value]="data.ipn.canPort" name="ipn_canPort" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Clock Speed" [ngModel]="data.ipn.canFrequency" name="ipn_canFrequency" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-1 slide-toggle">
+                    <mat-slide-toggle [checked]="data.ipn.canNoTermination" name="ipn_canNoTermination" disabled>Disable Termination</mat-slide-toggle>
+                </div>
+                <div class="col-sm-1 slide-toggle">
+                    <mat-slide-toggle [checked]="data.ipn.canInvert" name="ipn_canInvert" disabled>Flip wires</mat-slide-toggle>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="EpSolar Port" [value]="data.ipn.epsolarPort" name="ipn_epsolarPort" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2 slide-toggle">
+                    <mat-slide-toggle [checked]="data.ipn.epsolarInvert" name="ipn_epsolarInvert" disabled>Flip wires</mat-slide-toggle>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="GPS Port" [value]="data.ipn.gpsPort" name="ipn_gpsPort" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Holykell Port" [value]="data.ipn.holykellPort" name="ipn_holykellPort" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2 slide-toggle">
+                    <mat-slide-toggle [checked]="data.ipn.holykellInvert" name="ipn_holykellInvert" disabled>Flip wires</mat-slide-toggle>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="OBD-II Port" [value]="data.ipn.obdiiPort" name="ipn_obdiiPort" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="OBD-II bitrate" [ngModel]="data.ipn.obdiiFrequency" name="ipn_obdiiFrequency" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="ArgoHytos Port" [value]="data.ipn.argohytosPort" name="ipn_argoHytosPort" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Montage Bluetooth Gateway Port" [value]="data.ipn.montageBluetoothGatewayPort" name="ipn_montageBluetoothGatewayPort" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="StealthPower Port" [value]="data.ipn.stealthpowerPort" name="ipn_stealthpowerPort" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="TriStar Port" [value]="data.ipn.tristarPort" name="ipn_tristarPort" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Victron Port" [value]="data.ipn.victronPort" name="ipn_victronPort" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div *ngIf="data.ipn_i2c_SHT3x.length > 0">
+                <div class="row">
+                    <label>I2C Temperature/Humidity Sensors</label>
+                </div>
+                <o3-i2c-SHT30x-table [rows]="data.ipn_i2c_SHT3x" [readonly]="true"></o3-i2c-SHT30x-table>
+            </div>
+
+            <div *ngIf="data.ipn_i2c_MCP3428.length > 0">
+                <div class="row">
+                    <label>I2C Analog Digital Converters</label>
+                </div>
+                <o3-i2c-MCP3428-table [rows]="data.ipn_i2c_MCP3428" [readonly]="true"></o3-i2c-MCP3428-table>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</ng-template>

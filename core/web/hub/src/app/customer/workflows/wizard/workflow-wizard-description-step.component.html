@@ -1,0 +1,20 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Description" [(ngModel)]="data.workflow.model.description" name="title" required>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput type="text" placeholder="Notes" [(ngModel)]="data.workflow.model.extendedDescription" name="notes"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select name="workflowPriority" [(ngModel)]="data.workflow?.typedModel.priority" placeholder="Priority">
+                    <mat-option *ngFor="let priority of workflowPriorityOptions" [value]="priority.id">{{priority.label}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field [hasAccess]="['SYS.ADMIN']">
+                <o3-select [options]="users" [(ngModel)]="assignedTo" [multiSelect]="false" placeholder="Assign To User"></o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

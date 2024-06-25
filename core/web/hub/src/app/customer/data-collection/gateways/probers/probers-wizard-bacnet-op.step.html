@@ -1,0 +1,14 @@
+<ng-template o3-wizard-step-template>
+    <p>Select the type of BACnet operation:</p>
+    <mat-radio-group [(ngModel)]="operationType">
+        <table class="table table-striped table-bordered">
+            <tbody>
+            <tr *ngFor="let type of getOperationTypesList()">
+                <td>
+                    <mat-radio-button [value]="type.type">{{type.title}}</mat-radio-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </mat-radio-group>
+</ng-template>

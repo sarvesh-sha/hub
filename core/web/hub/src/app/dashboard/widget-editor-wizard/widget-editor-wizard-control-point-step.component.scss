@@ -1,0 +1,71 @@
+.o3-control-point-step--config {
+    min-width: 400px;
+    flex-grow: 0;
+
+    .o3-control-point-step--selected-cp,
+    .o3-control-point-step--name,
+    .o3-control-point-step--value,
+    .o3-control-point-step--units,
+    .o3-control-point-step--timestamp,
+    .o3-control-point-step--font-multiplier {
+        width: 100%;
+        display: flex;
+        position: relative;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        .input-label {
+            position: absolute;
+            top: 8px;
+        }
+
+        > mat-slide-toggle {
+            flex-grow: 0;
+            flex-shrink: 0;
+            margin-top: 4px;
+            padding: 6px 12px 6px 0px;
+        }
+
+        > mat-form-field, > o3-equivalent-units-selector {
+            margin-right: 12px;
+            max-width: 310px;
+        }
+
+        o3-text-alignment-selector {
+            margin-top: 4px
+        }
+    }
+
+    .o3-control-point-step--selected-cp {
+        mat-form-field {
+            max-width: 450px;
+        }
+
+        .mat-icon-button {
+            top: 0px;
+            font-size: 20px;
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    .o3-control-point-step--timestamp {
+        > mat-form-field {
+            margin-top: 2px;
+        }
+    }
+
+    .o3-control-point-step--color {
+        margin: 10px 0px 6px;
+        width: 465px;
+        max-width: 100%;
+    }
+
+    .o3-control-point-step--font-multiplier {
+        height: 58px;
+
+        > mat-slide-toggle {
+            margin-right: 60px;
+        }
+    }
+}

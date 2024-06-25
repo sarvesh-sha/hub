@@ -1,0 +1,48 @@
+<div class="color-stops horizontal">
+    <div class="stop-actions" *ngIf="!lockNumStops">
+        <div class="stop-action" *ngFor="let segment of segments; let i = index">
+            <button *ngIf="segments.length < maxStops - 1" #test_split
+                    mat-icon-button class="stop-action-split" [disabled]="!interactable" (click)="splitStop(i)">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="stop-colors">
+        <div class="stop-color" *ngFor="let segment of segments" [ngStyle]="{'background': segment.background}"></div>
+    </div>
+    <div class="stop-values">
+        <div class="stop-value" *ngFor="let stop of stops; let i = index">
+            <div class="stop-value-handle mat-elevation-z2"></div>
+            <div class="stop-value-pill">
+                <mat-chip #test_stopChip class="stop-chip" (click)="editStop(stop, i)" [disableRipple]="!interactable">
+                    <div class="stop-chip-siders stop-chip-indicator" *ngIf="isStopColorEditable(i)" [style.background]="stop.color"></div>
+                    <span class="stop-chip-content">
+                        <span class="primary-info">{{stopLabel(stop)}}</span>
+                    </span>
+                    <button mat-icon-button class="stop-chip-siders stop-chip-action" *ngIf="!lockNumStops && notEdge(i)" (click)="$event.stopPropagation(); deleteStop(i)">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+            </div>
+        </div>
+    </div>
+
+    <o3-overlay [config]="config" (closed)="finishStopEditing()">
+        <o3-tab-group *ngIf="editingStop" noUnderline>
+            <o3-tab label="Configure Color Stop">
+                <div class="input-wrapper" *ngIf="isStopColorEditable(editingStopIndex)">
+                    <o3-color-picker-flat #test_colorFlat [(color)]="editingStop.color" (colorChange)="onStopChange()" [(palette)]="palette" (paletteChange)="onPaletteChange()"></o3-color-picker-flat>
+                </div>
+                <mat-form-field *ngIf="isStopModeEditable(editingStopIndex) && editingStopModes.length > 1">
+                    <mat-select #test_stopMode placeholder="Stop Value Mode" [(ngModel)]="editingStop.stopPoint" (ngModelChange)="onStopChange()">
+                        <mat-option *ngFor="let mode of editingStopModes" [value]="mode.id">{{ mode.label }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="isCustomStop(editingStop)">
+                    <input matInput placeholder="Stop Value" type="number" #test_stopValue
+                           [(ngModel)]="editingStop.stopPointValue" (ngModelChange)="onStopChange()">
+                </mat-form-field>
+            </o3-tab>
+        </o3-tab-group>
+    </o3-overlay>
+</div>

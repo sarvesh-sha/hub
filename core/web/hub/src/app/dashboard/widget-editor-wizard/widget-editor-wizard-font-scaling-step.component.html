@@ -1,0 +1,9 @@
+<ng-template o3-wizard-step-template>
+    <mat-slide-toggle name="font-size-scaling-manual" [(ngModel)]="manualFontScaling">Manually scale text</mat-slide-toggle>
+
+    <o3-widget-editor-wizard-manual-font-scaling-field
+        *ngIf="manualFontScaling"
+        [(fontMultiplier)]="fontMultiplier"
+        (fontMultiplierValid)="fontMultiplierValid = $event">
+    </o3-widget-editor-wizard-manual-font-scaling-field>
+</ng-template>

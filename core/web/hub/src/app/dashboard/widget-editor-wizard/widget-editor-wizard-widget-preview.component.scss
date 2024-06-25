@@ -1,0 +1,34 @@
+.o3-widget-preview--container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    > .o3-widget-preview--preview {
+        min-width: 300px;
+        flex-grow: 1;
+        margin: auto;
+        padding-left: 5%;
+
+        > .o3-widget-preview--manager-container {
+            margin: 12px;
+            display: flex;
+            justify-content: center;
+
+            > div {
+                flex: 1 1;
+
+                &.o3-widget-preview--is-preview {
+                    flex: 0 0;
+                }
+            }
+        }
+
+        &.o3-widget-preview--vertical {
+            padding-left: 0px;
+
+            > o3-widget-manager {
+                padding: 12px 0px;
+            }
+        }
+    }
+}

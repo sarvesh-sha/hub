@@ -1,0 +1,44 @@
+<div class="tree-horizontal" cdkDropList (cdkDropListDropped)="pivot($event)" cdkDropListOrientation="horizontal">
+    <ng-container *ngFor="let column of columns; index as i">
+        <div *ngIf="i < table.columns.length"
+             class="tree-level" [style.width.px]="dynamicColWidths[i]"
+             cdkDrag [cdkDragDisabled]="!columnsMovable">
+            <div class="tree-header-preview" *cdkDragPreview>{{table.table.headerName(i)}}</div>
+
+            <div class="tree-header" cdkDragHandle [matTooltip]="headerTooltip(i)" matTooltipPosition="above">
+                <div class="split-container">
+                    <div class="split-content">{{table.table.headerName(i)}}</div>
+                    <div class="split-action" *ngIf="columnsCollapsible">
+                        <button mat-icon-button class="icon-button-fix mat-icon-medium">
+                            <mat-icon>chevron_left</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let node of column" [ngClass]="node.classes()" [style.flex]="node.flexStyle" [style.min-height.px]="node.minHeight">
+                <div class="tree-node-wrapper" *ngIf="node.shouldShowContent()" [matTooltip]="node.node.label" matTooltipDisabled="1000">
+                    <div class="split-container tree-node-label">
+                        <div class="split-content">
+                            <span>{{node.node.label}}</span>
+                        </div>
+                        <div class="split-action" *ngIf="node.hasMultipleChildren()">
+                            <button mat-icon-button class="icon-button-fix mat-icon-medium" [disableRipple]="true" (click)="toggleCollapsed(node)">
+                                <mat-icon *ngIf="!node.collapsed">expand_less</mat-icon>
+                                <mat-icon *ngIf="node.collapsed">expand_more</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="split-container tree-node-description" *ngIf="node.hasDescription()">
+                        <div class="split-content">
+                            <span>{{node.node.description}}</span>
+                        </div>
+                        <div class="split-action" *ngIf="node.hasMultipleChildren()"></div>
+                    </div>
+                </div>
+                <div class="tree-node-switch hover-only" *ngIf="node.shouldShowContent()" (click)="toggleHidden(node)">-</div>
+                <div class="tree-node-switch" *ngIf="node.hidden" (click)="toggleHidden(node)">+</div>
+                <div class="tree-node-filler" *ngIf="node.underCollapsed"></div>
+            </div>
+        </div>
+    </ng-container>
+</div>

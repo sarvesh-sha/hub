@@ -1,0 +1,14 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="New Pane..." (click)="new()"></o3-tab-action>
+        <o3-tab-action label="Import..." (click)="import()"></o3-tab-action>
+
+        <o3-tab label="Panes">
+            <o3-datatable [table]="table">
+                <o3-datatable-column id="name" prop="name" name="Name"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

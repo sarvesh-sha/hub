@@ -1,0 +1,5 @@
+<o3-standard-form-overlay label="Create Widget" (submitted)="notifyToAddWidget()" [overlayConfig]="overlayConfig" primaryButtonText="Create">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Widget Title" [(ngModel)]="widgetTitle" name="widgetTitle" autocomplete="off" required>
+    </mat-form-field>
+</o3-standard-form-overlay>

@@ -1,0 +1,86 @@
+﻿<section class="bs page-content">
+    <o3-tab-group #tabGroup>
+
+        <o3-tab-action label="Mark As Release Candidate" *ngIf="canMarkAsReleaseCandidate" (click)="markAsReleaseCandidate()"></o3-tab-action>
+        <o3-tab-action label="Mark As Release" *ngIf="canMarkAsRelease" (click)="markAsRelease()"></o3-tab-action>
+        <o3-tab-action label="Download To Operational Hosts" (click)="distribute(true)"></o3-tab-action>
+        <o3-tab-action label="Download To Idle Hosts" (click)="distribute(false)"></o3-tab-action>
+
+        <o3-tab label="Tagged Image Details">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Tag" [value]="extended.model.tag" name="Name" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Hash" [value]="(extended.getImage() | async)?.model?.imageSha" name="Hash" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Built On" [value]="extended.model.createdOn|o3LongDate" name="BuiltOn" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Architecture" [value]="(extended.getImage() | async)?.model?.architecture" name="Architecture" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Release Status" [value]="extended.model.releaseStatus" name="ReleaseStatus" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="modelLabelsKeys.length > 0">
+                <table class="table table-striped table-bordered selectable">
+                    <thead>
+                    <tr aria-colspan="2">
+                        <th>Image Metadata</th>
+                    </tr>
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let key of modelLabelsKeys">
+                        <td>
+                            {{key}}
+                        </td>
+                        <td>
+                            <span matTooltip="{{modelLabels[key].labelLong}}" matTooltipShowDelay="500">{{modelLabels[key].labelShort}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row" *ngIf="imageDependendies?.usages?.entries.length > 0">
+                <table class="table table-striped table-bordered selectable">
+                    <thead>
+                        <tr>
+                            <th>Image Usages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let key of imageDependendies?.usages?.entries">
+                        <td>
+                            {{key.reason}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </o3-tab>
+    </o3-tab-group>
+</section>

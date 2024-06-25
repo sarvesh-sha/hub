@@ -1,0 +1,121 @@
+<o3-overlay #test_overlay [config]="overlayConfig">
+    <ng-container *cdkPortal>
+        <o3-tab-group *ngIf="group" noUnderline cardClass="no-content-padding">
+            <o3-tab label="Configure Group">
+                <o3-tab-group #test_tabGroup>
+                    <o3-tab label="Aggregation">
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-form-field>
+                                    <mat-select #test_groupAgg placeholder="Aggregation Type for Group" name="group-aggregation" [(ngModel)]="group.model.groupAggregationType">
+                                        <mat-option value="NONE" matTooltip="no aggregation from any descendants" matTooltipShowDelay="500" *ngIf="showNoneRollupOption">None</mat-option>
+                                        <mat-option value="MAX" matTooltip="maximum aggregation from all descendants" matTooltipShowDelay="500">Max</mat-option>
+                                        <mat-option value="MIN" matTooltip="minimum aggregation from all descendants" matTooltipShowDelay="500">Min</mat-option>
+                                        <mat-option value="MEAN" matTooltip="average aggregation from all immediate descendants" matTooltipShowDelay="500">Mean</mat-option>
+                                        <mat-option value="SUM" matTooltip="sum of aggregations from descendants" matTooltipShowDelay="500">Sum</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-form-field>
+                                    <mat-select #test_cpAgg placeholder="Aggregation Type for Control Points" name="control-point-aggregation"
+                                                [(ngModel)]="group.model.aggregationType" (ngModelChange)="aggregationTypeChanged()">
+                                        <mat-option value="MAX" matTooltip="maximum reading for each control point" matTooltipShowDelay="500">Max</mat-option>
+                                        <mat-option value="MIN" matTooltip="minimum reading for each control point" matTooltipShowDelay="500">Min</mat-option>
+                                        <mat-option value="MEAN" matTooltip="average reading for each control point" matTooltipShowDelay="500">Mean</mat-option>
+                                        <mat-option value="SUM" matTooltip="sum of all readings for each control point" matTooltipShowDelay="500">Sum</mat-option>
+                                        <mat-option value="DELTA" matTooltip="total value change over the selected time period; e.g. total battery charge" matTooltipShowDelay="500">
+                                            Delta
+                                        </mat-option>
+                                        <mat-option value="INCREASE" matTooltip="sum of all positive differences between subsequent readings for each control point" matTooltipShowDelay="500">
+                                            Increase
+                                        </mat-option>
+                                        <mat-option value="DECREASE" matTooltip="sum of all negative differences between subsequent readings for each control point" matTooltipShowDelay="500">
+                                            Decrease
+                                        </mat-option>
+                                        <mat-option value="FIRST" matTooltip="first reading for each control point" matTooltipShowDelay="500">First</mat-option>
+                                        <mat-option value="LAST" matTooltip="last reading for each control point" matTooltipShowDelay="500">Last</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-form-field [class.disabled]="!showGranularityOption" [matTooltip]="granularityTooltip">
+                                    <mat-select placeholder="Average per" name="group-granularity" [disabled]="!showGranularityOption" [(ngModel)]="group.model.granularity">
+                                        <mat-option value="None">No average</mat-option>
+                                        <mat-option value="Hour">Hour</mat-option>
+                                        <mat-option value="Day">Day</mat-option>
+                                        <mat-option value="Week">Week</mat-option>
+                                        <mat-option value="Month">Month</mat-option>
+                                        <mat-option value="Quarter">Quarter</mat-option>
+                                        <mat-option value="Year">Year</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-form-field matTooltip="Limit number of results">
+                                    <mat-select placeholder="Limit to" name="group-limit" [(ngModel)]="group.model.limitMode">
+                                        <mat-option value="None">No Limit</mat-option>
+                                        <mat-option value="TopN">Top N</mat-option>
+                                        <mat-option value="BottomN">Bottom N</mat-option>
+                                        <mat-option value="TopNPercent">Top N%</mat-option>
+                                        <mat-option value="BottomNPercent">Bottom N%</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field [class.disabled]="!showLimitOption" [matTooltip]="limitTooltip" [matTooltipDisabled]="showLimitOption">
+                                    <input [disabled]="!showLimitOption" matInput type="number" [(ngModel)]="group.model.limitValue">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </o3-tab>
+                    <o3-tab label="Display">
+                        <mat-form-field *ngIf="!showColorMapping">
+                            <o3-color-picker
+                                placeholder="Color Override"
+                                [(ngModel)]="color"
+                                (ngModelChange)="applyColor()">
+                            </o3-color-picker>
+                        </mat-form-field>
+                        <div *ngIf="showColorMapping" class="input-wrapper">
+                            <div class="input-label">Gradient Override</div>
+                            <o3-color-picker-gradient-stop
+                                #test_gradientStop
+                                [(stops)]="mappingSegments"
+                                (stopsChange)="applyStops($event)"
+                                [maxStops]="4"
+                                [disableMidpoint]="isAggregationSummary"
+                                [interpolation]="interpolation"
+                                [lockEndModes]="true"
+                                [matTooltip]="colorMappingTooltip"
+                                [matTooltipDisabled]="mappingSegments.length <= 2">
+                            </o3-color-picker-gradient-stop>
+                        </div>
+
+                        <div class="input-wrapper" *ngIf="isAggregationTable">
+                            <div class="input-label">Custom Bar Range</div>
+                            <o3-range-override [(model)]="group.model.range"
+                                               [matTooltip]="rangeTooltip" [matTooltipDisabled]="showRangeOption"></o3-range-override>
+                        </div>
+
+                        <div *ngIf="isAggregationTrend" class="o3-control-points-group-configurer--rounding-input">
+                            <div class="input-wrapper">
+                                <div class="input-label">Rounding</div>
+                                <mat-slide-toggle name="enable-rounding" [(ngModel)]="enableRounding"></mat-slide-toggle>
+                            </div>
+                            <mat-form-field>
+                                <input matInput type="number" name="value-precision" placeholder="Number of Decimals" [(ngModel)]="valuePrecision" min="0" max="9" [disabled]="!enableRounding">
+                            </mat-form-field>
+                        </div>
+                    </o3-tab>
+                </o3-tab-group>
+            </o3-tab>
+        </o3-tab-group>
+    </ng-container>
+</o3-overlay>

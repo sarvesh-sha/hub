@@ -1,0 +1,263 @@
+@use '@angular/material' as mat;
+@import "../../../../framework/ui/app.variables.scss";
+
+$muted-color: #aeaeae;
+$unassigned-color: rgba(0, 0, 0, 0.07);
+$assigned-color: #2196f3;
+
+.panel-drag-placeholder {
+    height: 215px;
+}
+
+#add-new .cdk-drag-placeholder {
+    display: none;
+}
+
+.flex-justified {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.add-new-panel {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    padding-top: 15px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .add-zone {
+        display: flex;
+        padding: 20px;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        border: 2px dashed $muted-color;
+        color: $muted-color;
+        background-color: #ffffff;
+        transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+        &.cdk-drop-list-dragging {
+            border-color: $assigned-color;
+            color: $assigned-color;
+            transform: scale(1.05, 1.05);
+        }
+
+        .mat-icon {
+            margin-right: 8px;
+        }
+
+        .cdk-drag-placeholder {
+            display: none;
+        }
+    }
+}
+
+.panel {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    mat-card-title {
+        padding: 4px 12px;
+        justify-content: flex-end;
+    }
+
+    &.dragging-source {
+        .graph-sources, .independent-sources {
+            min-height: 50px;
+        }
+    }
+
+    .panel-content {
+        padding: 0px;
+        align-items: inherit;
+
+        .left-axis, .right-axis {
+            width: 195px;
+            padding: 8px 12px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            & > .mat-form-field,
+            & > .mat-radio-group {
+                width: 100%;
+            }
+
+            .groups {
+                display: flex;
+                width: 100%;
+                padding-bottom: 8px;
+                margin-bottom: 5px;
+
+                &:last-child {
+                    border-bottom: none;
+                    padding-bottom: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .selector {
+                    padding-right: 12px;
+                    padding-top: 24px;
+
+                    .mat-radio-button {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+
+            .group-config {
+                display: flex;
+                flex-direction: column;
+                max-width: calc(100% - 32px);
+
+                .units {
+                    &, mat-form-field {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .single-group {
+                .selector {
+                    display: none;
+                }
+
+                .group-config {
+                    max-width: 100%;
+                }
+            }
+        }
+
+        .left-axis {
+            border-right: 1px solid #EAEAEA;
+        }
+
+        .right-axis {
+            border-left: 1px solid #EAEAEA;
+        }
+
+        .sources {
+            padding: 8px 12px;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: flex-start;
+            max-width: calc(100% - 390px); // left and right are 195px each
+
+            .source {
+                width: 100%;
+                // commented out to avoid source drag preview sliding to top left of screen after dragging onto 'new panel' zone
+                // this also removes transition on source drag preview sliding into its cdkDropList spot
+                // transition: opacity 0.2s ease, transform 0.2s ease;
+
+                .left, .right {
+                    padding: 7px 0px;
+
+                    button {
+                        background: $unassigned-color;
+                    }
+
+                    &.selected button {
+                        background: $assigned-color;
+                        color: #FFFFFF;
+                    }
+
+                    o3-range-override {
+                        width: 100%;
+                    }
+                }
+
+                .left {
+                    margin-right: 16px;
+                }
+
+                .right {
+                    margin-left: 8px;
+                }
+
+                .center {
+                    flex-grow: 1;
+                    max-width: calc(100% - 104px);
+
+                    .info {
+                        width: calc(100% - 40px);
+                    }
+
+                    .actions {
+                        white-space: nowrap;
+
+                        & > .mat-icon {
+                            width: 40px;
+                            height: 40px;
+                            line-height: 40px;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                &.dragging {
+                    cursor: all-scroll;
+                }
+            }
+
+            .source-drag-placeholder {
+                width: 100%;
+                height: 56px;
+
+                > div {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.panel-container {
+    height: 100%;
+    overflow-y: auto;
+
+    .panel {
+        margin: 0px 9px 12px;
+        @include mat.elevation(2);
+
+        &:first-child {
+            margin-top: 9px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        > .cdk-drag-placeholder {
+            background-color: orange;
+        }
+    }
+}
+
+.cdk-drag-disabled > mat-card-title {
+    display: none;
+}
+
+.cdk-drag-handle {
+    cursor: all-scroll;
+}
+
+.cdk-drag-placeholder {
+    background: #ccc;
+    border: dotted 2px #999;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    cursor: all-scroll;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    background-color: white;
+    opacity: 0.7;
+}

@@ -1,0 +1,152 @@
+ID	EquipClassName	Description
+1	AHU	Air Handler
+2	AHU-DD	Air Handler - Dual Duct
+3	CH-WC	Chiller - Water Cooled
+4	CH-AC	Chiller - Air Cooled
+5	RTU-DX	Rooftop Unit - Dirct Exp Cooling
+6	FPB	Fan Powered Box
+7	BLR-Cond	Boiler - Condensing
+8	BLR-Atm	Boiler - Atmospheric
+9	HWP	Hot Water Pump
+10	CHWP	Chilled Water Pump
+11	CWP	Condenser Water Pump
+12	CT-WC	Cooling Tower
+13	CT-AC	Air Cooled Condenser
+14	AHU-VAV	Air Handler - Variable Volume
+15	AHU-CAV	Air Handler - Constant Volume
+16	HW Plant	Hot Water Plant
+17	CHW Plant	Chilled Water Plant
+18	SnwMlt	Snow Melt System
+19	Misc	Miscellaneous
+21	VAV	Variable Air Volume Terminal Unit
+22	HWP-VFD	Hot Water Pump - Variable Flow
+23	CHWP-VFD	Chilled Water Pump - Variable Flow
+24	CWP-VFD	Condenser Water Pump - Variable Flow
+27	FPHX	Flat Plate Heat Exchanger
+28	TES	Thermal Energy Storage
+29	AHU-MZ-CAV	Air Handler - Multi-zone - Constant Volume
+30	GP	Glycol Pump
+32	Meter-Elec	Electric Main Meter
+33	Gen Equip	General Equipment Points
+34	EES	Electrical Energy Storage
+36	GP-VFD	Glycol Pump - Variable Flow
+37	DHWP	Domestic Hot Water Pump
+38	DHWP-VFD	Domestic Hot Water Pump - Variable Flow
+39	Meter-SubEle	Electric Sub Meter
+40	Meter-ThEn	Thermal Energy Meter
+41	TU	Terminal Unit
+42	EvPmp	Evaporative Cooling Pump
+43	SF-VFD	Supply Fan - Variable Volume
+44	RF-VFD	Return Fan - Variable Volume
+45	EF-VFD	Exhaust Fan - Variable Volume
+46	CT Fan-VFD	Cooling Tower Fan - Variable Volume
+47	SF	Supply Fan - Constant Volume
+48	RF	Return Fan - Constant Volume
+49	EF	Exhaust Fan - Constant Volume
+50	CT Fan	Cooling Tower Fan - Constant Volume
+51	FCU	Fan Coil Unit
+52	HVU	Heating Ventilation Unit
+53	GEN	Generator
+54	CUH	Cabinet Unit Heater
+55	BBR	Baseboard Radiator
+56	PWP	Process Water Pump
+57	PWP-VFD	Process Water Pump - Variable Flow
+58	PW FPHX	Process Water Heat Exhchanger
+59	Prm Wtr Loop	Primary Water Loop
+60	Zone	Zone
+61	DF-VFD	Destratification Fan - Variable Volume
+62	DF	Destratification Fan - Constant Volume
+63	FltrPmp	Filter Pump - Constant Volume
+64	FltrPmp-VFD	Filter Pump - Variable Volume
+65	Meter-Wtr	Water Main Meter
+66	Meter-SubWtr	Water Sub Meter
+67	PV Inv	Solar PV Inverter
+68	UH	Unit Heater
+69	MAU	Makeup Air Unit
+70	CVR	Material Conveyor
+71	HWP Circ	Hot Water Circulation Pump
+72	HWP PreHt	Hot Water Preheat Coil Pump
+73	HWP ReHt	Hot Water Reheat Coil Pump
+75	HW Rad Loop	Hot Water Radiant Loop
+76	Prm CHW Loop	Primary Chilled Water Loop
+77	Prm CW Loop	Primary Condenser Water Loop
+78	Sec CHW Loop	Secondary Chilled Water Loop
+79	Sec CW Loop	Secondary Condenser Water Loop
+80	CHW CB Loop	Chilled Water Chilled Beam Loop
+81	Zone Grp	Zone Group
+82	CB	Chilled Beam
+83	CB Grp	Chilled Beam Group
+86	CHW Rad Loop	Chilled Water Radiant Loop
+87	Prm HW Loop	Primary Hot Water Loop
+88	Sec HW Loop	Secondary Hot Water Loop
+89	CRAC	Computer Room Air Conditioner
+90	SEF	Smoke Exhaust Fan
+91	SEF-VFD	Smoke Exhaust Fan - Variable Volume
+92	Meter-PV Ele	Electric Solar PV Meter
+93	Slr Thrm HWS	Solar Themeral Hot Water System
+94	HW CB Loop	Hot Water Chilled Beam Loop
+95	HWP HtRcv	Hot Water Heat Recovery Pump
+96	HWP RRC	Hot Water Runaround Pump
+97	DHW-Atm	Domestic Hot Water Heater - Atmospheric
+98	DHW-Cond	Domestic Hot Water Heater - Condensing
+99	DHW-Elec	Domestic Hot Water Heater - Electric
+100	CH-Module/Ci	Chiller - Module/Circuit
+101	VAV-DD	Variable Air Volume Dual-Duct Terminal Unit
+102	Ltg Panel	Lighting Control Panel
+103	EF Grp	Exhaust Fan Group
+104	UV	Unit Ventilator
+105	ERV	Energy Recovery Ventilation Unit
+106	Ht Pump Grp	Heat Pump Group
+107	Ht Pump	Heat Pump
+108	Wtr Rad Loop	Water Radiant Loop
+109	CH-Absp	Chiller - Absorption
+110	Meter-DHW	Domestic Hot Water Meter
+111	Meter-HW	Hot Water Meter
+112	DHWS	Domestic Hot Water System
+113	CHWP Circ	Chilled Water Circulation Pump
+114	LTHWP	Low Temp Hot Water Pump
+115	HTHWP	High Temp Hot Water Pump
+116	LTHWP-VFD	Low Temp Hot Water Pump - Variable Flow
+117	HTHWP-VFD	High Temp Hot Water Pump - Variable Flow
+118	DEC	Direct Evaporative Cooler
+119	RelF	Relief Fan
+120	DHC	Duct Heating Coil
+121	Meter-Gas	Gas Meter
+122	Steam Plant	Steam Plant
+123	Hx	Heat Exchanger
+124	Motor	Motor
+125	CHW/HW Plant	Chilled Water or Hot Water Changeover Plant
+126	Pmp	Pump
+127	Furnace	Furnace
+128	AHU-MZ-VAV	Air Handler - Multi-zone - Variable Volume
+130	CT-Cluster	Cooling Tower Cluster
+131	Hood	Lab Exhaust Hood
+132	Compressor	Compressor
+133	KEF	Kitchen Exhaust Fan
+134	MZTU	Multi-Zone Terminal Unit
+135	DX	Direct Expansion Sys
+136	Wrlss Tstat	Wireless Thermostat
+137	GSHP	Ground Source Heat Pump
+138	BLR Grp	Boiler Group
+139	DF Grp	Destratification Fan Group
+140	Ht Pmp Loop	Heat Pump Water Loop
+141	CW Plant	Condenser Water Plant
+142	CT-CC	Cooling Tower - Closed Circuit
+143	LTHW Loop	Low Temp Hot Water Loop
+144	TxF	Transfer Fan
+147	KEF-VFD	Kitchen Exhaust Fan - Variable Volume
+148	TEF	Toilet Exhaust Fan
+149	TEF-VFD	Toilet Exhaust Fan - Variable Volumne
+150	Meter-Ltg	Electric Sub Meter - Lighting
+151	Meter-Plg	Electric Sub Meter - Plug
+152	Meter-Mch	Electric Sub Meter - Mechanical
+153	Meter-Ktchn	Electric Sub Meter - Kitchen
+154	Meter-Chrg	Electric Sub Meter - Charging
+155	Meter-PhaseA	Electric Meter Phase A
+156	Meter-PhaseB	Electric Meter Phase B
+157	Meter-PhaseC	Electric Meter Phase C
+158	VAV-RH	Variable Air Variable Terminal Unit w/Reheat
+159	NvF	Natural Vent Fans - Constant Volume
+160	NvF-VFD	Natural Vent Fans - Variable Volume
+161	Meter-CHW	Chilled Water Meter
+162	BLR-Stm	Boiler - Steam

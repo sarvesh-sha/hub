@@ -1,0 +1,21 @@
+<div class="header">
+    <div class="workspace-actions">
+        <ng-content></ng-content>
+    </div>
+    <div class="tabs" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="tabDragged($event)">
+        <div *ngFor="let tab of data.tabs" class="tab" [class.active]="isTabActive(tab)" (click)="switchTab(tab)" cdkDrag cdkDragLockAxis="x" cdkDragBoundary=".tabs">
+            <div class="label-container" [matTooltip]="tab.name">
+                <input [disabled]="!isTabActive(tab)" class="tab-label" placeholder="Tab Name" [(ngModel)]="tab.name" (ngModelChange)="updated.emit()"/>
+            </div>
+            <span *ngIf="canCloseTab(tab)" (click)="closeTab($event, tab)">
+                <mat-icon class="tab-close">close</mat-icon>
+            </span>
+        </div>
+    </div>
+    <div class="tab-add" (click)="newTab()">
+        <mat-icon>add</mat-icon>
+    </div>
+</div>
+
+<div #container class="blockly-container">
+</div>

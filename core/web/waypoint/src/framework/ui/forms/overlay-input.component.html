@@ -1,0 +1,11 @@
+<div class="overlay-input--container">
+    <mat-form-field [hintLabel]="hintLabel" class="grow-to-fit">
+        <input matInput readonly cdkOverlayOrigin #overlayOrigin="cdkOverlayOrigin" [placeholder]="label" [value]="valueText">
+        <button *ngIf="hasIcon" matSuffix mat-icon-button type="button" [disabled]="readonly" (click)="toggleOverlay()">
+            <i class="overlay-input--icon" [ngClass]="iconClass"></i>
+        </button>
+        <button *ngIf="!hasIcon && !isDialog" matSuffix mat-icon-button type="button" [disabled]="readonly" (click)="toggleOverlay()">
+            <mat-icon class="overlay-input--dropdown-arrow">arrow_drop_down</mat-icon>
+        </button>
+    </mat-form-field>
+</div>

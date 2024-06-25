@@ -1,0 +1,28 @@
+<mat-form-field floatLabel="always">
+    <o3-select [placeholder]="placeholder || 'Color Palettes'" name="color-palettes" [options]="paletteOptions"
+               [(ngModel)]="palette" (ngModelChange)="paletteChange.emit($event)"
+               [multiSelect]="false" [singleClick]="true" [preventDeselection]="true" [disabled]="disabled" [autoSizeDropdown]="false">
+        <ng-template #buttonTemplate let-palette="text">
+            <span>{{palette}}</span>
+            <div class="o3-color-picker-flat--mini-palette o3-color-picker-flat--button">
+                <div>
+                    <o3-color-palette [paletteId]="palette" [interactable]="false" [class.o3-color-picker-flat--single-row]="getPaletteRows(palette) == 1"></o3-color-palette>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #nodePostTemplate let-node="node" let-index="index">
+            <div class="o3-color-picker-flat--mini-palette">
+                <div>
+                    <o3-color-palette [paletteId]="node.id" [interactable]="false" [class.o3-color-picker-flat--single-row]="getPaletteRows(node.id) == 1"></o3-color-palette>
+                </div>
+            </div>
+        </ng-template>
+    </o3-select>
+</mat-form-field>
+
+<o3-color-palette *ngIf="!onlyPalette || !hidePalette" #test_colorPalette [class.o3-color-picker-flat--disabled]="disabled"
+                  [paletteId]="palette" [selectedColor]="color"
+                  [interactable]="!disabled && !onlyPalette" (colorSelection)="updateColor($event)"></o3-color-palette>
+
+<o3-color-builder *ngIf="!onlyPalette && color" [disabled]="disabled" [color]="color" (colorChange)="updateColor($event)"></o3-color-builder>

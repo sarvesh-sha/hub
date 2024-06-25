@@ -1,0 +1,11 @@
+########################
+# Builder notification #
+########################
+
+UPDATE!
+
+Service '${param.SERVICE}' for Customer '${param.CUSTOMER}' is running on normal heap at ${param.TIMESTAMP}.
+
+Details: https://builder.dev.optio3.io/#/customers/item/${param.CUSTOMER_SYSID}/service/${param.SERVICE_SYSID}
+
+Optio3

@@ -1,0 +1,10 @@
+<div class="o3-skeleton-screen--content" [class.o3-skeleton-screen--loading]="loading">
+    <ng-content></ng-content>
+</div>
+
+<div #rowsContainer class="o3-skeleton-screen--container" [ngClass]="animationClass"
+     [class.o3-skeleton-screen--done-loading]="!loading" [class.o3-skeleton-screen--multiple-rows]="multipleRows">
+    <div *ngFor="let row of rowFrames; let i = index" class="o3-skeleton-screen--row" [class.o3-skeleton-screen--out-of-view]="!rowInView(i)">
+        <div class="o3-skeleton-screen--indicator" [style.height.%]="maxHeightPercent"></div>
+    </div>
+</div>

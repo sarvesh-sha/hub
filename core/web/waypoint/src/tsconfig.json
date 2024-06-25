@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "downlevelIteration": true,
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "mapRoot": "./",
+        "module": "es2020",
+        "moduleResolution": "node",
+        "outDir": "../dist/out-tsc",
+        "sourceMap": true,
+        "target": "es2015",
+        "typeRoots": [],
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "strictFunctionTypes": true,
+        "resolveJsonModule": true,
+        "removeComments": true,
+        "allowUmdGlobalAccess": true
+    },
+    "angularCompilerOptions": {
+        "preserveWhitespaces": false,
+        "fullTemplateTypeCheck": true,
+        "strictTemplates": true
+    },
+    "include": [
+       "./**/*.ts"
+    ],
+    "exclude": [
+        "./environments/environment.*.ts",
+        "./test.ts"
+    ]
+}

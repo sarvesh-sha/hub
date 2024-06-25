@@ -1,0 +1,241 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="config" class="o3-fieldset-with-border">
+        <fieldset>
+            <legend>Interface Configuration</legend>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Network Interface" [(ngModel)]="config.networkInterface" name="network_interface">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Subnet Mask" [(ngModel)]="config.cidr" name="network_address" cidrRequired required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Static Address" ipAddress [(ngModel)]="config.staticAddress" name="static_address">
+                    </mat-form-field>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Transport Configuration</legend>
+
+            <div class="row" style="align-items: flex-end">
+                <div class="col-sm-3">
+                    <mat-checkbox [(ngModel)]="config.useEthernet" name="enable_ethernet">Enable Ethernet</mat-checkbox>
+                </div>
+                <div class="col-sm-3">
+                    <mat-checkbox [(ngModel)]="config.useUDP" name="enable_udp" (change)="configureUdpPortDefaults()">Enable UDP</mat-checkbox>
+                </div>
+                <div class="col-sm-6" *ngIf="config.useUDP">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Network Port" [(ngModel)]="config.udpPort" name="bacnet_port" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Limit Scan - Lowest Device Instance Number" [(ngModel)]="limitScanLow" name="limitScan_low">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Limit Scan - Highest Device Instance Number" [(ngModel)]="limitScanHigh" name="limitScan_high">
+                    </mat-form-field>
+                </div>
+            </div>
+        </fieldset>
+
+        <div *ngIf="config.useUDP && (configForDiscoverDevices || configForDiscoverRouters || configForReadBBMDs)">
+            <fieldset>
+                <legend *ngIf="!configForReadBBMDs">Optional BBMDs To Use</legend>
+                <legend *ngIf="configForReadBBMDs">BBMDs To Read</legend>
+                <div *ngIf="config.bbmds">
+                    <div class="row" *ngFor="let bbmd of config.bbmds; let i = index;">
+                        <div class="col-sm-1">
+                            <button mat-icon-button type="button" (click)="removeBBMD(bbmd)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="BBMD Address" [(ngModel)]="bbmd.networkAddress" name="bbmd_networkAddress_{{i}}" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-2">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="Port" [(ngModel)]="bbmd.networkPort" name="bbmd_networkPort_{{i}}">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-1">
+                        <button mat-icon-button type="button" (click)="addBBMD()">
+                            <mat-icon>add_circle_outline</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div *ngIf="configForDiscoverBBMDs">
+            <h3 class="border-top" style="margin-top: 8px; margin-bottom: 8px"></h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Subnet Mask" [(ngModel)]="configForDiscoverBBMDs.targetSubnet" name="bbmd_subnet" cidrRequired required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="configForDiscoverDevices">
+            <div class="row" style="align-items: flex-end">
+                <div class="col-sm-3">
+                    <mat-checkbox [(ngModel)]="configForDiscoverDevices.sweepMSTP" name="sweep_mstp">Sweep MS/TP</mat-checkbox>
+                </div>
+                <div class="col-sm-5">
+                    <mat-checkbox [(ngModel)]="configForDiscoverDevices.includeNetworksFromRouters" name="include_networks_from_routers">Discover Routers for MS/TP networks</mat-checkbox>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Broadcast Retries" [(ngModel)]="configForDiscoverDevices.broadcastRetries" name="broadcast_retries" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="configForScanSubnetForDevices">
+            <h3 class="border-top" style="margin-top: 8px; margin-bottom: 8px"></h3>
+            <div class="row">
+                <div class="col-sm-10">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Subnet Mask" [(ngModel)]="configForScanSubnetForDevices.targetSubnet" name="scan_subnet" cidrRequired required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Max Retries" [(ngModel)]="configForScanSubnetForDevices.maxRetries" name="scan_max_retries" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="configForAutoDiscovery">
+            <h3 class="border-top" style="margin-top: 8px; margin-bottom: 8px"></h3>
+            <div class="row">
+                <div class="col-sm-10">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Subnet Mask" [(ngModel)]="configForAutoDiscovery.targetSubnet" name="auto_subnet" cidrRequired required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Max Retries" [(ngModel)]="configForAutoDiscovery.maxRetries" name="auto_max_retries" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="configForScanMstpTrunkForDevices">
+            <fieldset>
+                <legend>MS/TP Trunk Details</legend>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Max Retries" [(ngModel)]="configForScanMstpTrunkForDevices.maxRetries" name="max_retries" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div *ngIf="configForScanMstpTrunkForDevices">
+                    <div class="row" *ngFor="let network of networksForMstpScan; let i = index;">
+                        <div class="col-sm-1">
+                            <button mat-icon-button type="button" (click)="removeMstpScanNetwork(network)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+
+                        <div class="col-sm-6" *ngIf="config.useUDP">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="IP Address" ipAddress [(ngModel)]="network.host" name="ip_address_{{i}}" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-2" *ngIf="config.useUDP">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="IP Port" [(ngModel)]="network.port" name="ip_port_{{i}}" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6" *ngIf="!config.useUDP && config.useEthernet">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="MAC Address" macAddress [(ngModel)]="network.macAddress" name="mac_address_{{i}}" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-2">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="Network Number" [(ngModel)]="network.networkNumber" name="network_number_{{i}}" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-1">
+                        <button mat-icon-button type="button" (click)="addMstpScanNetwork()">
+                            <mat-icon>add_circle_outline</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div *ngIf="configForReadDevices">
+            <fieldset>
+                <legend>Select Devices To Read</legend>
+                <o3-gateway-probers-device-list [allowSelection]="true" [devices]="data.proberComponent.discoveredDevices" [enableFiltering]="true"
+                                                (devicesSelected)="selectBACnetDevices($event)"></o3-gateway-probers-device-list>
+            </fieldset>
+        </div>
+
+        <div *ngIf="configForReadObjectNames">
+            <fieldset>
+                <legend>Select Devices To Read Objects' names</legend>
+                <o3-gateway-probers-device-list [allowSelection]="true" [devices]="data.proberComponent.discoveredDevices" [enableFiltering]="true"
+                                                (devicesSelected)="selectBACnetDevices($event)"></o3-gateway-probers-device-list>
+            </fieldset>
+        </div>
+
+        <div *ngIf="configForReadBBMDs">
+            <div class="row" style="align-items: flex-end">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Max Retries" [(ngModel)]="configForReadBBMDs.maxRetries" name="max_retries" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="configForReadObjects">
+            <fieldset>
+                <legend>Select Objects To Read</legend>
+                <o3-gateway-probers-object-list [allowSelection]="true" [objects]="data.proberComponent.discoveredObjects" [enableFiltering]="true"
+                                                (objectsSelected)="selectBACnetObjects($event)"></o3-gateway-probers-object-list>
+            </fieldset>
+        </div>
+
+    </div>
+</ng-template>

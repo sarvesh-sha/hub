@@ -1,0 +1,20 @@
+$icon-color: rgba(0, 0, 0, 0.54);
+
+.overlay-input--container {
+
+    .overlay-input--dropdown-arrow {
+        font-size: 24px;
+        color: $icon-color;
+    }
+
+    button {
+        &:disabled {
+            background-color: transparent !important;
+        }
+
+        .overlay-input--icon {
+            color: $icon-color;
+            font-size: 18px;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<div class="o3-select--container">
+    <button class="o3-select--button" type="button" cdkOverlayOrigin #overlayOrigin="cdkOverlayOrigin"
+            [disabled]="disabled" [class.readonly]="readonly" (click)="toggleDropdown()">
+        <ng-container *ngIf="buttonTemplate">
+            <ng-container *ngTemplateOutlet="buttonTemplate; context: { selected: value, text: valueText }"></ng-container>
+        </ng-container>
+        <span *ngIf="!buttonTemplate">{{valueText}}&nbsp;</span>
+    </button>
+    <button *ngIf="enableNavigation && hasValue" mat-icon-button type="button" class="o3-select--navigate clickable-input" (click)="navigate()">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>
+<o3-overlay #dropdown [overlayOrigin]="overlayOrigin" [config]="overlayConfig" (open)="onDropdownOpen()" (close)="onDropdownClose()">
+    <ng-container *cdkPortal>
+        <div class="o3-select--tree-container">
+            <mat-slide-toggle *ngIf="toggleableSelectPlurality" [(ngModel)]="selectionPluralityOn" (ngModelChange)="updateEditState()">Allow multiple</mat-slide-toggle>
+            <o3-filterable-tree style="margin-top:-4px" [nodes]="nodes" [lazyLoader]="lazyLoader"
+                                [(selectedNodes)]="editValues" (selectedNodesChange)="selectedNodesChanged()" (submit)="submit()"
+                                [useCheckboxes]="multiSelectBehavior" [autoExpandAll]="autoExpandAll"
+                                [requireFilterText]="searchMode" [filterFn]="filterFn" [filterSubmitFn]="filterSubmitFn"
+                                [selectChildren]="true" [preventDeselection]="preventDeselection"
+                                [templateOverride]="nodeTemplate" [templatePostOverride]="nodePostTemplate">
+            </o3-filterable-tree>
+        </div>
+        <hr style="margin-top:0 !important" [hidden]="!showOkButton"/>
+        <div class="button-container" [hidden]="!showOkButton">
+            <button optio3TestId="applyButton" class="btn btn-primary btn-sm btn-block" type="button" [disabled]="!areAcceptableChanges" (click)="submit()">Ok</button>
+        </div>
+    </ng-container>
+</o3-overlay>

@@ -1,0 +1,253 @@
+<section class="bs page-content">
+
+    <div class="mat-tabbed-page has-actions">
+
+        <o3-tab-group cardClass="no-content-padding">
+
+            <o3-tab-action label="Flush Samples" (click)="flushEntities()"></o3-tab-action>
+            <o3-tab-action label="Flush Stats" (click)="flushHeartbeat()"></o3-tab-action>
+            <o3-tab-action label="Prober..." *ngIf="isMaint" (click)="showProber()"></o3-tab-action>
+
+            <o3-tab label="Gateway Details">
+
+                <o3-tab-action label="Update" priority="primary" type="submit" [form]="gatewayForm" [disabled]="!gatewayForm.valid || gatewayForm.pristine"></o3-tab-action>
+                <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="gatewayForm.pristine"></o3-tab-action>
+                <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!gatewayForm.pristine"></o3-tab-action>
+                <o3-tab-action label="Show Logs" priority="secondary" (click)="showLog()"></o3-tab-action>
+                <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()" [disabled]="gatewayNoDeleteReason != null"
+                               [tooltip]="gatewayNoDeleteReason"></o3-tab-action>
+
+                <form (ngSubmit)="save()" #gatewayForm="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Instance ID" [value]="gatewayExtended.typedModel.instanceId" name="instance_id" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-5">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Instance Name" [(ngModel)]="gatewayExtended.typedModel.name" (ngModelChange)="gatewayExtended.refreshDisplayName()" name="instance_name">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-1" *ngIf="isMaint" (click)="goToBuilder()">
+                            <button mat-icon-button type="button">
+                                <mat-icon>chevron_right</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <o3-select [o3LocationSelector]="true" name="location" enableNavigation [multiSelect]="false"
+                                           [ready]="gatewayLocationReady" [(ngModel)]="gatewayLocationId" (ngModelChange)="locationChanged($event)"></o3-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Operational Status</mat-label>
+                                <mat-select [(ngModel)]="gatewayExtended.model.state" name="operationalStatus">
+                                    <mat-option *ngFor="let option of operationalStates" [value]="option.id">{{ option.label }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Last Heartbeat" [value]="gatewayExtended.typedModel.details?.lastRefresh | o3LongDate" name="lastRefresh" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Last Updated" [value]="gatewayExtended.model.updatedOn | o3LongDate" name="updated_on" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Created" [value]="gatewayExtended.model.createdOn | o3LongDate" name="created_on" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row border-bottom">
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="# Of Unbatched Entries" [value]="queueStatus?.numberOfUnbatchedEntries | number:'.0'" name="numberOfUnbatchedEntries" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="# Of Batched Entries" [value]="queueStatus?.numberOfBatchedEntries | number:'.0'" name="numberOfBatchedEntries" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="# Of Batches" [value]="queueStatus?.numberOfBatches | number:'.0'" name="numberOfBatches" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Oldest Entry" [value]="queueStatus?.oldestEntry | o3LongDate" name="oldestEntry" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row border-bottom">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="Minutes With No Updates Before Warning" [(ngModel)]="gatewayExtended.typedModel.warningThreshold" name="warning_threshold">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="Minutes With No Updates Before Alert" [(ngModel)]="gatewayExtended.typedModel.alertThreshold" name="alert_threshold">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="boundNetworkIds">
+                        <div class="col-sm-12">
+                            <label class="mb-3 area-color bold">Bound Networks</label>
+                            <o3-networks-list viewStatePrefix="networks" [networks]="boundNetworkIds" [withFiltering]="true"></o3-networks-list>
+                        </div>
+                    </div>
+                </form>
+            </o3-tab>
+
+            <o3-tab label="Environment">
+
+                <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="gatewayForm.pristine"></o3-tab-action>
+                <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!gatewayForm.pristine"></o3-tab-action>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Processors" [value]="gatewayExtended.typedModel.details?.availableProcessors | number:'.0'" name="agentProcessors" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Total Memory" [value]="gatewayExtended.typedModel.details?.totalMemory | number:'.0'" name="agentTotalMemory" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Free Memory" [value]="gatewayExtended.typedModel.details?.freeMemory | number:'.0'" name="agentFreeMemory" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Max Memory" [value]="gatewayExtended.typedModel.details?.maxMemory | number:'.0'" name="agentMaxMemory" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Hardware Version" [value]="gatewayExtended.typedModel.details?.hardwareVersion?.toString(16)" name="hardwareVersion" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Firmware Version" [value]="gatewayExtended.typedModel.details?.firmwareVersion?.toString(16)" name="firmwareVersion" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="(gatewayExtended.typedModel.details?.networkInterfaces | o3KeysOf).length > 0">
+                    <table class="table table-striped table-bordered selectable">
+                        <thead>
+                        <tr>
+                            <th>Network Interface</th>
+                            <th>Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let itf of (gatewayExtended.typedModel.details?.networkInterfaces | o3KeysOf)">
+                            <td>{{itf}}</td>
+                            <td>{{gatewayExtended.typedModel.details.networkInterfaces[itf]}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </o3-tab>
+
+            <o3-tab label="Trends" (selected)="initializeTrendChart()">
+                <div class="row">
+                    <div [ngClass]="range.range ? 'col-sm-4' : 'col-sm-10'">
+                        <o3-range-selector [(selection)]="range" [enabledOptions]="enabledOptions" [allowCustom]="true" [allowTimezone]="true" (selectionChange)="computeSources()"></o3-range-selector>
+                    </div>
+                    <div class="col-sm-2" *ngIf="rangeSum">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Total" [value]="rangeSum" name="range_sum" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <o3-select placeholder="Source" [multiSelect]="false" [singleClick]="true" [options]="sources" [(ngModel)]="mainSource"
+                                       defaultValueDescription="Select Source" (ngModelChange)="updateMainSource()">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <o3-select placeholder="Point" [multiSelect]="false" [singleClick]="true" [options]="mainSourcePoints" [(ngModel)]="mainSourcePoint"
+                                       defaultValueDescription="Select Point" (ngModelChange)="updateMainPoint()">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <o3-select placeholder="Comparison" [multiSelect]="false" [singleClick]="true" [options]="sources" [(ngModel)]="secondarySource"
+                                       defaultValueDescription="Select Source" (ngModelChange)="updateSecondarySource()">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <o3-select placeholder="Point" [multiSelect]="false" [singleClick]="true" [options]="secondarySourcePoints" [(ngModel)]="secondarySourcePoint"
+                                       defaultValueDescription="Select Point" (ngModelChange)="updateSecondaryPoint()">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row" o3-expand (expansionCompleted)="pvChart.refreshSize()" [min]="300">
+                    <o3-time-series-chart #pvChart [range]="range" [configExt]="config" style="width: 100%; height: 100%" [selectionHandler]="this"></o3-time-series-chart>
+                </div>
+            </o3-tab>
+
+            <o3-tab label="Loggers" [disabled]="!isMaint">
+
+                <o3-tab-action label="Fetch" priority="primary" (click)="resetLoggers()" [disabled]="loggersUpdating" *ngIf="!loggers"></o3-tab-action>
+                <o3-tab-action label="Submit" priority="primary" (click)="saveLoggers()" [disabled]="loggersUpdating || (loggersComp && !loggersComp.isDirty)" *ngIf="loggers"></o3-tab-action>
+                <o3-tab-action label="Cancel" priority="secondary" (click)="resetLoggers()" [disabled]="loggersUpdating || (loggersComp && !loggersComp.isDirty)" *ngIf="loggers"></o3-tab-action>
+
+                <div class="o3-gateways-detail-page--logger-container">
+                    <o3-loggers *ngIf="loggers" #loggersComp [loggers]="loggers"></o3-loggers>
+                    <span *ngIf="!loggers">No information available</span>
+                </div>
+            </o3-tab>
+
+            <o3-tab label="Threads" [disabled]="!isMaint">
+
+                <o3-tab-action label="Refresh" priority="primary" (click)="fetchThreads()" [disabled]="threadsFetching"></o3-tab-action>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <textarea matInput [value]="threads" name="threads" rows="30" wrap="off" readonly
+                                      style="font-size: 10pt; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </o3-tab>
+
+        </o3-tab-group>
+
+    </div>
+
+</section>

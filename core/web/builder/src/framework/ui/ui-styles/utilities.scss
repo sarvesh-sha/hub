@@ -1,0 +1,198 @@
+@import "../app.variables.scss";
+@import "breakpoints";
+
+@mixin utilities {
+    // Utilites
+    //-----------------------------
+    .clickable {
+        cursor: pointer;
+    }
+
+    .not-clickable {
+        cursor: default;
+    }
+
+    .not-selectable {
+        cursor: default;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+    }
+
+    .no-padding {
+        padding: 0px !important;
+    }
+
+    .no-margin {
+        margin: 0px !important;
+    }
+
+    .pull-right-sm-up {
+        @media only screen and (min-width: $sm) {
+            float: right;
+        }
+    }
+
+    .pull-left-sm-up {
+        @media only screen and (min-width: $sm) {
+            float: left;
+        }
+    }
+
+    .hover-item-container:not(:hover) {
+        @media only screen and (min-width: $sm) {
+            .hover-item {
+                display: none;
+            }
+
+            .hover-item-vis {
+                visibility: hidden;
+            }
+        }
+    }
+
+    .row.o3-navigable {
+        > .col-11 {
+            padding-right: 0;
+        }
+
+        > .col-1 {
+            padding: 9px 0 0 0;
+            border-radius: 0;
+            right: 0;
+            top: 0 !important;
+            height: initial;
+        }
+    }
+
+    .text-muted {
+        color: rgba(0, 0, 0, 0.38) !important;
+    }
+
+    .o3-context-menu--trigger-wrapper {
+        position: absolute;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+            $infix: breakpoint-infix($breakpoint);
+
+            @each $prop, $prop-abbr in (margin: m, padding: p) {
+                @each $size, $value in $spacers {
+                    .#{$prop-abbr}#{$infix}-#{$size} {
+                        #{$prop}: $value !important;
+                    }
+
+                    .#{$prop-abbr}t#{$infix}-#{$size} {
+                        #{$prop}-top: $value !important;
+                    }
+
+                    .#{$prop-abbr}r#{$infix}-#{$size} {
+                        #{$prop}-right: $value !important;
+                    }
+
+                    .#{$prop-abbr}b#{$infix}-#{$size} {
+                        #{$prop}-bottom: $value !important;
+                    }
+
+                    .#{$prop-abbr}l#{$infix}-#{$size} {
+                        #{$prop}-left: $value !important;
+                    }
+
+                    .#{$prop-abbr}x#{$infix}-#{$size} {
+                        #{$prop}-right: $value !important;
+                        #{$prop}-left: $value !important;
+                    }
+
+                    .#{$prop-abbr}y#{$infix}-#{$size} {
+                        #{$prop}-top: $value !important;
+                        #{$prop}-bottom: $value !important;
+                    }
+                }
+            }
+
+            .m#{$infix}-auto {
+                margin: auto !important;
+            }
+
+            .mt#{$infix}-auto {
+                margin-top: auto !important;
+            }
+
+            .mr#{$infix}-auto {
+                margin-right: auto !important;
+            }
+
+            .mb#{$infix}-auto {
+                margin-bottom: auto !important;
+            }
+
+            .ml#{$infix}-auto {
+                margin-left: auto !important;
+            }
+
+            .mx#{$infix}-auto {
+                margin-right: auto !important;
+                margin-left: auto !important;
+            }
+
+            .my#{$infix}-auto {
+                margin-top: auto !important;
+                margin-bottom: auto !important;
+            }
+        }
+    }
+
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+            $infix: breakpoint-infix($breakpoint);
+
+            .float#{$infix}-left {
+                float: left !important;
+            }
+
+            .float#{$infix}-none {
+                float: none !important;
+            }
+
+            .float#{$infix}-right {
+                float: right !important;
+            }
+        }
+    }
+
+    .o3-default-border {
+        border: $default-border;
+    }
+
+    .o3-default-border-top {
+        border-top: $default-border;
+    }
+
+    .o3-default-border-right {
+        border-right: $default-border;
+    }
+
+    .o3-default-border-bottom {
+        border-bottom: $default-border;
+    }
+
+    .o3-default-border-left {
+        border-left: $default-border;
+    }
+}

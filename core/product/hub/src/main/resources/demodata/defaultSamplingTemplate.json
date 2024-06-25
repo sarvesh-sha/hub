@@ -1,0 +1,428 @@
+{
+  "samplingTemplate": {
+    "devices": {
+      "accelerometer": {
+        "elements": {
+          "x": 1800,
+          "y": 1800,
+          "z": 1800
+        }
+      },
+      "CanObjectModel/BaseHendricksonModel/Hendrickson_Watchman": {
+        "elements": {
+          "wheelBearingHealth": 1800,
+          "wheelConnectionStatus": 1800,
+          "wheelElectricalStatus": 1800,
+          "wheelLeakStatusPortA": 1800,
+          "wheelLeakStatusPortB": 1800,
+          "wheelPressurePortA": 1800,
+          "wheelPressurePortB": 1800,
+          "wheelPressureStatusPortA": 1800,
+          "wheelPressureStatusPortB": 1800,
+          "wheelTemperature": 1800,
+          "wheelTemperatureStatus": 1800
+        }
+      },
+      "CanObjectModel/BasePalfingerModel/Palfinger_Counters": {
+        "elements": {
+          "counterNonResettable": 1800,
+          "counterService": 1800
+        }
+      },
+      "CanObjectModel/BasePalfingerModel/Palfinger_DigitalStatusInputs": {
+        "elements": {
+          "commandClose": 1800,
+          "commandLift": 1800,
+          "commandLiftFoot": 1800,
+          "commandLower": 1800,
+          "commandLowerFoot": 1800,
+          "commandOpen": 1800,
+          "J32_80": 1800,
+          "J32_81": 1800
+        }
+      },
+      "location": {
+        "elements": {
+          "longitude": 1800,
+          "speed": 1800,
+          "latitude": 1800,
+          "altitude": 1800
+        }
+      },
+      "BaseArgoHytosModel/ArgoHytos_LubCos": {
+        "elements": {
+          "temperature": 1800,
+          "relative_humidity": 1800
+        }
+      },
+      "BaseArgoHytosModel/ArgoHytos_OPComII": {
+        "elements": {
+          "ISO14um": 1800,
+          "ISO21um": 1800,
+          "ISO4um": 1800,
+          "ISO6um": 1800
+        }
+      },
+      "BaseBlueSkyObjectModel/masterValues": {
+        "elements": {
+          "inputVoltage": 1800,
+          "totalChargeAH": 1800,
+          "totalInputCurrent": 1800,
+          "totalOutputCurrent": 1800,
+          "inCycle": 1800,
+          "chargeState": 1800,
+          "batteryVoltage": 1800
+        }
+      },
+      "BaseBlueSkyObjectModel/proRemoteValues": {
+        "elements": {
+          "netBatteryCurrent": 1800
+        }
+      },
+      "BaseBlueSkyObjectModel/unit": {
+        "elements": {
+          "charging": 1800,
+          "inputCurrent": 1800,
+          "inputVoltage": 1800,
+          "outputAH": 1800,
+          "outputCurrent": 1800,
+          "heatSinkTemperature": 1800
+        }
+      },
+      "BaseTriStarModel/TriStar_Charger": {
+        "elements": {
+          "Ahc_t": 1800,
+          "charge_state": 1800,
+          "kwhc_t": 1800
+        }
+      },
+      "BaseTriStarModel/TriStar_Status": {
+        "elements": {
+          "alarm": 1800,
+          "fault": 1800
+        }
+      },
+      "BaseTriStarModel/TriStar_MPPT": {
+        "elements": {
+          "power_in_shadow": 1800,
+          "power_out_shadow": 1800
+        }
+      },
+      "BaseTriStarModel/TriStar_FilteredADC": {
+        "elements": {
+          "adc_ia_f_shadow": 1800,
+          "adc_va_f": 1800,
+          "adc_ib_f_shadow": 1800,
+          "adc_vb_f_med": 1800
+        }
+      },
+      "CanObjectModel/BasePalfingerModel/Palfinger_SupplyVoltage": {
+        "elements": {
+          "supplyVoltage_V27": 1800,
+          "plcTemperature": 1800
+        }
+      },
+      "CanObjectModel/BasePalfingerModel/Palfinger_DigitalStatusOutputs": {
+        "elements": {
+          "segmentDisplay": 1800,
+          "relay_Aggregat": 1800,
+          "valve_J43_90": 1800,
+          "battery_LowVoltage": 1800,
+          "valve_J43_91": 1800,
+          "light": 1800,
+          "control_LED_DriversCabin": 1800,
+          "valve_J42_80": 1800,
+          "valve_J42_81": 1800,
+          "valve_Tiltzyl": 1800,
+          "valve_S5": 1800,
+          "valve_Liftzyl": 1800
+        }
+      },
+      "CanObjectModel/BaseNitePhoenixModel/NitePhoenix_HVAC_Unit": {
+        "elements": {
+          "compressorSpeed": 1800,
+          "controlMode": 1800,
+          "setTemperature": 1800,
+          "sleeperTemperature": 1800
+        }
+      },
+      "CanObjectModel/BaseNitePhoenixModel/NitePhoenix_ControlPanel": {
+        "elements": {
+          "operatingMode": 1800,
+          "requestedFanSpeed": 1800,
+          "sleeperTemperature": 1800,
+          "temperatureSetting": 1800
+        }
+      },
+      "CanObjectModel/BaseNitePhoenixModel/NitePhoenix_BMS_AlgorithmOutputs": {
+        "elements": {
+          "stateOfCharge": 1800,
+          "stateOfHealth": 1800
+        }
+      },
+      "CanObjectModel/BaseNitePhoenixModel/BaseBatteryNitePhoenixModel/NitePhoenix_BMS_AuxiliaryBatteryParameters": {
+        "elements": {
+          "current": 1800,
+          "temperature": 1800,
+          "voltage": 1800
+        }
+      },
+      "CanObjectModel/BaseNitePhoenixModel/BaseBatteryNitePhoenixModel/NitePhoenix_BMS_AlgorithmOutputs": {
+        "elements": {
+          "stateOfCharge": 1800,
+          "stateOfHealth": 1800,
+          "timeRemaining": 1800
+        }
+      },
+      "CanObjectModel/BaseNitePhoenixModel/BaseBatteryNitePhoenixModel/NitePhoenix_BMS_StartingBatteryParameters": {
+        "elements": {
+          "voltage": 1800,
+          "status": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_DistanceTraveledWithMalfunction": {
+        "elements": {
+          "value": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_DtcStatus": {
+        "elements": {
+          "fault_codes": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_EngineCoolantTemperature": {
+        "elements": {
+          "value": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_EngineOilTemperature": {
+        "elements": {
+          "value": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_EngineRPM": {
+        "elements": {
+          "value": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_Odometer": {
+        "elements": {
+          "value": 1800
+        }
+      },
+      "CanObjectModel/ObdiiObjectModel/BaseIso15765ObjectModel/ISO15765_TimeRunWithMalfunction": {
+        "elements": {
+          "value": 1800
+        }
+      },
+      "BaseEpSolarModel/EpSolar_RealTimeData": {
+        "elements": {
+          "battery_current": 1800,
+          "battery_soc": 1800,
+          "battery_temperature": 1800,
+          "battery_temperature_status": 1800,
+          "battery_voltage": 1800,
+          "battery_voltage_status": 1800,
+          "charging_faults": 1800,
+          "device_temperature": 1800,
+          "discharging_faults": 1800,
+          "load_current": 1800,
+          "load_power": 1800,
+          "load_voltage": 1800,
+          "array_input_current": 1800,
+          "array_input_power": 1800,
+          "array_input_voltage": 1800,
+          "total_consumed_energy": 1800,
+          "total_generated_energy": 1800
+        }
+      },
+      "BaseEpSolarModel/EpSolar_BatteryParameters": {
+        "elements": {
+          "battery_charge": 1800,
+          "battery_discharge": 1800,
+          "charging_mode": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_FDNY": {
+        "elements": {
+          "active_relays": 1800,
+          "battery_discharge_current": 1800,
+          "emergency_lights_signal": 1800,
+          "emergency_lights_voltage": 1800,
+          "foot_brake_signal": 1800,
+          "ignition_signal": 1800,
+          "oem_voltage": 1800,
+          "park_signal": 1800,
+          "shoreline_detection_voltage": 1800,
+          "supply_voltage": 1800,
+          "system_state": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_PortAuthority": {
+        "elements": {
+          "active_relays": 1800,
+          "alternator_current": 1800,
+          "hood_closed_signal": 1800,
+          "ignition_signal": 1800,
+          "oem_voltage": 1800,
+          "park_neutral_signal": 1800,
+          "park_neutral_voltage": 1800,
+          "parking_brake_signal": 1800,
+          "parking_brake_voltage": 1800,
+          "supply_voltage": 1800,
+          "system_state": 1800
+        }
+      },
+      "BaseBluetoothGatewayObjectModel/temperatureHumiditySensor": {
+        "elements": {
+          "batteryVoltage": 1800,
+          "humidity": 1800,
+          "temperature": 1800
+        }
+      },
+      "BaseBluetoothGatewayObjectModel/smartLock": {
+        "elements": {
+          "lockingCounter": 1800,
+          "status": 1800
+        }
+      },
+      "BaseBluetoothGatewayObjectModel/pixelTag": {
+        "elements": {
+          "temperature": 1800
+        }
+      },
+      "BaseBluetoothGatewayObjectModel/pixelTagRaw": {
+        "elements": {
+          "raw": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_MTA": {
+        "elements": {
+          "cutoff_voltage": 1800,
+          "engine_running": 1800,
+          "engine_start_counter": 1800,
+          "engine_stop_counter": 1800,
+          "hood_closed_signal": 1800,
+          "key_inserted": 1800,
+          "max_discharge_time": 1800,
+          "max_temperature": 1800,
+          "min_temperature": 1800,
+          "oem_voltage": 1800,
+          "park_signal": 1800,
+          "system_state": 1800,
+          "temperature": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_AMR": {
+        "elements": {
+          "cutoff_voltage": 1800,
+          "emergency_light": 1800,
+          "engine_running": 1800,
+          "engine_start_counter": 1800,
+          "engine_stop_counter": 1800,
+          "hood_closed_signal": 1800,
+          "key_inserted": 1800,
+          "max_discharge_time": 1800,
+          "max_temperature": 1800,
+          "min_temperature": 1800,
+          "oem_voltage": 1800,
+          "park_signal": 1800,
+          "supply_voltage": 1800,
+          "system_state": 1800,
+          "temperature": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_PEP": {
+        "elements": {
+          "battery_discharge_current": 1800,
+          "temperature": 1800,
+          "engine_running": 1800,
+          "engine_start_counter": 1800,
+          "engine_stop_counter": 1800,
+          "hood_closed_signal": 1800,
+          "key_inserted": 1800,
+          "ignition_signal": 1800,
+          "oem_voltage": 1800,
+          "park_signal": 1800,
+          "shoreline_detection_voltage": 1800,
+          "supply_voltage": 1800,
+          "system_state": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_PSEG": {
+        "elements": {
+          "battery_discharge_current": 1800,
+          "charge_enable": 1800,
+          "discharge_enable": 1800,
+          "engine_running": 1800,
+          "engine_start_counter": 1800,
+          "engine_stop_counter": 1800,
+          "ignition_signal": 1800,
+          "key_inserted": 1800,
+          "oem_voltage": 1800,
+          "park_signal": 1800,
+          "shoreline_detection_voltage": 1800,
+          "supply_voltage": 1800,
+          "system_state": 1800,
+          "temperature": 1800
+        }
+      },
+      "BaseStealthPowerModel/StealthPower_CAPMETRO": {
+        "elements": {
+          "ac_request": 1800,
+          "battery_discharge_current": 1800,
+          "temperature": 1800,
+          "engine_running": 1800,
+          "engine_start_counter": 1800,
+          "engine_stop_counter": 1800,
+          "hood_closed_signal": 1800,
+          "key_inserted": 1800,
+          "ignition_signal": 1800,
+          "park_signal": 1800,
+          "ramp_door_open": 1800,
+          "supply_voltage": 1800,
+          "system_state": 1800
+        }
+      },
+      "BaseVictronModel/Victron_RealTimeData": {
+        "elements": {
+          "battery_current": 1800,
+          "battery_temperature": 1800,
+          "charging_mode": 1800,
+          "error_code": 1800,
+          "battery_voltage": 1800,
+          "load_power": 1800,
+          "load_current": 1800,
+          "panel_power": 1800,
+          "panel_voltage": 1800
+        }
+      },
+      "Holykell": {
+        "elements": {
+          "level": 1800,
+          "temperature": 1800
+        }
+      },
+      "IpnI2CSensor/humidity": {
+        "elements": {
+          "humidity": 1800
+        }
+      },
+      "IpnI2CSensor/temperature": {
+        "elements": {
+          "temperature": 1800
+        }
+      },
+      "IpnI2CSensor/voltage": {
+        "elements": {
+          "voltage": 1800
+        }
+      },
+      "IpnI2CSensor/current": {
+        "elements": {
+          "current": 1800
+        }
+      }
+    }
+  }
+}

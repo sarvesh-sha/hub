@@ -1,0 +1,71 @@
+@import "../../../framework/ui/app.variables.scss";
+
+mat-form-field.o3-ranges-step--presets {
+    margin-left: 2px;
+    padding: 0px !important;
+}
+
+td {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+        flex: 1 1 0;
+    }
+
+    &.o3-ranges-step--filters {
+        justify-content: center;
+        margin-right: -5px;
+
+        > button.o3-ranges-step-button {
+            margin-left: -4px;
+            margin-right: -2px;
+        }
+    }
+
+    > section.bs {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        > o3-range-selector {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+}
+
+.o3-ranges-step--button {
+    padding: 0px !important;
+    width: 33px;
+    height: 33px;
+    line-height: 33px !important;
+    border-radius: 50%;
+    top: 0px !important;
+
+    &.filter-on {
+        background-color: #2196f3;
+
+        i {
+            color: white;
+        }
+    }
+}
+
+.additional-options {
+    display: flex;
+    white-space: nowrap;
+
+    > * {
+        margin-right: 15px;
+    }
+
+    > mat-checkbox {
+        display: flex;
+        align-items: center;
+    }
+
+    @media only screen and (max-width: $sm) {
+        flex-direction: column;
+    }
+}

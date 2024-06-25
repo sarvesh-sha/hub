@@ -1,0 +1,109 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createTable tableName="ASSET_METRICS_DEVICE_ELEMENT">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="metrics_definition" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createTable tableName="METRICS_DEFINITION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sys_created_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="head_version" type="VARCHAR(255)"/>
+            <column name="release_version" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createTable tableName="METRICS_DEFINITION_VERSION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sys_created_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="LONGTEXT"/>
+            <column name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="definition" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="predecessor" type="VARCHAR(255)"/>
+            <column name="successor" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <createIndex indexName="ASSET_METRICS_DEVICE_ELEMENT__METRICS_DEFINITION__FK" tableName="ASSET_METRICS_DEVICE_ELEMENT">
+            <column name="metrics_definition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <createIndex indexName="METRICS_DEFINITION_VERSION_DEFINITION__FK" tableName="METRICS_DEFINITION_VERSION">
+            <column name="definition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <createIndex indexName="METRICS_DEFINITION_VERSION_PREDECESSOR__FK" tableName="METRICS_DEFINITION_VERSION">
+            <column name="predecessor"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <createIndex indexName="METRICS_DEFINITION_VERSION_SUCCESSOR__FK" tableName="METRICS_DEFINITION_VERSION">
+            <column name="successor"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <createIndex indexName="METRICS_DEFINITION__HEAD_VERSION__FK" tableName="METRICS_DEFINITION">
+            <column name="head_version"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <createIndex indexName="METRICS_DEFINITION__RELEASE_VERSION__FK" tableName="METRICS_DEFINITION">
+            <column name="release_version"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <addForeignKeyConstraint baseColumnNames="metrics_definition" baseTableName="ASSET_METRICS_DEVICE_ELEMENT" constraintName="ASSET_METRICS_DEVICE_ELEMENT__METRICS_DEFINITION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="METRICS_DEFINITION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_METRICS_DEVICE_ELEMENT" constraintName="FKmjqv8h9jngwcf7s492h6kkv39" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_DEVICE_ELEMENT" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <addForeignKeyConstraint baseColumnNames="definition" baseTableName="METRICS_DEFINITION_VERSION" constraintName="METRICS_DEFINITION_VERSION_DEFINITION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="METRICS_DEFINITION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <addForeignKeyConstraint baseColumnNames="predecessor" baseTableName="METRICS_DEFINITION_VERSION" constraintName="METRICS_DEFINITION_VERSION_PREDECESSOR__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="METRICS_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <addForeignKeyConstraint baseColumnNames="successor" baseTableName="METRICS_DEFINITION_VERSION" constraintName="METRICS_DEFINITION_VERSION_SUCCESSOR__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="METRICS_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <addForeignKeyConstraint baseColumnNames="head_version" baseTableName="METRICS_DEFINITION" constraintName="METRICS_DEFINITION__HEAD_VERSION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="METRICS_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <addForeignKeyConstraint baseColumnNames="release_version" baseTableName="METRICS_DEFINITION" constraintName="METRICS_DEFINITION__RELEASE_VERSION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="METRICS_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <dropForeignKeyConstraint baseTableName="LOCATION" constraintName="LOCATION__PARENT__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <dropTable tableName="LOCATION"/>
+    </changeSet>
+</databaseChangeLog>

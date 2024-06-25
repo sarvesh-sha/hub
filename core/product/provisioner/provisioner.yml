@@ -1,0 +1,32 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 8280
+  adminConnectors:
+    - type: http
+      port: 8281
+  requestLog:
+    type: optio3
+
+##########################################
+
+scratchDirectory: ${env.HOME}/optio3.test/provisioner.tmp
+
+hostId: 01:02:03:04:05:06
+
+bootConfig: ../../../infra/gateway-image-generation/stage2/04-optio3/files/optio3_config.txt

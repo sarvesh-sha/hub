@@ -1,0 +1,67 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <createTable tableName="ROLE_TO_HOST_V2">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_80"/>
+            </column>
+            <column name="HOST" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <addColumn tableName="DEPLOYMENT_TASK">
+            <column name="PURPOSE" type="VARCHAR_IGNORECASE(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <createIndex indexName="ROLE_TO_HOST__HOST__FK_INDEX_8" tableName="ROLE_TO_HOST_V2">
+            <column name="HOST"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <createIndex indexName="ROLE_TO_HOST__ROLE__FK_INDEX_8" tableName="ROLE_TO_HOST_V2">
+            <column name="ROLE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Manual" id="relationMigration1">
+        <sql>insert into ROLE_TO_HOST_V2(SYS_ID, ROLE, HOST) select CONCAT(j1.CUSTOMER_SERVICE_ROLE, '/', j1.DEPLOYMENT_HOST), j1.CUSTOMER_SERVICE_ROLE, j1.DEPLOYMENT_HOST FROM ROLE_TO_HOST j1</sql>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <addForeignKeyConstraint baseColumnNames="HOST" baseTableName="ROLE_TO_HOST_V2" constraintName="ROLE_TO_HOST__HOST__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <addForeignKeyConstraint baseColumnNames="ROLE" baseTableName="ROLE_TO_HOST_V2" constraintName="ROLE_TO_HOST__ROLE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE_ROLE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="BACKUP_TRIGGER" tableName="CUSTOMER_SERVICE_BACKUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="CUSTOMER_SERVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="RELEASE_STATUS" tableName="REGISTRY_TAGGED_IMAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_PROBER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_TASK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <dropForeignKeyConstraint baseTableName="ROLE_TO_HOST" constraintName="FKI8O8YPCRHRT1KSCGJGK5DB92I"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <dropForeignKeyConstraint baseTableName="ROLE_TO_HOST" constraintName="FKURQIY0W72NQQN3BQ4TFL9X94"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-17">
+        <dropTable tableName="ROLE_TO_HOST"/>
+    </changeSet>
+</databaseChangeLog>

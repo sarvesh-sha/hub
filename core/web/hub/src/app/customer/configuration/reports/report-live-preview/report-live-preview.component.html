@@ -1,0 +1,14 @@
+<o3-standard-form-overlay label="Interactive Report"
+                          internalCardClass="fill-height"
+                          [overlayConfig]="reportPreviewDialogConfig"
+                          [showPrimary]="false"
+                          [showExtraButton]="!!secondaryButtonText"
+                          [extraButtonText]="secondaryButtonText"
+                          [extraButtonDisabled]="secondaryButtonIsDisabled && secondaryButtonIsDisabled()"
+                          (extraButtonPressed)="secondaryButtonCallback && secondaryButtonCallback()">
+    <section *cdkPortal class="bs report-layout" style="padding: 10px;">
+        <div class="container">
+            <o3-report [config]="config"></o3-report>
+        </div>
+    </section>
+</o3-standard-form-overlay>

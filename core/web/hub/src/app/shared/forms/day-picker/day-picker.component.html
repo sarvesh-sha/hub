@@ -1,0 +1,8 @@
+<div class="day-container">
+    <button *ngFor="let day of daysOfWeek"
+            class="day-option"
+            [class.selected]="isSelected(day)"
+            (click)="toggle(day)">
+        {{getShortName(day)}}
+    </button>
+</div>

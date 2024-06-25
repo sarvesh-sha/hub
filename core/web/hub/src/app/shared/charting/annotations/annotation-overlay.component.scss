@@ -1,0 +1,74 @@
+.annotation-on-switch {
+    width: 55px;
+    padding: 0px 10px;
+}
+
+td {
+    height: 46px;
+    width: 40px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.annotation-text {
+    flex-grow: 1;
+
+    > div {
+        flex-grow: 1;
+        overflow: hidden;
+        height: 43px;
+        padding-top: 7px;
+
+        > .annotation-title, > .annotation-description {
+            width: 100%;
+        }
+
+        > .annotation-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+            margin-top: -5px;
+
+            &.no-annotation-description {
+                margin-top: 2px;
+            }
+        }
+
+        > .annotation-description {
+            color: #aeaeae;
+            font-size: 12px;
+            max-height: 19px;
+            margin-top: -7px;
+        }
+    }
+}
+
+.annotation-out-of-view {
+    display: flex;
+    justify-content: center;
+}
+
+.annotation-edit > .chip-action {
+    display: flex;
+    align-items: center;
+
+    padding-left: 8px;
+    background-color: white !important;
+    box-shadow: none !important;
+
+    > mat-icon:hover {
+        cursor: pointer;
+    }
+}
+
+.new-annotation-trigger {
+    position: absolute;
+    left: 50%;
+}
+
+textarea {
+    font-size: 14px !important;
+}

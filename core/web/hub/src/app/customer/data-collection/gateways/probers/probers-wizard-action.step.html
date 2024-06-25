@@ -1,0 +1,19 @@
+<ng-template o3-wizard-step-template>
+    <p>What do you want to do?</p>
+    <mat-radio-group [(ngModel)]="data.action">
+        <table class="table table-bordered o3-table-striped o3-table-wide">
+            <tbody>
+            <tr>
+                <td>
+                    <mat-radio-button [value]="'operation'">Perform operation</mat-radio-button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-radio-button [value]="'add-device'">Manually add device</mat-radio-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </mat-radio-group>
+</ng-template>

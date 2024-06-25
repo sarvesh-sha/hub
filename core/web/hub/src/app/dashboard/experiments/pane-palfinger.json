@@ -1,0 +1,534 @@
+{
+    "name": "Palfinger Truck Pane",
+    "logoBase64": "data:image/png;base64,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",
+    "titleInput": {
+        "id": "root"
+    },
+    "graph": {
+        "nodes": [
+            {
+                "id": "root",
+                "name": "Truck",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionEquipmentClass",
+                    "equipmentClass": "4096"
+                }
+            },
+            {
+                "id": "0e4032f7-9418-d819-63bb-1c53dbc7bd72",
+                "name": "Liftgate",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionEquipmentClass",
+                    "equipmentClass": "8195"
+                }
+            },
+            {
+                "id": "4d8d6c98-39ac-4ecd-e24e-b923d7d6dec8",
+                "name": "Battery Voltage",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionPointClass",
+                    "pointClass": "12289"
+                }
+            },
+            {
+                "id": "e53f6c32-2a6d-a9ec-0eb6-ba2444245615",
+                "name": "Service Count",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionPointClass",
+                    "pointClass": "24577"
+                }
+            },
+            {
+                "id": "6226ac5c-b8f4-e26c-3e5e-d16736670a0e",
+                "name": "Cycle Count",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionPointClass",
+                    "pointClass": "24578"
+                }
+            },
+            {
+                "id": "6d2068aa-9f80-55e3-1164-bf2f15441fd7",
+                "name": "GPS",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionEquipmentClass",
+                    "equipmentClass": "8193"
+                }
+            },
+            {
+                "id": "5343a8b1-334f-3865-0cfa-b86b3768abfa",
+                "name": "Truck Speed",
+                "optional": false,
+                "allowMultiple": false,
+                "condition": {
+                    "__type": "TagsConditionPointClass",
+                    "pointClass": "4099"
+                }
+            }
+        ],
+        "transforms": [
+            {
+                "__type": "AssetGraphTransformRelationship",
+                "inputId": "root",
+                "outputId": "0e4032f7-9418-d819-63bb-1c53dbc7bd72",
+                "relationship": "controls"
+            },
+            {
+                "__type": "AssetGraphTransformRelationship",
+                "inputId": "root",
+                "outputId": "6d2068aa-9f80-55e3-1164-bf2f15441fd7",
+                "relationship": "controls"
+            },
+            {
+                "__type": "AssetGraphTransformRelationship",
+                "inputId": "0e4032f7-9418-d819-63bb-1c53dbc7bd72",
+                "outputId": "4d8d6c98-39ac-4ecd-e24e-b923d7d6dec8",
+                "relationship": "controls"
+            },
+            {
+                "__type": "AssetGraphTransformRelationship",
+                "inputId": "0e4032f7-9418-d819-63bb-1c53dbc7bd72",
+                "outputId": "e53f6c32-2a6d-a9ec-0eb6-ba2444245615",
+                "relationship": "controls"
+            },
+            {
+                "__type": "AssetGraphTransformRelationship",
+                "inputId": "0e4032f7-9418-d819-63bb-1c53dbc7bd72",
+                "outputId": "6226ac5c-b8f4-e26c-3e5e-d16736670a0e",
+                "relationship": "controls"
+            },
+            {
+                "__type": "AssetGraphTransformRelationship",
+                "inputId": "6d2068aa-9f80-55e3-1164-bf2f15441fd7",
+                "outputId": "5343a8b1-334f-3865-0cfa-b86b3768abfa",
+                "relationship": "controls"
+            }
+        ]
+    },
+    "elements": [
+        {
+            "title": "Alerts",
+            "fields": [
+                {
+                    "__type": "PaneFieldConfigurationAlertCount",
+                    "label": "Active Alerts",
+                    "locationInput": {
+                        "id": "root"
+                    },
+                    "onlyActive": true
+                },
+                {
+                    "__type": "PaneFieldConfigurationAlertCount",
+                    "label": "Total Alerts",
+                    "locationInput": {
+                        "id": "root"
+                    },
+                    "onlyActive": false
+                },
+                {
+                    "__type": "PaneFieldConfigurationAlertFeed",
+                    "label": "Feed",
+                    "locationInput": {
+                        "id": "root"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Details",
+            "fields": [
+                {
+                    "__type": "PaneFieldConfigurationCurrentValue",
+                    "label": "Battery Voltage",
+                    "unitsFactors": {
+                        "scaling": {
+                            "multiplier": 1,
+                            "offset": 0
+                        },
+                        "numeratorUnits": [
+                            "volts"
+                        ],
+                        "denominatorUnits": []
+                    },
+                    "pointInput": {
+                        "id": "4d8d6c98-39ac-4ecd-e24e-b923d7d6dec8"
+                    }
+                },
+                {
+                    "__type": "PaneFieldConfigurationAggregatedValue",
+                    "label": "Min Battery Voltage",
+                    "aggregationType": "MIN",
+                    "unitsFactors": {
+                        "scaling": {
+                            "multiplier": 1,
+                            "offset": 0
+                        },
+                        "numeratorUnits": [
+                            "volts"
+                        ],
+                        "denominatorUnits": []
+                    },
+                    "pointInput": {
+                        "id": "4d8d6c98-39ac-4ecd-e24e-b923d7d6dec8"
+                    }
+                },
+                {
+                    "__type": "PaneFieldConfigurationCurrentValue",
+                    "label": "Cycle count",
+                    "pointInput": {
+                        "id": "6226ac5c-b8f4-e26c-3e5e-d16736670a0e"
+                    }
+                },
+                {
+                    "__type": "PaneFieldConfigurationCurrentValue",
+                    "label": "Service count",
+                    "suffix": "/ 2000",
+                    "pointInput": {
+                        "id": "e53f6c32-2a6d-a9ec-0eb6-ba2444245615"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Location",
+            "fields": [
+                {
+                    "__type": "PaneFieldConfigurationPathMap",
+                    "locationInput": {
+                        "id": "6d2068aa-9f80-55e3-1164-bf2f15441fd7"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Diagnostics",
+            "fields": [
+                {
+                    "__type": "PaneFieldConfigurationChart",
+                    "label": "BATTERY VOLTAGE VS. LIFTGATE CYCLE VS. TRUCK SPEED",
+                    "chartConfig": {
+                        "__type": "TimeSeriesChartConfiguration",
+                        "type": "STANDARD",
+                        "display": {
+                            "title": null,
+                            "size": 397,
+                            "zoomable": false,
+                            "fillArea": false,
+                            "hideDecimation": false,
+                            "automaticAggregation": false,
+                            "panelSpacing": 0
+                        },
+                        "panels": [
+                            {
+                                "leftAxis": {
+                                    "label": "Battery Voltage",
+                                    "mode": "GROUPED",
+                                    "displayFactors": {
+                                        "scaling": {
+                                            "multiplier": 1,
+                                            "offset": 0
+                                        },
+                                        "numeratorUnits": [
+                                            "volts"
+                                        ],
+                                        "denominatorUnits": []
+                                    },
+                                    "groupedFactors": [
+                                        {
+                                            "keyFactors": {
+                                                "scaling": {
+                                                    "multiplier": 1,
+                                                    "offset": 0
+                                                },
+                                                "numeratorUnits": [
+                                                    "volts"
+                                                ],
+                                                "denominatorUnits": []
+                                            },
+                                            "selectedFactors": {
+                                                "scaling": {
+                                                    "multiplier": 1,
+                                                    "offset": 0
+                                                },
+                                                "numeratorUnits": [
+                                                    "volts"
+                                                ],
+                                                "denominatorUnits": []
+                                            }
+                                        },
+                                        {
+                                            "keyFactors": {
+                                                "scaling": {
+                                                    "multiplier": 0.2777777777777778,
+                                                    "offset": 0
+                                                },
+                                                "numeratorUnits": [
+                                                    "meters"
+                                                ],
+                                                "denominatorUnits": [
+                                                    "seconds"
+                                                ]
+                                            },
+                                            "selectedFactors": {
+                                                "scaling": {
+                                                    "multiplier": 0.44704,
+                                                    "offset": 0
+                                                },
+                                                "numeratorUnits": [
+                                                    "meters"
+                                                ],
+                                                "denominatorUnits": [
+                                                    "seconds"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "override": {
+                                        "active": false,
+                                        "min": null,
+                                        "max": null
+                                    }
+                                },
+                                "rightAxis": {
+                                    "label": "Service Count",
+                                    "mode": "GROUPED",
+                                    "displayFactors": {
+                                        "scaling": {
+                                            "multiplier": 1,
+                                            "offset": 0
+                                        },
+                                        "numeratorUnits": [],
+                                        "denominatorUnits": []
+                                    },
+                                    "groupedFactors": [
+                                        {
+                                            "keyFactors": {
+                                                "scaling": {
+                                                    "multiplier": 1,
+                                                    "offset": 0
+                                                },
+                                                "numeratorUnits": [],
+                                                "denominatorUnits": []
+                                            },
+                                            "selectedFactors": {
+                                                "scaling": {
+                                                    "multiplier": 1,
+                                                    "offset": 0
+                                                },
+                                                "numeratorUnits": [],
+                                                "denominatorUnits": []
+                                            }
+                                        }
+                                    ],
+                                    "override": {
+                                        "active": false,
+                                        "min": null,
+                                        "max": null
+                                    }
+                                }
+                            }
+                        ],
+                        "sources": [
+                            {
+                                "id": "123",
+                                "name": "Battery Voltage",
+                                "description": "",
+                                "color": "#e8987d",
+                                "timeOffset": {
+                                    "unit": "DAYS",
+                                    "amount": 0
+                                },
+                                "dimension": "present_value",
+                                "axis": 0,
+                                "panel": 0,
+                                "unitsFactors": {
+                                    "scaling": {
+                                        "multiplier": 1,
+                                        "offset": 0
+                                    },
+                                    "numeratorUnits": [
+                                        "volts"
+                                    ],
+                                    "denominatorUnits": []
+                                }
+                            },
+                            {
+                                "id": "234",
+                                "name": "Service Count",
+                                "description": "",
+                                "color": "#cd7de8",
+                                "timeOffset": {
+                                    "unit": "DAYS",
+                                    "amount": 0
+                                },
+                                "dimension": "present_value",
+                                "axis": 1,
+                                "panel": 0,
+                                "unitsFactors": {
+                                    "scaling": {
+                                        "multiplier": 1,
+                                        "offset": 0
+                                    },
+                                    "numeratorUnits": [],
+                                    "denominatorUnits": []
+                                }
+                            },
+                            {
+                                "id": "345",
+                                "name": "Speed",
+                                "description": "",
+                                "color": "#7daae8",
+                                "timeOffset": {
+                                    "unit": "DAYS",
+                                    "amount": 0
+                                },
+                                "dimension": "present_value",
+                                "axis": 0,
+                                "panel": 0,
+                                "unitsFactors": {
+                                    "scaling": {
+                                        "multiplier": 0.44704,
+                                        "offset": 0
+                                    },
+                                    "numeratorUnits": [
+                                        "meters"
+                                    ],
+                                    "denominatorUnits": [
+                                        "seconds"
+                                    ]
+                                }
+                            }
+                        ],
+                        "query": null,
+                        "hierarchy": {
+                            "range": null,
+                            "hierarchy": null,
+                            "colors": {
+                                "single": {
+                                    "selection": [
+                                        "red"
+                                    ]
+                                },
+                                "palette": {
+                                    "selection": [
+                                        "red"
+                                    ]
+                                },
+                                "gradient": {
+                                    "startColor": "#7de87d",
+                                    "endColor": "#e87d8f",
+                                    "customRange": false,
+                                    "startValue": null,
+                                    "endValue": null
+                                },
+                                "mode": "SINGLE"
+                            },
+                            "options": {
+                                "sizing": "FIT",
+                                "size": 32,
+                                "type": "LINE",
+                                "axisSizing": "INDIVIDUAL",
+                                "axisRange": {
+                                    "min": 0,
+                                    "max": 100
+                                }
+                            }
+                        },
+                        "version": 0
+                    },
+                    "sources": [
+                        {
+                            "id": "123",
+                            "name": "Battery Voltage",
+                            "description": "",
+                            "color": "#e8987d",
+                            "timeOffset": {
+                                "unit": "DAYS",
+                                "amount": 0
+                            },
+                            "dimension": "present_value",
+                            "axis": 0,
+                            "panel": 0,
+                            "unitsFactors": {
+                                "scaling": {
+                                    "multiplier": 1,
+                                    "offset": 0
+                                },
+                                "numeratorUnits": [
+                                    "volts"
+                                ],
+                                "denominatorUnits": []
+                            },
+                            "pointInput": {
+                                "id": "4d8d6c98-39ac-4ecd-e24e-b923d7d6dec8"
+                            }
+                        },
+                        {
+                            "id": "234",
+                            "name": "Service Count",
+                            "description": "",
+                            "color": "#cd7de8",
+                            "timeOffset": {
+                                "unit": "DAYS",
+                                "amount": 0
+                            },
+                            "dimension": "present_value",
+                            "axis": 1,
+                            "panel": 0,
+                            "unitsFactors": {
+                                "scaling": {
+                                    "multiplier": 1,
+                                    "offset": 0
+                                },
+                                "numeratorUnits": [],
+                                "denominatorUnits": []
+                            },
+                            "pointInput": {
+                                "id": "e53f6c32-2a6d-a9ec-0eb6-ba2444245615"
+                            }
+                        },
+                        {
+                            "id": "345",
+                            "name": "Speed",
+                            "description": "",
+                            "color": "#7daae8",
+                            "timeOffset": {
+                                "unit": "DAYS",
+                                "amount": 0
+                            },
+                            "dimension": "present_value",
+                            "axis": 0,
+                            "panel": 0,
+                            "unitsFactors": {
+                                "scaling": {
+                                    "multiplier": 0.44704,
+                                    "offset": 0
+                                },
+                                "numeratorUnits": [
+                                    "meters"
+                                ],
+                                "denominatorUnits": [
+                                    "seconds"
+                                ]
+                            },
+                            "pointInput": {
+                                "id": "5343a8b1-334f-3865-0cfa-b86b3768abfa"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

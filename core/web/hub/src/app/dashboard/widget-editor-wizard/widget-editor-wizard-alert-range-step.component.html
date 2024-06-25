@@ -1,0 +1,6 @@
+<ng-template o3-wizard-step-template>
+    <p class="col-sm-12">Which range should the alert(s) be from?</p>
+    <div class="col-sm-4">
+        <o3-range-selector [(selection)]="data.editor.timeRange" (selectionChange)="data.editor.syncAlertTypes()" [allowCustom]="true"></o3-range-selector>
+    </div>
+</ng-template>

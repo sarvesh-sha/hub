@@ -1,0 +1,98 @@
+<div #widgetPortal
+     class="widget-portal"
+     [class.showing-hidden-toolbar]="isShowingHiddenToolbar">
+    <div routableViewSource class="o3-widget-root"
+         (click)="isShowingHiddenToolbar && widgetPortal.click()"
+         (mousemove)="onMouseMove($event, false)"
+         (mouseleave)="onMouseLeave()"
+         [class.o3-toolbar-visible]="showingToolbar"
+         [class.subwidget]="isSubwidget"
+         [class.collapsed]="isCollapsed"
+         [class.o3-border-editing]="editing"
+         [class.o3-border-loading]="loading"
+         [class.o3-border-focus]="focus"
+         [matTooltip]="relatedToFocusTooltip"
+         [matTooltipDisabled]="focus || !widget?.relatedToFocus"
+         matTooltipPosition="before">
+
+        <!-- Widget content -->
+        <div class="o3-widget-content" [ngClass]="contentClases"
+             #widgetScrollContainer (scroll)="scrollDebouncer.invoke()">
+
+            <!-- Visual blocker -->
+            <div class="o3-widget-hider" *ngIf="!bound || isCollapsed"></div>
+
+            <!-- Main widget content -->
+            <ng-template [cdkPortalOutlet]></ng-template>
+        </div>
+
+        <div *ngIf="showingToolbar" class="o3-widget-toolbar">
+            <div class="o3-toolbar-content" [style.background-color]="primaryColor" [style.color]="secondaryColor">
+                <div class="o3-toolbar-title">
+                    <span>{{showToolbarTitle ? configExt.model.name : '&nbsp;'}}</span>
+                </div>
+                <div class="o3-toolbar-buttons-left">
+                    <button mat-icon-button type="button" *ngIf="canCollapse && !editing" (click)="collapseWidget()">
+                        <mat-icon>{{isCollapsed ? 'expand_more' : 'expand_less'}}</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" type="button" *ngIf="configExt.model.description" [matTooltip]="configExt.model.description"
+                            [matTooltipClass]="['widget-tooltip', 'mat-elevation-z4']">
+                        <mat-icon>info_outline</mat-icon>
+                    </button>
+                </div>
+                <div class="o3-toolbar-buttons-right" [class.o3-toolbar-maximizable]="maximizable">
+                    <button *ngIf="!maximizedOverlay"
+                            mat-icon-button
+                            class="o3-toolbar-action-maximize"
+                            type="button"
+                            (click)="maximize()">
+                        <svg width="24" height="24" viewBox="-2 -2 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.6001 12.5998H9.33348M12.6001 12.5998L12.6001 9.33317M12.6001 12.5998L8.86681 8.86651M9.33348 1.39984H12.6001M12.6001 1.39984V4.66651M12.6001 1.39984L8.86681 5.13317M4.66681 1.39984H1.40015M1.40015 1.39984V4.66651M1.40015 1.39984L5.13348 5.13317M1.40015 9.33317V12.5998M1.40015 12.5998H4.66681M1.40015 12.5998L5.13348 8.86651"
+                                stroke="currentColor"/>
+                        </svg>
+                    </button>
+                    <button *ngIf="maximizedOverlay"
+                            mat-icon-button
+                            class="o3-toolbar-action-minimize"
+                            type="button"
+                            (click)="minimize()">
+                        <svg width="24" height="24" viewBox="-2 -2 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.0463 12.7536L12.3999 13.1071L13.107 12.4L12.7535 12.0465L12.0463 12.7536ZM8.9624 8.96252V8.46252H8.4624V8.96252H8.9624ZM8.4624 11.7125V12.2125H9.4624V11.7125H8.4624ZM11.7124 9.46252H12.2124V8.46252H11.7124V9.46252ZM1.04635 12.0465L0.692796 12.4L1.3999 13.1071L1.75346 12.7536L1.04635 12.0465ZM4.8374 8.96252H5.3374V8.46252H4.8374V8.96252ZM4.3374 11.7125V12.2125H5.3374V11.7125H4.3374ZM2.0874 8.46252H1.5874V9.46252H2.0874V8.46252ZM12.7535 1.75358L13.107 1.40002L12.3999 0.692918L12.0463 1.04647L12.7535 1.75358ZM8.9624 4.83752H8.4624V5.33752H8.9624V4.83752ZM9.4624 2.08752V1.58752H8.4624V2.08752H9.4624ZM11.7124 5.33752H12.2124V4.33752H11.7124V5.33752ZM1.75346 1.04647L1.3999 0.692918L0.692796 1.40002L1.04635 1.75358L1.75346 1.04647ZM4.8374 4.83752V5.33752H5.3374V4.83752H4.8374ZM5.3374 2.08752V1.58752H4.3374V2.08752H5.3374ZM2.0874 4.33752H1.5874V5.33752H2.0874V4.33752ZM12.7535 12.0465L9.31596 8.60897L8.60885 9.31608L12.0463 12.7536L12.7535 12.0465ZM8.4624 8.96252V11.7125H9.4624V8.96252H8.4624ZM8.9624 9.46252H11.7124V8.46252H8.9624V9.46252ZM1.75346 12.7536L5.19096 9.31608L4.48385 8.60897L1.04635 12.0465L1.75346 12.7536ZM4.3374 8.96252V11.7125H5.3374V8.96252H4.3374ZM4.8374 8.46252H2.0874V9.46252H4.8374V8.46252ZM12.0463 1.04647L8.60885 4.48397L9.31596 5.19108L12.7535 1.75358L12.0463 1.04647ZM9.4624 4.83752V2.08752H8.4624V4.83752H9.4624ZM8.9624 5.33752H11.7124V4.33752H8.9624V5.33752ZM1.04635 1.75358L4.48385 5.19108L5.19096 4.48397L1.75346 1.04647L1.04635 1.75358ZM5.3374 4.83752V2.08752H4.3374V4.83752H5.3374ZM4.8374 4.33752H2.0874V5.33752H4.8374V4.33752Z"
+                                fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button #test_menuTrigger
+                            mat-icon-button
+                            class="o3-toolbar-action-menu"
+                            type="button"
+                            [matMenuTriggerFor]="widgetMenu.menu"
+                            (click)="onMenuTrigger()">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interaction blocker -->
+        <div class="o3-widget-protector" *ngIf="!interactableContent"
+             (mousemove)="onMouseMove($event, true)" (mouseleave)="onMouseLeave()"></div>
+
+        <!-- Widget border -->
+        <div class="o3-widget-border"
+             [class.mat-elevation-z2]="!isElevated && !shadowless"
+             [class.mat-elevation-z4]="isElevated">
+        </div>
+    </div>
+</div>
+
+<!-- Context menu options -->
+<span #contextMenuTriggerWrapper="matMenuTrigger" [matMenuTriggerFor]="widgetMenu.menu">
+    <o3-menu #widgetMenu [options]="widget?.customMenuOptions" (closed)="onMenuClose()">
+        <o3-tab-action *ngIf="!readonly" label="Settings" (click)="editWidget()"></o3-tab-action>
+        <o3-tab-action label="Export" (click)="export()"></o3-tab-action>
+        <o3-tab-action label="Copy" (click)="widget.copy()"></o3-tab-action>
+        <o3-tab-action *ngIf="!readonly" label="Cut" [disabled]="!widget?.removable" [tooltip]="widget?.cannotRemoveTooltip()" (click)="cut()">Cut</o3-tab-action>
+    </o3-menu>
+</span>

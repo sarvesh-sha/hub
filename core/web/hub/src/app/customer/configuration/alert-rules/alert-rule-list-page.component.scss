@@ -1,0 +1,11 @@
+﻿@import "../../../../framework/ui/app.variables.scss";
+
+@media only screen and (max-width: $sm) {
+    .mat-slide-toggle {
+        margin: 0;
+    }
+}
+
+.mat-slide-toggle {
+    margin: 10px 0;
+}

@@ -1,0 +1,34 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <addColumn tableName="ASSET_DEVICE_ELEMENT">
+            <column name="ranges" type="LONGTEXT(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <createIndex indexName="OWNING_ELEMENT__FK" tableName="ASSET_DEVICE_ELEMENT_SAMPLE">
+            <column name="owning_element"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropIndex indexName="IDX4svpqvai0skurr01aicr9338s" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropIndex indexName="IDX5r2yqh80h5kwufd07sads850n" tableName="RESULT_STAGING"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropIndex indexName="IDX94k3iv2bfuojrvwy68w121xah" tableName="RESULT_STAGING"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropIndex indexName="IDXec2ia5wcg9ocew6bkjc28j0v1" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <dropColumn columnName="properties" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <dropColumn columnName="range_end" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropColumn columnName="range_start" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+</databaseChangeLog>

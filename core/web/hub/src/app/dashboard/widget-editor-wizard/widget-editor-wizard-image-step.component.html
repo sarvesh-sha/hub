@@ -1,0 +1,16 @@
+<ng-template o3-wizard-step-template>
+    <o3-widget-editor-wizard-widget-preview [config]="previewConfig" [height]="300" [verticalViewThreshold]="0">
+        <div class="o3-image-step--config">
+            <mat-form-field>
+                <o3-color-picker name="background" [(ngModel)]="backgroundColor" placeholder="Background Color"></o3-color-picker>
+            </mat-form-field>
+            <mat-form-field>
+                <o3-select #test_placement name="placement" [(ngModel)]="placement" [options]="placementOptions" [multiSelect]="false"
+                           placeholder="Placement" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+            <button mat-raised-button type="button" (click)="uploadLogo()">
+                {{imgBase64 ? 'Change' : 'Add'}} Image
+            </button>
+        </div>
+    </o3-widget-editor-wizard-widget-preview>
+</ng-template>

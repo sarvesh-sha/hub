@@ -1,0 +1,79 @@
+<div class="condition with-dropdowns" *ngIf="isCondition()">
+    <div class="actions left">
+        <button #test_split mat-stroked-button class="mini-button" matTooltip="Split into compound condition" matTooltipShowDelay="1000" (click)="split()">
+            <mat-icon class="rotated">call_split</mat-icon>
+        </button>
+    </div>
+
+    <mat-form-field class="condition-input">
+        <o3-select #test_type name="condition" [options]="conditionTypeOptions" [multiSelect]="false" singleClick
+                   [ngModel]="asCondition.controlOptionID" (ngModelChange)="asCondition.updateById($event); write()"></o3-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isPointClassCondition()" class="condition-input">
+        <o3-select #conditionSelector [o3PointClassSelector]="true" [multiSelect]="false" singleClick placeholder=""
+                   [(ngModel)]="asCondition.value" (ngModelChange)="write()"></o3-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isEquipmentClassCondition()" class="condition-input">
+        <o3-select #conditionSelector [o3EquipmentClassSelector]="true" placeholder=""
+                   [(ngModel)]="asCondition.value" (ngModelChange)="write()"></o3-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isTagCondition()" class="condition-input">
+        <o3-select #conditionSelector [o3TagSelector]="true" [multiSelect]="false" singleClick placeholder=""
+                   [(ngModel)]="asCondition.value" (ngModelChange)="write()"></o3-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isLocationCondition()" class="condition-input">
+        <o3-select #conditionSelector [o3LocationSelector]="true" placeholder="" [multiSelect]="false"
+                   [(ngModel)]="asCondition.value" (ngModelChange)="write()"></o3-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isMetricsCondition()" class="condition-input">
+        <o3-select #conditionSelector [o3MetricsSelector]="true" placeholder="" [multiSelect]="false"
+                   [(ngModel)]="asCondition.value" (ngModelChange)="write()"></o3-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isMetricsOutputCondition()" class="condition-input">
+        <o3-select #conditionSelector [o3MetricsOutputSelector]="true" placeholder="" [multiSelect]="false"
+                   [(ngModel)]="asCondition.value" (ngModelChange)="write()"></o3-select>
+    </mat-form-field>
+</div>
+
+<div class="logic" *ngIf="isLogic()">
+    <div class="children" [ngClass]="{ not: asLogic.negate,
+                                       and: asLogic.isAnd(),
+                                       or:  asLogic.isOr() }">
+        <div class="operation" *ngIf="asLogic.negate" (click)="asLogic.cycleOperation(); write();">
+            <div class="badge">
+                <span>NOT</span>
+            </div>
+        </div>
+        <div class="operation-connector"></div>
+        <div class="operation">
+            <div #test_logic class="badge" matTooltip="Switch logic operator" matTooltipShowDelay="1000" (click)="asLogic.cycleOperation(); write();">
+                <span>{{asLogic.getLabel()}}</span>
+            </div>
+        </div>
+        <div class="node" *ngFor="let child of asLogic.children; first as isFirst; last as isLast; index as i;">
+            <div class="grouping-lines" [ngClass]="{ first: isFirst, last: isLast }">
+                <div class="vertical"></div>
+                <div class="horizontal"></div>
+            </div>
+            <div class="node-child" [ngClass]="{ first: isFirst, last: isLast }">
+                <o3-tag-condition-node #test_childNode (validChange)="validateChildren()"
+                                       [(model)]="asLogic.children[i]" (modelChange)="write()"></o3-tag-condition-node>
+
+                <div class="actions right">
+                    <button mat-stroked-button class="mini-button" matTooltip="Remove condition" matTooltipShowDelay="1000" (click)="removeChild(i)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    <button mat-stroked-button class="mini-button" matTooltip="Add condition" matTooltipShowDelay="1000" (click)="addChild()" *ngIf="isLast">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

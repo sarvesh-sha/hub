@@ -1,0 +1,42 @@
+<div class="context-menu">
+
+    <!-- Menu Trigger -->
+    <span #contextMenuTrigger="matMenuTrigger" [matMenuTriggerFor]="contextMenu"></span>
+
+    <!-- 1st Level Menu -->
+    <mat-menu #contextMenu="matMenu">
+        <div *ngFor="let firstLevelItem of items">
+
+            <!-- 1st Level Menu Items -->
+            <button mat-menu-item *ngIf="firstLevelItem.subMenuItems.length == 0" (click)="onContextMenuItemClicked($event, firstLevelItem)" [disabled]="firstLevelItem.disabled">
+                <span>{{firstLevelItem.label}}</span>
+            </button>
+            <button mat-menu-item *ngIf="firstLevelItem.subMenuItems.length != 0" [matMenuTriggerFor]="secondLevelMenu">
+                <span>{{firstLevelItem.label}}</span>
+            </button>
+
+            <!-- 2nd Level Menu -->
+            <mat-menu #secondLevelMenu="matMenu">
+                <div *ngFor="let secondLevelItem of firstLevelItem.subMenuItems">
+
+                    <!-- 2nd Level Menu Items -->
+                    <button mat-menu-item *ngIf="secondLevelItem.subMenuItems.length == 0" (click)="onContextMenuItemClicked($event, secondLevelItem)" [disabled]="secondLevelItem.disabled">
+                        <span>{{secondLevelItem.label}}</span>
+                    </button>
+                    <button mat-menu-item *ngIf="secondLevelItem.subMenuItems.length != 0" [matMenuTriggerFor]="thirdLevelMenu">
+                        <span>{{secondLevelItem.label}}</span>
+                    </button>
+
+                    <!-- 3rd Level Menu -->
+                    <mat-menu #thirdLevelMenu="matMenu">
+                        <button mat-menu-item *ngFor="let thirdLevelItem of secondLevelItem.subMenuItems"
+                                (click)="onContextMenuItemClicked($event, thirdLevelItem)" [disabled]="thirdLevelItem.disabled">
+                            <span>{{thirdLevelItem.label}}</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </mat-menu>
+        </div>
+    </mat-menu>
+
+</div>

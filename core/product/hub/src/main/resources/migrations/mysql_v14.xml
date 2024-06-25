@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <createTable tableName="ASSET_DEVICE_IPN">
+            <column name="device_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v14" tableName="ASSET_DEVICE_IPN"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createIndex indexName="IDXlxltt8hdvfq9fsseohfakwbgh" tableName="ASSET_DEVICE_IPN">
+            <column name="device_identifier"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_DEVICE_IPN" constraintName="FKiv3qmdkoeh6qdfq4h0ogyw5jy" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_DEVICE"/>
+    </changeSet>
+</databaseChangeLog>

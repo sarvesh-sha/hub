@@ -1,0 +1,14 @@
+<ng-template o3-wizard-step-template>
+    <div class="preview">
+        <mat-progress-spinner class="loading" *ngIf="!data.pivotTable" mode="indeterminate"></mat-progress-spinner>
+
+        <ng-container *ngIf="data.pivotTable">
+            <o3-query-column-picker [graph]="data.localGraph" [bindings]="data.hierarchy.bindings"
+                                    [virtualNodes]="data.hierarchy.virtualNodes" (virtualNodesChanged)="data.updatePivotTable()"></o3-query-column-picker>
+            <div class="preview-container" [style.height.px]="height">
+                <o3-interactive-tree [table]="data.pivotTable" [columnsMovable]="true"
+                                     (minHeightChanged)="updateHeight($event)" (nodesReordered)="onColumnPivot()"></o3-interactive-tree>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

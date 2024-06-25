@@ -1,0 +1,9 @@
+<o3-standard-form label="Which date format?"
+                  cardClass="no-content-padding"
+                  [showSecondary]="false"
+                  [primaryButtonDisabled]="false"
+                  primaryButtonText="Insert"
+                  [closeOnPrimaryPress]="true"
+                  (submitted)="onInsert()">
+    <o3-control-option-list [options]="options" [single]="true" [selection]="selection" (selectionChange)="onSelectionChange($event)"></o3-control-option-list>
+</o3-standard-form>

@@ -1,0 +1,28 @@
+<section class="details">
+    <mat-form-field>
+        <input matInput [(ngModel)]="baseUrl" placeholder="URL"/>
+    </mat-form-field>
+    <button mat-raised-button (click)="getTests()">Load Tests</button>
+</section>
+<section class="tests" *ngIf="testGroups?.length">
+    <o3-test-category-filter [testGroups]="testGroups" (filteredCategoriesUpdated)="updateFilteredGroups($event)"></o3-test-category-filter>
+    <o3-test-selector [tests]="tests" [testGroups]="filteredTestGroups" [selectedTests]="selectedTests"></o3-test-selector>
+    <button mat-raised-button (click)="runTests()" [disabled]="testsRunning">Run Tests</button>
+    <button mat-raised-button (click)="cancelTests()" [disabled]="!testsRunning">Cancel Tests</button>
+</section>
+<section class="results">
+    <h1>{{testResultsSummary}}</h1>
+    <o3-test-results [testStart]="testStart" [testResults]="testResults" (cancelTest)="cancelTest($event)"></o3-test-results>
+</section>
+<section class="previous-results" *ngIf="prevResults.length">
+    <h1>Previous Test Runs</h1>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let results of prevResults" [@expand]>
+            <mat-expansion-panel-header>
+                <mat-panel-title>{{results.summary}}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <o3-test-results [testStart]="results.testStart" [testResults]="results.results"></o3-test-results>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>
+

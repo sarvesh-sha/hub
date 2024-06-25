@@ -1,0 +1,166 @@
+{
+  "definition": {
+    "title": "AlertSeverityComparison",
+    "purpose": "Definition",
+    "description": "1",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "temporary": false,
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": ")=]NF^Kq$(37qdF=c`n%",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "normalEqualsNormal",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "normalNotEqualsNormal",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "normalLessThanEqualNormal",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "lowLessThanSignificant",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "significantGreaterThanLow",
+                  "type": "Boolean"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "|xw@I*dx`@Q~a$*c)ply",
+                  "variable": {
+                    "name": "normalEqualsNormal",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "*9vzrJE0D%eQIL`O`}dm",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "UVnr!Ou#]3F.xYyZ=$M]",
+                      "value": "NORMAL"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "RSGZQlbPNHdW~ScE9TO0",
+                      "value": "NORMAL"
+                    },
+                    "operation": "Equal"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "Y%4LthEq,UP)E(^9k4h.",
+                  "variable": {
+                    "name": "normalNotEqualsNormal",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "5]qBb:}+bn+OCe2s9Hx:",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "I^8XGzh=.k~Z+aL7oZ:b",
+                      "value": "NORMAL"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "NAwv74P6ywd;+LVRh#?H",
+                      "value": "NORMAL"
+                    },
+                    "operation": "NotEqual"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "nIZ|UYP[$PtdPWD1yq/n",
+                  "variable": {
+                    "name": "normalLessThanEqualNormal",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": ";/Vjyi/BcQY2633U}n)9",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "270IFn.DaJgRHo!A3u~$",
+                      "value": "NORMAL"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "R=;ss.6F`d`#q$d{)T#^",
+                      "value": "NORMAL"
+                    },
+                    "operation": "LessThanOrEqual"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "CK#+8R,#f.uLEN@4|XPv",
+                  "variable": {
+                    "name": "lowLessThanSignificant",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "j2,jKtF0#]%P1CD]-k*{",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "#`=]Rv1t56=CDOSQBE+8",
+                      "value": "LOW"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "?[^e1gh+P[8{o-2YH-/P",
+                      "value": "SIGNIFICANT"
+                    },
+                    "operation": "LessThan"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "q}nj+0XQd6X$9B2W$6kM",
+                  "variable": {
+                    "name": "significantGreaterThanLow",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "oH1XxBU+]jz+40,92:yT",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "VdS`Yt7;q+k(^(0Xikf)",
+                      "value": "SIGNIFICANT"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertSeverity",
+                      "id": "|5fSfvw,z);Qg){d8g@x",
+                      "value": "LOW"
+                    },
+                    "operation": "GreaterThan"
+                  }
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+<o3-content-with-subtext *ngIf="!loading" [text]="subtext" [showText]="showSubtext" [fontSize]="rangeFontSize">
+    <div class="o3-aggregation--value o3-device-color" [ngStyle]="valueStyles"
+         [class.clickable]="navigable" [matTooltip]="tooltip" (click)="navigate()">
+        <div>{{valueText}}</div>
+    </div>
+</o3-content-with-subtext>

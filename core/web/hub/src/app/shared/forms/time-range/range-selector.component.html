@@ -1,0 +1,18 @@
+<div class="row" [class.preset]="!isCustomRange" [matTooltip]="readonlyTooltip" matTooltipShowDelay="500" [matTooltipDisabled]="!readonly">
+    <mat-form-field [ngClass]="{'col-xl-2'  : isCustomRange && allowTimezone,
+                                'col-sm-6'  : allowTimezone,
+                                'col-md-3'  : isCustomRange && !allowTimezone,
+                                'col-sm-12' : !allowTimezone }">
+        <o3-select #test_rangeSelector name="time-range" [ngModel]="rangeDropdownValue" (ngModelChange)="rangeChanged($event)"
+                   [placeholder]="rangeLabel()" [options]="enabledRanges" [readonly]="readonly"
+                   [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"></o3-select>
+    </mat-form-field>
+    <o3-time-zone-selector *ngIf="allowTimezone" class="col-sm-6" [class.col-xl-2]="isCustomRange"
+                           [readonly]="readonly" [includeLocal]="true"
+                           [(zone)]="zone" (zoneChange)="makeSelection()"></o3-time-zone-selector>
+
+    <div *ngIf="isCustomRange" class="col-sm-12" [ngClass]="allowTimezone ? 'col-xl-8' : 'col-md-9'">
+        <o3-date-picker class="col-sm-6" label="Start Time" [model]="start" (modelChange)="startChanged($event)" [readonly]="readonly"></o3-date-picker>
+        <o3-date-picker class="col-sm-6" label="End Time" [model]="end" (modelChange)="endChanged($event)" [readonly]="readonly"></o3-date-picker>
+    </div>
+</div>

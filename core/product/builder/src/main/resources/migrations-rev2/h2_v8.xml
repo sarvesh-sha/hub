@@ -1,0 +1,55 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <createTable tableName="DEPLOYMENT_HOST_FILE_CHUNK">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTENTS" type="BLOB"/>
+            <column name="LENGTH" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_NUMBER" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_FILE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="DEPLOYMENT_HOST_FILE">
+            <column name="TASK_NAME" type="VARCHAR_IGNORECASE(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="DEPLOYMENT_HOST_FILE">
+            <column name="TASK" type="VARCHAR_IGNORECASE(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <createIndex indexName="DEPLOYMENT_HOST_FILE_CHUNK__FILE__FK_INDEX_D" tableName="DEPLOYMENT_HOST_FILE_CHUNK">
+            <column name="OWNING_FILE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <createIndex indexName="FILE__TASK__FK_INDEX_B" tableName="DEPLOYMENT_HOST_FILE">
+            <column name="TASK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <addForeignKeyConstraint baseColumnNames="OWNING_FILE" baseTableName="DEPLOYMENT_HOST_FILE_CHUNK" constraintName="DEPLOYMENT_HOST_FILE_CHUNK__FILE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST_FILE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <addForeignKeyConstraint baseColumnNames="TASK" baseTableName="DEPLOYMENT_HOST_FILE" constraintName="FILE__TASK__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_TASK" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropColumn columnName="CONTENTS" tableName="DEPLOYMENT_HOST_FILE"/>
+    </changeSet>
+</databaseChangeLog>

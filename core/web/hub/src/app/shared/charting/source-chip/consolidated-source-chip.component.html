@@ -1,0 +1,49 @@
+<div class="o3-consolidated-source-chip--chip-container" [class.o3-consolidated-source-chip--reflowing]="reflowing">
+    <mat-chip
+        *ngIf="consolidated"
+        #test_consolidated
+        class="o3-source-chip clickable"
+        [class.o3-source-chip--embedded]="embedded"
+        [class.o3-source-chip--transparent]="disableConsolidatedRipple"
+        [matTooltip]="consolidatedChipTooltip"
+        [disableRipple]="disableConsolidatedRipple"
+        (click)="toggleSourcesDropdown()">
+        <div class="circular-chip-siders chip-indicator" [style.background]="sourceIndicatorStyle"></div>
+        <div class="chip-content">
+            <span class="primary-info">{{getPrimaryDataSourcesMessage(true)}}</span>
+            <span class="mat-caption additional-info">Click to view all</span>
+        </div>
+    </mat-chip>
+
+    <ng-container *ngFor="let source of sourceExts">
+        <o3-source-chip *ngIf="showSource(source, false)" #chip [chart]="source.containingChart" [sourceId]="source.source.identifier"
+                        [actions]="actions" [deletable]="isDeletable(source)" [catchClicks]="catchClicks"
+                        [primaryTextOverride]="source.primaryTextOverride" [hideSecondaryText]="hideSecondaryText"
+                        [showTooltips]="showSingleChipTooltips" [embedded]="embedded" [disableRipple]="disableConsolidatedRipple"
+                        (deleteTriggered)="triggerDeletion(source)" (deleteCancelled)="deleteCancelled.emit(source.source)">
+        </o3-source-chip>
+    </ng-container>
+    <div class="o3-watermark-caption" *ngIf="noActiveSources">
+        No active sources
+    </div>
+</div>
+
+<o3-overlay [config]="sourcesOverlayConfig" (opened)="notifyOpen()" (closed)="sourceFilter = ''">
+    <o3-tab-group cardClass="no-content-padding" noUnderline>
+        <o3-tab [label]="getPrimaryDataSourcesMessage(false)">
+            <mat-form-field class="filter-input o3-default-border-bottom" (click)="$event.stopPropagation()">
+                <input matInput type="text" placeholder="Filter" [(ngModel)]="sourceFilter" (ngModelChange)="updateFilteredSources()"/>
+            </mat-form-field>
+            <div class="chip-list">
+                <ng-container *ngFor="let source of sourceExts; trackBy sourceIdentifier">
+                    <o3-source-chip *ngIf="showSource(source, true)" #test_overlayChip
+                                    [chart]="source.containingChart" [sourceId]="source.source.identifier"
+                                    [actions]="actions" [catchClicks]="catchClicks"
+                                    [listable]="true" [deletable]="isDeletable(source)" [showTooltips]="showSingleChipTooltips"
+                                    [primaryTextOverride]="source.primaryTextOverride" [hideSecondaryText]="hideSecondaryText"
+                                    (deleteTriggered)="triggerDeletion(source)" (deleteCancelled)="deleteCancelled.emit(source.source)"></o3-source-chip>
+                </ng-container>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

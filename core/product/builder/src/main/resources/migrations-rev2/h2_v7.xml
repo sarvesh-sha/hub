@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <addColumn tableName="JOB_STEP">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="HOST">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <addColumn tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addColumn tableName="DEPLOYMENT_TASK">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropIndex indexName="IDX545UE1L53WHQJ6T6ASQHY4555" tableName="JOB_STEP_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <dropIndex indexName="IDXFASO40L959S8Q60RRBOE2R6SC" tableName="DEPLOYMENT_TASK_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropIndex indexName="IDXI7O9YHKDX3XP2PF5131384H95" tableName="DEPLOYMENT_PROBER_OPERATION_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropIndex indexName="IDXJLFEYEAI4R53GE6VEL5RAWS1Q" tableName="JOB_STEP_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <dropIndex indexName="IDXJNTAJCB19VAGRE3ML92KY2G26" tableName="DEPLOYMENT_TASK_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <dropIndex indexName="IDXL43JPCHW33AXEPQK4ABR2ANES" tableName="HOST_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <dropIndex indexName="IDXN6HKJFMRCYIA6FPH2T5TG928G" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <dropIndex indexName="IDXNA1LDW00A785EGRMCX4XJBJPP" tableName="DEPLOYMENT_PROBER_OPERATION_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <dropIndex indexName="IDXT6EMETXO6GWB2E2PFX1UCD2KT" tableName="HOST_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <dropIndex indexName="IDXTJNP08F92F4NRUYBI94NQALK2" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG"/>
+    </changeSet>
+</databaseChangeLog>

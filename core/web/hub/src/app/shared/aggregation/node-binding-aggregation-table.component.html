@@ -1,0 +1,12 @@
+<o3-aggregation-table
+    *ngIf="datatableConfigExt?.tableStructure"
+    [tableStructure]="datatableConfigExt.tableStructure"
+    [(currSort)]="currSort"
+    (currSortChange)="datatableConfigExt.sortRows($event)"
+    [barMode]="isBarMode"
+    [enableTooltips]="true"
+    firstColumnHeader="Contexts"
+    emptyRowsMessage="No control points match the selected bindings"
+    [twoLabels]="twoLabels"
+    (cellSelected)="handleSelection($event)">
+</o3-aggregation-table>

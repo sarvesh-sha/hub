@@ -1,0 +1,26 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data.reportDefinition">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Report Title" [(ngModel)]="data.reportDefinition.model.title" name="reportTitle" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput type="text" placeholder="Description" [(ngModel)]="data.reportDefinition.model.description" name="reportDescription"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-sm-6">
+                <o3-select placeholder="Time Range For Report"
+                           name="timeRange"
+                           required
+                           singleClick
+                           preventDeselection
+                           [multiSelect]="false"
+                           [(ngModel)]="timeRange" (ngModelChange)="updateTimeRange()"
+                           [options]="timeRangeOptions"></o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

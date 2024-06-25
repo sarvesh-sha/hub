@@ -1,0 +1,25 @@
+<div class="preview" *ngIf="isReady()">
+    <div class="preview-details">
+        <div class="preview-title">
+            <mat-form-field>
+                <o3-select #test_selector [placeholder]="placeholder" [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"
+                           [options]="options" [(ngModel)]="selection" (ngModelChange)="onSelection($event)"></o3-select>
+            </mat-form-field>
+        </div>
+        <div class="preview-description">{{meta?.description}}</div>
+    </div>
+    <div class="preview-examples">
+        <o3-carousel [autoCycle]="true">
+            <div *ngFor="let example of meta.examples">
+                <div *o3-carousel-slide class="preview-example">
+                    <o3-image-preview [preview]="example"></o3-image-preview>
+                </div>
+            </div>
+            <div *ngIf="meta.examples.length === 0">
+                <div *o3-carousel-slide class="preview-example">
+                    <div class="no-preview">No previews available</div>
+                </div>
+            </div>
+        </o3-carousel>
+    </div>
+</div>

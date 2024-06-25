@@ -1,0 +1,14 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <ng-template #negativeTabsSpace>
+            <o3-filter-chips-container *ngIf="filtersAdapter" [chips]="chips" (editFilterRequested)="filtersAdapter.openOverlay()"></o3-filter-chips-container>
+        </ng-template>
+
+        <o3-tab label="{{hasFilters ? 'Filtered' : 'All'}} Hosts">
+            <o3-hosts-list viewStatePrefix="hosts" [filters]="filters" [withFiltering]="true"></o3-hosts-list>
+        </o3-tab>
+    </o3-tab-group>
+
+    <o3-host-filters-adapter *ngIf="filtersLoaded" [local]="localFiltering" (filterChipsChange)="chips = $event"
+                             [(request)]="filters" (requestChange)="refresh()"></o3-host-filters-adapter>
+</section>

@@ -1,0 +1,11 @@
+<section class="bs page-content">
+    <o3-chart-set [(range)]="range" [(configs)]="charts" [canDeleteAllCharts]="true">
+        <o3-time-series-set-toolbar-action label="Add to Bookmarks" (click)="openBookmarkOverlay()" [disabled]="emptyVisualizations"></o3-time-series-set-toolbar-action>
+        <o3-time-series-set-toolbar-action label="Add Charts to Dashboard" [o3-dialog-toggle]="addWidgetDialog.overlay" [disabled]="emptyVisualizations"></o3-time-series-set-toolbar-action>
+        <o3-time-series-set-toolbar-action label="Bookmarks" [o3-dialog-toggle]="bookmarksOverlay.overlay" [disabled]="bookmarksOverlay.numBookmarks == 0"></o3-time-series-set-toolbar-action>
+    </o3-chart-set>
+
+    <o3-add-widget-overlay #addWidgetDialog (addWidgetNotifier)="addWidget($event)"></o3-add-widget-overlay>
+</section>
+
+<o3-bookmarks-overlay label="Data Explorer Bookmarks" [bookmarks]="bookmarkSets" (bookmarkDeleted)="loadBookmarkViews()"></o3-bookmarks-overlay>

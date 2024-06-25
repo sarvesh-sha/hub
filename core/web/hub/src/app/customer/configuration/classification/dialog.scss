@@ -1,0 +1,24 @@
+mat-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    mat-card-content {
+        overflow: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+}
+
+.dropdown-toggle {
+    &::after {
+        border-top: 0.25em solid;
+        border-right: 0.25em solid transparent;
+        border-left: 0.25em solid transparent;
+        font-size: 16px;
+        content: "";
+        vertical-align: middle;
+        display: inline-block;
+        margin-left: .5em;
+    }
+}

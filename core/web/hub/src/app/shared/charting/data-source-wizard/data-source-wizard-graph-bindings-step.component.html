@@ -1,0 +1,56 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="showLocalGraphs && !showExternalGraphs">
+        <mat-form-field *ngIf="!forVisualization" class="col-sm-6 no-padding">
+            <o3-select #test_bindingLocal placeholder="Source"
+                       name="single-local-binding" [(ngModel)]="data.graphSelection" (ngModelChange)="graphSelectionChanged(true)"
+                       [multiSelect]="false" preventDeselection singleClick
+                       [o3AssetGraphNodeSelectorMulti]="localGraphs" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="forVisualization" class="col-sm-6 no-padding">
+            <o3-select #test_bindingsLocal placeholder="Sources"
+                       name="multiple-local-bindings" [(ngModel)]="data.localGraphSelections" (ngModelChange)="graphSelectionsChanged()"
+                       [o3AssetGraphNodeSelectorMulti]="localGraphs" [o3AssetGraphNodeSelectorOnlyLeaves]="true" [o3AssetGraphNodeSelectorOnlySiblings]="isHierarchical"></o3-select>
+        </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="showExternalGraphs">
+        <ng-container *ngIf="!showLocalGraphs">
+            <mat-form-field *ngIf="!forVisualization" class="col-sm-6 no-padding">
+                <o3-select #test_bindingExternal placeholder="Source"
+                           name="single-external-binding" [(ngModel)]="data.graphSelection" (ngModelChange)="graphSelectionChanged(false)"
+                           [multiSelect]="false" preventDeselection singleClick
+                           [o3AssetGraphNodeSelectorMulti]="externalGraphs" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="forVisualization" class="col-sm-6 no-padding">
+                <o3-select #test_bindingsExternal placeholder="Sources"
+                           name="multiple-external-bindings" [(ngModel)]="data.externalGraphSelections"
+                           [o3AssetGraphNodeSelectorMulti]="externalGraphs" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+            </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="showLocalGraphs">
+            <mat-form-field *ngIf="!forVisualization" class="col-sm-6 no-padding">
+                <o3-select #test_bindingBoth placeholder="Source"
+                           name="single-binding" [(ngModel)]="data.graphSelection" (ngModelChange)="graphSelectionChanged()"
+                           [multiSelect]="false" preventDeselection singleClick
+                           [o3AssetGraphNodeSelectorMultiGroups]="graphGroups" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="forVisualization" class="col-sm-6 no-padding">
+                <o3-select #test_bindingsBoth placeholder="Sources"
+                           name="multiple-bindings" [(ngModel)]="data.graphSelections"
+                           [o3AssetGraphNodeSelectorMultiGroups]="graphGroups" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+            </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="showSelectorFields">
+            <mat-form-field class="col-sm-6 no-padding">
+                <o3-select #test_selector placeholder="Selector" [options]="selectorOptions"
+                           name="selector-id" [(ngModel)]="data.selectorId" (ngModelChange)="selectorIdChanged()"
+                           [multiSelect]="false" preventDeselection singleClick></o3-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="newSelectorChosen" class="col-sm-6 no-padding">
+                <input matInput name="new-selector-name" required placeholder="Selector Name" [(ngModel)]="data.newSelectorName">
+            </mat-form-field>
+        </ng-container>
+    </ng-container>
+</ng-template>

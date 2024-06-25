@@ -1,0 +1,67 @@
+<p *ngIf="badStructure">Asset structure does not match anything. Check configuration and try again.</p>
+
+<mat-form-field *ngIf="graphOptions?.length" style="width:400px">
+    <o3-select placeholder="Select Pane" [options]="graphOptions" [multiSelect]="false" singleClick [(ngModel)]="selectedGraph" (ngModelChange)="evaluate()"></o3-select>
+</mat-form-field>
+
+<div class="o3-pane-fields-editor--container" *ngIf="selectedGraph">
+    <o3-context-pane [class.focus]="focus === data.model"
+                     [editing]="true"
+                     [paneTitle]="titleInputName"
+                     [branding]="data.model.branding"
+                     (click)="configurePane()">
+        <div *ngFor="let card of data.model.elements" class="card-container" (click)="$event.stopPropagation()">
+            <o3-context-pane-card [class.focus]="focus === card"
+                                  cdkDropList (cdkDropListDropped)="drop($event, card)"
+                                  [(cardTitle)]="card.title"
+                                  [editing]="true"
+                                  [primaryColor]="data.model.branding.primaryColor" [secondaryColor]="data.model.branding.secondaryColor">
+                <ng-container *ngFor="let fieldConfig of card.fields">
+                    <div class="field-container" [class.focus]="focus === fieldConfig" cdkDrag>
+                        <o3-dynamic-pane-field *ngIf="paneFields.get(fieldConfig) as field" [field]="field" [aggRange]="range"></o3-dynamic-pane-field>
+                        <o3-context-pane-field *ngIf="!paneFields.has(fieldConfig)" class="wide"
+                                               [label]="fieldConfig.label" text="Click to configure"></o3-context-pane-field>
+
+                        <div class="o3-content-protector" (click)="configureField(card, fieldConfig)"></div>
+                        <button type="button" class="o3-pane-fields-editor--delete-button" (click)="removeField(card, fieldConfig)">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </ng-container>
+
+                <button mat-icon-button [o3-dialog-toggle]="fieldConfigOverlay" (click)="cardContext = card">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </o3-context-pane-card>
+            <button type="button" class="o3-pane-fields-editor--delete-button" (click)="removeCard(card); $event.stopPropagation()">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <button mat-icon-button (click)="addCard(); $event.stopPropagation()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </o3-context-pane>
+
+    <o3-standard-form-overlay [label]="configTitle" [overlayConfig]="overlayConfig" dialogClass="dialog-lg" [hideActions]="true">
+        <div class="o3-pane-fields-editor--form-container" *ngIf="graph">
+            <ng-container *ngIf="paneFocus">
+                <mat-form-field>
+                    <o3-select name="paneTitleNode" [o3AssetGraphNodeSelector]="graph" [multiSelect]="false" placeholder="Node for title"
+                               [ngModel]="data.model.titleInput?.nodeId" (ngModelChange)="data.model.titleInput = getInput($event)">
+                    </o3-select>
+                </mat-form-field>
+                <o3-branding-configuration [data]="data.model.branding" defaultPrimaryColor="#F5F5F5" defaultSecondaryColor="#616161"></o3-branding-configuration>
+            </ng-container>
+
+            <mat-form-field *ngIf="cardFocus">
+                <input name="cardTitle" matInput placeholder="Card Title" [(ngModel)]="cardFocus.title"/>
+            </mat-form-field>
+        </div>
+    </o3-standard-form-overlay>
+</div>
+
+<o3-overlay [config]="overlayConfig">
+    <o3-pane-field-wizard *cdkPortal [model]="fieldFocus" [graph]="graph" [graphContexts]="selectedGraphContexts" [graphResponse]="currentResponse" [units]="units"
+                          (created)="addField($event)" (updated)="updateField($event)" (cancelled)="closeFieldOverlay()"></o3-pane-field-wizard>
+</o3-overlay>

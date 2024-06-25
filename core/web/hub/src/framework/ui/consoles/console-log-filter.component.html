@@ -1,0 +1,37 @@
+<div class="filter-row">
+    <mat-form-field>
+        <input matInput placeholder="Filter" [(ngModel)]="editRequest.filter" (ngModelChange)="filterUpdated.next()"/>
+    </mat-form-field>
+    <o3-filter-chips-container [chips]="chips" (editFilterRequested)="openOverlay()"></o3-filter-chips-container>
+</div>
+
+<o3-standard-form-overlay label="Select Filter Criteria"
+                          [overlayConfig]="overlayConfig"
+                          [showSecondary]="false"
+                          [primaryButtonDisabled]="pristine"
+                          primaryButtonText="Apply"
+                          [closeOnPrimaryPress]="false"
+                          [showExtraButton]="true"
+                          extraButtonText="Reset Filters"
+                          extraButtonPriority="tertiary"
+                          (submitted)="applyFilterEdits();"
+                          (extraButtonPressed)="resetEditRequest()">
+        <mat-form-field>
+            <o3-select name="levels" placeholder="Levels" defaultValueDescription="Select Levels" [options]="levels"
+                       [(ngModel)]="editRequest.levels" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-string-set placeholder="Threads" [(value)]="editRequest.threads" (valueChange)="updatePristine()"></o3-string-set>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-string-set placeholder="Selectors" [(value)]="editRequest.selectors" (valueChange)="updatePristine()"></o3-string-set>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-string-set placeholder="Hosts" [(value)]="editRequest.hosts" (valueChange)="updatePristine()"></o3-string-set>
+        </mat-form-field>
+</o3-standard-form-overlay>
+

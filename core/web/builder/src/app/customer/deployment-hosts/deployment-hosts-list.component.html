@@ -1,0 +1,60 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <form class="row mb-2" name="filterForm">
+            <div class="col-sm-8">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Filter List..." name="filterInput" [(ngModel)]="filterText">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field>
+                    <o3-select placeholder="Status"
+                               defaultValueDescription="Select Status"
+                               [multiSelect]="false"
+                               [singleClick]="true"
+                               [options]="states"
+                               [(ngModel)]="filterStatus"
+                               [ngModelOptions]="{standalone: true}">
+                    </o3-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</div>
+
+<o3-datatable [table]="table" [showConfig]="true">
+    <o3-datatable-column id="hostName" sortId="hostName" prop="desc.hostName" name="Display Name" [minWidth]="350"></o3-datatable-column>
+    <o3-datatable-column id="hostId" sortId="hostId" prop="desc.hostId" name="Host Id">
+        <ng-template o3-datatable-cell-template let-row="row">
+            <span matTooltip="{{row.getHostIdAndProvisioningInfo() | async}}">{{row.desc.hostId}}</span>
+            <small>{{row.getProvisioningInfo() | async}}</small>
+        </ng-template>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="lastHeartbeat" sortId="!lastHeartbeat" sortStart="desc" prop="desc.lastHeartbeat" name="Last Heartbeat" [width]="140" [minWidth]="100" [grow]="0"
+                         format="DATELONG"></o3-datatable-column>
+
+    <o3-datatable-column id="status" sortId="status" name="Status" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.getComplexStatus() | async}}" matTooltipShowDelay="500">{{row.getComplexStatus() | async}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="remoteName" prop="desc.remoteName" name="Remote Name"></o3-datatable-column>
+    <o3-datatable-column id="cellProvider" sortId="cellProvider" prop="cellProvider" name="Cell Provider" [enabled]="false"></o3-datatable-column>
+
+    <o3-datatable-column id="instanceType" sortId="instanceType" prop="desc.instanceType" name="Instance Type" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="roleInfo" sortId="roleInfo" prop="desc.rolesSummary" name="Role" [width]="150" [maxWidth]="150"></o3-datatable-column>
+    <o3-datatable-column id="serviceInfo" sortId="serviceInfo" prop="serviceName" name="Service"></o3-datatable-column>
+    <o3-datatable-column id="customerInfo" sortId="customerInfo" prop="customerName" name="Customer"></o3-datatable-column>
+
+    <o3-datatable-column id="voltage" sortId="batteryVoltage" prop="batteryVoltage" name="Input Voltage" [width]="110" [minWidth]="110" [grow]="0"></o3-datatable-column>
+    <o3-datatable-column id="temperature" prop="cpuTemperature" name="CPU Temp" [width]="110" [minWidth]="110" [grow]="0"></o3-datatable-column>
+
+    <o3-datatable-column id="diskSize" sortId="diskTotal" prop="diskTotal" name="Disk Size" format="NUMBER" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="diskFree" sortId="diskFree" prop="diskFree" name="Disk Free" format="NUMBER"></o3-datatable-column>
+    <o3-datatable-column id="diskFreePercent" sortId="diskFreePercent" prop="diskFreePercent" name="Disk Free %" format="PERCENT" [width]="90" [minWidth]="90" [grow]="0"></o3-datatable-column>
+
+    <o3-datatable-column id="buildTime" sortId="buildTime" prop="desc.agentBuildTime" name="Agent Built On" format="DATE" [width]="120" [minWidth]="120" [grow]="0"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="desc.createdOn" name="Created" format="DATE" [width]="90" [maxWidth]="90" [grow]="0"></o3-datatable-column>
+</o3-datatable>

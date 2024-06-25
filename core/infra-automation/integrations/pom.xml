@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.optio3</groupId>
+        <artifactId>optio3-infra-automation-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <artifactId>optio3-infra-automation-integrations</artifactId>
+    <name>Infrastructure Automation (Integrations part)</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.optio3</groupId>
+            <artifactId>optio3-infra-automation-local</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Azure dependencies -->
+        <!--                    -->
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-identity</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-digitaltwins-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.azure.sdk.iot</groupId>
+            <artifactId>iot-device-client</artifactId>
+        </dependency>
+        <!--                    -->
+        <!-- Azure dependencies -->
+
+        <!--              -->
+        <!-- MQTT support -->
+        <!--              -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,35 @@
+#!/bin/bash                                                                                                             
+
+DST_DIR=/optio3
+WORK_DIR=${PWD}
+CONFIG_FILE=configuration.tgz
+
+function cleanup {
+	if [ -f "${WORK_DIR}/${CONFIG_FILE}" ]; then
+		rm ${WORK_DIR}/${CONFIG_FILE}
+	fi
+}
+
+# register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
+
+#################
+
+yum update -y
+
+##
+## For Amazon Linux 2
+##
+yum install -y awscli
+
+mkdir -p ${DST_DIR}
+chmod 0700 ${DST_DIR}
+
+aws s3 cp s3://optio3/instance/$[param.INSTANCE_TYPE]/config/${CONFIG_FILE} ${WORK_DIR}
+
+tar --no-same-owner -C ${DST_DIR} -x -z -f ${WORK_DIR}/${CONFIG_FILE}
+cd ${DST_DIR}
+./instance-init.sh $[param.REPO_ACCOUNT] $[param.REPO_PASSWORD] || exit $?
+
+rm ${WORK_DIR}/${CONFIG_FILE}
+

@@ -1,0 +1,18 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <ng-template #negativeTabsSpace>
+            <o3-filter-chips-container *ngIf="filtersAdapter" [chips]="chips" (editFilterRequested)="filtersAdapter.openOverlay()"></o3-filter-chips-container>
+        </ng-template>
+
+        <o3-tab-action label="Add New Network" (click)="addNetwork()"></o3-tab-action>
+        <o3-tab-action label="Import Network" (click)="importNetwork()"></o3-tab-action>
+        <o3-tab-action label="Generate simulated data" (click)="createSimulatedData()" *ngIf="hasDemoData"></o3-tab-action>
+
+        <o3-tab label="{{hasFilters ? 'Filtered' : 'All'}} Networks">
+            <o3-networks-list viewStatePrefix="networks" [filters]="filters" [withFiltering]="true"></o3-networks-list>
+        </o3-tab>
+    </o3-tab-group>
+
+    <o3-network-filters-adapter *ngIf="filtersLoaded" [local]="localFiltering" (filterChipsChange)="chips = $event"
+                                [(request)]="filters" (requestChange)="refresh()"></o3-network-filters-adapter>
+</section>

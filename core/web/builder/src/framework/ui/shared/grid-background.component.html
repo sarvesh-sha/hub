@@ -1,0 +1,5 @@
+<ng-container *ngIf="grid">
+    <div *ngFor="let row of grid; trackBy idxFn" class="o3-grid-background--row">
+        <div *ngFor="let cell of row; trackBy idxFn" class="o3-grid-background--cell"></div>
+    </div>
+</ng-container>

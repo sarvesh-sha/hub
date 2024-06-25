@@ -1,0 +1,540 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action *ngFor="let action of possibleActions" label="{{action.name}}" (click)="action.execute()" [tooltip]="action.tooltip"></o3-tab-action>
+
+        <o3-tab-action label="Change Alert Thresholds..." (click)="alertThresholdsOverlay.toggleOverlay()"></o3-tab-action>
+        <o3-tab-action label="Change Gateway Battery Thresholds..." (click)="batteryThresholdsOverlay.toggleOverlay()"></o3-tab-action>
+
+        <o3-tab-action label="Update" priority="primary" type="submit" [form]="modelForm" [disabled]="!modelForm.valid || modelForm.pristine"></o3-tab-action>
+        <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="modelForm.pristine"></o3-tab-action>
+        <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!modelForm.pristine"></o3-tab-action>
+        <o3-tab-action label="Show Logs" priority="secondary" (click)="showLog()"></o3-tab-action>
+
+        <o3-tab label="Deployment Details">
+
+            <o3-tab-action label="Remove" icon="delete" priority="tertiary" (click)="remove()" [disabled]="extendedNoRemoveReason != null"
+                           [tooltip]="extendedNoRemoveReason"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #modelForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Host Id" [value]="extended.model.hostId" name="depHostId" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Host Name" [(ngModel)]="extended.model.hostName" name="depHostName">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-12 col-lg-4" *ngIf="remoteInfo">
+                        <div class="row py-0 clickable-input" (click)="goToRemoteService()">
+                            <div class="col-8">
+                                <span>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Remote Name"
+                                               [value]="remoteInfo.name"
+                                               name="remoteGateway"
+                                               readonly>
+                                    </mat-form-field>
+                                </span>
+                            </div>
+                            <div class="col-1">
+                                <button mat-icon-button type="button">
+                                    <mat-icon>chevron_right</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <o3-select placeholder="Instance Type"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="instanceTypes"
+                                       [(ngModel)]="extended.model.instanceType"
+                                       [ngModelOptions]="{standalone: true}"
+                                       disabled>
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Instance Region" [value]="extended.model.instanceRegion" name="depRegion" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-1">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Architecture" [value]="extended.model.architecture" name="depArch" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-1">
+                        <mat-form-field>
+                            <o3-select name="operationalStatus"
+                                       placeholder="Operational Status"
+                                       defaultValueDescription="Select Operational Status"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="operationalStates"
+                                       [(ngModel)]="extended.model.operationalStatus">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Minutes With No Updates Before Warning" [(ngModel)]="extended.model.warningThreshold" name="warning_threshold">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-1">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Heartbeat" [value]="extended.model.lastHeartbeat|o3LongDateTime" name="depHostHeartbeat" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-1">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Connectivity" [value]="extendedCheckingConnection" name="depOnline" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Status" [value]="extended.getComplexStatus() | async" name="depStatus" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row py-0 clickable-input" (click)="goToService()" *ngIf="extended.isBound() | async">
+                    <div class="col-11">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Bound To Service"
+                                   [value]="extended.boundInfo() | async"
+                                   name="boundService"
+                                   readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-1">
+                        <button mat-icon-button type="button">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="provisioning?.manufacturingInfo">
+                    <div class="col-xl-1">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Manufacturing Date" [value]="provisioning?.manufacturingInfo.timestamp|o3LongDate" name="provTimestamp" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="PCB Serial Number" [value]="provisioning?.manufacturingInfo.boardSerialNumber" name="provSerialNumber" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-1">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Firmware Version" [value]="provisioning?.manufacturingInfo.firmwareVersion" name="provFirmwareVersion" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Modem Version" [value]="provisioning?.manufacturingInfo.modemRevision" name="provModemRevision" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div *ngIf="offlineDeployment">
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Repo" [ngModel]="offlineDeployment.repoAddress" name="offline_repoAddress" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Repo User" [ngModel]="offlineDeployment.repoUser" name="offline_repoUser" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Repo Pwd" [ngModel]="offlineDeployment.repoPassword" name="offline_repoPassword" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Image" [ngModel]="offlineDeployment.repoImage" name="offline_repoImage" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-form-field>
+                                <textarea matInput placeholder="Module Configuration" [value]="offlineDeployment.containerConfig" name="offline_config" rows="15" readonly>
+                                </textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Agents">
+            <o3-deployment-agents-list #childAgents [viewStatePrefix]="'Agents'" [extended]="extended" *ngIf="extended">
+            </o3-deployment-agents-list>
+        </o3-tab>
+
+        <o3-tab label="Tasks">
+            <o3-deployment-tasks-list #childTasks [viewStatePrefix]="'Tasks'" [extended]="extended" *ngIf="extended">
+            </o3-deployment-tasks-list>
+        </o3-tab>
+
+        <o3-tab label="Connectivity">
+            <o3-datatable [table]="onlineSessionsProvider.table" [showRowNumbers]="true">
+                <o3-datatable-column id="start" prop="model.start" name="Start" [width]="150" [maxWidth]="150" format="DATE"></o3-datatable-column>
+                <o3-datatable-column id="end" prop="model.end" name="End" [width]="150" [maxWidth]="150" format="DATE"></o3-datatable-column>
+                <o3-datatable-column id="duration" prop="duration" name="Duration"></o3-datatable-column>
+                <o3-datatable-column id="offline" prop="offline" name="Offline"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+
+        <o3-tab label="Cellular Info" (selected)="refreshConnectionStatus()">
+
+            <o3-tab-action label="Fetch Data Sessions..." priority="secondary" [disabled]="fetchingDataSessions" (click)="fetchDataSessions()" *ngIf="!dataSessions"></o3-tab-action>
+            <o3-tab-action label="Refresh Data Sessions..." priority="secondary" [disabled]="fetchingDataSessions" (click)="fetchDataSessions()" *ngIf="dataSessions"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-auto">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Provider" [value]="extended?.model?.details?.provider" name="cellularProvider" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-auto">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="IMSI" [value]="extended?.model?.details?.cellular?.modemIMSI" name="modemIMSI" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-auto">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="IMEI" [value]="extended?.model?.details?.cellular?.modemIMEI" name="modemIMEI" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-auto">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="ICCID" [value]="extended?.model?.details?.cellular?.modemICCID" name="modemICCID" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-1" (click)="navigateToCellularProvider()" *ngIf="extended?.model?.details?.provider" matTooltip="Navigate to Provider" matTooltipShowDelay="500">
+                    <button mat-icon-button type="button">
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <o3-deployment-charges-summary [topHosts]="false" [charges]="charges"></o3-deployment-charges-summary>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isOnline && isTransferring">
+                <div class="col-12">
+                    <mat-label>Unit is registered with network and transferring!</mat-label>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isOnline && !isTransferring">
+                <div class="col-12">
+                    <mat-label>Unit is registered with network!</mat-label>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="dataSessions">
+                <div class="clearfix">&nbsp;</div>
+                <div class="col-12">
+
+                    <o3-datatable [table]="dataSessionsProvider.table" (onShowingContextMenu)="handleDataSessionContextMenu($event)">
+                        <o3-datatable-column id="start" sortId="start" prop="model.start" name="Start" [width]="150" [maxWidth]="150" format="DATE"></o3-datatable-column>
+                        <o3-datatable-column id="end" sortId="end" prop="model.end" name="End" [width]="150" [maxWidth]="150" format="DATE" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="duration" prop="duration" name="Duration"></o3-datatable-column>
+                        <o3-datatable-column id="offline" prop="offline" name="Offline"></o3-datatable-column>
+                        <o3-datatable-column id="lastUpdate" prop="model.lastUpdated" name="Last Update" [width]="150" [maxWidth]="150" format="DATE" [enabled]="false"></o3-datatable-column>
+
+                        <o3-datatable-column id="pktsDownload" prop="model.packetsDownloaded" name="Packets Downloaded" format="NUMBER"></o3-datatable-column>
+                        <o3-datatable-column id="pktsUpload" prop="model.packetsUploaded" name="Packets Uploaded" format="NUMBER"></o3-datatable-column>
+
+                        <o3-datatable-column id="location" sortId="location" prop="location" name="Est. Location"></o3-datatable-column>
+
+                        <o3-datatable-column id="radioLink" prop="model.radioLink" name="Radio Link"></o3-datatable-column>
+                        <o3-datatable-column id="cellId" sortId="cellId" prop="model.cellId" name="Cell ID"></o3-datatable-column>
+                        <o3-datatable-column id="operatorName" prop="model.operator" name="Operator" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="operatorCountry" prop="model.operatorCountry" name="Country" [enabled]="false"></o3-datatable-column>
+                    </o3-datatable>
+
+                </div>
+            </div>
+
+            <div class="row" *ngIf="dataExchangeOptions">
+                <div class="clearfix">&nbsp;</div>
+                <div class="col-12">
+                    <mat-form-field>
+                        <o3-select placeholder="Source" [multiSelect]="false" [singleClick]="true" [options]="dataExchangeOptions" [(ngModel)]="dataExchangeSelected"
+                                   defaultValueDescription="Select Source / {{dataExchangeTotal | o3NumberWithSeparators}} total bytes">
+                        </o3-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="dataExchangeSelected">
+                <table class="table table-striped table-bordered selectable">
+                    <thead>
+                    <tr>
+                        <th>Days</th>
+                        <th>Bytes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let bytes of dataExchangeSelected.bytesByDay; let i = index">
+                        <td>
+                            {{i + 1}} Day(s) ago
+                        </td>
+                        <td>
+                            {{bytes | o3NumberWithSeparators}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </o3-tab>
+
+        <o3-tab label="Boot Options">
+            <o3-tab-action label="Fetch" priority="secondary" (click)="fetchBootOptions()"></o3-tab-action>
+
+            <div *ngIf="!bootOptionsList">
+                <span>Boot Options not fetched</span>
+            </div>
+            <div *ngIf="bootOptionsList">
+                <div class="row" *ngFor="let bootOption of bootOptionsList">
+                    <div class="col-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [ngModel]="bootOption.displayName" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Current Value" [ngModel]="bootOption.value || '[Using default Value]'" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="New Value" [(ngModel)]="bootOption.valueNew">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <button mat-raised-button type="button" (click)="setBootOption(bootOption)">Update</button>
+                    </div>
+                </div>
+            </div>
+        </o3-tab>
+
+        <o3-tab label="Files" (selected)="fetchFiles()">
+
+            <o3-overlay #addNewFileDialog>
+                <div class="dialog-md">
+                    <form (ngSubmit)="newFile(filePath)" novalidate>
+                        <div class="dialog-body">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="File Path" [(ngModel)]="filePath" name="filePath">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <o3-select placeholder="Task"
+                                           [multiSelect]="false"
+                                           [singleClick]="true"
+                                           [options]="taskOptions"
+                                           [(ngModel)]="taskSelected"
+                                           [ngModelOptions]="{standalone: true}">
+                                </o3-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="dialog-footer">
+                            <button mat-raised-button color="primary" type="submit">Add</button>
+                            <button mat-raised-button type="button" (click)="addNewFileDialog.closeOverlay()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </o3-overlay>
+
+            <o3-overlay #uploadFileDialog>
+                <form (ngSubmit)="uploadFile()" novalidate>
+                    <div class="dialog-body">
+                        <input type="file" id="input" #filesToUpload>
+                    </div>
+                    <div class="dialog-footer">
+                        <button mat-raised-button color="primary" type="submit">Upload</button>
+                        <button mat-raised-button type="button" (click)="uploadFileDialog.closeOverlay()">Cancel</button>
+                    </div>
+                </form>
+            </o3-overlay>
+
+            <o3-tab-action label="New File..." priority="secondary" [disabled]="!fileTextContentsForm.pristine" (click)="newFileTrigger()"></o3-tab-action>
+            <o3-tab-action label="Save File" priority="secondary" [disabled]="!enableFileEdit || fileTextContentsForm.pristine" (click)="saveFile()"></o3-tab-action>
+            <o3-tab-action label="Revert File" priority="secondary" [disabled]="!enableFileEdit || fileTextContentsForm.pristine" (click)="restoreFile()"></o3-tab-action>
+
+            <o3-deployment-host-files-list #childFiles [viewStatePrefix]="'Files'" (fileClicked)="selectFile($event)" (fileMenu)="selectFileMenu($event)" [files]="files">
+            </o3-deployment-host-files-list>
+
+            <form #fileTextContentsForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <textarea matInput [(ngModel)]="fileTextContents" name="fileTextContents" rows="30" wrap="off" [disabled]="!enableFileEdit"
+                                      style="font-size: 10pt; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Images" (selected)="fetchImages()">
+
+            <o3-tab-action label="Refresh Images..." priority="secondary" (click)="refreshImages()"></o3-tab-action>
+            <o3-tab-action label="Prune Images..." priority="secondary" (click)="pruneImagesOverlay.toggleOverlay()"></o3-tab-action>
+
+            <o3-deployment-host-images-list #childImages [viewStatePrefix]="'Images'" [images]="images">
+            </o3-deployment-host-images-list>
+        </o3-tab>
+
+        <o3-tab label="Image Pulls" (selected)="imagePullLog.enableKeyDownHandler()" (unselected)="imagePullLog.disableKeyDownHandler()">
+
+            <o3-deployment-host-image-pulls-list #imagePulls [viewStatePrefix]="'Image Pulls'" (imageClicked)="selectImagePull($event)" (imageMenu)="selectImagePullMenu($event)" [host]="extended">
+            </o3-deployment-host-image-pulls-list>
+
+            <section o3-expand>
+                <o3-console-log #imagePullLog [scrollLockEnabled]="imagePullLogLockScroll">
+                    <o3-console-log-column type="lineNumber" name="#" [enabled]="true"></o3-console-log-column>
+                    <o3-console-log-column type="timestamp" name="Timestamp" [enabled]="true"></o3-console-log-column>
+                </o3-console-log>
+            </section>
+
+        </o3-tab>
+
+        <o3-tab label="Delayed Ops">
+
+            <o3-tab-action label="Cancel operation" priority="secondary" (click)="cancelOperation()" *ngIf="operationsSelected.length > 0"></o3-tab-action>
+
+            <o3-deployment-host-delayedops-list #childDelayedOps [viewStatePrefix]="'DelayedOps'" (operationsSelected)="selectOperations($event)" [operations]="operations">
+            </o3-deployment-host-delayedops-list>
+
+        </o3-tab>
+
+        <o3-tab label="Notes">
+
+            <o3-tab-action label="New Note..." priority="secondary" (click)="newNote()" *ngIf="noteTextContentsForm.pristine"></o3-tab-action>
+            <o3-tab-action label="Save Note" priority="secondary" (click)="saveNote()" *ngIf="!noteTextContentsForm.pristine"></o3-tab-action>
+
+            <o3-tab-action label="Remove Note" icon="delete" priority="tertiary" (click)="deleteNote()" *ngIf="noteSelected && noteTextContentsForm.pristine"></o3-tab-action>
+
+            <o3-deployment-host-provisioning-list #childNotes [viewStatePrefix]="'Notes'" (noteClicked)="selectNote($event)" [notes]="notes" *ngIf="notes">
+            </o3-deployment-host-provisioning-list>
+
+            <form #noteTextContentsForm="ngForm" novalidate>
+                <div class="row" *ngIf="noteSelected">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Customer Info" name="noteCustomerInfo" [(ngModel)]="noteCustomerInfo">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row" *ngIf="noteSelected">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <textarea matInput [(ngModel)]="noteText" placeholder="Notes" name="noteTextContents" rows="30" wrap="off"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+    </o3-tab-group>
+
+</section>
+
+<o3-overlay #alertThresholdsOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Configure Gateway Thresholds">
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Warning Thresholds in Minutes" [(ngModel)]="warningThreshold" name="warning">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Alert Thresholds in Minutes" [(ngModel)]="alertThreshold" name="alert">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="alertThresholdsOverlay.closeOverlay();updateAlertThreshold();" [disabled]="!areValidAlertThresholds()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #batteryThresholdsOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Configure Gateway Battery Thresholds">
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Shutdown Voltage" [(ngModel)]="batteryThreshold.turnOffVoltage" name="turnOffVoltage">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Restart Voltage" [(ngModel)]="batteryThreshold.turnOnVoltage" name="turnOnVoltage">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Shutdown Delay in Seconds" [(ngModel)]="batteryThreshold.turnOffDelaySeconds" name="turnOffDelaySeconds">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Restart Delay in Seconds" [(ngModel)]="batteryThreshold.turnOnDelaySeconds" name="turnOnDelaySeconds">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="batteryThresholdsOverlay.closeOverlay();updateBatteryThreshold();" [disabled]="!areValidBatteryThresholds()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #pruneImagesOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Prune Unused Docker Images">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Thresholds in Days" [(ngModel)]="imagePruningThreshold" name="imagePruningThreshold">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="pruneImagesOverlay.closeOverlay();pruneImages();" [disabled]="!isValidPruningThreshold()"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="pruneImagesOverlay.closeOverlay();"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

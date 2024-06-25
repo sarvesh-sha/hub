@@ -1,0 +1,143 @@
+<div *ngIf="data" class="selectable">
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Devices To Process" [value]="data.devicesToProcess" name="devicesToProcess" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Devices Processed" [value]="data.devicesProcessed" name="devicesProcessed" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Control Points Processed" [value]="data.elementsProcessed" name="elementsProcessed" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <button mat-raised-button class="dropdown-toggle" type="button" cdkOverlayOrigin #overlayOrigin="cdkOverlayOrigin" (click)="viewOptionsDropdown.toggleOverlay()">
+                View Options
+            </button>
+        </div>
+        <div class="col-sm-3" *ngIf="data.processing">
+            <span>Processing...</span>
+        </div>
+        <o3-overlay [overlayOrigin]="overlayOrigin" [config]="viewOptionsConfig" #viewOptionsDropdown>
+            <div mat-menu-item>
+                <mat-checkbox name="changedEntries" [(ngModel)]="data.onlyChangedEntries" (ngModelChange)="refreshVisibility()">Show Only Changed Entries</mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="changedClasses" (click)="$event.stopPropagation()" [(ngModel)]="data.onlyChangedClasses" (ngModelChange)="refreshVisibility()">
+                    Show Only Changed Classes
+                </mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="changedScores" (click)="$event.stopPropagation()" [(ngModel)]="data.onlyChangedScores" (ngModelChange)="refreshVisibility()">
+                    Show Only Changed Scores
+                </mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="aboveThreshold" (click)="$event.stopPropagation()" [(ngModel)]="data.onlyAboveThreshold" (ngModelChange)="refreshVisibility()">
+                    Show Only Above Threshold
+                </mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="belowThreshold" (click)="$event.stopPropagation()" [(ngModel)]="data.onlyBelowThreshold" (ngModelChange)="refreshVisibility()">
+                    Show Only Below Threshold
+                </mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="previouslyUnclassified" (click)="$event.stopPropagation()" [(ngModel)]="data.onlyPreviouslyUnclassified" (ngModelChange)="refreshVisibility()">
+                    Show Only Previously Unclassified
+                </mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="changedSampling" (click)="$event.stopPropagation()" [(ngModel)]="data.onlyChangedSampling" (ngModelChange)="refreshVisibility()">
+                    Show Only Changed Sampling
+                </mat-checkbox>
+            </div>
+            <div mat-menu-item>
+                <mat-checkbox name="ignored" (click)="$event.stopPropagation()" [(ngModel)]="data.hideIgnored" (ngModelChange)="refreshVisibility()">
+                    Hide Ignored
+                </mat-checkbox>
+            </div>
+        </o3-overlay>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row" *ngIf="data.groupedRows" style="width: 100%">
+                <div class="col">
+                    <o3-collapsible-filter-button [(model)]="data.filter" (modelChange)="table.refreshData()" class="pull-right"></o3-collapsible-filter-button>
+                    <o3-datatable [table]="table" [limit]="20" [clickableRows]="true" [showRowNumbers]="false" [showViewIcons]="false"
+                                  [details]="normalizationDetails">
+                        <o3-datatable-column id="originalName" prop="originalName" sortId="originalName" name="Original Name"></o3-datatable-column>
+                        <o3-datatable-column id="name" prop="name" sortId="name" name="Name"></o3-datatable-column>
+                        <o3-datatable-column id="deviceId" prop="deviceId" sortId="deviceId" name="Device ID" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="pointId" prop="pointId" sortId="pointId" name="Point ID" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="equipment" prop="equipment" sortId="equipment" name="Equipment" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="pointClass" prop="pointClass" sortId="pointClass" name="Point Class" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="sampling" prop="sampling" sortId="sampling" name="Sampling" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="tags" prop="tags" sortId="tags" name="Tags" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="adtModel" prop="adtModel" sortId="adtModel" name="Azure Digital Twin" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="units" prop="units" sortId="units" name="Units" [enabled]="false"></o3-datatable-column>
+                        <o3-datatable-column id="numPoints" prop="rows.length" sortId="!numPoints" name="Count" sortStart="desc" [resizable]="false" [maxWidth]="70"></o3-datatable-column>
+                    </o3-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="height: 4px"> <!-- This spacing is necessary to properly show the shadow in the previous accordion -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<ng-template o3-datatable-details-template let-outerRow #normalizationDetails="o3DatatableDetails">
+    <div class="selectable" style="max-height: 350px; width: 100%;">
+        <o3-datatable [rows]="outerRow.rows" [showRowNumbers]="false" [showViewIcons]="false">
+            <o3-datatable-column id="pointOriginalName" prop="originalName" sortId="originalName" name="Original Name" *ngIf="!hasColumnGrouped('originalName')"></o3-datatable-column>
+            <o3-datatable-column id="pointName" prop="name" sortId="name" name="Name" *ngIf="!hasColumnGrouped('name')"></o3-datatable-column>
+            <o3-datatable-column id="pointDeviceId" prop="deviceId" name="Device ID" *ngIf="!hasColumnGrouped('deviceId')"></o3-datatable-column>
+            <o3-datatable-column id="pointPointId" prop="pointId" name="Point ID" *ngIf="!hasColumnGrouped('pointId')"></o3-datatable-column>
+            <o3-datatable-column id="pointEquipment" prop="equipment" name="Equipment" *ngIf="!hasColumnGrouped('equipment')"></o3-datatable-column>
+            <o3-datatable-column id="pointPointClass" prop="pointClass" sortId="pointClass" name="Point Class" *ngIf="!hasColumnGrouped('pointClass')"></o3-datatable-column>
+            <o3-datatable-column id="pointSampling" prop="sampling" sortId="sampling" name="Sampling" *ngIf="!hasColumnGrouped('sampling')">
+                <o3-preview-invoker *o3DatatableCellSuffix="let row" [id]="row.details.sysId"></o3-preview-invoker>
+            </o3-datatable-column>
+            <o3-datatable-column id="pointTags" prop="tags" sortId="tags" name="Tags" *ngIf="!hasColumnGrouped('tags')"></o3-datatable-column>
+            <o3-datatable-column id="pointAdtModel" prop="adtModel" sortId="adtModel" name="Azure Digital Twin" *ngIf="!hasColumnGrouped('adtModel')"></o3-datatable-column>
+            <o3-datatable-column id="pointUnits" prop="units" sortId="units" name="Units" [enabled]="false"></o3-datatable-column>
+            <o3-datatable-column id="location" name="Location">
+                <ng-container *o3DatatableCellTemplate="let row">
+                    <span>{{host.formatLocations(row.details.locations)}}</span>
+                    <ng-container *ngIf="row.overrides?.locationsWithType">
+                        (Override: {{host.formatLocations(row.overrides?.locationsWithType)}})
+                    </ng-container>
+                </ng-container>
+            </o3-datatable-column>
+            <o3-datatable-column id="overrideName" name="Point Name Override" prop="overrideName"></o3-datatable-column>
+            <o3-datatable-column id="sysId" name="" prop="detail.sysId" [width]="60" [minWidth]="60" [grow]="0">
+                <ng-container *o3DatatableCellTemplate="let row">
+                    <mat-menu #listMenu="matMenu">
+                        <button mat-menu-item (click)="debug(row)">Debug</button>
+                        <button mat-menu-item (click)="override(outerRow, row)">Override</button>
+                        <a [href]="row.url" style="text-decoration: none;" target="_blank">
+                            <button mat-menu-item>Open in new tab</button>
+                        </a>
+                    </mat-menu>
+                    <button mat-icon-button [matMenuTriggerFor]="listMenu" type="button">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </ng-container>
+            </o3-datatable-column>
+        </o3-datatable>
+    </div>
+</ng-template>
+
+<o3-standard-form-overlay label="Validation" #validationOverlay [overlayConfig]="validationConfig" [showPrimary]="false">
+    <o3-validation-run *cdkPortal [data]="host.validationState"></o3-validation-run>
+</o3-standard-form-overlay>

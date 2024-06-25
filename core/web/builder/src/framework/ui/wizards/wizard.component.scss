@@ -1,0 +1,40 @@
+.o3-wizard--navigation-button {
+    text-transform: uppercase !important;
+}
+
+mat-card-subtitle > div {
+    display: flex;
+
+    > .o3-wizard--mobile-step-label {
+        flex-grow: 1;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis
+    }
+
+    > .o3-wizard--mobile-step-number {
+        flex-shrink: 0;
+        text-align: right;
+    }
+}
+
+.tab-body-content {
+    &, > form {
+        height: 100%;
+    }
+
+    p {
+        margin-bottom: .4286em;
+    }
+}
+
+mat-card-actions {
+    &.web-mode {
+        display: flex;
+        justify-content: space-between;
+
+        .o3-wizard--actions-right {
+            display: flex;
+        }
+    }
+}

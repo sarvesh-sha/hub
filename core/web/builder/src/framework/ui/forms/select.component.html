@@ -1,0 +1,36 @@
+<div class="o3-select--container" [matTooltip]="tooltip()" matTooltipShowDelay="500">
+    <button class="o3-select--button" type="button" cdkOverlayOrigin #overlayOrigin="cdkOverlayOrigin"
+            [disabled]="disabled" [class.readonly]="readonly" (click)="toggleDropdown()">
+        <ng-container *ngIf="buttonTemplate">
+            <ng-container *ngTemplateOutlet="buttonTemplate; context: { selected: value, text: valueText }"></ng-container>
+        </ng-container>
+        <span *ngIf="!buttonTemplate">{{valueText}}&nbsp;</span>
+    </button>
+    <button *ngIf="enableNavigation && hasValue" mat-icon-button type="button" class="o3-select--navigate clickable-input" (click)="navigate(); $event.stopPropagation()">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>
+<o3-overlay #dropdown [overlayOrigin]="overlayOrigin" [config]="overlayConfig" (opened)="onDropdownOpen()" (closed)="onDropdownClose()">
+    <ng-container *cdkPortal>
+        <div class="o3-select--tree-container">
+            <mat-slide-toggle *ngIf="allowSingleOrMulti" #test_plurality [(ngModel)]="selectionPluralityOn" (ngModelChange)="updateEditState()">
+                Allow multiple
+            </mat-slide-toggle>
+            <o3-filterable-tree #test_filterableTree class="o3-select--filterable-tree"
+                                [nodes]="nodes" [hideFilter]="!showFilter" [lazyLoader]="lazyLoader"
+                                [(selectedNodes)]="editValues" (selectedNodesChange)="selectedNodesChanged()" (submitted)="submit()" (sizeChange)="reposition()"
+                                [useCheckboxes]="multiSelectBehavior" [autoExpandAll]="autoExpandAll"
+                                [requireFilterText]="searchMode" [filterFn]="filterFn" [filterSubmitFn]="filterSubmitFn"
+                                [selectChildren]="selectChildren" [preventDeselection]="preventDeselection"
+                                [templateOverride]="nodeTemplate" [templatePostOverride]="nodePostTemplate">
+            </o3-filterable-tree>
+        </div>
+        <div *ngIf="showOkButton" class="button-container o3-default-border-top">
+            <button #test_submit mat-raised-button color="primary" type="button" (click)="submit()" [disabled]="!areAcceptableChanges">
+                Ok
+            </button>
+            <a *ngIf="multiSelectBehavior && editValues.length" class="extra-button clickable" (click)="clearSelections()">Clear</a>
+            <a *ngIf="multiSelectBehavior && !editValues.length" class="extra-button clickable" (click)="selectAll()">Select All</a>
+        </div>
+    </ng-container>
+</o3-overlay>

@@ -1,0 +1,9 @@
+:host {
+    display: block;
+}
+
+o3-collapsible-filter-button {
+    display: flex;
+    justify-content: flex-end;
+    color: #607d8b; // fine until this component's filtering is used outside of wizard
+}

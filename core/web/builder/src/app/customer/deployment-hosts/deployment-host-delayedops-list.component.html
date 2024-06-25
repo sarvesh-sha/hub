@@ -1,0 +1,7 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="true">
+    <o3-datatable-column id="description" prop="model.description" name="Description" ></o3-datatable-column>
+    <o3-datatable-column id="status" prop="status" name="Status"></o3-datatable-column>
+    <o3-datatable-column id="details" prop="details" name="Is Active"></o3-datatable-column>
+    <o3-datatable-column id="lastActivation" prop="model.lastActivation" name="Last Activation" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" prop="model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

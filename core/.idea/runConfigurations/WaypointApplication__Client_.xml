@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="WaypointApplication (Client)" type="Application" factoryName="Application" folderName="Waypoint">
+    <option name="MAIN_CLASS_NAME" value="com.optio3.cloud.waypoint.WaypointApplication" />
+    <module name="optio3-product-waypoint" />
+    <option name="PROGRAM_PARAMETERS" value="provision --provisionServer http://localhost:8280 --firmwareVersion Today --stationNumber 1 --stationProgram 2 --hostId 01:02:03:04:05:06 --IMSI 310240110212700 --IMEI 868446032766822 --ICCID 8901240112202127001F" />
+    <option name="VM_PARAMETERS" value="-Djdk.attach.allowAttachSelf --add-reads java.base=java.instrument" />
+    <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.optio3.cloud.waypoint.imaging.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,37 @@
+/*
+ * Copyright (C) 2017-, Optio3, Inc. All Rights Reserved.
+ *
+ * Proprietary & Confidential Information.
+ */
+package com.optio3.protocol.model.obdii.pgn;
+
+import java.util.Optional;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.optio3.lang.Unsigned8;
+import com.optio3.lang.Unsigned16;
+import com.optio3.lang.Unsigned32;
+import com.optio3.protocol.model.EngineeringUnits;
+import com.optio3.protocol.model.FieldChangeMode;
+import com.optio3.protocol.model.FieldModelDescription;
+import com.optio3.protocol.model.obdii.PgnMessageType;
+import com.optio3.protocol.model.obdii.pgn.enums.*;
+import com.optio3.serialization.SerializationScaling;
+import com.optio3.serialization.SerializationTag;
+
+@JsonTypeName("Ipn:Obdii:Pgn:${param.CLASS_NAME}")
+@PgnMessageType(pgn = ${param.PGN}, littleEndian = true, ignoreWhenReceived = ${param.SHOULD_IGNORE})
+public class ${param.CLASS_NAME} extends BasePgnObjectModel
+{
+    // @formatter:off
+${param.BODY}
+    // @formatter:on
+
+    //--//
+
+    @Override
+    public String extractBaseId()
+    {
+        return "Pgn_" + "${param.CLASS_NAME}";
+    }
+}

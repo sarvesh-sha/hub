@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="CUSTOMER_SERVICE">
+            <column defaultValueComputed="NULL" name="metadata_compressed" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="DEPLOYMENT_HOST">
+            <column defaultValueComputed="NULL" name="metadata_compressed" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="operational_status" tableName="CUSTOMER_SERVICE"/>
+    </changeSet>
+</databaseChangeLog>

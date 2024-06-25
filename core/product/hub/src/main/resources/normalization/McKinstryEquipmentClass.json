@@ -1,0 +1,1037 @@
+[
+  {
+    "ID": 1,
+    "EquipClassName": "AHU",
+    "Description": "Air Handler"
+  },
+  {
+    "ID": 2,
+    "EquipClassName": "AHU-DD",
+    "Description": "Air Handler - Dual Duct"
+  },
+  {
+    "ID": 3,
+    "EquipClassName": "CH-WC",
+    "Description": "Chiller - Water Cooled"
+  },
+  {
+    "ID": 4,
+    "EquipClassName": "CH-AC",
+    "Description": "Chiller - Air Cooled"
+  },
+  {
+    "ID": 5,
+    "EquipClassName": "RTU-DX",
+    "Description": "Rooftop Unit - Dirct Exp Cooling"
+  },
+  {
+    "ID": 6,
+    "EquipClassName": "FPB",
+    "Description": "Fan Powered Box"
+  },
+  {
+    "ID": 7,
+    "EquipClassName": "BLR-Cond",
+    "Description": "Boiler - Condensing"
+  },
+  {
+    "ID": 8,
+    "EquipClassName": "BLR-Atm",
+    "Description": "Boiler - Atmospheric"
+  },
+  {
+    "ID": 9,
+    "EquipClassName": "HWP",
+    "Description": "Hot Water Pump"
+  },
+  {
+    "ID": 10,
+    "EquipClassName": "CHWP",
+    "Description": "Chilled Water Pump"
+  },
+  {
+    "ID": 11,
+    "EquipClassName": "CWP",
+    "Description": "Condenser Water Pump"
+  },
+  {
+    "ID": 12,
+    "EquipClassName": "CT-WC",
+    "Description": "Cooling Tower"
+  },
+  {
+    "ID": 13,
+    "EquipClassName": "CT-AC",
+    "Description": "Air Cooled Condenser"
+  },
+  {
+    "ID": 14,
+    "EquipClassName": "AHU-VAV",
+    "Description": "Air Handler - Variable Volume"
+  },
+  {
+    "ID": 15,
+    "EquipClassName": "AHU-CAV",
+    "Description": "Air Handler - Constant Volume"
+  },
+  {
+    "ID": 16,
+    "EquipClassName": "HW Plant",
+    "Description": "Hot Water Plant"
+  },
+  {
+    "ID": 17,
+    "EquipClassName": "CHW Plant",
+    "Description": "Chilled Water Plant"
+  },
+  {
+    "ID": 18,
+    "EquipClassName": "SnwMlt",
+    "Description": "Snow Melt System"
+  },
+  {
+    "ID": 21,
+    "EquipClassName": "VAV",
+    "Description": "Variable Air Volume Terminal Unit"
+  },
+  {
+    "ID": 22,
+    "EquipClassName": "HWP-VFD",
+    "Description": "Hot Water Pump - Variable Flow"
+  },
+  {
+    "ID": 23,
+    "EquipClassName": "CHWP-VFD",
+    "Description": "Chilled Water Pump - Variable Flow"
+  },
+  {
+    "ID": 24,
+    "EquipClassName": "CWP-VFD",
+    "Description": "Condenser Water Pump - Variable Flow"
+  },
+  {
+    "ID": 27,
+    "EquipClassName": "FPHX",
+    "Description": "Flat Plate Heat Exchanger"
+  },
+  {
+    "ID": 29,
+    "EquipClassName": "AHU-MZ-CAV",
+    "Description": "Air Handler - Multi-zone - Constant Volume"
+  },
+  {
+    "ID": 30,
+    "EquipClassName": "GP",
+    "Description": "Glycol Pump"
+  },
+  {
+    "ID": 32,
+    "EquipClassName": "Main Meter-Elec",
+    "Description": "Electric Main Meter"
+  },
+  {
+    "ID": 34,
+    "EquipClassName": "EES",
+    "Description": "Electrical Energy Storage"
+  },
+  {
+    "ID": 36,
+    "EquipClassName": "GP-VFD",
+    "Description": "Glycol Pump - Variable Flow"
+  },
+  {
+    "ID": 37,
+    "EquipClassName": "DHWP",
+    "Description": "Domestic Hot Water Pump"
+  },
+  {
+    "ID": 38,
+    "EquipClassName": "DHWP-VFD",
+    "Description": "Domestic Hot Water Pump - Variable Flow"
+  },
+  {
+    "ID": 39,
+    "EquipClassName": "Meter-SubEle",
+    "Description": "Electric Sub Meter"
+  },
+  {
+    "ID": 40,
+    "EquipClassName": "Meter-ThEn",
+    "Description": "Thermal Energy Meter"
+  },
+  {
+    "ID": 41,
+    "EquipClassName": "TU",
+    "Description": "Terminal Unit"
+  },
+  {
+    "ID": 42,
+    "EquipClassName": "EvPmp",
+    "Description": "Evaporative Cooling Pump"
+  },
+  {
+    "ID": 43,
+    "EquipClassName": "SF-VFD",
+    "Description": "Supply Fan - Variable Volume"
+  },
+  {
+    "ID": 44,
+    "EquipClassName": "RF-VFD",
+    "Description": "Return Fan - Variable Volume"
+  },
+  {
+    "ID": 45,
+    "EquipClassName": "EF-VFD",
+    "Description": "Exhaust Fan - Variable Volume"
+  },
+  {
+    "ID": 46,
+    "EquipClassName": "CT Fan-VFD",
+    "Description": "Cooling Tower Fan - Variable Volume"
+  },
+  {
+    "ID": 47,
+    "EquipClassName": "SF",
+    "Description": "Supply Fan - Constant Volume"
+  },
+  {
+    "ID": 48,
+    "EquipClassName": "RF-CV",
+    "Description": "Return Fan - Constant Volume"
+  },
+  {
+    "ID": 49,
+    "EquipClassName": "EF",
+    "Description": "Exhaust Fan - Constant Volume"
+  },
+  {
+    "ID": 50,
+    "EquipClassName": "CT Fan-CV",
+    "Description": "Cooling Tower Fan - Constant Volume"
+  },
+  {
+    "ID": 51,
+    "EquipClassName": "FCU",
+    "Description": "Fan Coil Unit"
+  },
+  {
+    "ID": 52,
+    "EquipClassName": "HVU",
+    "Description": "Heating Ventilation Unit"
+  },
+  {
+    "ID": 53,
+    "EquipClassName": "GEN",
+    "Description": "Generator"
+  },
+  {
+    "ID": 54,
+    "EquipClassName": "CUH",
+    "Description": "Cabinet Unit Heater"
+  },
+  {
+    "ID": 55,
+    "EquipClassName": "BBR",
+    "Description": "Baseboard Radiator"
+  },
+  {
+    "ID": 56,
+    "EquipClassName": "PWP",
+    "Description": "Process Water Pump"
+  },
+  {
+    "ID": 57,
+    "EquipClassName": "PWP-VFD",
+    "Description": "Process Water Pump - Variable Flow"
+  },
+  {
+    "ID": 58,
+    "EquipClassName": "PW FPHX",
+    "Description": "Process Water Heat Exhchanger"
+  },
+  {
+    "ID": 59,
+    "EquipClassName": "Prm Wtr Loop",
+    "Description": "Primary Water Loop"
+  },
+  {
+    "ID": 60,
+    "EquipClassName": "Zone",
+    "Description": "Zone"
+  },
+  {
+    "ID": 61,
+    "EquipClassName": "DF-VFD",
+    "Description": "Destratification Fan - Variable Volume"
+  },
+  {
+    "ID": 62,
+    "EquipClassName": "DF",
+    "Description": "Destratification Fan - Constant Volume"
+  },
+  {
+    "ID": 63,
+    "EquipClassName": "FltrPmp",
+    "Description": "Filter Pump - Constant Volume"
+  },
+  {
+    "ID": 64,
+    "EquipClassName": "FltrPmp-VFD",
+    "Description": "Filter Pump - Variable Volume"
+  },
+  {
+    "ID": 65,
+    "EquipClassName": "Main Meter-Wtr",
+    "Description": "Water Main Meter"
+  },
+  {
+    "ID": 66,
+    "EquipClassName": "Meter-SubWtr",
+    "Description": "Water Sub Meter"
+  },
+  {
+    "ID": 67,
+    "EquipClassName": "PV Inv",
+    "Description": "Solar PV Inverter"
+  },
+  {
+    "ID": 68,
+    "EquipClassName": "UH",
+    "Description": "Unit Heater"
+  },
+  {
+    "ID": 69,
+    "EquipClassName": "MAU",
+    "Description": "Makeup Air Unit"
+  },
+  {
+    "ID": 70,
+    "EquipClassName": "CVR",
+    "Description": "Conveyor"
+  },
+  {
+    "ID": 75,
+    "EquipClassName": "HW Rad Loop",
+    "Description": "Hot Water Radiant Loop"
+  },
+  {
+    "ID": 76,
+    "EquipClassName": "Prm CHW Loop",
+    "Description": "Primary Chilled Water Loop"
+  },
+  {
+    "ID": 77,
+    "EquipClassName": "Prm CW Loop",
+    "Description": "Primary Condenser Water Loop"
+  },
+  {
+    "ID": 78,
+    "EquipClassName": "Sec CHW Loop",
+    "Description": "Secondary Chilled Water Loop"
+  },
+  {
+    "ID": 79,
+    "EquipClassName": "Sec CW Loop",
+    "Description": "Secondary Condenser Water Loop"
+  },
+  {
+    "ID": 80,
+    "EquipClassName": "CHW CB Loop",
+    "Description": "Chilled Water Chilled Beam Loop"
+  },
+  {
+    "ID": 81,
+    "EquipClassName": "Zone Grp",
+    "Description": "Zone Group"
+  },
+  {
+    "ID": 82,
+    "EquipClassName": "CB",
+    "Description": "Chilled Beam"
+  },
+  {
+    "ID": 83,
+    "EquipClassName": "CB Grp",
+    "Description": "Chilled Beam Group"
+  },
+  {
+    "ID": 86,
+    "EquipClassName": "CHW Rad Loop",
+    "Description": "Chilled Water Radiant Loop"
+  },
+  {
+    "ID": 87,
+    "EquipClassName": "Prm HW Loop",
+    "Description": "Primary Hot Water Loop"
+  },
+  {
+    "ID": 88,
+    "EquipClassName": "Sec HW Loop",
+    "Description": "Secondary Hot Water Loop"
+  },
+  {
+    "ID": 89,
+    "EquipClassName": "CRAC",
+    "Description": "Computer Room Air Conditioner"
+  },
+  {
+    "ID": 90,
+    "EquipClassName": "SEF",
+    "Description": "Smoke Exhaust Fan"
+  },
+  {
+    "ID": 91,
+    "EquipClassName": "SEF-VFD",
+    "Description": "Smoke Exhaust Fan - Variable Volume"
+  },
+  {
+    "ID": 92,
+    "EquipClassName": "Meter-PV Ele",
+    "Description": "Electric Solar PV Meter"
+  },
+  {
+    "ID": 93,
+    "EquipClassName": "Slr Thrm HWS",
+    "Description": "Solar Themeral System - Hot Water"
+  },
+  {
+    "ID": 94,
+    "EquipClassName": "HW CB Loop",
+    "Description": "Hot Water Chilled Beam Loop"
+  },
+  {
+    "ID": 95,
+    "EquipClassName": "HWP HtRcv",
+    "Description": "Hot Water Heat Recovery Pump"
+  },
+  {
+    "ID": 96,
+    "EquipClassName": "HWP RRC",
+    "Description": "Hot Water Runaround Pump"
+  },
+  {
+    "ID": 97,
+    "EquipClassName": "DHW-Atm",
+    "Description": "Domestic Hot Water Heater - Atmospheric"
+  },
+  {
+    "ID": 98,
+    "EquipClassName": "DHW-Cond",
+    "Description": "Domestic Hot Water Heater - Condensing"
+  },
+  {
+    "ID": 99,
+    "EquipClassName": "DHW-Elec",
+    "Description": "Domestic Hot Water Heater - Electric"
+  },
+  {
+    "ID": 100,
+    "EquipClassName": "CH-Module/Ci",
+    "Description": "Chiller - Module/Circuit"
+  },
+  {
+    "ID": 101,
+    "EquipClassName": "VAV-DD",
+    "Description": "Variable Air Volume Dual-Duct Terminal Unit"
+  },
+  {
+    "ID": 102,
+    "EquipClassName": "Ltg Panel",
+    "Description": "Lighting Control Panel"
+  },
+  {
+    "ID": 103,
+    "EquipClassName": "EF Grp",
+    "Description": "Exhaust Fan Group"
+  },
+  {
+    "ID": 104,
+    "EquipClassName": "UV",
+    "Description": "Unit Ventilator"
+  },
+  {
+    "ID": 105,
+    "EquipClassName": "ERV",
+    "Description": "Energy Recovery Ventilation Unit"
+  },
+  {
+    "ID": 106,
+    "EquipClassName": "Ht Pump Grp",
+    "Description": "Heat Pump Group"
+  },
+  {
+    "ID": 107,
+    "EquipClassName": "Ht Pump",
+    "Description": "Heat Pump"
+  },
+  {
+    "ID": 108,
+    "EquipClassName": "Wtr Rad Loop",
+    "Description": "Water Radiant Loop"
+  },
+  {
+    "ID": 109,
+    "EquipClassName": "CH-Absp",
+    "Description": "Chiller - Absorption"
+  },
+  {
+    "ID": 110,
+    "EquipClassName": "Meter-DHW",
+    "Description": "Domestic Hot Water Meter"
+  },
+  {
+    "ID": 111,
+    "EquipClassName": "Meter-HW",
+    "Description": "Hot Water Meter"
+  },
+  {
+    "ID": 112,
+    "EquipClassName": "DHWS",
+    "Description": "Domestic Hot Water System"
+  },
+  {
+    "ID": 114,
+    "EquipClassName": "LTHWP",
+    "Description": "Low Temp Hot Water Pump"
+  },
+  {
+    "ID": 115,
+    "EquipClassName": "HTHWP",
+    "Description": "High Temp Hot Water Pump"
+  },
+  {
+    "ID": 116,
+    "EquipClassName": "LTHWP-VFD",
+    "Description": "Low Temp Hot Water Pump - Variable Flow"
+  },
+  {
+    "ID": 117,
+    "EquipClassName": "HTHWP-VFD",
+    "Description": "High Temp Hot Water Pump - Variable Flow"
+  },
+  {
+    "ID": 118,
+    "EquipClassName": "DEC",
+    "Description": "Direct Evaporative Cooler"
+  },
+  {
+    "ID": 119,
+    "EquipClassName": "RelF",
+    "Description": "Relief Fan"
+  },
+  {
+    "ID": 120,
+    "EquipClassName": "DHC",
+    "Description": "Duct Heating Coil"
+  },
+  {
+    "ID": 121,
+    "EquipClassName": "Meter-Gas",
+    "Description": "Gas Meter"
+  },
+  {
+    "ID": 122,
+    "EquipClassName": "Steam Plant",
+    "Description": "Steam Plant"
+  },
+  {
+    "ID": 123,
+    "EquipClassName": "Hx",
+    "Description": "Heat Exchanger"
+  },
+  {
+    "ID": 124,
+    "EquipClassName": "Motor",
+    "Description": "Motor"
+  },
+  {
+    "ID": 125,
+    "EquipClassName": "CHW/HW Plant",
+    "Description": "Chilled Water or Hot Water Changeover Plant"
+  },
+  {
+    "ID": 126,
+    "EquipClassName": "Pmp",
+    "Description": "Pump"
+  },
+  {
+    "ID": 127,
+    "EquipClassName": "Furnace",
+    "Description": "Furnace"
+  },
+  {
+    "ID": 128,
+    "EquipClassName": "AHU-MZ-VAV",
+    "Description": "Air Handler - Multi-zone - Variable Volume"
+  },
+  {
+    "ID": 130,
+    "EquipClassName": "CT-Cluster",
+    "Description": "Cooling Tower Cluster"
+  },
+  {
+    "ID": 131,
+    "EquipClassName": "FH",
+    "Description": "Fume Hood"
+  },
+  {
+    "ID": 132,
+    "EquipClassName": "Compressor",
+    "Description": "Compressor"
+  },
+  {
+    "ID": 133,
+    "EquipClassName": "KEF",
+    "Description": "Kitchen Exhaust Fan"
+  },
+  {
+    "ID": 134,
+    "EquipClassName": "MZTU",
+    "Description": "Multi-Zone Terminal Unit"
+  },
+  {
+    "ID": 135,
+    "EquipClassName": "DX",
+    "Description": "Direct Expansion Sys"
+  },
+  {
+    "ID": 136,
+    "EquipClassName": "Wrlss Tstat",
+    "Description": "Wireless Thermostat"
+  },
+  {
+    "ID": 137,
+    "EquipClassName": "GSHP",
+    "Description": "Ground Source Heat Pump"
+  },
+  {
+    "ID": 138,
+    "EquipClassName": "BLR Grp",
+    "Description": "Boiler Group"
+  },
+  {
+    "ID": 139,
+    "EquipClassName": "DF Grp",
+    "Description": "Destratification Fan Group"
+  },
+  {
+    "ID": 140,
+    "EquipClassName": "Ht Pmp Loop",
+    "Description": "Heat Pump Water Loop"
+  },
+  {
+    "ID": 141,
+    "EquipClassName": "CW Plant",
+    "Description": "Condenser Water Plant"
+  },
+  {
+    "ID": 142,
+    "EquipClassName": "CT-CC",
+    "Description": "Cooling Tower - Closed Circuit"
+  },
+  {
+    "ID": 143,
+    "EquipClassName": "LTHW Loop",
+    "Description": "Low Temp Hot Water Loop"
+  },
+  {
+    "ID": 144,
+    "EquipClassName": "TxF",
+    "Description": "Transfer Fan"
+  },
+  {
+    "ID": 147,
+    "EquipClassName": "KEF-VFD",
+    "Description": "Kitchen Exhaust Fan - Variable Volume"
+  },
+  {
+    "ID": 148,
+    "EquipClassName": "TEF",
+    "Description": "Toilet Exhaust Fan"
+  },
+  {
+    "ID": 149,
+    "EquipClassName": "TEF-VFD",
+    "Description": "Toilet Exhaust Fan - Variable Volumne"
+  },
+  {
+    "ID": 150,
+    "EquipClassName": "Meter-Ltg",
+    "Description": "Electric Sub Meter - Lighting"
+  },
+  {
+    "ID": 151,
+    "EquipClassName": "Meter-Plg",
+    "Description": "Electric Sub Meter - Plug"
+  },
+  {
+    "ID": 152,
+    "EquipClassName": "Meter-Mch",
+    "Description": "Electric Sub Meter - Mechanical"
+  },
+  {
+    "ID": 153,
+    "EquipClassName": "Meter-Ktchn",
+    "Description": "Electric Sub Meter - Kitchen"
+  },
+  {
+    "ID": 154,
+    "EquipClassName": "Meter-Chrg",
+    "Description": "Electric Sub Meter - Charging"
+  },
+  {
+    "ID": 158,
+    "EquipClassName": "VAV-RH",
+    "Description": "Variable Air Variable Terminal Unit w/Reheat"
+  },
+  {
+    "ID": 159,
+    "EquipClassName": "NvF",
+    "Description": "Natural Vent Fans - Constant Volume"
+  },
+  {
+    "ID": 160,
+    "EquipClassName": "NvF-VFD",
+    "Description": "Natural Vent Fans - Variable Volume"
+  },
+  {
+    "ID": 161,
+    "EquipClassName": "Meter-CHW",
+    "Description": "Chilled Water Meter"
+  },
+  {
+    "ID": 162,
+    "EquipClassName": "BLR-Stm",
+    "Description": "Boiler - Steam"
+  },
+  {
+    "ID": 163,
+    "EquipClassName": "IAQ",
+    "Description": "Indoor Air Quality Monitor"
+  },
+  {
+    "ID": 164,
+    "EquipClassName": "OAQ",
+    "Description": "Outdoor Air Quality Monitor"
+  },
+  {
+    "ID": 165,
+    "EquipClassName": "Meter-Stm",
+    "Description": "Steam Meter"
+  },
+  {
+    "ID": 166,
+    "EquipClassName": "Chiller",
+    "Description": "Chiller"
+  },
+  {
+    "ID": 167,
+    "EquipClassName": "DOAS",
+    "Description": "Dedicated Outside Air System"
+  },
+  {
+    "ID": 169,
+    "EquipClassName": "Press Zone",
+    "Description": "Pressurized Zone"
+  },
+  {
+    "ID": 170,
+    "EquipClassName": "EXH-VAV",
+    "Description": "Variable Air Volume Exhaust Unit"
+  },
+  {
+    "ID": 171,
+    "EquipClassName": "ATS",
+    "Description": "Automatic Transfer Switch"
+  },
+  {
+    "ID": 172,
+    "EquipClassName": "Air Comp.",
+    "Description": "Air Compressor"
+  },
+  {
+    "ID": 173,
+    "EquipClassName": "Split - AHU",
+    "Description": "Split System - Air Handler"
+  },
+  {
+    "ID": 174,
+    "EquipClassName": "Split - Cond",
+    "Description": "Split System - Condensing Unit"
+  },
+  {
+    "ID": 175,
+    "EquipClassName": "CDP",
+    "Description": "Condensate Pump"
+  },
+  {
+    "ID": 176,
+    "EquipClassName": "Air Dryer",
+    "Description": "Compressed Air Dryer"
+  },
+  {
+    "ID": 177,
+    "EquipClassName": "Cabinet",
+    "Description": "Control Cabinet"
+  },
+  {
+    "ID": 178,
+    "EquipClassName": "DHW Tank",
+    "Description": "Domestic Hot Water Tank"
+  },
+  {
+    "ID": 179,
+    "EquipClassName": "Disconnect",
+    "Description": "Electrical Disconnect"
+  },
+  {
+    "ID": 180,
+    "EquipClassName": "Exp. Tank",
+    "Description": "Expansion Tank"
+  },
+  {
+    "ID": 181,
+    "EquipClassName": "Gas Humid.",
+    "Description": "Gas-Fired Humidifier"
+  },
+  {
+    "ID": 182,
+    "EquipClassName": "Glycol Tank",
+    "Description": "Glycol Feeder"
+  },
+  {
+    "ID": 183,
+    "EquipClassName": "Switchboard",
+    "Description": "Switchboard"
+  },
+  {
+    "ID": 184,
+    "EquipClassName": "DIP",
+    "Description": "DI Water Pump"
+  },
+  {
+    "ID": 185,
+    "EquipClassName": "ROP",
+    "Description": "Reverse Osmosis Water Pump"
+  },
+  {
+    "ID": 186,
+    "EquipClassName": "Ref. Tank",
+    "Description": "Refrigerant Tank"
+  },
+  {
+    "ID": 187,
+    "EquipClassName": "RO System",
+    "Description": "Reverse Osmosis System"
+  },
+  {
+    "ID": 188,
+    "EquipClassName": "RO Tank",
+    "Description": "Reverse Osmosis Water Tank"
+  },
+  {
+    "ID": 189,
+    "EquipClassName": "Fuel Tank",
+    "Description": "Fuel Tank"
+  },
+  {
+    "ID": 190,
+    "EquipClassName": "Transformer",
+    "Description": "Transformer"
+  },
+  {
+    "ID": 191,
+    "EquipClassName": "UPS",
+    "Description": "UPS System"
+  },
+  {
+    "ID": 192,
+    "EquipClassName": "VFD",
+    "Description": "Variable Frequency Drive"
+  },
+  {
+    "ID": 193,
+    "EquipClassName": "Softener",
+    "Description": "Water Softener"
+  },
+  {
+    "ID": 194,
+    "EquipClassName": "Treatment",
+    "Description": "Water Treatment"
+  },
+  {
+    "ID": 195,
+    "EquipClassName": "BLR-Chemical",
+    "Description": "Boiler - Chemical"
+  },
+  {
+    "ID": 197,
+    "EquipClassName": "Water Filter",
+    "Description": "Water Filter"
+  },
+  {
+    "ID": 198,
+    "EquipClassName": "DW Pump",
+    "Description": "Domestic Water Pump"
+  },
+  {
+    "ID": 199,
+    "EquipClassName": "DIP",
+    "Description": "Distilled Water Pump"
+  },
+  {
+    "ID": 200,
+    "EquipClassName": "Gen-Stm",
+    "Description": "Generator - Steam"
+  },
+  {
+    "ID": 201,
+    "EquipClassName": "Resin Tank",
+    "Description": "Resin Fabrication Tank"
+  },
+  {
+    "ID": 202,
+    "EquipClassName": "UV Light",
+    "Description": "Ultra-Violet Light"
+  },
+  {
+    "ID": 203,
+    "EquipClassName": "AF-CTRL-VLV",
+    "Description": "Airflow Control Valve"
+  },
+  {
+    "ID": 204,
+    "EquipClassName": "Blr",
+    "Description": "Boiler"
+  },
+  {
+    "ID": 205,
+    "EquipClassName": "CHW Loop",
+    "Description": "Chilled Water Loop"
+  },
+  {
+    "ID": 206,
+    "EquipClassName": "CW Loop",
+    "Description": "Condenser Water Loop"
+  },
+  {
+    "ID": 207,
+    "EquipClassName": "Cool-TES",
+    "Description": "Cooling Thermal Energy Storage"
+  },
+  {
+    "ID": 208,
+    "EquipClassName": "CT-Fan",
+    "Description": "Cooling Tower Fan"
+  },
+  {
+    "ID": 209,
+    "EquipClassName": "DCWS",
+    "Description": "Domestic Cold Water System"
+  },
+  {
+    "ID": 210,
+    "EquipClassName": "DHW Htr",
+    "Description": "Domestic Hot Water Heater"
+  },
+  {
+    "ID": 211,
+    "EquipClassName": "DHW RC Loop",
+    "Description": "Domestic Hot Water Re-Circ Loop"
+  },
+  {
+    "ID": 212,
+    "EquipClassName": "Meter-Elec",
+    "Description": "Electric Meter"
+  },
+  {
+    "ID": 213,
+    "EquipClassName": "ES",
+    "Description": "Energy Storage"
+  },
+  {
+    "ID": 214,
+    "EquipClassName": "EF",
+    "Description": "Exhaust Fan"
+  },
+  {
+    "ID": 215,
+    "EquipClassName": "Fan",
+    "Description": "Fan"
+  },
+  {
+    "ID": 216,
+    "EquipClassName": "Heat-TES",
+    "Description": "Heating Thermal Energy Storage"
+  },
+  {
+    "ID": 217,
+    "EquipClassName": "HTHW Loop",
+    "Description": "High Temp Hot Water Loop"
+  },
+  {
+    "ID": 218,
+    "EquipClassName": "HW Loop",
+    "Description": "Hot Water Loop"
+  },
+  {
+    "ID": 219,
+    "EquipClassName": "IDEC",
+    "Description": "Indirect Evaporative Cooler"
+  },
+  {
+    "ID": 220,
+    "EquipClassName": "Inv",
+    "Description": "Inverter"
+  },
+  {
+    "ID": 221,
+    "EquipClassName": "Ltg",
+    "Description": "Lighting"
+  },
+  {
+    "ID": 222,
+    "EquipClassName": "Mtr",
+    "Description": "Meter"
+  },
+  {
+    "ID": 223,
+    "EquipClassName": "Plant",
+    "Description": "Plant"
+  },
+  {
+    "ID": 224,
+    "EquipClassName": "RF",
+    "Description": "Return Fan"
+  },
+  {
+    "ID": 225,
+    "EquipClassName": "Site Pts",
+    "Description": "Site Points"
+  },
+  {
+    "ID": 226,
+    "EquipClassName": "Slr Thrm",
+    "Description": "Solar Thermal System"
+  },
+  {
+    "ID": 227,
+    "EquipClassName": "SF",
+    "Description": "Supply Fan"
+  },
+  {
+    "ID": 228,
+    "EquipClassName": "Loop",
+    "Description": "Water Loop"
+  },
+  {
+    "ID": 229,
+    "EquipClassName": "Meter-Wtr",
+    "Description": "Water Meter"
+  },
+  {
+    "ID": 230,
+    "EquipClassName": "WSHP",
+    "Description": "Water Source Heat Pump"
+  }
+]

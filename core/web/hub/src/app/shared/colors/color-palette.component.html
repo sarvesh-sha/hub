@@ -1,0 +1,8 @@
+<div [class.o3-color-palette--not-iteractable]="!interactable">
+    <button *ngFor="let option of options" [optio3TestId]="getO3TestId(option)" [style.background-color]="option.id.hex"
+            [style.color]="contrast(option.id.hex)"
+            mat-flat-button type="button" class="color-option" tabindex="-1"
+            [disableRipple]="!interactable" (click)="select(option)">
+        <mat-icon class="selected" *ngIf="interactable && option.selected">check_circle_outline</mat-icon>
+    </button>
+</div>

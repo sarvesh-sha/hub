@@ -1,0 +1,109 @@
+{
+  "definition": {
+    "title": "Regular Expressions",
+    "purpose": "Definition",
+    "description": "RegEx1",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "temporary": false,
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": "$rUG9KSWK|xsmFSaw*HV",
+              "x": 141,
+              "y": 94,
+              "variables": [
+                {
+                  "name": "r1",
+                  "type": null
+                },
+                {
+                  "name": "t1",
+                  "type": null
+                },
+                {
+                  "name": "t2",
+                  "type": null
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "]Hd}|QpnCEY)sUtsxtnm",
+                  "variable": {
+                    "name": "r1",
+                    "type": "EngineValueRegexMatch"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryRegexMatch",
+                    "id": "]A%#FvU7Ebk~Lvjlk1+;",
+                    "a": {
+                      "__type": "EngineLiteralString",
+                      "id": "k6Xc_?~-n_o.423y[tnV",
+                      "value": "([0-9]+)"
+                    },
+                    "b": {
+                      "__type": "EngineLiteralString",
+                      "id": "Ky/HgCEyiGj(^fi.$kYm",
+                      "value": "adad 123 adad"
+                    }
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "TtqA-k~u3^Q}CW7={tDC",
+                  "variable": {
+                    "name": "t1",
+                    "type": "String"
+                  },
+                  "value": {
+                    "__type": "EngineOperatorUnaryRegexGetGroup",
+                    "id": "NCo;DYVHA3RVt!TOsl`o",
+                    "a": {
+                      "__type": "EngineExpressionGetVariable",
+                      "id": "l_v1btVQqpLp(^D[jeb|",
+                      "variable": {
+                        "name": "r1"
+                      }
+                    },
+                    "group": 1
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "2VVnH~{IRyH4H-t0`^o3",
+                  "variable": {
+                    "name": "t2",
+                    "type": "String"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryRegexReplace",
+                    "id": "1xXgem/Nj*rWe-Dt+BF.",
+                    "a": {
+                      "__type": "EngineExpressionGetVariable",
+                      "id": "9pF;u)U]//Iw#N987zTF",
+                      "variable": {
+                        "name": "r1"
+                      }
+                    },
+                    "b": {
+                      "__type": "EngineLiteralString",
+                      "id": "dAaKDIv(Ohb1!{)}di{%",
+                      "value": "FOO"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+﻿<section class="report-header">
+    <div class="row">
+        <div class="col" [class.text-right]="!data.logoLeft" [class.text-left]="data.logoLeft">
+            <img *ngIf="!data.logoBase64" [src]="logo.color150Tall" style="height: 50px;">
+            <img *ngIf="data.logoBase64" [src]="data.logoBase64" style="height: 50px;">
+        </div>
+    </div>
+</section>
+<section class="report-title">
+    <h1>{{config.title}}</h1>
+    <p>from {{data.rangeStart|o3ShortDate}} to {{data.rangeEnd|o3ShortDate}}</p>
+</section>
+<section class="report-section report-setting-summary">
+    <div class="row">
+        <p>
+            <label>Report Name:&nbsp;</label> <span>{{data.reportName}}</span><br>
+            <label>Description:&nbsp;</label> <span>{{data.reportDescription}}</span>
+        </p>
+    </div>
+    <div class="row" *ngFor="let option of activatedOptions">
+        <p>{{option.label}}:</p>
+        <div class="row">
+            <div class="col-12">
+                <span>{{filterDescription(option)}}</span>
+            </div>
+        </div>
+    </div>
+</section>

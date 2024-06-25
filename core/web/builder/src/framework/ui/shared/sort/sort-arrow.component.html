@@ -1,0 +1,15 @@
+<!--  defaults to initially ascending on the right  -->
+<div class="o3-arrow-container clickable" (click)="toggleDirection()"
+     [ngClass]="{'o3-arrow-position-left': position == 'left',
+                 'o3-arrow-visible': active,
+                 'o3-sort-asc': active && ascending || !active && firstToggleAscending,
+                 'o3-sort-desc': active && !ascending || !active && !firstToggleAscending}">
+    <div class="o3-arrow">
+        <div class="o3-stem"></div>
+        <div class="o3-arrowhead">
+            <div class="o3-left-pointer"></div>
+            <div class="o3-right-pointer"></div>
+            <div class="o3-center-pointer"></div>
+        </div>
+    </div>
+</div>

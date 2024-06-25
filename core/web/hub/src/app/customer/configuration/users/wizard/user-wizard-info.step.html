@@ -1,0 +1,46 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input #test_firstName matInput type="text" placeholder="First Name" [(ngModel)]="data.user.firstName" name="firstName" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input #test_lastName matInput type="text" placeholder="Last Name" [(ngModel)]="data.user.lastName" name="lastName" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input #test_email matInput type="email" placeholder="Email Address" [(ngModel)]="data.user.emailAddress" name="emailAddress"
+                       required autocomplete="off">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="data.isNew">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input #test_password matInput type="password" placeholder="New Password" [(ngModel)]="data.password" name="password"
+                       #passwordField='ngModel' o3PasswordPolicy required autocomplete="off">
+                <mat-error *ngIf="passwordField.invalid && passwordField.errors.password">{{passwordField.errors.password}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="data.isNew">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input #test_passwordConfirm matInput type="password" placeholder="Repeat Password" [(ngModel)]="data.passwordConfirmation" name="passwordConfirmation"
+                       #passwordConfirmationField='ngModel' [o3PasswordMatch]="data.password" required autocomplete="off">
+                <mat-error *ngIf="passwordConfirmationField.invalid && passwordConfirmationField.errors.password">{{passwordConfirmationField.errors.password}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

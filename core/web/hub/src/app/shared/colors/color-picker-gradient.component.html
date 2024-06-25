@@ -1,0 +1,16 @@
+<mat-form-field>
+    <o3-select #test_gradients placeholder="Gradient Presets" name="gradient-presets" [options]="gradientOptions"
+               [(ngModel)]="selectedPreset" (ngModelChange)="setToPreset($event)"
+               [multiSelect]="false" [singleClick]="true" [preventDeselection]="true" defaultValueDescription="Select Preset">
+        <ng-template #nodePostTemplate let-node="node" let-index="index">
+            <div class="o3-color-picker-flat--mini-gradient">
+                <div>
+                    <o3-color-picker-gradient-stop [stops]="gradientPresets[node.id]" [interactable]="false" [maxStops]="2"></o3-color-picker-gradient-stop>
+                </div>
+            </div>
+        </ng-template>
+    </o3-select>
+</mat-form-field>
+
+<o3-color-picker-gradient-stop [stops]="model" (stopsChange)="updateStops($event)"
+                               [maxStops]="maxStops" [lockEndModes]="lockEndModes"></o3-color-picker-gradient-stop>

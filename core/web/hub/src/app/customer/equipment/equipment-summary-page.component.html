@@ -1,0 +1,23 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <ng-template #negativeTabsSpace>
+            <o3-filter-chips-container *ngIf="filtersAdapter" [chips]="chips" (editFilterRequested)="filtersAdapter.openOverlay()"></o3-filter-chips-container>
+        </ng-template>
+
+        <o3-tab-action label="Export to Excel" (click)="exportToExcel()"></o3-tab-action>
+        <o3-tab-action label="Add new equipment" (click)="workflowOverlay.toggleOverlay()"></o3-tab-action>
+
+        <o3-tab label="{{hasFilters ? 'Filtered' : 'All'}} Top Equipment">
+            <o3-equipment-list viewStatePrefix="equipment" [filters]="filters" [withFiltering]="true" [tree]="true"></o3-equipment-list>
+        </o3-tab>
+    </o3-tab-group>
+
+    <o3-equipment-filters-adapter *ngIf="filtersLoaded" [local]="localFiltering" (filterChipsChange)="chips = $event"
+                                  [(request)]="filters" (requestChange)="refresh()"></o3-equipment-filters-adapter>
+</section>
+
+<o3-overlay #workflowOverlay [config]="workflowOverlayConfig">
+    <div *cdkPortal>
+        <o3-workflow-wizard (wizardFinished)="workflowOverlay.closeOverlay()"></o3-workflow-wizard>
+    </div>
+</o3-overlay>

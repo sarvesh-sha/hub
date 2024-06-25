@@ -1,0 +1,27 @@
+<p class="text-center" [hidden]="!invalidSource">No data in selected time range</p>
+<div class="o3-time-series-chart--container" [class.o3-time-series-chart--with-timeline]="showTimeline">
+    <o3-chart [title]="title" [panels]="panels"
+              [zoomState]="zoomState" (zoomSourceChanged)="zoomSource = $event"
+              [newAnnotationType]="newAnnotationType" [selectionHandler]="selectionHandler" [noVerticalPadding]="noVerticalPadding"
+              (sourceStateUpdated)="sourcesChanged()" (renderCompleted)="annotationDialog?.markForCheck()"
+              (startedFetchingData)="startedFetchingData.emit()" (stoppedFetchingData)="dataFetched()"
+              (annotationDefined)="annotationDefined($event)" (annotationTooltipMoved)="updateAnnotationTooltipOffset($event)"></o3-chart>
+    <o3-chart-timeline *ngIf="showTimeline"
+                       [timeRange]="chartTimeRange" [zoomedRange]="staticTimeRange" (zoomStateGenerated)="chartZoomState = $event"
+                       [zone]="range.zone" [zoomSource]="zoomSource" [offsetLeft]="timelineLeft" [offsetRight]="timelineRight"
+                       (scrubberDragStarted)="draggingScrubber($event)" (scrubberDragEnded)="draggingScrubber()"></o3-chart-timeline>
+    <o3-consolidated-source-chip *ngIf="showSources" [chart]="this" [deletable]="false"
+                                 [consolidatedChipTooltip]="activeChartHandler.consolidatedChipTooltip()"></o3-consolidated-source-chip>
+</div>
+
+<o3-source-configurer [source]="editSourceExt" [sources]="configExt.sourcesExt" (updated)="sourceChanged($event)"
+                      [disableAddSource]="configExt.model.type == 'GRAPH'" (addSource)="addSource($event)"></o3-source-configurer>
+
+<o3-time-series-chart-configuration [chartElement]="this" [configExt]="configExt"
+                                   (configEdit)="configurationChanged($event, false)"
+                                   (configUpdate)="configurationChanged($event, true)"></o3-time-series-chart-configuration>
+
+<o3-annotation-overlay *ngIf="allowAnnotations && !!activeConfigExt?.sourcesExt.length" [annotations]="annotations" [range]="range"
+                       [addAnnotationSelection]="newAnnotationSelection" [onlyPointAnnotations]="onlyPointAnnotations"
+                       (newAnnotationRequest)="registerNewAnnotationType($event)" (annotationDeleted)="deleteAnnotation($event.row, $event.index)"
+                       (annotationUpdated)="updatePanelAnnotations($event)" (annotationToggled)="optio3Chart.queueUpdate()"></o3-annotation-overlay>

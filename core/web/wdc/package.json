@@ -1,0 +1,41 @@
+{
+    "name": "wdc",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "ng build",
+        "build:test": "ng build --configuration=test",
+        "build:prod": "ng build --configuration=production",
+        "package": "rm -rf ../../product/hub/src/main/resources/assets/wdc/* && cp -r ./output/* ../../product/hub/src/main/resources/assets/wdc/",
+        "postinstall": "ngcc --async false --properties esm5 browser module main --first-only --create-ivy-entry-points"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "^12.2.10",
+        "@angular/common": "^12.2.10",
+        "@angular/compiler": "^12.2.10",
+        "@angular/core": "^12.2.10",
+        "@angular/forms": "^12.2.10",
+        "@angular/platform-browser": "^12.2.10",
+        "@angular/platform-browser-dynamic": "^12.2.10",
+        "@angular/router": "^12.2.10",
+        "angular2-uuid": "^1.1.1",
+        "core-js": "3.1.4",
+        "moment-timezone": "0.5.28",
+        "rxjs": "6.5.4",
+        "tslib": "^2.0.0",
+        "zone.js": "~0.11.4"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "~12.2.10",
+        "@angular/cli": "~12.2.10",
+        "@angular/compiler-cli": "^12.2.10",
+        "@angular/language-service": "^12.2.10",
+        "@types/moment-timezone": "0.5.12",
+        "codelyzer": "^6.0.0",
+        "ts-node": "8.3.0",
+        "tslint": "~6.1.0",
+        "typescript": "~4.3.5"
+    }
+}

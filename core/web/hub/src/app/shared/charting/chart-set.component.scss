@@ -1,0 +1,24 @@
+$muted-color: #aeaeae;
+
+.chart-set--container {
+    page-break-inside: avoid;
+}
+
+.chart-set--container, o3-time-series-set-toolbar, o3-time-series-set {
+    border-radius: inherit;
+}
+
+o3-time-series-set {
+    display: block;
+    transition: margin 0.25s ease;
+
+    &.empty {
+        margin-top: 0;
+    }
+}
+
+o3-time-series-set-toolbar.not-embedded {
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}

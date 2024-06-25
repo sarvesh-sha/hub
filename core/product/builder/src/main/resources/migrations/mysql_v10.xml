@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <createTable tableName="ROLE_TO_HOST">
+            <column name="customer_service_role" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deployment_host" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <addPrimaryKey columnNames="customer_service_role, deployment_host" constraintName="PRIMARY_v10" tableName="ROLE_TO_HOST"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createIndex indexName="FKurqiy0w72nqqn3bq4tfl9x94" tableName="ROLE_TO_HOST">
+            <column name="deployment_host"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addForeignKeyConstraint baseColumnNames="customer_service_role" baseTableName="ROLE_TO_HOST" constraintName="FKi8o8ypcrhrt1kscgjgk5db92i" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="CUSTOMER_SERVICE_ROLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <addForeignKeyConstraint baseColumnNames="deployment_host" baseTableName="ROLE_TO_HOST" constraintName="FKurqiy0w72nqqn3bq4tfl9x94" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="operational_status" tableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+</databaseChangeLog>

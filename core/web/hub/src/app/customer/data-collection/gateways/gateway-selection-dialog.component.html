@@ -1,0 +1,54 @@
+<o3-standard-form label="Which gateway do you want to {{data.dialogPurpose}}?"
+                  [primaryButtonText]="data.dialogOkButton"
+                  [primaryButtonDisabled]="selectedItemIndex === undefined"
+                  (submitted)="clicked()"
+                  (cancelled)="dialogRef.close()">
+    <div #dialogContent>
+        <div class="row" *ngIf="showBoundChoice">
+            <div class="col-sm-6">
+                <div class="input-wrapper">
+                    <div class="input-label">&nbsp;</div>
+                    <mat-checkbox [(ngModel)]="includeBound">Include Bound</mat-checkbox>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Filter Services" [(ngModel)]="filterItems" name="itemFilter">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div #itemGroup style="max-height: 60vh; overflow: scroll">
+            <mat-radio-group [(ngModel)]="selectedItemIndex">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Instance ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of filteredItems()" #itemRow>
+                        <td>
+                            <mat-radio-button value="{{item.index}}">
+                                {{item.name}}
+                            </mat-radio-button>
+                        </td>
+                        <td>
+                            {{item.gateway.typedModel.instanceId}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </mat-radio-group>
+
+            <table class="table table-striped table-bordered" *ngIf="!loading && noResults()">
+                <tr #itemRow>
+                    <td>No gateway to select.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</o3-standard-form>

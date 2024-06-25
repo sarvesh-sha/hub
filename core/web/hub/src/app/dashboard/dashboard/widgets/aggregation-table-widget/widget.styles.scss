@@ -1,0 +1,10 @@
+.o3-source-menu-entry {
+    padding: 4px 8px;
+    pointer-events: auto;
+}
+
+.o3-sub-menu-entry {
+    &.selected {
+        font-weight: bold;
+    }
+}

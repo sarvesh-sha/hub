@@ -1,0 +1,11 @@
+<div class="sort-configurer--container">
+    <mat-form-field *ngIf="!hideId">
+        <o3-select name="sort-idx" [(ngModel)]="sortColumn" (ngModelChange)="sortColumnChange.emit($event)" [placeholder]="sortPlaceholder"
+                   [options]="sortOptions" [multiSelect]="false" preventDeselection singleClick></o3-select>
+    </mat-form-field>
+
+    <mat-slide-toggle *ngIf="!hideDirection" name="sort-direction"
+                      [(ngModel)]="sortAscending" (ngModelChange)="sortAscendingChange.emit($event)">
+        Ascending
+    </mat-slide-toggle>
+</div>

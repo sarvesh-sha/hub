@@ -1,0 +1,139 @@
+.o3-asset-graph-editor--container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    max-width: 100%;
+    outline: none;
+
+    .o3-asset-graph-editor--inner-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: fit-content;
+        min-width: 100%;
+    }
+
+    .o3-asset-graph-editor--node-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .o3-asset-graph-editor--connections {
+            position: relative;
+            flex: 0 0 20px;
+            width: 100%;
+
+            .vertical {
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                top: 0;
+                left: 50%;
+                border-left: 1px solid;
+            }
+
+            .horizontal {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                border-top: 1px solid;
+            }
+
+            &.first {
+                .horizontal {
+                    left: 50%;
+                    width: 50%;
+                }
+            }
+
+            &.last {
+                .horizontal {
+                    width: 50%;
+                }
+            }
+
+            &.only {
+                .horizontal {
+                    width: 0;
+                }
+            }
+        }
+
+        .o3-asset-graph-editor--node {
+            width: 200px;
+            margin: 20px 15px;
+            z-index: 1;
+            position: relative;
+
+            .o3-asset-graph-editor--inner {
+                padding: 10px 9px 20px 8px;
+                border: 2px solid rgba(0, 0, 0, 0.12);
+                border-radius: 5px;
+                text-align: left;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &.invalid {
+                    border: 2px solid #f44336;
+                }
+
+                > .o3-asset-graph-editor--node-title {
+                    text-align: center;
+                    padding: 0px 3px 10px;
+                    font-size: 115%;
+                }
+            }
+
+            .o3-asset-graph-editor--menu {
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                padding: 0px 0px 0px 1px;
+            }
+
+            .o3-asset-graph-editor--button-wrapper {
+                position: absolute;
+                z-index: 2;
+                left: calc(50% - 20px);
+
+                > button {
+                    line-height: normal;
+                    padding: 0px;
+                    color: #ffffff;
+                }
+
+                &.add {
+                    bottom: -20px;
+
+                    > button {
+                        background-color: #2196F3;
+
+                        &[disabled] {
+                            background-color: #7fbaeb;
+                        }
+                    }
+                }
+
+                &.remove {
+                    top: -20px;
+
+                    > button {
+                        background-color: #f44336;
+
+                        &[disabled] {
+                            background-color: #ef7d73;
+                        }
+                    }
+                }
+            }
+        }
+
+        .o3-asset-graph-editor--child-nodes {
+            display: flex;
+            max-width: 100%;
+        }
+    }
+
+}

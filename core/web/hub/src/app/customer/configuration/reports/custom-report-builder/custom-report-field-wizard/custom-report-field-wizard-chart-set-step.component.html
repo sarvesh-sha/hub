@@ -1,0 +1,7 @@
+<ng-template o3-wizard-step-template>
+    <o3-chart-set *ngIf="typedElement as chartSet"
+                  [(configs)]="chartSet.charts" [(range)]="data.range"
+                  [staticRange]="true" staticRangeTooltip="Report's time range selected"
+                  [viewWindow]="viewWindow" [zoomable]="false" [embedded]="true"
+                  [readonly]="false" [resizable]="true" [canDeleteAllCharts]="true"></o3-chart-set>
+</ng-template>

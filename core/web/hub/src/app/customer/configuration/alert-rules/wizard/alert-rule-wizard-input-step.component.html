@@ -1,0 +1,9 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data?.rules?.userProgramDetails?.typedModel" class="row">
+        <div class="col-sm-12">
+            <div *ngFor="let input of inputs" style="margin-bottom: 10px;">
+                <o3-alert-rule-input-field [inputParam]="input"></o3-alert-rule-input-field>
+            </div>
+        </div>
+    </div>
+</ng-template>

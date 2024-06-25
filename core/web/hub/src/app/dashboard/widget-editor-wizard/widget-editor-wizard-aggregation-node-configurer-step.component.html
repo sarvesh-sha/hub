@@ -1,0 +1,9 @@
+<ng-template o3-wizard-step-template>
+    <o3-aggregation-node-binding-configurer
+        #test_nodeBindingConfigurer
+        [graph]="typedWidget.graph"
+        [(nodes)]="typedWidget.columns"
+        [(displayType)]="typedWidget.controlPointDisplayType"
+        [(visualizationMode)]="visualizationMode">
+    </o3-aggregation-node-binding-configurer>
+</ng-template>

@@ -1,0 +1,64 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="User Group Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()"></o3-tab-action>
+
+            <o3-tab-section>
+                <form #userForm="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Name" [ngModel]="userGroup.name" name="name" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Description" [ngModel]="userGroup.description" name="description" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <o3-select name="userRoles"
+                                           placeholder="Extra Roles To Assign To Members"
+                                           defaultValueDescription="Select Roles"
+                                           readonly
+                                           [options]="roleOptions"
+                                           [ngModel]="userRoles">
+                                </o3-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <o3-select name="userGroups"
+                                           placeholder="Sub-Groups To Assign To Members"
+                                           defaultValueDescription="Select Sub-Groups"
+                                           readonly
+                                           [options]="groupOptions"
+                                           [ngModel]="userGroups">
+                                </o3-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </o3-tab-section>
+            <o3-tab-section [withSeparator]="false" label="Contained Users">
+                <o3-user-list [userGroupId]="userGroupId"></o3-user-list>
+            </o3-tab-section>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+

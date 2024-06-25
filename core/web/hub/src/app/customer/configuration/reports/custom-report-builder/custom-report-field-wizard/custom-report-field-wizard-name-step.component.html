@@ -1,0 +1,7 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="elementWithLabel" class="row">
+        <mat-form-field class="col-sm-6">
+            <input matInput placeholder="Label" [(ngModel)]="elementWithLabel.label" name="aggregation-table-label"/>
+        </mat-form-field>
+    </div>
+</ng-template>

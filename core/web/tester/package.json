@@ -1,0 +1,43 @@
+{
+    "name": "tester",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run run:docker",
+        "run:docker": "npm run build && npm run watch:docker",
+        "run:dev": "npm run build && npm run watch:dev",
+        "build": "npm run build-ts",
+        "watch:docker": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve:docker\"",
+        "watch:dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve:dev\"",
+        "serve:docker": "nodemon --watch \"dist/**/*.js\" dist/index.js tester.yml",
+        "serve:dev": "nodemon --watch \"dist/**/*.js\" dist/index.js tester-dev.yml",
+        "serve:prd": "node dist/index.js /optio3-config/tester-prod.yml",
+        "build-ts": "tsc",
+        "watch-ts": "tsc -w"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "6.2.1",
+        "eslint": "7.32.0",
+        "nodemon": "2.0.12",
+        "typescript": "4.2.4"
+    },
+    "dependencies": {
+        "@tsed/common": "6.85.0",
+        "@tsed/core": "6.85.0",
+        "@tsed/exceptions": "6.85.0",
+        "@tsed/platform-express": "6.85.0",
+        "@tsed/swagger": "6.85.0",
+        "body-parser": "1.19.0",
+        "compression": "1.7.4",
+        "cors": "2.8.5",
+        "express": "4.17.1",
+        "js-yaml": "4.1.0",
+        "morgan": "1.10.0",
+        "puppeteer": "11.0.0",
+        "puppeteer-screen-recorder": "2.0.2",
+        "swagger-ui-express": "4.1.6"
+    }
+}

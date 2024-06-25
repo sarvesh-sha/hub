@@ -1,0 +1,105 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Check for new firmware..." (click)="checkFirmware()"></o3-tab-action>
+        <o3-tab-action label="Screen saver..." (click)="startScreenSaver()"></o3-tab-action>
+
+        <o3-tab label="Optio3 Hardware Provisioning">
+
+            <div class="row" *ngIf="isProductionMode">
+                <div class="col-4">
+                    <mat-form-field>
+                        <mat-label>Select a unit</mat-label>
+                        <mat-select [(value)]="checkinSelected">
+                            <mat-optgroup [label]="'New'">
+                                <mat-option *ngFor="let checkin of checkinsNotPrinted" [value]="checkin">{{ labelForCheckin(checkin) }}</mat-option>
+                            </mat-optgroup>
+                            <mat-optgroup [label]="'Already Printed'">
+                                <mat-option *ngFor="let checkin of checkinsPrinted" [value]="checkin">{{ labelForCheckin(checkin) }}</mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Serial Number" [value]="checkinSelected?.info.hostId" name="hostId" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="IMEI" [value]="checkinSelected?.info.imei" name="imei" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <section style="height: 100px">
+            </section>
+
+            <section style="height: 230px">
+                <div class="row" *ngIf="readyForBoard">
+                    <span style="font-size: xxx-large">Detected board!</span>
+                </div>
+                <div class="row" *ngIf="readyForBoard">
+                    <span style="font-size: xxx-large">S/N: {{boardDetected}}</span>
+                </div>
+
+                <div class="row" *ngIf="isDownloadingFirmware">
+                    <span style="font-size: xxx-large" *ngIf="downloadTotal == 0">Looking for firmware...</span>
+                    <span style="font-size: xxx-large" *ngIf="downloadTotal != 0">Downloading new firmware: {{downloadTotal | number}} bytes</span>
+                </div>
+
+                <div class="row" *ngIf="isFlashing">
+                    <span style="font-size: xxx-large">Upload: {{flashingInProgress.imageOffset / flashingInProgress.imageSize | percent}} of {{flashingInProgress.imageSize | number}} bytes</span>
+                </div>
+                <div class="row" *ngIf="isFlashing">
+                    <span style="font-size: xxx-large">Phase: {{flashingInProgress.phase}} / {{flashingInProgress.phaseName}}</span>
+                </div>
+
+                <div class="row" *ngIf="hasFlashingFailed">
+                    <span style="font-size: xxx-large"><b [class.o3-warn]="true">Flashing failed!!</b></span>
+                </div>
+
+                <div class="row" *ngIf="isWaitingForRegistration">
+                    <span style="font-size: xxx-large">Waiting for registration...</span>
+                </div>
+                <div class="row" *ngIf="isWaitingForRegistration">
+                    <span style="font-size: xxx-large">{{testWaiting}}</span>
+                </div>
+
+                <div class="row" *ngIf="hasBoardRegistered">
+                    <span style="font-size: xxx-large"><b [class.o3-info]="true">Board done!!</b></span>
+                </div>
+
+                <div class="row" *ngIf="isWaitingForTests">
+                    <span style="font-size: xxx-large">Waiting for tests...</span>
+                </div>
+                <div class="row" *ngIf="isWaitingForTests">
+                    <span style="font-size: xxx-large">{{testWaiting}}</span>
+                </div>
+
+                <div class="row" *ngIf="hasTestPassed">
+                    <span style="font-size: xxx-large"><b [class.o3-info]="true">All Tests Passed!!</b></span>
+                </div>
+
+                <div class="row" *ngIf="hasTestFailed">
+                    <span style="font-size: xxx-large"><b [class.o3-warn]="true">{{testFailure}}</b></span>
+                </div>
+            </section>
+
+            <mat-card-actions>
+                <button class="o3-button" *ngIf="powerSwitchSupported" mat-raised-button type="button" [disabled]="!canTurnPowerOn" (click)="powerBoard(true)">Power On</button>
+                <button class="o3-button" *ngIf="isProductionMode" mat-raised-button type="button" [disabled]="!readyForPrint" (click)="print()" [class.o3-info]="readyForPrint">Print Labels</button>
+                <button class="o3-button" *ngIf="isProductionMode" mat-raised-button type="button" [disabled]="!readyForReprint" (click)="print()">Re-print Labels</button>
+                <button class="o3-button" mat-raised-button type="button" [disabled]="!readyForBoard" (click)="flash()" [class.o3-info]="readyForBoard">Program Board</button>
+                <button class="o3-button" *ngIf="powerSwitchSupported" mat-raised-button type="button" [disabled]="!canTurnPowerOff" (click)="powerBoard(false)">Power Off</button>
+            </mat-card-actions>
+
+        </o3-tab>
+    </o3-tab-group>
+
+</section>
+
+<o3-overlay #screenSaverOverlay [config]="overlayConfig">
+    <canvas #screenSaver (click)="stopScreenSaver()"></canvas>
+</o3-overlay>

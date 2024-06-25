@@ -1,0 +1,79 @@
+<o3-tab-group noUnderline>
+    <o3-tab-action label="View Log" (click)="logDialog.toggleOverlay(); refreshLog()"></o3-tab-action>
+    <o3-tab label="Debug">
+        <o3-tab-section>
+            <mat-expansion-panel [expanded]="assignments?.length > 0" class="title-as-header">
+                <mat-expansion-panel-header class="display-expanded">
+                    <mat-panel-title>
+                        Assignments
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="panel-content">
+                    <div *ngFor="let assignment of assignments" class="row">
+                        <div class="col-sm-4">
+                            {{assignment.name}}:
+                        </div>
+                        <div class="col-sm-8">
+                            {{assignment.value}}
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="actions.length > 0" class="title-as-header">
+                <mat-expansion-panel-header class="display-expanded">
+                    <mat-panel-title>
+                        Actions
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="panel-content">
+                    <div *ngFor="let action of actions; let i = index" class="row">
+                        <div class="col clickable" (click)="setCurrentStep(action.step)">
+                            {{i + 1}}. {{action.text}}
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="failures.length > 0" class="title-as-header">
+                <mat-expansion-panel-header class="display-expanded">
+                    <mat-panel-title>
+                        Failures
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="panel-content">
+                    <div *ngFor="let failure of failures; let i = index" class="row">
+                        <div class="col clickable" (click)="setCurrentStep(failure.step)">
+                            {{i + 1}}. {{failure.text}}
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </o3-tab-section>
+
+        <o3-tab-section [withSeparator]="false">
+            <div class="controls">
+                <mat-icon [class.disabled]="!hasPrevious()" (click)="previous(true)" matTooltip="Step back">undo</mat-icon>
+                <mat-icon [class.disabled]="!hasPrevious()" (click)="previous()">skip_previous</mat-icon>
+                <mat-icon [class.disabled]="!hasPrevious()" (click)="fastRewind()">fast_rewind</mat-icon>
+                <mat-icon (click)="togglePlay()">{{this.canPlay() ? "play_arrow" : "pause"}}</mat-icon>
+                <mat-icon (click)="stop()">stop</mat-icon>
+                <mat-icon [class.disabled]="!hasNext()" (click)="fastForward()">fast_forward</mat-icon>
+                <mat-icon [class.disabled]="!hasNext()" (click)="next()">skip_next</mat-icon>
+                <mat-icon [class.disabled]="!hasNext()" (click)="next(true)" matTooltip="Step over">redo</mat-icon>
+                <mat-slider [min]="1" [max]="sliderSteps" (input)="slide($event)" [value]="sliderPosition"></mat-slider>
+            </div>
+        </o3-tab-section>
+    </o3-tab>
+
+</o3-tab-group>
+
+<o3-standard-form-overlay label="Logs" [showPrimary]="false" [showSecondary]="false" [overlayConfig]="logDialogConfig" #logDialog
+                          [showExtraButton]="true" extraButtonText="Download Log" (extraButtonPressed)="downloadLog()">
+    <o3-console-log #log [filterable]="false">
+        <o3-console-log-column name="#" type="lineNumber" [enabled]="true"></o3-console-log-column>
+    </o3-console-log>
+</o3-standard-form-overlay>

@@ -1,0 +1,89 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <createTable tableName="DASHBOARD_DEFINITION">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_F8"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HEAD_VERSION" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="RELEASE_VERSION" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="USER" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <createTable tableName="DASHBOARD_DEFINITION_VERSION">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_A2"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DETAILS" type="CLOB"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFINITION" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PREDECESSOR" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="SUCCESSOR" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createIndex indexName="DASHBOARD_DEFINITION_VERSION__DEFINITION__FK_INDEX_A" tableName="DASHBOARD_DEFINITION_VERSION">
+            <column name="DEFINITION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <createIndex indexName="DASHBOARD_DEFINITION_VERSION__PREDECESSOR__FK_INDEX_A" tableName="DASHBOARD_DEFINITION_VERSION">
+            <column name="PREDECESSOR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createIndex indexName="DASHBOARD_DEFINITION_VERSION__SUCCESSOR__FK_INDEX_A" tableName="DASHBOARD_DEFINITION_VERSION">
+            <column name="SUCCESSOR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createIndex indexName="DASHBOARD_DEFINITION__HEAD_VERSION__FK_INDEX_F" tableName="DASHBOARD_DEFINITION">
+            <column name="HEAD_VERSION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createIndex indexName="DASHBOARD_DEFINITION__RELEASE_VERSION__FK_INDEX_F" tableName="DASHBOARD_DEFINITION">
+            <column name="RELEASE_VERSION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <createIndex indexName="DASHBOARD_DEFINITION__USER__FK_INDEX_F" tableName="DASHBOARD_DEFINITION">
+            <column name="USER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <addForeignKeyConstraint baseColumnNames="DEFINITION" baseTableName="DASHBOARD_DEFINITION_VERSION" constraintName="DASHBOARD_DEFINITION_VERSION__DEFINITION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DASHBOARD_DEFINITION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <addForeignKeyConstraint baseColumnNames="PREDECESSOR" baseTableName="DASHBOARD_DEFINITION_VERSION" constraintName="DASHBOARD_DEFINITION_VERSION__PREDECESSOR__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DASHBOARD_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <addForeignKeyConstraint baseColumnNames="SUCCESSOR" baseTableName="DASHBOARD_DEFINITION_VERSION" constraintName="DASHBOARD_DEFINITION_VERSION__SUCCESSOR__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DASHBOARD_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <addForeignKeyConstraint baseColumnNames="HEAD_VERSION" baseTableName="DASHBOARD_DEFINITION" constraintName="DASHBOARD_DEFINITION__HEAD_VERSION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DASHBOARD_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <addForeignKeyConstraint baseColumnNames="RELEASE_VERSION" baseTableName="DASHBOARD_DEFINITION" constraintName="DASHBOARD_DEFINITION__RELEASE_VERSION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DASHBOARD_DEFINITION_VERSION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <addForeignKeyConstraint baseColumnNames="USER" baseTableName="DASHBOARD_DEFINITION" constraintName="DASHBOARD_DEFINITION__USER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

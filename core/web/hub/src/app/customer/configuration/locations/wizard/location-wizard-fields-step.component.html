@@ -1,0 +1,38 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field *ngIf="data.locationFields?.hasField('phone')">
+                <input matInput type="tel" placeholder="Phone" [(ngModel)]="data.model.phone" name="locationPhone" [required]="data.locationFields?.isFieldRequired('phone')">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="Description" [(ngModel)]="data.model.customerNotes" name="locationDescription"
+                       [required]="data.locationFields?.isFieldRequired('description')">
+            </mat-form-field>
+
+            <o3-time-zone-selector class="col-6" [(zone)]="data.model.timeZone"></o3-time-zone-selector>
+
+            <section *ngIf="data.locationFields?.hasField('address')">
+                <mat-form-field>
+                    <input matInput
+                           type="text"
+                           placeholder="Address"
+                           [matAutocomplete]="auto"
+                           [(ngModel)]="data.model.address" (ngModelChange)="onSearchTextChanged($event)"
+                           name="locationAddress">
+                    <i class="fa fa-refresh fa-spin search-progress" *ngIf="searching"></i>
+                </mat-form-field>
+
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let result of searchResults" value=""
+                                (click)="selectSearchResult(result)">
+                        {{ result.address.freeformAddress }}
+                    </mat-option>
+                </mat-autocomplete>
+            </section>
+        </div>
+        <div class="col-sm-6">
+            <o3-pin-map *ngIf="mapLocation" [allowEdit]="true" [location]="mapLocation" (locationChange)="updateLocation($event)" style="min-height: 350px"></o3-pin-map>
+        </div>
+    </div>
+</ng-template>

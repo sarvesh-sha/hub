@@ -1,0 +1,12 @@
+form {
+    div:last-child {
+        > mat-card > mat-card-title {
+            margin-bottom: -8px;
+            border-bottom: none;
+        }
+    }
+}
+
+.list-card {
+    width: 100%;
+}

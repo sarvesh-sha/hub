@@ -1,0 +1,46 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Auto-generated from index.template.html
+src/index.html
+src/manifest.webmanifest
+
+# compiled output
+/dist
+/tmp
+/build
+/www
+/platforms
+/plugins
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+.idea/workspace.xml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.suo
+
+# misc
+/.angular
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+#System Files
+.DS_Store
+Thumbs.db

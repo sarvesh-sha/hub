@@ -1,0 +1,12 @@
+<o3-standard-form [label]="data.title"
+                  primaryButtonText="Import"
+                  [primaryButtonDisabled]="!validContent"
+                  [showSecondary]="false"
+                  (submitted)="dialogRef.close(validContent)">
+    <div class="file-connector" (click)="selectedFiles.click()">
+        <button type="button" mat-raised-button>Upload File</button>
+        <label *ngIf="!error">{{fileName ? fileName : "No file selected"}}</label>
+        <label *ngIf="error" class="error">{{error}}</label>
+    </div>
+    <input type="file" id="input" style="display: none" #selectedFiles (change)="handleFiles()">
+</o3-standard-form>

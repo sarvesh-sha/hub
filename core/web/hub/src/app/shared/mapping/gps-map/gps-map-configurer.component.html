@@ -1,0 +1,22 @@
+<o3-standard-form-overlay label="Configure Popups" [overlayConfig]="configurerConfig" (submitted)="emitChanges()"
+                          [primaryButtonDisabled]="pristine || !graphSourceEntries?.length" [closeOnPrimaryPress]="false" primaryButtonText="Apply">
+    <button mat-raised-button (click)="graphConfigurer.toggleOverlay()" type="button">
+        Configure Asset Structure
+    </button>
+
+    <o3-modifiable-table *ngIf="!!graphSourceEntries?.length" [rows]="graphSourceEntries" [placeholderHeightPx]="60" backgroundColor="white"
+                         allowReordering (rowsReordered)="updatePristine()">
+        <ng-container *o3ModifiableTableRow="let entry; let i = index">
+            <td>
+                <o3-equivalent-units-selector [(units)]="entry.units" (unitsChange)="updatePristine()" [placeholder]="entry.label"
+                                              [unitsFactors]="entry.unitsFactors"></o3-equivalent-units-selector>
+            </td>
+        </ng-container>
+    </o3-modifiable-table>
+</o3-standard-form-overlay>
+
+<o3-overlay [config]="graphConfigurerConfig">
+    <o3-asset-graph-wizard *cdkPortal
+                           [(model)]="editGraphState" (modelChange)="setGraphSelections()"
+                           (cancelled)="graphConfigurer.closeOverlay()"></o3-asset-graph-wizard>
+</o3-overlay>

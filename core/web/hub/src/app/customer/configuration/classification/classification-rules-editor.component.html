@@ -1,0 +1,196 @@
+<form>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Abbreviations
+                </mat-panel-title>
+                <mat-panel-description>
+                    List of abbreviations and their full meaning
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <o3-map-list [provider]="abbreviations">
+                <ng-container *o3MapListForm="let edited">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Full Text" [(ngModel)]="edited.key" name="keyAbbreviation">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <o3-string-set [(value)]="edited.value" (valueChange)="host.detectChanges()" name="textAbbreviation" placeholder="Abbreviations" filterHint="Add abbreviation...">
+                        </o3-string-set>
+                    </mat-form-field>
+                </ng-container>
+            </o3-map-list>
+
+            <o3-map-list-actions [provider]="abbreviations">
+                <div class="import-export">
+                    <button mat-raised-button (click)="importAbbreviations()">Import</button>
+                    <button mat-raised-button (click)="exportAbbreviations()">Export</button>
+                </div>
+            </o3-map-list-actions>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Disambiguations
+                </mat-panel-title>
+                <mat-panel-description>
+                    List of terms that can be misleading during parsing
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <o3-map-list [provider]="disambiguations">
+                <ng-container *o3MapListForm="let edited">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Ambiguous Term" [(ngModel)]="edited.key" name="keyAbbreviation">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Plain Term" [(ngModel)]="edited.value" name="valueAbbreviation">
+                    </mat-form-field>
+                </ng-container>
+            </o3-map-list>
+
+            <o3-map-list-actions [provider]="disambiguations">
+                <div class="import-export">
+                    <button mat-raised-button (click)="importDisambiguations()">Import</button>
+                    <button mat-raised-button (click)="exportDisambiguations()">Export</button>
+                </div>
+            </o3-map-list-actions>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Starts With
+                </mat-panel-title>
+                <mat-panel-description>
+                    List of expansion terms that start with a certain word
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <o3-map-list [provider]="startsWith">
+                <ng-container *o3MapListForm="let edited">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Matching Text" [(ngModel)]="edited.key" name="keyAbbreviation">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Plain Term" [(ngModel)]="edited.value" name="valueAbbreviation">
+                    </mat-form-field>
+                </ng-container>
+            </o3-map-list>
+
+            <o3-map-list-actions [provider]="startsWith">
+                <div class="import-export">
+                    <button mat-raised-button (click)="importStartsWith()">Import</button>
+                    <button mat-raised-button (click)="exportStartsWith()">Export</button>
+                </div>
+            </o3-map-list-actions>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Ends With
+                </mat-panel-title>
+                <mat-panel-description>
+                    List of expansion terms that end with a certain word
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <o3-map-list [provider]="endsWith">
+                <ng-container *o3MapListForm="let edited">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Matching Text" [(ngModel)]="edited.key" name="keyAbbreviation">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Plain Term" [(ngModel)]="edited.value" name="valueAbbreviation">
+                    </mat-form-field>
+                </ng-container>
+            </o3-map-list>
+
+            <o3-map-list-actions [provider]="endsWith">
+                <div class="import-export">
+                    <button mat-raised-button (click)="importEndsWith()">Import</button>
+                    <button mat-raised-button (click)="exportEndsWith()">Export</button>
+                </div>
+            </o3-map-list-actions>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Contains
+                </mat-panel-title>
+                <mat-panel-description>
+                    List of expansion terms that contain a certain word
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <o3-map-list [provider]="contains">
+                <ng-container *o3MapListForm="let edited">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Matching Text" [(ngModel)]="edited.key" name="keyAbbreviation">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Plain Term" [(ngModel)]="edited.value" name="valueAbbreviation">
+                    </mat-form-field>
+                </ng-container>
+            </o3-map-list>
+
+            <o3-map-list-actions [provider]="contains">
+                <div class="import-export">
+                    <button mat-raised-button (click)="importContains()">Import</button>
+                    <button mat-raised-button (click)="exportContains()">Export</button>
+                </div>
+            </o3-map-list-actions>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Term Scoring
+                </mat-panel-title>
+                <mat-panel-description>
+                    List of terms and their scoring weights
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field style="width: 25%;">
+                <input matInput placeholder="Score threshold" type="number" name="scoreThreshold" [(ngModel)]="rules.scoreThreshold" (ngModelChange)="host.setDirty()"/>
+            </mat-form-field>
+
+            <o3-map-list [provider]="knownTerms">
+                <ng-container *o3MapListForm="let edited">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Term" [(ngModel)]="edited.key" name="keyKnownTerm">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Acronym" [(ngModel)]="edited.value.acronym" name="acronymKnownTerm">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Positive Weight" [(ngModel)]="edited.value.positiveWeight" name="posWeightKnownTerm">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Negative Weight" [(ngModel)]="edited.value.negativeWeight" name="negWeightKnownTerm">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Weight Reason" [(ngModel)]="edited.value.weightReason" name="reasonKnownTerm">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <o3-string-set [(value)]="edited.value.synonyms" placeholder="Synonyms" filterHint="Add synonym...">
+                        </o3-string-set>
+                    </mat-form-field>
+                </ng-container>
+            </o3-map-list>
+
+            <o3-map-list-actions [provider]="knownTerms">
+                <div class="import-export">
+                    <button mat-raised-button (click)="importTermScoring()">Import</button>
+                    <button mat-raised-button (click)="exportTermScoring()">Export</button>
+                </div>
+            </o3-map-list-actions>
+        </mat-expansion-panel>
+    </mat-accordion>
+</form>

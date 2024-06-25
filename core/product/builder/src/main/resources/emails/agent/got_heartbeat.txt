@@ -1,0 +1,14 @@
+########################
+# Builder notification #
+########################
+
+UPDATE!
+
+Agent '${param.AGENT_ID}' on host '${param.HOST_ID}' has resumed communication with Builder at ${param.LAST_HEARTBEAT}.
+
+Supply Voltage: ${param.BATTERY_VOLTAGE}
+
+Details: https://builder.dev.optio3.io/#/deployments/item/${param.HOST_SYSID}
+
+
+Optio3

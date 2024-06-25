@@ -1,0 +1,4 @@
+<o3-wizard *ngIf="data" [label]="label" [modalMode]="true" [data]="data" (wizardCancelled)="wizardCancel()" (wizardCommitted)="wizardCommit()">
+    <o3-pane-field-type-step></o3-pane-field-type-step>
+    <o3-pane-field-details-step></o3-pane-field-details-step>
+</o3-wizard>

@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createTable tableName="ASSET_LOCATION">
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_LOCATION" constraintName="FK8k125njk5vut09kbu5i4nx5ic" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Manual" id="locationMigration1">
+        <sql>insert into ASSET(sys_id,sys_created_on,sys_updated_on,name,state) select sys_id,sys_created_on,sys_updated_on,name,'operational' from LOCATION</sql>
+        <sql>insert into ASSET_LOCATION(sys_id,type) select sys_id,type from LOCATION</sql>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <dropForeignKeyConstraint baseTableName="EVENT" constraintName="EVENT__LOCATION__FK"/>
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="EVENT" constraintName="EVENT__LOCATION__FK" referencedColumnNames="sys_id" referencedTableName="ASSET_LOCATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <dropForeignKeyConstraint baseTableName="ASSET" constraintName="LOCATION__FK"/>
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="ASSET" constraintName="LOCATION__FK" referencedColumnNames="sys_id" referencedTableName="ASSET_LOCATION"/>
+    </changeSet>
+</databaseChangeLog>

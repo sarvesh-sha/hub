@@ -1,0 +1,20 @@
+<o3-overlay [config]="dialogConfig">
+    <o3-tab-group noUnderline cardClass="o3-flex">
+        <o3-tab label="{{title || 'Table Column Selector'}}">
+            <o3-tab-action label="Apply" priority="primary" [disabled]="pristine" (click)="save()"></o3-tab-action>
+            <o3-tab-action label="Reset" priority="tertiary" [disabled]="isDefault && pristine" (click)="reset()"></o3-tab-action>
+
+            <o3-modifiable-table [rows]="columns" [placeholderHeightPx]="42" (itemClicked)="handleToggle($event)"
+                                 allowReordering (rowsReordered)="updatePristineState()">
+                <ng-container *o3ModifiableTableRow="let colInfo; type: colInfoType">
+                    <td class="check" [class.clickable]="!colInfo.enabled || numActiveColumns > 1">
+                        <mat-checkbox [(ngModel)]="colInfo.enabled" (click)="$event.preventDefault()" [disabled]="colInfo.enabled && numActiveColumns === 1"></mat-checkbox>
+                    </td>
+                    <td class="name" [class.clickable]="!colInfo.enabled || numActiveColumns > 1">
+                        {{colInfo.name}}
+                    </td>
+                </ng-container>
+            </o3-modifiable-table>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

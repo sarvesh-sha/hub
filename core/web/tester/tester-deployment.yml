@@ -1,0 +1,4 @@
+tester:
+  record: false
+  headless: true
+  outputDirectory: /optio3-test-output

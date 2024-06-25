@@ -1,0 +1,22 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="Export..." (click)="export()"></o3-tab-action>
+
+        <o3-tab label="Pane Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()"></o3-tab-action>
+
+            <div class="row" *ngIf="pane">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Name" [(ngModel)]="pane.name" name="name">
+                    </mat-form-field>
+                </div>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+

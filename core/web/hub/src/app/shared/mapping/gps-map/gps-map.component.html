@@ -1,0 +1,46 @@
+<div class="o3-gps-map--container">
+    <div #mapContainer class="o3-gps-map--path" [ngClass]="{'has-popup': selectedPathLocation, 'dragging-scrubber': scrubberIsMoving, 'has-data': hasData}">
+        <o3-path-map [paths]="paths" [range]="subRange" [selectedPathPoint]="selectedPathLocation"
+                     [popupOpen]="!scrubberIsMoving && !!selectedPathLocation"
+                     (nearbyLocationsUpdated)="updatePopup($event)" (popupLocked)="processPopupLockChange($event)">
+            <ng-template #popupTemplate *ngIf="selectedPathLocation">
+                <mat-card>
+                    <mat-card-title class="o3-default-card-padding">
+                        <mat-form-field *ngIf="nearbyLocationOptions.length > 1">
+                            <o3-select [options]="nearbyLocationOptions" [(ngModel)]="selectedPathLocation" (ngModelChange)="updateHasEntries()"
+                                       [singleClick]="true" [multiSelect]="false" [preventDeselection]="true"></o3-select>
+                        </mat-form-field>
+                        <span *ngIf="nearbyLocationOptions.length === 1">{{noAmbiguityPopupTitle}}</span>
+                    </mat-card-title>
+                    <mat-card-content *ngIf="hasPopupEntries">
+                        <o3-key-value-item *ngIf="gpsAssets.length > 1" key="Name" [value]="locationNameLookup[selectedPathLocation.locationId]"></o3-key-value-item>
+                        <ng-container *ngFor="let gpsSource of locationIdToGpsSources[selectedPathLocation.locationId]">
+                            <o3-key-value-item *ngIf="selectedPathLocation.relatedValues.get(gpsSource.deviceElementExt.model.sysId)"
+                                               [key]="gpsSource.deviceElementExt.model.name"
+                                               [value]="selectedPathLocation.relatedValues.get(gpsSource.deviceElementExt.model.sysId)"></o3-key-value-item>
+                        </ng-container>
+                    </mat-card-content>
+                </mat-card>
+            </ng-template>
+        </o3-path-map>
+    </div>
+    <div *ngIf="!hasData" class="no-data text-center pt-4">
+        {{loadingText}}
+    </div>
+    <o3-time-scrubber *ngIf="hasData" [targetElement]="mapContainer" [deadZoneRanges]="deadZoneRanges" [range]="range"
+                      (timeRangeChange)="updateSubRange($event)" (dragStarted)="scrubberIsMoving = true" (dragEnded)="scrubberIsMoving = false">
+    </o3-time-scrubber>
+</div>
+
+<ng-container *ngIf="configExt">
+    <o3-gps-map-configurer [(config)]="configExt.model.tooltip" [(graph)]="configExt.model.graph" [gpsAssets]="gpsAssets"
+                           (configChange)="updatePopupConfig($event)" (graphChange)="updateGraph($event)">
+    </o3-gps-map-configurer>
+
+    <o3-standard-form-overlay label="Configure Path Color" [overlayConfig]="colorOverlayConfig" internalCardClass="no-content-padding"
+                              [primaryButtonDisabled]="colorSettings.paletteName === (configExt.model.palette || 'Map Colors')"
+                              (submitted)="saveColorChanges()" (cancelled)="revertColorChanges()">
+        <o3-color-picker-configuration *cdkPortal [(model)]="colorSettings" (modelChange)="ensureSourceColors()"
+                                       [forFlat]="true" [onlyPalette]="true"></o3-color-picker-configuration>
+    </o3-standard-form-overlay>
+</ng-container>

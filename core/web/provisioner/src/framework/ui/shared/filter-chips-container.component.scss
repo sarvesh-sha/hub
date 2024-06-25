@@ -1,0 +1,48 @@
+:host {
+    display: flex;
+    align-items: center;
+}
+
+mat-chip-list {
+    mat-chip.o3-filter-chips-container--chip {
+        .o3-filter-chips-container--delete {
+            height: 26px;
+            width: 26px;
+            padding: 3px 0px 0px 0.5px;
+            margin-right: -5px;
+            margin-left: 4px;
+            top: unset !important;
+
+            mat-icon {
+                font-size: 18px;
+                color: rgba(0, 0, 0, 0.35);
+
+                &:hover {
+                    color: rgba(0, 0, 0, 0.47);
+                }
+            }
+        }
+
+        margin-bottom: 4px !important;
+        margin-left: 0px;
+        margin-right: 4px;
+        max-width: 216px; // keep synced with FilterChipsContainerComponent.chipMaxWidth (4 less because of margin)
+
+        &::after {
+            opacity: 0 !important;
+        }
+
+        > span {
+            max-width: 139px; // keep this ~77 px lower than mat-chip's max-width for appropriate look
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+button.o3-filter-chips-container--edit-filters {
+    padding: 6px 0px 0px 0px !important;
+    margin-right: 4px !important;
+    top: unset !important;
+}

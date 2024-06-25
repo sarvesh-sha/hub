@@ -1,0 +1,60 @@
+<section class="bs page-content">
+
+    <div class="mat-tabbed-page has-actions">
+
+        <o3-tab-group>
+
+            <o3-tab-action label="Import" (click)="importSettings()"></o3-tab-action>
+            <o3-tab-action label="Export" (click)="exportSettings()"></o3-tab-action>
+
+            <o3-tab label="Sampling Details">
+
+                <o3-tab-action label="Update" priority="primary" (click)="save()" [disabled]="!root?.hasChanged"></o3-tab-action>
+                <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="!root?.hasChanged"></o3-tab-action>
+                <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="root?.hasChanged"></o3-tab-action>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form #periodForm="ngForm" novalidate>
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="Default Sampling Period (in seconds)" name="sampling_period_default" [(ngModel)]="defaultPeriod">
+                            </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <o3-filterable-tree #tree [nodes]="nodes" [useVirtualScroll]="false" [useCheckboxes]="true" [autoExpandSelected]="false" [(selectedNodes)]="selectedNodesEdited"
+                                            (selectedNodesChange)="selectionChanged()">
+                            <ng-template #nodeTemplate let-node="node" let-index="index">
+                                {{node.label}}
+                                <span *ngIf="node.children.length > 0">
+                                    ({{node.numberOfSelectedNodes.value}} selected out of {{node.numberOfNodes.value}})
+                                </span>
+                                <span style="color: green" *ngIf="node.numberOfAddedNodes.value > 0">
+                                    ({{node.numberOfAddedNodes.value}} added)
+                                </span>
+                                <span style="color: blue" *ngIf="node.numberOfChangedNodes.value > 0">
+                                    ({{node.numberOfChangedNodes.value}} changed)
+                                </span>
+                                <span style="color: red" *ngIf="node.numberOfRemovedNodes.value > 0">
+                                    ({{node.numberOfRemovedNodes.value}} removed)
+                                </span>
+                            </ng-template>
+                            <ng-template #nodePostTemplate let-node="node" let-index="index">
+                                <div style="margin-left: auto; width: 80px" *ngIf="node.period > 0" (click)="$event.stopPropagation()">
+                                    <mat-form-field>
+                                        <input matInput type="number" style="width: 4em" name="sampling_period{{index}}" [(ngModel)]="node.period" (change)="periodChanged(node)">
+                                    </mat-form-field>
+                                </div>
+                            </ng-template>
+                        </o3-filterable-tree>
+                    </div>
+                </div>
+            </o3-tab>
+
+        </o3-tab-group>
+
+    </div>
+
+</section>

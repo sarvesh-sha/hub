@@ -1,0 +1,117 @@
+.history-list {
+    display: flex;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+
+    cdk-virtual-scroll-viewport {
+        width: 100%;
+        max-height: 100%;
+    }
+
+    .status-icon {
+        font-size: 36px;
+        margin-left: 5px;
+        margin-right: 20px;
+        line-height: 28px;
+        height: 24px;
+        z-index: 2;
+    }
+
+    .status-icon.status-failure {
+    }
+
+    .status-icon.status-info {
+    }
+
+    .status-icon.status-recall {
+        margin-left: 3px;
+    }
+
+    .status-icon.status-success {
+    }
+
+    .status-icon.status-certification {
+    }
+
+    .status-text {
+        display: block;
+        overflow: hidden;
+        line-height: 1.2em;
+        /* max-height = line-height (1.2) * lines max number (3) */
+        max-height: 3.6em;
+    }
+
+    .status-time, .status-location, .status-user {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.38);
+
+        position: absolute;
+        top: 2px;
+    }
+
+    .status-time, .status-user {
+        right: 5px;
+    }
+
+    .status-location {
+        left: 5px;
+        width: 64%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .status-user {
+        top: 15px;
+    }
+
+    .status-share {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.38);
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+
+        .o3-share {
+            font-size: 16px;
+        }
+    }
+
+    .o3-timeline--content-container {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-right: 1em;
+        overflow: hidden;
+
+        &:before {
+            content: "";
+            width: 1px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 23px;
+            z-index: 1;
+            border-left: 1px dotted #ddd;
+        }
+
+        span {
+            display: inline-block;
+        }
+    }
+
+
+    li:nth-of-type(even) {
+        .o3-timeline--content-container {
+            background-color: #fafafa;
+        }
+    }
+}
+
+.no-records p {
+    text-align: center;
+    margin: 1rem;
+}

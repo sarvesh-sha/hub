@@ -1,0 +1,35 @@
+
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
+div.o3-aggregation-table-widget--outer {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.range-selector {
+    position: absolute;
+    top: -11px;
+    right: 0px;
+    z-index: 1;
+    padding: 0px 10px;
+    border-bottom-left-radius: 4px;
+
+    > mat-form-field {
+        width: 146px;
+    }
+
+    transition: background-color 0.25s ease;
+    background: rgba(255, 255, 255, .3);
+
+    &:hover {
+        background-color: white;
+        opacity: 1
+    }
+}

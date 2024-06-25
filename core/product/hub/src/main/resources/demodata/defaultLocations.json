@@ -1,0 +1,743 @@
+{
+  "locations": [
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "cb043364-0478-465d-b94c-d514d74f503e",
+        "name": "Westlake Tower",
+        "type": "BUILDING",
+        "address": "1601 5th Ave, Seattle, WA 98101, USA",
+        "geo": {
+          "latitude": 47.612672,
+          "longitude": -122.337517
+        }
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "38d71b6b-8eb6-402a-b07b-1c3ed51a9d57",
+        "name": "Floor 1",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "cb043364-0478-465d-b94c-d514d74f503e"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "b04f4087-90d9-474d-a67e-430bcb35e928",
+        "name": "Zone 1",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "38d71b6b-8eb6-402a-b07b-1c3ed51a9d57"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "433c6dd5-b8da-43b9-b1d9-f5365aca7a6d",
+        "name": "Zone 2",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "38d71b6b-8eb6-402a-b07b-1c3ed51a9d57"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "aa083770-a956-421a-b243-bca242c5583a",
+        "name": "Zone 3",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "38d71b6b-8eb6-402a-b07b-1c3ed51a9d57"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "3a253a4b-4ced-42f2-b963-b49d1cf2919c",
+        "name": "Floor 2",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "cb043364-0478-465d-b94c-d514d74f503e"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "caaa854a-ba20-4f2f-b724-324a1b8003a4",
+        "name": "Zone 4",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "3a253a4b-4ced-42f2-b963-b49d1cf2919c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "a28a85b9-9405-416c-b00d-836758dfb4f8",
+        "name": "Zone 5",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "3a253a4b-4ced-42f2-b963-b49d1cf2919c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "85314027-e202-475f-b5d1-dccb085f762d",
+        "name": "Zone 6",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "3a253a4b-4ced-42f2-b963-b49d1cf2919c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "4ad67f14-1058-49c3-b04a-3329863a9c09",
+        "name": "South Lake Union",
+        "type": "BUILDING",
+        "address": "500 Yale Ave N, Seattle, WA 98109, USA",
+        "geo": {
+          "latitude": 47.623652,
+          "longitude": -122.330116
+        }
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "8ba4b628-0902-43dd-976b-ccae86cd58c3",
+        "name": "Floor 1",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "4ad67f14-1058-49c3-b04a-3329863a9c09"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "10d778d6-dce3-4d5b-979c-cd9b3a795ae5",
+        "name": "Zone 1",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "8ba4b628-0902-43dd-976b-ccae86cd58c3"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "ea8cb5c9-c789-46d2-8e4a-84e3a7419fa4",
+        "name": "Zone 2",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "8ba4b628-0902-43dd-976b-ccae86cd58c3"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "73cd446f-d402-4e2f-b950-df1709d63485",
+        "name": "Zone 3",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "8ba4b628-0902-43dd-976b-ccae86cd58c3"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "eb6dbd76-d193-426a-81f1-7bd072602b29",
+        "name": "Floor 2",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "4ad67f14-1058-49c3-b04a-3329863a9c09"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "59be5df5-482e-4b11-a7d5-36f3421d0228",
+        "name": "Zone 4",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "eb6dbd76-d193-426a-81f1-7bd072602b29"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "78304545-4d64-4b59-9834-4b22c615012c",
+        "name": "Zone 6",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "eb6dbd76-d193-426a-81f1-7bd072602b29"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "fa210561-5f3c-4005-8822-8e68601332a2",
+        "name": "Holyoke Building",
+        "type": "BUILDING",
+        "address": "107 Spring St, Seattle, WA 98104, USA",
+        "geo": {
+          "latitude": 47.605695,
+          "longitude": -122.336391
+        }
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "0cf287e0-4b05-41bd-8cf2-84ad5bc381f2",
+        "name": "Floor 1",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "fa210561-5f3c-4005-8822-8e68601332a2"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "6031a039-3c53-4076-b2ba-6b82fba76d0d",
+        "name": "Zone 1",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "0cf287e0-4b05-41bd-8cf2-84ad5bc381f2"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "532e19fa-948b-4fa7-9690-10ebb86b4de7",
+        "name": "Zone 2",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "0cf287e0-4b05-41bd-8cf2-84ad5bc381f2"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "624ab029-2c7b-428f-a746-448f0628432b",
+        "name": "Zone 3",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "0cf287e0-4b05-41bd-8cf2-84ad5bc381f2"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "927b5c91-9576-43e7-8894-f66aba251d40",
+        "name": "Floor 2",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "fa210561-5f3c-4005-8822-8e68601332a2"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "1e4ac551-7ed0-4d9e-8f61-0be71176906e",
+        "name": "Zone 4",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "927b5c91-9576-43e7-8894-f66aba251d40"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "f638e144-ae5c-44e0-bdc1-1a8c37537d7d",
+        "name": "Zone 5",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "927b5c91-9576-43e7-8894-f66aba251d40"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "2f8b1090-3e9b-4516-b398-695f3f9fa749",
+        "name": "Zone 6",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "927b5c91-9576-43e7-8894-f66aba251d40"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "e0a7a980-13b0-4fe3-93b3-ff19a84f70b5",
+        "name": "Lincoln Square",
+        "type": "BUILDING",
+        "address": "400 104th Ave SE, Bellevue, WA 98004, USA",
+        "geo": {
+          "latitude": 47.614594,
+          "longitude": -122.200864
+        }
+      },
+      "parent": null
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "d094bd13-2a8c-4887-ba84-f95ef6d04028",
+        "name": "Floor 1",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "e0a7a980-13b0-4fe3-93b3-ff19a84f70b5"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "0d5a12c9-5f65-459f-b0d6-d6589ba4c3af",
+        "name": "Zone 1",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "d094bd13-2a8c-4887-ba84-f95ef6d04028"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "baac40ee-56f4-4996-964c-18c6c6e03d63",
+        "name": "Zone 2",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "d094bd13-2a8c-4887-ba84-f95ef6d04028"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "b69a4ed5-b55b-44a7-9c9c-9340698ecc70",
+        "name": "Zone 3",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "d094bd13-2a8c-4887-ba84-f95ef6d04028"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "953bcba0-5a6d-4f23-8a07-4ae209e7ce55",
+        "name": "Floor 2",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "e0a7a980-13b0-4fe3-93b3-ff19a84f70b5"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "57dd3438-3b4f-489e-b301-c85ce8bea04e",
+        "name": "Zone 4",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "953bcba0-5a6d-4f23-8a07-4ae209e7ce55"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "35a2e74e-8105-4e00-851d-3e26c48aa22e",
+        "name": "Zone 5",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "953bcba0-5a6d-4f23-8a07-4ae209e7ce55"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "d65b8d9a-ad77-47f7-8fbe-0b890f164e19",
+        "name": "Zone 6",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "953bcba0-5a6d-4f23-8a07-4ae209e7ce55"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "c1452194-6aa2-43e6-99e1-c878196bbacf",
+        "name": "Seattle North Tower",
+        "type": "BUILDING",
+        "address": "501 Elliott Ave W, Seattle, WA 98119, USA",
+        "geo": {
+          "latitude": 47.623182,
+          "longitude": -122.364524
+        }
+      },
+      "parent": null
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "d2c986bc-ae85-4305-af89-9b78a923de62",
+        "name": "Floor 1",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "c1452194-6aa2-43e6-99e1-c878196bbacf"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "ab369854-88d2-443c-9fac-292deea147c4",
+        "name": "Zone 1",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "d2c986bc-ae85-4305-af89-9b78a923de62"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "90cae9ea-7567-4906-a45e-13c0756520c0",
+        "name": "Zone 2",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "d2c986bc-ae85-4305-af89-9b78a923de62"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "c134fb13-47bf-47c8-96b7-195a46868fcf",
+        "name": "Zone 3",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "d2c986bc-ae85-4305-af89-9b78a923de62"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "5ebd849d-6b38-4846-a25f-6def0d61cff1",
+        "name": "Floor 2",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "c1452194-6aa2-43e6-99e1-c878196bbacf"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "c3dee9d5-e638-4c85-858c-ead9a10a83e1",
+        "name": "Zone 4",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "5ebd849d-6b38-4846-a25f-6def0d61cff1"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "b388152f-3def-403d-bcb8-6441b50b6595",
+        "name": "Zone 5",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "5ebd849d-6b38-4846-a25f-6def0d61cff1"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "04e84f02-8c34-4da8-9bfa-ba8db067039a",
+        "name": "Zone 6",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "5ebd849d-6b38-4846-a25f-6def0d61cff1"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "3f37e299-92b6-48ae-9479-28bee4f4f64c",
+        "name": "Seattle South Tower",
+        "type": "BUILDING",
+        "address": "590 1st Avenue South, Seattle, WA 98104, USA",
+        "geo": {
+          "latitude": 47.596209,
+          "longitude": -122.333544
+        }
+      },
+      "parent": null
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "e4052faf-5a04-4851-bc05-13fbb8d4de7c",
+        "name": "Floor 1",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "3f37e299-92b6-48ae-9479-28bee4f4f64c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "91d9b197-c8fc-4d0b-a08e-360991bf0880",
+        "name": "Zone 1",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "e4052faf-5a04-4851-bc05-13fbb8d4de7c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "23d09b87-7550-4ec9-987e-33ec40ea19e9",
+        "name": "Zone 2",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "e4052faf-5a04-4851-bc05-13fbb8d4de7c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "a222a794-8f6a-492d-b817-5a2bf0b462c5",
+        "name": "Zone 3",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "e4052faf-5a04-4851-bc05-13fbb8d4de7c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "0f435f50-b8e9-45f5-94e8-f993812adcf1",
+        "name": "Floor 2",
+        "type": "FLOOR",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "3f37e299-92b6-48ae-9479-28bee4f4f64c"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "afb74a45-2f67-4f8d-a0da-f08bd821eacf",
+        "name": "Zone 4",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "0f435f50-b8e9-45f5-94e8-f993812adcf1"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "8ad5e1d9-b034-4ed1-8ba4-e572145fb795",
+        "name": "Zone 5",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "0f435f50-b8e9-45f5-94e8-f993812adcf1"
+      }
+    },
+    {
+      "details": {
+        "__type": "Location",
+        "sysId": "12a5f05a-1e89-4446-93e2-da26c3a95e68",
+        "name": "Zone 6",
+        "type": "ZONE",
+        "address": null,
+        "geo": null
+      },
+      "parent": {
+        "table": "ASSET_LOCATION",
+        "sysId": "0f435f50-b8e9-45f5-94e8-f993812adcf1"
+      }
+    }
+  ]
+}

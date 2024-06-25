@@ -1,0 +1,784 @@
+{
+  "normalizationRules": [
+    {
+      "version": 1,
+      "active": true,
+      "rules": {
+        "knownTerms": {
+          "above": {},
+          "acidity": {},
+          "action": {
+            "positiveWeight": 5.0
+          },
+          "active": {},
+          "added": {},
+          "adjust": {},
+          "adjustment": {},
+          "air": {},
+          "air handler unit": {
+            "acronym": "ahu"
+          },
+          "alarm": {
+            "positiveWeight": 5.0
+          },
+          "ampere": {
+            "synonyms": [
+              "amps",
+              "amperes"
+            ]
+          },
+          "approach": {},
+          "auxiliary": {},
+          "average": {},
+          "baseline": {},
+          "below": {},
+          "blowdown": {},
+          "boiler": {},
+          "bound": {},
+          "building": {},
+          "bypass": {},
+          "call": {},
+          "capacity": {},
+          "carbondioxide": {
+            "positiveWeight": 5.0
+          },
+          "carbonmonoxide": {
+            "positiveWeight": 5.0
+          },
+          "cfm": {
+            "positiveWeight": 0.3,
+            "negativeWeight": 0.0,
+            "weightReason": "unit term"
+          },
+          "charge": {},
+          "chill": {
+            "synonyms": [
+              "chilled"
+            ]
+          },
+          "chiller": {},
+          "chloramine": {},
+          "circulation": {},
+          "close": {},
+          "closed": {},
+          "coil": {},
+          "cold deck": {
+            "acronym": "cd"
+          },
+          "combustion": {},
+          "command": {
+            "positiveWeight": 5.0
+          },
+          "communication": {},
+          "compressor": {},
+          "condensate": {},
+          "condenser": {},
+          "control": {},
+          "cool": {},
+          "cooldown": {},
+          "cooler": {},
+          "cooling": {},
+          "cost": {},
+          "current": {},
+          "damper": {},
+          "dampers": {},
+          "deadband": {},
+          "decrement": {},
+          "degree": {},
+          "dehumidification": {},
+          "dehumidifier": {},
+          "delta": {},
+          "demand": {
+            "positiveWeight": 5.0
+          },
+          "deviation": {},
+          "dew": {},
+          "diff pressure": {
+            "acronym": "dp"
+          },
+          "diff temperature": {
+            "acronym": "dt"
+          },
+          "direct": {},
+          "disable": {
+            "positiveWeight": 5.0
+          },
+          "discharge": {},
+          "discharge air temperature": {
+            "acronym": "dat"
+          },
+          "domestic": {},
+          "down": {},
+          "drain": {},
+          "dry": {},
+          "duct static pressure": {
+            "acronym": "dsp"
+          },
+          "economizer": {},
+          "efficiency": {},
+          "electric": {},
+          "enable": {
+            "positiveWeight": 5.0
+          },
+          "energy": {},
+          "entering": {},
+          "enthalpy": {},
+          "equipment": {
+            "positiveWeight": 0.5,
+            "negativeWeight": 0.2,
+            "weightReason": "redundant term"
+          },
+          "error": {
+            "positiveWeight": 5.0
+          },
+          "evaporative": {},
+          "evaporator": {},
+          "event": {
+            "positiveWeight": 5.0
+          },
+          "exhaust": {},
+          "exhaust air": {
+            "acronym": "ea"
+          },
+          "exhaust air temperature": {
+            "acronym": "eat"
+          },
+          "exhaust fan": {
+            "acronym": "ef"
+          },
+          "face": {},
+          "factor": {},
+          "failure": {
+            "positiveWeight": 5.0
+          },
+          "fan": {},
+          "fan coil unit": {
+            "acronym": "fcu"
+          },
+          "fault": {
+            "positiveWeight": 5.0
+          },
+          "feedback": {},
+          "fill": {},
+          "filter": {},
+          "firing": {},
+          "floor": {},
+          "flow": {},
+          "flush": {},
+          "fraction": {},
+          "freeze": {},
+          "frequency": {},
+          "full": {},
+          "gas": {},
+          "global": {},
+          "glycol": {},
+          "group": {},
+          "guide": {},
+          "hardware": {},
+          "heat": {},
+          "heater": {},
+          "heating": {},
+          "high": {},
+          "horizontal": {},
+          "hot": {},
+          "hour": {
+            "synonyms": [
+              "hours"
+            ]
+          },
+          "humidifier": {},
+          "humidity": {},
+          "inch": {
+            "synonyms": [
+              "inches"
+            ]
+          },
+          "increment": {},
+          "indirect": {},
+          "inlet": {},
+          "instantaneous": {},
+          "irradiance": {},
+          "isolation": {},
+          "kilovolt": {
+            "synonyms": [
+              "kilovolts"
+            ]
+          },
+          "kilowatt": {
+            "synonyms": [
+              "kilowatts"
+            ]
+          },
+          "kva": {},
+          "kvar": {},
+          "lead": {},
+          "leaving": {},
+          "leaving air temperature": {
+            "acronym": "lat"
+          },
+          "legionella": {},
+          "limit": {},
+          "line": {},
+          "lockout": {},
+          "low": {},
+          "makeup": {},
+          "manual": {},
+          "maximum": {},
+          "mechanical": {},
+          "megawatt": {
+            "synonyms": [
+              "megawatts"
+            ]
+          },
+          "melt": {},
+          "meter": {
+            "synonyms": [
+              "meters"
+            ]
+          },
+          "microset": {},
+          "minimum": {},
+          "minute": {
+            "synonyms": [
+              "minutes"
+            ]
+          },
+          "mixed": {},
+          "mixed air": {
+            "acronym": "ma"
+          },
+          "mixed air damper": {
+            "acronym": "mad"
+          },
+          "mixed air temperature": {
+            "acronym": "mat"
+          },
+          "mode": {},
+          "morning cooldown": {
+            "acronym": "mcd"
+          },
+          "morning warmup": {
+            "acronym": "mwu"
+          },
+          "nameplate": {},
+          "occupancy": {},
+          "occupied": {},
+          "offset": {},
+          "open": {},
+          "optimal": {},
+          "output": {},
+          "outside": {},
+          "outside air": {
+            "acronym": "oa"
+          },
+          "outside air damper": {
+            "acronym": "oad"
+          },
+          "outside air temperature": {
+            "acronym": "oat"
+          },
+          "override": {},
+          "peak": {},
+          "percent": {},
+          "period": {},
+          "persistent": {},
+          "phase": {},
+          "plenum": {},
+          "point": {},
+          "pool": {},
+          "position": {},
+          "power": {},
+          "preheat": {},
+          "pressure": {},
+          "primary": {},
+          "priority": {},
+          "process": {},
+          "pump": {},
+          "radiant": {},
+          "rate": {},
+          "recovery": {},
+          "refrigerant": {},
+          "reheat": {},
+          "relative": {},
+          "relief": {},
+          "remote terminal unit": {
+            "acronym": "rtu"
+          },
+          "request": {},
+          "reset": {},
+          "return": {},
+          "return air": {
+            "acronym": "ra"
+          },
+          "reversing": {},
+          "runaround coil": {
+            "acronym": "rc"
+          },
+          "runaround coil air": {
+            "acronym": "rca"
+          },
+          "runtime": {},
+          "saturation": {},
+          "schedule": {},
+          "scheduled": {},
+          "second": {
+            "synonyms": [
+              "seconds"
+            ]
+          },
+          "sensor": {
+            "positiveWeight": 0.5,
+            "negativeWeight": 0.0,
+            "weightReason": "redundant term"
+          },
+          "setpoint": {
+            "positiveWeight": 5.0,
+            "synonyms": [
+              "signal"
+            ]
+          },
+          "snowmelt": {},
+          "solar": {},
+          "space": {
+            "synonyms": [
+              "zone",
+              "zones",
+              "room"
+            ]
+          },
+          "speed": {
+            "positiveWeight": 5.0
+          },
+          "stack": {},
+          "stage": {
+            "positiveWeight": 2.0
+          },
+          "standby": {},
+          "start": {},
+          "static": {},
+          "station": {},
+          "status": {
+            "positiveWeight": 5.0
+          },
+          "steam": {},
+          "stop": {},
+          "strength": {},
+          "suction": {},
+          "sump": {},
+          "supply": {},
+          "system": {},
+          "temperature": {},
+          "temperatures": {},
+          "thermal energy storage": {
+            "acronym": "tes"
+          },
+          "therms": {},
+          "threshold": {},
+          "timer": {},
+          "total": {},
+          "tower": {},
+          "trace": {},
+          "tracking": {},
+          "unoccupied": {},
+          "usage": {},
+          "utility": {},
+          "value": {},
+          "valve": {},
+          "vane": {},
+          "variable air volume": {
+            "acronym": "vav"
+          },
+          "velocity": {},
+          "virtual": {},
+          "volt": {
+            "synonyms": [
+              "volts"
+            ]
+          },
+          "voltage": {},
+          "warm": {},
+          "warmup": {},
+          "water": {},
+          "watt": {
+            "synonyms": [
+              "watts"
+            ]
+          },
+          "wetbulb": {},
+          "wheel": {}
+        },
+        "abbreviations": {
+          "above": [
+            "abv"
+          ],
+          "action": [
+            "act"
+          ],
+          "adjust": [
+            "adj",
+            "adj."
+          ],
+          "air flow": [
+            "af",
+            "airflow"
+          ],
+          "air flow station": [
+            "afs"
+          ],
+          "alarm": [
+            "alm"
+          ],
+          "average": [
+            "avg"
+          ],
+          "boiler": [
+            "blr"
+          ],
+          "building": [
+            "bldg",
+            "build"
+          ],
+          "building static pressure": [
+            "bsp"
+          ],
+          "bypass valve": [
+            "bpv"
+          ],
+          "carbondioxide": [
+            "co2"
+          ],
+          "carbonmonoxide": [
+            "co"
+          ],
+          "chilled water": [
+            "chw"
+          ],
+          "chilled water coil pump": [
+            "chwcp"
+          ],
+          "chilled water entering temperature": [
+            "chwet"
+          ],
+          "chilled water leaving temperature": [
+            "chwlt"
+          ],
+          "chilled water return": [
+            "chwr"
+          ],
+          "chilled water supply": [
+            "chws"
+          ],
+          "chiller": [
+            "chlr"
+          ],
+          "chloramine": [
+            "chlormine"
+          ],
+          "circulation": [
+            "circ"
+          ],
+          "close": [
+            "cls"
+          ],
+          "command": [
+            "cmd"
+          ],
+          "communication": [
+            "comm"
+          ],
+          "compressor": [
+            "cmpr",
+            "comp",
+            "compr"
+          ],
+          "condenser": [
+            "cond"
+          ],
+          "control": [
+            "ctrl"
+          ],
+          "cooling": [
+            "clg"
+          ],
+          "cooling air flow": [
+            "cairflow",
+            "caf"
+          ],
+          "cooling coil": [
+            "cc"
+          ],
+          "cooling signal": [
+            "clgsig"
+          ],
+          "cooling tower": [
+            "ct"
+          ],
+          "damper": [
+            "dmpr",
+            "dmper"
+          ],
+          "decrement": [
+            "dec",
+            "dec.",
+            "decr"
+          ],
+          "degree": [
+            "deg"
+          ],
+          "disable": [
+            "dsbl"
+          ],
+          "discharge": [
+            "dis"
+          ],
+          "discharge air": [
+            "da"
+          ],
+          "down": [
+            "dn",
+            "dwn"
+          ],
+          "economizer": [
+            "econ"
+          ],
+          "energy": [
+            "enrg"
+          ],
+          "failure": [
+            "fail"
+          ],
+          "global": [
+            "glb",
+            "gbl"
+          ],
+          "group": [
+            "grp"
+          ],
+          "hardware": [
+            "hw"
+          ],
+          "heat recovery": [
+            "htrcv"
+          ],
+          "heating": [
+            "htg"
+          ],
+          "heating signal": [
+            "htgsig"
+          ],
+          "heating/cooling": [
+            "htg/clg"
+          ],
+          "high": [
+            "hi"
+          ],
+          "hours": [
+            "hrs"
+          ],
+          "increment": [
+            "inc",
+            "inc.",
+            "incr"
+          ],
+          "isolation valve": [
+            "isovlv"
+          ],
+          "line": [
+            "ln"
+          ],
+          "lockout": [
+            "l/o"
+          ],
+          "low": [
+            "lo"
+          ],
+          "manual": [
+            "man"
+          ],
+          "maximum": [
+            "max",
+            "max."
+          ],
+          "mechanical": [
+            "mech"
+          ],
+          "meter": [
+            "mtr"
+          ],
+          "microset": [
+            "mset"
+          ],
+          "minimum": [
+            "min",
+            "min."
+          ],
+          "mode": [
+            "mod"
+          ],
+          "occupied": [
+            "occ",
+            "occu",
+            "occup"
+          ],
+          "open": [
+            "opn"
+          ],
+          "optimal": [
+            "opt"
+          ],
+          "outside air dew point": [
+            "oadew"
+          ],
+          "override": [
+            "ovrd"
+          ],
+          "percent": [
+            "prcnt",
+            "pct"
+          ],
+          "persistent": [
+            "persistant",
+            "presistent"
+          ],
+          "position": [
+            "pos"
+          ],
+          "power": [
+            "pwd"
+          ],
+          "pressure": [
+            "pres",
+            "press"
+          ],
+          "request": [
+            "req"
+          ],
+          "reset": [
+            "rst"
+          ],
+          "return": [
+            "rtn"
+          ],
+          "schedule": [
+            "scedule"
+          ],
+          "scheduled": [
+            "sceduled"
+          ],
+          "sensor": [
+            "senor"
+          ],
+          "setpoint": [
+            "sp",
+            "s/p",
+            "stpt",
+            "setpoi",
+            "setpoin"
+          ],
+          "signal": [
+            "sig"
+          ],
+          "space": [
+            "spc"
+          ],
+          "speed": [
+            "spd"
+          ],
+          "square": [
+            "sq."
+          ],
+          "stage": [
+            "stg"
+          ],
+          "start/stop": [
+            "s/s"
+          ],
+          "status": [
+            "sts",
+            "stat"
+          ],
+          "suction": [
+            "suct"
+          ],
+          "temperature": [
+            "tmp",
+            "temp"
+          ],
+          "temperature bias": [
+            "tbias"
+          ],
+          "timer": [
+            "tmr"
+          ],
+          "unoccupied": [
+            "unoc",
+            "unocc",
+            "unnoc",
+            "unnocc"
+          ],
+          "valve": [
+            "vlv"
+          ],
+          "warmup": [
+            "wrmup"
+          ],
+          "water": [
+            "wtr"
+          ],
+          "zone": [
+            "zn"
+          ],
+          "zones": [
+            "zns"
+          ]
+        },
+        "startsWith": {
+          "clg": "cooling",
+          "clgstg": "cooling stage",
+          "clstg": "cooling stage",
+          "econ": "economizer",
+          "ef-": "exhaust fan",
+          "htg": "heating",
+          "htgstg": "heating stage",
+          "htstg": "heating stage",
+          "stg": "stage"
+        },
+        "endsWith": {
+          "_rt": "return temperature",
+          "af": "air flow",
+          "cdmpr": "cooling damper",
+          "cfm": "cfm",
+          "clg": "cooling",
+          "cls": "close",
+          "cmd": "command",
+          "dmpr": "damper",
+          "htg": "heating",
+          "max": "maximum",
+          "min": "minimum",
+          "opn": "open",
+          "pos": "position",
+          "sp": "setpoint",
+          "stg": "stage"
+        },
+        "contains": {
+          "lkout": "lockout"
+        },
+        "disambiguations": {
+          "1st": "first",
+          "2nd": "second",
+          "3rd": "third",
+          "4th": "fourth",
+          "5th": "fifth",
+          "6th": "sixth",
+          "7th": "seventh",
+          "8th": "eighth",
+          "9th": "ninth"
+        },
+        "pointClassificationModel": {
+          "__type": "PointClassificationModelV1"
+        },
+        "scoreThreshold": 2
+      }
+    }
+  ]
+}

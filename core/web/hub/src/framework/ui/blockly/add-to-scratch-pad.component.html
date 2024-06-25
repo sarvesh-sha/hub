@@ -1,0 +1,6 @@
+<o3-standard-form label="Add to scratch pad" (submitted)="dialogRef.close(selectedCategory)" (cancelled)="dialogRef.close()">
+    <mat-form-field>
+        <o3-select placeholder="Category" name="category" [multiSelect]="false" singleClick [options]="options" required
+                   [(ngModel)]="selectedCategory" (ngModelChange)="modelChanged()"></o3-select>
+    </mat-form-field>
+</o3-standard-form>

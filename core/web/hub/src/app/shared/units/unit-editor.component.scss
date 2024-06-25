@@ -1,0 +1,61 @@
+.o3-unit-editor--label {
+    display: flex;
+    max-width: 100%;
+    position: relative;
+
+    .o3-unit-editor--label-button {
+        width: 100%;
+        height: 20px;
+    }
+}
+
+button {
+    cursor: pointer;
+    padding: 0 !important;
+    border: none;
+    background: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &:not(.mat-icon-button) {
+        text-align: left;
+    }
+}
+
+.o3-unit-editor--container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: fit-content;
+    width: -moz-fit-content;
+
+    .o3-unit-editor--numerator,
+    .o3-unit-editor--denominator {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+
+        .o3-unit-editor--components {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+
+            .editing {
+                color: #2196f3;
+            }
+        }
+    }
+
+    .o3-unit-editor--separator {
+        width: 100%;
+        height: 1px;
+        border-top: 1px solid black;
+    }
+}
+
+o3-select {
+    display: none;
+}

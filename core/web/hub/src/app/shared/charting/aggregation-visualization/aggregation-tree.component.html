@@ -1,0 +1,5 @@
+<div #container class="tree-chart-container">
+    <div *ngIf="noData" class="o3-watermark-caption">No data</div>
+</div>
+<o3-chart-tooltip #tooltip [targetElement]="container" [positions]="tooltipPositions"></o3-chart-tooltip>
+<o3-consolidated-source-chip *ngIf="legend" [chart]="chart" [deletable]="false"></o3-consolidated-source-chip>

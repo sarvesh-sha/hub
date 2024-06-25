@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <dropForeignKeyConstraint baseTableName="ALERT" constraintName="DEVICE__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropColumn columnName="device" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <addColumn tableName="ASSET_DEVICE_BACNET">
+            <column name="transportAddress" type="LONGTEXT(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <createIndex indexName="ASSET__CREATEDON" tableName="ASSET">
+            <column name="sys_created_on"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createIndex indexName="ASSET__LASTCHECKEDDATE" tableName="ASSET">
+            <column name="last_checked_date"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="reason" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="status" tableName="REPORT"/>
+    </changeSet>
+</databaseChangeLog>

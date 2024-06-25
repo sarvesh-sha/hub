@@ -1,0 +1,8 @@
+﻿<mat-form-field *ngIf="enableFiltering">
+    <input matInput type="text" placeholder="Filter Sampled Frames" [(ngModel)]="filterObjects">
+</mat-form-field>
+
+<o3-datatable [table]="table" [showRowNumbers]="true">
+    <o3-datatable-column id="timestamp" sortId="timestamp" prop="result.timestamp" name="Timestamp" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="id" sortId="id" prop="result.id" name="Frame Type"></o3-datatable-column>
+</o3-datatable>

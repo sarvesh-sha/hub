@@ -1,0 +1,92 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <createTable tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="last_heartbeat" type="datetime(6)"/>
+            <column name="input_details" type="LONGTEXT"/>
+            <column name="last_offset" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="last_output" type="datetime(6)"/>
+            <column name="output_details" type="LONGTEXT"/>
+            <column name="current_activity" type="VARCHAR(255)"/>
+            <column name="prober" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <createTable tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owning_op" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <addColumn tableName="DEPLOYMENT_AGENT">
+            <column defaultValueComputed="NULL" name="last_heartbeat" type="DATETIME(26)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="DEPLOYMENT_PROBER">
+            <column defaultValueComputed="NULL" name="last_heartbeat" type="DATETIME(26)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <addColumn tableName="DEPLOYMENT_TASK">
+            <column defaultValueComputed="NULL" name="last_heartbeat" type="DATETIME(26)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addColumn tableName="DEPLOYMENT_PROBER">
+            <column defaultValue="Initialized" name="status" type="VARCHAR(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v27" tableName="DEPLOYMENT_PROBER_OPERATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v27" tableName="DEPLOYMENT_PROBER_OPERATION_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <createIndex indexName="OWNING_OP__FK" tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="owning_op"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <createIndex indexName="PROBER_OPERATION__PROBER__FK" tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="prober"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <createIndex indexName="PROBER__CURRENT_ACTIVITY__FK" tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="current_activity"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="DEPLOYMENT_PROBER_OPERATION_LOG" constraintName="FKcp324cn2arxjnk1fnhsu82e7e" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="COMMON_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <addForeignKeyConstraint baseColumnNames="owning_op" baseTableName="DEPLOYMENT_PROBER_OPERATION_LOG" constraintName="OWNING_OP__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEPLOYMENT_PROBER_OPERATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <addForeignKeyConstraint baseColumnNames="prober" baseTableName="DEPLOYMENT_PROBER_OPERATION" constraintName="PROBER_OPERATION__PROBER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEPLOYMENT_PROBER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <addForeignKeyConstraint baseColumnNames="current_activity" baseTableName="DEPLOYMENT_PROBER_OPERATION" constraintName="PROBER__CURRENT_ACTIVITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="BACKGROUND_ACTIVITY"/>
+    </changeSet>
+</databaseChangeLog>

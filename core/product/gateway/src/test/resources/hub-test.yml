@@ -1,0 +1,69 @@
+##########################################
+#
+# Database settings:
+#
+
+database:
+
+  enableEvents: true
+
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+
+  # the JDBC URL (use DB2 mode for 'offset x rows' support)
+  url: jdbc:h2:mem:hub_db_test;MODE=DB2;IGNORECASE=TRUE
+#;TRACE_LEVEL_SYSTEM_OUT=3;TRACE_LEVEL_FILE=3
+
+  # For testing, don't use Liquibase by default
+  skipMigration: true
+
+  # any properties specific to your JDBC driver:
+  properties:
+#    hibernate.show_sql: true
+    hibernate.generate_statistics: false
+
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+#  # Logger-specific levels.
+#  loggers:
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 9998
+  adminConnectors:
+    - type: http
+      port: 9999
+  requestLog:
+    type: optio3
+
+enableMessageBusOverUDP: false
+
+hostId: TestId
+buildId: Test
+
+scratchDirectory: ${env.HOME}/optio3.test/hub.tmp
+
+#########################
+
+developerSettings:
+  unitTestMode: true
+
+  disableEmails: true
+  disableSMSs: true

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="optio3-dropwizard-shell-db-test" />
+        <module name="optio3-client-gateway" />
+        <module name="optio3-client-hub" />
+        <module name="optio3-product-waypoint" />
+        <module name="optio3-dropwizard-shell-test" />
+        <module name="optio3-asyncawait-maven-plugin" />
+        <module name="optio3-infra-automation-provision" />
+        <module name="optio3-client-provisioner" />
+        <module name="optio3-metadata-normalization" />
+        <module name="optio3-cli-cred" />
+        <module name="optio3-cli-alerton-import" />
+        <module name="optio3-common-test" />
+        <module name="optio3-cli-explorer-modbus" />
+        <module name="optio3-product-provisioner-server" />
+        <module name="optio3-cli-explorer-obdii" />
+        <module name="optio3-protocol-stack-model" />
+        <module name="optio3-common" />
+        <module name="optio3-sdk-cli" />
+        <module name="optio3-common-interop" />
+        <module name="optio3-infra-automation-integrations" />
+        <module name="optio3-cli-provisioner" />
+        <module name="optio3-product-gateway" />
+        <module name="optio3-client-waypoint" />
+        <module name="optio3-cli-explorer-snmp" />
+        <module name="optio3-asyncawait" />
+        <module name="optio3-dropwizard-shell-swagger" />
+        <module name="optio3-cli-niagara-import" />
+        <module name="optio3-protocol-stack" />
+        <module name="optio3-client-reporter" />
+        <module name="optio3-product-hub" />
+        <module name="optio3-codeanalysis" />
+        <module name="optio3-cli-ldap" />
+        <module name="optio3-infra-automation-cloud" />
+        <module name="optio3-dropwizard-shell" />
+        <module name="optio3-decoder-cli" />
+        <module name="optio3-product-builder" />
+        <module name="optio3-client-builder" />
+        <module name="optio3-product-deployer" />
+        <module name="optio3-sdk-codegen" />
+        <module name="optio3-infra-automation-local" />
+        <module name="optio3-dropwizard-shell-db" />
+        <module name="optio3-cli-explorer-ipn" />
+        <module name="optio3-infra-automation-test" />
+        <module name="optio3-asyncawait-compiletime" />
+        <module name="optio3-client-deployer" />
+        <module name="optio3-infra-automation" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="optio3-asyncawait (1)" target="1.8" />
+      <module name="optio3-cli-device-catalog-import" target="11" />
+      <module name="optio3-cli-explorer-bacnet" target="1.8" />
+      <module name="optio3-cli-explorer-snmp" target="1.8" />
+      <module name="optio3-cli-explorer-waypoint" target="1.8" />
+      <module name="optio3-client-pct" target="11" />
+      <module name="optio3-client-prober" target="11" />
+      <module name="optio3-product-explorer-snmp" target="1.8" />
+      <module name="optio3-product-prober" target="11" />
+      <module name="optio3-protocol-stack-model-extra" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-Xlint:unchecked" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="optio3-asyncawait" options="" />
+      <module name="optio3-asyncawait (1)" options="" />
+      <module name="optio3-asyncawait-compiletime" options="" />
+      <module name="optio3-asyncawait-maven-plugin" options="" />
+      <module name="optio3-cli-alerton-import" options="" />
+      <module name="optio3-cli-cred" options="" />
+      <module name="optio3-cli-device-catalog-import" options="" />
+      <module name="optio3-cli-explorer-bacnet" options="" />
+      <module name="optio3-cli-explorer-ipn" options="" />
+      <module name="optio3-cli-explorer-modbus" options="" />
+      <module name="optio3-cli-explorer-obdii" options="" />
+      <module name="optio3-cli-explorer-waypoint" options="" />
+      <module name="optio3-cli-ldap" options="" />
+      <module name="optio3-cli-niagara-import" options="" />
+      <module name="optio3-cli-parent" options="" />
+      <module name="optio3-cli-provisioner" options="" />
+      <module name="optio3-client-builder" options="" />
+      <module name="optio3-client-deployer" options="" />
+      <module name="optio3-client-gateway" options="" />
+      <module name="optio3-client-hub" options="" />
+      <module name="optio3-client-parent" options="" />
+      <module name="optio3-client-pct" options="" />
+      <module name="optio3-client-prober" options="" />
+      <module name="optio3-client-provisioner" options="" />
+      <module name="optio3-client-reporter" options="" />
+      <module name="optio3-client-waypoint" options="" />
+      <module name="optio3-codeanalysis" options="" />
+      <module name="optio3-common" options="" />
+      <module name="optio3-common-interop" options="" />
+      <module name="optio3-common-test" options="" />
+      <module name="optio3-core-parent" options="" />
+      <module name="optio3-decoder-cli" options="" />
+      <module name="optio3-dropwizard-shell" options="" />
+      <module name="optio3-dropwizard-shell-db" options="" />
+      <module name="optio3-dropwizard-shell-db-test" options="" />
+      <module name="optio3-dropwizard-shell-swagger" options="" />
+      <module name="optio3-dropwizard-shell-test" options="" />
+      <module name="optio3-infra-automation-cloud" options="" />
+      <module name="optio3-infra-automation-integrations" options="" />
+      <module name="optio3-infra-automation-local" options="" />
+      <module name="optio3-infra-automation-parent" options="" />
+      <module name="optio3-infra-automation-provision" options="" />
+      <module name="optio3-infra-automation-test" options="" />
+      <module name="optio3-metadata-normalization" options="" />
+      <module name="optio3-product-builder" options="" />
+      <module name="optio3-product-deployer" options="" />
+      <module name="optio3-product-explorer-snmp" options="" />
+      <module name="optio3-product-gateway" options="" />
+      <module name="optio3-product-hub" options="" />
+      <module name="optio3-product-parent" options="" />
+      <module name="optio3-product-prober" options="" />
+      <module name="optio3-product-provisioner-server" options="" />
+      <module name="optio3-product-waypoint" options="" />
+      <module name="optio3-protocol-stack" options="" />
+      <module name="optio3-protocol-stack-model" options="" />
+      <module name="optio3-protocol-stack-model-extra" options="" />
+      <module name="optio3-sdk-cli" options="" />
+      <module name="optio3-sdk-codegen" options="" />
+    </option>
+  </component>
+</project>

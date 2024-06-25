@@ -1,0 +1,7 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data">
+        <p>Which type of item are you creating?</p>
+        <o3-control-option-list [options]="itemTypes" [single]="true"
+                                [(selection)]="selectedContainer" (selectionChange)="updateSelected()"></o3-control-option-list>
+    </div>
+</ng-template>

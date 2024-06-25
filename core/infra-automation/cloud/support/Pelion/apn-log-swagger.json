@@ -1,0 +1,217 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Retrieve a subscriber's APN session log or APN connection details for a specified time frame.</p><p>You can use these endpoints to retrieve the APN information, and sort and filter the returned results.</p>\n     <p>The <em>APN log</em> is a historical record of the subscriber-generated IP traffic. The log includes the following information&#58;</p>\n     <ul>\n       <li>Subscriber credentials used to access the APN</li>\n       <li>Start and stop dates and times for each session</li>\n       <li>Mobile codes that identify the network accessed during each session (if provided by the network operator)</li>\n       <li>Subscriber's IP address, either fixed or dynamic</li>\n       <li>Total amount of data the subscriber sent during the session (MO data)</li>\n       <li>Total amount of data the subscriber received during the session (MT data)</li>\n       <li>Reason for the termination of each session</li>\n     </ul>\n     <p>The <em>APN details</em> include the following information&#58;</p>\n     <ul>\n       <li>Name of the APN</li>\n       <li>Subscriber credentials used to access the APN</li>\n       <li>Internet access status</li>\n       <li>Subscriber's private IP address</li>\n       </ul>",
+    "title": "APN Log",
+    "version": "0.1.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/{physicalId}/apn-details": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the subscriber's APN details.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/ApnDetail"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "APN Information"
+        ],
+        "description": "<p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View a Device</strong> and <strong>View the APN Details of a Device</strong> permissions enabled.</p>",
+        "operationId": "ApnInformationController.getSubscriberApnDetails",
+        "summary": "Retrieves the APN details for the specified subscriber."
+      }
+    },
+    "/{physicalId}/logs": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Order the results by a particular field in either ascending or descending order.</p><p>This parameter supports multiple fields for sorting, for example, 'name ASC, created DESC'.",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Offsets the returned results to begin at particular record count. <p>For example, setting this to 10 causes the query to skip the first ten records in the data set.</p>",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "default": 25,
+            "description": "Specifies the upper limit of the number of results to return. This filter has an upper limit of 100.<p>For example, setting this to 10 limits the query to returning a maximum of ten records.</p>If no limit is set, the query will return a maximum of 25 records.</p>",
+            "in": "query",
+            "maximum": 100,
+            "name": "limit",
+            "type": "number"
+          },
+          {
+            "description": "Filter the results the query returns. <p>For example, to retrieve all users called Tom, with an age above 21, set the filter to - 'name eq \"Tom\" and age gt 21'.",
+            "in": "query",
+            "name": "filter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the subscriber's APN log.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/ApnLog"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "APN Information"
+        ],
+        "description": "<p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View APN Log</strong>, <strong>View a Device</strong> and <strong>View the APN Details of a Device</strong> permissions enabled.</p><br><p>Optionally, you can order, offset, limit and filter the results. For detailed information and examples, see the topic <em>Pagination, Filtering and Sorting</em> in the <em>API User Guide</em>.</p><br><p>The response breaks down data usage into two categories&#58; <ul><li><em>Mobile Originated (MO) data</em> is the amount of data sent from the subscriber.</li><li><em>Mobile Terminated (MT) data</em> is the amount of data received by the subscriber.</li></ul></p>",
+        "operationId": "ApnInformationController.getAll",
+        "summary": "Retrieves the APN log for the specified subscriber."
+      }
+    }
+  },
+  "definitions": {
+    "ApnDetail": {
+      "properties": {
+        "apnName": {
+          "description": "The name of the APN to which the subscriber connected.",
+          "example": "examplename",
+          "type": "string"
+        },
+        "internetAccessStatus": {
+          "description": "The subscriber's outbound internet access, either enabled or disabled.",
+          "example": "enabled",
+          "type": "string"
+        },
+        "password": {
+          "description": "The subscriber's APN password.",
+          "example": "Il0v3c@ts!",
+          "type": "string"
+        },
+        "privateIpAddress": {
+          "description": "The subscriber's private IP address.",
+          "example": "192.168.0.1",
+          "type": "string"
+        },
+        "username": {
+          "description": "The subscriber's APN username.",
+          "example": "4474740000001",
+          "type": "string"
+        }
+      },
+      "required": [
+        "apnName",
+        "username",
+        "password",
+        "internetAccessStatus",
+        "privateIpAddress"
+      ],
+      "type": "object"
+    },
+    "ApnLog": {
+      "properties": {
+        "mobileOriginatedData": {
+          "description": "The total amount of mobile originated (MO) data transferred during the session, in bytes.",
+          "example": "40238",
+          "type": "string"
+        },
+        "mobileTerminatedData": {
+          "description": "The total amount of mobile terminated (MT) data transferred during the session, in bytes.",
+          "example": "10253",
+          "type": "string"
+        },
+        "networkCode": {
+          "description": "The Mobile Country Code and Mobile Network Code that together identify the network (if provided by the network operator). 'N/A' indicates that the operator has not provided these codes.",
+          "example": "N/A",
+          "type": "string"
+        },
+        "password": {
+          "description": "The subscriber's APN password.",
+          "example": "Il0v3c@ts!",
+          "type": "string"
+        },
+        "reason": {
+          "description": "<p>The reason the session was terminated&#58;</p> <ul> <li><em>User-Request</em> - the subscriber successfully closed the session.</li> <li><em>Access-Accept</em> - the session is ongoing.</li> <li><em>Access-Reject</em> - the subscriber was refused access to the APN due to invalid user credentials.</li> <li><em>Admin-Reset</em> - the session was terminated by the network, possibly due to a location update.</li> <li><em>NAS-Error</em> - the subscriber could not connect to the APN due to a network authentication server error.</li> </ul>",
+          "example": "User-Request",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The session start date and time.",
+          "example": "2018-02-11T10:33:30.000Z"
+        },
+        "stopTime": {
+          "description": "The session end date and time. If blank, the subscriber's session is still active.",
+          "example": "2018-02-11T10:33:30.000Z"
+        },
+        "subscriberIp": {
+          "description": "The subscriber's static IP address, or the word \"dynamic\" to indicate a dynamic IP address.",
+          "example": "10.0.0.1",
+          "type": "string"
+        },
+        "username": {
+          "description": "The subscriber's username for the APN connection.",
+          "example": "4474740000001",
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "networkCode",
+        "startTime",
+        "stopTime",
+        "mobileOriginatedData",
+        "mobileTerminatedData",
+        "reason",
+        "subscriberIp",
+        "password"
+      ],
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}

@@ -1,0 +1,76 @@
+<section class="container" *ngIf="initialized">
+    <form *ngIf="isAuthenticated && !isInitializing" (submit)="submit($event)">
+        <div class="form-field title">
+            <img style="height: 52px;" src="assets/branding/logo-color-150-tall.png">
+        </div>
+        <div class="form-field">
+            <label [for]="timezoneInput">Select timezone to use for trends</label>
+            <select #timezoneInput [(ngModel)]="timezone" name="timezone">
+                <option *ngFor="let tz of timezones" [value]="tz">
+                    {{tz}}
+                </option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label [for]="loadAllInput">Load all previous data</label>
+            <input #loadAllInput [(ngModel)]="loadAll"
+                   type="checkbox"
+                   name="loadAll"/>
+        </div>
+        <div class="form-field" *ngIf="!loadAll">
+            <label [for]="lastNDaysInput">Number of days of data to load</label>
+            <input #lastNDaysInput [(ngModel)]="lastNDays"
+                   type="number"
+                   name="lastNDays"/>
+        </div>
+
+        <div class="form-field">
+            <button type="submit">Submit</button>
+        </div>
+
+        <div class="form-field">
+            <a class="advanced-link" href="#" (click)="this.toggleAdvanced($event)">{{showAdvanced ? "Hide" : "Show" }} advanced settings</a>
+        </div>
+        <div class="form-field" *ngIf="showAdvanced">
+            <label [for]="unclassifiedInput">Show unclassified data</label>
+            <input #unclassifiedInput [(ngModel)]="unclassified"
+                   type="checkbox"
+                   name="unclassified"/>
+        </div>
+        <div class="form-field" *ngIf="showAdvanced">
+            <label [for]="belowThresholdInput">Mark points below threshold as ID:</label>
+            <input #belowThresholdInput [(ngModel)]="belowThresholdId"
+                   type="number"
+                   name="belowThreshold"/>
+        </div>
+        <div class="form-field" *ngIf="showAdvanced && filterOptions?.length > 0">
+            <label [for]="filter">Use saved filter:</label>
+            <select #filter [(ngModel)]="selectedFilterId" (ngModelChange)="updateFilter()" name="filterOption">
+                <option [value]="''">No Filter</option>
+                <option *ngFor="let opt of filterOptions" [value]="opt.id">{{opt.name}}</option>
+            </select>
+        </div>
+
+    </form>
+    <form *ngIf="!isAuthenticated && !isInitializing" (submit)="processLogin($event)">
+        <div class="form-field title">
+            <img style="height: 52px;" src="assets/branding/logo-color-150-tall.png">
+        </div>
+        <div class="form-field">
+            <label [for]="usernameInput">Email</label>
+            <input #usernameInput [(ngModel)]="username"
+                   type="email"
+                   name="username"/>
+        </div>
+
+        <div class="form-field">
+            <label [for]="passwordInput">Password</label>
+            <input #passwordInput [(ngModel)]="password" name="password" type="password"/>
+        </div>
+        <div class="form-field">
+            <button type="submit">Login</button>
+            <span class="alert" *ngIf="loginFailed">Login failed! Please try again.</span>
+        </div>
+
+    </form>
+</section>

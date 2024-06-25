@@ -1,0 +1,44 @@
+<toolSet name="External Tools">
+  <tool name="Process AsyncAwait" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="$ProjectFileDir$/scripts/o3" />
+      <option name="PARAMETERS" value="mvn --all --noNpm process-classes -Pasyncawait" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$" />
+    </exec>
+  </tool>
+  <tool name="Enhance Hibernate entities in Builder" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="$ProjectFileDir$/scripts/o3" />
+      <option name="PARAMETERS" value="tooling hibernate-enhance" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/product/builder" />
+    </exec>
+  </tool>
+  <tool name="Enhance Hibernate entities in Hub" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="$ProjectFileDir$/scripts/o3" />
+      <option name="PARAMETERS" value="tooling hibernate-enhance" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/product/hub" />
+    </exec>
+  </tool>
+  <tool name="Transform async in Gateway" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="$ProjectFileDir$/scripts/o3" />
+      <option name="PARAMETERS" value="tooling transform-async" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/product/gateway" />
+    </exec>
+  </tool>
+  <tool name="Transform async in Hub" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="$ProjectFileDir$/scripts/o3" />
+      <option name="PARAMETERS" value="tooling transform-async" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/product/hub" />
+    </exec>
+  </tool>
+  <tool name="Transform async in Builder" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="$ProjectFileDir$/scripts/o3" />
+      <option name="PARAMETERS" value="tooling transform-async" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/product/builder" />
+    </exec>
+  </tool>
+</toolSet>

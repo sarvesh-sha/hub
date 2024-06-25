@@ -1,0 +1,39 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab label="Details about datagram sessions">
+
+            <o3-tab-action label="Close" priority="primary" (click)="exit()"></o3-tab-action>
+            <o3-tab-action label="Refresh" priority="secondary" (click)="fetchSessions()"></o3-tab-action>
+
+            <div class="row" *ngIf="!sessionsDetails">
+                <div class="col-sm-12">
+                    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="sessionsDetails">
+                <div class="col-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Filter" [(ngModel)]="sessionsDetails.filter" name="filter">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="sessionsDetails">
+                <div class="col-sm-12">
+                    <o3-datatable [table]="sessionsDetails.table">
+                        <o3-datatable-column id="sessionId" prop="model.sessionId" name="Session Id" [width]="100" [maxWidth]="100"></o3-datatable-column>
+                        <o3-datatable-column id="lastPacket" prop="model.lastPacket" name="Last Packet" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+                        <o3-datatable-column id="udpAddress" prop="model.udpAddress" name="UDP Address" [width]="130" [maxWidth]="130"></o3-datatable-column>
+                        <o3-datatable-column id="rpcId" prop="model.rpcId" name="RPC Id" [width]="290" [maxWidth]="290"></o3-datatable-column>
+                        <o3-datatable-column id="displayName" prop="model.displayName" name="Display Name"></o3-datatable-column>
+                        <o3-datatable-column id="stats" prop="stats" name="Counters"></o3-datatable-column>
+                    </o3-datatable>
+                </div>
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

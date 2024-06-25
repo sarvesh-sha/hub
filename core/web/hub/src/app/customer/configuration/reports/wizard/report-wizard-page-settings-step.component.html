@@ -1,0 +1,21 @@
+<ng-template o3-wizard-step-template>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <o3-select name="pageSize" placeholder="Page Size" [options]="sizeOptions"
+                           [(ngModel)]="data.configuration.pdfFormat" [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+
+            <mat-button-toggle-group [(value)]="data.configuration.isLandscape">
+                <mat-button-toggle [value]="false">Portrait</mat-button-toggle>
+                <mat-button-toggle [value]="true">Landscape</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-sm-6">
+            <o3-report-preview-button [data]="data"></o3-report-preview-button>
+        </div>
+    </div>
+</ng-template>

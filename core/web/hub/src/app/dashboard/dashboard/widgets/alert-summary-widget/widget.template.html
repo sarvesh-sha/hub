@@ -1,0 +1,18 @@
+<div class="summary-widget--outer">
+    <div class="primary clickable" (click)="viewCriticalAlerts()">
+        <div class="o3-alert-color">
+            {{values.critical}}
+            <label>Critical Alerts</label>
+        </div>
+    </div>
+    <div *ngIf="secondRowEnabled" class="secondary clickable" (click)="viewAlerts()">
+        <div class="left">
+            {{values.percentChangedLast30}}%
+            <label>Last 30 days</label>
+        </div>
+        <div class="right">
+            {{values.total}}
+            <label>Alerts</label>
+        </div>
+    </div>
+</div>

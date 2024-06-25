@@ -1,0 +1,25 @@
+<o3-overlay (closed)="revert()" [config]="overlayConfig">
+    <mat-card *cdkPortal>
+        <mat-card-title>
+            <mat-form-field>
+                <input #name matInput placeholder="{{filterName ? 'Filter Name' : 'Insert filter\'s name here'}}"
+                       name="group-name" [(ngModel)]="filterName"/>
+            </mat-form-field>
+            <div>
+                <mat-slide-toggle [checked]="!!filterApplied" (change)="toggleFilter($event.checked)"></mat-slide-toggle>
+                <div class="clickable" (click)="toggleFilter()">Active</div>
+            </div>
+        </mat-card-title>
+        <mat-card-content>
+            <o3-schedule-selector [model]="filter" [onWord]="onWord" [offWord]="offWord" [otherSchedules]="otherFilters"
+                                  (selectionChange)="toggleFilter(true)"></o3-schedule-selector>
+        </mat-card-content>
+        <mat-card-actions>
+            <div matTooltip="Set filter name first" [matTooltipDisabled]="!!filterName">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!filterName || pristine" (click)="saveFilter()">Save</button>
+            </div>
+            <button mat-raised-button type="button" style="margin-right: 0px"
+                    (click)="closeOverlay()">{{pristine ? 'Close' : 'Cancel'}}</button>
+        </mat-card-actions>
+    </mat-card>
+</o3-overlay>

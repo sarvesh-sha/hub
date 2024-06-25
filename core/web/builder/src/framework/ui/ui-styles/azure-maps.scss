@@ -1,0 +1,45 @@
+@import "../app.variables.scss";
+
+@mixin azure-maps($theme) {
+    $azure-btn-grey: #83888D;
+    $azure-btn-active-shading: #f1f1f1;
+
+    button.o3-map--control-button {
+        position: absolute !important;
+        background-color: white;
+        color: $azure-btn-grey;
+        border-radius: 0px;
+        width: 32px;
+        height: 32px;
+        box-shadow: rgba(0, 0, 0, .16) 0 0 4px;
+
+        &:active {
+            background-color: $azure-btn-active-shading;
+        }
+
+        .mat-button-wrapper .mat-icon {
+            font-size: 20px;
+        }
+    }
+
+    .mapboxgl-canvas-container {
+        position: static;
+    }
+
+    .atlas-map-canvas {
+        outline: none;
+    }
+
+    // generally, the "right" way to do this is to have a callback that edits the element's cursor style via the relevant part of the map.
+    // The issue with this "right" way for the path map is that the cursor doesn't align with when there's a popup that can be interacted with
+    // unless the click zone is made to be quite small
+    .o3-gps-map--path {
+        &.has-popup .mapboxgl-canvas-container {
+            cursor: pointer !important;
+        }
+
+        &.dragging-scrubber .mapboxgl-canvas-container {
+            cursor: grabbing !important;
+        }
+    }
+}

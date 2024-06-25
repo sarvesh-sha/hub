@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-6">
+        <mat-slide-toggle [(ngModel)]="onlyEnabled" name="onlyEnabled">Only Show Enabled</mat-slide-toggle>
+    </div>
+    <div class="col-6">
+        <o3-tab-subsection [withFiltering]="true" [(filterText)]="filterText"></o3-tab-subsection>
+    </div>
+</div>
+
+<o3-datatable [table]="table" [showViewIcons]="false" [showRowNumbers]="false">
+    <o3-datatable-column id="active" name="Active" [maxWidth]="100" [minWidth]="100">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row" let-index="index">
+            <mat-slide-toggle [(ngModel)]="row.point.enabled" name="isActive{{index}}" (ngModelChange)="markAsDirty()">
+                <span class="hidden-sm-up">Active</span>
+            </mat-slide-toggle>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="identifier" name="Identifier" prop="point.identifier" [maxWidth]="100" [minWidth]="100"></o3-datatable-column>
+    <o3-datatable-column id="minInput" name="Min Input" [minWidth]="100" [maxWidth]="100">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row" let-index="index">
+            <mat-form-field>
+                <input matInput type="number" name="lowInputRange{{index}}" [required]="row.point.enabled" [(ngModel)]="row.point.lowInputRange" (ngModelChange)="markAsDirty()">
+            </mat-form-field>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="maxInput" name="Max Input" [minWidth]="100" [maxWidth]="100">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row" let-index="index">
+            <mat-form-field>
+                <input matInput type="number" name="highInputRange{{index}}" [required]="row.point.enabled" [(ngModel)]="row.point.highInputRange" (ngModelChange)="markAsDirty()">
+            </mat-form-field>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="minOutput" name="Min Input Maps To" [minWidth]="150" [maxWidth]="150">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row" let-index="index">
+            <mat-form-field>
+                <input matInput type="number" name="lowOutputRange{{index}}" [required]="row.point.enabled" [(ngModel)]="row.point.lowOutputRange" (ngModelChange)="markAsDirty()">
+            </mat-form-field>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="maxOutput" name="Max Input Maps To" [minWidth]="150" [maxWidth]="150">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row" let-index="index">
+            <mat-form-field>
+                <input matInput type="number" name="highOutputRange{{index}}" [required]="row.point.enabled" [(ngModel)]="row.point.highOutputRange" (ngModelChange)="markAsDirty()">
+            </mat-form-field>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="units" name="Units" [minWidth]="100" [maxWidth]="400">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+            <o3-select [multiSelect]="false"
+                       [options]="unitsOptions"
+                       [(ngModel)]="row.point.units"
+                       (valueChange)="markAsDirty()"
+                       placeholder="Units">
+            </o3-select>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="pointClass" name="Point Class" [minWidth]="100" [maxWidth]="400">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+            <o3-select [multiSelect]="false"
+                       [options]="pointClassOptions"
+                       [(ngModel)]="row.pointClass"
+                       (valueChange)="updatePointClass(row)"
+                       placeholder="Point Class">
+            </o3-select>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="tags" name="Tags" [minWidth]="100" [maxWidth]="400">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+            <o3-string-set [(value)]="row.point.tags" (valueChange)="markAsDirty()" filterHint="Add tag...">
+            </o3-string-set>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="description" name="Description">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row" let-index="index">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Description" [required]="row.point.enabled" [(ngModel)]="row.point.description" name="description{{index}}" (ngModelChange)="markAsDirty()"
+                       autocomplete="off">
+            </mat-form-field>
+        </ng-template>
+    </o3-datatable-column>
+</o3-datatable>

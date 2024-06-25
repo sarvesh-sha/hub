@@ -1,0 +1,190 @@
+$muted-color: #aeaeae;
+
+.pill {
+    border-radius: 999px;
+}
+
+.mat-card {
+    border-radius: inherit;
+}
+
+.printable-sources {
+    width: 100%;
+    position: relative;
+    padding: 10px 0px 0px 0px;
+
+    > o3-source-chip {
+        float: left;
+        height: 32px;
+        margin-bottom: 10px;
+    }
+
+    &:after {
+        display: block;
+        content: " ";
+        clear: both;
+    }
+}
+
+.timeseries-container {
+    overflow: hidden;
+
+    &.o3-time-series-container--embedded {
+        box-shadow: none !important;
+        border-radius: 0px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 12px;
+
+        .asset-structure-context {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            text-transform: none;
+            font-size: 14px;
+        }
+
+        .right {
+            display: flex;
+            justify-content: flex-end;
+            margin: 3px 0px;
+
+            .mat-icon-button:not(.mat-button-disabled), a {
+                color: rgba(0, 0, 0, 0.87);
+            }
+        }
+
+        .allow-multiple-checkbox {
+            padding-left: 24px;
+        }
+    }
+
+    .visualization-content {
+        padding: 0px;
+        overflow: hidden;
+
+        /* Needed to prevent drag resize from changing width */
+        width: 100% !important;
+
+        > .has-sources, > .no-sources {
+            height: 100%;
+        }
+
+        .ng-resizable-s {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            bottom: 0px;
+
+            &::before {
+                display: block;
+                content: "";
+                border-top: 1px solid $muted-color;
+                border-bottom: 1px solid $muted-color;
+                height: 3px;
+                width: 32px;
+                position: absolute;
+                bottom: 2px;
+            }
+        }
+
+        .no-padding {
+            padding: 0px;
+        }
+    }
+
+    .timeseries-sources {
+        height: 60px;
+        padding: 8px 12px;
+
+        .o3-time-series-container--not-consolidated {
+            width: 100%;
+
+            > div {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        .no-sources {
+            color: $muted-color;
+        }
+
+        o3-source-chip {
+            margin-right: 8px;
+        }
+
+        &.printable {
+            height: unset;
+        }
+    }
+
+    .hideable {
+        transition: width 0.33s ease;
+        width: 40px;
+        overflow: hidden;
+
+        &.hide {
+            width: 0px;
+            padding: 0px;
+            pointer-events: none;
+        }
+    }
+
+    mat-card-content.ng-resizable {
+        overflow: visible;
+        margin-bottom: 11px;
+
+        .ng-resizable-s {
+            bottom: -11px;
+            height: 11px;
+
+            &::before {
+                bottom: 3px
+            }
+        }
+    }
+}
+
+:host-context(.no-content-padding) {
+    .timeseries-container {
+        box-shadow: none;
+
+        .visualization-content {
+            padding: 0px;
+
+            .has-sources {
+                padding: 0px;
+            }
+        }
+    }
+}
+
+.modal-container {
+    height: 100%;
+    box-shadow: none;
+
+    .modal-content {
+        height: calc(100% - 41px);
+        max-height: calc(75vh - 41px);
+        overflow: hidden;
+        box-shadow: none;
+
+        &.no-padding {
+            padding: 0px;
+        }
+    }
+}
+
+.fill-height {
+    height: 100%;
+}
+
+o3-hierarchical-visualization {
+    width: 100%;
+}

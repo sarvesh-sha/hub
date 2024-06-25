@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <dropPrimaryKey tableName="ASSET_RELATIONSHIP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <addPrimaryKey columnNames="parent, relation, child" constraintName="PRIMARY" tableName="ASSET_RELATIONSHIP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropIndex indexName="IDXi2xepfadx2onnyb7vyi88fvea" tableName="ASSET_RELATIONSHIP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropColumn columnName="sys_created_on" tableName="ASSET_RELATIONSHIP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropColumn columnName="sys_id" tableName="ASSET_RELATIONSHIP"/>
+    </changeSet>
+    <changeSet author="Optio3 Manual" id="MultiIdRelationship">
+        <sql>optimize table ASSET_RELATIONSHIP</sql>
+    </changeSet>
+</databaseChangeLog>

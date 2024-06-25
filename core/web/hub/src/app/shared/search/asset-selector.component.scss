@@ -1,0 +1,53 @@
+.selector-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .selector-options {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &.half {
+            width: 50%;
+            padding-right: 10px;
+        }
+
+        .selector-option {
+            width: 100%;
+
+            &.with-margin {
+                margin: 0.5em 0em;
+            }
+        }
+    }
+
+    .selector-list {
+        flex: 0 1 auto;
+        margin-top: 10px;
+
+        &:first-child {
+            padding-left: 0px;
+        }
+
+        &:last-child {
+            padding-right: 0px;
+        }
+    }
+
+    &.flex {
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+
+        .selector-options {
+            flex: 0 0 auto;
+        }
+
+        .selector-list {
+            height: 0px;
+            flex: 1 1 auto;
+        }
+    }
+}

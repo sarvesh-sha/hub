@@ -1,0 +1,6 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false">
+    <o3-datatable-column id="currentBranch" prop="model.currentBranch" name="Branch"></o3-datatable-column>
+    <o3-datatable-column id="currentCommit" prop="model.currentCommit" name="Commit"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" prop="model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="updatedOn" prop="model.updatedOn" name="Updated" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

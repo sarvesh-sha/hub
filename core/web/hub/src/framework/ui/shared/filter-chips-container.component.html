@@ -1,0 +1,23 @@
+<mat-chip-list>
+    <ng-container *ngIf="numChips <= 1 || numChips <= maxNumChips">
+        <span *ngFor="let chip of chips">
+            <mat-chip *ngIf="hasFilter(chip)" class="o3-filter-chips-container--chip" color="primary" [disableRipple]="true"
+                      [matTooltip]="filterText(chip)" matTooltipShowDelay="500">
+                <span>{{getLabel(chip)}}</span>
+                <button mat-icon-button (click)="clearFilter(chip, $event)" class="o3-filter-chips-container--delete">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+        </span>
+    </ng-container>
+    <mat-chip *ngIf="numChips > 1 && numChips > maxNumChips" [matTooltip]="numChips + ' filter categories applied'"
+              class="clickable" (click)="chipListOverlay.toggleOverlay()">
+        <span>{{numChips}} Filters</span>
+    </mat-chip>
+</mat-chip-list>
+
+<o3-chip-list-overlay #chipListOverlay label="Active Filters" [chips]="activeChips" [withTooltip]="true" (chipDeleted)="clearFilter($event, null)"></o3-chip-list-overlay>
+
+<button mat-icon-button class="o3-filter-chips-container--edit-filters" (click)="editFilterRequested.emit()">
+    <i class="o3 o3-filter-outline mat-icon"></i>
+</button>

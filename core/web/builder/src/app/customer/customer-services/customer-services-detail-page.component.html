@@ -1,0 +1,450 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group *ngIf="navigationComplete">
+
+        <o3-tab-action *ngFor="let action of possibleActions" label="{{action.name}}" labelFirstLevel="{{action.firstLevel}}" labelSecondLevel="{{action.secondLevel}}"
+                       (click)="action.execute()" [tooltip]="action.tooltip"></o3-tab-action>
+
+        <o3-tab-action labelFirstLevel="Cross-service" label="Rollback" (click)="rollbackForeign()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Cross-service" label="Rollback and Upgrade" (click)="rollbackAndUpgradeForeign()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Cross-service" label="Rollback and Upgrade to RC" (click)="rollbackAndUpgradeForeignToRC()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Cross-service" label="Rollback and Upgrade to RTM" (click)="rollbackAndUpgradeForeignToRTM()"></o3-tab-action>
+
+        <o3-tab-action labelFirstLevel="Settings" label="Upgrade Blocker..." (click)="upgradeBlockerOverlay.toggleOverlay()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Settings" label="New Secret..." (click)="newSecret()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Settings" label="Change Gateway Alert Thresholds..." (click)="alertThresholdsOverlay.toggleOverlay()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Settings" label="Change Gateway Battery Thresholds..." (click)="batteryThresholdsOverlay.toggleOverlay()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Settings" label="Compact Time Series" (click)="compactTimeSeries()"></o3-tab-action>
+
+        <o3-tab-action label="Export Charges Report..." (click)="getChargesReport()"></o3-tab-action>
+        <o3-tab-action label="Export Resources to Excel" (click)="exportToExcel()"></o3-tab-action>
+        <o3-tab-action label="Search Keyword Usages..." (click)="checkUsagesOverlay.toggleOverlay()"></o3-tab-action>
+
+        <o3-tab-action label="Create" priority="primary" type="submit" [form]="modelForm" [disabled]="!isValid || !isDirty" *ngIf="isNew"></o3-tab-action>
+        <o3-tab-action label="Update" priority="primary" type="submit" [form]="modelForm" [disabled]="!isValid || !isDirty" *ngIf="!isNew"></o3-tab-action>
+        <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="!isDirty && !isNew"></o3-tab-action>
+        <o3-tab-action label="Cancel" priority="secondary" (click)="cancel(); " *ngIf="isDirty || isNew"></o3-tab-action>
+        <o3-tab-action label="Show Logs" priority="secondary" (click)="showLog()"></o3-tab-action>
+
+        <o3-tab label="Customer Service Details">
+
+            <o3-tab-action label="Remove" icon="delete" priority="tertiary" (click)="remove()" [disabled]="extendedNoRemoveReason != null"
+                           [tooltip]="extendedNoRemoveReason"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #modelForm="ngForm" novalidate>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [(ngModel)]="extended.model.name" name="serviceName" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <o3-select placeholder="Operational Status"
+                                       name="operationalStatus"
+                                       defaultValueDescription="Select Operational Status"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="operationalStates"
+                                       [(ngModel)]="extended.model.operationalStatus">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <o3-select placeholder="Vertical"
+                                       name="vertical"
+                                       defaultValueDescription="Select Vertical"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="customerVerticals"
+                                       [(ngModel)]="extended.model.vertical">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row" style="align-items: flex-end">
+                    <div class="col-xl-2">
+                        <mat-form-field *ngIf="!extended.model.sysId">
+                            <o3-select placeholder="Database Flavor"
+                                       name="dbMode"
+                                       defaultValueDescription="Select Database Flavor"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="dbModes"
+                                       [(ngModel)]="extended.model.dbMode"
+                                       required>
+                            </o3-select>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="extended.model.sysId">
+                            <input matInput type="text" placeholder="Database Flavor" [value]="extended.model.dbMode" name="dbName" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Disk Size" [(ngModel)]="extended.model.diskSize" name="serviceDiskSize">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-xl-3">
+                        <mat-form-field>
+                            <o3-select placeholder="Instance Type"
+                                       name="instanceType"
+                                       defaultValueDescription="Select Instance Type"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="instanceTypes"
+                                       [(ngModel)]="extended.model.instanceType"
+                                       (ngModelChange)="updateRegions()">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-3">
+                        <mat-form-field>
+                            <o3-select placeholder="Instance Account"
+                                       name="instanceAccount"
+                                       defaultValueDescription="Select Instance Account"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="instanceAccounts"
+                                       [(ngModel)]="extended.model.instanceAccount">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <o3-select placeholder="Instance Region"
+                                       name="instanceRegion"
+                                       defaultValueDescription="Select Instance Region"
+                                       [multiSelect]="false"
+                                       [singleClick]="true"
+                                       [options]="instanceRegions"
+                                       [(ngModel)]="extended.model.instanceRegion">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <mat-checkbox [(ngModel)]="extended.model.useDemoData" name="useDemoData">Use Demo Data</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-checkbox [(ngModel)]="extended.model.relaunchAlways" name="relaunchAlways">Always Relaunch</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-checkbox [(ngModel)]="extended.model.disableEmails" name="disableEmails">Disable Emails</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-checkbox [(ngModel)]="extended.model.disableTexts" name="disableTexts">Disable Text Messages</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-checkbox [(ngModel)]="extended.model.disableServiceWorker" name="disableServiceWorker">Disable Service Worker</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-checkbox [(ngModel)]="extended.model.useTestReporter" name="useTestReporter">Use Test Reporter</mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="URL" [(ngModel)]="extended.model.url" name="serviceURL" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-1" (click)="navigateToSite(extended.model.url)" *ngIf="extended.model.url" matTooltip="Navigate to the site" matTooltipShowDelay="500">
+                        <button mat-icon-button type="button">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="upgradeBlockers">
+                    <div class="clearfix">&nbsp;</div>
+                    <table class="table table-striped table-bordered selectable">
+                        <thead>
+                        <tr>
+                            <th>Upgrade Blocked by User</th>
+                            <th>Until</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let req of upgradeBlockers">
+                            <td>
+                                {{req.user.fullName}}
+                            </td>
+                            <td>
+                                {{req.until}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" *ngIf="extended?.model?.roleImages?.length > 0">
+                    <div class="clearfix">&nbsp;</div>
+                    <table class="table table-striped table-bordered selectable">
+                        <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Architecture</th>
+                            <th>Image</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let imageSpec of extended.model.roleImages">
+                            <td>
+                                {{imageSpec.role}}
+                            </td>
+                            <td>
+                                {{imageSpec.architecture}}
+                            </td>
+                            <td>
+                                {{images[imageSpec.image.sysId]?.model?.tag}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="extended?.model?.roleOrigin">
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <ul class="selectable">
+                            <li>{{extended?.model?.roleOrigin}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="extended?.model?.certificateWarning">
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <ul class="selectable">
+                            <li>TLS certificate expiring!!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div *ngIf="stalenessText.length > 0">
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <ul class="selectable">
+                            <li *ngFor="let text of stalenessText">{{text}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div *ngIf="pendingActivityInfo">
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row" *ngFor="let pendingInfo of pendingActivityInfo">
+                        <div class="col-sm-12">{{pendingInfo}}</div>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Resources" [disabled]="isNew">
+
+            <o3-tab-action label="Prune Images..." priority="secondary" (click)="pruneImagesOverlay.toggleOverlay()"></o3-tab-action>
+            <o3-tab-action label="Deploy New Resource..." priority="tertiary" (click)="newResource()"></o3-tab-action>
+            <o3-tab-action label="Deploy New Virtual Gateway..." priority="tertiary" (click)="newVirtualGateway()"></o3-tab-action>
+
+            <o3-customer-service-instances-list #childInstances [viewStatePrefix]="'Resources'" [extended]="extended">
+            </o3-customer-service-instances-list>
+
+        </o3-tab>
+
+        <o3-tab label="Backups" [disabled]="isNew">
+
+            <o3-tab-action label="Create New Backup" priority="secondary" [disabled]="!extendedReady" (click)="newBackup()"></o3-tab-action>
+            <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="childBackups.deleteBackups()" [disabled]="!childBackups.anyBackupSelected()"></o3-tab-action>
+
+            <o3-customer-service-backups-list #childBackups [extended]="extended">
+            </o3-customer-service-backups-list>
+
+        </o3-tab>
+
+        <o3-tab label="Charges" (selected)="fetchCharges()">
+
+            <o3-deployment-charges-summary [topHosts]="true" [charges]="charges"></o3-deployment-charges-summary>
+
+        </o3-tab>
+
+        <o3-tab label="Heap History" (selected)="fetchHeapStatusHistory()">
+
+            <mat-form-field *ngIf="heapStatusHistoryOptions?.length">
+                <o3-select placeholder="History"
+                           defaultValueDescription="Select History"
+                           [multiSelect]="false"
+                           [singleClick]="true"
+                           [options]="heapStatusHistoryOptions"
+                           [(ngModel)]="heapStatusHistorySelected"
+                           [ngModelOptions]="{standalone: true}">
+                </o3-select>
+            </mat-form-field>
+
+            <div class="row" *ngIf="heapStatusHistorySelected">
+                <div class="col-sm-12">
+                    <mat-form-field>
+                            <textarea matInput [value]="heapStatusHistorySelected" name="heapStatusHistorySelected" rows="30" wrap="off" readonly
+                                      style="font-size: 10pt; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </o3-tab>
+
+        <o3-tab label="Secrets">
+
+            <o3-tab-action label="Push To Services..." priority="secondary" (click)="pushSecrets()" *ngIf="!isDirty && !isNew"></o3-tab-action>
+
+            <o3-customer-service-secrets-list #childSecrets [extended]="extended" *ngIf="extended">
+            </o3-customer-service-secrets-list>
+
+        </o3-tab>
+
+        <o3-tab label="Cloud Configuration" [disabled]="isNew">
+
+            <form (ngSubmit)="save()" #cloudForm="ngForm" novalidate>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <mat-form-field>
+                            <textarea matInput placeholder="Append To YAML file" [(ngModel)]="extended.model.extraConfigLines" name="serviceExtraConfig" rows="20">
+                            </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </form>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>
+
+<o3-deployment-agent-upgrade></o3-deployment-agent-upgrade>
+
+<o3-overlay #upgradeBlockerOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Configure Upgrade Blocker">
+            <o3-date-picker [(model)]="blockUntil" label="Pick a Date & Time"></o3-date-picker>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="upgradeBlockerOverlay.closeOverlay();updateBlocker(blockUntil);" [disabled]="!isValidBlocker()"></o3-tab-action>
+            <o3-tab-action label="Remove" priority="secondary" (click)="upgradeBlockerOverlay.closeOverlay();updateBlocker();"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #alertThresholdsOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Configure Gateway Alert Thresholds">
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Warning Thresholds in Minutes" [(ngModel)]="warningThreshold" name="warning">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Alert Thresholds in Minutes" [(ngModel)]="alertThreshold" name="alert">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="alertThresholdsOverlay.closeOverlay();updateAlertThreshold();" [disabled]="!areValidAlertThresholds()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #batteryThresholdsOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Configure Gateway Battery Thresholds">
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Shutdown Voltage" [(ngModel)]="batteryThreshold.turnOffVoltage" name="turnOffVoltage">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Restart Voltage" [(ngModel)]="batteryThreshold.turnOnVoltage" name="turnOnVoltage">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Shutdown Delay in Seconds" [(ngModel)]="batteryThreshold.turnOffDelaySeconds" name="turnOffDelaySeconds">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Restart Delay in Seconds" [(ngModel)]="batteryThreshold.turnOnDelaySeconds" name="turnOnDelaySeconds">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="batteryThresholdsOverlay.closeOverlay();updateBatteryThreshold();" [disabled]="!areValidBatteryThresholds()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #pruneImagesOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Prune Unused Docker Images">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Thresholds in Days" [(ngModel)]="imagePruningThreshold" name="imagePruningThreshold">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Apply" priority="primary" (click)="pruneImagesOverlay.closeOverlay();pruneImages();" [disabled]="!isValidPruningThreshold()"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="pruneImagesOverlay.closeOverlay();"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #checkUsagesOverlay [config]="checkUsagesDialogConfig">
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Checking Usages">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Words to search" [(ngModel)]="checkUsagesFilter" name="checkUsagesFilter" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <textarea matInput placeholder="Results" [value]="checkUsagesResults" name="checkUsagesResults" rows="10" readonly>
+                        </textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Search" priority="primary" (click)="checkUsages();" [disabled]="!isValidCheckUsages()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

@@ -1,0 +1,24 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+
+scratchDirectory: ${env.HOME}/optio3.test/deployer.tmp
+
+# To override, configure the environment variable DEPLOYER_ENDPOINT, e.g. set DEPLOYER_ENDPOINT=ws://localhost:8180
+connectionUrl: ${env.DEPLOYER_ENDPOINT?wss://builder.dev.optio3.io}/api/v1/message-bus
+
+connectionUsername: test@optio3.com
+connectionPassword: test
+
+hostId: 00:01:02:03:04:05
+instanceId: v1
+
+# Don't inspect Docker containers in unit tests
+sendTasksInformationWithHeartbeat: false

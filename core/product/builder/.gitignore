@@ -1,0 +1,2 @@
+# Avoid storing the H2 database in the repo by mistake.
+builder_db.*

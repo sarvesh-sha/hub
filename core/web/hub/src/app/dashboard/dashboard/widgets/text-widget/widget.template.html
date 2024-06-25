@@ -1,0 +1,5 @@
+<div class="o3-text-widget--outer" [ngClass]="textContainerClass"
+     [ngStyle]="textStyles" [style.padding.px]="padding"
+     [matTooltip]="config.text" [matTooltipDisabled]="textFits">
+    <div [class.o3-text-widget--text-fits]="textFits">{{config.text}}</div>
+</div>

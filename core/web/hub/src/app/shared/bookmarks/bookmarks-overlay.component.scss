@@ -1,0 +1,8 @@
+mat-form-field {
+    padding: 0px 12px;
+}
+
+.bookmark-list {
+    max-height: 492px; // 600 - 108 ... 600 is maxHeight of overlay and 108 is sum height of title and filtering
+    overflow-y: auto;
+}

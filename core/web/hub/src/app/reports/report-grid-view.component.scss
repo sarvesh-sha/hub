@@ -1,0 +1,113 @@
+body {
+    background-color: yellow;
+}
+
+.grid {
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+
+    .grid-row {
+        box-sizing: border-box;
+        border-top-color: #aeaeae;
+        border-top-style: solid;
+
+        .grid-cell {
+            width: 25px;
+            height: 24px; /* reduce by 1px to account for 1px row top border */
+            text-align: center;
+            border-left-color: #aeaeae;
+            border-left-style: solid;
+            box-sizing: border-box;
+            display: inline-block;
+            line-height: 25px;
+            vertical-align: middle;
+
+            &:nth-child(even) {
+                border-left-color: #dedede;
+            }
+
+            &:last-child {
+                border-right-color: #aeaeae;
+                border-right-style: solid;
+            }
+        }
+
+        &:nth-child(odd) {
+            background-color: #f5f5f5;
+        }
+
+        &:nth-child(even) {
+            border-top-color: #dedede;
+        }
+
+        &:last-child {
+            border-bottom-color: #aeaeae;
+            border-bottom-style: solid;
+        }
+    }
+
+    &.px .grid-row {
+        border-top-width: 1px;
+
+        .grid-cell {
+            width: 25px;
+            height: 24px; /* reduce by 1px to account for 1px row top border */
+            border-left-width: 1px;
+
+            &:last-child {
+                border-right-width: 1px;
+            }
+        }
+
+        &:last-child {
+            border-bottom-width: 1px;
+        }
+    }
+
+    &.pt .grid-row {
+        border-top-width: 1pt;
+
+        .grid-cell {
+            width: 20pt;
+            height: 19pt; /* reduce by 1px to account for 1px row top border */
+            border-left-width: 1pt;
+
+            &:last-child {
+                border-right-width: 1pt;
+            }
+        }
+
+        &:last-child {
+            border-bottom-width: 1pt;
+        }
+    }
+
+    &.em .grid-row {
+        border-top-width: .05em;
+
+        .grid-cell {
+            width: 2em;
+            height: 1.95em; /* reduce by 1px to account for 1px row top border */
+            border-left-width: .05em;
+
+            &:last-child {
+                border-right-width: .05em;
+            }
+        }
+
+        &:last-child {
+            border-bottom-width: .05em;
+        }
+    }
+
+    .grid-legend {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, .5);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+    }
+}

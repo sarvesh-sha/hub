@@ -1,0 +1,45 @@
+<div class="o3-color-builder--frame">
+    <div class="o3-color-builder--text-inputs">
+        <div class="o3-color-builder--hex-input">
+            <mat-form-field>
+                <input #hexInputElement matInput type="text" name="hex" placeholder="Hex" [disabled]="disabled"
+                       (keydown)="processHex($event)" [(ngModel)]="hexInput" (ngModelChange)="processHexInput(hexInput)" (blur)="hexInput = hex"/>
+            </mat-form-field>
+        </div>
+
+        <div class="o3-color-builder--rgb">
+            <mat-form-field class="col" floatLabel="always">
+                <input matInput type="number" name="red" placeholder="Red" [disabled]="disabled"
+                       [(ngModel)]="red" (ngModelChange)="updateFromColorComponent()" min="0" max="255"/>
+            </mat-form-field>
+            <mat-form-field class="col" floatLabel="always">
+                <input matInput type="number" name="green" placeholder="Green" [disabled]="disabled"
+                       [(ngModel)]="green" (ngModelChange)="updateFromColorComponent()" min="0" max="255"/>
+            </mat-form-field>
+            <mat-form-field class="col" floatLabel="always">
+                <input matInput type="number" name="blue" placeholder="Blue" [disabled]="disabled"
+                       [(ngModel)]="blue" (ngModelChange)="updateFromColorComponent()" min="0" max="255"/>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="o3-color-builder--color-representation">
+        <div *ngIf="editableOpacity" class="input-wrapper">
+            <div class="input-label">Opacity</div>
+            <div class="o3-color-builder--slider-container row">
+                <mat-slider name="alpha-slider" label="Opacity" min="0" max="1" step="0.01" [disabled]="disabled"
+                            [(ngModel)]="alpha" (ngModelChange)="updateFromColorComponent()"></mat-slider>
+                <mat-form-field floatLabel="always">
+                    <input #alphaInputElement matInput type="number" name="alpha" [disabled]="disabled"
+                           (blur)="alphaInput = alpha * 100" [(ngModel)]="alphaInput" (ngModelChange)="processAlphaInput()" min="0" max="100"/>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-form-field class="o3-color-builder--default-trigger">
+            <input #defaultColorTrigger matInput type="color" [ngModel]="hex" (ngModelChange)="processHexInput($event)"/>
+        </mat-form-field>
+        <button mat-flat-button type="button" [disabled]="disabled" [style.background-color]="rgba" (click)="triggerDefaultColorPicker()"
+                class="o3-color-builder--representation" [class.o3-color-builder--editable-opacity]="editableOpacity"></button>
+    </div>
+</div>

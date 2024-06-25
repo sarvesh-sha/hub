@@ -1,0 +1,11 @@
+<o3-standard-form [label]="overlayLabel" [primaryButtonDisabled]="data.editing && pristine" [secondaryButtonText]="secondaryButtonText"
+                  (submitted)="save()" (cancelled)="dialogRef.close(null)">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Name" required autocomplete="off" [readonly]="!!data.staticName"
+               name="bookmark-name" [(ngModel)]="name" (ngModelChange)="updatePristine()">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Description" autocomplete="off"
+               name="bookmark-description" [(ngModel)]="description" (ngModelChange)="updatePristine()">
+    </mat-form-field>
+</o3-standard-form>

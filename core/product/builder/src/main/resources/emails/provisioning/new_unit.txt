@@ -1,0 +1,9 @@
+########################
+# Builder notification #
+########################
+
+New Waypoint from production line: '${param.HOST_ID}'
+
+Details: https://builder.dev.optio3.io/#/deployments/item/${param.HOST_SYSID}
+
+Optio3

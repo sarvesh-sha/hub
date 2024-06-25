@@ -1,0 +1,50 @@
+<div class="selector-container" [class.flex]="flex">
+    <div class="selector-options">
+        <!-- Search input and filters -->
+        <o3-device-element-search-filters #test_searchFilters
+                                          class="selector-option with-margin"
+                                          [model]="searchRequestFilters"
+                                          (modelChange)="onSearchChanged(term)"
+                                          [(term)]="term"
+                                          (termChange)="onSearchChanged(term)"></o3-device-element-search-filters>
+    </div>
+
+    <div class="selector-list">
+        <o3-datatable #test_controlPointDataTable
+                      *ngIf="results"
+                      [rows]="results.displayedResults"
+                      [clickableRows]="true"
+                      [showRowNumbers]="false"
+                      [showViewIcons]="false"
+                      [externalPaging]="true"
+                      [messages]="messages"
+                      [warningColor]="messageColor"
+                      [count]="results.total"
+                      [offset]="results.pageIndex"
+                      [limit]="results.pageSize"
+                      [loadingIndicator]="loading"
+                      (page)="onPage($event, results)"
+                      (activate)="toggleCheck($event.row)">
+            <o3-datatable-column id="checkbox" [resizable]="false" [maxWidth]="48">
+                <ng-template o3-datatable-header-cell-template>
+                    <div>
+                        <mat-checkbox class="o3-no-ripple" [disableRipple]="true" [disabled]="!canSelectAll"
+                                      [(ngModel)]="allSelected" [(indeterminate)]="indeterminateChecked"></mat-checkbox>
+                    </div>
+                </ng-template>
+                <ng-template o3-datatable-cell-template let-row="row">
+                    <div style="text-overflow: clip">
+                        <mat-checkbox class="o3-no-ripple" [disableRipple]="true" [disabled]="!canToggle(row)"
+                                      [(ngModel)]="row.checked" (click)="$event.preventDefault()"></mat-checkbox>
+                    </div>
+                </ng-template>
+            </o3-datatable-column>
+            <o3-datatable-column id="point" name="Control Points">
+                <ng-template o3-datatable-cell-template let-row="row">
+                    <span matTooltip="{{row.text}}" matTooltipShowDelay="500">{{row.text}}</span><br/>
+                    <small>{{row.subtext}}</small>
+                </ng-template>
+            </o3-datatable-column>
+        </o3-datatable>
+    </div>
+</div>

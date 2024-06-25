@@ -1,0 +1,8 @@
+<ng-template o3-wizard-step-template>
+    <mat-form-field *ngIf="typedElement as deviceElementList">
+        <o3-select [multiSelect]="false" placeholder="Node for points" name="device-element-list-point"
+                   required [o3AssetGraphNodeSelectorMulti]="data.graphs" [o3AssetGraphNodeSelectorOnlyLeaves]="true"
+                   [ngModel]="getId(deviceElementList.pointInput)" (ngModelChange)="deviceElementList.pointInput = getBinding($event)">
+        </o3-select>
+    </mat-form-field>
+</ng-template>

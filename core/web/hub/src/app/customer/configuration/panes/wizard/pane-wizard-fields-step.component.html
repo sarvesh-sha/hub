@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data.pane">
+        <o3-pane-fields-editor [data]="data.pane" (dataUpdated)="data.updateNodeIds()"></o3-pane-fields-editor>
+    </div>
+</ng-template>

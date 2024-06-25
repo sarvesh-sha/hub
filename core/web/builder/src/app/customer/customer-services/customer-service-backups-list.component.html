@@ -1,0 +1,6 @@
+﻿<o3-datatable [table]="table">
+    <o3-datatable-column id="trigger" prop="model.trigger" name="Trigger" [minWidth]="100" [width]="150" [maxWidth]="200"></o3-datatable-column>
+    <o3-datatable-column id="fileId" prop="fileDescription" name="Snapshot Id"></o3-datatable-column>
+    <o3-datatable-column id="fileSize" prop="model.fileSize" name="Size" format="NUMBER"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

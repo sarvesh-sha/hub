@@ -1,0 +1,72 @@
+<div class="o3-unit-editor--label" cdkOverlayOrigin #origin="cdkOverlayOrigin">
+    <button #button type="button"
+            class="o3-unit-editor--label-button"
+            [disabled]="disabled"
+            (click)="!readonly && !disabled && overlay.toggleOverlay()">
+        <span [innerHTML]="unitDisplay"></span>
+    </button>
+</div>
+
+<o3-standard-form-overlay label="Unit"
+                          #overlay
+                          [overlayConfig]="overlayConfig"
+                          [overlayOrigin]="origin"
+                          (submitted)="button.focus(); simplifyAfterSubmit();"
+                          (cancelled)="simplifyAfterSubmit()">
+    <div class="o3-unit-editor--container">
+        <div class="o3-unit-editor--numerator">
+            <div class="o3-unit-editor--components">
+                <div *ngFor="let unit of numerators; let first = first; let index = index">
+                    <span *ngIf="!first">&nbsp;&#x25CF;&nbsp;</span>
+
+                    <button type="button"
+                            cdkOverlayOrigin
+                            #component="cdkOverlayOrigin"
+                            [class.editing]="isEditing(unit, index, numerators)"
+                            (click)="edit(unit, index, numerators, component)">
+                        {{getUnitLabel(unit)}}
+                    </button>
+                </div>
+            </div>
+
+            <button mat-icon-button
+                    type="button"
+                    class="mat-icon-small"
+                    cdkOverlayOrigin
+                    #add="cdkOverlayOrigin"
+                    (click)="edit(null, undefined, numerators, add)">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </div>
+        <div class="o3-unit-editor--separator"></div>
+        <div class="o3-unit-editor--denominator">
+            <div class="o3-unit-editor--components">
+                <div *ngFor="let unit of denominators; let first = first; let index = index">
+                    <span *ngIf="!first">&nbsp;&#x25CF;&nbsp;</span>
+
+                    <button type="button"
+                            cdkOverlayOrigin
+                            #component="cdkOverlayOrigin"
+                            [class.editing]="isEditing(unit, index, denominators)"
+                            (click)="edit(unit, index, denominators, component)">
+                        {{getUnitLabel(unit)}}
+                    </button>
+                </div>
+            </div>
+
+            <button mat-icon-button
+                    type="button"
+                    class="mat-icon-small"
+                    cdkOverlayOrigin
+                    #add="cdkOverlayOrigin"
+                    (click)="edit(null, undefined, denominators, add)">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </div>
+    </div>
+    <o3-select [multiSelect]="false"
+               [options]="unitOptions"
+               [(ngModel)]="editUnit"
+               (ngModelChange)="addUnit()">
+    </o3-select>
+</o3-standard-form-overlay>

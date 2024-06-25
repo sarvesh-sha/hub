@@ -1,0 +1,55 @@
+<ng-template o3-wizard-step-template>
+    <mat-radio-group [(ngModel)]="useUDP">
+    <div class="row">
+        <div class="col-sm-1" style="display: flex; align-items: flex-end">
+            <mat-radio-button [value]="true">UDP</mat-radio-button>
+        </div>
+        <div class="col-sm-8">
+            <mat-form-field>
+                <input matInput type="text" [disabled]="!useUDP" placeholder="IP Address" ipAddress [(ngModel)]="ipAddress" name="ip_address" required>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" [disabled]="!useUDP" placeholder="IP Port" [(ngModel)]="ipPort" name="ip_port" required>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1" style="display: flex; align-items: flex-end">
+            <mat-radio-button [value]="false">Ethernet</mat-radio-button>
+        </div>
+        <div class="col-sm-11">
+            <mat-form-field>
+                <input matInput type="text" [disabled]="useUDP" placeholder="MAC Address" macAddress [(ngModel)]="macAddress" name="mac_address" required>
+            </mat-form-field>
+        </div>
+    </div>
+    </mat-radio-group>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Network Number" [(ngModel)]="networkNumber" name="network_number">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Instance Number" [(ngModel)]="instanceNumber" name="instance_number">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="number" placeholder="MS/TP network" [(ngModel)]="mstpNetworkNumber" name="mstp_network_number">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="number" placeholder="MS/TP address (decimal, not hex)" [(ngModel)]="mstpNetworkAddress" name="mstp_network_address">
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,43 @@
+.o3-toolbar--left, .o3-toolbar--search, .o3-toolbar--right {
+    display: flex;
+    height: 100%;
+    flex: 0 0 0px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.o3-toolbar--left {
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    min-width: 50px;
+    flex-grow: 10;
+
+    > .topnav-component-container {
+        display: none;
+        width: 100%;
+
+        &.topnav-component-present {
+            display: block;
+        }
+    }
+
+    > .topnav-title {
+        width: 0px;
+        flex: 1 1 0px;
+    }
+}
+
+.o3-toolbar--search {
+    flex-grow: 1;
+    max-width: calc(100% - 140px);
+}
+
+.o3-toolbar--right {
+    flex-basis: auto;
+}
+
+.o3-standard-layout--scroll-container {
+    height: 100%;
+    overflow-y: auto;
+}

@@ -1,0 +1,32 @@
+<ng-template o3-wizard-step-template>
+    <p>How should asset selectors be connected?</p>
+    <div *ngFor="let bindingInfo of externalBindingInfo; let chartIdx = index" class="o3-time-series-graphs-step--binding-container">
+        <span *ngIf="externalBindingInfo.length > 1" class="o3-time-series-graphs-step--binding-label">Chart {{chartIdx + 1}}</span>
+
+        <div *ngIf="bindingInfo.forGpsMap && data.editor.graphLookup.size" class="o3-time-series-graphs-step--binding-config">
+            <mat-slide-toggle [name]="chartIdx + '-use-external'" [(ngModel)]="bindingInfo.hasExternalGpsBinding">
+                Use Asset Structure
+            </mat-slide-toggle>
+
+            <mat-form-field *ngIf="bindingInfo.hasExternalGpsBinding">
+                <o3-select placeholder="Connected Asset Structure" [options]="gpsGraphOptions" [(ngModel)]="bindingInfo.gpsGraphId" [name]="chartIdx + '-gps-graph'"
+                           [multiSelect]="false" preventDeselection singleClick></o3-select>
+            </mat-form-field>
+        </div>
+        <ng-container *ngIf="!bindingInfo.forGpsMap || externalGpsBindingsAvailable && bindingInfo.gpsGraphId">
+            <div *ngFor="let binding of bindingInfo.bindings" class="o3-time-series-graphs-step--binding-config">
+                <mat-form-field>
+                    <o3-select [placeholder]="binding.graphName" [options]="graphToSelectorOptions[binding.graphId]" [matTooltip]="binding.numSourcesTooltip"
+                               [multiSelect]="false" preventDeselection singleClick
+                               [name]="chartIdx + '-' + binding.graphId + '-selector-id'"
+                               [(ngModel)]="binding.selectorId" (ngModelChange)="syncSelectorIds()"></o3-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="binding.newSelectorChosen" floatLabel="always">
+                    <input matInput required placeholder="Selector Name" #test_newSelectorName
+                           [name]="chartIdx + '-' + binding.graphId +'-selector-name'"
+                           [(ngModel)]="binding.newSelectorName" (ngModelChange)="syncSelectorIds()">
+                </mat-form-field>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

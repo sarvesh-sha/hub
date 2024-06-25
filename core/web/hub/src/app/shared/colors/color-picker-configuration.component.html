@@ -1,0 +1,16 @@
+<o3-tab-group noUnderline>
+    <o3-tab [disabled]="!forFlat" label="{{onlyPalette ? 'Palette' : 'Color'}}">
+        <div class="row">
+            <o3-color-picker-flat [(palette)]="palette" (paletteChange)="updated(false)"
+                                  [(color)]="single" (colorChange)="updated(false)"
+                                  [onlyPalette]="onlyPalette"></o3-color-picker-flat>
+        </div>
+    </o3-tab>
+
+    <o3-tab [disabled]="!forGradient" label="Gradient">
+        <div class="row">
+            <o3-color-picker-gradient #test_gradient [(model)]="segments" (modelChange)="updated(true)"
+                                      [maxStops]="maxStops" [lockEndModes]="lockEndModes"></o3-color-picker-gradient>
+        </div>
+    </o3-tab>
+</o3-tab-group>

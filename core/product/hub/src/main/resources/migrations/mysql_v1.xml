@@ -1,0 +1,1016 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <createTable tableName="ALERT">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="date_occurred" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="extended_description" type="LONGTEXT"/>
+            <column defaultValueComputed="NULL" name="sequence_number" type="INT"/>
+            <column defaultValueComputed="NULL" name="severity" type="INT"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="device" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <createTable tableName="ALERT_HISTORY">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level" type="VARCHAR(255)"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="alert" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createTable tableName="ASSET">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_id" type="VARCHAR(255)"/>
+            <column name="customer_notes" type="LONGTEXT"/>
+            <column defaultValueComputed="NULL" name="last_checked_date" type="datetime(6)"/>
+            <column defaultValueComputed="NULL" name="last_updated_date" type="datetime(6)"/>
+            <column name="metadata" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="serial_number" type="VARCHAR(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="parent" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <createTable tableName="ASSET_DEVICE">
+            <column name="firmware_version" type="VARCHAR(255)"/>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_info" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createTable tableName="ASSET_DEVICE_BACNET">
+            <column name="instance_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="network_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createTable tableName="ASSET_DEVICE_ELEMENT">
+            <column name="contents" type="LONGTEXT"/>
+            <column name="identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sampling_settings" type="LONGTEXT"/>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createTable tableName="ASSET_DEVICE_ELEMENT_SAMPLE">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="contents" type="LONGBLOB"/>
+            <column name="properties" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="range_end" type="datetime(6)"/>
+            <column name="range_start" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owning_element" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <createTable tableName="ASSET_GATEWAY">
+            <column defaultValueComputed="NULL" name="available_processors" type="INT"/>
+            <column defaultValueComputed="NULL" name="free_memory" type="BIGINT"/>
+            <column name="instance_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_offset" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="last_output" type="datetime(6)"/>
+            <column defaultValueComputed="NULL" name="max_memory" type="BIGINT"/>
+            <column name="rpc_id" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="total_memory" type="BIGINT"/>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <createTable tableName="ASSET_GATEWAY_ASSET_NETWORK">
+            <column name="GatewayAssetRecord_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="boundNetworks_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <createTable tableName="ASSET_GATEWAY_LOG">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owning_gateway" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <createTable tableName="ASSET_LOGICAL_GROUP">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <createTable tableName="ASSET_LOGICAL_GROUP_ASSET">
+            <column name="LogicalGroupRecord_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logicalNestedAssets_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <createTable tableName="ASSET_NETWORK">
+            <column name="cidr" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="network_interface" type="VARCHAR(255)"/>
+            <column name="protocols_configuration" type="LONGTEXT"/>
+            <column name="sampling_period" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="static_address" type="VARCHAR(255)"/>
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <createTable tableName="BACKGROUND_ACTIVITY">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="frequency" type="VARCHAR(255)"/>
+            <column name="handler" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="handler_state" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="last_activation" type="datetime(6)"/>
+            <column name="last_activation_failure" type="LONGTEXT"/>
+            <column name="last_activation_failure_trace" type="LONGTEXT"/>
+            <column name="last_activation_status" type="VARCHAR(255)"/>
+            <column name="next_activation" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timeout" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="was_processing" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sub_activity" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <createTable tableName="BACNET_VENDOR">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vendor_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <createTable tableName="COMMON_LOG">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="block" type="LONGBLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_end" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_start" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <createTable tableName="DEVICE_CERTIFICATION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="certificate_url" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="certified_date" type="date"/>
+            <column name="org_name" type="VARCHAR(255)"/>
+            <column name="device_info" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <createTable tableName="DEVICE_CLASSIFICATION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="confidence" type="DOUBLE"/>
+            <column defaultValueBoolean="false" name="snapshot" type="BIT(1)"/>
+            <column name="device" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_info" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <createTable tableName="DEVICE_CLASSIFICATION__REASONS">
+            <column name="DeviceClassificationRecord_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reasons_name" type="VARCHAR(255)"/>
+            <column name="reasons_reason" type="VARCHAR(255)"/>
+            <column name="reasons_score" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reasons_weight" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <createTable tableName="DEVICE_IMAGE_LINK">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="embedded" type="LONGBLOB"/>
+            <column name="embedded_media_type" type="VARCHAR(255)"/>
+            <column defaultValueBoolean="false" name="primary_image" type="BIT(1)"/>
+            <column name="url" type="VARCHAR(255)"/>
+            <column name="device_info" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <createTable tableName="DEVICE_INFO">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="end_of_Life" type="datetime(6)"/>
+            <column name="firmware_version" type="VARCHAR(255)"/>
+            <column name="model_number" type="VARCHAR(512)"/>
+            <column name="product_category" type="VARCHAR(255)"/>
+            <column name="product_description" type="LONGTEXT"/>
+            <column name="product_name" type="VARCHAR(512)"/>
+            <column name="product_subcategory" type="VARCHAR(255)"/>
+            <column name="sku" type="VARCHAR(255)"/>
+            <column name="src_url" type="VARCHAR(255)"/>
+            <column name="version" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="warranty_duration" type="INT"/>
+            <column name="manufacturer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <createTable tableName="DEVICE_MANUAL">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="product_listed_date" type="date"/>
+            <column name="product_listed_link" type="VARCHAR(255)"/>
+            <column name="product_manual" type="VARCHAR(255)"/>
+            <column name="product_manual_link" type="VARCHAR(255)"/>
+            <column name="device_info" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23">
+        <createTable tableName="DEVICE_MANUFACTURER">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo_url" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-24">
+        <createTable tableName="DEVICE_PROTOCOL">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deviceInfo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-25">
+        <createTable tableName="DEVICE_RECALL">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recall_note" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="device_info" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-26">
+        <createTable tableName="DeviceProtocolRecord_properties">
+            <column name="DeviceProtocolRecord_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="properties" type="VARCHAR(255)"/>
+            <column name="properties_KEY" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-27">
+        <createTable tableName="LOCATION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_address" type="VARCHAR(255)"/>
+            <column name="address_city" type="VARCHAR(255)"/>
+            <column name="address_country" type="VARCHAR(255)"/>
+            <column name="address_state" type="VARCHAR(255)"/>
+            <column name="address_zip" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="geo_latitude" type="DOUBLE"/>
+            <column defaultValueComputed="NULL" name="geo_longitude" type="DOUBLE"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-28">
+        <createTable tableName="NORMALIZATION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rules" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-29">
+        <createTable tableName="REPORT">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="bytes" type="LONGBLOB"/>
+            <column name="reportDefinition" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-30">
+        <createTable tableName="REPORT_DEFINITION">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="active" type="BIT(1)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="details" type="LONGTEXT"/>
+            <column name="frequency" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="user" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-31">
+        <createTable tableName="ROLE">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="add_allowed" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="display_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remove_allowed" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-32">
+        <createTable tableName="SNMP_SYMBOL">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="access" type="VARCHAR(32)"/>
+            <column name="augments" type="VARCHAR(255)"/>
+            <column name="comment" type="VARCHAR(64)"/>
+            <column name="contactInfo" type="VARCHAR(512)"/>
+            <column name="defaultValue" type="VARCHAR(1024)"/>
+            <column name="description" type="VARCHAR(4096)"/>
+            <column name="displayHint" type="VARCHAR(32)"/>
+            <column name="enterprise" type="VARCHAR(255)"/>
+            <column name="indexList" type="LONGTEXT"/>
+            <column name="lastUpdated" type="VARCHAR(32)"/>
+            <column name="mibName" type="VARCHAR(100)"/>
+            <column name="modules" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notifications" type="LONGTEXT"/>
+            <column name="objects" type="LONGTEXT"/>
+            <column name="oid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organization" type="VARCHAR(255)"/>
+            <column name="reference" type="VARCHAR(512)"/>
+            <column name="revisions" type="LONGTEXT"/>
+            <column name="status" type="VARCHAR(32)"/>
+            <column name="syntax" type="VARCHAR(32)"/>
+            <column name="type" type="VARCHAR(64)"/>
+            <column name="units" type="VARCHAR(255)"/>
+            <column name="value" type="VARCHAR(64)"/>
+            <column name="variables" type="LONGTEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-33">
+        <createTable tableName="SYSTEM_PREFERENCE">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="keyId" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="LONGTEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-34">
+        <createTable tableName="USER">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column defaultValueComputed="NULL" name="password_hash" type="TINYBLOB"/>
+            <column defaultValueComputed="NULL" name="password_salt" type="TINYBLOB"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-35">
+        <createTable tableName="USER_PREFERENCE">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="keyId" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="LONGTEXT"/>
+            <column name="user" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-36">
+        <createTable tableName="USER_ROLE">
+            <column name="UserRecord_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roles_sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-37">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-38">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ALERT_HISTORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-39">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-40">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-41">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_DEVICE_BACNET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-42">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_DEVICE_ELEMENT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-43">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-44">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_GATEWAY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-45">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_GATEWAY_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-46">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_LOGICAL_GROUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-47">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ASSET_NETWORK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-48">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="BACKGROUND_ACTIVITY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-49">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="BACNET_VENDOR"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-50">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="COMMON_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-51">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_CERTIFICATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-52">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_CLASSIFICATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-53">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_IMAGE_LINK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-54">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-55">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_MANUAL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-56">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_MANUFACTURER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-57">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_PROTOCOL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-58">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="DEVICE_RECALL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-59">
+        <addPrimaryKey columnNames="DeviceProtocolRecord_sys_id, properties_KEY" constraintName="PRIMARY_v1" tableName="DeviceProtocolRecord_properties"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-60">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="LOCATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-61">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="NORMALIZATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-62">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-63">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="REPORT_DEFINITION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-64">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="ROLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-65">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="SNMP_SYMBOL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-66">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="SYSTEM_PREFERENCE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-67">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="USER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-68">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v1" tableName="USER_PREFERENCE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-69">
+        <addUniqueConstraint columnNames="oid" constraintName="UK_bvtwb5tqenmshyjclvglmn97g" tableName="SNMP_SYMBOL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-70">
+        <addUniqueConstraint columnNames="name" constraintName="UK_fpfqgk4iamsjdmiu229j6vjjt" tableName="ROLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-71">
+        <addUniqueConstraint columnNames="name" constraintName="UK_kutmydk5qns4cw48g4mywd8mi" tableName="DEVICE_MANUFACTURER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-72">
+        <createIndex indexName="ALERT_HISTORY__OCCURRED" tableName="ALERT_HISTORY">
+            <column name="sys_created_on"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-73">
+        <createIndex indexName="ALERT__FK" tableName="ALERT_HISTORY">
+            <column name="alert"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-74">
+        <createIndex indexName="ALERT__OCCURRED" tableName="ALERT">
+            <column name="date_occurred"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-75">
+        <createIndex indexName="ALERT__TYPE" tableName="ALERT">
+            <column name="type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-76">
+        <createIndex indexName="BACKGROUND_ACTIVITY__NEXTACTIVATION" tableName="BACKGROUND_ACTIVITY">
+            <column name="next_activation"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-77">
+        <createIndex indexName="DEVICE_INFO__CATEGORIES" tableName="DEVICE_INFO">
+            <column name="product_category"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-78">
+        <createIndex indexName="DEVICE_INFO__FK" tableName="ASSET_DEVICE">
+            <column name="device_info"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-79">
+        <createIndex indexName="DEVICE__FK" tableName="ALERT">
+            <column name="device"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-80">
+        <createIndex indexName="FK163kdvnlc8sjpcs10h1fd19mg" tableName="ASSET_GATEWAY_ASSET_NETWORK">
+            <column name="GatewayAssetRecord_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-81">
+        <createIndex indexName="FKabdtewid8plh24hfco1lnmtjk" tableName="USER_ROLE">
+            <column name="roles_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-82">
+        <createIndex indexName="FKadbaup47rs6cfsi3y9xxpy0bi" tableName="ASSET_LOGICAL_GROUP_ASSET">
+            <column name="logicalNestedAssets_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-83">
+        <createIndex indexName="FKee614adl241isonlvwwdsyedy" tableName="USER_ROLE">
+            <column name="UserRecord_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-84">
+        <createIndex indexName="FKf08h5hfr952u2p3r4l7yrkuer" tableName="ASSET_GATEWAY_ASSET_NETWORK">
+            <column name="boundNetworks_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-85">
+        <createIndex indexName="FKq5wgrtbwwdi6sy7od9m900wny" tableName="DEVICE_CLASSIFICATION__REASONS">
+            <column name="DeviceClassificationRecord_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-86">
+        <createIndex indexName="FKqaubwu5v535oeo4aheue2iftw" tableName="ASSET_LOGICAL_GROUP_ASSET">
+            <column name="LogicalGroupRecord_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-87">
+        <createIndex indexName="IDX2c5ev967tmjlt3c8k083ol6qa" tableName="COMMON_LOG">
+            <column name="sequence_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-88">
+        <createIndex indexName="IDX4svpqvai0skurr01aicr9338s" tableName="ASSET_DEVICE_ELEMENT_SAMPLE">
+            <column name="owning_element"/>
+            <column name="range_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-89">
+        <createIndex indexName="IDXec2ia5wcg9ocew6bkjc28j0v1" tableName="ASSET_DEVICE_ELEMENT_SAMPLE">
+            <column name="owning_element"/>
+            <column name="range_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-90">
+        <createIndex indexName="IDXhpvd9w6jejbyl7btbw3ywfi6e" tableName="ASSET_DEVICE_ELEMENT">
+            <column name="identifier"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-91">
+        <createIndex indexName="IDXk80yyn5rb0f8bt6ug6qemjjeb" tableName="COMMON_LOG">
+            <column name="sequence_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-92">
+        <createIndex indexName="IDXtrl0nmeav1l0e7774p2wp0pyc" tableName="ASSET_DEVICE_BACNET">
+            <column name="network_id"/>
+            <column name="instance_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-93">
+        <createIndex indexName="LOCATION__FK" tableName="ASSET">
+            <column name="location"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-94">
+        <createIndex indexName="MANUFACTURER__FK" tableName="DEVICE_INFO">
+            <column name="manufacturer"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-95">
+        <createIndex indexName="OWNING_GATEWAY__FK" tableName="ASSET_GATEWAY_LOG">
+            <column name="owning_gateway"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-96">
+        <createIndex indexName="PARENT__FK" tableName="ASSET">
+            <column name="parent"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-97">
+        <createIndex indexName="REPORT_DEFINITION__FK" tableName="REPORT">
+            <column name="reportDefinition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-98">
+        <createIndex indexName="REPORT_USER__FK" tableName="REPORT_DEFINITION">
+            <column name="user"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-99">
+        <createIndex indexName="SUB_ACTIVITY__FK" tableName="BACKGROUND_ACTIVITY">
+            <column name="sub_activity"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-100">
+        <createIndex indexName="USER__FK" tableName="USER_PREFERENCE">
+            <column name="user"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-101">
+        <addForeignKeyConstraint baseColumnNames="alert" baseTableName="ALERT_HISTORY" constraintName="ALERT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-102">
+        <addForeignKeyConstraint baseColumnNames="device_info" baseTableName="ASSET_DEVICE" constraintName="DEVICE_INFO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_INFO"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-103">
+        <addForeignKeyConstraint baseColumnNames="device" baseTableName="ALERT" constraintName="DEVICE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-104">
+        <addForeignKeyConstraint baseColumnNames="GatewayAssetRecord_sys_id" baseTableName="ASSET_GATEWAY_ASSET_NETWORK" constraintName="FK163kdvnlc8sjpcs10h1fd19mg" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_GATEWAY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-105">
+        <addForeignKeyConstraint baseColumnNames="DeviceProtocolRecord_sys_id" baseTableName="DeviceProtocolRecord_properties" constraintName="FK5yb4aj5xdag7jv50gq7iwofln" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_PROTOCOL"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-106">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_DEVICE" constraintName="FK637gx151983bt0nj45hwmqe9a" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-107">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_DEVICE_BACNET" constraintName="FK71cl3nqy5wnyfleewxo2pqbtx" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-108">
+        <addForeignKeyConstraint baseColumnNames="roles_sys_id" baseTableName="USER_ROLE" constraintName="FKabdtewid8plh24hfco1lnmtjk" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ROLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-109">
+        <addForeignKeyConstraint baseColumnNames="logicalNestedAssets_sys_id" baseTableName="ASSET_LOGICAL_GROUP_ASSET" constraintName="FKadbaup47rs6cfsi3y9xxpy0bi" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-110">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_GATEWAY" constraintName="FKblpofotsadvv2xj6jasfkv5hl" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-111">
+        <addForeignKeyConstraint baseColumnNames="UserRecord_sys_id" baseTableName="USER_ROLE" constraintName="FKee614adl241isonlvwwdsyedy" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="USER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-112">
+        <addForeignKeyConstraint baseColumnNames="boundNetworks_sys_id" baseTableName="ASSET_GATEWAY_ASSET_NETWORK" constraintName="FKf08h5hfr952u2p3r4l7yrkuer" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_NETWORK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-113">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_LOGICAL_GROUP" constraintName="FKlmn66rrfp76p6wtidv49g1jc3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-114">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_DEVICE_ELEMENT" constraintName="FKlyekv0buweqv61k2gry21b7cj" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-115">
+        <addForeignKeyConstraint baseColumnNames="DeviceClassificationRecord_sys_id" baseTableName="DEVICE_CLASSIFICATION__REASONS" constraintName="FKq5wgrtbwwdi6sy7od9m900wny" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_CLASSIFICATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-116">
+        <addForeignKeyConstraint baseColumnNames="LogicalGroupRecord_sys_id" baseTableName="ASSET_LOGICAL_GROUP_ASSET" constraintName="FKqaubwu5v535oeo4aheue2iftw" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_LOGICAL_GROUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-117">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_GATEWAY_LOG" constraintName="FKr4x0x69d641uhf5yg3gy4l9ge" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="COMMON_LOG"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-118">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_NETWORK" constraintName="FKt0ux3kljkmud8qlbee2oebl48" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-119">
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="ASSET" constraintName="LOCATION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="LOCATION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-120">
+        <addForeignKeyConstraint baseColumnNames="manufacturer" baseTableName="DEVICE_INFO" constraintName="MANUFACTURER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="DEVICE_MANUFACTURER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-121">
+        <addForeignKeyConstraint baseColumnNames="owning_element" baseTableName="ASSET_DEVICE_ELEMENT_SAMPLE" constraintName="OWNING_ELEMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_DEVICE_ELEMENT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-122">
+        <addForeignKeyConstraint baseColumnNames="owning_gateway" baseTableName="ASSET_GATEWAY_LOG" constraintName="OWNING_GATEWAY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_GATEWAY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-123">
+        <addForeignKeyConstraint baseColumnNames="parent" baseTableName="ASSET" constraintName="PARENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-124">
+        <addForeignKeyConstraint baseColumnNames="reportDefinition" baseTableName="REPORT" constraintName="REPORT_DEFINITION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="REPORT_DEFINITION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-125">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="REPORT_DEFINITION" constraintName="REPORT_USER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="USER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-126">
+        <addForeignKeyConstraint baseColumnNames="sub_activity" baseTableName="BACKGROUND_ACTIVITY" constraintName="SUB_ACTIVITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="BACKGROUND_ACTIVITY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-127">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="USER_PREFERENCE" constraintName="USER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="USER"/>
+    </changeSet>
+</databaseChangeLog>

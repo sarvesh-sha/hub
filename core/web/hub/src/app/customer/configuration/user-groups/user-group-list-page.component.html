@@ -1,0 +1,21 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="New User Group..." (click)="new()"></o3-tab-action>
+        <o3-tab-action label="Import..." (click)="import()"></o3-tab-action>
+        <o3-tab-action label="Export..." (click)="export()"></o3-tab-action>
+
+        <o3-tab label="User Groups">
+
+            <o3-datatable [table]="table">
+                <o3-datatable-column id="name" prop="ext.model.name" name="Name"></o3-datatable-column>
+                <o3-datatable-column id="description" prop="ext.model.description" name="Description"></o3-datatable-column>
+                <o3-datatable-column id="role" prop="rolesText" name="Role"></o3-datatable-column>
+                <o3-datatable-column id="createdOn" prop="ext.model.createdOn" name="Created On" format="DATE" [enabled]="false"></o3-datatable-column>
+                <o3-datatable-column id="updatedOn" prop="ext.model.updatedOn" name="Updated On" format="DATE" [enabled]="false"></o3-datatable-column>
+            </o3-datatable>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

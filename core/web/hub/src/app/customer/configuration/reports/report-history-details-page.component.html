@@ -1,0 +1,57 @@
+<section class="bs page-content">
+    <form #reportForm="ngForm" novalidate>
+        <mat-card class="page-card">
+            <mat-card-title>
+                Report History Details
+
+                <mat-menu #listMenu="matMenu">
+                    <button mat-menu-item (click)="debug()">Bug Report</button>
+                    <button mat-menu-item type="button" (click)="remove()">Delete</button>
+                </mat-menu>
+                <button mat-icon-button [matMenuTriggerFor]="listMenu" type="button" style="position: absolute; right: 0; top: 0">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </mat-card-title>
+            <mat-card-content *ngIf="(reportDefinition && reportDefinition.model && report && report.model)">
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Title" [value]="reportDefinition.model.title" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Type" [value]="report.model.reason" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Action" [value]="report.model.status" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Date" value="{{report.model.createdOn|o3ShortDate}} {{report.model.createdOn|o3ShortTime}}" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-9">
+                        <mat-form-field *ngIf="isFinished">
+                            <input matInput type="text" placeholder="Url" [value]="reportUrl" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button type="button" (click)="view()" *ngIf="isFinished">View Report</button>
+                <button mat-raised-button type="button" (click)="exit()">Close</button>
+
+                <div class="pull-right hidden-xs-down">
+                    <button mat-icon-button type="button" (click)="remove()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+</section>

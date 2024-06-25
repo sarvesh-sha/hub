@@ -1,0 +1,39 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+  
+#  # Logger-specific levels.
+#  loggers:
+#
+## Uncomment to see the queries that Hibernate sends to the database.
+#    "org.hibernate.SQL": DEBUG
+## Uncomment to see the parameters as well.
+#    "org.hibernate.type": TRACE
+#
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 9998
+  adminConnectors:
+    - type: http
+      port: 9999
+  requestLog:
+    type: optio3
+
+##########################################
+
+scratchDirectory: ${env.HOME}/optio3.test/provisioner.tmp

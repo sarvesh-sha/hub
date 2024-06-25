@@ -1,0 +1,26 @@
+p {
+    padding-left: 8px;
+}
+
+.o3-time-series-graphs-step--binding-container {
+    margin-bottom: 12px;
+
+    > .o3-time-series-graphs-step--binding-label {
+        padding-left: 8px;
+        font-size: 16px;
+    }
+
+    > .o3-time-series-graphs-step--binding-config > mat-form-field, mat-slide-toggle {
+        display: inline-block;
+        width: 50%;
+        padding: 0px 8px;
+    }
+
+    > .o3-time-series-graphs-step--binding-config > mat-slide-toggle {
+        display: block;
+    }
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}

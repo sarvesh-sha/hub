@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.optio3</groupId>
+    <artifactId>optio3-core-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>optio3-dropwizard-shell-db</artifactId>
+  <name>Customized Shell for DropWizard With Database</name>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-dropwizard-shell-swagger</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+	  <groupId>io.dropwizard</groupId>
+	  <artifactId>dropwizard-hibernate</artifactId>
+    </dependency>
+
+    <dependency>
+	  <groupId>io.dropwizard</groupId>
+	  <artifactId>dropwizard-migrations</artifactId>
+    </dependency>
+	  
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-search-orm</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-cbor</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty.http2</groupId>
+      <artifactId>http2-server</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-alpn-java-server</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+	<profile>
+	  <id>metamodel-optio3-dropwizard-shell-db</id>
+
+	  <dependencies>
+		<dependency>
+		  <groupId>org.hibernate</groupId>
+		  <artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
+	  </dependencies>
+
+	</profile>
+  </profiles>
+  
+  <build>
+
+	<plugins>
+
+	  <plugin>
+		<groupId>org.hibernate.orm.tooling</groupId>
+        <artifactId>hibernate-enhance-maven-plugin</artifactId>
+        <executions>
+          <execution>
+			<phase>compile</phase>
+            <goals>
+              <goal>enhance</goal>
+            </goals>
+		  </execution>
+        </executions>
+	  </plugin>
+	  
+	</plugins>
+	
+  </build>
+  
+</project>

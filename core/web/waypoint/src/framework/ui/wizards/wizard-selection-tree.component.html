@@ -1,0 +1,12 @@
+<tree-root #treeView [nodes]="options" [options]="$any(treeOptions)" class="o3-wizard-tree">
+    <ng-template #treeNodeTemplate let-node="node" let-index="index">
+        <div>
+            <div class="tree-label">
+                <span optio3TestId="treeNodeLabel" matTooltip="{{node.data.label}}" matTooltipShowDelay="500">{{ node.data.label }}</span>
+            </div>
+            <div class="tree-checkbox">
+                <mat-checkbox [(ngModel)]="node.data.checked" (ngModelChange)="check(node, $event)"></mat-checkbox>
+            </div>
+        </div>
+    </ng-template>
+</tree-root>

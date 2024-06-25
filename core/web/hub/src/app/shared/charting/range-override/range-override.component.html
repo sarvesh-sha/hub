@@ -1,0 +1,15 @@
+<div class="range-controls" [ngClass]="classes()">
+    <div class="toggle">
+        <mat-slide-toggle [(ngModel)]="model.active" (ngModelChange)="activeToggled()" [disabled]="disabled">{{toggleLabel}}</mat-slide-toggle>
+    </div>
+    <div class="inputs" *ngIf="!hide || model.active">
+        <mat-form-field class="min" floatLabel="always">
+            <input matInput type="number" placeholder="Min" [disabled]="disabled || !model.active" autocomplete="off"
+                   [ngModel]="model.min" (ngModelChange)="minChanged($event)" (blur)="emitIfChanged()">
+        </mat-form-field>
+        <mat-form-field class="max" floatLabel="always">
+            <input matInput type="number" placeholder="Max" [disabled]="disabled || !model.active" autocomplete="off"
+                   [ngModel]="model.max" (ngModelChange)="maxChanged($event)" (blur)="emitIfChanged()">
+        </mat-form-field>
+    </div>
+</div>

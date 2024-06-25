@@ -1,0 +1,10 @@
+<div class="o3-progress--container" [ngStyle]="sizeStyles()">
+    <div class="o3-progress--background" [style.border-width.px]="progressBarWidth"></div>
+    <div class="o3-progress--ring" [style.background-image]="background"></div>
+    <div class="o3-progress--content">
+        <div class="o3-progress--image" [ngStyle]="imageStyles()"></div>
+        <div class="o3-progress--text" [style.font-size.px]="fontSize">
+            {{formattedPercent}}
+        </div>
+    </div>
+</div>

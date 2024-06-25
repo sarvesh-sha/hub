@@ -1,0 +1,405 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Manage the subscriber tags for your company.</p><p><em>Tags</em> provide a way to identify and search for subscribers. For example, you might want to create tags that identify subscribers by project, network or location. <p><strong>Note</strong>&#58; If you want to restrict access to a group of subscribers, use a <em>Subscriber group</em> rather than a tag.</p>\n    <p>You can use these endpoints to&#58;</p>\n    <ul>\n      <li>Retrieve a list of all the tags associated with your company</li>\n      <li>Retrieve a list of all the tags associated with a subscriber</li>\n      <li>Retrieve a list of all the subscribers associated with a tag</li>\n      <li>Add a tag to a subscriber</li>\n      <li>Remove a tag from a subscriber</li>\n    </ul>\n    <p><strong>Note&#58;</strong> Some endpoints require you to pass the subscriber <em>physicalId</em> parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul>",
+    "title": "Tags",
+    "version": "0.1.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/subscribers/{physicalId}": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Tag",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Tag"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success - the tag has been added to the specified subscriber."
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "tag-list"
+        ],
+        "description": "<p>The following requirements apply to this endpoint&#58;</p><ul><li>You must provide the subscriber's <em>physicalId</em> as a parameter in this request. This value varies depending on the subscriber type&#58;<ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul></li><li>You must provide the tag name you want to assign in the <em>tagName</em> field of the request body.</li><li>To use this endpoint, your user account must have the <strong>View a Device </strong>and <strong>Update the Details of a Device</strong> permissions enabled.",
+        "operationId": "TagListController.addTagToSubscriber",
+        "summary": "Adds a tag to a subscriber."
+      }
+    },
+    "/subscribers/{physicalId}/tags": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Offsets the returned results to begin at particular record count. <p>For example, setting this to 10 causes the query to skip the first ten records in the data set.</p>",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "default": 25,
+            "description": "Specifies the upper limit of the number of results to return. This filter has an upper limit of 100.<p>For example, setting this to 10 limits the query to returning a maximum of ten records.</p>If no limit is set, the query will return a maximum of 25 records.</p>",
+            "in": "query",
+            "maximum": 100,
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of the tags associated with the specified subscriber.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/Tag"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "tag-list"
+        ],
+        "description": "<p>You must provide the subscriber's <em>physicalId</em> as a parameter in this request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View a Device</strong> permission enabled.</p>",
+        "operationId": "TagListController.getAllTagsFromSubscriber",
+        "summary": "Returns a list of the tags associated with the specified subscriber."
+      }
+    },
+    "/tags": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "default": 0,
+            "description": "<p>Offsets the returned results to begin at a particular record count.</p><p>For example, setting this to 10 causes the query to skip the first ten records in the data set.</p>",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "default": 25,
+            "description": "Specifies the upper limit of the number of results to return. This filter has an upper limit of 100.<p>For example, setting this to 10 limits the query to returning a maximum of ten records.</p>If no limit is set, the query will return a maximum of 25 records.</p>",
+            "in": "query",
+            "maximum": 100,
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of all the tags associated with your company.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/TagWithCount"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "tag-list"
+        ],
+        "description": "<p>Returns a list of your company tags and the total number of subscribers identified by each tag.</p><p><br>To use this endpoint, your user account must have the <strong>View a Device</strong> permission enabled.</p>",
+        "operationId": "TagListController.getAllTags",
+        "summary": "Returns a list of all the tags associated with your company."
+      }
+    },
+    "/{tagName}/subscribers": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The tag name.",
+            "in": "path",
+            "name": "tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Offsets the returned results to begin at particular record count. <p>For example, setting this to 10 causes the query to skip the first ten records in the data set.</p>",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "default": 25,
+            "description": "Specifies the upper limit of the number of results to return. This filter has an upper limit of 100.<p>For example, setting this to 10 limits the query to returning a maximum of ten records.</p>If no limit is set, the query will return a maximum of 25 records.</p>",
+            "in": "query",
+            "maximum": 100,
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of the subscribers associated with the specified tag.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/Subscriber"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "tag-list"
+        ],
+        "description": "<p>You must provide the <em>tagName</em> as a parameter in this request.</p><p><br>To use this endpoint, your user account must have the <strong>View a Device</strong> permission enabled.",
+        "operationId": "TagListController.getAllSubscribersFromTag",
+        "summary": "Returns a list of the subscribers associated with the specified tag."
+      }
+    },
+    "/{tagName}/subscribers/{physicalId}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The tag name.",
+            "in": "path",
+            "name": "tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success - the specified tag has been deleted."
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "tag-list"
+        ],
+        "description": "<p>You must provide the <em>tagName</em> and the subscriber's <em>physicalId</em> as parameters in this request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>View a Device</strong> and the <strong>Update the Details of a Device</strong> permissions enabled.</p>",
+        "operationId": "TagListController.removeTagFromSubscriber",
+        "summary": "Removes a tag from a subscriber."
+      }
+    }
+  },
+  "definitions": {
+    "Subscriber": {
+      "properties": {
+        "physicalId": {
+          "description": "<p>The subscriber's <em>physicalId</em>.</p><p>This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - the ICCID</li><li><em>Non-IP</em> - the Device EUI</li><li><em>Satellite</em> - the IMEI</li></ul>",
+          "example": "894000000000001",
+          "maxLength": 25,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "physicalId"
+      ],
+      "type": "object"
+    },
+    "Tag": {
+      "properties": {
+        "tagName": {
+          "description": "The tag name.",
+          "example": "Example Tag",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "tagName"
+      ],
+      "type": "object"
+    },
+    "TagWithCount": {
+      "properties": {
+        "numberOfSubscribers": {
+          "description": "The number of subscribers associated with the specified tag.",
+          "example": 10,
+          "type": "integer"
+        },
+        "tagName": {
+          "description": "The tag name.",
+          "example": "Example Tag",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tagName",
+        "numberOfSubscribers"
+      ],
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}

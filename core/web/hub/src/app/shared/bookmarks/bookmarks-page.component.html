@@ -1,0 +1,47 @@
+<section class="bs page-content">
+    <div class="container" *ngIf="loading">
+        <div class="row">
+            <div class="col text-center mt-4 mb-4">
+                <i class="fa fa-refresh fa-spin fa-2x o3-configure"></i>
+            </div>
+        </div>
+    </div>
+
+    <o3-tab-group *ngIf="!loading">
+        <o3-tab-action label="Import Bookmarks" (click)="importBookmarks()"></o3-tab-action>
+        <o3-tab-action label="Export All Bookmarks" (click)="exportBookmarks()"></o3-tab-action>
+
+        <o3-tab label="All Bookmarks">
+            <div *ngIf="!bookmarkGroups.hasAnyBookmarks" class="container">
+                <div class="row">
+                    <div class="col text-center mt-4 mb-4">
+                        <p>There are no bookmarks to show.</p>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="bookmarkGroups.hasAnyBookmarks">
+                <ng-container *ngFor="let bookmarkGroup of bookmarkGroups.groups; let i = index">
+                    <ng-container *ngIf="bookmarkGroup.hasBookmarks">
+                        <mat-expansion-panel [expanded]="true" class="title-as-header">
+                            <mat-expansion-panel-header class="display-expanded">
+                                <mat-panel-title>
+                                    <i class="o3 o3-lg" [ngClass]="getBookmarkTypeClass(bookmarkGroup.bookmarks[0].bookmark.type)"></i>
+                                    {{bookmarkGroup.name}} Bookmarks ({{bookmarkGroup.numBookmarks}})
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <o3-collapsible-filter-button [(model)]="filterText[i]" [disableRipple]="true"
+                                                                  (keydown)="$event.stopPropagation()" (click)="$event.stopPropagation()"></o3-collapsible-filter-button>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+
+                            <div class="bookmark-table">
+                                <o3-bookmark-row-set *ngFor="let bookmarkSet of bookmarkGroup.bookmarks" [host]="this"
+                                                     [bookmarkSet]="bookmarkSet" [filterText]="filterText[i]"></o3-bookmark-row-set>
+                            </div>
+                        </mat-expansion-panel>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </o3-tab>
+    </o3-tab-group>
+</section>

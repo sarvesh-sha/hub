@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="BACKUP_TRIGGER" tableName="CUSTOMER_SERVICE_BACKUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="CUSTOMER_SERVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="RELEASE_STATUS" tableName="REGISTRY_TAGGED_IMAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_PROBER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_TASK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_TASK__MOUNTS" constraintName="FK712L49VQKLRY4W3K0GD7VBP1Q"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_TASK__LABELS" constraintName="FK8UOH5KC6DQLKQV9RGSC7N26L8"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <dropForeignKeyConstraint baseTableName="REGISTRY_IMAGE__LABELS" constraintName="FKCQ093OP02OVIDG6HHJDBP3MRF"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <dropForeignKeyConstraint baseTableName="CUSTOMER_SERVICE_BACKUP__PROPERTIES" constraintName="FKFUTQ7W4P536NH000IVS0WEVIX"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <dropTable tableName="CUSTOMER_SERVICE_BACKUP__PROPERTIES"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <dropTable tableName="DEPLOYMENT_TASK__LABELS"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <dropTable tableName="DEPLOYMENT_TASK__MOUNTS"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <dropTable tableName="REGISTRY_IMAGE__LABELS"/>
+    </changeSet>
+</databaseChangeLog>

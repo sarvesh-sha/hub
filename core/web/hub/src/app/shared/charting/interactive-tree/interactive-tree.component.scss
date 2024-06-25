@@ -1,0 +1,172 @@
+.tree-horizontal {
+    display: flex;
+    position: relative;
+    height: 100%;
+
+    .tree-level {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid #eeeeee;
+
+        &:first-child {
+            border-left: none;
+        }
+
+        .tree-header {
+            display: flex;
+            flex: 0 0 40px;
+            border-bottom: 1px solid #eeeeee;
+            background-color: #f8f8f8;
+            overflow: hidden;
+            justify-content: flex-start;
+            align-items: center;
+            font-weight: bolder;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .tree-node {
+            position: relative;
+            display: flex;
+            border-bottom: 1px solid #eeeeee;
+            overflow: visible;
+            flex-direction: column;
+            font-size: 12px;
+
+            .tree-node-switch.hover-only {
+                display: none;
+            }
+
+            &:hover {
+                .tree-node-switch.hover-only {
+                    display: flex;
+                }
+            }
+
+            .tree-node-wrapper {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+
+                &::before {
+                    display: flex;
+                    content: " ";
+                    flex: 0 1 5px;
+                }
+
+                &::after {
+                    display: flex;
+                    content: " ";
+                    flex: 1 1 auto;
+                }
+
+                .tree-node-label {
+                    height: 16px;
+                    max-height: 16px;
+                    min-height: 16px;
+                }
+
+                .tree-node-description {
+                    height: 14px;
+                    max-height: 14px;
+                    min-height: 14px;
+                    color: #aeaeae;
+                    font-size: 75%;
+                }
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .tree-node-filler {
+            background: #eeeeee;
+            border: none;
+            height: 100%;
+        }
+
+        .tree-node-omitted {
+            border: none;
+            flex: 0 0 0px;
+            display: none;
+        }
+
+        .tree-node-hidden {
+            border: none;
+            flex: 0 0 0px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .tree-node-collapsed {
+            .tree-node-wrapper {
+                &::before, ::after {
+                    display: none;
+                }
+            }
+        }
+
+        .tree-node-switch {
+            display: flex;
+            position: absolute;
+            top: calc(50% - 6px);
+            left: -6px;
+            color: #dddddd;
+            background: #ffffff;
+            border: 1px solid #eeeeee;
+            border-radius: 2px;
+            width: 11px;
+            height: 11px;
+            font-size: 11px;
+            line-height: 11px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    .split-container {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 100%;
+        align-items: center;
+        padding: 0 10px;
+
+        .split-content {
+            flex: 1 1 auto;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &.hidden {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .split-action {
+            flex: 0 0 26px;
+            max-width: 26px;
+        }
+    }
+
+    button.icon-button-fix.mat-icon-button {
+        margin-top: 0px;
+    }
+}
+
+.tree-header-preview {
+    text-transform: uppercase;
+    padding: 5px 15px;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}

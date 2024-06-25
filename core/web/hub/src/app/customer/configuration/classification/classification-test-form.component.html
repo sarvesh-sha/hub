@@ -1,0 +1,92 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>Control Point</mat-expansion-panel-header>
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <input name="sampleName" matInput placeholder="Control Point Name" [(ngModel)]="sample.details.objectName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleBackupName" matInput placeholder="Control Point Backup Name" [(ngModel)]="sample.details.objectBackupName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleWorkflowOverrideName" matInput placeholder="Control Point Override Name" [(ngModel)]="sample.details.objectWorkflowOverrideName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleBackupStructure" matInput placeholder="Control Point Backup Structure" [(ngModel)]="backupStructure"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleDescription" matInput placeholder="Control Point Description" [(ngModel)]="sample.details.objectDescription"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleLocation" matInput placeholder="Control Point Location" [(ngModel)]="sample.details.objectLocation"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleUnits" matInput placeholder="Control Point Units" [(ngModel)]="sample.details.objectUnits"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-select name="sampleType" placeholder="Control Point Object Type" [(ngModel)]="sample.details.objectType"
+                               [options]="objectTypes" singleClick [multiSelect]="false" (ngModelChange)="updateIdentifier()">
+                    </o3-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleIdentifier" matInput placeholder="Control Point Identifier" [(ngModel)]="sample.details.objectIdentifier"/>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button" mat-raised-button color="primary" [o3-dialog-toggle]="dialog" class="mr-2">Load point by SysId</button>
+            <button type="button" mat-raised-button color="primary" [o3-dialog-toggle]="dialogSearch">Search for point</button>
+            <o3-standard-form-overlay label="Load Point"
+                                      primaryButtonText="Load"
+                                      (submitted)="loadSample()"
+                                      (cancelled)="clearSelection()"
+                                      #dialog>
+                <mat-form-field style="width: 350px;">
+                    <input matInput placeholder="SysId" [(ngModel)]="sysId" required/>
+                </mat-form-field>
+            </o3-standard-form-overlay>
+            <o3-standard-form-overlay label="Search For Point"
+                                      primaryButtonText="Load"
+                                      (submitted)="loadSample()"
+                                      (cancelled)="clearSelection()"
+                                      #dialogSearch>
+                <o3-control-point-selector [selection]="selection" [limit]="1"></o3-control-point-selector>
+            </o3-standard-form-overlay>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>Controller</mat-expansion-panel-header>
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <input name="sampleControllerName" matInput placeholder="Controller Name" [(ngModel)]="sample.details.controllerName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerBackupName" matInput placeholder="Controller Backup Name" [(ngModel)]="sample.details.controllerBackupName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerDescription" matInput placeholder="Controller Description" [(ngModel)]="sample.details.controllerDescription"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerLocation" matInput placeholder="Controller Location" [(ngModel)]="sample.details.controllerLocation"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerIdentifier" matInput placeholder="Controller Identifier" [(ngModel)]="sample.details.controllerIdentifier"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerVendor" matInput placeholder="Controller Vendor" [(ngModel)]="sample.details.controllerVendorName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerModel" matInput placeholder="Controller Model" [(ngModel)]="sample.details.controllerModelName"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerIp" matInput placeholder="Controller IP Address" [(ngModel)]="ipAddress"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input name="sampleControllerPort" matInput type="number" placeholder="Controller Port" [(ngModel)]="port"/>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

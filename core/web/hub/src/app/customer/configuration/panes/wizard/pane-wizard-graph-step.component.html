@@ -1,0 +1,6 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data" style="height: 100%">
+        <o3-asset-graph-step [(graph)]="data.pane.model.graph" (graphChange)="graphChanged()"
+                             [host]="graphHost" [graphId]="graphId"></o3-asset-graph-step>
+    </div>
+</ng-template>

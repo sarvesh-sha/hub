@@ -1,0 +1,104 @@
+$muted-color: #aeaeae;
+
+:host {
+    display: block;
+    overflow: hidden;
+}
+
+div.o3-color-builder--frame {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    min-width: 321px;
+
+    > div {
+        height: 100%;
+
+        &.o3-color-builder--text-inputs {
+            width: 48%;
+            padding-right: 6px;
+
+            > div {
+                &.o3-color-builder--hex-input {
+                    width: 100%;
+                }
+
+                &.o3-color-builder--rgb {
+                    display: flex;
+                    flex-wrap: nowrap;
+
+                    > mat-form-field {
+                        min-width: 0px;
+                        padding: 0px 6px;
+
+                        &:first-child {
+                            padding-left: 0px;
+                        }
+
+                        &:last-child {
+                            padding-right: 0px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.o3-color-builder--color-representation {
+            width: 52%;
+            padding-left: 6px;
+            position: relative;
+
+            > * {
+                width: 100%;
+            }
+
+            > div.input-wrapper {
+                padding-bottom: 0px;
+
+                > div.input-label {
+                    padding: 2px 0px 0px;
+                }
+
+                > div.o3-color-builder--slider-container {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    margin-left: -6px;
+                    margin-bottom: -10px;
+                    padding-right: 12px;
+
+                    > mat-slider {
+                        flex: 1 1 0px;
+                        padding-left: 0px;
+                        margin: -10.5px 0px 0px -2px;
+                        min-width: 124px;
+                    }
+
+                    > mat-form-field {
+                        margin-top: -33px;
+                        width: 48px;
+                        padding-left: 5px;
+                    }
+                }
+            }
+
+            .o3-color-builder--default-trigger {
+                position: absolute;
+                z-index: -1;
+                bottom: 40%;
+                right: 50%;
+                width: 1px;
+                height: 1px;
+            }
+
+            > button.o3-color-builder--representation {
+                height: 106px;
+                border: 0.5px solid $muted-color;
+
+                &.o3-color-builder--editable-opacity {
+                    height: 59px;
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,12 @@
+<o3-standard-form label="Select Time Range" [primaryButtonText]="customSubmitText || 'Run Report'" [primaryButtonDisabled]="!timeRange" [showSecondary]="false"
+                  (submitted)="dialogRef.close(this.values)">
+    <o3-date-picker label="Time" [(model)]="rangeEnd" (modelChange)="updateRange()"></o3-date-picker>
+    <mat-form-field>
+        <mat-select placeholder="Time Range" name="timeRange" [(ngModel)]="timeRange" (ngModelChange)="updateRange()">
+            <mat-option *ngFor="let option of timeRangeOptions" [value]="option.id">{{option.label}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Resolved Range" [ngModel]="resolvedRangeText" readonly />
+    </mat-form-field>
+</o3-standard-form>

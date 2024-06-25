@@ -1,0 +1,78 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <form class="row mb-2" name="filterForm">
+            <div class="col-sm-8">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Filter List..." name="filterInput" [(ngModel)]="filterText">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field>
+                    <o3-select placeholder="Status"
+                               defaultValueDescription="Select Status"
+                               [multiSelect]="false"
+                               [singleClick]="true"
+                               [options]="states"
+                               [(ngModel)]="filterStatus"
+                               [ngModelOptions]="{standalone: true}">
+                    </o3-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</div>
+
+<o3-datatable #hostsList [table]="table">
+    <o3-datatable-column id="hostName" sortId="!hostName" prop="ext.model.hostName" name="Name" [minWidth]="350"></o3-datatable-column>
+    <o3-datatable-column id="hostId" sortId="hostId" prop="ext.model.hostId" name="Id"></o3-datatable-column>
+    <o3-datatable-column id="remoteName" prop="desc.remoteName" name="Remote Name"></o3-datatable-column>
+
+    <o3-datatable-column id="lastHeartbeat" sortId="lastHeartbeat" prop="ext.model.lastHeartbeat" name="Updated" [width]="100" [minWidth]="100" [grow]="0" format="DATE"></o3-datatable-column>
+
+    <o3-datatable-column id="instanceType" sortId="instanceType" prop="desc.instanceType" name="Instance Type" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="role" sortId="roleInfo" prop="desc.rolesSummary" name="Role"></o3-datatable-column>
+
+    <o3-datatable-column id="tasks" sortId="tasks" name="Tasks" format="TEMPLATE" [width]="60" [minWidth]="60" [grow]="0">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.activeTasksSummary}}" matTooltipShowDelay="500">{{row.activeTasks}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="delayedOps" sortId="numDelayedOps" name="Delayed Ops" format="TEMPLATE" [width]="110" [minWidth]="110" [grow]="0">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.desc.delayedOps.length}}" matTooltipShowDelay="500">{{row.desc.delayedOps.length}}</span>
+        </ng-container>
+        <ng-template o3-datatable-details-template let-outerRow="row">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="selectable">
+                        <li *ngFor="let i of outerRow.getDelayedOps() | async">{{i}}</li>
+                    </ul>
+                </div>
+            </div>
+        </ng-template>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="cellProvider" sortId="cellProvider" prop="cellProvider" name="Cell Provider" [enabled]="false"></o3-datatable-column>
+
+    <o3-datatable-column id="voltage" sortId="batteryVoltage" prop="batteryVoltage" name="Input Voltage" [width]="110" [minWidth]="110" [grow]="0"></o3-datatable-column>
+    <o3-datatable-column id="temperature" prop="cpuTemperature" name="CPU Temp" [width]="110" [minWidth]="110" [grow]="0"></o3-datatable-column>
+
+    <o3-datatable-column id="diskSize" prop="diskSize" name="Disk Size" format="NUMBER"></o3-datatable-column>
+    <o3-datatable-column id="diskFree"  prop="diskFree" name="Disk Free" format="PERCENT" [width]="90" [minWidth]="90" [grow]="0"></o3-datatable-column>
+
+    <o3-datatable-column id="agentBuiltOn" sortId="buildTime" name="Agent Built On" format="TEMPLATE" [width]="120" [minWidth]="120" [grow]="0">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span>{{row.desc.agentBuildTime | o3ShortDate}}</span>
+            <small>{{row.desc.agentBuildTime | o3ShortTime}}</small>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="status" name="Status" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.getComplexStatus() | async}}" matTooltipShowDelay="500">{{row.getComplexStatus() | async}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="ext.model.createdOn" name="Created" format="DATE" [width]="90" [maxWidth]="90" [grow]="0"></o3-datatable-column>
+</o3-datatable>

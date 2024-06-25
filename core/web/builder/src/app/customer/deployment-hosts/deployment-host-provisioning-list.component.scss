@@ -1,0 +1,13 @@
+﻿div.expandable-container {
+    display: flex;
+    align-items: center;
+
+    .expandable-cell {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+.expanded {
+    white-space: normal;
+}

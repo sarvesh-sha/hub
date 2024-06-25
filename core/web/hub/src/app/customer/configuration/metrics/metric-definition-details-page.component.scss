@@ -1,0 +1,26 @@
+.button-row {
+    button {
+        margin-right: 8px;
+
+        .button-icon {
+            vertical-align: bottom;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+        }
+    }
+}
+
+o3-app-blockly-workspace {
+    button {
+        padding: 0px !important;
+    }
+}
+
+.status {
+    padding-left: 10px;
+    vertical-align: 6px;
+    line-height: 20px;
+    width: 90px;
+    display: inline-block;
+}

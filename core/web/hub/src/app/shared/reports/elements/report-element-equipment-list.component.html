@@ -1,0 +1,25 @@
+<h2>Here is a list of all equipment per your settings</h2>
+
+<table class="table table-striped table-bordered" *ngIf="data?.equipment.length > 0">
+    <thead>
+    <tr>
+        <th style="width: 20%">Name</th>
+        <th style="width: 20%">Equipment Class</th>
+        <th style="width: 20%">Location</th>
+        <th style="width: 20%"># of child equipment</th>
+        <th style="width: 20%"># of control points</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let equipment of data?.equipment">
+        <td><span>{{equipment.extended.model.name || "&lt;blank&gt;"}}</span></td>
+        <td><span>{{equipment.equipmentClass || "&lt;unclassified&gt;"}}</span></td>
+        <td><span>{{equipment.location?.recursiveName}}</span></td>
+        <td><span>{{equipment.numChildEquipment}}</span></td>
+        <td><span>{{equipment.numChildControlPoints}}</span></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<p *ngIf="data?.equipment.length === 0">No equipment found</p>

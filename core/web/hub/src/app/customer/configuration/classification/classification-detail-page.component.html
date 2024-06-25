@@ -1,0 +1,105 @@
+<section class="bs page-content">
+    <o3-tab-group *ngIf="normalization">
+        <o3-tab-action (click)="exportRules()" label="Export"></o3-tab-action>
+        <o3-tab-action (click)="importRules()" label="Import"></o3-tab-action>
+        <o3-tab-action (click)="editLogic()" label="Edit Logic"></o3-tab-action>
+        <o3-tab-action (click)="importOverrides()" label="Import Overrides"></o3-tab-action>
+        <o3-tab-action (click)="exportData()" label="Export Data"></o3-tab-action>
+        <o3-tab-action (click)="compare()" label="Compare"></o3-tab-action>
+        <o3-tab-action (click)="remove()" *ngIf="normalizationPristine && normalization && !normalization.model.active" label="Delete"></o3-tab-action>
+
+        <o3-tab label="Details">
+            <o3-tab-action label="Save" priority="primary" (click)="save()" [disabled]="!normalizationValid || normalizationPristine"></o3-tab-action>
+            <o3-tab-action label="Make Active" priority="secondary" (click)="makeActive()" [disabled]="!(normalizationPristine && normalization && !normalization.model.active)"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="normalizationPristine"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="exit()" *ngIf="!normalizationPristine"></o3-tab-action>
+            <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()"
+                           *ngIf="normalizationPristine && normalization && !normalization.model.active"></o3-tab-action>
+
+            <o3-tab-meta>
+                <div>
+                    <label>Classification Details v{{normalization?.model.version}}</label>
+                </div>
+            </o3-tab-meta>
+
+            <o3-classification-rules-editor [rules]="normalization?.model.rules"></o3-classification-rules-editor>
+        </o3-tab>
+
+        <o3-tab label="Classes">
+            <o3-tab-action label="Save" priority="primary" (click)="save()" [disabled]="!normalizationValid || normalizationPristine"></o3-tab-action>
+            <o3-tab-action label="Make Active" priority="secondary" (click)="makeActive()" [disabled]="!(normalizationPristine && normalization && !normalization.model.active)"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="normalizationPristine"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="exit()" *ngIf="!normalizationPristine"></o3-tab-action>
+            <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()"
+                           *ngIf="normalizationPristine && normalization && !normalization.model.active"></o3-tab-action>
+
+            <o3-classification-rules-class-editor *cdkPortal [rules]="normalization?.model.rules" [pointClassOptions]="pointClassOptions"></o3-classification-rules-class-editor>
+        </o3-tab>
+
+        <o3-tab label="Classification">
+            <ng-container *cdkPortal>
+                <o3-classification-run [data]="normalizationState" #normalizationRun></o3-classification-run>
+                <o3-tab-action label="Apply" priority="secondary" [disabled]="!normalizationState?.changes" (click)="normalizationRun.apply()"></o3-tab-action>
+                <o3-tab-action label="Run" priority="secondary" [disabled]="normalizationState?.processing" (click)="normalizationRun.start()"></o3-tab-action>
+                <o3-tab-action label="Validate" priority="secondary" [disabled]="!normalizationState?.changes" (click)="normalizationRun.validate()"></o3-tab-action>
+                <o3-tab-action label="Export All to Excel" priority="secondary" [disabled]="!normalizationState?.changes" (click)="exportChangesToExcel()"></o3-tab-action>
+                <o3-tab-action label="Export Changes to Excel" priority="secondary" [disabled]="!normalizationState?.changes" (click)="exportChangesToExcel(true)"></o3-tab-action>
+                <o3-tab-action label="Export terms to Excel" priority="secondary" [disabled]="!normalizationState?.changes" (click)="exportTermsToExcel()"></o3-tab-action>
+            </ng-container>
+        </o3-tab>
+
+        <o3-tab label="Equipment">
+            <ng-container *cdkPortal>
+                <div *ngIf="!normalizationState?.equipmentRelationships">Run classification to see equipment</div>
+                <o3-equipment-explorer *ngIf="normalizationState?.equipmentRelationships" [equipmentRelationships]="normalizationState?.equipmentRelationships"
+                                       [equipments]="normalizationState?.equipments"
+                                       [rules]="normalization?.model.rules"
+                                       [host]="this">
+                </o3-equipment-explorer>
+            </ng-container>
+        </o3-tab>
+
+        <o3-tab label="Test">
+            <o3-classification-test [(sample)]="sample"></o3-classification-test>
+        </o3-tab>
+
+        <o3-tab label="Overrides">
+            <o3-classification-overrides [rules]="normalization.model.rules" #overridesComponent></o3-classification-overrides>
+            <o3-tab-action label="Add" (click)="overridesComponent.add()"></o3-tab-action>
+        </o3-tab>
+
+        <o3-tab label="Validation Details">
+            <o3-classification-validation-rules-editor *cdkPortal [rules]="normalization?.model.rules.validation"></o3-classification-validation-rules-editor>
+        </o3-tab>
+
+    </o3-tab-group>
+
+    <o3-overlay [config]="blocklyDialogConfig" #blocklyDialog (closed)="saveLogic()">
+        <form *cdkPortal #normalizationDetailsForm="ngForm" novalidate style="height: 100%;">
+            <div *ngIf="currentDetails" style="display: flex; flex-direction: column; height: 100%;">
+                <o3-app-blockly-workspace #blocklyWorkspace
+                                          [blocks]="blocks"
+                                          [data]="currentDetails.data"
+                                          (updated)="setDirty()">
+                    <button mat-icon-button matTooltip="Test" type="button" style="padding: 0;" (click)="testForm.openOverlay()">
+                        <mat-icon>bug_report</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Export" type="button" style="padding: 0" (click)="exportRules()">
+                        <mat-icon>archive</mat-icon>
+                    </button>
+                </o3-app-blockly-workspace>
+            </div>
+        </form>
+    </o3-overlay>
+
+    <o3-standard-form-overlay label="Test Logic" [overlayConfig]="testFormDialogConfig"
+                              primaryButtonText="Run test" (submitted)="testLogic()" #testForm>
+        <o3-classification-test-form [(sample)]="sample"></o3-classification-test-form>
+    </o3-standard-form-overlay>
+
+    <o3-overlay [config]="testResultsDialogConfig" #testResultsDialog (closed)="resetTestResults()">
+        <ng-container *cdkPortal>
+            <o3-engine-test-results [testResults]="testResults" [logLines]="testLogs" [workspace]="blocklyWorkspace"></o3-engine-test-results>
+        </ng-container>
+    </o3-overlay>
+</section>

@@ -1,0 +1,40 @@
+@mixin user-select($theme) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .o3--is-dragging {
+        cursor: grabbing !important;
+    }
+
+    // cdkDrag uses Document.elementFromPoint with cursor position to deduce information about drag element and drop lists
+    // but certain widgets can have content that gets picked up and interferes with eligible drop lists
+    o3-widget-container.cdk-drag-preview * {
+        pointer-events: none !important;
+    }
+
+    .selectable {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    .mat-card-title,
+    .mat-expansion-panel-header,
+    .status-text {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    .o3-content-protector {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+    }
+}

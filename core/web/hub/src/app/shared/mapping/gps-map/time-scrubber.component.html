@@ -1,0 +1,29 @@
+<div class="o3-time-scrubber--outer" [class.o3-time-scrubber--active]="show" [class.o3-time-scrubber--dragging]="dragging">
+    <button mat-icon-button class="o3-map--control-button" [disableRipple]="true" (click)="show = !show" matTooltipPosition="below"
+            [matTooltip]="show ? 'Hide time controls' : 'Show time controls'">
+        <mat-icon>timelapse</mat-icon>
+    </button>
+    <div #scrubberContainer class="o3-time-scrubber--scrubber">
+        <canvas #canvasElement></canvas>
+        <div class="o3-time-scrubber--handle-container"
+             cdkDrag cdkDragLockAxis="x" [cdkDragFreeDragPosition]="freeDragPositionLeft" [cdkDragConstrainPosition]="constrainFn"
+             (mousedown)="setGripperDragStart(true, $event)" (cdkDragStarted)="dragging = true" (cdkDragMoved)="handleGripperDrag($event)" (cdkDragEnded)="markDragEnded()">
+            <div class="o3-time-scrubber--grabber" [matTooltip]="formattedTimeLeft" matTooltipPosition="below">
+                <div class="o3-time-scrubber--grabber-lines"></div>
+            </div>
+            <div class="o3-time-scrubber--specifier-dash"></div>
+        </div>
+        <div class="o3-time-scrubber--handle-container"
+             cdkDrag cdkDragLockAxis="x" [cdkDragFreeDragPosition]="freeDragPositionRight" [cdkDragConstrainPosition]="constrainFn"
+             (mousedown)="setGripperDragStart(false, $event)" (cdkDragStarted)="dragging = true" (cdkDragMoved)="handleGripperDrag($event)" (cdkDragEnded)="markDragEnded()">
+            <div class="o3-time-scrubber--grabber" [matTooltip]="formattedTimeRight" matTooltipPosition="below">
+                <div class="o3-time-scrubber--grabber-lines"></div>
+            </div>
+            <div class="o3-time-scrubber--specifier-dash"></div>
+        </div>
+        <div class="o3-time-scrubber--range-definer" cdkDrag [cdkDragBoundary]="scrubberContainer"
+             [cdkDragFreeDragPosition]="freeDragPositionCenter" [style.width.px]="rangeWidthPx"
+             (mousedown)="setCenterDragStart()" (cdkDragStarted)="dragging = true" (cdkDragMoved)="handleCenterDrag($event)" (cdkDragEnded)="markDragEnded()">
+        </div>
+    </div>
+</div>

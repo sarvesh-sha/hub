@@ -1,0 +1,35 @@
+.debug {
+    font-size: 11px;
+    line-height: 11px;
+    background-color: #dedbc4;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    padding: 10px;
+
+    &::before {
+        display: block;
+        content: "DEBUG";
+        font-weight: bold;
+        padding: 0px 0px 5px 0px;
+        margin: 0px 0px 5px 0px;
+        border-bottom: 1px solid #CCCCCC;
+    }
+}
+
+.mock-modal {
+    max-width: 500px;
+    padding: 15px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
+
+.context-panes {
+    display: flex;
+    align-items: flex-start;
+
+    .context-pane {
+        margin: 0px 10px;
+    }
+}

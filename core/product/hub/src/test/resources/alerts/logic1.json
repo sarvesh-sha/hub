@@ -1,0 +1,146 @@
+{
+  "definition": {
+    "title": "Logic",
+    "purpose": "Definition",
+    "description": "logic1",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": ",x$[V$;vPpoGjv)u#SGY",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "result",
+                  "type": "Number"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "pL9+.27f5ug,U6WUD0`Q",
+                  "variable": {
+                    "name": "result",
+                    "type": "Number"
+                  },
+                  "value": {
+                    "__type": "EngineLiteralNumber",
+                    "id": "nH~O(HS1O#dyDa0Q;Lhm",
+                    "value": 0
+                  }
+                },
+                {
+                  "__type": "EngineStatementLogicIf",
+                  "id": "g?PsQO;W?{H(JbxLf^.h",
+                  "ifElseBlocks": [
+                    {
+                      "condition": {
+                        "__type": "EngineExpressionBinaryLogicOperation",
+                        "id": "1${-Ak3P9r/[jq1=7:Ke",
+                        "a": {
+                          "__type": "EngineExpressionBinaryLogicCompare",
+                          "id": "}`)aVV3pws*yraka}*W#",
+                          "a": {
+                            "__type": "EngineLiteralNumber",
+                            "id": "COvQ`!jTopXOjLKHDdaR",
+                            "value": 0
+                          },
+                          "b": {
+                            "__type": "EngineLiteralNumber",
+                            "id": "SokpijND}R@il:w)v**w",
+                            "value": 0
+                          },
+                          "operation": "NotEqual"
+                        },
+                        "b": {
+                          "__type": "EngineExpressionBinaryLogicCompare",
+                          "id": "W[,Pj2n_yOe6oZ7BRo[U",
+                          "a": {
+                            "__type": "EngineLiteralNumber",
+                            "id": "KW*nBCNtR}Q6:v7U~mOy",
+                            "value": 0
+                          },
+                          "b": {
+                            "__type": "EngineLiteralNumber",
+                            "id": "Jh2U#lQCL{Ef_vuGB*M8",
+                            "value": -1
+                          },
+                          "operation": "LessThan"
+                        },
+                        "and": false
+                      },
+                      "statements": [
+                        {
+                          "__type": "EngineVariableAssignment",
+                          "id": "M1i;ga;EyLZnRC0-)aHO",
+                          "variable": {
+                            "name": "result",
+                            "type": "Number"
+                          },
+                          "value": {
+                            "__type": "EngineLiteralNumber",
+                            "id": "n}sD7(jMJv|aEm#M)yE{",
+                            "value": 1
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "condition": {
+                        "__type": "EngineOperatorUnaryLogicNot",
+                        "id": "V,GLlU*[W5{_m/%MYZ.#",
+                        "a": {
+                          "__type": "EngineLiteralBoolean",
+                          "id": "4mPp9sSnn!04u?==@9:s",
+                          "value": true
+                        }
+                      },
+                      "statements": [
+                        {
+                          "__type": "EngineVariableAssignment",
+                          "id": "n[eCQ~.m(g`)a?FwwFo4",
+                          "variable": {
+                            "name": "result",
+                            "type": "Number"
+                          },
+                          "value": {
+                            "__type": "EngineLiteralNumber",
+                            "id": "wNg6sn9$=QS-P_X9{NXJ",
+                            "value": 2
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "elseStatements": [
+                    {
+                      "__type": "EngineVariableAssignment",
+                      "id": "=jwq`CZU?mE.^Dza8hA4",
+                      "variable": {
+                        "name": "result",
+                        "type": "Number"
+                      },
+                      "value": {
+                        "__type": "EngineLiteralNumber",
+                        "id": "%*#*fThUci$N-^_{?]u5",
+                        "value": 3
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

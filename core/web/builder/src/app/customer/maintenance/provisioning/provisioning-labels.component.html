@@ -1,0 +1,8 @@
+﻿<section class="bs page-content">
+
+    <div class="row" *ngFor="let label of labels">
+        <div class="col-4" *ngFor="let label2 of label">
+            <img style="width: 100%; margin-bottom: 20px" [src]="label2">
+        </div>
+    </div>
+</section>

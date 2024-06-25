@@ -1,0 +1,22 @@
+<o3-filter-overlay [pristine]="pristine" [resetFilterButtonDisabled]="!hasEditFilters"
+                   (filterApplied)="applyFilterEdits()" (filterCleared)="clearFilterEdits()">
+    <ng-container *ngIf="initialized">
+        <mat-form-field *ngIf="!excludeLocation">
+            <o3-select [o3LocationSelector]="true" name="locations" defaultValueDescription="Select Locations"
+                       [(ngModel)]="editRequest.locationIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="like_manufacturer" placeholder="Manufacturer"  [(ngModel)]="editRequest.likeDeviceManufacturerName" (ngModelChange)="updatePristine()">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="like_product" placeholder="Product"  [(ngModel)]="editRequest.likeDeviceProductName" (ngModelChange)="updatePristine()">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="like_model" placeholder="Model #"  [(ngModel)]="editRequest.likeDeviceModelName" (ngModelChange)="updatePristine()">
+        </mat-form-field>
+    </ng-container>
+</o3-filter-overlay>

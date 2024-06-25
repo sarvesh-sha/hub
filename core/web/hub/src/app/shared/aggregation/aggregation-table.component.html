@@ -1,0 +1,66 @@
+<ng-container *ngIf="tableStructure">
+    <cdk-virtual-scroll-viewport *ngIf="tableStructure.rows?.length" [itemSize]="rowHeight" [style.height.px]="rows.length * rowHeight + 51">
+        <div class="o3-aggregation-table--container" *ngIf="rows.length > 0" [class.o3-aggregation-table--two-labels]="twoLabels">
+            <div class="o3-aggregation-table--row">
+                <div class="o3-aggregation-table--cell" [style.top.px]="virtualScrollTranslationInverse" [style.flex-basis.px]="colFlexBases[0]">
+                    <div>
+                        <div *ngIf="childrenExist" class="o3-aggregation-table--controls clickable" (click)="expandContractAll()">
+                            <mat-icon *ngIf="allContracted">unfold_more</mat-icon>
+                            <mat-icon *ngIf="!allContracted">unfold_less</mat-icon>
+                        </div>
+                        <div class="o3-aggregation-table--header-label" [class.o3-aggregation-table--standalone-header]="!childrenExist">{{firstColumnHeader}}</div>
+                        <o3-sort-arrow #test_sort [initialDirection]="initialDirection" [active]="!sortColumn" (directionChange)="updateSort(null, $event)"></o3-sort-arrow>
+                    </div>
+                </div>
+                <div *ngFor="let col of cols; let colIdx = index" [style.flex-basis.px]="colFlexBases[1 + colIdx]"
+                     class="o3-aggregation-table--cell" [style.top.px]="virtualScrollTranslationInverse"
+                     [matTooltip]="col.headerTooltip" [matTooltipDisabled]="!enableTooltips" matTooltipPosition="above">
+                    <div>{{col.headerLabel}}</div>
+                    <o3-sort-arrow #test_sort firstToggle="desc" [initialDirection]="initialDirection" [active]="sortColumn === col.identifier"
+                                   (directionChange)="updateSort(col.identifier, $event)"></o3-sort-arrow>
+                </div>
+            </div>
+
+            <div *ngFor="let row of rows" class="o3-aggregation-table--row"
+                 [class.o3-aggregation-table--top-of-group]="row.depth === 0" [hidden]="!row.showThisNode">
+                <div class="o3-aggregation-table--cell" [style.flex-basis.px]="colFlexBases[0]">
+                    <div [style.padding-left.px]="labelPaddingLeftPx(row)">
+                        <div class="expand-collapse">
+                            <mat-icon class="clickable" *ngIf="row.children.length" (click)="expandContractRow(row)">
+                                {{row.showChildren ? 'expand_more' : 'chevron_right'}}
+                            </mat-icon>
+                        </div>
+                        <div class="group-name" [matTooltip]="rowHeaderTooltip(row)" [matTooltipDisabled]="!enableTooltips" matTooltipPosition="left">
+                            <div class="o3-aggregation-table--name-1">{{row.primaryLabel}}</div>
+                            <div class="o3-aggregation-table--name-2" *ngIf="row.secondaryLabel">{{row.secondaryLabel}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngFor="let cell of row.cells; let colIdx = index" [style.flex-basis.px]="colFlexBases[1 + colIdx]"
+                     class="o3-aggregation-table--cell" [class.italicize]="cell.italicize" [class.clickable]="cell.significantElement"
+                     [matTooltip]="cell.tooltip" [matTooltipDisabled]="!enableTooltips"
+                     (click)="cellSelected.emit(cell)">
+                    <ng-container *ngIf="row.valid">
+                        <div *ngIf="!barMode" class="value">
+                            <div [style.color]="cell.color">
+                                {{cell.formattedValue}}
+                            </div>
+                        </div>
+                        <div *ngIf="barMode" class="bar-container">
+                            <div class="bar" [style.width]="barWidthCss(cell)" [style.background]="cell.color">
+                                <div class="value">{{cell.formattedValue}}</div>
+                            </div>
+                            <div class="bar-under" [style.width]="barWidthCss(cell)">
+                                <div class="value">{{cell.formattedValue}}</div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </cdk-virtual-scroll-viewport>
+
+    <div class="o3-watermark-caption" *ngIf="!tableStructure.rows?.length && emptyRowsMessage">
+        {{emptyRowsMessage}}
+    </div>
+</ng-container>

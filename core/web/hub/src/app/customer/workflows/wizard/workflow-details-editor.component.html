@@ -1,0 +1,125 @@
+<form #detailsForm="ngForm">
+    <mat-card *ngIf="detailsExtended" style="box-shadow: none;">
+        <mat-card-title>{{detailsExtended.getTitle()}}</mat-card-title>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-sm-6">
+                    <ng-container *ngIf="detailsForNewEquipment">
+                        <mat-form-field>
+                            <input matInput name="newEquipmentName" required placeholder="New Equipment Name" [readonly]="readonly" [(ngModel)]="detailsForNewEquipment.equipmentName">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <o3-select [o3LocationSelector]="true" name="newEquipLocation" enableNavigation [multiSelect]="false"
+                                       [(ngModel)]="detailsForNewEquipment.locationSysId" [readonly]="readonly"></o3-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <o3-select [o3EquipmentClassSelector]="true" name="equipmentClass" placeholder="Equipment Class"
+                                       [(ngModel)]="detailsForNewEquipment.equipmentClassId"
+                                       [readonly]="readonly"></o3-select>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <mat-form-field *ngIf="detailsExtended.getDeviceList() as deviceList">
+                        <input matInput name="primaryDeviceName" [placeholder]="deviceList[0]?.label || 'Device'" readonly (click)="navigateToDevice(deviceList[0]?.id)"
+                               [value]="deviceList[0]?.name">
+                        <button mat-icon-button (click)="navigateToDevice(deviceList[0]?.id)">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsExtended.getPrimaryEquipment() as primaryEquip">
+                        <input matInput name="primaryEquipmentName" [placeholder]="primaryEquip.label || 'Equipment'" readonly (click)="navigateToEquipment(primaryEquip.id)"
+                               [value]="primaryEquip.name || 'Select Equipment'">
+                        <button *ngIf="!readonly" mat-icon-button matSuffix (click)="equipmentOverlay.toggleOverlay()">
+                            <i class="o3 o3-edit"></i>
+                        </button>
+                        <button *ngIf="readonly" mat-icon-button matSuffix (click)="navigateToEquipment(primaryEquip.id)">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsExtended.getSecondaryEquipment() as secondaryEquip">
+                        <input matInput name="secondaryEquipmentName" [placeholder]="secondaryEquip.label || 'Equipment'" readonly (click)="navigateToEquipment(secondaryEquip.id)"
+                               [value]="secondaryEquip.name || 'Select Equipment'">
+                        <button *ngIf="!readonly" mat-icon-button matSuffix (click)="settingSecondaryEquipment = true; equipmentOverlay.toggleOverlay()">
+                            <i class="o3 o3-edit"></i>
+                        </button>
+                        <button *ngIf="readonly" mat-icon-button matSuffix (click)="navigateToEquipment(secondaryEquip.id)">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsExtended.getEquipmentList() as equipmentList">
+                        <input matInput name="equipmentListName" [placeholder]="equipmentList[0]?.label || 'Equipment'" readonly
+                               [value]="equipmentSelectionList.getDisplayText() || 'Select Equipment'">
+                        <button *ngIf="!readonly" mat-icon-button matSuffix (click)="settingEquipmentList = true; equipmentOverlay.toggleOverlay()">
+                            <i class="o3 o3-edit"></i>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsExtended.getControlPointSelection() as points" class="clickable" (click)="controlPointOverlay.toggleOverlay()">
+                        <input matInput name="pointSelection" class="clickable" placeholder="Control Points" readonly [value]="controlPointSelection.getDisplayText()"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForRenameControlPoint">
+                        <input matInput name="renamePointName" required placeholder="New Name" [readonly]="readonly" [(ngModel)]="detailsForRenameControlPoint.controlPointNewName"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForRenameDevice">
+                        <input matInput name="renameDeviceName" required placeholder="New Name" [readonly]="readonly" [(ngModel)]="detailsForRenameDevice.deviceNewName"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForRenameEquipment">
+                        <input matInput name="renameEquipmentName" required placeholder="New Name" [readonly]="readonly" [(ngModel)]="detailsForRenameEquipment.equipmentNewName"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForSetControlPointsClass">
+                        <o3-select [o3PointClassSelector]="true" name="pointClass" required [(ngModel)]="detailsForSetControlPointsClass.pointClassId" [multiSelect]="false"></o3-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForSetEquipmentClass">
+                        <o3-select [o3EquipmentClassSelector]="true" name="equipmentClass" required [multiSelect]="false" [(ngModel)]="detailsForSetEquipmentClass.equipmentClassId"
+                                   [readonly]="readonly"></o3-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForSetDeviceLocation">
+                        <o3-select [o3LocationSelector]="true" name="deviceLocation" enableNavigation [multiSelect]="false"
+                                   [(ngModel)]="detailsForSetDeviceLocation.locationSysId" [readonly]="readonly"></o3-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="detailsForSetEquipmentLocation">
+                        <o3-select [o3LocationSelector]="true" name="equipmentLocation" enableNavigation [multiSelect]="false"
+                                   [(ngModel)]="detailsForSetEquipmentLocation.locationSysId" [readonly]="readonly"></o3-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>
+
+
+<o3-standard-form-overlay label="Control Points"
+                          dialogClass="dialog-xl"
+                          primaryButtonText="Accept"
+                          (submitted)="saveControlPointsSelection()"
+                          (cancelled)="initControlPointsSelection()"
+                          #controlPointOverlay>
+    <o3-control-point-selector *cdkPortal [selection]="controlPointSelection" [flex]="true"></o3-control-point-selector>
+</o3-standard-form-overlay>
+
+<o3-standard-form-overlay label="Equipment"
+                          dialogClass="dialog-xl"
+                          primaryButtonText="Accept"
+                          (submitted)="saveEquipmentSelections()"
+                          (cancelled)="initEquipmentSelection()"
+                          #equipmentOverlay>
+    <ng-container *cdkPortal>
+        <o3-equipment-selector *ngIf="!settingSecondaryEquipment && !settingEquipmentList" [selection]="equipmentSelection" [flex]="true"
+                               [limit]="1"></o3-equipment-selector>
+        <o3-equipment-selector *ngIf="settingSecondaryEquipment" [selection]="equipmentSelection2" [flex]="true"
+                               [limit]="1"></o3-equipment-selector>
+        <o3-equipment-selector *ngIf="settingEquipmentList" [selection]="equipmentSelectionList" [flex]="true"></o3-equipment-selector>
+    </ng-container>
+</o3-standard-form-overlay>

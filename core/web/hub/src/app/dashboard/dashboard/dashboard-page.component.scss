@@ -1,0 +1,160 @@
+section.bs.dashboard-container {
+    position: absolute;
+    padding: 0px;
+    min-height: 100%;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > .o3-watermark-caption {
+        flex-grow: 1;
+        align-items: flex-start;
+    }
+
+    > .o3-dashboard-page--sticky {
+        position: sticky;
+        width: 100%;
+        z-index: 3;
+        box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, .05);
+
+        &.o3-dashboard-page--sticky-top {
+            top: 0px;
+        }
+
+        &.o3-dashboard-page--sticky-bot {
+            bottom: 0px;
+        }
+
+        .o3-content-protector {
+            display: none;
+            z-index: 0;
+        }
+
+        > .o3-dashboard-page--banner-bar, > .o3-dashboard-page--edit-banner {
+            width: 100%;
+        }
+
+        > .o3-dashboard-page--edit-banner {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            height: 64px;
+            padding: 0 10px;
+            font-size: 14px;
+
+            .input-label {
+                white-space: nowrap;
+            }
+
+            > .o3-dashboard-page--exit-edit {
+                width: 90px;
+            }
+
+            > .o3-dashboard-page--undo-redo {
+                width: 75px;
+
+                > o3-undo-redo {
+                    display: block;
+                    height: 26px;
+                }
+            }
+
+            > .o3-dashboard-page--banner-configure {
+                width: 80px;
+
+                > div {
+                    display: flex;
+                    height: 27px;
+
+                    .mat-icon-button {
+                        margin-left: -1px;
+
+                        &, i.o3-configure {
+                            color: rgba(0, 0, 0, 0.87);
+                        }
+                    }
+                }
+            }
+
+            > .o3-dashboard-page--add-widget {
+                width: 66px;
+
+                > button {
+                    height: 36px;
+                }
+            }
+
+            > mat-form-field {
+                width: 0px;
+                padding: 0px 8px;
+                flex: 2 1 0px;
+
+                &.o3-dashboard-page--name-edit {
+                    padding-left: 0px;
+                }
+
+                &.o3-dashboard-page--version {
+                    flex-grow: 1.1;
+                    min-width: 120px;
+                    padding-right: 6px;
+                }
+
+                &.o3-dashboard-page--widget-secondary {
+                    padding-right: 5px;
+                }
+            }
+        }
+
+        > .o3-dashboard-page--banner-bar {
+            height: 65px;
+            font-size: 22px;
+            line-height: normal;
+            overflow: hidden;
+        }
+    }
+
+    &.resizing {
+        > .o3-dashboard-page--sticky > .o3-content-protector {
+            display: block;
+        }
+
+        &.widget-resize-bot, &.widget-resize-top {
+            &, .o3-content-protector {
+                cursor: ns-resize;
+            }
+        }
+
+        &.widget-resize-left, &.widget-resize-right {
+            &, .o3-content-protector {
+                cursor: ew-resize;
+            }
+        }
+
+        &.widget-resize-bot.widget-resize-left, &.widget-resize-top.widget-resize-right {
+            &, .o3-content-protector {
+                cursor: nesw-resize;
+            }
+        }
+
+        &.widget-resize-bot.widget-resize-right, &.widget-resize-top.widget-resize-left {
+            &, .o3-content-protector {
+                cursor: nwse-resize;
+            }
+        }
+    }
+
+    &.mobile-mode > .o3-dashboard-page--sticky > .o3-dashboard-page--edit-banner {
+        justify-content: space-between;
+    }
+
+    > o3-widget-manager {
+        flex-grow: 1;
+        margin: 1px var(--widget-padding) 1px var(--widget-padding);
+    }
+}
+
+.o3-dashboard-page--version-date {
+    white-space: nowrap;
+    padding-right: 8px;
+}

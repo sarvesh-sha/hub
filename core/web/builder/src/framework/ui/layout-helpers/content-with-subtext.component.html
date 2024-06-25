@@ -1,0 +1,8 @@
+<div class="o3-subtext--container" [class.o3-subtext--show]="text && showText">
+    <div class="o3-subtext--content">
+        <ng-content></ng-content>
+    </div>
+    <div class="o3-subtext--text o3-watermark-caption" [ngStyle]="fontStyles">
+        {{text}}
+    </div>
+</div>

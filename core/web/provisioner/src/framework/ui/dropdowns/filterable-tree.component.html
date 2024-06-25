@@ -1,0 +1,61 @@
+<div class="input-container" *ngIf="!hideFilter || requireFilterText">
+    <input class="dropdown-filter" type="text" [placeholder]="filterPlaceholder" [(ngModel)]="filter" (ngModelChange)="onFilterChanged()" (keyup)="onFilterKeyUp($event)"/>
+</div>
+<div class="node-container" [style.display]="!requireFilterText || filter ? 'block' : 'none'">
+    <div class="loading-message" *ngIf="!hideLoadingMessage && nodes?.length === 0"><label>Loading...</label></div>
+    <tree-root *ngIf="nodes.length" [nodes]="nodes" [options]="$any(treeOptions)" [ngClass]="isFlat ? 'o3-flat' : 'o3-not-flat'" (toggleExpanded)="nodeExpandContract.emit($event)">
+        <ng-template #treeNodeWrapperTemplate let-node="node" let-index="index" let-templates="templates">
+            <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+
+                <!-- Custom expander -->
+                <span
+                    *ngIf="node.hasChildren"
+                    [class.toggle-children-wrapper-expanded]="node.isExpanded"
+                    [class.toggle-children-wrapper-collapsed]="node.isCollapsed"
+                    class="toggle-children-wrapper-custom"
+                    (click)="node.mouseAction('expanderClick', $event)">
+                    <mat-icon *ngIf="node.isCollapsed">expand_more</mat-icon>
+                    <mat-icon *ngIf="node.isExpanded">expand_less</mat-icon>
+                </span>
+                <span *ngIf="!node.hasChildren" class="toggle-children-placeholder-custom"></span>
+
+                <div class="node-content-wrapper"
+                     [class.node-content-wrapper-active]="node.isActive"
+                     [class.node-content-wrapper-focused]="node.isFocused"
+                     (click)="node.mouseAction('click', $event)"
+                     (dblclick)="node.mouseAction('dblClick', $event)"
+                     (contextmenu)="node.mouseAction('contextMenu', $event)"
+                     (treeDrop)="node.onDrop($event)"
+                     [treeAllowDrop]="node.allowDrop"
+                     [treeDrag]="node"
+                     [treeDragEnabled]="node.allowDrag()">
+
+                    <tree-node-content [node]="node" [index]="index" [template]="templates.treeNodeTemplate"></tree-node-content>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #treeNodeTemplate let-node="node" let-index="index">
+            <div class="option-row" tabindex="0" (focus)="focusIn($event, node)" (blur)="focusOut()"
+                 [ngClass]="{'o3-filterable-tree--selected-node': selectedNodesLookup.get(node.data.id), 'o3-filterable-tree--checkbox-node': useCheckboxes}">
+                <label *ngIf="!node.data.isDivider" optio3TestId="treeNodeLabel" matTooltip="{{node.data.label}}" matTooltipShowDelay="500" o3TooltipWhenTruncated
+                       [ngClass]="{'o3-filterable-tree--disabled-node': useDisabledStyling && node.data.disableSelection, 'o3-filterable-tree--not-expandable': !node.hasChildren}">
+                    <mat-checkbox *ngIf="useCheckboxes && !node.data.disableSelection" [tabIndex]="-1" [ngModel]="selectedNodesLookup.get(node.data.id)"></mat-checkbox>
+                    <ng-container *ngIf="!nodeTemplate">
+                        <span *ngIf="node.data.safeLabel" [innerHTML]="node.data.safeLabel"></span>
+                        {{node.data.label}}
+                    </ng-container>
+                    <ng-container *ngIf="nodeTemplate">
+                        <ng-container *ngTemplateOutlet="nodeTemplate; context: { node: node.data.original, index: index }"></ng-container>
+                    </ng-container>
+                </label>
+                <ng-container *ngIf="nodePostTemplate">
+                    <ng-container *ngTemplateOutlet="nodePostTemplate; context: { node: node.data.original, index: index }"></ng-container>
+                </ng-container>
+            </div>
+            <div *ngIf="node.data.isDivider" class="divider">
+                <label *ngIf="node.data.label">{{node.data.label}}</label>
+                <hr *ngIf="!node.data.label"/>
+            </div>
+        </ng-template>
+    </tree-root>
+</div>

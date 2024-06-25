@@ -1,0 +1,51 @@
+﻿<section class="bs page-content">
+
+    <form (ngSubmit)="save()" #userForm="ngForm" novalidate>
+        <mat-card class="page-card">
+            <mat-card-title>Details</mat-card-title>
+            <mat-card-content>
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="email" placeholder="Email Address" [(ngModel)]="user.emailAddress" name="emailAddress" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="tel" placeholder="Phone Number" [(ngModel)]="user.phoneNumber" name="phoneNumber">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="New Password" [(ngModel)]="password" name="password" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Repeat Password" [(ngModel)]="passwordConfirmation" name="passwordConfirmation" required>
+                        </mat-form-field>
+
+                        <div class="mat-checkbox-container">
+                            <label>Roles</label>
+                            <span *ngFor="let role of roles">
+                                <mat-checkbox [(ngModel)]="userRoles[role.model.name]" [name]="role.model.name">{{role.model.displayName}}</mat-checkbox>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid || userForm.pristine">Create</button>
+                <button mat-raised-button type="button" (click)="exit()" *ngIf="userForm.pristine">Close</button>
+                <button mat-raised-button type="button" (click)="exit()" *ngIf="!userForm.pristine">Cancel</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+</section>

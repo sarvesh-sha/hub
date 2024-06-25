@@ -1,0 +1,38 @@
+$mini-palette-scale: 0.23;
+$palette-width: 320px;
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+div.o3-color-picker-flat--mini-palette {
+    display: flex;
+    height: 21px;
+    justify-content: flex-end;
+    flex-grow: 1;
+    align-items: center;
+    padding-right: 3px;
+
+    > div {
+        position: relative;
+        width: $mini-palette-scale * $palette-width;
+        height: 100%;
+
+        > o3-color-palette {
+            width: $palette-width;
+            transform: scale($mini-palette-scale);
+            transform-origin: left top;
+            position: absolute;
+
+            &.o3-color-picker-flat--single-row {
+                top: 5px;
+            }
+
+            &.o3-color-picker-flat--disabled {
+                opacity: 0.5;
+            }
+        }
+    }
+}

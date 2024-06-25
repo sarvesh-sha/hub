@@ -1,0 +1,77 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Cancel" (click)="cancel()" [disabled]="!isRunning"></o3-tab-action>
+        <o3-tab-action label="Delete" (click)="remove()" [disabled]="activityNoRemoveReason != null" [tooltip]="activityNoRemoveReason"></o3-tab-action>
+
+        <o3-tab label="Background Activity Details">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <form #activityForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Status" [value]="activity.model.status" name="status" readonly>
+                            <button mat-icon-button matSuffix type="button"
+                                    matTooltip="Navigate to Context" matTooltipShowDelay="500"
+                                    (click)="navigateToContext()"
+                                    *ngIf="hasLink">
+                                <mat-icon class="navigation-button">chevron_right</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-10">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Title" [value]="activity.model.title" name="title" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Next Activation" [value]="activity.model.nextActivation | o3LongDateTime" name="next_activation" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Activation" [value]="activity.model.lastActivation | o3LongDateTime" name="last_activation" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-1">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Status" [value]="activity.model.lastActivationStatus" name="last_status" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <mat-form-field>
+                            <textarea matInput placeholder="Handler State" [value]="activityDetails" name="handle_state" rows="40" readonly>
+                            </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="hasFailed">
+                    <div class="col-12">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Failure Reason" [value]="activity.model.lastActivationFailure" name="failure_text"
+                                   readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row" *ngIf="hasFailed">
+                    <div class="col-12">
+                        <mat-form-field>
+                            <textarea matInput placeholder="Failure Trace" [value]="activity.model.lastActivationFailureTrace" name="failure_trace" rows="15" readonly>
+                            </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+    </o3-tab-group>
+
+</section>

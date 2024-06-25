@@ -1,0 +1,90 @@
+@import "../app.variables.scss";
+
+:host {
+    height: 1.25em;
+}
+
+.o3-select--container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: inherit;
+
+    .o3-select--button {
+        display: flex;
+        color: inherit;
+        font-size: inherit;
+        padding: 1em 20px 1em 0 !important;
+        border: none !important;
+        box-shadow: none;
+        background: transparent;
+        overflow: hidden !important;
+        text-align: left;
+        position: relative;
+        flex-grow: 1;
+        cursor: pointer;
+        align-items: center;
+        height: 100%;
+        line-height: normal;
+
+        > span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        &[disabled], &.readonly {
+            cursor: auto;
+        }
+
+        &:after {
+            color: inherit;
+            opacity: 0.6;
+            font-size: inherit;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid;
+            position: absolute;
+            right: 4px;
+            top: calc(50% - 2.5px);
+            content: "";
+        }
+
+        &.readonly:after {
+            display: none;
+        }
+    }
+
+    .o3-select--navigate {
+        display: flex;
+        height: 28px;
+        width: 28px;
+        top: -2px !important;
+        justify-content: center;
+        align-items: center;
+        padding: 1px 0px 0px 1px;
+    }
+}
+
+.o3-select--tree-container {
+    mat-slide-toggle {
+        margin: 10px 0px 5px 10px;
+    }
+
+    > o3-filterable-tree {
+        margin-top: -4px;
+    }
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .extra-button {
+        text-decoration: none;
+        margin-left: 10px;
+    }
+}

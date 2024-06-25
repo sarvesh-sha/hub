@@ -1,0 +1,58 @@
+<o3-overlay [config]="overlayConfig">
+    <o3-tab-group *cdkPortal noUnderline cardClass="no-content-padding">
+        <o3-tab label="Annotations">
+            <o3-modifiable-table #test_table [rows]="annotations" itemName="annotation" backgroundColor="white"
+                                 [canDelete]="deletableFn" [noBorder]="true" [showRowHover]="true"
+                                 [allowAdding]="!readonly && allowAdding" (rowAddRequested)="trigger.openMenu()"
+                                 [allowDeleting]="!readonly" (rowRemoved)="annotationDeleted.emit($event)">
+                <ng-container *o3ModifiableTableRow="let annotation; let i = index">
+                    <td class="annotation-on-switch">
+                        <mat-slide-toggle (click)="$event.preventDefault(); toggleAnnotation(annotation)"
+                                          name="annotation-toggle-{{i}}" [(ngModel)]="annotation.enabled"></mat-slide-toggle>
+                    </td>
+                    <td class="annotation-text">
+                        <div>
+                            <div class="annotation-title" [class.no-annotation-description]="!annotation.description">{{annotation.title}}</div>
+                            <div class="annotation-description">{{annotation.description}}</div>
+                        </div>
+                    </td>
+                    <td *ngIf="!annotation.inView" class="annotation-out-of-view" [matTooltip]="annotation.outOfViewMessage">
+                        <mat-icon>priority_high</mat-icon>
+                    </td>
+                    <td *ngIf="!readonly" class="annotation-edit">
+                        <button mat-icon-button class="chip-action" (click)="modifyAnnotation(annotation)"
+                                matTooltip="Edit annotation" matTooltipShowDelay="750">
+                            <mat-icon>settings</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+            </o3-modifiable-table>
+
+            <span #trigger="matMenuTrigger" class="new-annotation-trigger" [matMenuTriggerFor]="newAnnotation"></span>
+            <mat-menu #newAnnotation="matMenu">
+                <ng-container *ngIf="!onlyPointAnnotations">
+                    <button *ngFor="let newAnnotation of annotationTypeOptions" mat-menu-item (click)="requestNewAnnotation(newAnnotation.id)">
+                        {{newAnnotation.label}}
+                    </button>
+                </ng-container>
+                <button *ngIf="onlyPointAnnotations" mat-menu-item (click)="requestNewAnnotation(annotationTypeOptions[0].id)">
+                    {{annotationTypeOptions[0].label}}
+                </button>
+            </mat-menu>
+
+            <o3-standard-form-overlay *ngIf="editAnnotation" [label]="editOverlayLabel" [overlayConfig]="editOverlayConfig"
+                                      [primaryButtonTooltip]="errorMessage" [primaryButtonDisabled]="!!errorMessage || isPristine"
+                                      (submitted)="saveAnnotation()" (cancelled)="clearEdits()">
+                <mat-slide-toggle [(ngModel)]="editShowTooltip" name="show-tooltip">Show Tooltip</mat-slide-toggle>
+                <mat-form-field>
+                    <input [(ngModel)]="editTitle" name="annotation-title" required #test_name
+                           matInput type="text" placeholder="Title" maxlength="80" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field class="o3-page-color-border">
+                    <textarea [(ngModel)]="editDescription" name="annotation-description" #test_description
+                              matInput type="text" placeholder="Description" wrap="off" rows="6" maxlength="320" autocomplete="off"></textarea>
+                </mat-form-field>
+            </o3-standard-form-overlay>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

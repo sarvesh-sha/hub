@@ -1,0 +1,48 @@
+﻿@import "../app.variables.scss";
+
+@mixin icons($theme) {
+
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Icons
+    //-----------------------------
+    .o3 {
+        font-size: 24px;
+        max-width: 26px;
+    }
+
+    .mat-menu-item .o3 {
+        color: rgba(0, 0, 0, 0.54);
+        vertical-align: middle;
+        margin-right: 16px;
+    }
+
+    --icon-scale-factor: 1;
+
+    .mat-icon-tiny {
+        --icon-scale-factor: .5;
+        margin: -12%;
+    }
+
+    .mat-icon-small {
+        --icon-scale-factor: .65;
+        margin: -10%;
+    }
+
+    .mat-icon-medium {
+        --icon-scale-factor: .85;
+        margin: -7%;
+    }
+
+    .mat-icon-tiny,
+    .mat-icon-small,
+    .mat-icon-medium {
+        transform-origin: 50% 50%;
+        transform: scale(var(--icon-scale-factor));
+    }
+}

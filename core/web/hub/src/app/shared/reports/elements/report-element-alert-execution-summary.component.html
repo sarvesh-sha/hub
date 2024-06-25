@@ -1,0 +1,32 @@
+<section>
+    <p>
+        <strong>Alert Rule: </strong>
+        <span>{{data.alertDefinition.model.title}} </span>
+        <small>({{data.alertDefinition.model.description}})</small>
+    </p>
+    <p *ngFor="let failure of failures">
+        Failure: {{this.data.failures[failure]}} instances of {{failure}}
+    </p>
+
+    <p *ngFor="let device of alertsFlat" [style.opacity]="device.significantInChart ? 1 : 0.5">
+        {{device.deviceName}} has {{device.alertCount}} alert events
+    </p>
+
+    <p *ngIf="!alertsFlat.length">
+        <strong>No alerts created for selected range</strong>
+    </p>
+
+    <p *ngIf="!!alertsFlat.length && allAlertsInsignificant">
+        <strong>No alerts created by the selected sources in this range</strong>
+    </p>
+</section>
+
+<section *ngIf="chartConfig">
+    <o3-time-series-container [configExt]="chartConfig" [range]="data.range"
+                              [readonly]="true" [disableAnnotations]="true"
+                              (sourceStatesUpdated)="updateAlerts($event)"></o3-time-series-container>
+</section>
+
+<o3-overlay [config]="logDialogConfig" (opened)="log.enableKeyDownHandler(); refreshLog()" (closed)="log.disableKeyDownHandler()">
+    <o3-console-log #log [filterable]="false" [scrollLockEnabled]="logLockScroll"></o3-console-log>
+</o3-overlay>

@@ -1,0 +1,4 @@
+tester:
+  record: true
+  headless: false
+  outputDirectory: ./testOutput

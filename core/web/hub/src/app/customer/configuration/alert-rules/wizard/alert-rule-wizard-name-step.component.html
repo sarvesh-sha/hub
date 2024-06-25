@@ -1,0 +1,14 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data.rules.alertDefinition">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Alert Rule Title" [(ngModel)]="data.rules.alertDefinition.model.title" name="alertTitle" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput type="text" placeholder="Description" [(ngModel)]="data.rules.alertDefinition.model.description" name="alertDescription"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,29 @@
+<div class="o3-bookmark-row--container hover-item-container clickable" (click)="handleRowClick()"
+     [ngClass]="{'o3-bookmark-row--filtered-out': !inView, 'o3-bookmark-row--deleting': deleting}"
+     matTooltip="Undo bookmark deletion" [matTooltipDisabled]="!deleting">
+    <div class="o3-bookmark-row--name-description">
+        <div>{{bookmark.name}}</div>
+        <small class="text-muted">{{bookmark.description?.trim() || 'no description'}}</small>
+    </div>
+    <div *ngIf="bookmark.createdOn" class="o3-bookmark-row--created-on" matTooltip="Creation date" [matTooltipDisabled]="deleting">
+        <span class="text-muted">{{bookmark.createdOn | o3ShortDate}} {{bookmark.createdOn | o3ShortTime}}</span>
+    </div>
+    <div class="o3-bookmark-row--buttons">
+        <button mat-icon-button type="button" class="hover-item-vis" [class.menu-open]="menuOpen"
+                [matMenuTriggerFor]="listMenu" (click)="openMenu($event)">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <button mat-icon-button class="o3-bookmark-row--cancel-deletion">
+            <i class="fa fa-undo"></i>
+        </button>
+        <div class="o3-bookmark-row--navigation-indicator">
+            <i class="o3 o3-view-item view-bookmark-icon"></i>
+        </div>
+    </div>
+</div>
+
+<mat-menu #listMenu="matMenu" (closed)="menuOpen = false">
+    <button mat-menu-item (click)="editBookmark()">Edit</button>
+    <button mat-menu-item (click)="markForDeletion()" matTooltipClass="o3-wide-tooltip">Delete</button>
+    <button mat-menu-item (click)="exportBookmark()">Export</button>
+</mat-menu>

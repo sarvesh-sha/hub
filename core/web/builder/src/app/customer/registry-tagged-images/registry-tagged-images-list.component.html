@@ -1,0 +1,26 @@
+﻿<o3-datatable [table]="table">
+    <o3-datatable-column id="accountAndName" sortId="accountAndName" prop="accountAndName" name="Image" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.tagged.model.tag}}" matTooltipShowDelay="500">{{row.accountAndName}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="tag" sortId="tag" prop="tag" name="Tag"></o3-datatable-column>
+    <o3-datatable-column id="architecture" sortId="architecture" prop="image.model.architecture" name="Architecture" [width]="130" [maxWidth]="130"></o3-datatable-column>
+    <o3-datatable-column id="service" sortId="service" prop="service" name="Target Service"></o3-datatable-column>
+    <o3-datatable-column id="releaseStatus" sortId="releaseStatus" prop="releaseStatus" name="Marked As"></o3-datatable-column>
+
+    <o3-datatable-column id="usages" sortId="usages" prop="usages" name="In Use" format="TEMPLATE" [width]="100" [maxWidth]="100">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.usages.inUseText(false)}}" matTooltipShowDelay="500">{{row.usages.inUseText(true)}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="hash" sortId="imageSha" prop="hash" name="Hash" format="TEMPLATE" [width]="160" [maxWidth]="200">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.image.model.imageSha}}" matTooltipShowDelay="500">{{row.image.model.imageSha.replace("sha256:", "")}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="createdOn" sortId="!createdOn" sortStart="desc" prop="image.model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

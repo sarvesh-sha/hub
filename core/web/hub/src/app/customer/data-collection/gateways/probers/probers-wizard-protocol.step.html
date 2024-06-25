@@ -1,0 +1,14 @@
+<ng-template o3-wizard-step-template>
+    <p>Select the type of target protocol:</p>
+    <mat-radio-group [(ngModel)]="data.protocolType">
+        <table class="table table-striped table-bordered">
+            <tbody>
+            <tr *ngFor="let type of getProtocolTypesList()">
+                <td>
+                    <mat-radio-button [value]="type.type">{{type.title}}</mat-radio-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </mat-radio-group>
+</ng-template>

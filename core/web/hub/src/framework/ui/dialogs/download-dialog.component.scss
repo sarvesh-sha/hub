@@ -1,0 +1,62 @@
+.bar {
+    z-index: 1;
+    margin-top: -4px;
+    background: white;
+}
+
+.message {
+    margin-bottom: 8px;
+
+    &.error {
+        color: red;
+    }
+}
+
+.download-button {
+    width: 100%;
+    padding: 12px;
+    line-height: 20px;
+    font-size: 16px;
+    margin-bottom: 4px !important;
+
+    &:hover, &:active, &:focus {
+        text-decoration: none !important;
+    }
+
+    &:hover:not([disabled]), &:active:not([disabled]), &:focus:not([disabled]) {
+        color: white !important;
+    }
+
+    .download-content {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        .download-text {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            overflow: hidden;
+
+            .download-primary {
+                align-self: flex-start;
+            }
+
+            .download-secondary {
+                text-align: left;
+                font-style: italic;
+                font-size: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 8px;
+            }
+        }
+
+        .download-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 40px;
+        }
+    }
+}

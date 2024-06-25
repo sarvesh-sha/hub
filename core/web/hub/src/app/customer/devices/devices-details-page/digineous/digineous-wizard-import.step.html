@@ -1,0 +1,29 @@
+<ng-template o3-wizard-step-template>
+
+    <div class="row">
+        <div class="col-12">
+            <button type="button" mat-raised-button (click)="triggerDeviceImport()">Import Device Templates</button>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="data.importDeviceTemplates">
+        <div class="col-12">
+            <label>Selected {{data.importDeviceTemplates.length}} device templates for import!</label>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-12">
+            <button type="button" mat-raised-button (click)="triggerMachineImport()">Import Machine Templates</button>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="data.importMachineTemplates">
+        <div class="col-12">
+            <label>Selected {{data.importMachineTemplates.length}} machine templates for import!</label>
+        </div>
+    </div>
+
+</ng-template>

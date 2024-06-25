@@ -1,0 +1,711 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Manage monitoring alerts for your company.</p><p><em>Monitoring alerts</em> enable you to send automated email notifications when subscriber data usage exceeds either an upper or lower threshold.</p><p>For example, you might want to send notifications when data usage&#58;</p><ul><li>Approaches the maximum allowed for a tariff (usage exceeds the lower threshold)</li><li>Exceeds the maximum allowed for a tariff (usage exceeds the upper threshold)</li></ul><p><strong>Note</strong>: Subscribers are <em>not</em> automatically barred when they exceed a defined usage threshold. The account holder should take appropriate action when an alert is triggered.</p></ul><p>You can use these endpoints to create the following types of alerts.</p><table border=\"1\"><tr><th>Type</th><th>ruleType</th><th>Applies to</th><th>Triggered by</th></tr><tr><td style=\"padding:10px;\">Individual</td><td style=\"padding:10px;\"><em>sim</em></td><td style=\"padding:10px;\">Specified subscriber</td><td style=\"padding:10px;\">Specified subscriber's data usage</td></tr><tr><td style=\"padding:10px;\">Company</td><td style=\"padding:10px;\"><em>company</em></td><td style=\"padding:10px;\">All subscribers within your company</td><td style=\"padding:10px;\">Any individual subscriber's data usage</td></tr><tr><td style=\"padding:10px;\">Group (aggregate)</td><td style=\"padding:10px;\"><em>grouppr</em></td><td style=\"padding:10px;\">All subscribers assigned to the specified group</td><td style=\"padding:10px;\">Combined data usage for all subscribers in the group</td></tr><tr><td style=\"padding:10px;\">Group (individual)</td><td style=\"padding:10px;\"><em>groupfptp</em></td><td style=\"padding:10px;\">All subscribers assigned to the specified group</td><td style=\"padding:10px;\">Data usage of any individual subscriber in the group</td></tr></table>\n    <p>You can also use these endpoints to&#58;</p><ul><li>Edit and delete monitoring alerts</li><li>Add, edit and delete alert recipients</li><li>Retrieve a list of the monitoring alerts that are set up</li><li>Retrieve a log of any monitoring alerts that were triggered</li></ul>",
+    "title": "Monitoring Alerts",
+    "version": "0.1.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/alerts": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "<p>Offsets the returned results to begin at a particular record count.</p><p>For example, setting this to 10 causes the query to skip the first ten records in the data set.</p>",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "description": "Specifies the upper limit of the number of results to return. This filter has an upper limit of 100. <p>For example, setting this to 10 limits the query to returning a maximum of ten records.</p><p>If no limit is set, the query will return a maximum of 25 records.</p>",
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          },
+          {
+            "description": "Order the results by a particular field in either ascending or descending order. <p>This parameter supports multiple fields for sorting, for example, 'name ASC, created DESC'.</p>",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          },
+          {
+            "description": "Filter the results the query returns. <p>For example, to retrieve all users called Tom, with an age above 21, set the filter to - 'name eq \"Tom\" and age gt 21'.</p>",
+            "in": "query",
+            "name": "filter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of monitoring alerts that are set up.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlert"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alerts"
+        ],
+        "description": "<p>Retrieves a list of the monitoring alerts that are set up, including the details of each alert.</p><p><br>To use this endpoint, your user account must have the <strong>View Monitoring Alerts</strong> and <strong>View a User</strong> permissions enabled.",
+        "operationId": "MonitoringAlertsController.getMonitoringAlerts",
+        "summary": "Returns a list of the monitoring alerts that are set up."
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "MonitoringAlertToCreate",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MonitoringAlertToCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the monitoring alert was created.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlert"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alerts"
+        ],
+        "description": "<p>You can create a monitoring alert for the entire company, groups of subscribers or specific subscribers.</p><p><br>To use this endpoint, your user account must have the <strong>View Monitoring Alerts</strong> and <strong>Add Monitoring Alerts</strong> permissions enabled.</p>",
+        "operationId": "MonitoringAlertsController.addMonitoringAlert",
+        "summary": "Creates a monitoring alert."
+      }
+    },
+    "/alerts/logs": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Order the results by a particular field in either ascending or descending order. <p>This parameter supports multiple fields for sorting, for example, 'name ASC, created DESC'.</p>",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          },
+          {
+            "description": "Filter the results the query returns. <p>For example, to retrieve all users called Tom, with an age above 21, set the filter to - 'name eq \"Tom\" and age gt 21'.</p>",
+            "in": "query",
+            "name": "filter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of monitoring alert logs.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlertLog"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alert Log"
+        ],
+        "description": "<p>The monitoring alert logs provide a historical record of the monitoring alerts that have been triggered for your company.</p><p><br>To use this endpoint, your user account must have the <strong>View Monitoring Alerts</strong> permission enabled.</p>",
+        "operationId": "MonitoringAlertLogController.getMonitoringAlertLogs",
+        "summary": "Returns a list of monitoring alert logs."
+      }
+    },
+    "/alerts/recipients": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "MonitoringAlertRecipientToCreate",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MonitoringAlertRecipientToCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the recipient was created.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlertRecipient"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alert Recipient"
+        ],
+        "description": "<p>You can use this endpoint to create an alert recipient by specifying their email address. Recipients receive notifications for all of the monitoring alerts defined for your company.</p><p><br>Because alert emails can be blocked by spam filters or rejected by a server outright, we recommend that you create a test alert and ensure that emails from Connectivity Management are whitelisted.</p><p><br>To use this endpoint, your user account must have the <strong>View Monitoring Alerts</strong> and <strong>View a User</strong> permissions enabled.</p>",
+        "operationId": "MonitoringAlertRecipientController.addMonitoringAlertRecipient",
+        "summary": "Creates a monitoring alert recipient."
+      }
+    },
+    "/alerts/recipients/{id}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique recipient identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the recipient was deleted.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlertRecipient"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alert Recipient"
+        ],
+        "description": "<p>Deletes the specified alert recipient.</p><p><br>To use this endpoint, your user account must have the <strong>View Monitoring Alerts</strong> and <strong>View a User</strong> permissions enabled.</p>",
+        "operationId": "MonitoringAlertRecipientController.deleteMonitoringAlertRecipient",
+        "summary": "Deletes a monitoring alert recipient."
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique recipient identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "MonitoringAlertRecipientToEdit",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MonitoringAlertRecipientToCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the recipient was edited.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlertRecipient"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alert Recipient"
+        ],
+        "description": "<p>Edits the specified alert recipient's email address.</p><p><br>To use this endpoint, your user account must have the <strong>View a Monitoring Alert</strong> and <strong>View a User</strong> permissions enabled.</p>",
+        "operationId": "MonitoringAlertRecipientController.editMonitoringAlertRecipient",
+        "summary": "Edits a monitoring alert recipient."
+      }
+    },
+    "/alerts/{id}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique monitoring alert identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the monitoring alert was deleted.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlert"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alerts"
+        ],
+        "description": "<p>Deletes the specified monitoring alert.</p><p><br>To use this endpoint, your user account must have the <strong>View a Monitoring Alert</strong> and <strong>Delete Monitoring Alerts</strong> permissions enabled.</p>",
+        "operationId": "MonitoringAlertsController.deleteMonitoringAlert",
+        "summary": "Deletes a monitoring alert."
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique monitoring alert identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "MonitoringAlertToEdit",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MonitoringAlertToEdit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the monitoring alert was edited.",
+            "schema": {
+              "properties": {
+                "contents": {
+                  "items": {
+                    "$ref": "#/definitions/MonitoringAlert"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Monitoring Alerts"
+        ],
+        "description": "<p>Edits the specified monitoring alert. You can use this endpoint to edit the upper and lower usage thresholds at which the alert is triggered.</p><p><br>To use this endpoint, your user account must have the <strong>View Monitoring Alerts</strong> and <strong>Edit Monitoring Alerts</strong> permissions enabled.</p>",
+        "operationId": "MonitoringAlertsController.editMonitoringAlert",
+        "summary": "Edits a monitoring alert."
+      }
+    }
+  },
+  "definitions": {
+    "MonitoringAlert": {
+      "properties": {
+        "dateCreated": {
+          "description": "The date or the date and time at which the monitoring alert was created.",
+          "example": "2018-02-11T10:33:30.000Z"
+        },
+        "id": {
+          "description": "The unique monitoring alert identifier.",
+          "example": "24",
+          "type": "integer"
+        },
+        "lowerThreshold": {
+          "description": "The lower threshold required to trigger the alert, in bytes.",
+          "example": "1048576",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "ruleType": {
+          "description": "<p>The monitoring alert type, which determines the level at which the alert applies&#58;</p>\n    <ul>\n    <li><em>sim</em> - a specific subscriber exceeds a defined usage threshold</li>\n    <li><em>company</em> - any subscriber in the company exceeds a defined usage threshold</li>\n    <li><em>grouppr</em> - the combined usage of the subscribers in a specified group exceeds a defined usage threshold</li>\n    <li><em>groupfptp</em> - an individual subscriber within a specified group exceeds a defined usage threshold</li>\n    </ul>",
+          "enum": [
+            "sim",
+            "company",
+            "grouppr",
+            "groupfptp"
+          ],
+          "example": "sim",
+          "type": "string"
+        },
+        "target": {
+          "description": "<p>The subscriber or group identifier to which the alert applies&#58;</p><ul><li><em>sim</em> - the <em>subscriberId</em>&#58;<ul><li><em>Cellular</em> - the MSISDN</li><li><em>Non-IP</em> - the Device EUI</li><li><em>Satellite</em> - the Subscription ID</li></ul><li><em>company</em> - blank</li><li><em>grouppr</em> or <em>groupfptp</em> - the subscriber group <em>groupId</em></li></li></ul>",
+          "example": "447000000001",
+          "type": "string"
+        },
+        "upperThreshold": {
+          "description": "The upper threshold required to trigger the alert, in bytes.",
+          "example": "2097152",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "ruleType",
+        "target",
+        "lowerThreshold",
+        "upperThreshold",
+        "dateCreated"
+      ],
+      "type": "object"
+    },
+    "MonitoringAlertLog": {
+      "properties": {
+        "dateCreated": {
+          "description": "The date or the date and time at which the log was created.",
+          "example": "2018-02-11T10:33:30.000Z"
+        },
+        "limitBoundary": {
+          "description": "The threshold that triggered the alert, either upper or lower.",
+          "example": "upper",
+          "type": "string"
+        },
+        "ruleType": {
+          "description": "<p>The monitoring alert type, which determines the level at which the alert applies.</p><ul> <li><em>sim</em> - a specific subscriber exceeds a defined usage threshold</li> <li><em>company</em> - any subscriber in the company exceeds a defined usage threshold</li> <li><em>grouppr</em> - the combined usage of the subscribers in a specified group exceeds a defined usage threshold</li> <li><em>groupfptp</em> - an individual subscriber within a specified group exceeds a defined usage threshold</li> </ul>",
+          "example": "sim",
+          "type": "string"
+        },
+        "target": {
+          "description": "<p>The subscriber or group identifier to which the alert applies&#58;</p><ul><li><em>sim</em> - the <em>subscriberId</em>&#58;<ul><li><em>Cellular</em> - the MSISDN</li><li><em>Non-IP</em> - the Device EUI</li><li><em>Satellite</em> - the Subscription ID</li></ul><li><em>company</em> - blank</li><li><em>grouppr</em> or <em>groupfptp</em> - the subscriber group <em>groupId</em></li></li></ul>",
+          "example": "447000000001",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ruleType",
+        "target",
+        "limitBoundary",
+        "dateCreated"
+      ],
+      "type": "object"
+    },
+    "MonitoringAlertRecipient": {
+      "properties": {
+        "email": {
+          "description": "The recipient's email address.",
+          "example": "alert_recipient@examples.com",
+          "format": "email",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique recipient identifier.",
+          "example": "10",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "type": "object"
+    },
+    "MonitoringAlertRecipientToCreate": {
+      "properties": {
+        "email": {
+          "description": "The recipient's email address.",
+          "example": "alert_recipient@examples.com",
+          "format": "email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "type": "object"
+    },
+    "MonitoringAlertToCreate": {
+      "properties": {
+        "lowerThreshold": {
+          "description": "The lower threshold required to trigger the alert, in bytes.",
+          "example": "1048576",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "ruleType": {
+          "description": "<p>The monitoring alert type, which determines the level at which the alert applies&#58;</p>\n    <ul>\n    <li><em>sim</em> - a specific subscriber exceeds a defined usage threshold</li>\n    <li><em>company</em> - any subscriber in the company exceeds a defined usage threshold</li>\n    <li><em>grouppr</em> - the combined usage of subscribers in a specified group exceeds a defined usage threshold</li>\n    <li><em>groupfptp</em> - an individual subscriber within a specified group exceeds a defined usage threshold</li>\n    </ul>",
+          "enum": [
+            "sim",
+            "company",
+            "grouppr",
+            "groupfptp"
+          ],
+          "example": "sim",
+          "type": "string"
+        },
+        "target": {
+          "description": "<p>The subscriber or group identifier to which the alert applies&#58;</p><ul><li><em>sim</em> - the <em>subscriberId</em>&#58;<ul><li><em>Cellular</em> - the MSISDN</li><li><em>Non-IP</em> - the Device EUI</li><li><em>Satellite</em> - the Subscription ID</li></ul><li><em>company</em> - blank</li><li><em>grouppr</em> or <em>groupfptp</em> - the subscriber group <em>groupId</em></li></li></ul>",
+          "example": "447000000001",
+          "type": "string"
+        },
+        "upperThreshold": {
+          "description": "The upper threshold required to trigger the alert, in bytes.",
+          "example": "2097152",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ruleType",
+        "target",
+        "lowerThreshold",
+        "upperThreshold"
+      ],
+      "type": "object"
+    },
+    "MonitoringAlertToEdit": {
+      "properties": {
+        "lowerThreshold": {
+          "description": "The lower threshold required to trigger the alert, in bytes.",
+          "example": "1048576",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "upperThreshold": {
+          "description": "The upper threshold required to trigger the alert, in bytes.",
+          "example": "2097152",
+          "minimum": 0,
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "x-components": {}
+}

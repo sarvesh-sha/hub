@@ -1,0 +1,77 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createTable tableName="ASSET_LOGICAL">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createTable tableName="ASSET_RELATIONSHIP">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sys_created_on" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="relation" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="child" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createIndex indexName="ASSET_RELATIONSHIP__CHILD_ASSET__FK" tableName="ASSET_RELATIONSHIP">
+            <column name="child"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <createIndex indexName="ASSET_RELATIONSHIP__PARENT_ASSET__FK" tableName="ASSET_RELATIONSHIP">
+            <column name="parent"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <createIndex indexName="IDXi2xepfadx2onnyb7vyi88fvea" tableName="ASSET_RELATIONSHIP">
+            <column name="relation"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Manual" id="relationMigration1">
+        <sql>insert into ASSET_LOGICAL(sys_id) select sys_id FROM ASSET_LOGICAL_GROUP</sql>
+        <sql>insert into ASSET_RELATIONSHIP(sys_id, sys_created_on, parent, relation, child)
+                select CONCAT(parent, "/structural/", sys_id), sys_created_on, parent, "structural", sys_id FROM ASSET
+                    where parent is not null</sql>
+        <sql>insert into ASSET_RELATIONSHIP(sys_id, sys_created_on, parent, relation, child)
+                select CONCAT(j1.LogicalGroupRecord_sys_id, "/controls/", j1.logicalNestedAssets_sys_id), j2.sys_created_on, j1.LogicalGroupRecord_sys_id, "controls", j1.logicalNestedAssets_sys_id FROM ASSET_LOGICAL_GROUP_to_ASSET j1 inner join ASSET j2
+                    where j2.sys_id = j1.LogicalGroupRecord_sys_id</sql>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <addForeignKeyConstraint baseColumnNames="child" baseTableName="ASSET_RELATIONSHIP" constraintName="ASSET_RELATIONSHIP__CHILD_ASSET__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <addForeignKeyConstraint baseColumnNames="parent" baseTableName="ASSET_RELATIONSHIP" constraintName="ASSET_RELATIONSHIP__PARENT_ASSET__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <addForeignKeyConstraint baseColumnNames="sys_id" baseTableName="ASSET_LOGICAL" constraintName="FKmd7t9petia2pdio8sxx63o6wv" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <dropForeignKeyConstraint baseTableName="ASSET_LOGICAL_GROUP_to_ASSET" constraintName="FK1v2bu749x4qy4yro2djvqutdm"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <dropForeignKeyConstraint baseTableName="ASSET_LOGICAL_GROUP_to_ASSET" constraintName="FKi1gfxogk0w472gh61ojbsa7eg"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <dropForeignKeyConstraint baseTableName="ASSET_LOGICAL_GROUP" constraintName="FKlmn66rrfp76p6wtidv49g1jc3"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <dropTable tableName="ASSET_LOGICAL_GROUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <dropTable tableName="ASSET_LOGICAL_GROUP_to_ASSET"/>
+    </changeSet>
+</databaseChangeLog>

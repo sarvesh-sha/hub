@@ -1,0 +1,12 @@
+@import "../../../framework/ui/app.variables.scss";
+
+div {
+    width: 34px;
+}
+
+@media(max-width: $sm) {
+    .mat-icon-button {
+        top: -4px !important;
+        margin-bottom: -6px;
+    }
+}

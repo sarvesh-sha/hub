@@ -1,0 +1,19 @@
+<ng-template o3-wizard-step-template>
+    <mat-form-field>
+        <o3-select [o3DigineousDeviceTemplateSelector]="true" name="template" [(ngModel)]="data.deviceTemplateId" (valueChange)="selectTemplate()"></o3-select>
+    </mat-form-field>
+    <section *ngIf="data.deviceTemplate">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Template Name" name="templateName" [(ngModel)]="data.deviceTemplate.name" #templateName='ngModel'
+                   [o3UniqueValues]="notAllowed" [o3UniqueValuesAllowSelfMatch]="true" required autocomplete="off">
+            <mat-error *ngIf="templateName.invalid && templateName.errors.o3NotUnique">Name already used</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <o3-select [o3DigineousFlavorSelector]="true" [(ngModel)]="deviceFlavor" name="deviceFlavor"></o3-select>
+        </mat-form-field>
+        <mat-form-field>
+            <o3-select name="equipmentClass" [o3EquipmentClassSelector]="true" [(ngModel)]="equipmentClass" required></o3-select>
+        </mat-form-field>
+        <o3-digineous-device-library-page [library]="data.deviceTemplate"></o3-digineous-device-library-page>
+    </section>
+</ng-template>

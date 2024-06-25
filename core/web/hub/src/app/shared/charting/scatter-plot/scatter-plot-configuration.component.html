@@ -1,0 +1,65 @@
+<o3-standard-form-overlay label="Axis Configuration" internalCardClass="no-content-padding" [overlayConfig]="overlayConfig"
+                          [primaryButtonDisabled]="pristine" (submitted)="submitEdits()"
+                          [showSecondary]="true" [secondaryButtonText]="secondaryButtonText" (cancelled)="revertEdits()">
+    <ng-container *ngIf="selectedPanel">
+        <mat-form-field *ngIf="panels.length > 1" class="col-sm-12">
+            <o3-select placeholder="Panel" name="panel" [(ngModel)]="selectedPanel" [options]="panelOptions"
+                       [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"></o3-select>
+        </mat-form-field>
+
+        <o3-tab-group [noUnderline]="!selectedPanel.valid" style="display: block">
+            <ng-container *ngIf="selectedPanel.valid">
+                <o3-tab label="X Axis" class="x-axis configure-axis">
+                    <mat-form-field floatLabel="always">
+                        <input matInput placeholder="Label Override" name="label-x"
+                               [(ngModel)]="selectedPanel.xAxis.model.label" (ngModelChange)="updated(true)"/>
+                    </mat-form-field>
+                    <div class="units">
+                        <o3-equivalent-units-selector [unitsFactors]="selectedPanel.xAxis.unitsFactors"
+                                                      [(units)]="selectedPanel.xAxis.selectedFactors" (unitsChange)="updated(false)"></o3-equivalent-units-selector>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-label">Custom Range</div>
+                        <o3-range-override [(model)]="selectedPanel.xAxis.model.override" (modelChange)="updated(true)"></o3-range-override>
+                    </div>
+                </o3-tab>
+
+                <o3-tab label="Y Axis" class="y-axis configure-axis">
+                    <mat-form-field floatLabel="always">
+                        <input matInput placeholder="Label Override" name="label-y"
+                               [(ngModel)]="selectedPanel.yAxis.model.label" (ngModelChange)="updated(true)"/>
+                    </mat-form-field>
+                    <div class="units">
+                        <o3-equivalent-units-selector [unitsFactors]="selectedPanel.yAxis.unitsFactors"
+                                                      [(units)]="selectedPanel.yAxis.selectedFactors" (unitsChange)="updated(false)"></o3-equivalent-units-selector>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-label">Custom Range</div>
+                        <o3-range-override [(model)]="selectedPanel.yAxis.model.override" (modelChange)="updated(true)"></o3-range-override>
+                    </div>
+                </o3-tab>
+
+                <o3-tab [disabled]="!selectedPanel.zAxis" label="Color Axis" class="z-axis configure-axis">
+                    <ng-container *ngIf="selectedPanel.zAxis">
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Label Override" name="label-z"
+                                   [(ngModel)]="selectedPanel.zAxis.model.label" (ngModelChange)="updated(true)"/>
+                        </mat-form-field>
+                        <div class="units">
+                            <o3-equivalent-units-selector [unitsFactors]="selectedPanel.zAxis.unitsFactors"
+                                                          [(units)]="selectedPanel.zAxis.selectedFactors" (unitsChange)="updated(false)"></o3-equivalent-units-selector>
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="input-label">Custom Range</div>
+                            <o3-range-override [(model)]="selectedPanel.zAxis.model.override" (modelChange)="updated(true)"></o3-range-override>
+                        </div>
+                    </ng-container>
+                </o3-tab>
+            </ng-container>
+
+            <o3-tab [disabled]="selectedPanel.valid" label="Invalid">
+                <p>Nothing to configure</p>
+            </o3-tab>
+        </o3-tab-group>
+    </ng-container>
+</o3-standard-form-overlay>

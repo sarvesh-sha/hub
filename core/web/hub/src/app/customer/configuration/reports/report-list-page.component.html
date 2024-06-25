@@ -1,0 +1,42 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="New Report..." (click)="new()"></o3-tab-action>
+        <o3-tab-action label="Import..." (click)="import()"></o3-tab-action>
+        <o3-tab-action label="Export..." (click)="export()"></o3-tab-action>
+        <o3-tab-action label="Summary Report..." (click)="filtersAdapter.openOverlay()"></o3-tab-action>
+        <o3-tab-action label="Publish To Azure Digital Twin..." (click)="publishToADT()"></o3-tab-action>
+
+        <o3-tab label="Reports">
+
+            <o3-datatable [table]="table">
+                <o3-datatable-column id="description" sortId="title" prop="description" name="Description" [grow]="2">
+                    <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+                        <span matTooltip="{{row.title}}" matTooltipShowDelay="500">{{row.title}}</span>
+                        <small matTooltip="{{value}}" matTooltipShowDelay="500">{{value}}</small>
+                    </ng-template>
+                </o3-datatable-column>
+                <o3-datatable-column id="active" sortId="active" sortStart="desc" prop="isActive" name="Active" [maxWidth]="100" [minWidth]="100">
+                    <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+                        <mat-slide-toggle [(ngModel)]="row.report.model.active" name="isActive" (change)="row.report.save()"></mat-slide-toggle>
+                    </ng-template>
+                </o3-datatable-column>
+                <o3-datatable-column id="createdOn" sortId="!createdOn" sortStart="desc" prop="report.model.createdOn" name="Creation Date" format="DATE"></o3-datatable-column>
+                <o3-datatable-column id="updatedOn" sortId="updatedOn" sortStart="desc" prop="report.model.updatedOn" name="Update Date" format="DATE"></o3-datatable-column>
+            </o3-datatable>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+    <o3-device-element-filters-adapter
+        #filtersAdapter
+        [isStep]="true"
+        [excludeLocation]="false"
+        [includeEquipment]="true"
+        [includeDevices]="true"
+        [includeVisibility]="true"
+        [(request)]="filters"
+        (submitted)="exportDiscoveryReport($event)">
+    </o3-device-element-filters-adapter>
+</section>

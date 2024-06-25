@@ -1,0 +1,9 @@
+<mat-form-field *ngIf="units && !units.noDimensions && !!equivalentUnits.length">
+    <o3-select [ngModelOptions]="ngModelOptions" [(ngModel)]="units" (ngModelChange)="unitChanged()"
+               [options]="equivalentUnits" [disabled]="disabled" [multiSelect]="false" [preventDeselection]="true" [singleClick]="true"
+               [placeholder]="placeholder" defaultValueDescription="No Units Selected">
+    </o3-select>
+</mat-form-field>
+<mat-form-field *ngIf="!units || units.noDimensions || equivalentUnits.length === 0">
+    <input matInput type="text" [placeholder]="placeholder" name="display-units" [value]="unitsDisplay" readonly>
+</mat-form-field>

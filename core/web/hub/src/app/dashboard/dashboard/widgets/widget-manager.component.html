@@ -1,0 +1,71 @@
+<div *ngIf="manipulator?.isReady"
+     cdkDropList [id]="manipulator.id" [cdkDropListConnectedTo]="manipulator.manipulatorIds"
+     [cdkDropListData]="manipulator" [cdkDropListAutoScrollDisabled]="true" [cdkDropListSortingDisabled]="true"
+     [cdkDropListEnterPredicate]="widgetCanEnter" (cdkDropListEntered)="manipulator.adoptManipulation()" (cdkDropListExited)="manipulator.stopScrolling()"
+     class="o3-widget-manager--container" [ngClass]="resizeClasses" [style.height]="gridHeightCss"
+     [class.is-dragging]="dragging" [class.editing]="editing" [class.columnar]="columnarLayout" [class.hide-padding]="!useWidgetPadding"
+     (mousedown)="listeningForFocusClear = true" (click)="clearFocusWidget($event)">
+    <ng-container *ngIf="widgetIdentifierFn">
+        <div *ngFor="let outlineExt of manipulator.widgetOutlineExts; trackBy widgetIdentifierFn"
+             class="o3-widget-manager--widget-outline"
+             [class.transferred-out]="!outlineExt.isPresent"
+             [class.dragging]="isDragging(outlineExt)"
+             [class.hover-widget]="outlineExt.id === hoveringWidget"
+             [class.focus-widget]="manipulator.focusId === outlineExt.id || singularWidget"
+             [class.focus-related-widget]="widgetContainer.relatedToFocus"
+             [ngStyle]="outlineExt.templateStyles"
+             #tooltip=matTooltip
+             [matTooltip]="outlineExt.outlineTooltip"
+             [matTooltipDisabled]="disableWidgetTooltips">
+            <o3-widget-container #widgetContainer
+                                 [model]="outlineExt.config"
+                                 [outline]="outlineExt"
+                                 [manipulator]="manipulator"
+                                 [readonly]="disableEditing"
+                                 [baseFont]="manipulator.baseFontSize"
+                                 [rendering]="outlineExt.inView"
+                                 [focus]="manipulator.focusId === outlineExt.id || singularWidget"
+                                 [manipulating]="isDragging(outlineExt) || isResizing(outlineExt)"
+                                 [shadowless]="!alwaysShowShadow"
+                                 [isSubwidget]="nested"
+                                 [preview]="preview"
+                                 [primaryColor]="widgetPrimaryColor"
+                                 [secondaryColor]="widgetSecondaryColor"
+                                 cdkDrag
+                                 cdkDragHandle
+                                 [cdkDragData]="outlineExt.id"
+                                 [cdkDragDisabled]="!editing || !canManipulate"
+                                 (mousedown)="setDragStart(widgetContainer, $event)"
+                                 (cdkDragStarted)="manipulationPrep(outlineExt.id)"
+                                 (cdkDragMoved)="manipulator.handleDrag($event)"
+                                 (cdkDragEnded)="completeManipulation($event)"
+                                 (click)="updateFocusWidget(outlineExt.id, $event)"
+                                 (widgetNameUpdated)="configChange.emit('change widget name')"
+                                 (widgetContentUpdated)="configChange.emit('edit widget')"
+                                 (cursorClassChange)="resizeClasses = $event"
+                                 (widgetHovering)="handleWidgetHovered(outlineExt.id, tooltip, $event)"
+                                 (widgetDelete)="widgetDelete.emit($event)"
+                                 (widgetEdit)="relayWidgetEdit($event, outlineExt.id)">
+                <div *cdkDragPlaceholder></div>
+            </o3-widget-container>
+
+            <ng-container *ngIf="canManipulate">
+                <div class="drag-placeholder"></div>
+
+                <div *ngFor="let resize of manipulator.resizePoints"
+                     class="resize-outline" [ngClass]="resize"
+                     cdkDrag
+                     (mousedown)="$event.stopPropagation()"
+                     (cdkDragStarted)="manipulationPrep(outlineExt.id, resize)"
+                     (cdkDragMoved)="manipulator.performWidgetManipulation($event)"
+                     (cdkDragEnded)="completeManipulation(null)">
+                    <div class="resize-border"></div>
+                    <div class="resize-grip"></div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <o3-grid-background *ngIf="manipulator.gridManipulator" [hidden]="!showGrid"
+                        [numRows]="manipulator.gridManipulator.numRows" [numCols]="manipulator.widgetGridConfig.numCols"></o3-grid-background>
+</div>

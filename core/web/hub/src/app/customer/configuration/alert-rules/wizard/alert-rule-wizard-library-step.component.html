@@ -1,0 +1,36 @@
+<ng-template o3-wizard-step-template>
+    <mat-radio-group *ngIf="data" name="selectDeviceModel" [(ngModel)]="data.rules.selectedTemplateId" (change)="templateChanged()">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-striped table-bordered">
+                    <thead class="hidden-xs-down">
+                    <tr>
+                        <th>Template Name</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span>Create rule from scratch</span>
+                        </td>
+                        <td class="text-center" style="width: 120px;">
+                            <mat-radio-button [value]="null"></mat-radio-button>
+                        </td>
+                    </tr>
+                    <tr *ngFor="let definition of libraryDefinitions">
+                        <td>
+                            <span>{{definition.model.title}}</span><br>
+                            <small>{{definition.model.description}}</small>
+                        </td>
+                        <td class="text-center" style="width: 120px;">
+                            <mat-radio-button [value]="definition.model.sysId"></mat-radio-button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+    </mat-radio-group>
+</ng-template>

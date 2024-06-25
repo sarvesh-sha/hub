@@ -1,0 +1,25 @@
+<o3-datatable [rows]="overrides" [showRowNumbers]="false" [showViewIcons]="false" [count]="overrides?.length">
+    <o3-datatable-column id="pointName" name="Point Name" prop="point.model.name"></o3-datatable-column>
+    <o3-datatable-column id="identifier" name="Identifier" prop="point.typedModel.identifier"></o3-datatable-column>
+    <o3-datatable-column id="equipmentOverride" name="Equipment Overrides" prop="equipmentOverride"></o3-datatable-column>
+    <o3-datatable-column id="locationOverride" name="Location Override" prop="locationOverride"></o3-datatable-column>
+    <o3-datatable-column id="pointClassOverride" name="Point Class Overrides" prop="pointClassOverride"></o3-datatable-column>
+    <o3-datatable-column id="pointNameOverride" name="Point Name Override" prop="data.pointName"></o3-datatable-column>
+    <o3-datatable-column id="override" name="" prop="override" [width]="110" [grow]="0">
+        <button mat-raised-button color="primary" style="padding: 8px" *o3DatatableCellTemplate="let row" (click)="override(row)">Edit</button>
+    </o3-datatable-column>
+    <o3-datatable-column id="sysId" name="" prop="sysId" [width]="40" [grow]="0">
+        <o3-device-element-link *o3DatatableCellTemplate="let row" [sysId]="row.sysId" [parentSysId]="row.point?.typedModel.parentAsset?.sysId"></o3-device-element-link>
+    </o3-datatable-column>
+</o3-datatable>
+
+<o3-overlay [config]="overlayConfig">
+    <o3-tab-group noUnderline>
+        <o3-tab label="Select control points">
+            <o3-control-point-selector [selection]="controlPoints"></o3-control-point-selector>
+
+            <o3-tab-action label="Override" priority="primary" (click)="overrideAll()" [disabled]="!canOverride"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

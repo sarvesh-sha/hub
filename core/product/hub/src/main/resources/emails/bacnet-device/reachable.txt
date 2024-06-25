@@ -1,0 +1,13 @@
+####################
+# Hub notification #
+####################
+
+UPDATE!
+
+These BACnet devices are back online${param.EXTRA}:
+
+${param.DETAILS}
+
+Details: ${param.SITE_URL}/#/alerts
+
+Optio3

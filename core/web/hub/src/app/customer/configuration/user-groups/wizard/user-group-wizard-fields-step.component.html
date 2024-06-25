@@ -1,0 +1,27 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <o3-select name="roles"
+                           placeholder="Roles"
+                           defaultValueDescription="Select Roles"
+                           [options]="data.roleOptions"
+                           [(ngModel)]="data.userGroup.roles">
+                </o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <o3-select name="subGroups"
+                           placeholder="Sub Groups"
+                           defaultValueDescription="Select Sub Groups"
+                           [options]="data.groupOptions"
+                           [(ngModel)]="data.userGroup.subGroups">
+                </o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

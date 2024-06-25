@@ -1,0 +1,7 @@
+<div class="o3-preview-container" [style.opacity]="canShowPreview() ? 1 : 0">
+    <div class="o3-preview-label" #label>{{entity?.preview?.label}}</div>
+    <div class="o3-preview">
+        <img class="o3-preview-image" #image [src]="entity?.url" [style]="imageStyles()">
+    </div>
+    <div class="o3-preview-description" #description>{{entity?.preview?.description}}</div>
+</div>

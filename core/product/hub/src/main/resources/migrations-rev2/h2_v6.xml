@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <dropForeignKeyConstraint baseTableName="ALERT_DEFINITION_VERSION" constraintName="ALERT_DEFINITION_VERSION_SUCCESSOR__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <dropForeignKeyConstraint baseTableName="DASHBOARD_DEFINITION_VERSION" constraintName="DASHBOARD_DEFINITION_VERSION__SUCCESSOR__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropForeignKeyConstraint baseTableName="METRICS_DEFINITION_VERSION" constraintName="METRICS_DEFINITION_VERSION_SUCCESSOR__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropForeignKeyConstraint baseTableName="REPORT_DEFINITION_VERSION" constraintName="REPORT_DEFINITION_VERSION__SUCCESSOR__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropColumn columnName="SUCCESSOR" tableName="ALERT_DEFINITION_VERSION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropColumn columnName="SUCCESSOR" tableName="DASHBOARD_DEFINITION_VERSION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropColumn columnName="SUCCESSOR" tableName="METRICS_DEFINITION_VERSION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <dropColumn columnName="SUCCESSOR" tableName="REPORT_DEFINITION_VERSION"/>
+    </changeSet>
+</databaseChangeLog>

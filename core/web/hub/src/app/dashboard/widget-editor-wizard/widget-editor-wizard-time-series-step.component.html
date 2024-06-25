@@ -1,0 +1,15 @@
+<ng-template o3-wizard-step-template>
+    <o3-chart-set #test_chartSet
+                  [(externalGraphCharts)]="externalGraphCharts" (configsChange)="chartConfigsChanged($event)"
+                  [(range)]="data.editor.timeseriesRange" (rangeChange)="data.editor.syncTimeseriesConfig()"
+                  [externalGraphsHost]="data.editor.dashboardGraphsHost"
+                  (chartUpdated)="handleChartUpdated($event)"
+                  [zoomable]="true"
+                  [handleInteractions]="false"
+                  [resizable]="true"
+                  [readonly]="false"
+                  [canDeleteAllSources]="true"
+                  [embedded]="true"
+                  [allowDashboardAdd]="false"
+                  [viewWindow]="viewWindow"></o3-chart-set>
+</ng-template>

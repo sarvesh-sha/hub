@@ -1,0 +1,39 @@
+<div class="source-container" *ngIf="!printable">
+    <mat-chip class="o3-source-chip" [ngClass]="chipClasses" (click)="toggleTarget(false); emitClick()"
+              [class.list-mode]="listable" [class.o3-source-chip--embedded]="embedded" [style.max-width.px]="maxChipWidth"
+              [disableRipple]="disableRipple" [class.o3-source-chip--transparent]="disableRipple"
+              (mousemove)="toggleTarget(true, true)" (mouseleave)="toggleTarget(true, false)"
+              [matTooltip]="sourceTooltip" [matTooltipShowDelay]="500" [matTooltipDisabled]="!showTooltips">
+        <div class="o3-source-pill--disable-indicator" [class.o3-source-pill--source-off]="isOff" #test_disable
+             (click)="toggleEnabled($event)" (dblclick)="toggleOnOffStrong($event)"
+             [matTooltip]="disableIndicatorTooltip" matTooltipShowDelay="750">
+            <div class="o3-source-pill--center-slash"></div>
+        </div>
+        <div class="circular-chip-siders chip-indicator" [style.background]="chipIndicatorBackgroundStyle"></div>
+        <div class="chip-content">
+            <span class="primary-info">{{primaryText}}</span>
+            <span class="mat-caption additional-info" *ngIf="!hideSecondaryText">{{secondaryText}}</span>
+        </div>
+        <ng-container *ngFor="let action of actions">
+            <div *ngIf="action.isEnabled(source)" class="circular-chip-siders chip-action custom-action" [optio3TestId]="action.optio3TestId(source.identifier)">
+                <mat-icon #test_action [ngClass]="'o3-source-chip--' + action.icon + '-action'"
+                          (click)="$event.stopPropagation(); action.callback(source)"
+                          [matTooltip]="action.tooltip?.content" [matTooltipPosition]="action.tooltipPosition"
+                          [matTooltipShowDelay]="action.tooltip?.showDelay" [matTooltipHideDelay]="action.tooltip?.hideDelay">
+                    {{action.icon}}
+                </mat-icon>
+            </div>
+        </ng-container>
+        <div class="circular-chip-siders chip-action" *ngIf="deletable || isDeleting" #test_delete>
+            <mat-icon *ngIf="!isDeleting" matTooltip="Remove source" matTooltipShowDelay="750" (click)="triggerDelete($event)">cancel</mat-icon>
+            <i *ngIf="isDeleting" class="fa fa-undo" matTooltip="Undo removal" (click)="cancelDelete($event)"></i>
+        </div>
+    </mat-chip>
+</div>
+<div class="printable-source" *ngIf="printable">
+    <div class="printable-indicator" [style.background]="chipIndicatorBackgroundStyle"></div>
+    <div class="printable-content">
+        <span class="printable-primary">{{primaryText}}</span>
+        <span class="mat-caption printable-secondary" *ngIf="!hideSecondaryText">{{secondaryText}}</span>
+    </div>
+</div>

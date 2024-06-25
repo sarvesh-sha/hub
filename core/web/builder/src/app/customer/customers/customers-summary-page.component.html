@@ -1,0 +1,43 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Inventory Report..." (click)="getInventory()"></o3-tab-action>
+        <o3-tab-action label="New Customer..." (click)="newCustomer()"></o3-tab-action>
+        <o3-tab-action label="Search Keyword Usages..." (click)="checkUsagesOverlay.toggleOverlay()"></o3-tab-action>
+
+        <o3-tab label="Customers">
+
+            <o3-customers-list #childList>
+            </o3-customers-list>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>
+
+<o3-overlay #checkUsagesOverlay [config]="checkUsagesDialogConfig">
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Checking Usages">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Words to search" [(ngModel)]="checkUsagesFilter" name="checkUsagesFilter" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <textarea matInput placeholder="Results" [value]="checkUsagesResults" name="checkUsagesResults" rows="20" readonly>
+                        </textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Search" priority="primary" (click)="checkUsages();" [disabled]="!isValidCheckUsages()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

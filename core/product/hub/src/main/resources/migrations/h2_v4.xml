@@ -1,0 +1,153 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <createTable tableName="USER_MESSAGE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEXT" type="VARCHAR_IGNORECASE(8192)"/>
+            <column name="FLAG_ACTIVE" type="BOOLEAN(1)"/>
+            <column name="FLAG_NEW" type="BOOLEAN(1)"/>
+            <column name="FLAG_READ" type="BOOLEAN(1)"/>
+            <column name="SUBJECT" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="USER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <createTable tableName="USER_MESSAGE_ALERT">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALERT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createTable tableName="USER_MESSAGE_DEVICE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEVICE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <createTable tableName="USER_MESSAGE_GENERIC">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createTable tableName="USER_MESSAGE_REPORT">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REPORT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createTable tableName="USER_MESSAGE_ROLES">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERTARGET" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_10" tableName="USER_MESSAGE_GENERIC"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_1A1" tableName="USER_MESSAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_785" tableName="USER_MESSAGE_ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_79" tableName="USER_MESSAGE_ROLES"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_98" tableName="USER_MESSAGE_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_B" tableName="USER_MESSAGE_REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <createIndex indexName="USER_MESSAGE_ALERT__ALERT__FK_INDEX_7" tableName="USER_MESSAGE_ALERT">
+            <column name="ALERT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <createIndex indexName="USER_MESSAGE_DEVICE__DEVICE__FK_INDEX_9" tableName="USER_MESSAGE_DEVICE">
+            <column name="DEVICE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <createIndex indexName="USER_MESSAGE_REPORT__REPORT__FK_INDEX_B" tableName="USER_MESSAGE_REPORT">
+            <column name="REPORT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <createIndex indexName="USER_MESSAGE_ROLES__USERTARGET__FK_INDEX_7" tableName="USER_MESSAGE_ROLES">
+            <column name="USERTARGET"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <createIndex indexName="USER_MESSAGE__USER__FK_INDEX_1" tableName="USER_MESSAGE">
+            <column name="USER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="USER_MESSAGE_ROLES" constraintName="FK5AE4KFCKNYJN6FYCLJEOKJRBV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER_MESSAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="USER_MESSAGE_DEVICE" constraintName="FK9PY8DG206C5TMWYKY70ETRHFC" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER_MESSAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="USER_MESSAGE_GENERIC" constraintName="FKCRIL11AL3AGDEAGFV42PJ2958" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER_MESSAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="USER_MESSAGE_REPORT" constraintName="FKGN556UQHR09TCX7QXSCTPJO25" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER_MESSAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="USER_MESSAGE_ALERT" constraintName="FKNSMDIMLBXE1I6O8FX6SM370MG" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER_MESSAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23">
+        <addForeignKeyConstraint baseColumnNames="ALERT" baseTableName="USER_MESSAGE_ALERT" constraintName="USER_MESSAGE_ALERT__ALERT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-24">
+        <addForeignKeyConstraint baseColumnNames="DEVICE" baseTableName="USER_MESSAGE_DEVICE" constraintName="USER_MESSAGE_DEVICE__DEVICE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="ASSET_DEVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-25">
+        <addForeignKeyConstraint baseColumnNames="REPORT" baseTableName="USER_MESSAGE_REPORT" constraintName="USER_MESSAGE_REPORT__REPORT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-26">
+        <addForeignKeyConstraint baseColumnNames="USERTARGET" baseTableName="USER_MESSAGE_ROLES" constraintName="USER_MESSAGE_ROLES__USERTARGET__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-27">
+        <addForeignKeyConstraint baseColumnNames="USER" baseTableName="USER_MESSAGE" constraintName="USER_MESSAGE__USER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-30">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATE" tableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-31">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-32">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="TYPE" tableName="ALERT_HISTORY"/>
+    </changeSet>
+</databaseChangeLog>

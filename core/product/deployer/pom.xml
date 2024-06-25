@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.optio3</groupId>
+    <artifactId>optio3-product-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>optio3-product-deployer</artifactId>
+  <name>Deployer product</name>
+  
+  <dependencies>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-common-interop</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-common-test</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-sdk-codegen</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+
+	  <exclusions>
+		<!-- Exclude the transitive dependency on slf4j-simple, brought in by swagger-codegen. It interferes with Dropwizard's logging. -->
+		<exclusion> 
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-simple</artifactId>
+		</exclusion>
+	  </exclusions>
+	  
+    </dependency>
+    
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-asyncawait</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+	  <artifactId>optio3-infra-automation-local</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-dropwizard-shell</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-client-deployer</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-dropwizard-shell-db-test</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+	
+    <dependency>
+      <groupId>com.optio3</groupId>
+      <artifactId>optio3-product-builder</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+	
+  <build>
+
+	<plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-external-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <!-- We don't want to include the compile-time support for code analysis -->
+			  <!-- We don't want to include the tools.jar -->
+			  <excludeGroupIds>com.sun,com.optio3,org.ow2.asm</excludeGroupIds>
+			  <!-- -->
+			  <includeScope>compile</includeScope>
+              <outputDirectory>${project.build.directory}/externalDependency</outputDirectory>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>copy-internal-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <!-- We don't want to include the compile-time support for code analysis -->
+              <excludeArtifactIds>optio3-asyncawait-compiletime,optio3-codeanalysis</excludeArtifactIds>
+			  <!-- -->
+			  <includeGroupIds>com.optio3</includeGroupIds>
+			  <includeScope>compile</includeScope>
+              <outputDirectory>${project.build.directory}/internalDependency</outputDirectory>
+            </configuration>
+          </execution>
+		  
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+  
+</project>

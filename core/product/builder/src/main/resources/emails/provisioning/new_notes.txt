@@ -1,0 +1,9 @@
+########################
+# Builder notification #
+########################
+
+Host '${param.HOST_ID}' has new provisioning notes!
+
+Details: https://builder.dev.optio3.io/#/deployments/item/${param.HOST_SYSID}
+
+Optio3

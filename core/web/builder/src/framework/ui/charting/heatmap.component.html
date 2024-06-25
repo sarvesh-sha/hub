@@ -1,0 +1,13 @@
+﻿<div class="o3-chart-empty" [hidden]="!!sources?.length">
+    No Items to Display.
+</div>
+
+<div class="heatmap-stage" #stage [class.shrink-to-fit]="shrinkToFit">
+    <canvas class="heatmap-canvas" #canvas></canvas>
+    <canvas class="heatmap-interactive-canvas" #interactiveCanvas></canvas>
+    <o3-chart-tooltip #tooltip [targetElement]="interactiveCanvas"></o3-chart-tooltip>
+    <!-- Context Menu -->
+    <span class="o3-context-menu--trigger-wrapper" #contextMenuTriggerWrapper>
+        <o3-context-menu #contextMenu></o3-context-menu>
+    </span>
+</div>

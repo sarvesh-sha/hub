@@ -1,0 +1,11 @@
+####################################
+# Notification of issue resolution #
+####################################
+
+An issue has been resolved at ${param.TIME}.
+
+${param.ALERT_BODY}
+
+Details: ${param.SITE_URL}/#/alerts/alert/${param.ALERT_SYSID}
+
+Optio3

@@ -1,0 +1,43 @@
+<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            Legacy Import Details
+
+            <mat-menu #listMenu="matMenu">
+                <button mat-menu-item (click)="exportData()">Export</button>
+                <button mat-menu-item (click)="runImport()">Process Imported Data</button>
+                <button mat-menu-item type="button" (click)="remove()" *ngIf="legacyImport && !legacyImport.model.active">Delete</button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="listMenu" type="button" class="pull-right">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+        </mat-card-title>
+        <form #legacyForm="ngForm" novalidate>
+            <mat-card-content>
+
+                <div class="row" *ngIf="legacyImport">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Version" [value]="'v' + legacyImport.model.version" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" (click)="exit()">
+                    Close
+                </button>
+                <button mat-raised-button type="button" (click)="makeActive()" [disabled]="!legacyImport || legacyImport.model.active">
+                    Make Active
+                </button>
+
+                <button mat-icon-button type="button" class="pull-right-sm-up hidden-xs-down" (click)="remove()" *ngIf="legacyImport && !legacyImport.model.active">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+
+</section>

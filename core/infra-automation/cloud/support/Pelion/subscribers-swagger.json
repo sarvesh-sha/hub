@@ -1,0 +1,434 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Retrieves information about your account subscribers.</p><p>For a specific subscriber or for all subscribers, you can use these endpoints to retrieve the&#58;</p><ul><li>Operator and tariff details</li><li>Contract start and end dates</li><li>Activation status</li><li>Network state</li><li>Unique identifier, such as ICCID or IMSI</li><li>Subscriber type</li><li>Subscriber group (if assigned)</li><li>Data usage</li></ul><p>You can also update a subscriber nickname.</p><p>The word <em>subscriber</em> refers to any physical device or virtual profile that is subscribed to the network. This includes cellular devices, non-IP devices, satellite devices and eSIM profiles.</p>",
+    "title": "Subscribers",
+    "version": "latest"
+  },
+  "paths": {
+    "/subscribers": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "default": 25,
+            "description": "Specifies the upper limit of the number of results to return.<p>For example, setting this to 10 limits the query to returning a maximum of ten records.</p>",
+            "in": "query",
+            "maximum": 100,
+            "name": "limit",
+            "type": "number"
+          },
+          {
+            "default": 0,
+            "description": "Offsets the returned results to begin at a particular record count.<p>For example, setting this to 10 causes the query to skip the first ten records in the data set.</p>",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "description": "Filter the results the query returns.<p>For example, to retrieve all users called Tom, with an age above 21, set the filter to - name eq \"Tom\" and age gt 21'.</p>",
+            "in": "query",
+            "name": "filter",
+            "type": "string"
+          },
+          {
+            "description": "Order the results by a particular field in either ascending or descending order.<p>This parameter supports multiple fields for sorting, for example, 'name ASC, created DESC'.</p>",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns an array of information about your account's subscribers.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/SubscriberResponse"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Subscriber"
+        ],
+        "description": "Returns a paginated list of information about your company's subscribers.<p><br><p>Optionally, you can order, offset, limit and filter the results.<p><br> You can filter results by any field and order them by&#58; <ul><li>Connection date</li><li>Expiry date</li><li>Termination date</li><li>Tariff</li><li>Line rental</li></ul><p><br>For detailed information and examples, see the topics <em>Pagination, Filtering and Sorting</em> and <em>Filtering Subscribers by Status</em> in the <em>API User Guide</em>.</p><br><p>To use this endpoint, your user account must have the <strong>View a Device</strong> permission enabled. </p>",
+        "operationId": "SubscriberController.getSubscribers",
+        "summary": "Returns a list of information about your account's subscribers."
+      }
+    },
+    "/subscribers/{physicalId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns information about the subscriber.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "$ref": "#/definitions/SubscriberResponse",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Subscriber"
+        ],
+        "description": "<p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p> To use this endpoint, your user account must have the <strong>View a Device</strong> permission enabled.",
+        "operationId": "SubscriberController.getOneSubscriber",
+        "summary": "Returns information for the specified subscriber."
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "PatchBody",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PatchBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - the subscriber nickname was updated successfully.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "$ref": "#/definitions/SubscriberResponse",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "properties": {
+                "error": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Subscriber"
+        ],
+        "description": "<p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>You must also provide the subscriber nickname in the request body.</p><p><br>To use this endpoint, your user account must have the <strong>View a Device</strong> and <strong>Update the Details of a Device</strong> permissions enabled.</p>",
+        "operationId": "SubscriberController.editNickNameOfSubscriber",
+        "summary": "Updates the nickname for the specified subscriber."
+      }
+    }
+  },
+  "definitions": {
+    "NetworkState": {
+      "properties": {
+        "isOnline": {
+          "description": "Indicates whether the subscriber is currently online.",
+          "example": "true",
+          "type": "boolean"
+        },
+        "isTransferring": {
+          "description": "Indicates whether the subscriber is currently transferring data.",
+          "example": "true",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "isTransferring",
+        "isOnline"
+      ],
+      "type": "object"
+    },
+    "Parent": {
+      "description": "The parent of this subscriber. If this is an eUICC profile the parent is the subscriber it is attached to.",
+      "properties": {
+        "isEnabledOnParent": {
+          "description": "Whether the subscriber is the currently enabled profile on the parent.",
+          "type": "boolean"
+        },
+        "physicalId": {
+          "description": "The physical ID of the parent subscriber.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "physicalId",
+        "isEnabledOnParent"
+      ],
+      "type": "object"
+    },
+    "PatchBody": {
+      "properties": {
+        "nickname": {
+          "description": "The subscriber nickname that you want to assign.",
+          "example": "SubscriberNickname1",
+          "maxLength": 256,
+          "minLength": 0,
+          "type": "string"
+        }
+      },
+      "required": [
+        "nickname"
+      ],
+      "type": "object"
+    },
+    "RelatedItems": {
+      "description": "Information about related items, such as profiles or parent subscribers.",
+      "example": "{parent: {}, profiles: [{ physicalId: 1234, isEnabled: false }]}",
+      "properties": {
+        "parent": {
+          "$ref": "#/definitions/Parent"
+        },
+        "profiles": {
+          "description": "A list of profiles which are attached to this subscriber.",
+          "items": {
+            "$ref": "#/definitions/SubscriberResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriberResponse": {
+      "properties": {
+        "connectionDate": {
+          "description": "The contract start date, or date and time.",
+          "example": "2018-02-11T10:33:30.000Z",
+          "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?",
+          "type": "string"
+        },
+        "contractLength": {
+          "description": "The tariff contract length, in months.",
+          "example": "24",
+          "type": "integer"
+        },
+        "dataNumber": {
+          "description": " If the subscriber uses Circuit Switched Data (CSD), this field displays its data number.\n    If the subscriber does not use CSD, this field is null.",
+          "example": "9999",
+          "type": "string",
+          "x-nullable": true
+        },
+        "dataUsage": {
+          "description": "The total amount of data the subscriber has sent and received during the current billing period, in bytes.",
+          "example": "20480",
+          "type": "number"
+        },
+        "eid": {
+          "description": "If the subscriber is an eUICC SIM, this field displays its EID.",
+          "example": "39049987000001000000004406147560",
+          "type": "string"
+        },
+        "expiryDate": {
+          "description": "The contract end date, or date and time.",
+          "example": "2020-02-11T10:33:30.000Z",
+          "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "If the subscriber is a member of a group, this field displays the unique group identifier. This is null for subscribers that are not in a group.",
+          "example": 99,
+          "type": "integer"
+        },
+        "imsi": {
+          "description": "The International Mobile Subscriber Identity number.",
+          "example": "234150000000001",
+          "type": "string"
+        },
+        "isActive": {
+          "description": "<p>Indicates if the subscriber is active.</p><ul><li><em>True</em> - the subscriber is active.</li><li><em>False</em> - the subscriber is not active.</li></ul>",
+          "example": true,
+          "type": "boolean"
+        },
+        "isBarred": {
+          "description": "<p>Indicates if the subscriber is barred.</p><ul><li><em>True</em> - the subscriber is barred.</li><li><em>False</em> - the subscriber is not barred.</li></ul>",
+          "example": false,
+          "type": "boolean"
+        },
+        "lineRental": {
+          "description": "The tariff recurring line rental fee in pence (or the smallest unit of the tariff currency).",
+          "example": "1000",
+          "type": "integer"
+        },
+        "networkState": {
+          "$ref": "#/definitions/NetworkState"
+        },
+        "nickname": {
+          "description": "The subscriber nickname.",
+          "example": "Temperature Monitor",
+          "type": "string"
+        },
+        "operatorCode": {
+          "description": "The unique operator identifier.",
+          "example": "op1",
+          "type": "string"
+        },
+        "operatorName": {
+          "description": "The name of the operator the subscriber is associated with.",
+          "example": "Operator One",
+          "type": "string"
+        },
+        "physicalId": {
+          "description": "<p>The <em>physicalId</em> value depends on the subscriber type&#58;</p><ul><li><em>Cellular</em> - the ICCID</li><li><em>Non-IP</em> - the Device EUI</li><li><em>Satellite</em> - the IMEI</li></ul>",
+          "example": "8944000000000000001",
+          "type": "string"
+        },
+        "related": {
+          "$ref": "#/definitions/RelatedItems"
+        },
+        "smdpProvider": {
+          "description": "If the subscriber is an eUICC SIM or eSIM profile, this field displays its SMDP provider.",
+          "example": "Provider One",
+          "type": "string"
+        },
+        "subscriberId": {
+          "description": "<p>The <em>subscriberId</em> value depends on the subscriber type&#58;</p><ul><li><em>Cellular</em> - the MSISDN</li><li><em>Non-IP</em> - the Device EUI</li><li><em>Satellite</em> - the Subscription ID</li></ul>",
+          "example": "447000000001",
+          "type": "string"
+        },
+        "subscriberType": {
+          "description": "Indicates whether the subscriber is physical or virtual.",
+          "example": "virtual",
+          "type": "string"
+        },
+        "tariffName": {
+          "description": "The name of tariff the subscriber is on.",
+          "example": "TARIFF ABC",
+          "type": "string"
+        },
+        "terminateDate": {
+          "description": "The date, or the date and time, at which the subscriber's contract was terminated. This is null for active subscribers.",
+          "example": "2018-12-11T10:33:30.000Z",
+          "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "physicalId",
+        "subscriberId",
+        "dataNumber",
+        "imsi",
+        "nickname",
+        "operatorName",
+        "operatorCode",
+        "tariffName",
+        "lineRental",
+        "connectionDate",
+        "expiryDate",
+        "contractLength",
+        "isBarred",
+        "isActive",
+        "terminateDate",
+        "groupId",
+        "subscriberType",
+        "networkState"
+      ],
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}

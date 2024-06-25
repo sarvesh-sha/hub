@@ -1,0 +1,23 @@
+<ng-container>
+    <div class="carousel-container">
+        <div *ngFor="let slide of slides; let i = index;"
+             class="carousel-slide"
+             [@slideTransition]="getAnimationState(i)"
+             (@slideTransition.done)="animationDoneInner.next($event)"
+             [@.disabled]="isAnimationDisabled()"
+             [id]="getSlideContentId(i)"
+             [attr.aria-labelledby]="getSlideLabelId(i)"
+             [attr.aria-expanded]="isCurrent(i)">
+            <ng-container *ngTemplateOutlet="slide.content"></ng-container>
+        </div>
+        <div class="carousel-controls">
+            <div class="dot-box" *ngIf="slides.length > 1">
+                <div
+                    class="dot"
+                    [class.active]="isCurrent(i)"
+                    *ngFor="let slide of slides; let i = index"
+                    (click)="goto(i); stopAutoCycle();"></div>
+            </div>
+        </div>
+    </div>
+</ng-container>

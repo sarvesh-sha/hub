@@ -1,0 +1,9 @@
+﻿<mat-form-field *ngIf="enableFiltering">
+    <input matInput type="text" placeholder="Filter BDT Entries" [(ngModel)]="filterObjects">
+</mat-form-field>
+
+<o3-datatable [table]="table" [showRowNumbers]="true" [showViewIcons]="false">
+    <o3-datatable-column id="BBMD" sortId="bbmd" prop="result.bbmdTransport" name="BBMD"></o3-datatable-column>
+    <o3-datatable-column id="Address" sortId="address" prop="result.entry.address" name="Address"></o3-datatable-column>
+    <o3-datatable-column id="Mask" sortId="mask" prop="result.entry.mask" name="Mask"></o3-datatable-column>
+</o3-datatable>

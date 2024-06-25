@@ -1,0 +1,4 @@
+<o3-wizard label="Configure User Group" [modalMode]="true" [data]="data" (wizardCancelled)="wizardCancel()" (wizardCommitted)="wizardCommit()">
+    <o3-user-group-wizard-info-step></o3-user-group-wizard-info-step>
+    <o3-user-group-wizard-fields-step *ngIf="!data.isNew"></o3-user-group-wizard-fields-step>
+</o3-wizard>

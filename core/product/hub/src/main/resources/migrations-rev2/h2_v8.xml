@@ -1,0 +1,78 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createTable tableName="GATEWAY_PROBER_OPERATION">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_65"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="LAST_HEARTBEAT" type="TIMESTAMP"/>
+            <column name="INPUT_DETAILS" type="CLOB"/>
+            <column name="LAST_OFFSET" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+            <column name="LOG_RANGES" type="BLOB"/>
+            <column name="OUTPUT_DETAILS" type="CLOB"/>
+            <column name="CURRENT_ACTIVITY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="GATEWAY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createTable tableName="GATEWAY_PROBER_OPERATION_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_5D"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_OP" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <createIndex indexName="OWNING_OP__FK_INDEX_5" tableName="GATEWAY_PROBER_OPERATION_LOG">
+            <column name="OWNING_OP"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <createIndex indexName="PROBER_OPERATION__GATEWAY__FK_INDEX_6" tableName="GATEWAY_PROBER_OPERATION">
+            <column name="GATEWAY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <createIndex indexName="PROBER__CURRENT_ACTIVITY__FK_INDEX_6" tableName="GATEWAY_PROBER_OPERATION">
+            <column name="CURRENT_ACTIVITY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <addForeignKeyConstraint baseColumnNames="OWNING_OP" baseTableName="GATEWAY_PROBER_OPERATION_LOG" constraintName="OWNING_OP__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="GATEWAY_PROBER_OPERATION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <addForeignKeyConstraint baseColumnNames="GATEWAY" baseTableName="GATEWAY_PROBER_OPERATION" constraintName="PROBER_OPERATION__GATEWAY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="ASSET_GATEWAY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <addForeignKeyConstraint baseColumnNames="CURRENT_ACTIVITY" baseTableName="GATEWAY_PROBER_OPERATION" constraintName="PROBER__CURRENT_ACTIVITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

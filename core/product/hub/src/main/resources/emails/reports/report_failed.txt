@@ -1,0 +1,5 @@
+Report '${param.REPORT_NAME}' has failed to generate on ${param.REPORT_TIME}!
+
+Details: ${param.SITE_URL}/#/configuration/reports/report/${param.REPORT_DEFINITION_ID}
+
+Optio3

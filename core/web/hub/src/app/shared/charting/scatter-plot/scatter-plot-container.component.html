@@ -1,0 +1,37 @@
+<o3-scatter-plot [panels]="scatterPlotInputPanels" [allowZoom]="allowZoom"
+                 (startedFetchingData)="startedFetchingData.emit()"
+                 (stoppedFetchingData)="stoppedFetchingData.emit()"
+                 (editGradient)="toggleColorConfigurer($event)"
+                 (sourceStateUpdated)="emitSourceStates()"></o3-scatter-plot>
+
+<o3-scatter-plot-configuration [axes]="axisTuples" [tuples]="generatedTuplesPerPanel"
+                               (axesEdit)="axesChanged($event, false)" (axesUpdate)="axesChanged($event, true)"></o3-scatter-plot-configuration>
+
+<o3-standard-form-overlay #colorConfigurer label="Color Configuration" [overlayConfig]="editColorConfig" internalCardClass="no-content-padding"
+                          [primaryButtonDisabled]="!colorConfigsAreValid || colorConfigsArePristine"
+                          (submitted)="panelConfigs = null; chartUpdated.emit()" (cancelled)="clearColorConfigurationEdits()">
+    <ng-container *cdkPortal>
+        <mat-form-field *ngIf="configExt && configExt.model.panels.length > 1" class="col" style="padding: 0px 12px">
+            <o3-select placeholder="Panel" [options]="panelConfigOptions"
+                       [(ngModel)]="activePanel" (ngModelChange)="updateColorConfigurer()"
+                       [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"></o3-select>
+        </mat-form-field>
+
+        <o3-color-picker-configuration *ngIf="activePanel" #test_colorConfig style="display: flex"
+                                       [(model)]="activePanel.colorSettings" (modelChange)="updatePanelColorConfig()"
+                                       [forFlat]="!activePanelHasGradient" [onlyPalette]="true"
+                                       [forGradient]="activePanelHasGradient" [maxStops]="3"></o3-color-picker-configuration>
+    </ng-container>
+</o3-standard-form-overlay>
+
+<o3-standard-form-overlay #tupleConfigurer [overlayConfig]="tupleEditConfig" [label]="editTupleInteractable?.name"
+                          [primaryButtonDisabled]="tupleColor == editTupleInteractable?.color" [showSecondary]="true"
+                          [secondaryButtonText]="tupleColor == editTupleInteractable?.color ? 'Close' : 'Cancel'"
+                          (submitted)="editTupleModel = editTupleInteractable = null" (cancelled)="revertTupleEdits()">
+    <ng-container *cdkPortal>
+        <mat-form-field *ngIf="editTupleInteractable">
+            <o3-color-picker #test_color [(ngModel)]="tupleColor" (ngModelChange)="updateTupleColor()" placeholder="Tuple Color"
+                             [palette]="tuplePanelPalette"></o3-color-picker>
+        </mat-form-field>
+    </ng-container>
+</o3-standard-form-overlay>

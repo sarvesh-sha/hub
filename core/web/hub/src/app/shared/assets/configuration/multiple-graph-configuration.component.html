@@ -1,0 +1,20 @@
+<o3-modifiable-table *ngIf="rows" #test_table
+                     [rows]="rows" allowAdding [limit]="singularGraph ? 1 : undefined"
+                     [allowDeleting]="!singularGraph" [canDelete]="canRemove.bind(this)"
+                     (rowAddRequested)="addRow()" (rowRemoved)="rowRemoved()">
+    <ng-container *o3ModifiableTableRow="let item">
+        <td style="padding-left: 10px">
+            <mat-form-field>
+                <input #test_graphName matInput placeholder="Name" name="name" [readonly]="readonlyGraphNames" [(ngModel)]="item.name"/>
+            </mat-form-field>
+        </td>
+        <td>
+            <button #test_configureGraph mat-icon-button style="padding: 0px" type="button"
+                    matTooltip="Edit Asset Structure" (click)="editRow(item)">
+                <mat-icon>settings</mat-icon>
+            </button>
+        </td>
+        <td style="flex-grow: 2">
+        </td>
+    </ng-container>
+</o3-modifiable-table>

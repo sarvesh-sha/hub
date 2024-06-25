@@ -1,0 +1,169 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Equipment Rules
+            </mat-panel-title>
+            <mat-panel-description>
+                List of equipment validation rules
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <o3-map-list [provider]="equipmentRules">
+            <form *o3MapListForm="let edited">
+                <mat-form-field>
+                    <input matInput
+                           placeholder="Name"
+                           name="name"
+                           [(ngModel)]="edited.value.name"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-select [multiSelect]="false"
+                               [options]="host.equipmentClassOptions"
+                               [(ngModel)]="edited.value.equipmentClassId"
+                               name="equipmentClass"
+                               placeholder="Equipment Class"
+                               [o3UniqueValues]="getEquipmentClasses()" [o3UniqueValuesAllowSelfMatch]="true"
+                               required
+                               #equipmentClassControl="ngModel">
+                    </o3-select>
+                    <mat-error *ngIf="equipmentClassControl.invalid && edited.value.equipmentClassId">Equipment class must be unique</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-select [o3LocationSelector]="true"
+                               name="location"
+                               [multiSelect]="false"
+                               [(ngModel)]="equipmentRules.locationSysId"
+                               (ngModelChange)="equipmentRules.updateLocation()">
+                    </o3-select>
+                </mat-form-field>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                   placeholder="Minimum Number of equipment"
+                                   [(ngModel)]="edited.value.minNumber"
+                                   name="equipmentCardinalityMin"/>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                   placeholder="Maximum Number of equipment"
+                                   [(ngModel)]="edited.value.maxNumber"
+                                   name="equipmentCardinalityMax"/>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="mt-2 input-label">Points</div>
+                <o3-modifiable-table [rows]="edited.value.points" allowAdding allowDeleting allowReordering (rowAddRequested)="addPointRow()">
+                    <ng-container *o3ModifiableTableRow="let value">
+                        <td style="padding-left:10px; flex-grow: 2;">
+                            <form>
+                                <mat-form-field>
+                                    <o3-select placeholder="Point Class"
+                                               name="pointClass"
+                                               [multiSelect]="false"
+                                               [(ngModel)]="value.pointClassId"
+                                               [options]="host.pointClassOptions"
+                                               [o3UniqueValues]="getCurrentPointClasses()" [o3UniqueValuesAllowSelfMatch]="true"
+                                               required
+                                               #pointClassControl="ngModel"></o3-select>
+                                    <mat-error *ngIf="pointClassControl.invalid && value.pointClassId">Point class must be unique</mat-error>
+                                </mat-form-field>
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <mat-form-field>
+                                    <input type="number" matInput
+                                           placeholder="Min Number of points"
+                                           name="cardinalityMin"
+                                           [(ngModel)]="value.minNumber"/>
+                                </mat-form-field>
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <mat-form-field>
+                                    <input type="number" matInput
+                                           placeholder="Max Number of points"
+                                           name="cardinalityMax"
+                                           [(ngModel)]="value.maxNumber"/>
+                                </mat-form-field>
+                            </form>
+                        </td>
+                    </ng-container>
+                </o3-modifiable-table>
+            </form>
+        </o3-map-list>
+
+        <o3-map-list-actions [provider]="equipmentRules">
+            <div class="import-export">
+                <button mat-raised-button (click)="importEquipmentRules()">Import</button>
+                <button mat-raised-button (click)="exportEquipmentRules()">Export</button>
+            </div>
+        </o3-map-list-actions>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Point Class Rules
+            </mat-panel-title>
+            <mat-panel-description>
+                List of rules for point classes
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <o3-map-list [provider]="pointClassRules">
+            <form *o3MapListForm="let edited">
+                <mat-form-field>
+                    <o3-select [multiSelect]="false"
+                               [options]="host.pointClassOptions"
+                               [(ngModel)]="edited.value.pointClassId"
+                               name="pointClass"
+                               placeholder="Point Class"
+                               [o3UniqueValues]="getPointClasses()" [o3UniqueValuesAllowSelfMatch]="true"
+                               required
+                               #pointClassControl="ngModel">
+                    </o3-select>
+                    <mat-error *ngIf="pointClassControl.invalid && edited.value.pointClassId">Point class must be unique</mat-error>
+                </mat-form-field>
+                <div class="mb-2">
+                    <mat-checkbox [checked]="edited.value.isBinary" (change)="edited.value.isBinary = $event.checked">Binary Point</mat-checkbox>
+                </div>
+                <mat-form-field>
+                    <input matInput type="number"
+                           placeholder="Min Value"
+                           [(ngModel)]="edited.value.minValue"
+                           name="minValue"
+                           [disabled]="edited.value.isBinary"
+                           [required]="!edited.value.isBinary"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number"
+                           placeholder="Max Value"
+                           [(ngModel)]="edited.value.maxValue"
+                           name="maxValue"
+                           [disabled]="edited.value.isBinary"
+                           [required]="!edited.value.isBinary"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-select placeholder="Allowed Object Types"
+                               name="objectTypes"
+                               [(ngModel)]="edited.value.allowableObjectTypes"
+                               [options]="objectTypes"></o3-select>
+                </mat-form-field>
+            </form>
+        </o3-map-list>
+
+        <o3-map-list-actions [provider]="pointClassRules">
+            <div class="import-export">
+                <button mat-raised-button (click)="importPointClassRules()">Import</button>
+                <button mat-raised-button (click)="exportPointClassRules()">Export</button>
+            </div>
+        </o3-map-list-actions>
+    </mat-expansion-panel>
+</mat-accordion>

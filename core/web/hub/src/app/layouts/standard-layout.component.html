@@ -1,0 +1,159 @@
+<!--Top toolbar-->
+<mat-toolbar *ngIf="!appService.getState('pageFullscreen')" class="topnav-container" color="primary" [ngClass]="'area-' + appService.getState('area')">
+    <div class="o3-toolbar--left">
+        <!--Side Nav Toggle-->
+        <button #test_sidenavToggle mat-icon-button class="topnav-menu-btn" (click)="toggleSidenav()">
+            <i class="o3 o3-menu o3-2x"></i>
+        </button>
+
+        <section class="bs topnav-component-container" [class.topnav-component-present]="topnavComponentType">
+            <ng-template #topnavComponent></ng-template>
+        </section>
+
+        <div class="topnav-title" *ngIf="!topnavComponentType">
+            {{appService.getState('topnavTitle')}}
+
+            <section class="bs">
+                <o3-breadcrumbs></o3-breadcrumbs>
+            </section>
+        </div>
+    </div>
+    <div class="o3-toolbar--search">
+        <a mat-icon-button (click)="toggleTopnavSearch()">
+            <mat-icon>search</mat-icon>
+        </a>
+        <div class="topnav-search" [class.show]="showSearch">
+            <form (submit)="submitSearch()">
+                <mat-form-field>
+                    <input id="searchInput"
+                           #searchInput
+                           name="searchText"
+                           matInput
+
+                           placeholder="Search..."
+                           [matAutocomplete]="auto"
+                           (blur)="onSearchTextBlur()"
+                           [(ngModel)]="searchText"
+                           (ngModelChange)="onSearchTextChanged($event)">
+                    <i class="fa fa-refresh fa-spin search-progress" *ngIf="searching"></i>
+                </mat-form-field>
+
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let result of searchResults" value=""
+                                [ngClass]="{'twoline': result.subtext, 'summary': result.isSummary }"
+                                (click)="$event.stopPropagation(); navigateToSearchResult(result.url)">
+                        <ng-container *ngIf="!result.isSummary">
+                            <i class="fa fa-lg o3-configure fa-search" *ngIf="result.type == 'SEARCHALL'"></i>
+                            <i class="o3 o3-lg o3-alert" *ngIf="result.type == 'ALERT'"></i>
+                            <i class="o3 o3-lg o3-device" *ngIf="result.type == 'DEVICE'"></i>
+                            <i class="o3 o3-lg o3-equipment fa fa-plug" *ngIf="result.type == 'EQUIPMENT'"></i>
+                            <i class="o3 o3-lg o3-device" *ngIf="result.type == 'DEVICE_ELEMENT'"></i>
+                            <i class="fa fa-lg o3-configure fa-building-o" *ngIf="result.type == 'LOCATION'"></i>
+                            <i class="fa fa-lg o3-configure fa-user-o" *ngIf="result.type == 'USER'"></i>
+                            <i class="o3 o3-lg o3-configure" *ngIf="result.type == 'GATEWAY'"></i>
+                            <i class="o3 o3-lg o3-configure" *ngIf="result.type == 'NETWORK'"></i>
+                        </ng-container>
+
+                        <span [matTooltip]="result.text" matTooltipShowDelay="500">
+                        {{ result.text }}
+                            <small>{{result.subtext}}</small>
+                        <i class="o3 o3-view-item" *ngIf="result.isSummary"></i>
+                    </span>
+                    </mat-option>
+                </mat-autocomplete>
+            </form>
+        </div>
+    </div>
+    <div class="o3-toolbar--right">
+        <a href="#/notification-center" mat-icon-button (click)="messageCenter()">
+            <mat-icon [matBadge]="newMessages > maxMessageCount ? maxMessageCount + '+' : newMessages"
+                      [matBadgeHidden]="newMessages == 0"
+                      matBadgeOverlap="true"
+                      matBadgeSize="small"
+                      matBadgeColor="warn">notifications
+            </mat-icon>
+        </a>
+        <!--User Menu-->
+        <a mat-icon-button [mat-menu-trigger-for]="topnavUserMenu" class="profile-button">
+            <i class="o3 o3-me"></i>
+        </a>
+        <mat-menu #topnavUserMenu="matMenu">
+            <button mat-menu-item (click)="profile()"><i class="o3 o3-profile"></i><span>Profile</span></button>
+            <button mat-menu-item (click)="bookmarks()"><i class="o3 o3-bookmark"></i><span>Bookmarks</span></button>
+            <button mat-menu-item (click)="changePassword()"><i class="o3 o3-change-password"></i><span>Change Password</span></button>
+            <button mat-menu-item (click)="signOut()"><i class="o3 o3-logout"></i><span>Sign Out</span></button>
+            <button mat-menu-item (click)="swagger()" *ngIf="isMaint"><i class="o3 o3-information"></i><span>Swagger</span></button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+<!--Page container-->
+<mat-sidenav-container [class.start-page-container]="appService.getState('startPage')">
+    <!--Side nav bar-->
+    <mat-sidenav [class.sidenav-collapse]="appService.getState('sidenavCollapse')"
+                 class="mat-elevation-z2"
+                 *ngIf="!appService.getState('pageFullscreen')"
+                 [mode]="appService.getState('sidenavMode')"
+                 [opened]="sidenavOpen"
+                 (openedChange)="updateSidenavOpenState($event)"
+                 (mouseout)="toggleSidenavCollapse()">
+        <div class="sidenav-container">
+            <mat-nav-list>
+                <div *ngFor="let menuItem of mainMenu" [ngClass]="'sidenav-item-' + menuItem.id" #test_sidenavItem>
+                    <div *ngIf="menuItem.sub.length == 0">
+                        <mat-list-item (click)="toggleSidenavMenu(menuItem.id, false, false)"
+                                       [routerLink]="menuItem.link"
+                                       routerLinkActive="active"
+                                       [routerLinkActiveOptions]="{exact: menuItem.exact }"
+                                       [hasAccess]="menuItem.roles">
+                            <a mat-line [href]="'#' + menuItem.link">
+                                <i class="o3 o3-lg" [ngClass]="menuItem.faIcon" aria-hidden="true" *ngIf="menuItem.faIcon"></i>
+                                &nbsp;&nbsp;<span class="sidenav-collapse-item">{{menuItem.label}}</span>
+                            </a>
+                        </mat-list-item>
+                    </div>
+                    <div *ngIf="menuItem.sub.length != 0">
+                        <mat-list-item (click)="toggleSidenavMenu(menuItem.id, false, true)" [hasAccess]="menuItem.roles">
+                            <a mat-line>
+                                <i class="o3 o3-lg" [ngClass]="menuItem.faIcon" aria-hidden="true" *ngIf="menuItem.faIcon"></i>
+                                &nbsp;&nbsp;<span class="sidenav-collapse-item">{{menuItem.label}}</span>
+                            </a>
+                            <i class="material-icons sidenav-collapse-item">
+                                {{activeSubMenuName === menuItem.id ? 'expand_less' : 'expand_more'}}
+                            </i>
+                        </mat-list-item>
+                        <div [hasAccess]="menuItem.roles">
+                            <mat-list-item class="sidenav-menu-sub"
+                                           *ngFor="let subMenuItem of menuItem.sub"
+
+                                           (click)="toggleSidenavMenu(subMenuItem.id, true, false )"
+                                           [class.show]="activeSubMenuName === menuItem.id"
+                                           [routerLink]="subMenuItem.link"
+                                           routerLinkActive="active"
+                                           [hasAccess]="subMenuItem.roles">
+                                <a mat-line [href]="'#' + subMenuItem.link" class="sidenav-menu-sub-title">
+                                    <span class="sidenav-collapse-item">{{subMenuItem.label}}</span>
+                                </a>
+                            </mat-list-item>
+                        </div>
+                    </div>
+                </div>
+            </mat-nav-list>
+        </div>
+        <div class="o3-standard-layout--powered-by">
+            <img [src]="logo.poweredBy" alt="powered by Optio3"/>
+        </div>
+    </mat-sidenav>
+    <!--Page content-->
+    <div class="o3-standard-layout--scroll-container"
+         [class.page-container]="!appService.getState('pageFullscreen')"
+         cdkScrollable
+         [ngClass]="'area-' + appService.getState('area')">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>
+<!--Modal Container-->
+<section class="bs" id="modal-container"></section>
+
+<!--Errors Container-->
+<o3-error-list-pane #test_toasts></o3-error-list-pane>
+

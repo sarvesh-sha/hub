@@ -1,0 +1,21 @@
+<ng-template o3-wizard-step-template>
+    <p>Select the type of network:</p>
+    <table class="table table-striped table-bordered">
+        <tbody>
+        <tr>
+            <td>BACnet</td>
+            <td>
+                <mat-checkbox name="BACnet" [(ngModel)]="data.bacnetEnabled"></mat-checkbox>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IPN</td>
+            <td>
+                <mat-checkbox name="Ipn" [(ngModel)]="data.ipnEnabled"></mat-checkbox>
+            </td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</ng-template>

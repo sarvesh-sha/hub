@@ -1,0 +1,371 @@
+/* latin-ext */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(OpenSans-Regular-Ext.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(OpenSans-Regular.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+@font-face {
+    font-family: Optio3Mvp;
+    src: url(icons.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal
+}
+
+.o3 {
+    display: inline-block;
+    font: normal normal normal 14px/1 Optio3Mvp;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.o3-lg {
+    font-size: 1.33333333em !important;
+    line-height: .75em !important;
+    vertical-align: -15% !important;
+}
+
+.o3-2x {
+    font-size: 2em !important;
+}
+
+.o3-3x {
+    font-size: 3em !important;
+}
+
+.o3-4x {
+    font-size: 4em !important;
+}
+
+.o3-5x {
+    font-size: 5em !important;
+}
+
+.o3-fw {
+    width: 1.28571429em;
+    text-align: center
+}
+
+.o3-ul {
+    padding-left: 0;
+    margin-left: 2.14285714em;
+    list-style-type: none
+}
+
+    .o3-ul > li {
+        position: relative
+    }
+
+.o3-li {
+    position: absolute;
+    left: -2.14285714em;
+    width: 2.14285714em;
+    top: .14285714em;
+    text-align: center
+}
+
+    .o3-li.o3-lg {
+        left: -1.85714286em
+    }
+
+.o3-border {
+    padding: .2em .25em .15em;
+    border: solid .08em #eee;
+    border-radius: .1em
+}
+
+.pull-right {
+    float: right
+}
+
+.pull-left {
+    float: left
+}
+
+.o3.pull-left {
+    margin-right: .3em
+}
+
+.o3.pull-right {
+    margin-left: .3em
+}
+
+.o3-spin {
+    -webkit-animation: o3-spin 2s infinite linear;
+    animation: o3-spin 2s infinite linear
+}
+
+.o3-pulse {
+    -webkit-animation: o3-spin 1s infinite steps(8);
+    animation: o3-spin 1s infinite steps(8)
+}
+
+@-webkit-keyframes o3-spin {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+@keyframes o3-spin {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+.o3-rotate-90 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.o3-rotate-180 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.o3-rotate-270 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg)
+}
+
+.o3-flip-horizontal {
+    -webkit-transform: scale(-1,1);
+    -ms-transform: scale(-1,1);
+    transform: scale(-1,1)
+}
+
+.o3-flip-vertical {
+    -webkit-transform: scale(1,-1);
+    -ms-transform: scale(1,-1);
+    transform: scale(1,-1)
+}
+
+:root .o3-flip-horizontal, :root .o3-flip-vertical, :root .o3-rotate-180, :root .o3-rotate-270, :root .o3-rotate-90 {
+    filter: none
+}
+
+.o3-stack {
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle
+}
+
+.o3-stack-1x, .o3-stack-2x {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center
+}
+
+.o3-stack-1x {
+    line-height: inherit
+}
+
+.o3-stack-2x {
+    font-size: 2em
+}
+
+.o3-inverse {
+    color: #fff
+}
+
+.o3-bookmark:before {
+    content: '\f03f'
+}
+
+.o3-search:before {
+    content: '\f000'
+}
+
+.o3-chevron-left:before {
+    content: '\f001'
+}
+
+.o3-chevron-right:before {
+    content: '\f002'
+}
+
+.o3-edit:before {
+    content: '\f003'
+}
+
+.o3-failure:before {
+    content: '\f004'
+}
+
+.o3-information:before {
+    content: '\f005'
+}
+
+.o3-change-password:before {
+    content: '\f006'
+}
+
+.o3-lock-open:before {
+    content: '\f007'
+}
+
+.o3-logout:before {
+    content: '\f008'
+}
+
+.o3-menu:before {
+    content: '\f009'
+}
+
+.o3-pause:before {
+    content: '\f00a'
+}
+
+.o3-usage-trend:before {
+    content: '\f00b'
+}
+
+.o3-trending-down:before {
+    content: '\f00c'
+}
+
+.o3-home:before {
+    content: '\f010'
+}
+
+.o3-device:before {
+    content: '\f015'
+}
+
+.o3-cancel:before {
+    content: '\f027'
+}
+
+.o3-alert:before {
+    content: '\f028'
+}
+
+.o3-share:before {
+    content: '\f029'
+}
+
+.o3-configure:before {
+    content: '\f02a'
+}
+
+.o3-view:before {
+    content: '\f02b'
+}
+
+.o3-notification:before {
+    content: '\f02c'
+}
+
+.o3-enabled:before {
+    content: '\f02d'
+}
+
+.o3-me:before {
+    content: '\f02e'
+}
+
+.o3-profile:before {
+    content: '\f02f'
+}
+
+.o3-view-item:before {
+    content: '\f030'
+}
+
+.o3-ok:before {
+    content: '\f032'
+}
+
+.o3-unknown:before {
+    content: '\f034'
+}
+
+.o3-warning:before {
+    content: '\f035'
+}
+
+.o3-end-of-life:before {
+    content: '\f037'
+}
+
+.o3-out-of-range:before {
+    content: '\f039'
+}
+
+.o3-device-recalled:before {
+    content: '\f03a'
+}
+
+.o3-refresh:before {
+    content: '\f03b'
+}
+
+.o3-delete:before {
+    content: '\f03c'
+}
+
+.o3-filter-outline:before {
+    content: '\f03d'
+}
+
+.o3-email:before {
+    content: '\f03e'
+}
+
+.o3-database-search:before {
+    content: '\f040'
+}
+
+.o3-equipment:before {
+    content: '\f1e6'
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0
+}
+
+.sr-only-focusable:active, .sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto
+}

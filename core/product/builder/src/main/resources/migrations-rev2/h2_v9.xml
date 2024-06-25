@@ -1,0 +1,103 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <createTable tableName="CUSTOMER_SERVICE_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_E_9"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_SERVICE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createTable tableName="DEPLOYMENT_HOST_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_820"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_HOST" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <addColumn tableName="DEPLOYMENT_HOST">
+            <column defaultValueNumeric="0" name="LAST_OFFSET" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <addColumn tableName="DEPLOYMENT_HOST">
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <addColumn tableName="DEPLOYMENT_HOST">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <addColumn tableName="CUSTOMER_SERVICE">
+            <column defaultValueNumeric="0" name="LAST_OFFSET" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <addColumn tableName="CUSTOMER_SERVICE">
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <addColumn tableName="CUSTOMER_SERVICE">
+            <column name="LOG_RANGES" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <createIndex indexName="CUSTOMER_SERVICE_LOG__OWNING_SERVICE__FK_INDEX_E" tableName="CUSTOMER_SERVICE_LOG">
+            <column name="OWNING_SERVICE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <createIndex indexName="DEPLOYMENT_HOST_LOG__OWNING_HOST__FK_INDEX_8" tableName="DEPLOYMENT_HOST_LOG">
+            <column name="OWNING_HOST"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <addForeignKeyConstraint baseColumnNames="OWNING_SERVICE" baseTableName="CUSTOMER_SERVICE_LOG" constraintName="CUSTOMER_SERVICE_LOG__OWNING_SERVICE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <addForeignKeyConstraint baseColumnNames="OWNING_HOST" baseTableName="DEPLOYMENT_HOST_LOG" constraintName="DEPLOYMENT_HOST_LOG__OWNING_HOST__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

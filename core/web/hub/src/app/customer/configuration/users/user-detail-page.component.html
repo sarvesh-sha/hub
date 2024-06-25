@@ -1,0 +1,78 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action *ngIf="isMaint" label="Impersonate..." (click)="impersonate()"></o3-tab-action>
+
+        <o3-tab label="User Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()" [disabled]="isCurrentUser"></o3-tab-action>
+
+            <form #userForm="ngForm" novalidate>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="First Name" [ngModel]="user.firstName" name="firstName" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Name" [ngModel]="user.lastName" name="lastName" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="email" placeholder="Email Address" [ngModel]="user.emailAddress" name="emailAddress" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <input matInput type="tel" placeholder="Phone Number" [ngModel]="user.phoneNumber" name="phoneNumber" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <o3-select name="userRoles"
+                                       placeholder="Roles"
+                                       defaultValueDescription="Select Roles"
+                                       readonly
+                                       [options]="roleOptions"
+                                       [ngModel]="userRoles">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <o3-select name="userGroups"
+                                       placeholder="Groups"
+                                       defaultValueDescription="Select Groups"
+                                       readonly
+                                       [options]="groupOptions"
+                                       [ngModel]="userGroups">
+                            </o3-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+

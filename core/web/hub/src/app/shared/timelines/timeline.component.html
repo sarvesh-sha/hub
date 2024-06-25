@@ -1,0 +1,19 @@
+﻿<ul class="history-list" *ngIf="history?.length">
+    <cdk-virtual-scroll-viewport itemSize="80" [style.height.px]="history.length * 80">
+        <li *cdkVirtualFor="let item of history" [class.clickable]="showLinks" (click)="showLinks && itemSelected.emit(item)">
+            <div class="o3-timeline--content-container">
+                <i *ngIf="item.getIcon() as icon" class="{{icon}}"></i>
+                <span class="status-text">{{item.text}}</span>
+                <span class="status-time">{{item.date | o3LongDate}}</span>
+                <span class="status-location">{{getLocation(item)}}
+                    <ng-container *ngIf="getDefinitionTitle(item) as definition"> - {{definition}}</ng-container></span>
+                <span class="status-user">{{getUser(item)}}</span>
+            </div>
+        </li>
+    </cdk-virtual-scroll-viewport>
+</ul>
+
+<div class="no-records" *ngIf="!history?.length">
+    <p>There are no items to show.</p>
+</div>
+

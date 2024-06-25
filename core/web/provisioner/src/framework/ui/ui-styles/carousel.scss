@@ -1,0 +1,26 @@
+@import "../app.variables.scss";
+
+@mixin carousel($theme) {
+
+    .carousel-inner {
+        padding: 0 10%;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        background-color: #fff;
+        bottom: 5%;
+        top: auto;
+
+        &:hover {
+            background: #fff;
+        }
+    }
+
+    @media only screen and (max-width: $md) {
+        .carousel-control-next,
+        .carousel-control-prev {
+            opacity: 1 !important;
+        }
+    }
+}

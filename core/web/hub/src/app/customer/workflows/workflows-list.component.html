@@ -1,0 +1,15 @@
+<o3-tab-subsection [withFiltering]="true" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable [table]="table">
+    <o3-datatable-column id="type" sortId="type" prop="type" name="Workflow Type" [grow]="3">
+        <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+            <span matTooltip="{{value}}" matTooltipShowDelay="500">{{value}}</span>
+            <small matTooltip="{{row.details?.description}}" matTooltipShowDelay="500">{{row.details?.description}}</small>
+        </ng-template>
+    </o3-datatable-column>
+    <o3-datatable-column id="priority" sortId="priority" prop="extended.model.priority" name="Priority"></o3-datatable-column>
+    <o3-datatable-column id="status" sortId="status" prop="extended.model.status" name="Status"></o3-datatable-column>
+    <o3-datatable-column id="createdBy" sortId="createdBy" prop="createdBy" name="Created By"></o3-datatable-column>
+    <o3-datatable-column id="assignedTo" sortId="assignedTo" prop="assignedTo" name="Assigned To"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="!createdOn" sortStart="desc" prop="extended.model.createdOn" name="Date" [maxWidth]="80" [minWidth]="80" [resizable]="false" format="DATE"></o3-datatable-column>
+</o3-datatable>

@@ -1,0 +1,47 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+        <o3-tab-action label="Import" priority="secondary" (click)="import()"></o3-tab-action>
+        <o3-tab-action label="Export" priority="secondary" (click)="export()"></o3-tab-action>
+
+        <o3-tab label="Context Panes">
+            <o3-tab-action label="Validate" priority="primary" (click)="validate()"></o3-tab-action>
+            <o3-tab-action label="Test" priority="primary" [disabled]="!dynamicConfig || !dynamicSelectedAsset" (click)="assetDialog.toggleOverlay()"></o3-tab-action>
+            <o3-tab-action label="Upload" priority="primary" [disabled]="!dynamicConfig || !dynamicSelectedAsset" (click)="upload()"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-select placeholder="Select Sample" [(value)]="selectedSample" (valueChange)="selectedSampleChanged()">
+                        <mat-option value="palfinger">Palfinger Pane</mat-option>
+                        <mat-option value="swift">Swift Pane</mat-option>
+                        <mat-option value="simulated_ahu">Simulated Data AHU Pane</mat-option>
+                        <mat-option value="simulated_vav">Simulated Data VAV Pane</mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="row" style="min-height: 600px;">
+                <div class="col-sm-6">
+                        <textarea matInput style="height: 100%; border: 1px solid black;" [value]="dynamicConfigRaw" (change)="dynamicConfigRaw = configText.value; dynamicConfig = null;"
+                                  #configText></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <o3-dynamic-pane [models]="dynamicModels"></o3-dynamic-pane>
+                </div>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+
+<o3-overlay #assetDialog>
+    <o3-tab-group>
+        <o3-tab label="Select asset">
+            <mat-form-field>
+                <o3-select placeholder="Asset" [options]="dynamicPossibleAsset" [multiSelect]="false" [(ngModel)]="dynamicSelectedAsset"></o3-select>
+            </mat-form-field>
+
+            <o3-tab-action label="Test Pane" priority="primary" (click)="test(); assetDialog.closeOverlay()"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="assetDialog.closeOverlay()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

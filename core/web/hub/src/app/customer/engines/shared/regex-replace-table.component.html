@@ -1,0 +1,19 @@
+<o3-map-list [provider]="provider">
+    <ng-container *o3MapListForm="let edited">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Regular Expression" [(ngModel)]="edited.key" name="regex">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Replacement" [(ngModel)]="edited.value.replacement" name="replacement">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Comment" [(ngModel)]="edited.value.comment" name="comment">
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="edited.value.caseSensitive" name="caseSensitive">Case Sensitive</mat-checkbox>
+    </ng-container>
+</o3-map-list>
+
+<o3-map-list-actions [provider]="provider">
+    <button mat-raised-button type="button" class="pull-right" (click)="export()">Export</button>
+    <button mat-raised-button type="button" class="pull-right mr-2" (click)="import()">Import</button>
+</o3-map-list-actions>

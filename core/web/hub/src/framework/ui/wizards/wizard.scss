@@ -1,0 +1,92 @@
+@import "../app.variables.scss";
+
+@mixin wizard($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Wizard General UI
+    //-----------------------------
+    .wizard-tabs {
+        overflow: hidden;
+        box-shadow: none;
+        height: 100%;
+
+        &.o3-one-tab {
+            .mat-tab-header .mat-tab-labels .mat-tab-label::after {
+                display: none;
+            }
+        }
+
+        > .mat-tab-header {
+            border-bottom: none;
+
+            .mat-tab-labels {
+                justify-content: center;
+
+                .mat-tab-label {
+                    line-height: 36px;
+                    height: 60px;
+                    background-color: transparent;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    opacity: 1;
+                    display: block;
+
+                    .mat-tab-label-content {
+                        display: block;
+                    }
+
+                    .wizard-step-num {
+                        line-height: 24px;
+                        margin: 0 auto;
+                        width: 24px;
+                        height: 24px;
+                        background-color: #607D8B;
+                        color: #fff;
+                        border-radius: 50%;
+                        outline: 10px solid #fff;
+                    }
+
+                    &:focus {
+                        background-color: transparent;
+                    }
+
+                    &.mat-tab-disabled {
+                        opacity: .6;
+
+                        &.mat-tab-label-active {
+                            opacity: 1;
+                        }
+                    }
+
+                    &::after {
+                        content: "";
+                        width: 100%;
+                        border-top: 1px solid #E0E0E0;
+                        position: absolute;
+                        top: 12px;
+                        left: 0;
+                        z-index: -1;
+                    }
+
+                    &:first-child::after {
+                        left: 50%;
+                    }
+
+                    &:last-child::after {
+                        width: 50%;
+                    }
+                }
+            }
+
+            .mat-ink-bar {
+                background-color: #607d8b !important;
+            }
+        }
+    }
+}

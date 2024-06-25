@@ -1,0 +1,4 @@
+<span class="selectable">
+    <pre [ngStyle]="getStyles(true, primary)">{{primary}}</pre>
+    <small *ngIf="secondary" [ngStyle]="getStyles(false, secondary)">{{secondary}}</small>
+</span>

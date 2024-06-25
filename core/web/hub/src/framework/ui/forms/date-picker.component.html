@@ -1,0 +1,74 @@
+<div class="date-time-picker">
+    <div class="no-gutters">
+        <div class="col">
+            <label>{{label}}</label>
+            <table>
+                <tbody>
+                <tr>
+                    <td [hidden]="!showDateInput">
+                        <mat-form-field class="date-set">
+                            <input matInput type="text" [matDatepicker]="datepicker" [required]="required" [readonly]="readonly" [max]="maximumDate" [min]="minimumDate"
+                                   [(ngModel)]="model" (ngModelChange)="onModelChange($event)" [ngClass]="clickableClass" (click)="activateDatepicker($event)"
+                                   name="datepicker">
+                            <mat-datepicker-toggle [disabled]="readonly" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #datepicker [touchUi]="useTouchMode"></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td [hidden]="!showTimeInput">
+                        <mat-form-field class="time-set">
+                            <input matInput type="text" [value]="time" [ngClass]="clickableClass" [class.ml-2]="showDateInput" (click)="toggleTimeDropdown()"
+                                   [readonly]="readonly" name="timepicker" cdkOverlayOrigin
+                                   #overlayOrigin="cdkOverlayOrigin">
+                            <span matSuffix [ngClass]="clickableClass" class="time-picker-toggle" (click)="toggleTimeDropdown()">
+                                <button mat-icon-button type="button" [disabled]="readonly">
+                                    <mat-icon>schedule</mat-icon>
+                                </button>
+                            </span>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div *ngIf="hintLabel" class="hint-label">{{hintLabel}}</div>
+        </div>
+    </div>
+    <o3-overlay #dropdown [overlayOrigin]="overlayOrigin" [config]="overlayConfig">
+        <div class="no-gutters time-picker row">
+            <div class="offset-1 col-4">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="hour" #hourSelect>
+                        <mat-option [value]="12">12</mat-option>
+                        <mat-option [value]="1">1</mat-option>
+                        <mat-option [value]="2">2</mat-option>
+                        <mat-option [value]="3">3</mat-option>
+                        <mat-option [value]="4">4</mat-option>
+                        <mat-option [value]="5">5</mat-option>
+                        <mat-option [value]="6">6</mat-option>
+                        <mat-option [value]="7">7</mat-option>
+                        <mat-option [value]="8">8</mat-option>
+                        <mat-option [value]="9">9</mat-option>
+                        <mat-option [value]="10">10</mat-option>
+                        <mat-option [value]="11">11</mat-option>
+                    </mat-select>
+                    &nbsp;:&nbsp;
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="minutes" #minuteSelect>
+                        <mat-option *ngFor="let option of minuteOptions" [value]="option">{{formatMinute(option)}}</mat-option>
+                    </mat-select>
+                    &nbsp;
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="amPM" class="am-pm" #amPmSelect>
+                        <mat-option value="AM">AM</mat-option>
+                        <mat-option value="PM">PM</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </o3-overlay>
+</div>

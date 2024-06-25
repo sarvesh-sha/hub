@@ -1,0 +1,8 @@
+<ng-template o3-wizard-step-template>
+    <mat-slide-toggle [(ngModel)]="refresh" (ngModelChange)="updateRefreshRate()" name="refresh-on">Refresh Automatically</mat-slide-toggle>
+
+    <mat-form-field class="col-sm-6 no-padding">
+        <o3-select name="refresh-rate" placeholder="Refresh every..." [(ngModel)]="refreshRate" (ngModelChange)="updateRefreshRate()"
+                   [options]="refreshOptions" [multiSelect]="false" [singleClick]="true" [preventDeselection]="true" [disabled]="!refresh"></o3-select>
+    </mat-form-field>
+</ng-template>

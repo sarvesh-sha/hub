@@ -1,0 +1,1496 @@
+{
+  "equipmentRules": [
+  ],
+  "pointClassRules": [
+    {
+      "pointClassId": "1",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "2",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "3",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "4",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "5",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "6",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "7",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "8",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "9",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "13",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "15",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "18",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "20",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "21",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "22",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "23",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "24",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "25",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "26",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "27",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "28",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "47",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "48",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "50",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "52",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "53",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "54",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "56",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "57",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "58",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "59",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "60",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "61",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "69",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "70",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "71",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "78",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "85",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "86",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "87",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "88",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "89",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "91",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "92",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "93",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "95",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "96",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "97",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "98",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "113",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "119",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "120",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "150",
+      "minValue": 0,
+      "maxValue": 65
+    },
+    {
+      "pointClassId": "153",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "157",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "177",
+      "minValue": 0,
+      "maxValue": 60
+    },
+    {
+      "pointClassId": "179",
+      "minValue": 0,
+      "maxValue": 60
+    },
+    {
+      "pointClassId": "184",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "185",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "197",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "198",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "205",
+      "minValue": 0,
+      "maxValue": 65
+    },
+    {
+      "pointClassId": "206",
+      "minValue": 0,
+      "maxValue": 65
+    },
+    {
+      "pointClassId": "207",
+      "minValue": 0,
+      "maxValue": 65
+    },
+    {
+      "pointClassId": "212",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "213",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "214",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "215",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "216",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "217",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "218",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "219",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "222",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "223",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "224",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "225",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "226",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "227",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "228",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "229",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "230",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "231",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "232",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "233",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "234",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "236",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "237",
+      "minValue": 0,
+      "maxValue": 15000
+    },
+    {
+      "pointClassId": "239",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "240",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "241",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "242",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "247",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "248",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "249",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "250",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "251",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "252",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "259",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "260",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "261",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "262",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "270",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "280",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "281",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "282",
+      "minValue": 60,
+      "maxValue": 85
+    },
+    {
+      "pointClassId": "283",
+      "minValue": 60,
+      "maxValue": 85
+    },
+    {
+      "pointClassId": "284",
+      "minValue": 60,
+      "maxValue": 85
+    },
+    {
+      "pointClassId": "286",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "287",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "288",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "292",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "293",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "297",
+      "minValue": 0,
+      "maxValue": 300
+    },
+    {
+      "pointClassId": "298",
+      "minValue": 0,
+      "maxValue": 300
+    },
+    {
+      "pointClassId": "299",
+      "minValue": 0,
+      "maxValue": 300
+    },
+    {
+      "pointClassId": "300",
+      "minValue": 0,
+      "maxValue": 300
+    },
+    {
+      "pointClassId": "303",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "304",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "305",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "306",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "307",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "308",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "321",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "322",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "323",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "324",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "326",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "327",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "330",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "331",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "333",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "334",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "336",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "337",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "338",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "339",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "340",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "341",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "344",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "345",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "347",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "348",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "349",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "352",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "353",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "354",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "368",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "370",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "371",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "373",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "374",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "375",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "376",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "377",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "379",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "383",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "384",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "393",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "400",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "401",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "402",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "404",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "406",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "407",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "408",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "409",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "410",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "411",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "419",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "420",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "424",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "428",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "430",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "435",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "436",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "442",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "447",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "448",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "449",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "454",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "457",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "458",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "462",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "486",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "487",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "491",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "492",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "493",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "498",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "501",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "505",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "506",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "507",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "508",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "512",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "520",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "521",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "522",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "523",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "525",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "526",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "527",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "528",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "534",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "535",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "536",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "538",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "539",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "540",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "541",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "542",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "543",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "544",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "545",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "559",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "560",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "562",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "563",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "568",
+      "minValue": 0,
+      "maxValue": 3
+    },
+    {
+      "pointClassId": "572",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "573",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "574",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "575",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "577",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "581",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "584",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "586",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "590",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "593",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "598",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "599",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "607",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "608",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "619",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "620",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "621",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "625",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "626",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "632",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "633",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "634",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "635",
+      "minValue": 60,
+      "maxValue": 85
+    },
+    {
+      "pointClassId": "636",
+      "minValue": 60,
+      "maxValue": 85
+    },
+    {
+      "pointClassId": "639",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "652",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "653",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "655",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "681",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "682",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "683",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "684",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "688",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "690",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "1008",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10001",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "10002",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10005",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10011",
+      "minValue": 60,
+      "maxValue": 85
+    },
+    {
+      "pointClassId": "10024",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10037",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10040",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10041",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10046",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10047",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10048",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10050",
+      "minValue": 0,
+      "maxValue": 5000
+    },
+    {
+      "pointClassId": "10054",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10055",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10056",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10061",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "10062",
+      "minValue": 250,
+      "maxValue": 2000
+    },
+    {
+      "pointClassId": "10070",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10071",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10072",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10073",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10075",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10080",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10081",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10084",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10086",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10096",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10097",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10098",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10099",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10102",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10111",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10112",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10113",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10118",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10119",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10120",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10121",
+      "minValue": 45,
+      "maxValue": 125
+    },
+    {
+      "pointClassId": "10126",
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "pointClassId": "10128",
+      "minValue": 0,
+      "maxValue": 200
+    },
+    {
+      "pointClassId": "10129",
+      "minValue": 0,
+      "maxValue": 200
+    },
+    {
+      "pointClassId": "10130",
+      "minValue": 0,
+      "maxValue": 200
+    },
+    {
+      "pointClassId": "10131",
+      "minValue": 0,
+      "maxValue": 200
+    },
+    {
+      "pointClassId": "10132",
+      "minValue": 0,
+      "maxValue": 5000
+    }
+  ]
+}

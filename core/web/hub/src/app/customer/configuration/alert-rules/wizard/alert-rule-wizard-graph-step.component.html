@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data.rules" style="height: 100%">
+        <o3-asset-graph-step [(graph)]="data.rules.details.graphModel"></o3-asset-graph-step>
+    </div>
+</ng-template>

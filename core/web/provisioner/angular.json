@@ -1,0 +1,241 @@
+{
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "optio3-web": {
+            "root": "",
+            "projectType": "application",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "aot": true,
+                        "outputPath": "output/dist",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "tsConfig": "src/tsconfig.json",
+                        "showCircularDependencies": false,
+                        "sourceMap": true,
+                        "vendorChunk": true,
+                        "localize": false,
+                        "allowedCommonJsDependencies": [
+                            "moment-timezone",
+                            "core-js",
+                            "zone.js"
+                        ],
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "favicon.ico",
+                                "input": "src",
+                                "output": "/"
+                            },
+                            {
+                                "glob": "styles.startup.css",
+                                "input": "src",
+                                "output": "/"
+                            }
+                        ],
+                        "styles": [
+                            {
+                                "input": "node_modules/font-awesome/css/font-awesome.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/material-design-icons-iconfont/dist/material-design-icons.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/animate.css/animate.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/angular2-draggable/css/resizable.min.css",
+                                "inject": true
+                            },
+                            {
+                                "input": "src/styles.scss",
+                                "inject": true
+                            }
+                        ],
+                        "scripts": [
+                            {
+                                "input": "node_modules/moment/min/moment.min.js",
+                                "inject": true
+                            },
+                            {
+                                "input": "node_modules/chroma-js/chroma.js",
+                                "inject": true
+                            }
+                        ]
+                    },
+                    "configurations": {
+                        "localhost": {
+                            "aot": true,
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "buildOptimizer": false,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.localhost.ts"
+                                }
+                            ]
+                        },
+                        "localhost-noaot": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.localhost.ts"
+                                }
+                            ]
+                        },
+                        "test": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "outputHashing": "all",
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "sourceMap": false,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.test.ts"
+                                }
+                            ]
+                        },
+                        "test-aot": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": true,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.test.ts"
+                                }
+                            ]
+                        },
+                        "prod": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "prod-aot": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": true,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "src": "src/environments/environment.ts",
+                                    "replaceWith": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "optio3-web:build",
+                        "port": 4201,
+                        "host": "0.0.0.0"
+                    },
+                    "configurations": {
+                        "default": {
+                            "browserTarget": "optio3-web:build:default"
+                        },
+                        "default-aot": {
+                            "browserTarget": "optio3-web:build:default-aot"
+                        },
+                        "localhost": {
+                            "browserTarget": "optio3-web:build:localhost"
+                        },
+                        "localhost-aot": {
+                            "browserTarget": "optio3-web:build:localhost-aot"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "optio3-web:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [],
+                        "exclude": []
+                    }
+                }
+            }
+        }
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "prefix": "app",
+            "style": "scss"
+        },
+        "@schematics/angular:directive": {
+            "prefix": "app"
+        }
+    }
+}

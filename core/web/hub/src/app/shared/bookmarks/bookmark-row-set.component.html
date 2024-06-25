@@ -1,0 +1,6 @@
+<o3-bookmark-row *ngIf="!bookmarkSet.hasViews && !bookmarkSet.deleted" [host]="host"
+                 [filterText]="filterText" [bookmarkSet]="bookmarkSet" (deleted)="bookmarkDeleted($event)"></o3-bookmark-row>
+<ng-container *ngIf="bookmarkSet.hasViews">
+    <o3-bookmark-row *ngFor="let view of bookmarkSet.views" [host]="host"
+                     [bookmarkSet]="bookmarkSet" [view]="view" [filterText]="filterText" (deleted)="bookmarkDeleted($event)"></o3-bookmark-row>
+</ng-container>

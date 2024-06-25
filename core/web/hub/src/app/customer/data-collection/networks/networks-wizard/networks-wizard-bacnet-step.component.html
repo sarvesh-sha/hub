@@ -1,0 +1,112 @@
+<ng-template o3-wizard-step-template>
+    <div class="o3-checkbox-container">
+        <div>
+            <mat-checkbox [(ngModel)]="data.bacnet.useUDP" name="enable_udp">Enable UDP</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox [(ngModel)]="data.bacnet.useEthernet" name="enable_ethernet">Enable Ethernet</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox [(ngModel)]="data.bacnet.disableBroadcast" name="disable_broadcast">Disable Broadcast Discovery</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox [(ngModel)]="data.bacnet.sweepSubnet" name="enable_sweep_subnet">Sweep Subnet</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox [(ngModel)]="data.bacnet.sweepMSTP" name="enable_sweep_mstp">Deep Sweep Of MS/TP Networks</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox [(ngModel)]="data.bacnet.includeNetworksFromRouters" name="include_networks_from_routers">Discover Routers for MS/TP networks</mat-checkbox>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="data.bacnet.useUDP">
+        <div class="col-sm-12">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Network Port" [(ngModel)]="data.bacnet.networkPort" name="bacnet_port">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Limit Scan - Lowest Device Instance Number" [(ngModel)]="data.bacnetLimitScanLow" name="bacnet_limitScan_low">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Limit Scan - Highest Device Instance Number" [(ngModel)]="data.bacnetLimitScanHigh" name="bacnet_limitScan_high">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-accordion *ngIf="stepSelected">
+
+        <mat-expansion-panel *ngIf="data.bacnet.useUDP">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    List of BBMDs
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <o3-bacnet-bbmd-table #bacnetBBMDS [rows]="data.bacnet.bbmds"></o3-bacnet-bbmd-table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    List of Forced Subnet Scans
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <o3-bacnet-subnet-table #bacnetSubnets [rows]="data.bacnet.scanSubnets"></o3-bacnet-subnet-table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    List of Non-Discoverable Devices
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <o3-non-discoverable-device-table #nonDiscoverableDevices [rows]="data.bacnet.nonDiscoverableDevices"></o3-non-discoverable-device-table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    List of Non-Discoverable MS/TP Trunks
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <o3-non-discoverable-mstp-table #nonDiscoverableMSTP [rows]="data.bacnet.nonDiscoverableMstpTrunks"></o3-non-discoverable-mstp-table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    List of Skipped Devices
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <o3-skipped-device-table #skippedDevices [rows]="data.bacnet.skippedDevices"></o3-skipped-device-table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    List of Included Subnets
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <o3-bacnet-subnet-table #filterSubnets [rows]="data.bacnet.filterSubnets"></o3-bacnet-subnet-table>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+</ng-template>

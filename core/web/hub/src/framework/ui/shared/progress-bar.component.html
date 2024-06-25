@@ -1,0 +1,13 @@
+<div [matTooltip]="context" [matTooltipDisabled]="disableTooltip">
+    <div class="o3-progress--texts">
+        <div class="o3-progress--context" [style.color]="colorFn(percent)">
+            {{context}}
+        </div>
+        <div class="o3-progress--value">
+            {{percent}}%
+        </div>
+    </div>
+    <div class="o3-progress--bar">
+        <div [style.width.%]="widthPercent" [style.background-color]="colorFn(percent)"></div>
+    </div>
+</div>

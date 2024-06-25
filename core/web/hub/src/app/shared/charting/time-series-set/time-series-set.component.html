@@ -1,0 +1,25 @@
+<div class="timeseries-set" [class.o3-time-series-set--embedded]="embedded" [@change]="configExts?.length">
+    <o3-time-series-container *ngFor="let configExt of configExts; let i = index; trackBy getChartId"
+                              [range]="range"
+                              [configExt]="configExt"
+                              [externalGraphsHost]="externalGraphsHost"
+                              [viewWindow]="viewWindows && viewWindows[i]"
+                              [readonly]="readonly"
+                              [resizable]="resizable"
+                              [height]="chartHeights[i]"
+                              [handleInteractions]="handleInteractions"
+                              [zoomable]="zoomable"
+                              [showSourceBar]="showSourceBar(i)"
+                              [printable]="printable"
+                              [embedded]="embedded"
+                              [deletable]="canDeleteAllCharts || configExts.length > 1"
+                              [allowDashboardAdd]="allowDashboardAdd"
+                              [canDeleteAllSources]="canDeleteAllSources"
+                              (sourcesConsolidatedUpdated)="sourcesConsolidatedChanged(i, $event)"
+                              (configExtChange)="configExtChanged(i, $event)"
+                              (chartUpdated)="chartUpdated.emit($event)"
+                              (onDelete)="deleteVisualization(i)"
+                              (startedFetchingData)="startedFetching(i)"
+                              (stoppedFetchingData)="stoppedFetching(i)">
+    </o3-time-series-container>
+</div>

@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <p>Which alert rules will be respected?</p>
+    <o3-control-option-list [options]="alertRuleOptions" [single]="false" [(selection)]="alertRuleSelection"
+                            (selectionChangeSummary)="onOptionChange($event)"></o3-control-option-list>
+</ng-template>

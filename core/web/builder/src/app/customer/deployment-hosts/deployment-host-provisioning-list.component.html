@@ -1,0 +1,14 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false">
+    <o3-datatable-column id="timestamp" sortId="timestamp" prop="model.timestamp" name="Timestamp" [width]="120" [maxWidth]="120" format="DATE"></o3-datatable-column>
+
+    <o3-datatable-column id="event" prop="event" name="Event" [width]="200"></o3-datatable-column>
+
+    <o3-datatable-column id="customerInfo" prop="model.customerInfo" name="Customer Info"></o3-datatable-column>
+    <o3-datatable-column id="notes" prop="model.text" name="Notes">
+        <ng-template o3-datatable-cell-template let-row>
+            <div class="expandable-container">
+                <span #textElem class="expandable-cell">{{row.model.text}}</span>
+            </div>
+        </ng-template>
+    </o3-datatable-column>
+</o3-datatable>

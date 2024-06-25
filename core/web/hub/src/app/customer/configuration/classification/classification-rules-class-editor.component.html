@@ -1,0 +1,147 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Point Classes
+            </mat-panel-title>
+            <mat-panel-description>
+                List of point classes
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <o3-map-list [provider]="pointClasses">
+            <ng-container *o3MapListForm="let edited">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Point Class Name" [(ngModel)]="edited.key" [readonly]="!!edited.value.wellKnown" name="keyPointClass">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Point Class Description" [(ngModel)]="edited.value.pointClassDescription" name="pointClassDescription">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Point Class ID" [(ngModel)]="edited.value.id" [readonly]="!!edited.value.wellKnown" name="pointClassId">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Point Class Hint" [(ngModel)]="edited.value.hints" name="pointClassHint">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Azure Digital Twin" [(ngModel)]="edited.value.azureDigitalTwin" name="pointClassADT">
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-string-set [(value)]="edited.value.tags" placeholder="Tags" filterHint="Add tag...">
+                    </o3-string-set>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="edited.value.type" name="pointClassType">
+                        <mat-option value="Analytic">Analytic</mat-option>
+                        <mat-option value="Command">Command</mat-option>
+                        <mat-option value="Status">Status</mat-option>
+                        <mat-option value="Setpoint">Setpoint</mat-option>
+                        <mat-option value="Value">Value</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field floatLabel="always">
+                    <!-- Stupid hack to allow checkbox inside form field; hidden input field with same name -->
+                    <input matInput style="display: none;" name="pointClassIgnore" placeholder="Points Ignored"/>
+                    <mat-checkbox [(ngModel)]="edited.value.ignorePointIfMatched" name="pointClassIgnore">Ignore</mat-checkbox>
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-select [multiSelect]="false"
+                               [options]="units"
+                               [(ngModel)]="edited.value.unit"
+                               placeholder="Units">
+                    </o3-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-select [multiSelect]="false"
+                               [options]="host.pointClassOptions"
+                               [(ngModel)]="edited.value.aliasPointClassId"
+                               placeholder="Point Class Alias">
+                    </o3-select>
+                </mat-form-field>
+            </ng-container>
+        </o3-map-list>
+
+        <o3-map-list-actions [provider]="pointClasses">
+            <div class="import-export">
+                <button mat-raised-button (click)="importPointClasses()">Import</button>
+                <button mat-raised-button (click)="exportPointClasses()">Export</button>
+            </div>
+        </o3-map-list-actions>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Equipment Classes
+            </mat-panel-title>
+            <mat-panel-description>
+                List of Equipment classes
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <o3-map-list [provider]="equipClasses">
+            <ng-container *o3MapListForm="let edited">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Equipment Class Name" [(ngModel)]="edited.key" [readonly]="!!edited.value.wellKnown" name="keyEquipClass">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Equipment Class Description" [(ngModel)]="edited.value.description" name="equipClassDescription">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Equipment Class ID" [(ngModel)]="edited.value.id" [readonly]="!!edited.value.wellKnown" name="equipClassId">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Azure Digital Twin" [(ngModel)]="edited.value.azureDigitalTwin" name="equipClassADT">
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-string-set [(value)]="edited.value.tags" placeholder="Tags" filterHint="Add tag...">
+                    </o3-string-set>
+                </mat-form-field>
+            </ng-container>
+        </o3-map-list>
+
+        <o3-map-list-actions [provider]="equipClasses">
+            <div class="import-export">
+                <button mat-raised-button (click)="importEquipmentClasses()">Import</button>
+                <button mat-raised-button (click)="exportEquipmentClasses()">Export</button>
+            </div>
+        </o3-map-list-actions>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Location Classes
+            </mat-panel-title>
+            <mat-panel-description>
+                List of Location classes
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <o3-map-list [provider]="locationClasses">
+            <ng-container *o3MapListForm="let edited">
+                <mat-form-field>
+                    <o3-select placeholder="Location Class" [(ngModel)]="edited.key" [options]="host.locationTypes" singleClick [multiSelect]="false" name="keyLocationClass"></o3-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Location Class Description" [(ngModel)]="edited.value.description" name="locationClassDescription">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Azure Digital Twin" [(ngModel)]="edited.value.azureDigitalTwin" name="locationClassADT">
+                </mat-form-field>
+                <mat-form-field>
+                    <o3-string-set [(value)]="edited.value.tags" placeholder="Tags" filterHint="Add tag...">
+                    </o3-string-set>
+                </mat-form-field>
+            </ng-container>
+        </o3-map-list>
+
+        <o3-map-list-actions [provider]="locationClasses">
+            <div class="import-export">
+                <button mat-raised-button (click)="importLocationClasses()">Import</button>
+                <button mat-raised-button (click)="exportLocationClasses()">Export</button>
+            </div>
+        </o3-map-list-actions>
+    </mat-expansion-panel>
+</mat-accordion>

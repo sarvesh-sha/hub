@@ -1,0 +1,87 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <createTable tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D3"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OFFSET" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE_REFERENCE" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <createTable tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D0_v45"/>
+            </column>
+            <column name="OWNING_IMAGE_PULL" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <createIndex indexName="DEPLOYMENT_HOST_IMAGE_PULL__CREATED" tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="SYS_CREATED_ON"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <createIndex indexName="IMAGE_PULL__DEPLOYMENT__FK_INDEX_D" tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <createIndex indexName="IMAGE_PULL__IMAGE_REFERENCE__FK_INDEX_D" tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="IMAGE_REFERENCE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <createIndex indexName="OWNING_PULL__FK_INDEX_D" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="OWNING_IMAGE_PULL"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" constraintName="FKRTKU2SB8L2TQOE0A760BBDNN0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="COMMON_LOG" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL" constraintName="IMAGE_PULL__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-17">
+        <addForeignKeyConstraint baseColumnNames="IMAGE_REFERENCE" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL" constraintName="IMAGE_PULL__IMAGE_REFERENCE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REGISTRY_TAGGED_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-18">
+        <addForeignKeyConstraint baseColumnNames="OWNING_IMAGE_PULL" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" constraintName="OWNING_PULL__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST_IMAGE_PULL" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="BACKUP_TRIGGER" tableName="CUSTOMER_SERVICE_BACKUP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="CUSTOMER_SERVICE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="OPERATIONAL_STATUS" tableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="RELEASE_STATUS" tableName="REGISTRY_TAGGED_IMAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_PROBER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="DEPLOYMENT_TASK"/>
+    </changeSet>
+</databaseChangeLog>

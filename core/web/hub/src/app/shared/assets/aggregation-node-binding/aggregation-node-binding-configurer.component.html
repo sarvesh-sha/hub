@@ -1,0 +1,95 @@
+<form ngForm>
+    <o3-modifiable-table #test_table [rows]="nodeExts"
+                         [placeholderHeightPx]="61" itemName="aggregation {{nodeName.toLocaleLowerCase()}}"
+                         allowAdding (rowAddRequested)="addNode()"
+                         allowReordering (rowsReordered)="nodesReordered($event)"
+                         allowDeleting (rowRemoved)="nodeRemoved($event.index)">
+        <ng-container *o3ModifiableTableRow="let nodeExt; type: AggregationNodeBindingExtended">
+            <td class="o3-node-binding--config">
+                <div>
+                    <mat-form-field>
+                        <o3-select #test_binding placeholder="{{nodeName}} Binding" [name]="'node-id-' + nodeExt.id"
+                                   [(ngModel)]="nodeExt.model.nodeId" (ngModelChange)="selectedNodeChanged(nodeExt)"
+                                   [multiSelect]="false" preventDeselection singleClick
+                                   [o3AssetGraphNodeSelector]="graphExt" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <input #test_name matInput placeholder="{{nodeName}} Name" type="text"
+                               [o3UniqueValuesWithCallback]="isUniqueFn" [name]="colNamePrefix + nodeExt.id"
+                               [ngModel]="nodeExt.model.name" (ngModelChange)="nameEdited(nodeExt, $event)"/>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <o3-equivalent-units-selector *ngIf="!nodeExt.desc?.noDimensions"
+                                                  [unitsFactors]="nodeExt.model.units" [updatePreferred]="false"
+                                                  [(units)]="nodeExt.desc" (unitsChange)="unitsUpdated(nodeExt)"></o3-equivalent-units-selector>
+
+                    <mat-form-field *ngIf="nodeExt.desc?.noDimensions">
+                        <input matInput placeholder="Override Units Display" [(ngModel)]="nodeExt.model.unitsDisplay" [name]="'units-display-' + nodeExt.id"/>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-select #test_aggType placeholder="Aggregation Type" [name]="'agg-type-' + nodeExt.id" [(ngModel)]="nodeExt.model.aggregationType">
+                            <mat-option value="MAX" matTooltip="maximum control point reading" matTooltipShowDelay="500">Max</mat-option>
+                            <mat-option value="MIN" matTooltip="minimum control point reading" matTooltipShowDelay="500">Min</mat-option>
+                            <mat-option value="MEAN" matTooltip="average of all the control point's readings" matTooltipShowDelay="500">Mean</mat-option>
+                            <mat-option value="SUM" matTooltip="sum of all control point's readings" matTooltipShowDelay="500">Sum</mat-option>
+                            <mat-option value="DELTA" matTooltip="total value change over the selected time period; e.g. total battery charge" matTooltipShowDelay="500">Delta</mat-option>
+                            <mat-option value="INCREASE" matTooltip="sum of all positive differences between subsequent readings" matTooltipShowDelay="500">Increase</mat-option>
+                            <mat-option value="DECREASE" matTooltip="sum of all negative differences between subsequent readings" matTooltipShowDelay="500">Decrease</mat-option>
+                            <mat-option value="FIRST" matTooltip="control point's first reading" matTooltipShowDelay="500">First</mat-option>
+                            <mat-option value="LAST" matTooltip="control point's last reading" matTooltipShowDelay="500">Last</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </td>
+            <td class="o3-aggregation-node-binding--display">
+                <button mat-icon-button matTooltip="Display settings" matTooltipShowDelay="250" (click)="configureDisplay(nodeExt)">
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+    </o3-modifiable-table>
+</form>
+
+<div class="o3-aggregation-node-binding--display-settings">
+    <mat-form-field>
+        <o3-select placeholder="Context Display Type" [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"
+                   [options]="contextDisplayOptions" [(ngModel)]="displayType" (ngModelChange)="displayTypeChange.emit($event)"></o3-select>
+    </mat-form-field>
+
+    <mat-slide-toggle name="bar-mode" [(ngModel)]="barMode">Bar Table</mat-slide-toggle>
+</div>
+
+<o3-sort-configurer *ngIf="configurableInitialSort" [sortOptions]="sortColumnOptions"
+                    [(sortAscending)]="initiallyAscendingSort" [(sortColumn)]="initialSortColumn"></o3-sort-configurer>
+
+<o3-overlay [config]="displayOverlayConfig" (closed)="editNodeExt = null">
+    <o3-tab-group *ngIf="editNodeExt" noUnderline>
+        <o3-tab label="Display Settings">
+            <div class="input-wrapper">
+                <div class="input-label">Color Mapping</div>
+                <o3-color-picker-gradient-stop
+                    [(stops)]="mappingSegments"
+                    (stopsChange)="applyStops($event)"
+                    [maxStops]="4"
+                    [interpolation]="colorInterpolation"
+                    [lockEndModes]="true"
+                    matTooltip="The color of a given aggregation is based on its value and the other values in the column"
+                    [matTooltipDisabled]="mappingSegments?.length <= 2">
+                </o3-color-picker-gradient-stop>
+            </div>
+
+            <div class="input-wrapper" matTooltip="Only relevant when bar table is selected" [matTooltipDisabled]="barMode">
+                <div class="input-label">Custom Bar Range</div>
+                <o3-range-override [(model)]="editNodeExt.model.barRange"></o3-range-override>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

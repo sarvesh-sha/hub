@@ -1,0 +1,24 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+        <o3-tab-action label="New Agents From RC Build (Operational)" (click)="startNewAgents(true, true)" [disabled]="!hasRC"></o3-tab-action>
+        <o3-tab-action label="New Agents From RTM Build (Operational)" (click)="startNewAgents(false, true)" [disabled]="!hasRTM"></o3-tab-action>
+        <o3-tab-action label="New Agents From RC Build (Any)" (click)="startNewAgents(true, false)" [disabled]="!hasRC"></o3-tab-action>
+        <o3-tab-action label="New Agents From RTM Build (Any)" (click)="startNewAgents(false, false)" [disabled]="!hasRTM"></o3-tab-action>
+        <o3-tab-action label="Activate New RC Agents" (click)="activateNewAgents(true)" [disabled]="!hasNonActiveAgentsForReleaseCandidate"></o3-tab-action>
+        <o3-tab-action label="Activate New RTM Agents" (click)="activateNewAgents(false)" [disabled]="!hasNonActiveAgentsForRelease"></o3-tab-action>
+        <o3-tab-action label="Terminate Non-Active Agents" (click)="stopOldAgents()" [disabled]="!hasNonActiveAgents"></o3-tab-action>
+        <o3-tab-action label="Delete Terminated Agents" (click)="removeOldAgents()" [disabled]="!hasTerminatedAgents"></o3-tab-action>
+        <o3-tab-action label="Export List to Excel" (click)="exportToExcel()"></o3-tab-action>
+
+        <o3-tab label="Deployments">
+            <o3-tab-action priority="secondary" label="Rename for Customer" (click)="renameForCustomer()" *ngIf="canRenameForCustomer"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Rename for Service" (click)="renameForService()" *ngIf="canRenameForService"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Print Labels" (click)="printLabels()" *ngIf="canPrintLabels"></o3-tab-action>
+
+            <o3-deployment-hosts-list #childList>
+            </o3-deployment-hosts-list>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+
+<o3-deployment-agent-upgrade></o3-deployment-agent-upgrade>

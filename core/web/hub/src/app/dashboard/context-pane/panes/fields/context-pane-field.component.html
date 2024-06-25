@@ -1,0 +1,7 @@
+<mat-form-field floatLabel="always" [hintLabel]="hint" [class.clickable]="clickable" (click)="valueClick.emit($event)">
+    <input matInput readonly [placeholder]="label" [class.clickable]="clickable"/>
+    <div class="field-value">
+        <span class="field-text" [style.color]="color">{{textValue}}</span>
+        <ng-content></ng-content>
+    </div>
+</mat-form-field>

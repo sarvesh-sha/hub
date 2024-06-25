@@ -1,0 +1,56 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+        <o3-tab label="Workflow Details">
+            <o3-tab-action label="Update" priority="primary" type="submit" [form]="workflowForm" [disabled]="!workflowForm.valid || pristine"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="pristine"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!pristine"></o3-tab-action>
+            <o3-tab-action label="Resolve" priority="secondary" *ngIf="canResolve" (click)="resolveWorkflow()"></o3-tab-action>
+            <o3-tab-action label="Reopen" priority="secondary" *ngIf="canReopen" (click)="reopenWorkflow()"></o3-tab-action>
+            <o3-tab-action label="Close Workflow" priority="secondary" *ngIf="canClose" (click)="closeWorkflow()"></o3-tab-action>
+
+            <form #workflowForm="ngForm" novalidate (ngSubmit)="save()">
+                <div class="row" *ngIf="workflowData">
+                    <div class="col-sm-8">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Workflow Summary" [(ngModel)]="workflowData?.model.description" name="description">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Workflow Status" [value]="workflowData?.typedModel.status" name="workflowStatus" readonly>
+                        </mat-form-field>
+                        <mat-slide-toggle [checked]="isEnabled" (change)="isEnabledChanged($event.checked)" [disabled]="!canEnableDisable">
+                            Enabled
+                        </mat-slide-toggle>
+                        <mat-form-field>
+                            <mat-select name="workflowPriority" [(ngModel)]="workflowData?.typedModel.priority" placeholder="Priority">
+                                <mat-option *ngFor="let priority of workflowPriorityOptions" [value]="priority.id">{{priority.label}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Created on" name="createdOn" readonly
+                                   [value]="((workflowData?.model.createdOn|o3LongDate) || 'No Date Specified')">
+                        </mat-form-field>
+
+                        <mat-form-field [hasAccess]="['SYS.ADMIN']">
+                            <o3-select [options]="users" [(ngModel)]="assignedTo" (ngModelChange)="assignUser($event)" [multiSelect]="false" name="assignedUser"
+                                       placeholder="Assign To User"></o3-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <o3-workflow-details-editor [data]="workflowData" [readonly]="true"></o3-workflow-details-editor>
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Notes">
+            <mat-form-field class="o3-textarea-border o3-page-color-border">
+                <textarea matInput type="text" placeholder="Notes" rows="4" [(ngModel)]="workflowData?.model.extendedDescription" name="extendedDescription"></textarea>
+            </mat-form-field>
+        </o3-tab>
+
+        <o3-tab label="History">
+            <o3-timeline *cdkPortal [history]="history" [showLinks]="false"></o3-timeline>
+        </o3-tab>
+    </o3-tab-group>
+
+</section>

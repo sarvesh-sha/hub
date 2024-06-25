@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <addColumn tableName="CUSTOMER_SERVICE">
+            <column name="instance_type" type="VARCHAR(255 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <!-- Fixup for breaking change in MariaDB, we had to change the length of labels from 16384 to 8192-->
+    <changeSet author="Optio3 Manual" id="fixup_REGISTRY_IMAGE__LABELS">
+        <sql>update DATABASECHANGELOG set MD5SUM = '7:3af5166daa8a4f82d50ed3e726afcf19' where MD5SUM = '7:58dbb9fb318e64e6027584f525734fbd'</sql>
+    </changeSet>
+    <changeSet author="Optio3 Manual" id="fixup_DEPLOYMENT_TASK__LABELS">
+        <sql>update DATABASECHANGELOG set MD5SUM = '7:a93492ca77b4c3e347c03cde5f6ba61c' where MD5SUM = '7:2286a92a71188dd702fed3c2dac276d4'</sql>
+    </changeSet>
+</databaseChangeLog>

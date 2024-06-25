@@ -1,0 +1,132 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <addColumn tableName="ALERT_DEFINITION_LOG">
+            <column name="SYS_CREATED_ON" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <addColumn tableName="ASSET_GATEWAY_LOG">
+            <column name="SYS_CREATED_ON" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <addColumn tableName="ALERT_DEFINITION_LOG">
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <addColumn tableName="ASSET_GATEWAY_LOG">
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18">
+        <addColumn tableName="ALERT_DEFINITION_LOG">
+            <column name="BLOCK" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19">
+        <addColumn tableName="ASSET_GATEWAY_LOG">
+            <column name="BLOCK" type="BLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20">
+        <addColumn tableName="ALERT_DEFINITION_LOG">
+            <column name="SEQUENCE_END" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21">
+        <addColumn tableName="ASSET_GATEWAY_LOG">
+            <column name="SEQUENCE_END" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22">
+        <addColumn tableName="ALERT_DEFINITION_LOG">
+            <column name="SEQUENCE_START" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23">
+        <addColumn tableName="ASSET_GATEWAY_LOG">
+            <column name="SEQUENCE_START" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+ 	<!-- -->
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14b">
+        <addNotNullConstraint tableName="ALERT_DEFINITION_LOG" columnName="SYS_CREATED_ON" columnDataType="TIMESTAMP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15b">
+        <addNotNullConstraint tableName="ASSET_GATEWAY_LOG" columnName="SYS_CREATED_ON" columnDataType="TIMESTAMP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16b">
+        <addNotNullConstraint tableName="ALERT_DEFINITION_LOG" columnName="SYS_UPDATED_ON" columnDataType="TIMESTAMP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17b">
+        <addNotNullConstraint tableName="ASSET_GATEWAY_LOG" columnName="SYS_UPDATED_ON" columnDataType="TIMESTAMP"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-18b">
+        <addNotNullConstraint tableName="ALERT_DEFINITION_LOG" columnName="BLOCK" columnDataType="BLOB(2147483647)"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-19b">
+        <addNotNullConstraint tableName="ASSET_GATEWAY_LOG" columnName="BLOCK" columnDataType="BLOB(2147483647)"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-20b">
+        <addNotNullConstraint tableName="ALERT_DEFINITION_LOG" columnName="SEQUENCE_END" columnDataType="INTEGER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-21b">
+        <addNotNullConstraint tableName="ASSET_GATEWAY_LOG" columnName="SEQUENCE_END" columnDataType="INTEGER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-22b">
+        <addNotNullConstraint tableName="ALERT_DEFINITION_LOG" columnName="SEQUENCE_START" columnDataType="INTEGER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-23b">
+        <addNotNullConstraint tableName="ASSET_GATEWAY_LOG" columnName="SEQUENCE_START" columnDataType="INTEGER"/>
+    </changeSet>
+	<!-- -->
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-24">
+        <createIndex indexName="IDX9KMUBKJ1M7EVRPTOLXUU5U723" tableName="ASSET_GATEWAY_LOG">
+            <column name="SEQUENCE_START"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-25">
+        <createIndex indexName="IDXP9DQ4BYIJQWY4GJUBW7YYS6F9" tableName="ALERT_DEFINITION_LOG">
+            <column name="SEQUENCE_START"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-26">
+        <createIndex indexName="IDXQYYLJKWVJ54Q9YKL86LIA5TD8" tableName="ALERT_DEFINITION_LOG">
+            <column name="SEQUENCE_END"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-27">
+        <createIndex indexName="IDXSO5VPT5023Y9RTGSKL2EAXFLT" tableName="ASSET_GATEWAY_LOG">
+            <column name="SEQUENCE_END"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="PURPOSE" tableName="ALERT_DEFINITION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="REASON" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATE" tableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="TYPE" tableName="ALERT_HISTORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-28">
+        <dropForeignKeyConstraint baseTableName="ALERT_DEFINITION_LOG" constraintName="FKMLAU5O4EWO3ADPDFK9RL7KOKN"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-29">
+        <dropForeignKeyConstraint baseTableName="ASSET_GATEWAY_LOG" constraintName="FKR4X0X69D641UHF5YG3GY4L9GE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-30">
+        <dropTable tableName="COMMON_LOG"/>
+    </changeSet>
+</databaseChangeLog>

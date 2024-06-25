@@ -1,0 +1,36 @@
+<ng-template o3-wizard-step-template>
+    <o3-widget-editor-wizard-widget-preview [config]="previewConfig"
+                                            [verticalViewThreshold]="755" [manualFontScalar]="fontScalar"
+                                            [colWidth]="colWidth" [targetWidth]="widgetWidth" [height]="widgetHeight">
+        <div class="o3-text-step--config">
+            <div class="o3-text-step--text-config-1">
+                <o3-text-alignment-selector [(alignment)]="textAlign"></o3-text-alignment-selector>
+
+                <mat-form-field>
+                    <o3-color-picker name="text-color" [(ngModel)]="color"></o3-color-picker>
+                </mat-form-field>
+
+                <div class="o3-text-step--wrap">
+                    <mat-slide-toggle [(ngModel)]="wrapContent" name="text-wrap">Wrap Content</mat-slide-toggle>
+                </div>
+            </div>
+            <div class="o3-text-step--text-config-2">
+                <div class="o3-text-step--scaling">
+                    <div class="input-label">Manually Scale Text</div>
+                    <mat-slide-toggle name="font-size-scaling-manual" [(ngModel)]="manualFontScaling"></mat-slide-toggle>
+
+                    <o3-widget-editor-wizard-manual-font-scaling-field
+                        *ngIf="manualFontScaling"
+                        [(fontMultiplier)]="fontMultiplier"
+                        (fontMultiplierValid)="fontMultiplierValid = $event">
+                    </o3-widget-editor-wizard-manual-font-scaling-field>
+                </div>
+            </div>
+
+            <mat-form-field>
+                <textarea #test_text matInput type="text" placeholder="Content" name="text" [(ngModel)]="text"
+                          rows="4" maxlength="320" autocomplete="off"></textarea>
+            </mat-form-field>
+        </div>
+    </o3-widget-editor-wizard-widget-preview>
+</ng-template>

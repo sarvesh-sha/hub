@@ -1,0 +1,34 @@
+<table class="table-bordered o3-table-striped" cdkDropList (cdkDropListDropped)="updateOrder($event)"
+       [ngClass]="{'o3-modifiable-table--has-background': !!backgroundColor,
+                   'o3-modifiable-table--no-border': noBorder,
+                   'o3-modifiable-table--highlight-shading': showRowHover}">
+    <tbody>
+    <tr *ngFor="let item of rows; let i = index" optio3TestId="modifiable-row-{{i}}" (click)="onItemClick.emit(item)"
+        cdkDrag [cdkDragDisabled]="!allowReordering || rows.length === 1" [style.background-color]="backgroundColor">
+        <div *cdkDragPlaceholder [style.height.px]="placeholderHeightPx"></div>
+
+        <ng-container *ngTemplateOutlet="rowTemplate.template; context: { $implicit: item, value: item, index: i }"></ng-container>
+
+        <td class="o3-modifiable-table--delete" *ngIf="allowDeleting" [style.margin-right.px]="allowReordering ? -9 : 0">
+            <a mat-icon-button [disabled]="!canDelete(item)" (click)="removeRow(i); $event.stopPropagation()"
+               [matTooltip]="'Delete this ' + rowName" matTooltipPosition="left" matTooltipShowDelay="750">
+                <mat-icon>delete</mat-icon>
+            </a>
+        </td>
+        <td class="o3-modifiable-table--drag" *ngIf="allowReordering" (click)="$event.stopPropagation()">
+            <span class="mat-icon-button">
+                <mat-icon cdkDragHandle>drag_handle</mat-icon>
+            </span>
+        </td>
+    </tr>
+    <tr class="o3-modifiable-table--add-row" [style.background-color]="backgroundColor" *ngIf="showAddButton">
+        <td [matTooltip]="addDisabledTooltip">
+            <button class="o3-modifiable-table--add" mat-icon-button type="button"
+                    [disabled]="!!addDisabledTooltip" (click)="onRowAddRequest.emit()"
+                    matTooltipPosition="left" [matTooltip]="'Add another ' + rowName" matTooltipShowDelay="750">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

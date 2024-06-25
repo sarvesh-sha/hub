@@ -1,0 +1,31 @@
+﻿<section class="bs page-content">
+
+    <form #modelForm="ngForm" novalidate>
+
+        <mat-card class="page-card">
+            <mat-card-title>
+                Job Image Details
+            </mat-card-title>
+            <mat-card-content>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [value]="extended.model.imageSha" name="Name" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Id Prefix" [value]="extended.model.architecture" name="IdPrefix" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!modelForm.valid || modelForm.pristine">Update</button>
+                <button mat-raised-button type="button" (click)="exit()" *ngIf="modelForm.pristine">Close</button>
+                <button mat-raised-button type="button" (click)="exit()" *ngIf="!modelForm.pristine">Cancel</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+</section>

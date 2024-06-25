@@ -1,0 +1,4 @@
+export enum ReportStatus
+{
+    UNKNOWN = "UNKNOWN", QUEUED = "QUEUED", PROCESSING = "PROCESSING", SUCCESS = "SUCCESS", FAILURE = "FAILURE"
+}

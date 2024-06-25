@@ -1,0 +1,204 @@
+<div *ngIf="data" class="selectable">
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Equipment To Process" [value]="data.equipmentToProcess" name="devicesToProcess" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Equipment Processed" [value]="data.equipmentProcessed" name="devicesProcessed" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Control Points To Process" [value]="data.elementsToProcess" name="elementsToProcess" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Control Points Processed" [value]="data.elementsProcessed" name="elementsProcessed" readonly>
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" *ngIf="data.processing">
+            <span>Processing...</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-accordion>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Equipment Errors
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Extra/Missing Equipment
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row" *ngIf="data.equipmentCardinalityErrors?.length">
+                        <o3-datatable [rows]="data.equipmentCardinalityErrors" [style.width.%]="100" [showViewIcons]="false">
+                            <o3-datatable-column id="equipmentClassId" prop="equipmentClass" name="Equipment Class" sortId="equipmentClass"></o3-datatable-column>
+                            <o3-datatable-column id="location" prop="location" name="Location" sortId="location"></o3-datatable-column>
+                            <o3-datatable-column id="equipmentMessage" prop="model.message" name="Error Message" sortId="message" [grow]="2"></o3-datatable-column>
+                            <ng-container *o3DatatableDetailsTemplate="let outerRow">
+                                <o3-equipment-list *ngIf="outerRow.model.equipmentIds?.length"
+                                                   [equipmentIds]="outerRow.model.equipmentIds"
+                                                   [withFiltering]="false"
+                                                   [style.width.%]="100">
+                                </o3-equipment-list>
+                                <p *ngIf="!outerRow.model.equipmentIds?.length">No equipment</p>
+                            </ng-container>
+                        </o3-datatable>
+                    </div>
+                    <div class="row" *ngIf="!data.equipmentCardinalityErrors?.length">No errors</div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Point Errors
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Extra/Missing Points
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row mb-2">
+                        <mat-checkbox [checked]="data.showMissingPoints" (change)="data.showMissingPoints = $event.checked; refreshVisibility()">Show missing points</mat-checkbox>
+                    </div>
+                    <div class="row mb-2">
+                        <mat-checkbox [checked]="data.showExtraPoints" (change)="data.showExtraPoints = $event.checked; refreshVisibility()">Show extra points</mat-checkbox>
+                    </div>
+                    <div class="row" *ngIf="data.pointCardinalityErrors?.length">
+                        <o3-datatable [rows]="data.pointCardinalityErrors" [style.width.%]="100" [showViewIcons]="false">
+                            <o3-datatable-column id="pointEquipmentSysId" prop="equipment.name" name="Equipment" sortId="!equipment"></o3-datatable-column>
+                            <o3-datatable-column id="pointClassId" prop="pointClass" name="Point Class" sortId="pointClass"></o3-datatable-column>
+                            <o3-datatable-column id="pointMessage" prop="model.message" name="Error Message" sortId="message" [grow]="2"></o3-datatable-column>
+                            <ng-container *o3DatatableDetailsTemplate="let outerRow">
+                                <o3-device-elements-list *ngIf="outerRow.model.pointIds?.length" [pointIds]="outerRow.model.pointIds" [style.width.%]="100">
+                                </o3-device-elements-list>
+                                <p *ngIf="!outerRow.model.pointIds?.length">No points</p>
+                            </ng-container>
+                        </o3-datatable>
+                    </div>
+                    <div class="row" *ngIf="!data.pointCardinalityErrors?.length">No errors</div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Unknown Points
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Points with no matching rule
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row" *ngIf="data.unknownPointErrors?.length">
+                        <o3-datatable [rows]="data.unknownPointErrors" [style.width.%]="100" [showViewIcons]="false">
+                            <o3-datatable-column id="unknownPointEquipmentSysId" prop="equipment.name" name="Equipment" sortId="equipmentSysId"></o3-datatable-column>
+                            <o3-datatable-column id="unknownPointMessage" prop="model.message" name="Error Message" sortId="message"></o3-datatable-column>
+                            <ng-container *o3DatatableDetailsTemplate="let outerRow">
+                                <o3-device-elements-list *ngIf="outerRow.model.pointIds?.length"
+                                                         [pointIds]="outerRow.model.pointIds"
+                                                         [style.width.%]="100">
+                                </o3-device-elements-list>
+                                <p *ngIf="!outerRow.model.pointIds?.length">No points</p>
+                            </ng-container>
+                        </o3-datatable>
+                    </div>
+                    <div class="row" *ngIf="!data.unknownPointErrors?.length">No errors</div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Dangling Points
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Classified Points with no equipment assigned
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row" *ngIf="data.danglingPointErrors?.length">
+                        <o3-device-elements-list [pointIds]="data.danglingPointErrors"
+                                                 [style.width.%]="100">
+                        </o3-device-elements-list>
+                    </div>
+                    <div class="row" *ngIf="!data.danglingPointErrors?.length">No errors</div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Point Range Errors
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Points with values outside of expected range
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row mb-2">
+                        <mat-checkbox [checked]="data.hideZeroRange" (change)="data.hideZeroRange = $event.checked; refreshVisibility()">Hide Zero Values</mat-checkbox>
+                    </div>
+                    <div class="row" *ngIf="data.pointRangeErrors?.length">
+                        <o3-device-elements-list-validation [pointIds]="data.pointRangeErrors" [style.width.%]="100" [messages]="data.pointRangeMessages"></o3-device-elements-list-validation>
+                    </div>
+                    <div class="row" *ngIf="!data.pointRangeErrors?.length">No errors</div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Point Object Errors
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Points with unexpected object types
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row" *ngIf="data.pointObjectErrors?.length">
+                        <o3-device-elements-list-validation [pointIds]="data.pointObjectErrors" [style.width.%]="100" [messages]="data.pointObjectMessages"></o3-device-elements-list-validation>
+                    </div>
+                    <div class="row" *ngIf="!data.pointObjectErrors?.length">No errors</div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Duplicate Point Errors
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Duplicate Points on an equipment
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row" *ngIf="data.duplicatePointErrors?.length">
+                        <o3-datatable [rows]="data.duplicatePointErrors" [style.width.%]="100" [showViewIcons]="false" [useExpandToggle]="false">
+                            <o3-datatable-column id="duplicateEquipmentSysId" prop="equipment.name" name="Equipment" sortId="!equipment"></o3-datatable-column>
+                            <o3-datatable-column id="duplicatePointClassId" prop="pointClass" name="Point Class" sortId="pointClass"></o3-datatable-column>
+                            <o3-datatable-column id="duplicatePointMessage" prop="model.message" name="Error Message" sortId="message" [grow]="2"></o3-datatable-column>
+                            <ng-container *o3DatatableDetailsTemplate="let outerRow">
+                                <o3-device-elements-list *ngIf="outerRow.model.points?.length" [pointIds]="outerRow.model.points" [style.width.%]="100">
+                                </o3-device-elements-list>
+                                <p *ngIf="!outerRow.model.points?.length">No points</p>
+                            </ng-container>
+                        </o3-datatable>
+                    </div>
+                    <div class="row" *ngIf="!data.duplicatePointErrors?.length">No errors</div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="height: 4px"> <!-- This spacing is necessary to properly show the shadow in the previous accordion -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

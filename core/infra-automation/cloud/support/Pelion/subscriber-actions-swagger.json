@@ -1,0 +1,154 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Perform troubleshooting actions for your subscribers.</p><p>You can use these endpoints to&#58;</p><ul>\n<li>View a list of available actions</li>\n<li>Refresh the subscriber services that are currently running (SIM refresh) </li>\n<li>Disconnect/reconnect a subscriber (forces a new connection)</li>\n<li>Perform a SIM swap between two subscribers to transfer products, services and tariff details from one SIM to another</li></ul><p>The subscriber actions you can perform depend on the subscriber type and network.</p><p><strong>Note -</strong> Some endpoints require you to pass the subscriber <em>physicalId</em> parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul>",
+    "title": "Subscriber Actions",
+    "version": "1.0.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/subscribers/{physicalId}/actions": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "allowEmptyValue": false,
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string",
+            "x-example": "89400000001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of actions that you can perform for the specified subscriber.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/SubscriberActionsResponse"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Actions"
+        ],
+        "description": "<p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>To use this endpoint, your user account must have the <strong>Perform Troubleshooting Actions on a Subscriber</strong> permission enabled.",
+        "summary": "Returns a list of actions you can perform for the specified subscriber."
+      }
+    },
+    "/subscribers/{physicalId}/actions/{actionName}": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "allowEmptyValue": false,
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string",
+            "x-example": "89400000001"
+          },
+          {
+            "allowEmptyValue": false,
+            "description": "The name of the action you want to perform.",
+            "enum": [
+              "refresh",
+              "disconnectReconnect",
+              "view_swap"
+            ],
+            "in": "path",
+            "name": "actionName",
+            "required": true,
+            "type": "string",
+            "x-example": "refresh"
+          },
+          {
+            "description": "For the view_swap action, you must provide the physical ID of the new SIM (<em>newPhysicalId</em>) in the request body.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/actionPostBody",
+              "example": "{ \"newPhysicalId\": \"8944200000000000002\" }",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success - the action was performed."
+          },
+          "400": {
+            "description": "Error - invalid request."
+          },
+          "404": {
+            "description": "Error - resource not found."
+          }
+        },
+        "tags": [
+          "Actions"
+        ],
+        "description": "<p>The <em>actionName</em> and <em>physicalId</em> are required parameters in the request.</p><br><p>The <em>physicalID</em> value depends on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p><p>The available <em>actionNames</em> include</p><ul><li>refresh</li><li>disconnectReconnect, and</li><li>view_swap.</li></ul><p>To perform a SIM swap between a faulty SIM and a new SIM, you must&#58;</p><ul><li>provide the subscriber <em>physicalId</em> of both the faulty SIM (path parameter) and the new SIM (in the request body), and</li><li>make sure that the new SIM is unactivated and belongs to the same operator as the faulty SIM.</li></ul><p>To use this endpoint, your user account must have the <strong>Perform Troubleshooting Actions on a Subscriber</strong> permission enabled.</p>",
+        "summary": "Performs the specified subscriber action."
+      }
+    }
+  },
+  "definitions": {
+    "SubscriberAction": {
+      "properties": {
+        "description": {
+          "description": "A description of the action.",
+          "example": "Sends an instruction to refresh the services on the subscriber's SIM.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The action name.",
+          "example": "refresh",
+          "type": "string"
+        }
+      }
+    },
+    "SubscriberActionsResponse": {
+      "properties": {
+        "content": {
+          "description": "Returns a list of actions that you can perform for the specified subscriber.",
+          "items": {
+            "$ref": "#/definitions/SubscriberAction"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "actionPostBody": {
+      "properties": {
+        "newPhysicalId": {
+          "description": "The physical ID of the new target subscriber.",
+          "example": 8944200000000000000,
+          "type": "string"
+        }
+      },
+      "required": [
+        "nickname"
+      ],
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}

@@ -1,0 +1,18 @@
+﻿<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            <span>Logger Management</span>
+        </mat-card-title>
+        <form #loggersForm="ngForm" novalidate>
+            <mat-card-content>
+
+                <o3-loggers #loggersComp [loggers]="loggers"></o3-loggers>
+
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="submit" (click)="save()" [disabled]="!loggersComp.isDirty">Submit</button>
+                    <button mat-raised-button type="button" (click)="loadLoggers()">Cancel</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </form>
+    </mat-card>
+</section>

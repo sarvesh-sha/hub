@@ -1,0 +1,254 @@
+$or-color: #FF9800;
+$muted-or-color: #ffd587;
+$and-color: #2196F3;
+$muted-and-color: #97c9f3;
+$xor-color: #8D51E0;
+
+.actions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 0;
+    overflow: visible;
+
+    &.right {
+        transform: translate(20.5px, 0);
+    }
+
+    &.left {
+        transform: translate(-10.5px, 0);
+    }
+
+    & > * {
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+button.mini-button.mat-stroked-button {
+    min-width: 24px;
+    padding: 0px !important;
+    background-color: white;
+
+    mat-icon.mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        line-height: 20px;
+        text-align: center;
+
+        &.rotated {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.condition {
+    display: flex;
+    width: 100%;
+    height: 64px;
+    padding-left: 10px;
+
+    .condition-input {
+        max-width: 225px;
+        margin-left: 10px;
+        top: -3px;
+    }
+}
+
+.logic {
+    position: relative;
+    width: 100%;
+
+    > .children {
+        position: relative;
+
+        // apply correct padding
+        &.or {
+            padding-left: 0;
+            margin-left: -5px;
+        }
+
+        &.not {
+            padding-left: 47px;
+            margin-left: 0;
+
+            > .operation {
+                left: 47px;
+
+                &:first-child {
+                    left: 0 !important;
+                }
+            }
+
+            &.or {
+                padding-left: 42px;
+
+                > .operation {
+                    left: 42px;
+                }
+            }
+
+            > .operation-connector {
+                width: 13px;
+                border-bottom: 1px solid;
+                position: absolute;
+                height: 50%;
+            }
+        }
+
+        // apply correct colors
+        &.or {
+            > .operation {
+                > .badge {
+                    border-color: $or-color;
+
+                    > span {
+                        color: $or-color;
+                    }
+                }
+            }
+
+            > .operation-connector {
+                border-color: $or-color;
+            }
+
+            > .node {
+                > .node-child {
+                    border-color: $muted-or-color;
+                }
+
+                > .grouping-lines {
+                    .vertical, .horizontal {
+                        border-color: $muted-or-color;
+                    }
+                }
+            }
+        }
+
+        &.and {
+            > .operation {
+                > .badge {
+                    border-color: $and-color;
+
+                    > span {
+                        color: $and-color;
+                    }
+                }
+            }
+
+            > .operation-connector {
+                border-color: $and-color;
+            }
+
+            > .node {
+                > .node-child {
+                    border-color: $muted-and-color;
+                }
+
+                > .grouping-lines {
+                    .vertical, .horizontal {
+                        border-color: $muted-and-color;
+                    }
+                }
+            }
+        }
+
+        // apply baseline styles
+        > .operation {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            pointer-events: none;
+
+            .badge {
+                background-color: #ffffff;
+                padding: 2px 5px;
+                border-radius: 999px;
+                border: 1px solid;
+                pointer-events: all;
+            }
+        }
+
+        .node {
+            display: flex;
+
+            .node-child {
+                display: flex;
+                border: 1px solid #EEEEEE;
+                border-radius: 5px;
+                margin-right: 10px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding-right: 20px;
+                flex: 1 1 auto;
+                justify-content: space-between;
+
+                &.first {
+                    margin-top: 10px;
+                }
+
+                &.last {
+                    margin-bottom: 10px;
+                }
+            }
+
+            &:last-child {
+                > .grouping-lines {
+                    top: -3px;
+                }
+            }
+
+            .grouping-lines {
+                position: relative;
+                flex: 0 0 56px;
+
+                .vertical {
+                    position: absolute;
+                    width: 50%;
+                    height: 100%;
+                    left: 50%;
+                    border-left: 1px solid;
+                }
+
+                .horizontal {
+                    position: absolute;
+                    width: 50%;
+                    height: 50%;
+                    left: 50%;
+                    top: 50%;
+                    border-top: 1px solid;
+                }
+
+                &.first {
+                    .vertical {
+                        height: 50%;
+                        top: 50%;
+                    }
+                }
+
+                &.last {
+                    .vertical {
+                        height: 50%;
+                        bottom: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+o3-tag-condition-node {
+    width: 100%;
+}

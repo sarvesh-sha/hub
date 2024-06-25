@@ -1,0 +1,60 @@
+div.o3-branding-configuration--logo-control {
+    display: flex;
+
+    > mat-form-field {
+        flex: 0px 1 1;
+    }
+
+    > button {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        padding: 10px;
+        margin: 8px 0 8px 8px;
+    }
+}
+
+div.o3-branding-configuration--logo-container {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+
+    > div {
+        flex: 0px 1 1;
+        padding: 4px;
+
+        > div {
+            display: flex;
+            flex: 0px 1 1;
+            max-width: 320px;
+            height: 100%;
+            overflow-x: hidden;
+        }
+    }
+
+    > button {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        margin: 0px -7px 9px 0px;
+        padding: 5px 0px 0px 1px;
+    }
+}
+
+div.o3-branding-configuration--color-select {
+    height: 66px;
+    display: flex;
+
+    > mat-form-field {
+        margin-bottom: -6px;
+
+        &:first-child {
+            padding-right: 6px;
+        }
+
+        &:last-child {
+            padding-left: 6px;
+        }
+    }
+}

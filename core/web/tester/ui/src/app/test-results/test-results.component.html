@@ -1,0 +1,52 @@
+<mat-accordion multi *ngIf="testResults">
+    <mat-expansion-panel *ngFor="let test of testResults; let first = first; trackBy: trackTestResult" [@expand] [expanded]="first">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{test.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{getStatus(test)}}
+                <div>
+                    <button *ngIf="testIncomplete(test)" [class.status-pending]="testPending(test)"
+                            mat-icon-button matTooltip="Cancel Test"
+                            (click)="cancelTest.emit(test.id); $event.stopPropagation()">
+                        <mat-icon>pan_tool</mat-icon>
+                    </button>
+                    <mat-icon *ngIf="testCancelled(test)" class="status-cancelled">not_interested</mat-icon>
+                    <mat-icon *ngIf="testRunning(test)" class="status-running">play_circle_outline</mat-icon>
+                    <mat-icon *ngIf="testFailed(test)" class="status-failed">error</mat-icon>
+                    <mat-icon *ngIf="testPassed(test)" class="status-passed">check_circle</mat-icon>
+                </div>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-accordion [@.disabled]="true">
+            <mat-expansion-panel [expanded]="false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Logs
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p *ngFor="let log of test.logs">{{log}}</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Console Logs
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p *ngFor="let log of test.consoleLogs">{{log}}</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel #panel [disabled]="!canLoadVideo(test)" [expanded]="false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Video
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <video id="{{test.id}}" controls *ngIf="panel.expanded">
+                    <source [src]="getVideoSource(test)" type="video/mp4">
+                </video>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-expansion-panel>
+</mat-accordion>
+

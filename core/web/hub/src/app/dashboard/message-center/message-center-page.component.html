@@ -1,0 +1,46 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <o3-tab label="Your notifications for the last {{period}} days">
+            <div class="row">
+                <div class="col-12">
+                    <div *ngIf="!displayedMessages?.length" class="o3-watermark-caption">
+                        No notifications to display
+                    </div>
+
+                    <o3-modifiable-table *ngIf="displayedMessages?.length" [rows]="displayedMessages"
+                                         itemName="notification" (itemClicked)="viewMessage($event)"
+                                         allowDeleting [canDelete]="alwaysAllowDelete" (rowRemoved)="removeMessage($event)">
+                        <ng-container *o3ModifiableTableRow="let message">
+                            <td>
+                                <div matTooltip="View this notification" [matTooltipShowDelay]="750">
+                                    <div class="text-center icon-cell">
+                                        <i class="o3 o3-lg o3-alert" *ngIf="isAlert(message)"></i>
+                                        <i class="o3 o3-lg o3-device" *ngIf="isDevice(message)"></i>
+                                        <i class="fa fa-lg o3-configure fa-user-o" *ngIf="isRoleManagement(message)"></i>
+                                        <i class="o3 o3-lg o3-email" *ngIf="isReport(message)"></i>
+                                        <i class="o3 o3-lg o3-information" *ngIf="isWorkflow(message)"></i>
+                                    </div>
+                                    <div class="content-cell">
+                                        <span class="o3-message-subject" [class.o3-message-unread]="!message.model.flagRead">{{message.model.subject}}</span>
+                                        <small>{{message.model.body}}</small>
+                                        <span class="o3-message-date">{{message.model.createdOn|o3ShortDate}} {{message.model.createdOn|o3ShortTime}}</span>
+                                    </div>
+                                    <div class="date-cell">
+                                        <span class="o3-message-date">{{message.model.createdOn|o3ShortDate}} {{message.model.createdOn|o3ShortTime}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+                    </o3-modifiable-table>
+
+                    <div class="table-footer clickable" *ngIf="remainingCount > 0" (click)="showMore()">
+                        <div class="table-footer-content">
+                            Show {{displayedLimit}} More
+                            <span class="float-right">{{remainingCount}} More Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</section>

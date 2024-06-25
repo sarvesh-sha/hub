@@ -1,0 +1,7 @@
+<o3-wizard *ngIf="data?.workflow" [data]="data"
+           [modalMode]="true" label="Workflow" finishButtonText="SUBMIT"
+           (wizardCancelled)="wizardCancel()" (wizardCommitted)="wizardCommit()">
+    <o3-workflow-wizard-type-step></o3-workflow-wizard-type-step>
+    <o3-workflow-wizard-details-step></o3-workflow-wizard-details-step>
+    <o3-workflow-wizard-description-step></o3-workflow-wizard-description-step>
+</o3-wizard>

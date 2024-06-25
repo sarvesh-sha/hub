@@ -1,0 +1,58 @@
+﻿<section class="bs page-content">
+
+    <mat-tab-group>
+        <mat-tab label="Repository Details">
+
+            <form (ngSubmit)="save()" #modelForm="ngForm" novalidate>
+                <mat-card class="page-card">
+                    <mat-card-content>
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Name" [value]="extended.model.name" name="repoName" readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <mat-form-field>
+                                    <input matInput type="url" placeholder="Url" [value]="extended.model.gitUrl" name="repoUrl">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!modelForm.valid || modelForm.pristine">Update</button>
+                        <button mat-raised-button type="button" (click)="exit()" *ngIf="modelForm.pristine">Close</button>
+                        <button mat-raised-button type="button" (click)="exit()" *ngIf="!modelForm.pristine">Cancel</button>
+
+                        <button mat-icon-button type="button" class="pull-right" (click)="remove()"
+                                [disabled]="extendedNoRemoveReason != null" [matTooltip]="extendedNoRemoveReason" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </form>
+
+        </mat-tab>
+
+        <mat-tab label="Checkouts">
+
+            <mat-card class="page-card">
+                <mat-card-content>
+
+                    <o3-repository-checkouts-list #childList [extended]="extended" *ngIf="extended">
+                    </o3-repository-checkouts-list>
+
+                </mat-card-content>
+            </mat-card>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</section>

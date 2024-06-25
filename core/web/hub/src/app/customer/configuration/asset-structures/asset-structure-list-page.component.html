@@ -1,0 +1,14 @@
+<section class="bs page-content">
+    <o3-tab-group #test_tabGroup>
+
+        <o3-tab-action [label]="newStructureLabel" (click)="new()"></o3-tab-action>
+        <o3-tab-action label="Import..." (click)="import()"></o3-tab-action>
+
+        <o3-tab label="Asset Structures">
+            <o3-datatable #test_assetStructureList [table]="table">
+                <o3-datatable-column id="name" prop="name" name="Name"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

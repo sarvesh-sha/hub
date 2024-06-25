@@ -1,0 +1,14 @@
+####################
+# Hub notification #
+####################
+
+WARNING!!
+
+The CPU load on Gateway '${param.GATEWAY_ID}' has increased to ${param.CPU_LOAD} at ${param.TIME}.
+
+It was ${param.CPU_LOAD_PREVIOUS} in the previous sampling period.
+
+Details: ${param.SITE_URL}/#/gateways/gateway/${param.GATEWAY_SYSID}
+
+
+Optio3

@@ -1,0 +1,1671 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <createTable tableName="BACKGROUND_ACTIVITY">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_A"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BINARY_HANDLER_STATE" type="BLOB"/>
+            <column name="HANDLER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HANDLER_KEY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="LAST_ACTIVATION" type="TIMESTAMP"/>
+            <column name="LAST_ACTIVATION_FAILURE" type="CLOB"/>
+            <column name="LAST_ACTIVATION_FAILURE_TRACE" type="CLOB"/>
+            <column name="LAST_ACTIVATION_STATUS" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="NEXT_ACTIVATION" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RPC_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIMEOUT" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="TITLE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WAS_PROCESSING" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HOST_AFFINITY" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <createTable tableName="BACKGROUND_ACTIVITY_CHUNK">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_6"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATE" type="BLOB"/>
+            <column name="OWNING_ACTIVITY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createTable tableName="BACKUP_TO_IMAGE_V2">
+            <column name="BACKUP" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_2"/>
+            </column>
+            <column name="IMAGE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ARCHITECTURE" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_2_1"/>
+            </column>
+            <column name="ROLE" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_2_1"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <createTable tableName="CUSTOMER">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_5"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLOUD_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <createTable tableName="CUSTOMER_SERVICE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_8"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="DATABASE_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="DBCONFIGURATION_DATABASEPASSWORD_CONTENTS" type="BLOB"/>
+            <column name="DATABASE_USER" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="MODE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="DISK_SIZE" type="INT"/>
+            <column name="EXTRA_CONFIG_LINES" type="CLOB"/>
+            <column name="EXTRA_CONFIG_LINES_ACTIVE" type="CLOB"/>
+            <column name="INSTANCE_REGION" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="INSTANCE_TYPE" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="MAINTPASSWORD_CONTENTS" type="BLOB"/>
+            <column name="MASTERKEY_CONTENTS" type="BLOB"/>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATIONAL_STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="URL" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USE_DEMO_DATA" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERTICAL" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="CURRENT_ACTIVITY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="CUSTOMER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <createTable tableName="CUSTOMER_SERVICE_BACKUP">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_A6"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="EXTRA_CONFIG_LINES" type="CLOB"/>
+            <column name="FILE_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FILE_ID_ON_AGENT" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="FILE_SIZE" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PENDING_TRANSFER" type="BOOLEAN"/>
+            <column name="BACKUP_TRIGGER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUSTOMER_SERVICE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <createTable tableName="CUSTOMER_SERVICE_ROLE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUSTOMER_SERVICE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <createTable tableName="CUSTOMER_SHARED_USER">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_82"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL_ADDRESS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="LAST_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="PASSWORD_CONTENTS" type="BLOB"/>
+            <column name="PHONE_NUMBER" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="ROLES" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="CUSTOMER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <createTable tableName="DEPLOYMENT_AGENT">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_C"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="LAST_HEARTBEAT" type="TIMESTAMP"/>
+            <column name="ACTIVE" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DETAILS" type="CLOB"/>
+            <column name="DOCKER_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="INSTANCE_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RPC_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <createTable tableName="DEPLOYMENT_HOST">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_B"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="ARCHITECTURE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DETAILS" type="CLOB"/>
+            <column name="DNS_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="HAS_DELAYED_OPS" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HOST_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HOST_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="LAST_HEARTBEAT" type="TIMESTAMP"/>
+            <column name="OPERATIONAL_STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUSTOMER_SERVICE_ROLES" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WARNING_THRESHOLD" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUSTOMER_SERVICE" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <createTable tableName="DEPLOYMENT_HOST_FILE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_BF"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTENTS" type="BLOB"/>
+            <column name="DOWNLOADED_ON" type="TIMESTAMP"/>
+            <column name="PATH" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="UPLOADED_ON" type="TIMESTAMP"/>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <createTable tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D3"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OFFSET" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE_REFERENCE" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <createTable tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D0"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_IMAGE_PULL" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <createTable tableName="DEPLOYMENT_PROBER">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_B4"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="LAST_HEARTBEAT" type="TIMESTAMP"/>
+            <column name="DOCKER_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="INSTANCE_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RPC_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <createTable tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_BF9"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="LAST_HEARTBEAT" type="TIMESTAMP"/>
+            <column name="INPUT_DETAILS" type="CLOB"/>
+            <column name="LAST_OFFSET" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+            <column name="OUTPUT_DETAILS" type="CLOB"/>
+            <column name="CURRENT_ACTIVITY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="PROBER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <createTable tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_6F"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_OP" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-17">
+        <createTable tableName="DEPLOYMENT_TASK">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_BB"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="LAST_HEARTBEAT" type="TIMESTAMP"/>
+            <column name="DOCKER_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="IMAGE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OFFSET" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="PURPOSE" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPLOYMENT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE_REFERENCE" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-18">
+        <createTable tableName="DEPLOYMENT_TASK_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_7"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_TASK" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-19">
+        <createTable tableName="DISTRIBUTED_LOCKING">
+            <column name="LOCK_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_F"/>
+            </column>
+            <column name="HELD_BY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="HELD_ON" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-20">
+        <createTable tableName="DOCKER_BUILD__BUILDARGS">
+            <column name="JOBDEFINITIONSTEPRECORDFORDOCKERBUILD_SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_3"/>
+            </column>
+            <column name="BUILDARGS" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="BUILDARGS_KEY" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_3_1"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-21">
+        <createTable tableName="DOCKER_CONTAINER">
+            <column name="DOCKER_ID" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="EXIT_CODE" type="INT"/>
+            <column name="STARTED_ON" type="TIMESTAMP"/>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_9"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-22">
+        <createTable tableName="DOCKER_TEMPORARY_IMAGE">
+            <column name="IMAGE_TAG" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_AF"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-23">
+        <createTable tableName="DOCKER_VOLUME">
+            <column name="DOCKERID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_B9"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-24">
+        <createTable tableName="FIXUP_PROCESSING">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_1"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HANDLER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-25">
+        <createTable tableName="HOST">
+            <column name="DOMAIN_NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP_ADDRESS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_21"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-26">
+        <createTable tableName="JOB">
+            <column name="BRANCH" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="COMMIT" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="ID_PREFIX" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TRIGGERED_BY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_11"/>
+            </column>
+            <column name="DEFINITION" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-27">
+        <createTable tableName="JOB_DEF">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D5"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_PREFIX" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TOTAL_TIMEOUT" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-28">
+        <createTable tableName="JOB_DEF_STEP">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_82F"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="BUILD_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSITION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIMEOUT" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_JOB" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-29">
+        <createTable tableName="JOB_DEF_STEP__DOCKER_BUILD">
+            <column name="ARCHITECTURE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOCKER_FILE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SOURCE_PATH" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TARGET_SERVICE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_F9"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-30">
+        <createTable tableName="JOB_DEF_STEP__DOCKER_PUSH">
+            <column name="IMAGE_TAG" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SOURCE_IMAGE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_52"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-31">
+        <createTable tableName="JOB_DEF_STEP__DOCKER_RUN">
+            <column name="COMMAND_LINE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FORCE_PULL" type="BOOLEAN"/>
+            <column name="IMAGE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WORKING_DIRECTORY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_B0"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-32">
+        <createTable tableName="JOB_DEF_STEP__GIT">
+            <column name="DIRECTORY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_AC"/>
+            </column>
+            <column name="REPO" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-33">
+        <createTable tableName="JOB_DEF_STEP__MAVEN">
+            <column name="DIRECTORY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PULL_FROM" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_91"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-34">
+        <createTable tableName="JOB_DEF_STEP__SSH_COMMAND">
+            <column name="COMMAND_LINE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREDENTIALS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TARGET_HOST" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_6FF"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-35">
+        <createTable tableName="JOB_SOURCE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_59"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BRANCH" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMMIT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_JOB" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REPO" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-36">
+        <createTable tableName="JOB_STEP">
+            <column name="LAST_OFFSET" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_OUTPUT" type="TIMESTAMP"/>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D02"/>
+            </column>
+            <column name="CONTAINER" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="OWNING_JOB" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-37">
+        <createTable tableName="JOB_STEP_LOG">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_B02"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BLOCK" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_END" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE_START" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_JOB_STEP" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-38">
+        <createTable tableName="MANAGED_DIRECTORY">
+            <column name="PATH" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_1D"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-39">
+        <createTable tableName="MAPPED_DOCKER_VOLUME">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_BBC"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PATH" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DIRECTORY" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="OWNING_CONTAINER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VOLUME" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-40">
+        <createTable tableName="REGISTRY_IMAGE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_64"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="METADATA_COMPRESSED" type="BLOB"/>
+            <column name="ARCHITECTURE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BUILD_TIME" type="TIMESTAMP"/>
+            <column name="IMAGE_SHA" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TARGET_SERVICE" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-41">
+        <createTable tableName="REGISTRY_TAGGED_IMAGE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_72"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELEASE_STATUS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_JOB" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-42">
+        <createTable tableName="REPOSITORY">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_913"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GIT_URL" type="VARCHAR_IGNORECASE(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-43">
+        <createTable tableName="REPOSITORY_BRANCH">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_E"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HEAD" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="REPOSITORY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-44">
+        <createTable tableName="REPOSITORY_CHECKOUT">
+            <column name="CURRENT_BRANCH" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="CURRENT_COMMIT" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_8A"/>
+            </column>
+            <column name="DIRECTORY_FOR_DB" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="DIRECTORY_FOR_WORK" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="REPOSITORY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-45">
+        <createTable tableName="REPOSITORY_COMMIT">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_E2"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUTHOR_EMAIL_ADDRESS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUTHOR_NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MESSAGE" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENTS" type="VARCHAR_IGNORECASE(640)"/>
+            <column name="REPOSITORY" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-46">
+        <createTable tableName="RESOURCES">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_2F"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-47">
+        <createTable tableName="RESOURCES_HOSTBOUND">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_B5"/>
+            </column>
+            <column name="OWNING_HOST" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-48">
+        <createTable tableName="RESOURCES_TRACKED">
+            <column name="DELETEONRELEASE" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_7A"/>
+            </column>
+            <column name="ACQUIRED_BY" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-49">
+        <createTable tableName="ROLE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_26"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ADD_ALLOWED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DISPLAY_NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMOVE_ALLOWED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-50">
+        <createTable tableName="ROLE_TO_HOST_V2">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_80"/>
+            </column>
+            <column name="HOST" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-51">
+        <createTable tableName="SERVICE_TO_IMAGE_V2">
+            <column name="SERVICE" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_66"/>
+            </column>
+            <column name="IMAGE" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ARCHITECTURE" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_66_1"/>
+            </column>
+            <column name="ROLE" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_66_1"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-52">
+        <createTable tableName="SYSTEM_PREFERENCE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_723"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="KEYID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALUE" type="CLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-53">
+        <createTable tableName="TASK_TO_SUBTASK">
+            <column name="TASK" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_DC"/>
+            </column>
+            <column name="SUB_TASK" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_DC_1"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-54">
+        <createTable tableName="USER">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_27"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL_ADDRESS" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="FROM_LDAP" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IDENTITY_VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="PASSWORD_HASH" type="VARBINARY(255)"/>
+            <column name="PASSWORD_SALT" type="VARBINARY(255)"/>
+            <column name="PHONE_NUMBER" type="VARCHAR_IGNORECASE(255)"/>
+            <column name="RESET_TOKEN" type="VARCHAR_IGNORECASE(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-55">
+        <createTable tableName="USER_PREFERENCE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_D7"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="KEYID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALUE" type="CLOB"/>
+            <column name="USER" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-56">
+        <createTable tableName="USER_ROLE">
+            <column name="USERRECORD_SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLES_SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-57">
+        <addUniqueConstraint columnNames="ID_PREFIX" constraintName="UK_ACAPTQSR7DWLVMYCAGHC05S3P" tableName="JOB_DEF"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-58">
+        <addUniqueConstraint columnNames="NAME" constraintName="UK_FPFQGK4IAMSJDMIU229J6VJJT" tableName="ROLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-59">
+        <addUniqueConstraint columnNames="IMAGE_SHA" constraintName="UK_L9FMDQADV0IBGQ0EA7S2A8EFJ" tableName="REGISTRY_IMAGE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-60">
+        <addUniqueConstraint columnNames="CLOUD_ID" constraintName="UK_NU8SMLKHVD2ADKUS22DPCYMES" tableName="CUSTOMER"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-61">
+        <createIndex indexName="ACQUIRED_BY__FK_INDEX_7" tableName="RESOURCES_TRACKED">
+            <column name="ACQUIRED_BY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-62">
+        <createIndex indexName="AGENT__DEPLOYMENT__FK_INDEX_C" tableName="DEPLOYMENT_AGENT">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-63">
+        <createIndex indexName="BACKGROUND_ACTIVITY__HANDLER_KEY" tableName="BACKGROUND_ACTIVITY">
+            <column name="HANDLER_KEY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-64">
+        <createIndex indexName="BACKGROUND_ACTIVITY__NEXTACTIVATION" tableName="BACKGROUND_ACTIVITY">
+            <column name="NEXT_ACTIVATION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-65">
+        <createIndex indexName="CHUNK__OWNING_ACTIVITY__FK_INDEX_6" tableName="BACKGROUND_ACTIVITY_CHUNK">
+            <column name="OWNING_ACTIVITY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-66">
+        <createIndex indexName="CONTAINER__FK_INDEX_D" tableName="JOB_STEP">
+            <column name="CONTAINER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-67">
+        <createIndex indexName="CURRENT_ACTIVITY__FK_INDEX_8" tableName="CUSTOMER_SERVICE">
+            <column name="CURRENT_ACTIVITY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-68">
+        <createIndex indexName="CUSTOMER_SERVICE_BACKUP__CUSTOMER_SERVICE__FK_INDEX_A" tableName="CUSTOMER_SERVICE_BACKUP">
+            <column name="CUSTOMER_SERVICE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-69">
+        <createIndex indexName="CUSTOMER_SERVICE_ROLE__CUSTOMER_SERVICE__FK_INDEX_D" tableName="CUSTOMER_SERVICE_ROLE">
+            <column name="CUSTOMER_SERVICE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-70">
+        <createIndex indexName="CUSTOMER_SERVICE__DEPLOYMENT_HOST__FK_INDEX_B" tableName="DEPLOYMENT_HOST">
+            <column name="CUSTOMER_SERVICE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-71">
+        <createIndex indexName="CUSTOMER_SHARED_USER__CUSTOMER__FK_INDEX_8" tableName="CUSTOMER_SHARED_USER">
+            <column name="CUSTOMER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-72">
+        <createIndex indexName="CUSTOMER__FK_INDEX_8" tableName="CUSTOMER_SERVICE">
+            <column name="CUSTOMER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-73">
+        <createIndex indexName="DEFINITION__FK_INDEX_1" tableName="JOB">
+            <column name="DEFINITION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-74">
+        <createIndex indexName="DEPLOYMENT_HOST_IMAGE_PULL__CREATED" tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="SYS_CREATED_ON"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-75">
+        <createIndex indexName="DIRECTORY_FOR_DB__FK_INDEX_8" tableName="REPOSITORY_CHECKOUT">
+            <column name="DIRECTORY_FOR_DB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-76">
+        <createIndex indexName="DIRECTORY_FOR_WORK__FK_INDEX_8" tableName="REPOSITORY_CHECKOUT">
+            <column name="DIRECTORY_FOR_WORK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-77">
+        <createIndex indexName="DIRECTORY__FK_INDEX_B" tableName="MAPPED_DOCKER_VOLUME">
+            <column name="DIRECTORY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-78">
+        <createIndex indexName="FILE__DEPLOYMENT__FK_INDEX_B" tableName="DEPLOYMENT_HOST_FILE">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-79">
+        <createIndex indexName="FK2XQYK0JFACD7W5R8L6HDMIERG_INDEX_3" tableName="DOCKER_BUILD__BUILDARGS">
+            <column name="JOBDEFINITIONSTEPRECORDFORDOCKERBUILD_SYS_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-80">
+        <createIndex indexName="FK4S1Q4LDFKV674L80D41MS8EWV_INDEX_D" tableName="TASK_TO_SUBTASK">
+            <column name="TASK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-81">
+        <createIndex indexName="FK9X2VUIF1VC0P6IEUUHH7FPHE7_INDEX_D" tableName="TASK_TO_SUBTASK">
+            <column name="SUB_TASK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-82">
+        <createIndex indexName="FKABDTEWID8PLH24HFCO1LNMTJK_INDEX_B" tableName="USER_ROLE">
+            <column name="ROLES_SYS_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-83">
+        <createIndex indexName="FKE5J36X6R3WJP7VQL4B67Y0535_INDEX_2" tableName="BACKUP_TO_IMAGE_V2">
+            <column name="BACKUP"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-84">
+        <createIndex indexName="FKEE614ADL241ISONLVWWDSYEDY_INDEX_B" tableName="USER_ROLE">
+            <column name="USERRECORD_SYS_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-85">
+        <createIndex indexName="FKI9FIH11AYHVJFRWPVOQVCDSBY_INDEX_6" tableName="SERVICE_TO_IMAGE_V2">
+            <column name="IMAGE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-86">
+        <createIndex indexName="FKLMQU70R6VENY60S5OBSY3HTDU_INDEX_2" tableName="BACKUP_TO_IMAGE_V2">
+            <column name="IMAGE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-87">
+        <createIndex indexName="FKRC1OH47VA97XLS8S99KRKIETR_INDEX_6" tableName="SERVICE_TO_IMAGE_V2">
+            <column name="SERVICE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-88">
+        <createIndex indexName="HEAD__FK_INDEX_E" tableName="REPOSITORY_BRANCH">
+            <column name="HEAD"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-89">
+        <createIndex indexName="HOST_AFFINITY__FK_INDEX_A" tableName="BACKGROUND_ACTIVITY">
+            <column name="HOST_AFFINITY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-90">
+        <createIndex indexName="IDX545UE1L53WHQJ6T6ASQHY4555" tableName="JOB_STEP_LOG">
+            <column name="SEQUENCE_END"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-91">
+        <createIndex indexName="IDX66HE9I1YSUS7VTVK0PMD4HVUI" tableName="JOB_STEP">
+            <column name="STATUS"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-92">
+        <createIndex indexName="IDXFASO40L959S8Q60RRBOE2R6SC" tableName="DEPLOYMENT_TASK_LOG">
+            <column name="SEQUENCE_START"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-93">
+        <createIndex indexName="IDXI7O9YHKDX3XP2PF5131384H95" tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="SEQUENCE_END"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-94">
+        <createIndex indexName="IDXJLFEYEAI4R53GE6VEL5RAWS1Q" tableName="JOB_STEP_LOG">
+            <column name="SEQUENCE_START"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-95">
+        <createIndex indexName="IDXJNTAJCB19VAGRE3ML92KY2G26" tableName="DEPLOYMENT_TASK_LOG">
+            <column name="SEQUENCE_END"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-96">
+        <createIndex indexName="IDXN6HKJFMRCYIA6FPH2T5TG928G" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="SEQUENCE_START"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-97">
+        <createIndex indexName="IDXNA1LDW00A785EGRMCX4XJBJPP" tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="SEQUENCE_START"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-98">
+        <createIndex indexName="IDXO6PGYDFELV3JW82VDRQCBM2I5" tableName="JOB">
+            <column name="STATUS"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-99">
+        <createIndex indexName="IDXOKMTEUYMBXG73F2N2CV5V9OPU" tableName="JOB">
+            <column name="ID_PREFIX"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-100">
+        <createIndex indexName="IDXTJNP08F92F4NRUYBI94NQALK2" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="SEQUENCE_END"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-101">
+        <createIndex indexName="IMAGE_PULL__DEPLOYMENT__FK_INDEX_D" tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-102">
+        <createIndex indexName="IMAGE_PULL__IMAGE_REFERENCE__FK_INDEX_D" tableName="DEPLOYMENT_HOST_IMAGE_PULL">
+            <column name="IMAGE_REFERENCE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-103">
+        <createIndex indexName="IMAGE_REFERENCE__FK_INDEX_B" tableName="DEPLOYMENT_TASK">
+            <column name="IMAGE_REFERENCE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-104">
+        <createIndex indexName="IMAGE__FK_INDEX_7" tableName="REGISTRY_TAGGED_IMAGE">
+            <column name="IMAGE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-105">
+        <createIndex indexName="JOBDEFSTEP__OWNING_JOB__FK_INDEX_8" tableName="JOB_DEF_STEP">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-106">
+        <createIndex indexName="JOBSOURCE__OWNING_JOB__FK_INDEX_5" tableName="JOB_SOURCE">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-107">
+        <createIndex indexName="JOBSOURCE__REPO__FK_INDEX_5" tableName="JOB_SOURCE">
+            <column name="REPO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-108">
+        <createIndex indexName="JOBSTEP__OWNING_JOB__FK_INDEX_D" tableName="JOB_STEP">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-109">
+        <createIndex indexName="OWNING_CONTAINER__FK_INDEX_B" tableName="MAPPED_DOCKER_VOLUME">
+            <column name="OWNING_CONTAINER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-110">
+        <createIndex indexName="OWNING_HOST__FK_INDEX_B" tableName="RESOURCES_HOSTBOUND">
+            <column name="OWNING_HOST"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-111">
+        <createIndex indexName="OWNING_JOB_STEP__FK_INDEX_B" tableName="JOB_STEP_LOG">
+            <column name="OWNING_JOB_STEP"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-112">
+        <createIndex indexName="OWNING_OP__FK_INDEX_6" tableName="DEPLOYMENT_PROBER_OPERATION_LOG">
+            <column name="OWNING_OP"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-113">
+        <createIndex indexName="OWNING_PULL__FK_INDEX_D" tableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG">
+            <column name="OWNING_IMAGE_PULL"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-114">
+        <createIndex indexName="OWNING_TASK__FK_INDEX_7" tableName="DEPLOYMENT_TASK_LOG">
+            <column name="OWNING_TASK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-115">
+        <createIndex indexName="PROBER_OPERATION__PROBER__FK_INDEX_B" tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="PROBER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-116">
+        <createIndex indexName="PROBER__CURRENT_ACTIVITY__FK_INDEX_B" tableName="DEPLOYMENT_PROBER_OPERATION">
+            <column name="CURRENT_ACTIVITY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-117">
+        <createIndex indexName="PROBER__DEPLOYMENT__FK_INDEX_B" tableName="DEPLOYMENT_PROBER">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-118">
+        <createIndex indexName="REGISTRYTAGGEDIMAGE__OWNING_JOB__FK_INDEX_7" tableName="REGISTRY_TAGGED_IMAGE">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-119">
+        <createIndex indexName="REPOBRANCH__REPOSITORY__FK_INDEX_E" tableName="REPOSITORY_BRANCH">
+            <column name="REPOSITORY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-120">
+        <createIndex indexName="REPOCHECKOUT__REPOSITORY__FK_INDEX_8" tableName="REPOSITORY_CHECKOUT">
+            <column name="REPOSITORY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-121">
+        <createIndex indexName="REPOCOMMIT__REPOSITORY__FK_INDEX_E" tableName="REPOSITORY_COMMIT">
+            <column name="REPOSITORY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-122">
+        <createIndex indexName="REPO__FK_INDEX_A" tableName="JOB_DEF_STEP__GIT">
+            <column name="REPO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-123">
+        <createIndex indexName="ROLE_TO_HOST__HOST__FK_INDEX_8" tableName="ROLE_TO_HOST_V2">
+            <column name="HOST"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-124">
+        <createIndex indexName="ROLE_TO_HOST__ROLE__FK_INDEX_8" tableName="ROLE_TO_HOST_V2">
+            <column name="ROLE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-125">
+        <createIndex indexName="TASK__DEPLOYMENT__FK_INDEX_B" tableName="DEPLOYMENT_TASK">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-126">
+        <createIndex indexName="USER__FK_INDEX_D" tableName="USER_PREFERENCE">
+            <column name="USER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-127">
+        <createIndex indexName="VOLUME__FK_INDEX_B" tableName="MAPPED_DOCKER_VOLUME">
+            <column name="VOLUME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-128">
+        <addForeignKeyConstraint baseColumnNames="ACQUIRED_BY" baseTableName="RESOURCES_TRACKED" constraintName="ACQUIRED_BY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-129">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_AGENT" constraintName="AGENT__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-130">
+        <addForeignKeyConstraint baseColumnNames="OWNING_ACTIVITY" baseTableName="BACKGROUND_ACTIVITY_CHUNK" constraintName="CHUNK__OWNING_ACTIVITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-131">
+        <addForeignKeyConstraint baseColumnNames="CONTAINER" baseTableName="JOB_STEP" constraintName="CONTAINER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DOCKER_CONTAINER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-132">
+        <addForeignKeyConstraint baseColumnNames="CURRENT_ACTIVITY" baseTableName="CUSTOMER_SERVICE" constraintName="CURRENT_ACTIVITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-133">
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER_SERVICE" baseTableName="CUSTOMER_SERVICE_BACKUP" constraintName="CUSTOMER_SERVICE_BACKUP__CUSTOMER_SERVICE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-134">
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER_SERVICE" baseTableName="CUSTOMER_SERVICE_ROLE" constraintName="CUSTOMER_SERVICE_ROLE__CUSTOMER_SERVICE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-135">
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER_SERVICE" baseTableName="DEPLOYMENT_HOST" constraintName="CUSTOMER_SERVICE__DEPLOYMENT_HOST__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-136">
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER" baseTableName="CUSTOMER_SHARED_USER" constraintName="CUSTOMER_SHARED_USER__CUSTOMER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-137">
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER" baseTableName="CUSTOMER_SERVICE" constraintName="CUSTOMER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-138">
+        <addForeignKeyConstraint baseColumnNames="DEFINITION" baseTableName="JOB" constraintName="DEFINITION__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-139">
+        <addForeignKeyConstraint baseColumnNames="DIRECTORY_FOR_DB" baseTableName="REPOSITORY_CHECKOUT" constraintName="DIRECTORY_FOR_DB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="MANAGED_DIRECTORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-140">
+        <addForeignKeyConstraint baseColumnNames="DIRECTORY_FOR_WORK" baseTableName="REPOSITORY_CHECKOUT" constraintName="DIRECTORY_FOR_WORK__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="MANAGED_DIRECTORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-141">
+        <addForeignKeyConstraint baseColumnNames="DIRECTORY" baseTableName="MAPPED_DOCKER_VOLUME" constraintName="DIRECTORY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="MANAGED_DIRECTORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-142">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_HOST_FILE" constraintName="FILE__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-143">
+        <addForeignKeyConstraint baseColumnNames="JOBDEFINITIONSTEPRECORDFORDOCKERBUILD_SYS_ID" baseTableName="DOCKER_BUILD__BUILDARGS" constraintName="FK2XQYK0JFACD7W5R8L6HDMIERG" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP__DOCKER_BUILD" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-144">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="REPOSITORY_CHECKOUT" constraintName="FK3PDPGBCPC4SU1HPM66G8SHYSD" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_HOSTBOUND" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-145">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_DEF_STEP__GIT" constraintName="FK3TUM1KTA18DOM0BCXVI0CWHTD" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-146">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_STEP" constraintName="FK4KP0UD2UQ4B6DLJJMSINTGL5I" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-147">
+        <addForeignKeyConstraint baseColumnNames="TASK" baseTableName="TASK_TO_SUBTASK" constraintName="FK4S1Q4LDFKV674L80D41MS8EWV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-148">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="RESOURCES_TRACKED" constraintName="FK54FVPQXJVXW9PK4569330VUG1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-149">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="DOCKER_CONTAINER" constraintName="FK7KVBOU2WAFO6T8L9TSOCQ6UBN" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_HOSTBOUND" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-150">
+        <addForeignKeyConstraint baseColumnNames="SUB_TASK" baseTableName="TASK_TO_SUBTASK" constraintName="FK9X2VUIF1VC0P6IEUUHH7FPHE7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-151">
+        <addForeignKeyConstraint baseColumnNames="ROLES_SYS_ID" baseTableName="USER_ROLE" constraintName="FKABDTEWID8PLH24HFCO1LNMTJK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="ROLE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-152">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_DEF_STEP__DOCKER_RUN" constraintName="FKBWXKURDSA5JXV38B9Q96PEVTV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-153">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_DEF_STEP__SSH_COMMAND" constraintName="FKD1LUI9LATEC57QACRW8K78A96" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-154">
+        <addForeignKeyConstraint baseColumnNames="BACKUP" baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKE5J36X6R3WJP7VQL4B67Y0535" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE_BACKUP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-155">
+        <addForeignKeyConstraint baseColumnNames="USERRECORD_SYS_ID" baseTableName="USER_ROLE" constraintName="FKEE614ADL241ISONLVWWDSYEDY" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-156">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="DOCKER_TEMPORARY_IMAGE" constraintName="FKFO9YXD91T3R3YMNS0QDAAF4F" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_HOSTBOUND" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-157">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_DEF_STEP__DOCKER_BUILD" constraintName="FKG76FTX7K3KY86G7Y1XDRJL8PU" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-158">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="DOCKER_VOLUME" constraintName="FKH31EUI3J7K9NW4DX5U85EESTV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_HOSTBOUND" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-159">
+        <addForeignKeyConstraint baseColumnNames="IMAGE" baseTableName="SERVICE_TO_IMAGE_V2" constraintName="FKI9FIH11AYHVJFRWPVOQVCDSBY" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REGISTRY_TAGGED_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-160">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="HOST" constraintName="FKIYG21JGIV3I6E62FTAPXQSYKN" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_HOSTBOUND" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-161">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="RESOURCES_HOSTBOUND" constraintName="FKJHCHAC6J4KW43H0LJLVD209J1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_TRACKED" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-162">
+        <addForeignKeyConstraint baseColumnNames="IMAGE" baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKLMQU70R6VENY60S5OBSY3HTDU" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REGISTRY_TAGGED_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-163">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB" constraintName="FKN7CNQN9DGQAIDWSC4WXWBTJX1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-164">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_DEF_STEP__DOCKER_PUSH" constraintName="FKPSIG8L29KV1CGSWXJUQ36BYUV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-165">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="JOB_DEF_STEP__MAVEN" constraintName="FKQLCI8B5F7YH77LJKP3WTPOKQ8" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-166">
+        <addForeignKeyConstraint baseColumnNames="SERVICE" baseTableName="SERVICE_TO_IMAGE_V2" constraintName="FKRC1OH47VA97XLS8S99KRKIETR" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-167">
+        <addForeignKeyConstraint baseColumnNames="SYS_ID" baseTableName="MANAGED_DIRECTORY" constraintName="FKRXLFPURBSLNP1YCONR56RGIEJ" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="RESOURCES_HOSTBOUND" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-168">
+        <addForeignKeyConstraint baseColumnNames="HEAD" baseTableName="REPOSITORY_BRANCH" constraintName="HEAD__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY_COMMIT" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-169">
+        <addForeignKeyConstraint baseColumnNames="HOST_AFFINITY" baseTableName="BACKGROUND_ACTIVITY" constraintName="HOST_AFFINITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-170">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL" constraintName="IMAGE_PULL__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-171">
+        <addForeignKeyConstraint baseColumnNames="IMAGE_REFERENCE" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL" constraintName="IMAGE_PULL__IMAGE_REFERENCE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REGISTRY_TAGGED_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-172">
+        <addForeignKeyConstraint baseColumnNames="IMAGE_REFERENCE" baseTableName="DEPLOYMENT_TASK" constraintName="IMAGE_REFERENCE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REGISTRY_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-173">
+        <addForeignKeyConstraint baseColumnNames="IMAGE" baseTableName="REGISTRY_TAGGED_IMAGE" constraintName="IMAGE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REGISTRY_IMAGE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-174">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="JOB_DEF_STEP" constraintName="JOBDEFSTEP__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_DEF" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-175">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="JOB_SOURCE" constraintName="JOBSOURCE__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-176">
+        <addForeignKeyConstraint baseColumnNames="REPO" baseTableName="JOB_SOURCE" constraintName="JOBSOURCE__REPO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-177">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="JOB_STEP" constraintName="JOBSTEP__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-178">
+        <addForeignKeyConstraint baseColumnNames="OWNING_CONTAINER" baseTableName="MAPPED_DOCKER_VOLUME" constraintName="OWNING_CONTAINER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DOCKER_CONTAINER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-179">
+        <addForeignKeyConstraint baseColumnNames="OWNING_HOST" baseTableName="RESOURCES_HOSTBOUND" constraintName="OWNING_HOST__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-180">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB_STEP" baseTableName="JOB_STEP_LOG" constraintName="OWNING_JOB_STEP__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB_STEP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-181">
+        <addForeignKeyConstraint baseColumnNames="OWNING_OP" baseTableName="DEPLOYMENT_PROBER_OPERATION_LOG" constraintName="OWNING_OP__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_PROBER_OPERATION" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-182">
+        <addForeignKeyConstraint baseColumnNames="OWNING_IMAGE_PULL" baseTableName="DEPLOYMENT_HOST_IMAGE_PULL_LOG" constraintName="OWNING_PULL__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST_IMAGE_PULL" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-183">
+        <addForeignKeyConstraint baseColumnNames="OWNING_TASK" baseTableName="DEPLOYMENT_TASK_LOG" constraintName="OWNING_TASK__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_TASK" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-184">
+        <addForeignKeyConstraint baseColumnNames="PROBER" baseTableName="DEPLOYMENT_PROBER_OPERATION" constraintName="PROBER_OPERATION__PROBER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_PROBER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-185">
+        <addForeignKeyConstraint baseColumnNames="CURRENT_ACTIVITY" baseTableName="DEPLOYMENT_PROBER_OPERATION" constraintName="PROBER__CURRENT_ACTIVITY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="BACKGROUND_ACTIVITY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-186">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_PROBER" constraintName="PROBER__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-187">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="REGISTRY_TAGGED_IMAGE" constraintName="REGISTRYTAGGEDIMAGE__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-188">
+        <addForeignKeyConstraint baseColumnNames="REPOSITORY" baseTableName="REPOSITORY_BRANCH" constraintName="REPOBRANCH__REPOSITORY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-189">
+        <addForeignKeyConstraint baseColumnNames="REPOSITORY" baseTableName="REPOSITORY_CHECKOUT" constraintName="REPOCHECKOUT__REPOSITORY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-190">
+        <addForeignKeyConstraint baseColumnNames="REPOSITORY" baseTableName="REPOSITORY_COMMIT" constraintName="REPOCOMMIT__REPOSITORY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-191">
+        <addForeignKeyConstraint baseColumnNames="REPO" baseTableName="JOB_DEF_STEP__GIT" constraintName="REPO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-192">
+        <addForeignKeyConstraint baseColumnNames="HOST" baseTableName="ROLE_TO_HOST_V2" constraintName="ROLE_TO_HOST__HOST__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-193">
+        <addForeignKeyConstraint baseColumnNames="ROLE" baseTableName="ROLE_TO_HOST_V2" constraintName="ROLE_TO_HOST__ROLE__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="CUSTOMER_SERVICE_ROLE" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-194">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_TASK" constraintName="TASK__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-195">
+        <addForeignKeyConstraint baseColumnNames="USER" baseTableName="USER_PREFERENCE" constraintName="USER__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-196">
+        <addForeignKeyConstraint baseColumnNames="VOLUME" baseTableName="MAPPED_DOCKER_VOLUME" constraintName="VOLUME__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DOCKER_VOLUME" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

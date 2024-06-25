@@ -1,0 +1,806 @@
+/*
+Contains imports of framework styles, light and dark themes, as well as individual styles for various elements.
+*/
+@use '@angular/material' as mat;
+@import "app.theme";
+@import "app.variables";
+
+// global font
+body * {
+    font-family: $font-family;
+}
+
+@import "breadcrumbs/breadcrumbs.scss";
+@import "datatables/datatables.scss";
+@import "forms/forms.scss";
+@import "navigation/sidenav.scss";
+@import "navigation/topnav.scss";
+@import "report-elements/report-elements.scss";
+@import "dialogs/dialogs.scss";
+@import "ui-styles/bootstrap.scss";
+@import "ui-styles/cards.scss";
+@import "ui-styles/grid.scss";
+@import "ui-styles/icons.scss";
+@import "ui-styles/legacy-tables.scss";
+@import "ui-styles/page.scss";
+@import "ui-styles/tabs.scss";
+@import "ui-styles/utilities.scss";
+@import "ui-styles/carousel.scss";
+@import "ui-styles/azure-maps.scss";
+@import "ui-styles/chips.scss";
+@import "ui-styles/dropdown-treeview.scss";
+@import "ui-styles/tables.scss";
+@import "ui-styles/user-select.scss";
+@import "wizards/wizard.scss";
+@import "consoles/console-log.component.scss";
+
+//----------------------------------------------------------------------------------------------------------------------
+// Mixin light theme
+//----------------------------------------------------------------------------------------------------------------------
+body.light {
+    $brand-color: mat.get-color-from-palette($theme-primary) !default;
+    $brand-color-dark: mat.get-color-from-palette($theme-primary, A700) !default;
+    $brand-color-light: mat.get-color-from-palette($theme-primary, A100) !default;
+    $brand-text-color: mat.get-color-from-palette($theme-foreground, text) !default;
+    $brand-text-color-dark: mat.get-color-from-palette($theme-foreground, text) !default;
+    $brand-text-color-light: mat.get-color-from-palette($theme-foreground, text) !default;
+
+    $brand-color-accent: mat.get-color-from-palette($theme-accent) !default;
+    $brand-color-accent-dark: mat.get-color-from-palette($theme-accent, A400) !default;
+    $brand-color-accent-light: mat.get-color-from-palette($theme-accent, A100) !default;
+    $brand-text-color-accent: mat.get-color-from-palette($theme-foreground, text) !default;
+    $brand-text-color-accent-dark: mat.get-color-from-palette($theme-foreground, text) !default;
+    $brand-text-color-accent-light: mat.get-color-from-palette($theme-foreground, text) !default;
+
+    .bg-primary {
+        background-color: mat.get-color-from-palette($theme-primary);
+    }
+
+    .bg-accent {
+        background-color: mat.get-color-from-palette($theme-accent);
+    }
+
+    .bg-warn {
+        background-color: mat.get-color-from-palette($theme-warn);
+    }
+}
+
+@mixin sectionStyles($primary, $accent) {
+    .mat-toolbar.mat-primary {
+        background-color: $primary;
+    }
+
+    .mat-tab-group-actions .mat-icon, .projector-container .mat-icon {
+        color: $primary;
+    }
+
+    .mat-ink-bar {
+        background-color: $primary;
+    }
+
+    .area-primary-color {
+        color: $primary;
+    }
+
+    .mat-tab-link.active,
+    .mat-tab-label.mat-tab-label-active {
+        color: $accent;
+    }
+
+    .area-color {
+        color: $accent;
+    }
+
+    .mat-form-field.mat-focused:not(.mat-form-field-invalid) {
+        &.o3-page-color-border {
+            border-color: $primary;
+        }
+
+        .mat-form-field-label {
+            color: $primary;
+        }
+
+        .mat-form-field-ripple {
+            background-color: $primary;
+        }
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Context pane styles
+//----------------------------------------------------------------------------------------------------------------------
+@mixin context-pane() {
+    o3-context-pane-card {
+        .mat-button-toggle-label-content {
+            line-height: 25px;
+        }
+
+        > .mat-card {
+            .mat-form-field {
+                width: 100%;
+            }
+
+            > .mat-card-content, .mat-card-title {
+                padding: 5px 10px;
+            }
+
+            .mat-form-field-underline {
+                display: none;
+            }
+        }
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Custom style sheet
+//----------------------------------------------------------------------------------------------------------------------
+@mixin custom-theme($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    $dashboard-color: #2196F3;
+    $alerts-color: #FF9800; //#c02b20; <- proposed alt color
+    $devices-color: #673AB7;
+    $device-elements-color: #6153FF;
+    $equipments-color: #C70039;
+    $usage-trends-color: #4CAF50;
+    $configuration-color: #64A0A0;
+    $visualization-color: #3ABD3A; // Need alternate color later (or remove usage trends color)
+
+    $widget-key-metric-color: #EF6C00;
+
+    @include mat.badge-color($theme);
+    @include legacy-table($theme);
+    @include bootstrap($theme);
+    @include breadcrumbs($theme);
+    @include cards($theme);
+    @include datatables($theme);
+    @include forms($theme);
+    @include grid($theme);
+    @include icons($theme);
+    @include page($theme);
+    @include sidenav($theme);
+    @include tabs($theme);
+    @include topnav($theme);
+    @include utilities();
+    @include wizard($theme);
+    @include dropdowntreeview($theme);
+    @include consolelog($theme);
+    @include chips($theme);
+    @include carousel($theme);
+    @include azure-maps($theme);
+    @include tables($theme);
+    @include report-elements($theme);
+    @include dialogs($theme);
+    @include user-select($theme);
+
+    // Start/Entrance Pages
+    //----------------------------------
+    .mat-sidenav-container.start-page-container {
+        background-color: #263237;
+    }
+
+    .mat-drawer-content {
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        > div.area-start {
+            height: 100%;
+        }
+    }
+
+    // Application Pages
+    //----------------------------------
+    .mat-toolbar.topnav-container {
+
+        &.area-dashboard {
+            background: $dashboard-color;
+        }
+
+        &.area-alerts {
+            background: $alerts-color;
+        }
+
+        &.area-devices {
+            background: $devices-color;
+        }
+
+        &.area-device-elements {
+            background: $device-elements-color;
+        }
+
+        &.area-equipment {
+            background: $equipments-color;
+        }
+
+        &.area-usage-trends {
+            background: $usage-trends-color;
+        }
+
+        &.area-configuration {
+            background: $configuration-color;
+        }
+
+        &.area-visualization {
+            background: $visualization-color;
+        }
+    }
+
+    i.o3-home {
+        color: $dashboard-color;
+    }
+
+    i.o3-alert {
+        color: $alerts-color;
+    }
+
+    i.o3-device {
+        color: $devices-color;
+    }
+
+    i.o3-device-element {
+        color: $device-elements-color;
+    }
+
+    i.o3-equipment {
+        color: $equipments-color;
+    }
+
+    i.o3-usage-trend {
+        color: $usage-trends-color;
+    }
+
+    i.o3-configure {
+        color: $configuration-color;
+    }
+
+    i.o3-database-search {
+        color: $visualization-color;
+    }
+
+    div.page-container {
+        position: relative;
+        min-height: 100%;
+
+        .bold {
+            font-weight: bold;
+        }
+
+        &.area-dashboard {
+            @include sectionStyles($dashboard-color, #2196f3);
+
+            .mat-card .mat-card-title {
+                color: #1565C0;
+            }
+        }
+
+        &.area-alerts {
+            @include sectionStyles($alerts-color, #EF6C00);
+        }
+
+        &.area-devices {
+            @include sectionStyles($devices-color, #4527A0);
+        }
+
+        &.area-device-elements {
+            @include sectionStyles($device-elements-color, #4C41C4);
+        }
+
+        &.area-equipment {
+            @include sectionStyles($equipments-color, #B30033);
+        }
+
+        &.area-visualization {
+            @include sectionStyles($visualization-color, #2E972E)
+        }
+
+        &.area-configuration {
+            @include sectionStyles($configuration-color, #37474F);
+        }
+    }
+
+    // Forms
+    //-----------------------------
+    .mat-raised-button.mat-primary,
+    .mat-fab.mat-primary,
+    .mat-mini-fab.mat-primary {
+        background-color: #607D8B;
+    }
+
+    .mat-button-toggle {
+
+        .mat-button-toggle-label {
+            margin: 0;
+        }
+    }
+
+    .clickable-input {
+        cursor: pointer;
+        transition-property: background;
+        transition-duration: .3s;
+        transition-timing-function: linear;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        input {
+            cursor: pointer;
+        }
+    }
+
+    // Icons
+    //-----------------------------
+    .status-icon.status-failure {
+        color: #F44336;
+    }
+
+    .status-icon.status-info {
+        color: #2196F3;
+    }
+
+    .status-icon.status-recall {
+        color: #FF9800;
+    }
+
+    .status-icon.status-success {
+        color: #4CAF50;
+    }
+
+    .status-icon.status-certification {
+        color: #AB47BC;
+    }
+
+    .o3-alert-color {
+        color: $alerts-color;
+    }
+
+    .o3-device-color {
+        color: $devices-color;
+    }
+
+    .o3-usage-trend-color {
+        color: $usage-trends-color;
+    }
+
+    .o3-configuration-color {
+        color: $configuration-color;
+    }
+    // Carousel
+    //-----------------------------
+    ngb-carousel {
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .mat-tooltip {
+        white-space: pre-wrap;
+        max-width: 600px !important; // for example
+    }
+
+    .o3-wide-tooltip {
+        white-space: pre-wrap;
+        max-width: 1200px !important; // for example
+    }
+
+    section.bs .o3-fieldset-with-border {
+        fieldset {
+            border: 1px solid;
+            padding: 8px;
+            margin-bottom: 12px;
+
+            legend {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // Wizard
+    //-----------------------------
+    .o3-wizard {
+        display: flex;
+        flex-direction: column;
+
+        .mat-card-content {
+            flex: 1 1 auto;
+        }
+
+        &.modal-mode {
+            height: 100%;
+            margin: 0px;
+
+            .mat-card-title {
+                padding: 8px 0px;
+            }
+
+            > .mat-card-title {
+                padding: 8px 12px;
+            }
+
+            > .mat-card-content {
+                padding: 16px 0px 0px 0px;
+
+                @media only screen and (max-width: $sm) {
+                    padding: 0px;
+                }
+
+                .mat-tab-body-wrapper {
+                    // 179px is wizard step label section height plus
+                    // height of the action buttons in mat-card-actions
+                    height: calc(95vh - 179px);
+                    padding: 8px 0px 4px;
+
+                    @media only screen and (max-width: $sm) {
+                        // In mobile mode, 138px is the simplified wizard step label section
+                        // height plus height of the action buttons in mat-card-actions
+                        height: calc(95vh - 138px);
+                    }
+                }
+            }
+
+            @include context-pane();
+        }
+
+        .mat-tab-body-content {
+            padding: 0px 12px;
+        }
+    }
+
+    // Chart Tooltips
+    //-----------------------------
+    .cdk-overlay-pane {
+        $tooltip-background: rgba(0, 0, 0, .75);
+
+        &.chart-tooltip-container, .chart-tooltip {
+            pointer-events: none;
+        }
+
+        .chart-tooltip {
+            max-width: 95vw;
+            background-color: $tooltip-background;
+            border-radius: 5px;
+            position: relative;
+
+            .chart-tooltip-content {
+                padding: 10px;
+                font-size: 11px;
+                color: #fff;
+                white-space: nowrap;
+
+                .chart-prop {
+                    font-weight: bolder;
+                    color: yellow;
+                }
+
+                .chart-info {
+                    font-weight: lighter;
+                    font-style: italic;
+                    color: #EEEEEE;
+                    margin-top: 4px;
+                }
+
+                &.o3-chart-tooltip--mobile {
+                    white-space: normal;
+                }
+            }
+
+            .arrow {
+                position: absolute;
+
+                &::after {
+                    border: solid rgba(0, 0, 0, 0);
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    border-width: 6px;
+                }
+            }
+        }
+
+        &.top, &.bottom {
+            .chart-tooltip .arrow {
+                left: 50%;
+
+                &::after {
+                    margin-left: -6px;
+                }
+            }
+        }
+
+        &.top .chart-tooltip {
+            margin-bottom: 5px;
+
+            .arrow {
+                top: 100%;
+
+                &::after {
+                    border-top-color: $tooltip-background;
+                }
+            }
+        }
+
+        &.bottom .chart-tooltip {
+            margin-top: 5px;
+
+            .arrow {
+                bottom: calc(100% + 12px);
+
+                &::after {
+                    border-bottom-color: $tooltip-background;
+                }
+            }
+        }
+
+        &.left, &.right {
+            .chart-tooltip .arrow {
+                top: 50%;
+
+                &::after {
+                    margin-top: -6px;
+                }
+            }
+        }
+
+        &.left {
+            .chart-tooltip {
+                margin-right: 5px;
+
+                .arrow {
+                    left: 100%;
+
+                    &::after {
+                        border-left-color: $tooltip-background;
+                    }
+                }
+            }
+        }
+
+        &.right {
+            .chart-tooltip {
+                margin-left: 5px;
+
+                .arrow {
+                    left: -12px;
+
+                    &::after {
+                        border-right-color: $tooltip-background;
+                    }
+                }
+            }
+        }
+    }
+
+    .mat-badge-small .mat-badge-content {
+        font-size: 12px / 1.3;
+    }
+
+    // Button overrides/modes
+    //-----------------------------
+    .mat-flat-button, .mat-raised-button, mat-button {
+        &.with-icon {
+            .mat-button-wrapper {
+                display: flex;
+                align-items: center;
+
+                .mat-icon {
+                    margin-left: 10px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+
+    .range-toggle {
+        .range-toggle-button {
+            padding: 4px 10px;
+
+            button {
+                padding: 0;
+                line-height: 1em;
+
+                .mat-button-toggle-label-content {
+                    line-height: 1em;
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    // Mat-menu fixes
+    //-----------------------------
+    .mat-menu-content:not(:empty) {
+        padding: 0px;
+    }
+
+    // Modal fixes
+    //-----------------------------
+    .cdk-overlay-pane {
+        .mat-card > .mat-card-content {
+            box-shadow: none;
+        }
+
+        .mat-tab-body-wrapper {
+            transition: none;
+        }
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Mixin light theme
+//----------------------------------------------------------------------------------------------------------------------
+body.light {
+    $theme: mat.define-light-theme($theme-primary, $theme-accent, $theme-warn);
+    @include custom-theme($theme);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Report styles
+//----------------------------------------------------------------------------------------------------------------------
+body.light {
+    .report-layout {
+        box-sizing: border-box;
+        font-size: 10pt;
+
+        .container {
+            min-width: initial !important;
+            max-width: initial !important;
+            padding: 0px;
+        }
+
+        .table tbody td,
+        .table thead th {
+            padding: .5em;
+
+            page-break-inside: avoid !important;
+            page-break-before: always !important;
+        }
+
+        .table thead th {
+            height: auto;
+            background-color: #607D8B !important; // !important used to override daemonite white
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 10pt;
+            vertical-align: middle;
+        }
+
+        .report {
+            background-color: #fff;
+
+            .report-title,
+            .report-section {
+                margin: 1em 0em;
+                padding-bottom: 1em;
+                padding-left: .5em;
+                padding-right: .5em;
+                position: relative;
+
+                &:first-child {
+                    margin-top: 0px;
+                }
+
+                p {
+                    margin-bottom: .5em;
+                }
+
+                &.full-width {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+
+                .report-section-column-container {
+                    display: flex;
+
+                    .report-section-column {
+                        position: relative;
+                        padding: 10px;
+                        margin: 0 .5em;
+                    }
+                }
+
+                .o3-no-break {
+                    page-break-inside: avoid;
+                }
+            }
+
+            .report-title {
+                text-align: center;
+
+                h1 {
+                    font-size: 1.6em;
+                    line-height: 1.6em;
+                    margin-bottom: 0em;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+            }
+
+            .report-progress {
+                position: absolute;
+                left: 40%;
+                top: 40%;
+                width: 20%;
+                margin: auto;
+                text-align: center;
+
+                h3 {
+                    font-size: 18px;
+                    margin-bottom: 15px;
+                }
+
+                .mat-progress-bar {
+                    height: 8px;
+                }
+            }
+
+            .report-section *:not(.ql-editor) {
+                > h2 {
+                    text-align: center;
+                    font-size: 1.2em;
+                    line-height: 1.4em;
+                    margin-bottom: 1em;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+
+                > label {
+                    font-weight: bold;
+                    margin-bottom: 0px;
+
+                    &.mat-checkbox-layout {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                        font-weight: normal;
+                    }
+                }
+            }
+
+            .report-box {
+                border: 2px solid #607D8B;
+                padding: 1em;
+                text-align: center;
+                margin-bottom: 1em;
+                max-width: 200px;
+                height: 100px;
+                margin: 0em auto 1em;
+
+                span {
+                    font-weight: bold;
+                    font-size: 3.5em;
+                    display: block;
+                    color: #EF6C00;
+                }
+            }
+
+            .row {
+                margin-right: 0px;
+                margin-left: 0px;
+
+                p:last-child {
+                    margin-bottom: 0px;
+                }
+            }
+
+            .row + .row {
+                margin-top: 1em;
+            }
+        }
+    }
+}
+
+body.light {
+    @include context-pane();
+}
+
+*[hidden] {
+    display: none !important;
+}

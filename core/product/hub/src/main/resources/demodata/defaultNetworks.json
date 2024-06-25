@@ -1,0 +1,150 @@
+{
+  "assets": [
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c714",
+      "name": "Typical local network",
+      "cidr": "192.168.1.0/24",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForBACnet",
+          "networkPort": 47808
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c715",
+      "name": "Typical local network, with static address",
+      "cidr": "192.168.1.0/24",
+      "staticAddress": "192.168.1.200",
+      "networkInterface": "eth1",
+      "samplingPeriod": 300,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForBACnet",
+          "networkPort": 47808
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c717",
+      "name": "Test network using BBMD with a BACserv at ldap.dev.optio3.io",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForBACnet",
+          "bbmds": [
+            {
+              "networkAddress": "ldap.dev.optio3.io",
+              "networkPort": 47808
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c717b",
+      "name": "Test network using BBMD with a BACserv at ldap.dev.optio3.io (secondary)",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForBACnet",
+          "bbmds": [
+            {
+              "networkAddress": "ldap.dev.optio3.io",
+              "networkPort": 47808
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c718",
+      "name": "Test IPN - BlueSky - Simulation",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForIpn",
+          "simulate": true,
+          "accelerometerFrequency": 10
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c719",
+      "name": "Test IPN - BlueSky",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 60,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForIpn",
+          "ipnPort": "/optio3-dev/optio3_RS485",
+          "montageBluetoothGatewayPort": "/optio3-dev/optio3_RS232ext"
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c720",
+      "name": "Test TriStar",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 20,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForIpn",
+          "ipnPort": "/optio3-dev/optio3_RS485",
+          "tristarPort": "/optio3-dev/optio3_RS232"
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c721",
+      "name": "Test OBD-II",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForIpn",
+          "obdiiPort": "/optio3-dev/optio3_obdii",
+          "obdiiFrequency": 115200
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c722",
+      "name": "Test StealthPower",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForIpn",
+          "stealthpowerPort": "/optio3-dev/optio3_RS232"
+        }
+      ]
+    },
+    {
+      "__type": "NetworkAsset",
+      "sysId": "c0774f7c-985b-46c8-a1ec-29516580c723",
+      "name": "Test EpSolar",
+      "cidr": "0.0.0.0/0",
+      "samplingPeriod": 10,
+      "protocolsConfiguration": [
+        {
+          "__type": "ProtocolConfigForIpn",
+          "epsolarPort": "/optio3-dev/optio3_RS485"
+        }
+      ]
+    }
+  ]
+}

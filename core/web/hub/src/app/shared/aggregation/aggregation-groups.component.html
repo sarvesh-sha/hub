@@ -1,0 +1,39 @@
+<div *ngIf="!loading" class="o3-aggregation-table-widget--outer" [attr.o3-debug-table-mode]="mode">
+    <o3-aggregation-table
+        *ngIf="isTable && tableStructure"
+        [tableStructure]="tableStructure"
+        [firstColumnHeader]="firstColumnHeader"
+        [twoLabels]="twoLabels"
+        [barMode]="isBar"
+        [enableTooltips]="enableTooltips"
+        [(currSort)]="tableSort" (currSortChange)="sortRows()"
+        (cellSelected)="handleSelection($event)">
+    </o3-aggregation-table>
+
+    <ng-container *ngIf="isChart">
+        <div class="range-selector mat-elevation-z1" *ngIf="config.visualizationRanges">
+            <mat-form-field *ngIf="rangeOptions.length > 1">
+                <mat-select [(ngModel)]="rangeIdx" (ngModelChange)="selectedRangeChange.emit($event)">
+                    <mat-option *ngFor="let range of rangeOptions" [value]="range.id">{{range.label}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="rangeOptions.length == 1">
+                <input matInput readonly [value]="rangeOptions[0].label">
+            </mat-form-field>
+        </div>
+        <o3-aggregation-tree
+            [tree]="results"
+            [id]="idFn"
+            [weight]="weightFn"
+            [label]="labelFn"
+            [color]="colorizerFn"
+            [format]="formatFn"
+            [description]="descriptionFn"
+            [mode]="chartMode"
+            [maxDepth]="maxDepth"
+            [dynamicViewport]="viewport"
+            [legend]="config.visualizationLegend"
+            (sourcesUpdated)="onSourcesChanged($event)">
+        </o3-aggregation-tree>
+    </ng-container>
+</div>

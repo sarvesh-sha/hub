@@ -1,0 +1,15 @@
+<o3-filter-overlay [pristine]="pristine" [resetFilterButtonDisabled]="!hasEditFilters"
+                   (filterApplied)="applyFilterEdits()" (filterCleared)="clearFilterEdits()">
+    <ng-container *ngIf="initialized">
+        <mat-form-field *ngIf="!excludeLocation">
+            <o3-select [o3LocationSelector]="true" name="locations" defaultValueDescription="Select Locations"
+                       [(ngModel)]="editRequest.locationIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select [o3EquipmentClassSelector]="true" [allowMultipleClasses]="true" name="equipment-classes" placeholder="Equipment Class" defaultValueDescription="Select Equipment Classes"
+                       [onlyUsed]="true" [(ngModel)]="equipmentClassIDs" (ngModelChange)="updateTagsQuery()"></o3-select>
+        </mat-form-field>
+    </ng-container>
+</o3-filter-overlay>

@@ -1,0 +1,17 @@
+<ng-template o3-wizard-step-template>
+
+    <div class="row" *ngFor="let entry of activeDevices; let i = index;">
+        <div class="col-sm-1">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Device Id" [ngModel]="entry.deviceId" name="deviceId_{{i}}" readonly>
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-4">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Last Upload" [value]="((entry.lastActivity|o3LongDate) || 'No Date Specified')" name="lastUpload" readonly>
+            </mat-form-field>
+        </div>
+    </div>
+
+</ng-template>

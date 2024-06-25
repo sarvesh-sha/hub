@@ -1,0 +1,14 @@
+########################
+# Builder notification #
+########################
+
+WARNING!!
+
+Agent '${param.AGENT_ID}' on host '${param.HOST_ID}' has not communicated with Builder since ${param.LAST_HEARTBEAT}.
+
+Last Voltage Reading: ${param.BATTERY_VOLTAGE}
+
+Details: https://builder.dev.optio3.io/#/deployments/item/${param.HOST_SYSID}
+
+
+Optio3

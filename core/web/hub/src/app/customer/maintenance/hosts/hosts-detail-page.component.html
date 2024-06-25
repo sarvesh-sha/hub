@@ -1,0 +1,81 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Host Details">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+            <o3-tab-action label="Show Logs" priority="secondary" (click)="showLog()"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #networkForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [(ngModel)]="host.typedModel.name" (ngModelChange)="host.refreshDisplayName()" name="name" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <mat-label>Operational Status</mat-label>
+                            <mat-select [(ngModel)]="host.model.state" name="operationalStatus">
+                                <mat-option *ngFor="let option of operationalStates" [value]="option.id">{{ option.label }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Created On" [value]="host.model.createdOn|o3LongDate" name="created_on" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Updated" [value]="host.model.updatedOn|o3LongDate" name="updated_on" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+
+        </o3-tab>
+
+        <o3-tab label="Rest API Statistics" (selected)="initializeTrendChart()">
+
+            <div class="row">
+                <div class="col-sm">
+                    <o3-range-selector [(selection)]="range" [allowCustom]="true" [allowTimezone]="true"></o3-range-selector>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <o3-select placeholder="API" [multiSelect]="false" [singleClick]="true" [options]="elements" [(ngModel)]="deviceElementId"
+                                   defaultValueDescription="Select API" (ngModelChange)="refreshDeviceElement()">
+                        </o3-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <mat-select placeholder="Counter" name="selectedSource" [(ngModel)]="selectedSource" (ngModelChange)="updateConfig()">
+                            <mat-option value="">Select Counter</mat-option>
+                            <mat-option *ngFor="let option of sources" [value]="option.id">{{ option.label }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field>
+                        <mat-select placeholder="Comparison" name="secondarySource" [(ngModel)]="secondarySource" (ngModelChange)="updateConfig()">
+                            <mat-option value="">No Comparison</mat-option>
+                            <mat-option *ngFor="let option of sources" [value]="option.id">{{ option.label }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row" o3-expand (expansionCompleted)="pvChart.refreshSize()" [min]="300">
+                <o3-time-series-chart #pvChart [range]="range" [configExt]="config" [zoomable]="true" style="width: 100%; height: 100%"></o3-time-series-chart>
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

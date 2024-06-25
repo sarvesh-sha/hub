@@ -1,0 +1,19 @@
+<ng-template o3-wizard-step-template>
+    <o3-widget-editor-wizard-widget-preview [config]="previewConfig">
+        <div *ngIf="typedWidget">
+            <o3-alert-severity-configurer [(severityColors)]="severityColors"></o3-alert-severity-configurer>
+
+            <mat-form-field style="margin-top: 10px">
+                <o3-select placeholder="Group By" [options]="groupByOptions"
+                           name="group-by" [(ngModel)]="groupBy"
+                           [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="groupBy == 'location'">
+                <o3-select placeholder="Rollup Type" [options]="rollupOptions"
+                           name="rollup" [(ngModel)]="rollupType"
+                           [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+        </div>
+    </o3-widget-editor-wizard-widget-preview>
+</ng-template>

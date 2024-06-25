@@ -1,0 +1,12 @@
+<div [matTooltip]="undoTooltip" [ngClass]="sizeClass">
+    <button #test_undo mat-icon-button [o3UndoButton]="stateHistory"
+            [class.o3-no-ripple]="disableRipple" [disableRipple]="disableRipple">
+        <mat-icon>undo</mat-icon>
+    </button>
+</div>
+<div [matTooltip]="redoTooltip" [ngClass]="sizeClass">
+    <button #test_redo mat-icon-button [o3RedoButton]="stateHistory"
+            [class.o3-no-ripple]="disableRipple" [disableRipple]="disableRipple">
+        <mat-icon>redo</mat-icon>
+    </button>
+</div>

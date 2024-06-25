@@ -1,0 +1,36 @@
+<o3-tab-group noUnderline [fitContainer]="true">
+    <o3-tab-action *ngIf="showMenu" label="View in Data Explorer" (click)="viewInDataExplorer()"></o3-tab-action>
+
+    <o3-tab [label]="name">
+        <div class="summary-content">
+            <div class="summary-list" [style.margin-bottom.px]="hasData ? 8 : 0">
+                <o3-key-value-item key="Point Class" [value]="pointClass"></o3-key-value-item>
+                <o3-key-value-item key="Location" [value]="location"></o3-key-value-item>
+                <o3-key-value-item key="Last Value" [value]="lastValue"></o3-key-value-item>
+            </div>
+
+            <ng-container *ngIf="hasData">
+                <hr>
+                <div class="summary-chart">
+                    <div class="chart-title">
+                        <div class="chart-title-time">
+                            <o3-range-selector [(selection)]="selection" (selectionChange)="rangeChanged($event)"
+                                               [rangeOptionType]="ranges" [hideLabel]="true"></o3-range-selector>
+                        </div>
+                    </div>
+                    <div class="chart-content">
+                        <o3-time-series-chart *ngIf="isStandard" [configExt]="configExt" [range]="range"></o3-time-series-chart>
+                        <o3-gps-map *ngIf="isMap" [configExt]="configExt" [range]="range"></o3-gps-map>
+                    </div>
+                </div>
+
+                <div class="summary-list horizontal" *ngIf="isNumeric">
+                    <o3-key-value-item key="Min" [value]="units ? min + ' ' + units : min"></o3-key-value-item>
+                    <o3-key-value-item key="Max" [value]="units ? max + ' ' + units : max"></o3-key-value-item>
+                    <o3-key-value-item key="Average" [value]="units ? avg + ' ' + units : avg"></o3-key-value-item>
+                </div>
+            </ng-container>
+        </div>
+    </o3-tab>
+</o3-tab-group>
+

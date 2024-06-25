@@ -1,0 +1,80 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Download" (click)="download()" *ngIf="extended.model.fileId"></o3-tab-action>
+        <o3-tab-action label="Rollback" (click)="rollback()" *ngIf="extended.model.fileId"></o3-tab-action>
+        <o3-tab-action label="Rollback and Upgrade" (click)="rollbackAndUpgrade()" *ngIf="extended.model.fileId"></o3-tab-action>
+        <o3-tab-action label="Restore for Host Migration" (click)="hostMigration()" *ngIf="enableHostMigration"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Cross-service" label="Rollback" (click)="rollbackForeign()" *ngIf="extended.model.fileId"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Cross-service" label="Rollback and Upgrade" (click)="rollbackAndUpgradeForeign()" *ngIf="extended.model.fileId"></o3-tab-action>
+
+        <o3-tab label="Backup Details">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <o3-tab-action label="Remove" icon="delete" priority="tertiary" (click)="remove()" [disabled]="!extended.model.fileId"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="File Id" [value]="extended.fileDescription" name="fileId" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Size" [value]="extended.model.fileSize" name="fileSize" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Trigger" [value]="extended.model.trigger" name="trigger" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <mat-form-field>
+                        <textarea matInput placeholder="Extra YAML Lines" [value]="extended.model.extraConfigLines" name="extraConfig" rows="10" readonly>
+                        </textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="extended?.model?.roleImages?.length > 0">
+                <div class="clearfix">&nbsp;</div>
+                <table class="table table-striped table-bordered selectable">
+                    <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Architecture</th>
+                        <th>Image</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let imageSpec of extended.model.roleImages">
+                        <td>
+                            {{imageSpec.role}}
+                        </td>
+                        <td>
+                            {{imageSpec.architecture}}
+                        </td>
+                        <td>
+                            {{images[imageSpec.image.sysId]?.model?.tag}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

@@ -1,0 +1,36 @@
+@import "../app.variables.scss";
+
+@mixin chips($theme) {
+    .mat-chip-list-wrapper {
+        .mat-chip:not(.mat-basic-chip) {
+            margin-bottom: 5px;
+        }
+    }
+    .mat-chip:not(.mat-basic-chip) {
+        background-color: #fff;
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        margin-right: 5px;
+
+        i.o3 {
+            font-size: 14px;
+
+            &.o3-filter-outline {
+                margin-right: 2.5px;
+            }
+        }
+
+        .remove-filter {
+            cursor: pointer;
+            border-left: 1px solid rgba(0, 0, 0, 0.26);
+            padding-left: 5px;
+            margin-left: 5px;
+        }
+    }
+
+    .mat-chip.mat-standard-chip {
+        .mat-chip-remove {
+            line-height: 1em;
+            font-size: 18px;
+        }
+    }
+}

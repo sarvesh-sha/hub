@@ -1,0 +1,10 @@
+<mat-form-field floatLabel="always">
+    <o3-select placeholder="Time Zone" [options]="zoneOptions"
+               [multiSelect]="false" [searchMode]="true" [filterFn]="filterFn"
+               name="time-zone" [(ngModel)]="zone" (ngModelChange)="zoneChange.emit($event)"
+               [singleClick]="true" [preventDeselection]="true" [readonly]="readonly">
+        <ng-template #nodePostTemplate let-node="node">
+            <div class="zone-identifier">{{node.identifier}}</div>
+        </ng-template>
+    </o3-select>
+</mat-form-field>

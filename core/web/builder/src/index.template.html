@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Optio3 - IoT Under Control</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" href="%%BUILD_DEPLOYURL%%assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="%%BUILD_DEPLOYURL%%assets/branding/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="%%BUILD_DEPLOYURL%%assets/branding/favicon-32x32.png" sizes="16x16">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="mask-icon" href="%%BUILD_DEPLOYURL%%assets/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="%%BUILD_DEPLOYURL%%assets/fonts/fonts.css">
+    <link rel="stylesheet" href="%%BUILD_DEPLOYURL%%styles.startup.css" />
+    <script type="text/javascript">
+        window.OPTIO3_VERSION="%%BUILD_TIMESTAMP%%-%%BUILD_COMMIT%%";
+        window.OPTIO3_COMMIT="%%BUILD_COMMIT%%";
+    </script>
+</head>
+<body class="light mat-typography" oncontextmenu="return false;">
+    <!--Start: App Rendering-->
+    <o3-app>
+        <!--Start: Loading Animation-->
+        <div class="spinner">
+            <div class="spinner-container container1">
+                <div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div>
+            </div>
+            <div class="spinner-container container2">
+                <div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+                <div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div>
+            </div>
+        </div>
+        <!--End: Loading Animation-->
+    </o3-app>
+    <!--End: App Rendering-->
+</body>
+</html>

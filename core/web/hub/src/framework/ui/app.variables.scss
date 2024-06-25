@@ -1,0 +1,81 @@
+@use '@angular/material' as mat;
+@import "app.theme";
+
+$font-family: "Open Sans", "Helvetica Neue", sans-serif;
+$breadcrumb-divider: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23FFFFFF' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$invalid-form-color: mat.get-color-from-palette($theme-warn);
+
+// responsive breakpoints
+$sm: 600px;
+$md: 960px;
+$lg: 1280px;
+$xl: 1410px;
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 24px !default;
+
+// Breakpoint
+// Based on https://material.google.com/layout/responsive-ui.html#responsive-ui-breakpoints
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+) !default;
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px
+) !default;
+
+$spacer: 1rem !default;
+
+$spacer-xs: ($spacer * 0.25) !default;
+$spacer-sm: ($spacer * 0.5) !default;
+$spacer-lg: ($spacer * 1.5) !default;
+$spacer-xl: ($spacer * 3) !default;
+
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+        (
+            0: 0,
+            1: $spacer-xs,
+            2: $spacer-sm,
+            3: $spacer,
+            4: $spacer-lg,
+            5: $spacer-xl
+        ),
+        $spacers
+);
+
+$border-color: rgba(0, 0, 0, .12) !default;
+$border-color-solid: #e1e1e1 !default;
+$border-width: 1px !default;
+$default-border: $border-width solid $border-color;
+$paragraph-margin-y: $spacer !default;
+$hr-border-color: $border-color !default;
+$hr-border-width: $border-width !default;
+$headings-margin-y: $spacer-sm !default;
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+    10% {
+        opacity: 0.9
+    }
+    50% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 1;
+    }
+}

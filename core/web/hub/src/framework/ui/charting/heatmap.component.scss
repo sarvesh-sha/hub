@@ -1,0 +1,23 @@
+.o3-chart-empty {
+    padding-top: 2px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.heatmap-stage {
+    position: relative;
+
+    &.shrink-to-fit {
+        height: 100%;
+    }
+
+    > canvas {
+        display: block;
+
+        &.heatmap-interactive-canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    }
+}

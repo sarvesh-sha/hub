@@ -1,0 +1,35 @@
+mat-card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.input-wrapper {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.o3-control-points-group-configurer--rounding-input {
+    display: flex;
+
+    > div.input-wrapper {
+        padding-top: 2px;
+        flex: 0 0 70px;
+
+        > mat-slide-toggle {
+            margin-left: 5px;
+        }
+    }
+
+    > mat-form-field {
+        flex-grow: 1;
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.mat-form-field-type-o3-color-picker {
+    height: 75px;
+}

@@ -1,0 +1,15 @@
+.o3-collapsible-filter-button--input {
+    display: none;
+    margin-top: -18px;
+    height: 55px;
+
+    &.show {
+        display: inline-block;
+    }
+}
+
+.o3-collapsible-filter-button--toggle {
+    display: inline-block;
+    padding: 2px 0px 0px 4px !important;
+    top: -2px !important;
+}

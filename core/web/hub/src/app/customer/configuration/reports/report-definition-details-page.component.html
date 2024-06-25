@@ -1,0 +1,60 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="Export..." (click)="exportDefinition()"></o3-tab-action>
+
+        <o3-tab label="Report Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()"></o3-tab-action>
+
+            <o3-tab-section>
+                <form #reportForm="ngForm" novalidate>
+                    <div class="row" *ngIf="reportDefinition?.model && selectedVersion">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Report Title" [ngModel]="reportDefinition.model.title" name="title" readonly>
+                            </mat-form-field>
+                            <mat-form-field floatLabel="always">
+                                <textarea matInput placeholder="Report Description" [ngModel]="reportDefinition.model.description" name="description" readonly></textarea>
+                            </mat-form-field>
+
+                            <mat-form-field *ngIf="reportDefinition.model.active">
+                                <input matInput placeholder="Schedule" type="text" [value]="reportScheduleText" readonly name="schedule">
+                                <mat-icon matSuffix class="clickable" (click)="configure('delivery')">settings</mat-icon>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <input matInput placeholder="Recipients" type="text" [value]="reportDeliveryText" readonly name="recipients">
+                                <mat-icon matSuffix class="clickable" (click)="configure('delivery')">settings</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field *ngIf="selectedVersion && reportVersions">
+                                <mat-select placeholder="Version" [ngModel]="selectedVersion.model.sysId" (valueChange)="versionChange($event)" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngFor="let version of reportVersions" [value]="version.model.sysId">v{{version.model.version}} - {{version.model.createdOn | o3LongDateTime}}
+                                        <span *ngIf="isRelease(version.model.sysId)">(active)</span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <div class="button-row">
+                                <button mat-raised-button type="button" (click)="configure('')" *ngIf="reportForm.pristine">Edit v{{selectedVersion?.model?.version}}</button>
+                                <button mat-raised-button type="button" (click)="openViewDialog()" *ngIf="reportForm.pristine">Run v{{selectedVersion?.model?.version}}</button>
+                                <button mat-raised-button color="accent" type="button" (click)="makeRelease()" *ngIf="!isReleaseSelected">
+                                    <mat-icon class="button-icon">warning</mat-icon>
+                                    Make v{{selectedVersion?.model?.version}} active
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </o3-tab-section>
+
+            <o3-tab-section label="Report History" [withSeparator]="false">
+                <o3-report-history-list #historyList [parent]="reportDefinition?.model"></o3-report-history-list>
+            </o3-tab-section>
+        </o3-tab>
+    </o3-tab-group>
+</section>

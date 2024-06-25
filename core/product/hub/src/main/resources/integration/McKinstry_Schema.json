@@ -1,0 +1,682 @@
+{
+  "buildings": [
+    {
+      "id": 1,
+      "name": "McKinstry HQ"
+    },
+    {
+      "id": 2,
+      "name": "Dawson Building"
+    },
+    {
+      "id": 3,
+      "name": "Innovation Center"
+    }
+  ],
+  "devices": [
+    {
+      "device": 7001,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7051,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7052,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7053,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7054,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7055,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7056,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7057,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7058,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7059,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7060,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7061,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7062,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7101,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7102,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7103,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7104,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7105,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7106,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7107,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7111,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7113,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7119,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7120,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7121,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7122,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7123,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7124,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7125,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7126,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7127,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7150,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7201,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7202,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7203,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7204,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7208,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7209,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7210,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7211,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7212,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7213,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7299,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7301,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7302,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7303,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7304,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7305,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7306,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7307,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7315,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7318,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7319,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7325,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7331,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7332,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7352,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7353,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7354,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7355,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7356,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7357,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7358,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7359,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7360,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7361,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7362,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7363,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7364,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7365,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7366,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7367,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7399,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7400,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7401,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7402,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7403,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7404,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7405,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7406,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7407,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7408,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7409,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7410,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7466,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7468,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7469,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7474,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7478,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7480,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7499,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7500,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7759,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7760,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7761,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7762,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7767,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7770,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7771,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7772,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7775,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7776,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7777,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 7799,
+      "building": "McKinstry HQ"
+    },
+    {
+      "device": 210301,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210302,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210303,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210304,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210305,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210306,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210307,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210308,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210309,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210310,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210311,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210312,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210313,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210320,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210321,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210322,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210323,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210324,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210325,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210326,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210327,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210328,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210329,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210330,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210331,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210332,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210333,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210334,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210335,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210336,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210341,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210342,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210343,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210344,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210345,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210351,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210352,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210353,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 210399,
+      "building": "Innovation Center"
+    },
+    {
+      "device": 220100,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220101,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220102,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220103,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220104,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220105,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220106,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220107,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220108,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220109,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220110,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220121,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220122,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220123,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220124,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220141,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220142,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220144,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220145,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220151,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220152,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220153,
+      "building": "Dawson Building"
+    },
+    {
+      "device": 220161,
+      "building": "Dawson Building"
+    }
+  ]
+}

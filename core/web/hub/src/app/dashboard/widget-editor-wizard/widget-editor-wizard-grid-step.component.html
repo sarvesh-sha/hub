@@ -1,0 +1,40 @@
+<ng-template o3-wizard-step-template>
+    <div class="o3-widget-editor-wizard-grid--container-outer">
+        <div class="o3-widget-editor-wizard-grid--container-inner">
+            <div class="o3-widget-editor-wizard-grid--config">
+                <div class="o3-widget-editor-wizard-grid--dimensions">
+                    <mat-form-field class="o3-widget-editor-wizard-grid--rows">
+                        <input matInput type="number" placeholder="Vertical Granularity" [max]="maxDimensionLength" [min]="minRows"
+                               [(ngModel)]="numRows" name="num-rows">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Horizontal Granularity" [max]="maxDimensionLength" [min]="minCols"
+                               [(ngModel)]="numCols" name="num-cols">
+                    </mat-form-field>
+                </div>
+
+                <div class="o3-widget-editor-wizard-grid--density-container">
+                    <label class="input-label">Change Density</label>
+
+                    <button mat-icon-button [disabled]="!canIncreaseDensity" (click)="increaseDensity()"
+                            class="mat-icon-small o3-no-ripple" disableRipple>
+                        <mat-icon>keyboard_arrow_up</mat-icon>
+                    </button>
+
+                    <button mat-icon-button [disabled]="!canDecreaseDensity" (click)="decreaseDensity()"
+                            class="mat-icon-small o3-no-ripple" disableRipple>
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="o3-widget-editor-wizard-grid--layout">
+                <o3-widget-manager [manipulator]="widgetLayout" [widgets]="widgets"
+                                   [alwaysShowGrid]="true" [alwaysShowShadow]="false"></o3-widget-manager>
+
+                <div class="o3-content-protector"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>

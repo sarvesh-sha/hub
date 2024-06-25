@@ -1,0 +1,23 @@
+:host, .o3-map--container {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .o3-map--reset-zoom {
+        top: 74px !important;
+        right: 10px;
+
+        padding: 7px 0px 0px 1px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            left: 4px;
+            top: 0px;
+            height: 1px;
+            border-top: .5px solid #bababa;
+        }
+    }
+}

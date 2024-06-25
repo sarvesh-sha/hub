@@ -1,0 +1,1846 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "APIs and Definitions for the Optio3 Waypoint product.",
+        "version": "1.0.0",
+        "title": "Optio3 Waypoint APIs"
+    },
+    "basePath": "/api/v1",
+    "tags": [
+        {
+            "name": "AdminTasks"
+        },
+        {
+            "name": "Networks"
+        },
+        {
+            "name": "Provision"
+        },
+        {
+            "name": "Sensors"
+        }
+    ],
+    "paths": {
+        "/admin-tasks/app-version": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "getAppVersion",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/loggers/config": {
+            "post": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "configLogger",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/LoggerConfiguration"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/LoggerConfiguration"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/loggers/list": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "getLoggers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LoggerConfiguration"
+                            }
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/options/{option}": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "getOption",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "option",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "RebootTime",
+                            "DisableFrontend",
+                            "DisableWifi",
+                            "ForceReboot",
+                            "StaticIp",
+                            "Gateway",
+                            "Firewall",
+                            "Swapfile",
+                            "ModemReset",
+                            "ProductionSite",
+                            "FactoryFloor",
+                            "APN"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/BootConfigLine"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "unsetOption",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "option",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "RebootTime",
+                            "DisableFrontend",
+                            "DisableWifi",
+                            "ForceReboot",
+                            "StaticIp",
+                            "Gateway",
+                            "Firewall",
+                            "Swapfile",
+                            "ModemReset",
+                            "ProductionSite",
+                            "FactoryFloor",
+                            "APN"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/BootConfigLine"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/options/{option}/{value}": {
+            "post": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "setOption",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "option",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "RebootTime",
+                            "DisableFrontend",
+                            "DisableWifi",
+                            "ForceReboot",
+                            "StaticIp",
+                            "Gateway",
+                            "Firewall",
+                            "Swapfile",
+                            "ModemReset",
+                            "ProductionSite",
+                            "FactoryFloor",
+                            "APN"
+                        ]
+                    },
+                    {
+                        "name": "value",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/BootConfigLine"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/production-mode": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "isProductionMode",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/reboot": {
+            "post": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "reboot",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/shutdown": {
+            "post": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "shutdown",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/admin-tasks/threads": {
+            "get": {
+                "tags": [
+                    "AdminTasks"
+                ],
+                "operationId": "dumpThreads",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+
+                        }
+                    },
+                    "412": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/DetailedApplicationExceptionErrorDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/networks/check-destination": {
+            "post": {
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "checkDestination",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/NetworkDestinationRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/NetworkDestinationResponse"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/networks/check-status": {
+            "get": {
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "checkStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/NetworkStatus"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/card/detect": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "detectCard",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/card/write/progress": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "checkCardFlashing",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/FlashingProgress"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/card/write/start": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "startCardFlashing",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/FlashingProgress"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/checkin/create": {
+            "post": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "performCheckin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProvisionReport"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/checkin/print/{hostId}": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "printCheckin",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "hostId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/checkins": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "getNewCheckins",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "when",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProvisionReportExt"
+                            }
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/firmware/downloading": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "downloadingFirmware",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/provision/firmware/trigger": {
+            "get": {
+                "tags": [
+                    "Provision"
+                ],
+                "operationId": "triggerFirmwareDownload",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/check-status": {
+            "post": {
+                "tags": [
+                    "Sensors"
+                ],
+                "operationId": "checkStatus",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SensorResultToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SensorResult"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/start-check-status": {
+            "post": {
+                "tags": [
+                    "Sensors"
+                ],
+                "operationId": "startCheckStatus",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SensorConfig"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SensorResultToken"
+                        },
+                        "headers": {
+
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "BootConfigLine": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "enum": [
+                        "RebootTime",
+                        "DisableFrontend",
+                        "DisableWifi",
+                        "ForceReboot",
+                        "StaticIp",
+                        "Gateway",
+                        "Firewall",
+                        "Swapfile",
+                        "ModemReset",
+                        "ProductionSite",
+                        "FactoryFloor",
+                        "APN"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.infra.waypoint.BootConfig$Options"
+                },
+                "keyRaw": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "isCommented": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "DetailedApplicationExceptionErrorDetails": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "enum": [
+                        "ALREADY_EXISTS",
+                        "NOT_AUTHENTICATED",
+                        "NOT_AUTHORIZED",
+                        "NOT_FOUND",
+                        "NOT_IMPLEMENTED",
+                        "INVALID_ARGUMENT",
+                        "INVALID_STATE"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.exception.DetailedApplicationException$Code"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "exceptionTrace": {
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "$ref": "#/definitions/ValidationResults"
+                }
+            }
+        },
+        "FlashingProgress": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "type": "string",
+                    "enum": [
+                        "NoCard",
+                        "DownloadingFirmware",
+                        "AlreadyFlashing",
+                        "Flashing",
+                        "Done",
+                        "Failed"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.waypoint.model.FlashingStatus"
+                },
+                "imageSize": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "imageOffset": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "LoggerConfiguration": {
+            "type": "object",
+            "properties": {
+                "parent": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "levels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        },
+        "NetworkDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "NetworkDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "NetworkStatus": {
+            "type": "object",
+            "properties": {
+                "interfaces": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ProvisionReport": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "manufacturingLocation": {
+                    "type": "string"
+                },
+                "stationNumber": {
+                    "type": "string"
+                },
+                "stationProgram": {
+                    "type": "string"
+                },
+                "boardHardwareVersion": {
+                    "type": "string"
+                },
+                "boardFirmwareVersion": {
+                    "type": "string"
+                },
+                "boardSerialNumber": {
+                    "type": "string"
+                },
+                "modemModule": {
+                    "type": "string"
+                },
+                "modemRevision": {
+                    "type": "string"
+                },
+                "firmwareVersion": {
+                    "type": "string"
+                },
+                "architecture": {
+                    "type": "string",
+                    "enum": [
+                        "UNKNOWN",
+                        "X86",
+                        "ARM",
+                        "ARMv6",
+                        "ARMv7",
+                        "ARMv8",
+                        "ARM64v8"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.client.builder.model.DockerImageArchitecture"
+                },
+                "hostId": {
+                    "type": "string"
+                },
+                "imsi": {
+                    "type": "string"
+                },
+                "imei": {
+                    "type": "string"
+                },
+                "iccid": {
+                    "type": "string"
+                },
+                "tests": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProvisionTest"
+                    }
+                }
+            }
+        },
+        "ProvisionReportExt": {
+            "type": "object",
+            "properties": {
+                "info": {
+                    "$ref": "#/definitions/ProvisionReport"
+                },
+                "printed": {
+                    "type": "boolean"
+                },
+                "uploaded": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ProvisionTest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string",
+                    "enum": [
+                        "Skipped",
+                        "Passed",
+                        "Failed"
+                    ],
+                    "x-optio3-enum-type": "com.optio3.cloud.client.builder.model.ProvisionTestResult"
+                }
+            }
+        },
+        "SensorConfig": {
+            "type": "object",
+            "discriminator": "__type",
+            "properties": {
+                "seconds": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "x-optio3-subtypes": [
+                {
+                    "subtype_name": "SensorConfigForArgoHytos",
+                    "subtype_model": "SensorConfigForArgoHytos"
+                },
+                {
+                    "subtype_name": "SensorConfigForBergstrom",
+                    "subtype_model": "SensorConfigForBergstrom"
+                },
+                {
+                    "subtype_name": "SensorConfigForBluesky",
+                    "subtype_model": "SensorConfigForBluesky"
+                },
+                {
+                    "subtype_name": "SensorConfigForEpSolar",
+                    "subtype_model": "SensorConfigForEpSolar"
+                },
+                {
+                    "subtype_name": "SensorConfigForGps",
+                    "subtype_model": "SensorConfigForGps"
+                },
+                {
+                    "subtype_name": "SensorConfigForHendricksonWatchman",
+                    "subtype_model": "SensorConfigForHendricksonWatchman"
+                },
+                {
+                    "subtype_name": "SensorConfigForHolykell",
+                    "subtype_model": "SensorConfigForHolykell"
+                },
+                {
+                    "subtype_name": "SensorConfigForI2CHub",
+                    "subtype_model": "SensorConfigForI2CHub"
+                },
+                {
+                    "subtype_name": "SensorConfigForJ1939",
+                    "subtype_model": "SensorConfigForJ1939"
+                },
+                {
+                    "subtype_name": "SensorConfigForMontageBluetoothGateway",
+                    "subtype_model": "SensorConfigForMontageBluetoothGateway"
+                },
+                {
+                    "subtype_name": "SensorConfigForPalfinger",
+                    "subtype_model": "SensorConfigForPalfinger"
+                },
+                {
+                    "subtype_name": "SensorConfigForRawCANbus",
+                    "subtype_model": "SensorConfigForRawCANbus"
+                },
+                {
+                    "subtype_name": "SensorConfigForStealthPower",
+                    "subtype_model": "SensorConfigForStealthPower"
+                },
+                {
+                    "subtype_name": "SensorConfigForTriStar",
+                    "subtype_model": "SensorConfigForTriStar"
+                },
+                {
+                    "subtype_name": "SensorConfigForVictron",
+                    "subtype_model": "SensorConfigForVictron"
+                }
+            ]
+        },
+        "SensorConfigForArgoHytos": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "argohytosPort": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForArgoHytos"
+        },
+        "SensorConfigForBergstrom": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "canPort": {
+                            "type": "string"
+                        },
+                        "canFrequency": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "canNoTermination": {
+                            "type": "boolean"
+                        },
+                        "canInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForBergstrom"
+        },
+        "SensorConfigForBluesky": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "ipnPort": {
+                            "type": "string"
+                        },
+                        "ipnBaudrate": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "ipnInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForBluesky"
+        },
+        "SensorConfigForEpSolar": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "epsolarPort": {
+                            "type": "string"
+                        },
+                        "epsolarInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForEpSolar"
+        },
+        "SensorConfigForGps": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "gpsPort": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForGps"
+        },
+        "SensorConfigForHendricksonWatchman": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "canPort": {
+                            "type": "string"
+                        },
+                        "canFrequency": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "canNoTermination": {
+                            "type": "boolean"
+                        },
+                        "canInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForHendricksonWatchman"
+        },
+        "SensorConfigForHolykell": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "holykellPort": {
+                            "type": "string"
+                        },
+                        "holykellInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForHolykell"
+        },
+        "SensorConfigForI2CHub": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForI2CHub"
+        },
+        "SensorConfigForJ1939": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "obdiiPort": {
+                            "type": "string"
+                        },
+                        "obdiiFrequency": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "obdiiInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForJ1939"
+        },
+        "SensorConfigForMontageBluetoothGateway": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "montageBluetoothGatewayPort": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForMontageBluetoothGateway"
+        },
+        "SensorConfigForPalfinger": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "canPort": {
+                            "type": "string"
+                        },
+                        "canFrequency": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "canNoTermination": {
+                            "type": "boolean"
+                        },
+                        "canInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForPalfinger"
+        },
+        "SensorConfigForRawCANbus": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "canPort": {
+                            "type": "string"
+                        },
+                        "canFrequency": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "canNoTermination": {
+                            "type": "boolean"
+                        },
+                        "canInvert": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForRawCANbus"
+        },
+        "SensorConfigForStealthPower": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "stealthpowerPort": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForStealthPower"
+        },
+        "SensorConfigForTriStar": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "tristarPort": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForTriStar"
+        },
+        "SensorConfigForVictron": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorConfig"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "victronPort": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorConfigForVictron"
+        },
+        "SensorResult": {
+            "type": "object",
+            "discriminator": "__type",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "portDetected": {
+                    "type": "boolean"
+                },
+                "failure": {
+                    "type": "string"
+                }
+            },
+            "x-optio3-subtypes": [
+                {
+                    "subtype_name": "SensorResultForArgoHytos",
+                    "subtype_model": "SensorResultForArgoHytos"
+                },
+                {
+                    "subtype_name": "SensorResultForBergstrom",
+                    "subtype_model": "SensorResultForBergstrom"
+                },
+                {
+                    "subtype_name": "SensorResultForBluesky",
+                    "subtype_model": "SensorResultForBluesky"
+                },
+                {
+                    "subtype_name": "SensorResultForEpSolar",
+                    "subtype_model": "SensorResultForEpSolar"
+                },
+                {
+                    "subtype_name": "SensorResultForGps",
+                    "subtype_model": "SensorResultForGps"
+                },
+                {
+                    "subtype_name": "SensorResultForHendricksonWatchman",
+                    "subtype_model": "SensorResultForHendricksonWatchman"
+                },
+                {
+                    "subtype_name": "SensorResultForHolykell",
+                    "subtype_model": "SensorResultForHolykell"
+                },
+                {
+                    "subtype_name": "SensorResultForI2CHub",
+                    "subtype_model": "SensorResultForI2CHub"
+                },
+                {
+                    "subtype_name": "SensorResultForJ1939",
+                    "subtype_model": "SensorResultForJ1939"
+                },
+                {
+                    "subtype_name": "SensorResultForMontageBluetoothGateway",
+                    "subtype_model": "SensorResultForMontageBluetoothGateway"
+                },
+                {
+                    "subtype_name": "SensorResultForPalfinger",
+                    "subtype_model": "SensorResultForPalfinger"
+                },
+                {
+                    "subtype_name": "SensorResultForRawCANbus",
+                    "subtype_model": "SensorResultForRawCANbus"
+                },
+                {
+                    "subtype_name": "SensorResultForStealthPower",
+                    "subtype_model": "SensorResultForStealthPower"
+                },
+                {
+                    "subtype_name": "SensorResultForTriStar",
+                    "subtype_model": "SensorResultForTriStar"
+                },
+                {
+                    "subtype_name": "SensorResultForVictron",
+                    "subtype_model": "SensorResultForVictron"
+                },
+                {
+                    "subtype_name": "SensorResultForZeroRPM",
+                    "subtype_model": "SensorResultForZeroRPM"
+                }
+            ]
+        },
+        "SensorResultForArgoHytos": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "temperature": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "ISO4um": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForArgoHytos"
+        },
+        "SensorResultForBergstrom": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "compressorSpeed": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "stateOfCharge": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "voltage": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForBergstrom"
+        },
+        "SensorResultForBluesky": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "inputVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "inputCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "batteryVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "batteryCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "totalChargeAH": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForBluesky"
+        },
+        "SensorResultForEpSolar": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "batteryVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "batteryCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "arrayVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "arrayCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForEpSolar"
+        },
+        "SensorResultForGps": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "latitude": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "longitude": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "altitude": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "speed": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "hasFix": {
+                            "type": "boolean"
+                        },
+                        "satellitesInFix": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        },
+                        "satellitesInView": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForGps"
+        },
+        "SensorResultForHendricksonWatchman": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "temperature": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "pressure": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForHendricksonWatchman"
+        },
+        "SensorResultForHolykell": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "level": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "temperature": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForHolykell"
+        },
+        "SensorResultForI2CHub": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "present": {
+                            "type": "boolean"
+                        },
+                        "busScan": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SensorResultForI2CHubScan"
+                            }
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForI2CHub"
+        },
+        "SensorResultForI2CHubScan": {
+            "type": "object",
+            "properties": {
+                "bus": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "address": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "device": {
+                    "type": "string"
+                }
+            }
+        },
+        "SensorResultForJ1939": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "found": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForJ1939"
+        },
+        "SensorResultForMontageBluetoothGateway": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "detectedHeartbeat": {
+                            "type": "boolean"
+                        },
+                        "detectedPixelTag": {
+                            "type": "boolean"
+                        },
+                        "detectedSmartLock": {
+                            "type": "boolean"
+                        },
+                        "detectedTRH": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForMontageBluetoothGateway"
+        },
+        "SensorResultForPalfinger": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "counterService": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "supplyVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "plcTemperature": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForPalfinger"
+        },
+        "SensorResultForRawCANbus": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "found": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForRawCANbus"
+        },
+        "SensorResultForStealthPower": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "supply_voltage": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForStealthPower"
+        },
+        "SensorResultForTriStar": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "batteryVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "batteryCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "arrayVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "arrayCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForTriStar"
+        },
+        "SensorResultForVictron": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "batteryVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "batteryCurrent": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "panelVoltage": {
+                            "type": "number",
+                            "format": "float"
+                        },
+                        "panelPower": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForVictron"
+        },
+        "SensorResultForZeroRPM": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/SensorResult"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "vin": {
+                            "type": "string"
+                        },
+                        "keyLifeHours": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                }
+            ],
+            "x-optio3-type-name": "SensorResultForZeroRPM"
+        },
+        "SensorResultToken": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "ValidationResult": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string"
+                },
+                "reason": {
+                    "type": "string"
+                }
+            }
+        },
+        "ValidationResults": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ValidationResult"
+                    }
+                }
+            }
+        }
+    }
+}

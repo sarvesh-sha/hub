@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 12px;
+
+    > .o3-tab-group-subsection--label {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.87);
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+}

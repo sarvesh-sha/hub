@@ -1,0 +1,8 @@
+<o3-datatable [table]="table">
+    <o3-datatable-column id="firstName" prop="ext.model.firstName" name="First Name"></o3-datatable-column>
+    <o3-datatable-column id="lastName" prop="ext.model.lastName" name="Last Name"></o3-datatable-column>
+    <o3-datatable-column id="email" prop="ext.model.emailAddress" name="Email Address"></o3-datatable-column>
+    <o3-datatable-column id="role" prop="rolesText" name="Role"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" prop="ext.model.createdOn" name="Created On" format="DATE" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="updatedOn" prop="ext.model.updatedOn" name="Updated On" format="DATE" [enabled]="false"></o3-datatable-column>
+</o3-datatable>

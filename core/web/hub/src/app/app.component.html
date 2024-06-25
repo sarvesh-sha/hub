@@ -1,0 +1,46 @@
+﻿<o3-standard-layout #test_standardLayout *ngIf="isStandardLayout">
+    <o3-standard-layout-menu id="home" i18n-label label="Home" faIcon="o3-home" link="/home" [exact]="true"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="alerts" i18n-label label="Alerts" faIcon="o3-alert" link="/alerts/summary"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="devices" i18n-label label="Devices" faIcon="o3-device" link="/devices/summary"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="equipment" i18n-label label="Equipment" faIcon="o3-equipment fa fa-plug" link="/equipment/summary"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="visualization" i18n-label label="Data Explorer" faIcon="o3-usage-trend" link="/visualization/explorer"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="configuration" i18n-label label="Settings" faIcon="o3-configure">
+        <o3-standard-layout-menu id="configuration_user_management" i18n-label label="Users" link="/configuration/users"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="configuration_user_group_management" i18n-label label="Groups" link="/configuration/user-groups"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="configuration_subscribed_reports" i18n-label label="Reports" link="/configuration/reports"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="configuration_alert_rules" i18n-label label="Alert Rules" link="/configuration/alert-rules"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="configuration_metrics" i18n-label label="Metrics" link="/configuration/metrics" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="configuration_manage_locations" i18n-label label="Locations" link="/configuration/locations" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="panes" i18n-label label="Panes" link="/configuration/panes" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="asset_structures" i18n-label label="Asset Structures" link="/configuration/asset-structures" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+    <o3-standard-layout-menu id="data_collection" i18n-label label="Data Collection" faIcon="o3-database-search">
+        <o3-standard-layout-menu id="gateways" i18n-label label="Gateways" link="/gateways/summary" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="networks" i18n-label label="Networks" link="/networks/summary" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="sampling" i18n-label label="Sampling" link="/sampling" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="device-elements" i18n-label label="Points" link="/device-elements/summary"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+    <o3-standard-layout-menu id="classification_group" i18n-label label="Classification" faIcon="fa fa-history">
+        <o3-standard-layout-menu id="rules" i18n-label label="Versions" link="/classification/summary" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="legacy_imports" i18n-label label="Legacy Imports" link="/legacy-imports/summary" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="workflows" i18n-label label="Workflows" link="/workflows/summary"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+    <o3-standard-layout-menu id="maintenance" i18n-label label="Maintenance" faIcon="fa fa-wrench" [roles]="['SYS.MAINT']">
+        <o3-standard-layout-menu id="hosts" i18n-label label="Hosts" link="/hosts/summary" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="background_activity_management" i18n-label label="Background Activities" link="/background-activities/summary"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="logging_config" i18n-label label="Logging" link="/configuration/loggers"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="dump_threads" i18n-label label="Threads" link="/configuration/threads"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="datagram_sessions" i18n-label label="Datagram Sessions" link="/configuration/datagram-sessions"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+    <o3-standard-layout-menu id="experiments" i18n-label label="Experiments" faIcon="fa fa-flask" [roles]="['SYS.ADMIN', 'SYS.MAINT']">
+        <o3-standard-layout-menu id="color_picker" i18n-label label="Color Picker" link="/experiments/color-picker"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="context_pane" i18n-label label="Context Pane" link="/experiments/context-pane"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="control_point_search" i18n-label label="Control Point Search" link="/experiments/control-point-search"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="forms" i18n-label label="Forms" link="/experiments/forms"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="icons" i18n-label label="Icons" link="/experiments/icons"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="messages" i18n-label label="Messages" link="/experiments/messages"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="visualizations" i18n-label label="Visualizations" link="/experiments/visualizations"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="components" i18n-label label="Components" link="/experiments/components"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+</o3-standard-layout>
+<o3-reporting-layout *ngIf="isReportingLayout"></o3-reporting-layout>

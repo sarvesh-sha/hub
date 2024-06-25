@@ -1,0 +1,34 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Host Details">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+            <o3-tab-action label="Show Logs" priority="secondary" (click)="showLog()"></o3-tab-action>
+
+            <form novalidate>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [(ngModel)]="host.model.domainName" name="name" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Created On" [value]="host.model.createdOn|o3LongDate" name="created_on" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Updated" [value]="host.model.updatedOn|o3LongDate" name="updated_on" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

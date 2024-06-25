@@ -1,0 +1,11 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false" (onShowingContextMenu)="handleContextMenu($event)">
+    <o3-datatable-column id="path" sortId="path" prop="model.path" name="Path" >
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="task" prop="model.taskName" name="Task Name"></o3-datatable-column>
+    <o3-datatable-column id="lengthDisplay" prop="lengthDisplay" name="Size"></o3-datatable-column>
+    <o3-datatable-column id="transferDisplay" prop="transferDisplay" name="Activity" [width]="160" [maxWidth]="160"></o3-datatable-column>
+    <o3-datatable-column id="uploadedOn" sortId="uploadedOn" prop="model.uploadedOn" name="Uploaded On" [width]="160" [maxWidth]="160" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="downloadedOn" sortId="downloadedOn" prop="model.downloadedOn" name="Downloaded On" [width]="160" [maxWidth]="160" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

@@ -1,0 +1,12 @@
+<ng-template o3-wizard-step-template>
+    <p class="col-sm-12">Which asset structure should connect to this selector?</p>
+    <mat-form-field class="col-sm-6">
+        <o3-select #test_graphs placeholder="Asset Structure" [options]="graphOptions"
+                   name="graph-id" [(ngModel)]="graphId"
+                   [multiSelect]="false" singleClick preventDeselection></o3-select>
+    </mat-form-field>
+    <mat-form-field class="col-sm-6" *ngIf="graphId">
+        <input matInput type="text" placeholder="Selector Name" [maxLength]="30"
+               name="selector-name" [(ngModel)]="selectorName" autocomplete="off">
+    </mat-form-field>
+</ng-template>

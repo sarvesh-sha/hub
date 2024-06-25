@@ -1,0 +1,28 @@
+.columns {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .column-title {
+        text-transform: uppercase;
+        font-weight: bolder;
+    }
+
+    .mat-expansion-panel {
+        flex: 1 1 0;
+        margin: 0 7.5px;
+
+        &:first-child {
+            margin-left: 0px;
+        }
+
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}

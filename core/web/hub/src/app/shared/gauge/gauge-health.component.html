@@ -1,0 +1,15 @@
+﻿<div class="health-gauge-container">
+    <div class="gauge">
+        <div class="segment" style="background-color: #30B32D;"></div>
+        <div class="segment" style="background-color: #FFDD00;"></div>
+        <div class="segment" style="background-color: #FFA100;"></div>
+        <div class="segment" style="background-color: #F03E3E;"></div>
+        <div class="needle" [style.left]="position()">
+            <div class="point"></div>
+        </div>
+    </div>
+    <div class="gauge-labels clearfix">
+        <span *ngIf="lowLabel" class="low-label">{{lowLabel}}</span>
+        <span *ngIf="highLabel" class="high-label">{{highLabel}}</span>
+    </div>
+</div>

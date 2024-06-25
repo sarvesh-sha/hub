@@ -1,0 +1,11 @@
+<o3-chart-set *ngIf="data?.range && data?.charts"
+              [range]="data.range"
+              [configs]="data.charts"
+              [readonly]="true"
+              [zoomable]="false"
+              [embedded]="true"
+              [resizable]="false"
+              [printable]="true"
+              [renderAll]="true"
+              (stoppedFetchingData)="markAsComplete()">
+</o3-chart-set>

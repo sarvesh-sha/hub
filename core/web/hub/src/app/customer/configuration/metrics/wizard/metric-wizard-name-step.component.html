@@ -1,0 +1,14 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data.metrics.metricsDefinition">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Metrics Title" [(ngModel)]="data.metrics.metricsDefinition.model.title" name="metricsTitle" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput type="text" placeholder="Description" [(ngModel)]="data.metrics.metricsDefinition.model.description" name="metricsDescription"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</ng-template>

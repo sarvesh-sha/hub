@@ -1,0 +1,18 @@
+.preview {
+    display: flex;
+    flex-direction: column;
+
+    .loading {
+        align-self: center;
+        margin: 20px;
+    }
+
+    o3-query-column-picker {
+        margin-bottom: 15px;
+    }
+
+    .preview-container {
+        box-sizing: content-box;
+        border: 1px solid #eeeeee;
+    }
+}

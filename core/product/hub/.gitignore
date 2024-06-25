@@ -1,0 +1,3 @@
+# Avoid storing the H2 database in the repo by mistake.
+hub_db.*
+/testOutput

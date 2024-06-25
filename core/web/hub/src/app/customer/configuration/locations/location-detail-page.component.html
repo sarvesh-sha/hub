@@ -1,0 +1,98 @@
+<section class="bs page-content">
+    <o3-tab-group *ngIf="loaded">
+
+        <o3-tab-action label="New Child Location..." (click)="newLocation()"></o3-tab-action>
+        <o3-tab-action label="Edit Geofences..." (click)="editFences()"></o3-tab-action>
+        <o3-tab-action label="Email Delivery Options..." (click)="editEmailOptions()"></o3-tab-action>
+        <o3-tab-action label="SMS Delivery Options..." (click)="editSmsOptions()"></o3-tab-action>
+
+        <o3-tab label="{{locationFields.locationTypeInfo.displayName}} Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <mat-select placeholder="Type" name="locationType" [value]="location.typedModel.type" readonly>
+                            <mat-option *ngFor="let fieldset of fieldConfigurations" [value]="fieldset.locationTypeInfo.id">{{ fieldset.locationTypeInfo.displayName }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="locationFields.hasField('name')">
+                        <input matInput type="text" placeholder="Name" name="locationName" readonly
+                               [value]="location.model.name">
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="outerLocation && outerLocation.model">
+                        <input matInput type="text" placeholder="Parent Location" [value]="outerLocation.model.name" name="parentLocationName" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="locationFields.hasField('phone')">
+                        <input matInput type="tel" placeholder="Phone" [(ngModel)]="location.typedModel.phone" name="locationPhone" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Description" [(ngModel)]="location.model.customerNotes" name="locationDescription" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="TimeZone" [value]="location.typedModel.timeZone" readonly>
+                    </mat-form-field>
+
+                    <section *ngIf="locationFields.hasField('address')">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Address" [value]="location.typedModel.address" readonly>
+                        </mat-form-field>
+                    </section>
+                </div>
+                <div class="col-sm-6">
+                    <o3-pin-map *ngIf="mapLocation" [location]="mapLocation" [fences]="location?.typedModel.fences" style="min-height: 350px"></o3-pin-map>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px">
+                <div class="col-sm-12">
+                    <div style="display: flex; justify-content: flex-start; align-items: center; padding-bottom: 8px">
+                        <span class="area-color">Child Locations</span>
+                    </div>
+
+                    <o3-location-list [withFiltering]="true" [parent]="location?.typedModel"></o3-location-list>
+                </div>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+
+<o3-overlay #emailOverlay>
+    <o3-tab-group noUnderline>
+        <o3-tab label="Email Delivery Settings">
+            <div class="row">
+                <div class="col">
+                    <o3-delivery-options [deliveryOptions]="emailOptionsExt"></o3-delivery-options>
+                </div>
+            </div>
+
+            <o3-tab-action label="Save" priority="primary" (click)="emailOverlay.closeOverlay();saveEmailOptions();" [disabled]="isEmailPristine()"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="emailOverlay.closeOverlay();" *ngIf="isEmailPristine()"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="emailOverlay.closeOverlay();" *ngIf="!isEmailPristine()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #smsOverlay>
+    <o3-tab-group noUnderline>
+        <o3-tab label="SMS Delivery Settings">
+            <div class="row">
+                <div class="col">
+                    <o3-delivery-options [deliveryOptions]="smsOptionsExt"></o3-delivery-options>
+                </div>
+            </div>
+
+            <o3-tab-action label="Save" priority="primary" (click)="smsOverlay.closeOverlay();saveSmsOptions();" [disabled]="isSmsPristine()"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="smsOverlay.closeOverlay();" *ngIf="isSmsPristine()"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="smsOverlay.closeOverlay();" *ngIf="!isSmsPristine()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

@@ -1,0 +1,111 @@
+##########################################
+#
+# Database settings:
+#
+
+database:
+
+  enableEvents: true
+
+  hibernateSearchIndexLocation: ${env.TMPDIR?/optio3-scratch}/hibernate-search-index
+
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+
+  # the JDBC URL (use DB2 mode for 'offset x rows' support)
+  url: jdbc:h2:mem:hub_db;MODE=DB2;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE
+
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+#  # Logger-specific levels.
+#  loggers:
+#
+## Uncomment to see the queries that Hibernate sends to the database.
+#    "org.hibernate.SQL": DEBUG
+## Uncomment to see the parameters as well.
+#    "org.hibernate.type": TRACE
+#
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 8080
+  requestLog:
+    type: optio3
+
+##########################################
+
+data:
+  - resource: demodata/defaultConfiguration.json
+    isDemo: true
+  - resource: demodata/defaultNormalizationRules.json
+    loadIfMissing: true
+  - resource: demodata/defaultSamplingTemplate.json
+    loadIfMissing: true
+  - resource: demodata/defaultUsers.json
+    isDemo: true
+  - resource: demodata/defaultLocations.json
+    isDemo: true
+  - resource: demodata/defaultDevices.json
+    isDemo: true
+  - resource: demodata/defaultAlerts.json
+    isDemo: true
+  - resource: demodata/defaultNetworks.json
+    isDemo: true
+
+# Uncomment for local testing of reporter.
+#reporterConnectionUrl: http://localhost:3000
+#localReportConnectionUrl: http://localhost:4201
+
+cloudConnectionUrl: http://hub:8080
+
+scratchDirectory: ${env.HOME}/optio3.test/hub.tmp
+
+backupLocation: ${env.HOME}/optio3.test/hub.db/backups
+
+hostId: locahost
+buildId: locahost
+
+#########################
+
+developerSettings:
+  developerMode: true
+
+  # Comment to only send output to the database
+  forceLogToConsole: true
+
+
+  # Uncomment to ignore demo data.
+#  includeDemoData: false
+
+# Uncomment to get a report of collected samples
+#  dumpSamplingStatistics: true
+
+# Uncomment to disable auto-sampling.
+#  autoConfigureSampling: false
+
+# Uncomment to drain pending results on startup
+#  flushResultsOnStartup: true
+
+# Comment to enable emails.
+  disableEmails: true
+
+# Comment to enable SMS.
+  disableSMSs: true
+

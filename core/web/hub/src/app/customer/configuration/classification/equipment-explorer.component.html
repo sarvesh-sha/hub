@@ -1,0 +1,46 @@
+<div class="equipment-list mat-elevation-z2">
+    <mat-card>
+        <mat-card-content>
+            <div style="height: 70vh;">
+                <o3-filterable-tree #tree [nodes]="nodes" [useCheckboxes]="true" [(selectedNodes)]="selections">
+                    <ng-template #nodeTemplate let-node="node" let-index="index">
+                        <span [class.stale]="node.isStale">
+                            {{node.label}}
+                        </span>
+                    </ng-template>
+                </o3-filterable-tree>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button *ngIf="staleEquipmentSelected" mat-raised-button color="accent" (click)="openResolveDialog(selectionDialog)" [disabled]="selections.length > 1">Resolve stale equipment</button>
+            <button mat-raised-button color="primary" (click)="parentDialog.toggleOverlay()" [disabled]="!selections.length">Set parent to...</button>
+            <button mat-raised-button color="primary" (click)="clearSelection()" [disabled]="!selections.length">Clear selection</button>
+            <span>{{selections.length}} selected of {{totalCount}} equipment</span>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<o3-standard-form-overlay label="Select parent"
+                          dialogClass="dialog-md"
+                          primaryButtonText="Set parent"
+                          [primaryButtonDisabled]="!isValidParentSelected()"
+                          (submitted)="setParent(tree)"
+                          #parentDialog>
+    <mat-form-field>
+        <o3-select placeholder="Parent" [options]="nodes" [multiSelect]="false" [(ngModel)]="selectedParentId">
+        </o3-select>
+    </mat-form-field>
+    <button mat-raised-button type="button" (click)="clearParent(parentDialog)">Clear parent</button>
+</o3-standard-form-overlay>
+
+<o3-standard-form-overlay label="Select correct equipment"
+                          dialogClass="dialog-md"
+                          primaryButtonText="Set new equipment"
+                          (submitted)="setReplacement()"
+                          #selectionDialog>
+    <div>Old equipment: {{toReplaceId}}</div>
+    <mat-form-field>
+        <o3-select placeholder="New equipment" [options]="nodes" [multiSelect]="false" [(ngModel)]="selectedReplacementId">
+        </o3-select>
+    </mat-form-field>
+</o3-standard-form-overlay>

@@ -1,0 +1,11 @@
+<div class="o3-widget-preview--container">
+    <ng-content></ng-content>
+    <div class="o3-widget-preview--preview" [class.o3-widget-preview--vertical]="narrowView">
+        <div class="o3-widget-preview--manager-container">
+            <div [class.o3-widget-preview--is-preview]="!!managerWidth" [style.flex-basis.px]="managerWidth">
+                <o3-widget-manager *ngIf="widgetManipulator" [manipulator]="widgetManipulator" [widgets]="widgetContainer"
+                                   [singularWidget]="true" [useWidgetPadding]="false" [preview]="true"></o3-widget-manager>
+            </div>
+        </div>
+    </div>
+</div>

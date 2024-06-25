@@ -1,0 +1,55 @@
+@import "../app.variables.scss";
+
+@mixin breadcrumbs($theme) {
+
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .mat-toolbar.topnav-container {
+
+        .breadcrumb {
+            font-size: 9px;
+            border-bottom: none;
+            background: none;
+            padding: 0;
+            text-transform: uppercase;
+            min-height: inherit;
+            transition: all 1s linear;
+            position: absolute; // when breadcrumbs are in top nav (and static position)
+            bottom: -7.5px; // when breadcrumbs are in top nav (and static position)
+            line-height: normal; // when breadcrumbs are in top nav (and static position)
+            //margin-top: -5px;     // when breadcrumbs are in top nav (and dynamic position)
+            //line-height: 14px;    // when breadcrumbs are in top nav (and dynamic position)
+
+            // Mobile Styles - Needs Improvment
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            overflow: hidden;
+            max-width: 55vw;
+
+            .breadcrumb-item.active {
+                color: #fff;
+            }
+
+            .breadcrumb-item.clickable:hover {
+                text-decoration: underline;
+            }
+
+            .breadcrumb-item + .breadcrumb-item::before {
+                background-size: 1rem 1rem;
+                height: .5rem;
+                width: 1.5rem;
+                background-image: $breadcrumb-divider;
+                background-position: 50% 50%;
+                content: "";
+                margin: 0;
+            }
+
+            /* display: none; */
+        }
+    }
+}

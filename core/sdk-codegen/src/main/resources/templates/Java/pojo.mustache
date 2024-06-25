@@ -1,0 +1,71 @@
+{{!                          }}
+{{! BEGIN Handle inheritance }}
+{{!                          }}
+{{#discriminator}}
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "{{discriminator}}")
+{{/discriminator}}
+{{#vendorExtensions}}
+    {{#x-optio3-subtypes}}
+{{#-first}}@JsonSubTypes(
+{
+{{/-first}}    @JsonSubTypes.Type(value = {{{subtype_model}}}.class){{^-last}},{{/-last}}{{#-last}}
+}){{/-last}}
+    {{/x-optio3-subtypes}}
+{{/vendorExtensions}}
+{{#vendorExtensions}}
+    {{#x-optio3-type-name}}
+@JsonTypeName("{{{x-optio3-type-name}}}")
+    {{/x-optio3-type-name}}
+{{/vendorExtensions}}
+{{!                        }}
+{{! END Handle inheritance }}
+{{!                        }}
+public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}}
+{
+{{#vendorExtensions}}
+{{#x-optio3-external-record-id}}
+  public static final String RECORD_IDENTITY = "{{{x-optio3-external-record-id}}}";
+
+{{/x-optio3-external-record-id}}
+{{/vendorExtensions}}
+  {{#vars}}{{#isEnum}}{{^isContainer}}
+
+{{>enumClass}}{{/isContainer}}{{/isEnum}}{{#items.isEnum}}{{#items}}
+
+{{^isContainer}}{{>enumClass}}{{/isContainer}}{{/items}}{{/items.isEnum}}{{/vars}}
+{{#vars}}
+{{#description}}  /**
+   * {{{description}}}
+  {{#minimum}}
+   * minimum: {{minimum}}
+  {{/minimum}}
+  {{#maximum}}
+   * maximum: {{maximum}}
+  {{/maximum}}
+  */
+{{/description}}
+  public {{{datatypeWithEnum}}} {{name}} = {{{defaultValue}}};
+{{/vars}}
+
+  @Override
+  public String toString()
+  {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class {{classname}} {\n");
+    {{#parent}}sb.append("    ").append(super.toString().replace("\n", "\n    ")).append("\n");{{/parent}}
+    {{#vars}}sb.append("    {{name}}: ").append(toIndentedString({{name}})).append("\n");
+    {{/vars}}sb.append("}");
+    return sb.toString();
+  }
+{{#hasVars}}
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(java.lang.Object o)
+  {
+    if (o == null)
+      return "null";
+    return o.toString().replace("\n", "\n    ");
+  }{{/hasVars}}
+}

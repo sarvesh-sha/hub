@@ -1,0 +1,36 @@
+<mat-form-field [matMenuTriggerFor]="testMenu">
+    <input matInput placeholder="Tests" [ngModel]="selectedTests.size + ' tests'" readonly/>
+    <button mat-icon-button matSuffix>
+        <mat-icon>expand_more</mat-icon>
+    </button>
+</mat-form-field>
+<mat-menu #testMenu class="test-selector-menu">
+    <div *ngIf="selectAllEnabled" mat-menu-item>
+        <mat-checkbox [(ngModel)]="allSelected" [indeterminate]="allIndeterminate" (click)="$event.stopPropagation()">Select all</mat-checkbox>
+    </div>
+    <ng-container *ngFor="let group of testGroups">
+        <div mat-menu-item>
+            <mat-checkbox [ngModel]="groupSelected(group)" [indeterminate]="groupIndeterminate(group)"
+                          (ngModelChange)="selectGroup(group, $event)"
+                          (click)="$event.stopPropagation()">
+                {{group.category}}
+            </mat-checkbox>
+            <button mat-icon-button (click)="expanded.set(group, !expanded.get(group)); $event.stopPropagation()">
+                <mat-icon>{{expanded.get(group) ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}</mat-icon>
+            </button>
+        </div>
+        <ng-container *ngIf="expanded.get(group)">
+            <ng-container *ngFor="let test of group.tests">
+                <div *ngIf="testEnabled(test)" mat-menu-item style="padding-left: 30px">
+                    <mat-checkbox [ngModel]="isSelected(test)" (ngModelChange)="select(test, $event)"
+                                  [matTooltip]="test.name" (click)="$event.stopPropagation()">
+                        {{test.name}}
+                    </mat-checkbox>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <div *ngIf="!testGroups.length" mat-menu-item disabled>
+        No test categories selected
+    </div>
+</mat-menu>

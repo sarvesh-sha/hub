@@ -1,0 +1,16 @@
+########################
+# Builder notification #
+########################
+
+UPDATE!
+
+Credits back to normal on Service '${param.SERVICE}' for Customer '${param.CUSTOMER}' at ${param.TIMESTAMP}.
+
+Host: '${param.HOST}'
+Credits Balance: ${param.CREDITS_BALANCE}
+Credits Consumed: ${param.CREDITS_CONSUMED}
+CPU Load: ${param.CPU_LOAD}
+
+Details: https://builder.dev.optio3.io/#/customers/item/${param.CUSTOMER_SYSID}/service/${param.SERVICE_SYSID}
+
+Optio3

@@ -1,0 +1,18 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="typedElement as richText" style="height: 100%; display: flex; flex-direction: column">
+        <div class="row">
+            <div class="col-2">
+                <mat-form-field>
+                    <o3-color-picker [(ngModel)]="richText.backgroundColor" name="richText-background" placeholder="Background Color"></o3-color-picker>
+                </mat-form-field>
+            </div>
+        </div>
+        <o3-rich-text-editor #editor [(data)]="richText.data" [host]="this" [backgroundColor]="richText.backgroundColor" style="flex-grow: 1">
+            <span class="ql-formats">
+                <button mat-icon-button class="o3-no-ripple" (click)="createDateRange(editor)" [disableRipple]="true">
+                    <mat-icon style="font-size: 20px">date_range</mat-icon>
+                </button>
+            </span>
+        </o3-rich-text-editor>
+    </div>
+</ng-template>

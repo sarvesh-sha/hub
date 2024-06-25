@@ -1,0 +1,87 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <createTable tableName="JOB_SOURCE">
+            <column name="SYS_ID" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_CREATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYS_UPDATED_ON" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BRANCH" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMMIT" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNING_JOB" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REPO" type="VARCHAR_IGNORECASE(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <addPrimaryKey columnNames="SYS_ID" constraintName="CONSTRAINT_59" tableName="JOB_SOURCE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <createIndex indexName="JOBSOURCE__OWNING_JOB__FK_INDEX_5" tableName="JOB_SOURCE">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <createIndex indexName="JOBSOURCE__REPO__FK_INDEX_5" tableName="JOB_SOURCE">
+            <column name="REPO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <createIndex indexName="JOBSTEP__OWNING_JOB__FK_INDEX_D" tableName="JOB_STEP">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <createIndex indexName="REGISTRYTAGGEDIMAGE__OWNING_JOB__FK_INDEX_7" tableName="REGISTRY_TAGGED_IMAGE">
+            <column name="OWNING_JOB"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <createIndex indexName="REPOCHECKOUT__REPOSITORY__FK_INDEX_8" tableName="REPOSITORY_CHECKOUT">
+            <column name="REPOSITORY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <createIndex indexName="REPOCOMMIT__REPOSITORY__FK_INDEX_E" tableName="REPOSITORY_COMMIT">
+            <column name="REPOSITORY"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <createIndex indexName="TASK__DEPLOYMENT__FK_INDEX_B" tableName="DEPLOYMENT_TASK">
+            <column name="DEPLOYMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="JOB_SOURCE" constraintName="JOBSOURCE__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <addForeignKeyConstraint baseColumnNames="REPO" baseTableName="JOB_SOURCE" constraintName="JOBSOURCE__REPO__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-12">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="JOB_STEP" constraintName="JOBSTEP__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-13">
+        <addForeignKeyConstraint baseColumnNames="OWNING_JOB" baseTableName="REGISTRY_TAGGED_IMAGE" constraintName="REGISTRYTAGGEDIMAGE__OWNING_JOB__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="JOB"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-14">
+        <addForeignKeyConstraint baseColumnNames="REPOSITORY" baseTableName="REPOSITORY_CHECKOUT" constraintName="REPOCHECKOUT__REPOSITORY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-15">
+        <addForeignKeyConstraint baseColumnNames="REPOSITORY" baseTableName="REPOSITORY_COMMIT" constraintName="REPOCOMMIT__REPOSITORY__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="REPOSITORY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-16">
+        <addForeignKeyConstraint baseColumnNames="DEPLOYMENT" baseTableName="DEPLOYMENT_TASK" constraintName="TASK__DEPLOYMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="DEPLOYMENT_HOST"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,14 @@
+**/target/
+**/.vs/**/.suo
+**/phantomjs/*.exe
+**/phantomjs/*.pdf
+**/phantomjs/*.png
+
+.idea/workspace.xml
+.idea/uiDesigner.xml
+.idea/azureSettings.xml
+.idea/dataSources.local.xml
+
+**/selfSignedCert/
+
+web/*/stats.json

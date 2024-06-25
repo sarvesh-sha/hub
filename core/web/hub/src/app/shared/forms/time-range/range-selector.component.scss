@@ -1,0 +1,36 @@
+:host {
+    display: block;
+    margin-left: -12px;
+    margin-right: -8px;
+    @media (max-width: 599px) {
+        width: 100%;
+    }
+}
+
+.row {
+    margin: 0 !important;
+}
+
+div.row > div {
+    padding: 0;
+}
+
+o3-date-picker {
+    display: inline-block;
+}
+
+:host-context(.stacked-range) { // as in ranges step of widget wizard
+    width: 105%;
+
+    div.preset {
+        mat-form-field {
+            @media (min-width: 600px) {
+                max-width: 50%;
+            }
+
+            @media (min-width: 768px) {
+                max-width: 25%;
+            }
+        }
+    }
+}

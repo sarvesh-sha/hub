@@ -1,0 +1,92 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="Import..." (click)="importVersion()"></o3-tab-action>
+        <o3-tab-action label="Export..." (click)="exportDefinition()"></o3-tab-action>
+        <o3-tab-action label="Copy..." (click)="copy()"></o3-tab-action>
+
+        <o3-tab label="Metrics Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()"></o3-tab-action>
+
+            <form #metricsForm="ngForm" novalidate>
+                <section *ngIf="metricsDefinition?.model && selectedVersion">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Metrics Title" [ngModel]="metricsDefinition.model.title" name="title" readonly>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <textarea matInput placeholder="Metrics Description" [ngModel]="metricsDefinition.model.description" name="description" readonly></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6" *ngIf="selectedVersion && metricsVersions">
+                            <mat-form-field>
+                                <mat-select placeholder="Version" [ngModel]="selectedVersion.model.sysId" (valueChange)="versionChange($event)" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngIf="hasEditSession" [value]="head.model.sysId">Draft</mat-option>
+                                    <mat-option *ngFor="let version of metricsVersions" [value]="version.model.sysId">v{{version.model.version}} - {{version.model.createdOn | o3LongDateTime}}
+                                        <span *ngIf="isRelease(version.model.sysId)">(active)</span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="button-row">
+                                <button mat-raised-button type="button" (click)="configure('inputs')" *ngIf="areInputFieldsPristine">Edit inputs</button>
+                                <button mat-raised-button type="button" (click)="blocklyDialog.toggleOverlay()" *ngIf="areInputFieldsPristine" [disabled]="!blocklyWorkspace">Edit logic</button>
+                                <button mat-raised-button type="button" (click)="createNewVersion()" *ngIf="!isPristine">Save new version</button>
+                                <button mat-raised-button type="button" color="accent" (click)="makeRelease()" *ngIf="isPristine && !isReleaseSelected && !isInEditSession">
+                                    <mat-icon class="button-icon">warning</mat-icon>
+                                    Make v{{selectedVersion.model.version}} active
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <section *ngIf="inputs?.length > 0">
+                        <hr/>
+                        <h4>Options</h4>
+                        <div class="row">
+                            <div class="col-sm-6" *ngFor="let input of inputs">
+                                <o3-metric-input-field [inputParam]="input"></o3-metric-input-field>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </form>
+
+        </o3-tab>
+
+        <o3-overlay [config]="blocklyDialogConfig" #blocklyDialog (opened)="blocklyWorkspace.refreshSize()">
+            <form (ngSubmit)="save()" #metricsForm2="ngForm" novalidate style="height: 100%;">
+                <div *ngIf="currentDetails" style="display: flex; flex-direction: column; height: 100%;">
+                    <o3-app-blockly-workspace #blocklyWorkspace
+                                              [blocks]="blocks"
+                                              [data]="currentDetails.data"
+                                              (updated)="changeListener.emit()">
+                        <button mat-icon-button matTooltip="Undo" type="button" (click)="undo()" [disabled]="!isPristine || !canUndo">
+                            <mat-icon>undo</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Redo" type="button" (click)="redo()" [disabled]="!isPristine || !canRedo">
+                            <mat-icon>redo</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Save New Version" type="button" (click)="saveEditSession()" [disabled]="!isPristine || !isInEditSession">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <span class="status">
+                            <span *ngIf="isPristine && isInEditSession">Draft Saved</span>
+                            <span *ngIf="!isPristine">Saving <i class="fa fa-spin fa-spinner"></i></span>
+                        </span>
+                    </o3-app-blockly-workspace>
+                </div>
+            </form>
+        </o3-overlay>
+
+        <o3-overlay [config]="blocklyDialogConfig" #graphDialog>
+            <div *cdkPortal style="display: flex; flex-direction: column; height: 100%;">
+                <div *ngIf="currentDetails" style="flex-grow: 1;">
+                    <o3-asset-graph-step [(graph)]="currentDetails.graphModel"></o3-asset-graph-step>
+                </div>
+            </div>
+        </o3-overlay>
+    </o3-tab-group>
+</section>

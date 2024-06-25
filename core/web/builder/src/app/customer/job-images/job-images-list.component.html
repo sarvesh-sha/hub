@@ -1,0 +1,15 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false">
+    <o3-datatable-column id="tag" prop="tag" name="Tag"></o3-datatable-column>
+    <o3-datatable-column id="architecture" prop="architecture" name="Architecture"></o3-datatable-column>
+    <o3-datatable-column id="targetService" prop="targetService" name="Target Service"></o3-datatable-column>
+    <o3-datatable-column id="releaseStatus" prop="releaseStatus" name="Marked As"></o3-datatable-column>
+    <o3-datatable-column id="imageSha" prop="imageSha" name="Hash"></o3-datatable-column>
+
+    <o3-datatable-column id="inUse" name="In Use" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.dependencies.usages.inUseText(false)}}" matTooltipShowDelay="500">{{(row.extended.isInUse() | async) ? 'true' : 'false'}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="createdOn" prop="extended.model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

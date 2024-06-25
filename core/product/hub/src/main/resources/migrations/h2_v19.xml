@@ -1,0 +1,60 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <addColumn tableName="ASSET_DEVICE_ELEMENT">
+            <column name="RANGES" type="CLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <createIndex indexName="OWNING_ELEMENT__FK_INDEX_4" tableName="ASSET_DEVICE_ELEMENT_SAMPLE">
+            <column name="OWNING_ELEMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="PURPOSE" tableName="ALERT_DEFINITION"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-13">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="REASON" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-14">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATE" tableName="ASSET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-15">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="ALERT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-16">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="STATUS" tableName="REPORT"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-17">
+        <dropDefaultValue columnDataType="VARCHAR_IGNORECASE(255)" columnName="TYPE" tableName="ALERT_HISTORY"/>
+    </changeSet>
+    <!-- Bug in H2: we have to remove the constraint before dropping these indices -->
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-manual-1">
+        <dropForeignKeyConstraint baseTableName="ASSET_DEVICE_ELEMENT_SAMPLE" constraintName="OWNING_ELEMENT__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropIndex indexName="IDX4SVPQVAI0SKURR01AICR9338S" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropIndex indexName="IDX5R2YQH80H5KWUFD07SADS850N" tableName="RESULT_STAGING"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropIndex indexName="IDX94K3IV2BFUOJRVWY68W121XAH" tableName="RESULT_STAGING"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropIndex indexName="IDXEC2IA5WCG9OCEW6BKJC28J0V1" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <!-- Bug in H2: re-adding the constraint -->
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-manual-2">
+        <addForeignKeyConstraint baseColumnNames="OWNING_ELEMENT" baseTableName="ASSET_DEVICE_ELEMENT_SAMPLE" constraintName="OWNING_ELEMENT__FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SYS_ID" referencedTableName="ASSET_DEVICE_ELEMENT"/>
+    </changeSet>
+	<changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <dropColumn columnName="PROPERTIES" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <dropColumn columnName="RANGE_END" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropColumn columnName="RANGE_START" tableName="ASSET_DEVICE_ELEMENT_SAMPLE"/>
+    </changeSet>
+</databaseChangeLog>

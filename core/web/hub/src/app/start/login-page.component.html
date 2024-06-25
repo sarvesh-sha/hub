@@ -1,0 +1,33 @@
+﻿<section class="bs start-container">
+    <mat-card class="animated fadeIn" style="animation-delay: .75s">
+        <form (ngSubmit)="signin()" #signinForm="ngForm" novalidate autofocus>
+            <mat-card-title><img style="height: 52px;" [src]="logo.color150Tall"></mat-card-title>
+            <mat-card-subtitle>Log in to continue</mat-card-subtitle>
+            <mat-card-content>
+                <mat-form-field>
+                    <input #test_emailInput matInput type="email" placeholder="Email Address" [disabled]="pending" [(ngModel)]="username" name="username" required email autofocus>
+                </mat-form-field>
+                <mat-form-field>
+                    <input #test_passwordInput matInput type="password" placeholder="Password" [disabled]="pending" [(ngModel)]="password" name="password" required>
+                </mat-form-field>
+                <div class="clearfix"></div>
+                <div class="text-center">
+                    <a href="javascript:void(0)" (click)="forgotPassword()">Forgot Password?</a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="text-center">
+                    <a href="javascript:void(0)" (click)="resetPassword()">Use reset token!</a>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button #test_loginButton mat-raised-button color="primary" type="submit" [disabled]="!signinForm.valid || signinForm.pristine || pending">Login</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+    <div class="text-center version">
+        Build: {{appService.environment.version}}
+    </div>
+</section>
+
+<!--Errors Container-->
+<o3-error-list-pane></o3-error-list-pane>

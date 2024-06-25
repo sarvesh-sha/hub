@@ -1,0 +1,151 @@
+@import "../app.variables.scss";
+
+@mixin topnav($theme) {
+
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Top Nav
+    //-----------------------------
+    .mat-toolbar.topnav-container {
+        -webkit-transition: background-color 350ms linear;
+        -moz-transition: background-color 350ms linear;
+        -o-transition: background-color 350ms linear;
+        -ms-transition: background-color 350ms linear;
+        transition: background-color 350ms linear;
+        -webkit-animation-direction: alternate; // Chrome, Safari, Opera
+        animation-direction: alternate;
+
+        height: 56px; // height of Inbox's header
+        min-height: 56px;
+
+        .mat-toolbar-row {
+            height: 56px;
+        }
+
+        .mat-icon-button {
+
+            .mat-button-focus-overlay {
+                z-index: -1;
+            }
+        }
+
+        .topnav-menu-btn {
+            margin-left: 10px;
+            margin-top: -6px; // when breadcrums are in top nav
+        }
+
+        .topnav-search {
+
+            input {
+                caret-color: white;
+            }
+
+            .mat-form-field-underline {
+                background-color: white;
+                bottom: 1.4em !important;
+
+                .mat-form-field-ripple {
+                    display: none;
+                }
+            }
+
+            .mat-form-field-wrapper {
+                padding: 0 0 1em 0;
+            }
+
+            .md2-autocomplete-trigger {
+                border-bottom-color: #fff;
+
+                input {
+                    color: #fff;
+                    font-size: 16px;
+                }
+
+                svg {
+                    color: #fff;
+                }
+            }
+
+            i.search-progress {
+                position: absolute;
+                right: 0;
+                top: 7.5px;
+            }
+        }
+
+        .topnav-title {
+            line-height: 32px;
+            margin-left: 15px;
+            margin-top: -7px; // when breadcrumbs are in top nav (and static position)
+            //margin-top: 7px;      // when breadcrumbs are in top nav (and dynamic position)
+
+            img {
+                display: inline;
+                height: 30px;
+                margin-top: 0;
+                vertical-align: bottom;
+            }
+        }
+
+        .topnav-avatar {
+            width: 40px;
+            height: 40px;
+        }
+
+        .profile-button {
+            margin-right: 10px;
+        }
+    }
+
+    // Top Nav Auto Complete
+    //-----------------------------
+    .mat-autocomplete-panel {
+        min-width: 280px !important;
+
+        .mat-option {
+            padding: 0 8px;
+            border-bottom: 1px solid #EAEAEA;
+            font-size: 14px;
+
+            i {
+                margin-right: 5px;
+            }
+
+            &.twoline {
+                line-height: 50px;
+                height: 60px;
+                position: relative;
+
+                small {
+                    display: block;
+                    margin-left: 32.5px;
+                    font-size: 80%;
+                    color: #aeaeae;
+                    line-height: 85%;
+                    position: absolute;
+                    bottom: 12.5px;
+                }
+            }
+
+            &.summary {
+                font-size: 80%;
+                background-color: rgb(245, 245, 245);
+                line-height: 30px;
+                height: 30px;
+                color: #757575;
+                padding-left: 35px;
+
+                i.o3-view-item {
+                    vertical-align: middle;
+                    margin-top: -4px;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,93 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="data?.element && data.graph">
+        <mat-form-field>
+            <input matInput placeholder="Field Label" name="fieldLabel" [(ngModel)]="data.element.label"/>
+        </mat-form-field>
+
+        <ng-container *ngIf="asAggregatedValueField() as aggregatedValueField">
+            <o3-control-point-grouping-step
+                forPane
+                isAggregationSummary
+                [controlPointGroups]="data.controlPointGroups"
+                [graph]="data.graph"
+                [graphContexts]="data.graphContexts">
+            </o3-control-point-grouping-step>
+        </ng-container>
+
+        <ng-container *ngIf="asCurrentValueField() as currentValueField">
+            <mat-form-field>
+                <o3-select
+                    placeholder="Node for Value"
+                    name="currValuePoint"
+                    [ngModel]="currentValueField.pointInput?.nodeId" (ngModelChange)="currentValueField.pointInput = getPointInput($event); data.updatePropSchema()"
+                    [o3AssetGraphNodeSelector]="data.graph"
+                    [multiSelect]="false">
+                </o3-select>
+            </mat-form-field>
+            <o3-equivalent-units-selector [unitsFactors]="data.unitsFactors" [(units)]="data.unitsSelected"
+                                          [updatePreferred]="false"></o3-equivalent-units-selector>
+            <mat-form-field>
+                <input name="currValueSuffix" placeholder="Suffix" matInput [(ngModel)]="currentValueField.suffix"/>
+            </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="asChartField() as chartField">
+            <mat-form-field>
+                <o3-select
+                    placeholder="Select Points"
+                    name="chartPoints"
+                    [ngModel]="data.selectedPoints" (ngModelChange)="data.updateSelectedPoints($event)"
+                    [o3AssetGraphNodeSelector]="data.graph"
+                    [o3AssetGraphNodeSelectorOnlyLeaves]="true">
+                </o3-select>
+            </mat-form-field>
+            <o3-time-series-container
+                *ngIf="data.chartExt"
+                class="no-padding"
+                [(configExt)]="data.chartExt" (configExtChange)="chartField.config = $event.model"
+                [range]="data.range"
+                [readonly]="false"
+                [configurationOnly]="true">
+            </o3-time-series-container>
+        </ng-container>
+
+        <ng-container *ngIf="asAlertFeedField() as alertFeedField">
+            <mat-form-field>
+                <o3-select
+                    placeholder="Node for Alerts"
+                    name="alertFeedLoc"
+                    [ngModel]="alertFeedField.locationInput?.nodeId" (ngModelChange)="alertFeedField.locationInput = getPointInput($event)"
+                    [o3AssetGraphNodeSelector]="data.graph"
+                    [multiSelect]="false">
+                </o3-select>
+            </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="asAlertCountField() as alertCountField">
+            <mat-form-field>
+                <o3-select
+                    placeholder="Node for Alerts"
+                    name="alertCountLoc"
+                    [ngModel]="alertCountField.locationInput?.nodeId" (ngModelChange)="alertCountField.locationInput = getPointInput($event)"
+                    [o3AssetGraphNodeSelector]="data.graph"
+                    [multiSelect]="false">
+                </o3-select>
+            </mat-form-field>
+            <div style="height: 26px">
+                <mat-checkbox [checked]="alertCountField.onlyActive" (change)="updateAlertCountActive($event.checked)">Only active alerts</mat-checkbox>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="asPathMapField() as pathMapField">
+            <mat-form-field>
+                <o3-select
+                    placeholder="Node for Location"
+                    name="pathMapLoc"
+                    [ngModel]="pathMapField.locationInput?.nodeId" (ngModelChange)="pathMapField.locationInput = getPointInput($event)"
+                    [o3AssetGraphNodeSelector]="data.graph"
+                    [multiSelect]="false">
+                </o3-select>
+            </mat-form-field>
+        </ng-container>
+    </ng-container>
+</ng-template>

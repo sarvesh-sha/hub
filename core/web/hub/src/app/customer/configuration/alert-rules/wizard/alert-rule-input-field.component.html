@@ -1,0 +1,67 @@
+<section class="row">
+    <div class="col-sm-12">
+        <mat-form-field *ngIf="numberValue">
+            <input [placeholder]="title" matInput type="number" [(ngModel)]="numberValue.value" [readonly]="readonly"/>
+            <mat-hint>{{description}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="stringValue">
+            <input [placeholder]="title" matInput type="text" [(ngModel)]="stringValue.value" [readonly]="readonly"/>
+            <mat-hint>{{description}}</mat-hint>
+        </mat-form-field>
+
+        <div *ngIf="booleanValue">
+            <mat-checkbox [(ngModel)]="booleanValue.value" [disabled]="readonly">{{title}}</mat-checkbox>
+            <div class="hint-label">{{description}}</div>
+        </div>
+
+        <div *ngIf="dateTimeValue">
+            <o3-date-picker [(model)]="dateTimeValue.value" label="Pick a Date & Time" [hintLabel]="description" [readonly]="readonly">
+            </o3-date-picker>
+        </div>
+
+        <div *ngIf="controlPointValue">
+            <o3-overlay #dialog (closed)="controlPointValue.sync()" [config]="dialogConfig">
+                <div class="row" style="margin: 1em 0">
+                    <div class="col-sm-12">
+                        <o3-control-point-selector [limit]="1" [selection]="controlPointValue.selection"></o3-control-point-selector>
+                    </div>
+                </div>
+            </o3-overlay>
+
+            <o3-overlay-input [readonly]="readonly" [label]="title" [hintLabel]="description" [valueText]="controlPointValue.display" iconClass="o3 o3-search" [overlay]="dialog">
+            </o3-overlay-input>
+        </div>
+
+        <div *ngIf="controlPointsValue">
+            <o3-overlay #dialog [config]="dialogConfig">
+                <div class="row" style="margin: 1em 0">
+                    <div class="col-sm-12">
+                        <o3-control-point-selector [selection]="controlPointsValue.selection"></o3-control-point-selector>
+                    </div>
+                </div>
+            </o3-overlay>
+
+            <o3-overlay-input [readonly]="readonly" [label]="title" [hintLabel]="description" [valueText]="controlPointsValue.display" iconClass="o3 o3-search" [overlay]="dialog">
+            </o3-overlay-input>
+        </div>
+
+        <div *ngIf="deliveryOptionsValue">
+            <o3-overlay #dialog [config]="dialogConfig">
+                <div class="row" style="margin: 1em 0">
+                    <div class="col-sm-12">
+                        <o3-delivery-options [deliveryOptions]="deliveryOptionsValue.selection"></o3-delivery-options>
+                    </div>
+                </div>
+            </o3-overlay>
+
+            <o3-overlay-input [readonly]="readonly" [label]="title" [hintLabel]="description" [valueText]="deliveryOptionsValue.display" iconClass="o3 o3-search" [overlay]="dialog">
+            </o3-overlay-input>
+        </div>
+
+        <div *ngIf="durationValue">
+            <o3-duration-selector [readonly]="readonly" [unitPlaceholder]="title" [hintLabel]="description" [(units)]="durationValue.unitsValue"
+                                  [(amount)]="durationValue.amountValue" [excludes]="[]"></o3-duration-selector>
+        </div>
+    </div>
+</section>

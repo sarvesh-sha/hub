@@ -1,0 +1,24 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+
+# In production, this needs to be mapped to a volume, or Docker-on-Docker won't work properly.
+scratchDirectory: /optio3-scratch
+
+connectionUrl: ${param.WS_CONNECTION_URL}/api/v1/message-bus
+
+hostId: ${param.HOST_ID}
+instanceId: ${param.INSTANCE_ID}
+
+watchdogFile: /optio3-watchdog
+heartbeatFile: /optio3-heartbeat
+
+dnsHints:
+${param.DNS_HINTS}

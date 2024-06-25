@@ -1,0 +1,40 @@
+<o3-filter-overlay [pristine]="pristine" [resetFilterButtonDisabled]="!hasEditFilters"
+                   (filterApplied)="applyFilterEdits()" (filterCleared)="clearFilterEdits()">
+    <ng-container *ngIf="initialized && optionsLoaded">
+        <mat-form-field *ngIf="!excludeLocation">
+            <o3-select [o3LocationSelector]="true" name="locations" defaultValueDescription="Select Locations"
+                       [(ngModel)]="editRequest.locationIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select placeholder="Priority" name="workflow-priority" [options]="workflowPriorityOptions"
+                       [(ngModel)]="editRequest.workflowPriorityIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select placeholder="Status" name="workflow-status" [options]="workflowStatusOptions"
+                       [(ngModel)]="editRequest.workflowStatusIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select placeholder="Type" name="workflow-type" [options]="workflowTypeOptions"
+                       [(ngModel)]="editRequest.workflowTypeIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select placeholder="Created By" name="workflow-created-by" [options]="userOptions"
+                       [(ngModel)]="editRequest.createdByIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select placeholder="Assigned To" name="workflow-assigned-to" [options]="userOptions"
+                       [(ngModel)]="editRequest.assignedToIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+    </ng-container>
+</o3-filter-overlay>

@@ -1,0 +1,99 @@
+﻿<section class="bs page-content">
+
+    <form (ngSubmit)="save()" #modelForm="ngForm" novalidate>
+        <mat-card class="page-card">
+            <mat-card-content>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [value]="extended.model.name" name="Name" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Build Id" [value]="extended.model.buildId" name="BuildId" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Timeout (in seconds)" [value]="extended.model.timeout" name="Timeout" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-8" *ngIf="isType(namespaceForTypes.JobDefinitionStepExtendedForDockerBuild)">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Source Path" [value]="extended.asDockerBuild.sourcePath" name="SourcePath" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Docker File" [value]="extended.asDockerBuild.dockerFile" name="DockerFile" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Target Service" [value]="extended.asDockerBuild.targetService" name="TargetService" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-8" *ngIf="isType(namespaceForTypes.JobDefinitionStepExtendedForDockerPush)">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Source Image" [value]="extended.asDockerPush.sourceImage" name="SourceImage" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Image Tag" [value]="extended.asDockerPush.imageTag" name="ImageTag" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-8" *ngIf="isType(namespaceForTypes.JobDefinitionStepExtendedForDockerRun)">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Image" [value]="extended.asDockerRun.image" name="Image" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Command Line" [value]="extended.asDockerRun.commandLine" name="CommandLine" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Working Directory" [value]="extended.asDockerRun.workingDirectory" name="WorkingDirectory" readonly>
+                        </mat-form-field>
+
+                        <!--
+                            environmentVariables: { [key: string]: string; };
+                            bindings: Array<string>;
+                        -->
+                    </div>
+
+                    <div class="col-sm-8" *ngIf="isType(namespaceForTypes.JobDefinitionStepExtendedForGit)">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Repository" [value]="extended.asGitExt.getRepoUrl() | async" name="Repo" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Directory" [value]="extended.asGit.directory" name="Directory" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-8" *ngIf="isType(namespaceForTypes.JobDefinitionStepExtendedForMaven)">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Pull From" [value]="extended.asMaven.pullFrom" name="Pull From" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Directory" [value]="extended.asMaven.directory" name="Directory" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-8" *ngIf="isType(namespaceForTypes.JobDefinitionStepExtendedForSshCommand)">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Credentials" [value]="extended.asSshCommand.credentials" name="Credentials" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Target Host" [value]="extended.asSshCommand.targetHost" name="TargetHost" readonly>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Command Line" [value]="extended.asSshCommand.commandLine" name="CommandLine" readonly>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!modelForm.valid || modelForm.pristine">Update</button>
+                <button mat-raised-button type="button" (click)="exit()" *ngIf="modelForm.pristine">Close</button>
+                <button mat-raised-button type="button" (click)="exit()" *ngIf="!modelForm.pristine">Cancel</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+</section>

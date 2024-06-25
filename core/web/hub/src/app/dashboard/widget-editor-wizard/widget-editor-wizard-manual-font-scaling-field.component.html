@@ -1,0 +1,9 @@
+<mat-form-field>
+    <input placeholder="Font Size Multiplier" name="font-size-multiplier"
+           [(ngModel)]="fontMultiplier" (ngModelChange)="fontMultiplierChanged()"
+           matInput type="number" step="any" required [min]="minFontMultiplier" [max]="maxFontMultiplier"/>
+
+    <label matSuffix class="o3-manual-font-scaling-label">
+        {{fontMultiplier}}x font size
+    </label>
+</mat-form-field>

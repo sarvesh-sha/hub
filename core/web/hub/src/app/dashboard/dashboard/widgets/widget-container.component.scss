@@ -1,0 +1,260 @@
+@import "../../../../framework/ui/app.variables.scss";
+
+$dashboard-color: #2196f3;
+$widget-color: white;
+$subwidget-color: white;
+$toolbar-border: none;
+$toolbar-text-transform: none;
+$toplevel-radius: 12px;
+$subwidget-radius: 10px;
+$toolbar-height: var(--widget-toolbar-height);
+
+$loading-border-color: #0076E1;
+
+@mixin fill-container($skew) {
+    position: absolute;
+    width: calc(100% + #{$skew * 2});
+    height: calc(100% + #{$skew * 2});
+    left: -$skew;
+    top: -$skew;
+}
+
+.widget-portal {
+    position: absolute;
+    display: block;
+    height: 100%;
+    @include fill-container(0px);
+
+    &.showing-hidden-toolbar {
+        top: calc(-1 * #{$toolbar-height});
+        height: calc(100% + #{$toolbar-height});
+    }
+}
+
+.o3-widget-root {
+    @include fill-container(0px);
+
+    --border-radius: #{$toplevel-radius};
+
+    &.subwidget {
+        --border-radius: #{$subwidget-radius};
+    }
+
+    > .o3-widget-content {
+        @include fill-container(0px);
+        border-radius: var(--border-radius);
+        padding-top: 0px;
+        background: $widget-color;
+        overflow: hidden;
+        z-index: 0;
+        min-height: 1px;
+        font-size: 14px;
+
+        &.scrollable {
+            overflow-y: auto;
+        }
+
+        .o3-widget-hider {
+            @include fill-container(0px);
+            background: $widget-color;
+            z-index: 1;
+        }
+    }
+
+    > .o3-widget-protector {
+        @include fill-container(0px);
+    }
+
+    > .o3-widget-toolbar {
+        position: absolute;
+        width: 100%;
+        height: $toolbar-height;
+
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+
+        border-radius: var(--border-radius);
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-bottom: $toolbar-border;
+
+        > .o3-toolbar-content {
+            display: flex;
+            width: 100%;
+            border-radius: inherit;
+            align-items: center;
+            position: absolute;
+            top: 0px;
+            bottom: unset;
+            background: $widget-color;
+
+            .o3-toolbar-title {
+                flex: 0 1 auto;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 18px;
+                text-transform: $toolbar-text-transform;
+                white-space: nowrap;
+                line-height: normal;
+
+                > span {
+                    padding-left: 12px;
+                }
+            }
+
+            .o3-toolbar-buttons-left, .o3-toolbar-buttons-right {
+                display: flex;
+            }
+
+            .o3-toolbar-buttons-left {
+                overflow: hidden;
+
+                > .mat-icon-button {
+                    margin: 0px -5px;
+
+                    &:first-child {
+                        margin-left: 0px;
+                    }
+
+                    &:last-child {
+                        margin-right: 0px;
+                    }
+                }
+            }
+
+            .o3-toolbar-buttons-right {
+                min-width: 42px;
+                margin-left: auto;
+
+                > .o3-toolbar-action-maximize, > .o3-toolbar-action-minimize {
+                    display: none
+                }
+
+                &.o3-toolbar-maximizable {
+                    > .o3-toolbar-action-maximize, > .o3-toolbar-action-minimize {
+                        display: block;
+                        margin-left: -12px;
+                    }
+
+                    > .o3-toolbar-action-menu {
+                        margin-left: -11px;
+                    }
+                }
+            }
+        }
+    }
+
+    > .o3-widget-border {
+        @include fill-container(0px);
+        border-radius: calc(var(--border-radius) + 2px);
+        z-index: -1;
+    }
+
+    &.o3-border-focus {
+        > .o3-widget-content {
+            clip-path: inset(2px round var(--border-radius));
+        }
+
+        > .o3-widget-border {
+            background: $dashboard-color;
+        }
+    }
+
+    &.o3-border-loading {
+        > .o3-widget-content {
+            clip-path: inset(3px round var(--border-radius));
+        }
+
+        > .o3-widget-border {
+            background: $loading-border-color;
+            animation: fadeInOut 2s linear infinite;
+        }
+    }
+
+    &.o3-border-editing > .o3-widget-border {
+        background: none;
+    }
+
+    &.o3-toolbar-visible {
+        > .o3-widget-content {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+
+        > .o3-widget-content, > .o3-widget-protector {
+            top: $toolbar-height;
+            height: calc(100% - #{$toolbar-height});
+        }
+
+        > .o3-widget-toolbar .o3-toolbar-content {
+            bottom: 0px;
+        }
+
+        &.o3-border-focus {
+            > .o3-widget-toolbar {
+                clip-path: inset(2px 2px 0px 2px round var(--border-radius) var(--border-radius) 0 0);
+            }
+
+            > .o3-widget-content {
+                clip-path: inset(0px 2px 2px 2px round 0 0 var(--border-radius) var(--border-radius));
+            }
+        }
+
+        &.o3-border-loading {
+            > .o3-widget-toolbar {
+                clip-path: inset(3px 3px 0px 3px round var(--border-radius) var(--border-radius) 0 0);
+            }
+
+            > .o3-widget-content {
+                clip-path: inset(0px 3px 3px 3px round 0 0 var(--border-radius) var(--border-radius));
+            }
+        }
+    }
+
+    &.subwidget {
+        > .o3-widget-content {
+            background: $subwidget-color;
+
+            .o3-widget-hider {
+                background: $subwidget-color;
+            }
+        }
+
+        > .o3-widget-toolbar {
+            > .o3-toolbar-content {
+                background: $subwidget-color;
+            }
+        }
+    }
+
+    &.collapsed {
+        > .o3-widget-content {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        > .o3-widget-toolbar {
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+
+        &.o3-border-focus {
+            > .o3-widget-toolbar {
+                clip-path: inset(2px round var(--border-radius));
+            }
+        }
+
+        &.o3-border-loading {
+            > .o3-widget-toolbar {
+                clip-path: inset(3px round var(--border-radius));
+            }
+        }
+    }
+}
+
+:host-context(.columnar) {
+    .o3-border-focus > .o3-widget-border {
+        background: $dashboard-color !important;
+    }
+}

@@ -1,0 +1,4 @@
+<ng-template o3-wizard-step-template>
+    <o3-control-point-selector #test_cpSelector [selection]="selection" (onSelectionChange)="sync($event)"
+                               [flex]="true" [limit]="maxSelection"></o3-control-point-selector>
+</ng-template>

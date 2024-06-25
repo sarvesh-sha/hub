@@ -1,0 +1,9 @@
+<ng-template cdkPortal #tooltipTemplate="cdkPortal">
+    <div class="chart-tooltip">
+        <div class="arrow" [style.left]="leftOffset"></div>
+        <div class="chart-tooltip-content" [class.o3-chart-tooltip--mobile]="isMobile">
+            <div [innerHTML]="tooltipHtml"></div>
+            <div>{{tooltipText}}</div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<o3-tab-subsection *ngIf="withFiltering" [withFiltering]="withFiltering" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable [table]="table">
+    <o3-datatable-column id="name" sortId="!name" prop="extended.model.name" name="Instance Name"></o3-datatable-column>
+    <o3-datatable-column id="lastUpdated" sortId="lastUpdatedDate" prop="extended.model.lastUpdatedDate" name="Last Updated" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="extended.model.createdOn" name="Created On" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="instanceId" sortId="instanceId" prop="extended.model.instanceId" name="Instance Id"></o3-datatable-column>
+    <o3-datatable-column id="state" sortId="state" prop="extended.model.state" name="State"></o3-datatable-column>
+    <o3-datatable-column id="cpu" sortId="cpuLoad" prop="extended.typedModel.cpuLoadLast4Hours" name="CPU Load"></o3-datatable-column>
+    <o3-datatable-column id="cpuPrevious" sortId="cpuLoadPrevious" prop="extended.typedModel.cpuLoadPrevious4Hours" name="Previous CPU Load"></o3-datatable-column>
+    <o3-datatable-column id="location" sortId="location" prop="locationName" name="Location"></o3-datatable-column>
+</o3-datatable>

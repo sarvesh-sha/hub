@@ -1,0 +1,19 @@
+#########################
+# Optio3 Password Reset #
+#########################
+
+Hello ${param.FIRST_NAME} ${param.LAST_NAME},
+
+We received your request to reset the password on your account.
+
+Present this token:
+
+    ${param.TOKEN}
+
+to the login page at:
+
+    ${param.SITE_URL}
+
+
+Have a nice day,
+ the Optio3 team

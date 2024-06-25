@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-12">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>{{label}}</mat-expansion-panel-header>
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-checkbox (ngModelChange)="model.isUnclassified=false; filtersUpdated.emit()" [(ngModel)]="model.isClassified">Classified Only</mat-checkbox>
+                </div>
+                <div class="col-sm-4">
+                    <mat-checkbox (ngModelChange)="model.isClassified=false; filtersUpdated.emit()" [(ngModel)]="model.isUnclassified">Unclassified Only</mat-checkbox>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</div>

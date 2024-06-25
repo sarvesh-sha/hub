@@ -1,0 +1,9 @@
+<mat-form-field *ngIf="graphOptions">
+    <o3-select #test_assets [(ngModel)]="selectedAsset"
+               [placeholder]="graph.name || 'Asset'" [options]="graphOptions"
+               [multiSelect]="false" singleClick preventDeselection></o3-select>
+</mat-form-field>
+
+<div class="o3-watermark-caption" *ngIf="!graphOptions">
+    Asset structure not loaded
+</div>

@@ -1,0 +1,244 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group #tabGroup>
+
+        <o3-tab-action label="Flush Heartbeat" *ngIf="isAdmin" (click)="flushHeartbeat()"></o3-tab-action>
+        <o3-tab-action label="Restart" *ngIf="isAdmin" (click)="restart()"></o3-tab-action>
+
+        <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="modelForm.pristine"></o3-tab-action>
+        <o3-tab-action label="Cancel" priority="secondary" (click)="exit()" *ngIf="!modelForm.pristine"></o3-tab-action>
+
+        <o3-tab label="Agent Details">
+
+            <o3-tab-action label="Activate" priority="secondary" (click)="extended.makeActive()" *ngIf="extended.canActivate()"></o3-tab-action>
+            <o3-tab-action label="Terminate" priority="secondary" (click)="terminate()" [disabled]="extendedNoTerminateReason != null" [tooltip]="extendedNoTerminateReason"></o3-tab-action>
+
+            <o3-tab-action label="Remove" icon="delete" priority="tertiary" (click)="remove()" [disabled]="extendedNoRemoveReason != null"
+                           [tooltip]="extendedNoRemoveReason"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #modelForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Instance Id" [value]="extended.model.instanceId" name="agentInstanceId" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Docker Id" [value]="extended.model.dockerId" name="agentDockerId" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-4 clickable-input" (click)="goToImage()">
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Docker Image" [value]="imageTag" name="agentDockerImage" readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-1">
+                                <button mat-icon-button type="button" *ngIf="image">
+                                    <mat-icon>chevron_right</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Architecture" [value]="extended.model.details?.architecture" name="agentArchitecture" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Processors" [value]="extended.model.details?.availableProcessors" name="agentProcessors" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Cpu User" [value]="extended.cpuUser | percent:'1.0-0'" name="agentCpuUsageUser" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Cpu System" [value]="extended.cpuSystem | percent:'1.0-0'" name="agentCpuUsageSystem" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Disk Size" [value]="extended.diskSize" name="agentCpuUsageUser" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Disk Free" [value]="extended.diskFree | percent:'1.0-0'" name="agentCpuUsageSystem" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="CPU Temperature" [value]="extended.cpuTemperature" name="agentCpuTemperature" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Battery Voltage" [value]="extended.batteryVoltage" name="agentBatteryVoltage" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto" *ngIf="displayShutdownConfiguration">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Shutdown Voltage" [(ngModel)]="extended.model?.details?.shutdownConfiguration.turnOffVoltage"
+                                   name="turnOffVoltage" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-auto" *ngIf="displayShutdownConfiguration">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Restart Voltage" [(ngModel)]="extended.model?.details?.shutdownConfiguration.turnOnVoltage"
+                                   name="turnOnVoltage" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-auto" *ngIf="displayShutdownConfiguration">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Shutdown Delay in Seconds" [(ngModel)]="extended.model?.details?.shutdownConfiguration.turnOffDelaySeconds"
+                                   name="turnOffDelaySeconds" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-auto" *ngIf="displayShutdownConfiguration">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Restart Delay in Seconds" [(ngModel)]="extended.model?.details?.shutdownConfiguration.turnOnDelaySeconds"
+                                   name="turnOnDelaySeconds" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Total Memory" [value]="extended.model.details?.totalMemory | number:'.0'" name="agentTotalMemory" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Free Memory" [value]="extended.model.details?.freeMemory | number:'.0'" name="agentFreeMemory" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-auto">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Max Memory" [value]="extended.model.details?.maxMemory | number:'.0'" name="agentMaxMemory" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Supported Features" [value]="extended.getSupportedFeaturesDesc()" name="agentSupportedFeatures" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="networkInterfaceKeys && networkInterfaceKeys.length > 0">
+                    <table class="table table-striped table-bordered selectable">
+                        <thead>
+                        <tr>
+                            <th>Network Interface</th>
+                            <th>Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let itf of networkInterfaceKeys">
+                            <td>{{itf}}</td>
+                            <td>{{getNetworkInterfaceValue(itf)}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-2">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Heartbeat" [value]="extended.model.lastHeartbeat|o3LongDateTime" name="agentHeartbeat" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-xl-10">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Status" [value]="extended.getStatusDesc() | async" name="agentStatus" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Shell" (selected)="log.enableKeyDownHandler()" (unselected)="log.disableKeyDownHandler()">
+
+            <o3-tab-action label="Login" priority="secondary" [disabled]="shellOpening || !!shellToken" (click)="loginShell()"></o3-tab-action>
+            <o3-tab-action label="Launch" priority="secondary" [disabled]="shellOpening || !!shellToken || !cmd" (click)="newShell()"></o3-tab-action>
+            <o3-tab-action label="Stop" priority="secondary" [disabled]="shellOpening || !shellToken" (click)="closeShell()"></o3-tab-action>
+            <o3-tab-action label="Download Session" priority="secondary" (click)="prepareDownload()"></o3-tab-action>
+
+            <form (ngSubmit)="newShell()" #shellForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Shell command to execute" [(ngModel)]="cmd" name="cmd" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section o3-expand>
+                            <o3-console-log #log [scrollLockEnabled]="lockScroll" [configurable]="false" [filterable]="false" (commandSubmitted)="onConsoleInputCommand($event)">
+                                <o3-console-log-column type="lineNumber" name="#" [enabled]="true"></o3-console-log-column>
+                                <o3-console-log-column type="timestamp" name="Timestamp" [enabled]="true"></o3-console-log-column>
+                            </o3-console-log>
+                        </section>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Threads">
+
+            <o3-tab-action label="Refresh" priority="secondary" (click)="fetchThreads()" [disabled]="threadsFetching"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field>
+                            <textarea matInput [value]="threads" name="threads" rows="30" wrap="off" readonly
+                                      style="font-size: 10pt; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </o3-tab>
+
+        <o3-tab label="Loggers">
+
+            <o3-tab-action label="Fetch" priority="primary" (click)="resetLoggers()" [disabled]="loggersUpdating" *ngIf="!loggers"></o3-tab-action>
+            <o3-tab-action label="Submit" priority="primary" (click)="saveLoggers()" [disabled]="loggersUpdating || (loggersComp && !loggersComp.isDirty)" *ngIf="loggers"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="resetLoggers()" [disabled]="loggersUpdating || (loggersComp && !loggersComp.isDirty)" *ngIf="loggers"></o3-tab-action>
+
+            <div *ngIf="!loggers">
+                No information available.
+            </div>
+
+            <o3-loggers #loggersComp [loggers]="loggers" *ngIf="loggers"></o3-loggers>
+        </o3-tab>
+    </o3-tab-group>
+
+</section>

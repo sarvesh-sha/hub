@@ -1,0 +1,66 @@
+<div class="time-series-container">
+    <div class="visualization" *ngIf="hasData">
+        <o3-chart-set #visualization [range]="range" [externalGraphCharts]="externalGraphCharts" [externalGraphsHost]="externalGraphHost"
+                      [embedded]="true" [viewWindow]="viewWindow" [zoomable]="focus && !editing"
+                      [readonly]="true" [resizable]="false" [allowDashboardAdd]="false"
+                      (chartUpdated)="updateMenuItems()"
+                      [allowConsolidatedSources]="false" (sourcesConsolidatedUpdated)="refreshSize()"
+                      (startedFetchingData)="changeLoading(true)" (stoppedFetchingData)="changeLoading(false)"></o3-chart-set>
+    </div>
+
+    <o3-tab-action label="View in Data Explorer" (click)="viewInDataExplorer()"></o3-tab-action>
+    <ng-container *ngIf="annotations.length > 0">
+        <o3-tab-action>
+            <ng-template #optionTemplate>
+                <button mat-menu-item (click)="annotationOverlay.toggleOverlay()" matTooltip="Toggle annotation overlay">
+                    <mat-icon class="o3-time-series-widget--annotation-icon">speaker_notes</mat-icon>
+                    {{annotationOptionLabel}}
+                </button>
+            </ng-template>
+        </o3-tab-action>
+
+        <o3-annotation-overlay #annotationOverlay [annotations]="annotations" [readonly]="true"
+                               (annotationToggled)="annotationMap.get($event).optio3Chart.queueUpdate()"></o3-annotation-overlay>
+    </ng-container>
+    <o3-tab-action *ngIf="interactableCharts.length > 0">
+        <ng-template #optionTemplate>
+            <button mat-menu-item class="o3-time-series-widget--sources-option">
+                <o3-consolidated-source-chip
+                    disableConsolidatedRipple
+                    [charts]="interactableCharts"
+                    [embedded]="true"
+                    [sortSources]="false"
+                    [deletable]="false"
+                    [showSingleChipTooltips]="isLine">
+                </o3-consolidated-source-chip>
+            </button>
+        </ng-template>
+    </o3-tab-action>
+
+    <ng-container *ngFor="let configExt of activeVisualization?.configExts">
+        <o3-tab-action *ngFor="let entry of configExt.assetSelectionHelper.currentAssetOptions; trackBy: configExt.assetSelectionHelper.trackOptionList">
+            <ng-template #optionTemplate>
+                <button mat-menu-item class="o3-time-series-widget--select-option">
+                    <mat-form-field (click)="$event.stopPropagation()">
+                        <o3-select [name]="entry.rootId" [options]="entry.list" [placeholder]="entry.name"
+                                   [multiSelect]="configExt.assetSelectionHelper.getInitialAssetStructurePlurality(entry.binding)"
+                                   preventDeselection singleClick allowSingleOrMulti
+                                   [ngModel]="configExt.assetSelectionHelper.getAssetNodeSelections(entry.binding)"
+                                   (ngModelChange)="configExt.assetSelectionHelper.setAssetNodeSelections(entry.binding, $event)"></o3-select>
+                    </mat-form-field>
+                </button>
+            </ng-template>
+        </o3-tab-action>
+        <o3-tab-action *ngIf="configExt.assetSelectionHelper.gpsOptions.length && !configExt.hasExternalBindings">
+            <ng-template #optionTemplate>
+                <button mat-menu-item class="o3-time-series-widget--select-option">
+                    <mat-form-field (click)="$event.stopPropagation()">
+                        <o3-select [options]="configExt.assetSelectionHelper.gpsOptions" placeholder="GPS" [multiSelect]="configExt.assetSelectionHelper.initialGpsContextPlurality"
+                                   preventDeselection singleClick allowSingleOrMulti
+                                   [ngModel]="configExt.assetSelectionHelper.selectedGps" (ngModelChange)="configExt.assetSelectionHelper.setSelectedGps($event)"></o3-select>
+                    </mat-form-field>
+                </button>
+            </ng-template>
+        </o3-tab-action>
+    </ng-container>
+</div>

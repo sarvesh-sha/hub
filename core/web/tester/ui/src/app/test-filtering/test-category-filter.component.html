@@ -1,0 +1,9 @@
+<mat-form-field *ngIf="categories">
+    <mat-select placeholder="Test Categories" multiple [(ngModel)]="categories" (ngModelChange)="updateSelectedCategories()">
+        <mat-select-trigger>{{categorySelectMessage}}</mat-select-trigger>
+        <mat-option *ngFor="let category of availableCategories" [value]="category"
+                    [disabled]="selectedCategories.has(category) && categories.length === 1">
+            {{category}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

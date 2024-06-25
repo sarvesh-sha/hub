@@ -1,0 +1,4 @@
+<ng-template o3-wizard-step-template>
+    <o3-image-preview-selector #test_preview [placeholder]="getLabel()" [options]="typeOptions" [lookup]="getMetaFn" [selection]="typeSelection"
+                               (selectionChange)="processTypeChange($event)"></o3-image-preview-selector>
+</ng-template>

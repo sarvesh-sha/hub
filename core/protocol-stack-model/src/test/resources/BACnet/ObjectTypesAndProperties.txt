@@ -1,0 +1,2034 @@
+Analog Input	Object_Identifier	BACnetObjectIdentifier	R
+Analog Input	Object_Name	CharacterString	R
+Analog Input	Object_Type	BACnetObjectType	R
+Analog Input	Present_Value	REAL	R1
+Analog Input	Description	CharacterString	O
+Analog Input	Device_Type	CharacterString	O
+Analog Input	Status_Flags	BACnetStatusFlags	R
+Analog Input	Event_State	BACnetEventState	R
+Analog Input	Reliability	BACnetReliability	O
+Analog Input	Out_Of_Service	BOOLEAN	R
+Analog Input	Update_Interval	Unsigned	O
+Analog Input	Units	BACnetEngineeringUnits	R
+Analog Input	Min_Pres_Value	REAL	O
+Analog Input	Max_Pres_Value	REAL	O
+Analog Input	Resolution	REAL	O
+Analog Input	COV_Increment	REAL	O2
+Analog Input	Time_Delay	Unsigned	O3,5
+Analog Input	Notification_Class	Unsigned	O3,5
+Analog Input	High_Limit	REAL	O3,5
+Analog Input	Low_Limit	REAL	O3,5
+Analog Input	Deadband	REAL	O3,5
+Analog Input	Limit_Enable	BACnetLimitEnable	O3,5
+Analog Input	Event_Enable	BACnetEventTransitionBits	O3,5
+Analog Input	Acked_Transitions	BACnetEventTransitionBits	O3,5
+Analog Input	Notify_Type	BACnetNotifyType	O3,5
+Analog Input	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+Analog Input	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Analog Input	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Analog Input	Event_Detection_Enable	BOOLEAN	O3,5
+Analog Input	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+Analog Input	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+Analog Input	Time_Delay_Normal	Unsigned	O5
+Analog Input	Reliability_Evaluation_Inhibit	BOOLEAN	O7
+Analog Input	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Analog Input	Interface_Value	BACnetOptionalREAL	O
+Analog Input	Fault_High_Limit	REAL	O8
+Analog Input	Fault_Low_Limit	REAL	O8
+Analog Input	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Analog Input	Profile_Location	CharacterString	O
+Analog Input	Profile_Name	CharacterString	O
+Analog Output	Object_Identifier	BACnetObjectIdentifier	R
+Analog Output	Object_Name	CharacterString	R
+Analog Output	Object_Type	BACnetObjectType	R
+Analog Output	Present_Value	REAL	W
+Analog Output	Description	CharacterString	O
+Analog Output	Device_Type	CharacterString	O
+Analog Output	Status_Flags	BACnetStatusFlags	R
+Analog Output	Event_State	BACnetEventState	R
+Analog Output	Reliability	BACnetReliability	O
+Analog Output	Out_Of_Service	BOOLEAN	R
+Analog Output	Units	BACnetEngineeringUnits	R
+Analog Output	Min_Pres_Value	REAL	O
+Analog Output	Max_Pres_Value	REAL	O
+Analog Output	Resolution	REAL	O
+Analog Output	Priority_Array	BACnetPriorityArray	R
+Analog Output	Relinquish_Default	REAL	R
+Analog Output	COV_Increment	REAL	O1
+Analog Output	Time_Delay	Unsigned	O2,4
+Analog Output	Notification_Class	Unsigned	O2,4
+Analog Output	High_Limit	REAL	O2,4
+Analog Output	Low_Limit	REAL	O2,4
+Analog Output	Deadband	REAL	O2,4
+Analog Output	Limit_Enable	BACnetLimitEnable	O2,4
+Analog Output	Event_Enable	BACnetEventTransitionBits	O2,4
+Analog Output	Acked_Transitions	BACnetEventTransitionBits	O2,4
+Analog Output	Notify_Type	BACnetNotifyType	O2,4
+Analog Output	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,4
+Analog Output	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O4
+Analog Output	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O4
+Analog Output	Event_Detection_Enable	BOOLEAN	O2,4
+Analog Output	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O4
+Analog Output	Event_Algorithm_Inhibit	BOOLEAN	O4,5
+Analog Output	Time_Delay_Normal	Unsigned	O4
+Analog Output	Reliability_Evaluation_Inhibit	BOOLEAN	O6
+Analog Output	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Analog Output	Interface_Value	BACnetOptionalREAL	O
+Analog Output	Current_Command_Priority	BACnetOptionalUnsigned	R
+Analog Output	Value_Source	BACnetValueSource	O7,9,11
+Analog Output	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O8,10
+Analog Output	Last_Command_Time	BACnetTimeStamp	O8,10
+Analog Output	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O10
+Analog Output	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Analog Output	Profile_Location	CharacterString	O
+Analog Output	Profile_Name	CharacterString	O
+Analog Value	Object_Identifier	BACnetObjectIdentifier	R
+Analog Value	Object_Name	CharacterString	R
+Analog Value	Object_Type	BACnetObjectType	R
+Analog Value	Present_Value	REAL	R4
+Analog Value	Description	CharacterString	O
+Analog Value	Status_Flags	BACnetStatusFlags	R
+Analog Value	Event_State	BACnetEventState	R
+Analog Value	Reliability	BACnetReliability	O
+Analog Value	Out_Of_Service	BOOLEAN	R
+Analog Value	Units	BACnetEngineeringUnits	R
+Analog Value	Priority_Array	BACnetPriorityArray	O1
+Analog Value	Relinquish_Default	REAL	O1
+Analog Value	COV_Increment	REAL	O2
+Analog Value	Time_Delay	Unsigned	O3,6
+Analog Value	Notification_Class	Unsigned	O3,6
+Analog Value	High_Limit	REAL	O3,6
+Analog Value	Low_Limit	REAL	O3,6
+Analog Value	Deadband	REAL	O3,6
+Analog Value	Limit_Enable	BACnetLimitEnable	O3,6
+Analog Value	Event_Enable	BACnetEventTransitionBits	O3,6
+Analog Value	Acked_Transitions	BACnetEventTransitionBits	O3,6
+Analog Value	Notify_Type	BACnetNotifyType	O3,6
+Analog Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,6
+Analog Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Analog Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Analog Value	Event_Detection_Enable	BOOLEAN	O3,6
+Analog Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Analog Value	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Analog Value	Time_Delay_Normal	Unsigned	O6
+Analog Value	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Analog Value	Min_Pres_Value	REAL	O
+Analog Value	Max_Pres_Value	REAL	O
+Analog Value	Resolution	REAL	O
+Analog Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Analog Value	Fault_High_Limit	REAL	O9
+Analog Value	Fault_Low_Limit	REAL	O9
+Analog Value	Current_Command_Priority	BACnetOptionalUnsigned	O1
+Analog Value	Value_Source	BACnetValueSource	O10,12,14
+Analog Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O11,13
+Analog Value	Last_Command_Time	BACnetTimeStamp	O11,13
+Analog Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O13
+Analog Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Analog Value	Profile_Location	CharacterString	O
+Analog Value	Profile_Name	CharacterString	O
+Averaging	Object_Identifier	BACnetObjectIdentifier	R
+Averaging	Object_Name	CharacterString	R
+Averaging	Object_Type	BACnetObjectType	R
+Averaging	Minimum_Value	REAL	R
+Averaging	Minimum_Value_Timestamp	BACnetDateTime	O
+Averaging	Average_Value	REAL	R
+Averaging	Variance_Value	REAL	O
+Averaging	Maximum_Value	REAL	R
+Averaging	Maximum_Value_Timestamp	BACnetDateTime	O
+Averaging	Description	CharacterString	O
+Averaging	Attempted_Samples	Unsigned	W1
+Averaging	Valid_Samples	Unsigned	R
+Averaging	Object_Property_Reference	BACnetDeviceObjectPropertyReference	R1
+Averaging	Window_Interval	Unsigned	W1
+Averaging	Window_Samples	Unsigned	W1
+Averaging	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Averaging	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Averaging	Profile_Location	CharacterString	O
+Averaging	Profile_Name	CharacterString	O
+Binary Input	Object_Identifier	BACnetObjectIdentifier	R
+Binary Input	Object_Name	CharacterString	R
+Binary Input	Object_Type	BACnetObjectType	R
+Binary Input	Present_Value	BACnetBinaryPV	R1
+Binary Input	Description	CharacterString	O
+Binary Input	Device_Type	CharacterString	O
+Binary Input	Status_Flags	BACnetStatusFlags	R
+Binary Input	Event_State	BACnetEventState	R
+Binary Input	Reliability	BACnetReliability	O
+Binary Input	Out_Of_Service	BOOLEAN	R
+Binary Input	Polarity	BACnetPolarity	R
+Binary Input	Inactive_Text	CharacterString	O2
+Binary Input	Active_Text	CharacterString	O2
+Binary Input	Change_Of_State_Time	BACnetDateTime	O3
+Binary Input	Change_Of_State_Count	Unsigned	O3
+Binary Input	Time_Of_State_Count_Reset	BACnetDateTime	O3
+Binary Input	Elapsed_Active_Time	Unsigned32	O4
+Binary Input	Time_Of_Active_Time_Reset	BACnetDateTime	O4
+Binary Input	Time_Delay	Unsigned	O5,7
+Binary Input	Notification_Class	Unsigned	O5,7
+Binary Input	Alarm_Value	BACnetBinaryPV	O5,7
+Binary Input	Event_Enable	BACnetEventTransitionBits	O5,7
+Binary Input	Acked_Transitions	BACnetEventTransitionBits	O5,7
+Binary Input	Notify_Type	BACnetNotifyType	O5,7
+Binary Input	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O5,7
+Binary Input	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O7
+Binary Input	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O7
+Binary Input	Event_Detection_Enable	BOOLEAN	O5,7
+Binary Input	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O7
+Binary Input	Event_Algorithm_Inhibit	BOOLEAN	O7,8
+Binary Input	Time_Delay_Normal	Unsigned	O7
+Binary Input	Reliability_Evaluation_Inhibit	BOOLEAN	O9
+Binary Input	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Binary Input	Interface_Value	BACnetOptionalBinaryPV	O
+Binary Input	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Binary Input	Profile_Location	CharacterString	O
+Binary Input	Profile_Name	CharacterString	O
+Binary Output	Object_Identifier	BACnetObjectIdentifier	R
+Binary Output	Object_Name	CharacterString	R
+Binary Output	Object_Type	BACnetObjectType	R
+Binary Output	Present_Value	BACnetBinaryPV	W
+Binary Output	Description	CharacterString	O
+Binary Output	Device_Type	CharacterString	O
+Binary Output	Status_Flags	BACnetStatusFlags	R
+Binary Output	Event_State	BACnetEventState	R
+Binary Output	Reliability	BACnetReliability	O
+Binary Output	Out_Of_Service	BOOLEAN	R
+Binary Output	Polarity	BACnetPolarity	R
+Binary Output	Inactive_Text	CharacterString	O1
+Binary Output	Active_Text	CharacterString	O1
+Binary Output	Change_Of_State_Time	BACnetDateTime	O2
+Binary Output	Change_Of_State_Count	Unsigned	O2
+Binary Output	Time_Of_State_Count_Reset	BACnetDateTime	O2
+Binary Output	Elapsed_Active_Time	Unsigned32	O3
+Binary Output	Time_Of_Active_Time_Reset	BACnetDateTime	O3
+Binary Output	Minimum_Off_Time	Unsigned32	O
+Binary Output	Minimum_On_Time	Unsigned32	O
+Binary Output	Priority_Array	BACnetPriorityArray	R
+Binary Output	Relinquish_Default	BACnetBinaryPV	R
+Binary Output	Time_Delay	Unsigned	O4,6
+Binary Output	Notification_Class	Unsigned	O4,6
+Binary Output	Feedback_Value	BACnetBinaryPV	O4
+Binary Output	Event_Enable	BACnetEventTransitionBits	O4,6
+Binary Output	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Binary Output	Notify_Type	BACnetNotifyType	O4,6
+Binary Output	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Binary Output	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Binary Output	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Binary Output	Event_Detection_Enable	BOOLEAN	O4,6
+Binary Output	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Binary Output	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Binary Output	Time_Delay_Normal	Unsigned	O6
+Binary Output	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Binary Output	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Binary Output	Interface_Value	BACnetOptionalBinaryPV	O
+Binary Output	Current_Command_Priority	BACnetOptionalUnsigned	R
+Binary Output	Value_Source	BACnetValueSource	O9,11,13
+Binary Output	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O10,12
+Binary Output	Last_Command_Time	BACnetTimeStamp	O10,12
+Binary Output	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O12
+Binary Output	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Binary Output	Profile_Location	CharacterString	O
+Binary Output	Profile_Name	CharacterString	O
+Binary Value	Object_Identifier	BACnetObjectIdentifier	R
+Binary Value	Object_Name	CharacterString	R
+Binary Value	Object_Type	BACnetObjectType	R
+Binary Value	Present_Value	BACnetBinaryPV	R1
+Binary Value	Description	CharacterString	O
+Binary Value	Status_Flags	BACnetStatusFlags	R
+Binary Value	Event_State	BACnetEventState	R
+Binary Value	Reliability	BACnetReliability	O
+Binary Value	Out_Of_Service	BOOLEAN	R
+Binary Value	Inactive_Text	CharacterString	O2
+Binary Value	Active_Text	CharacterString	O2
+Binary Value	Change_Of_State_Time	BACnetDateTime	O3
+Binary Value	Change_Of_State_Count	Unsigned	O3
+Binary Value	Time_Of_State_Count_Reset	BACnetDateTime	O3
+Binary Value	Elapsed_Active_Time	Unsigned32	O4
+Binary Value	Time_Of_Active_Time_Reset	BACnetDateTime	O4
+Binary Value	Minimum_Off_Time	Unsigned32	O
+Binary Value	Minimum_On_Time	Unsigned32	O
+Binary Value	Priority_Array	BACnetPriorityArray	O5
+Binary Value	Relinquish_Default	BACnetBinaryPV	O5
+Binary Value	Time_Delay	Unsigned	O6,8
+Binary Value	Notification_Class	Unsigned	O6,8
+Binary Value	Alarm_Value	BACnetBinaryPV	O6,8
+Binary Value	Event_Enable	BACnetEventTransitionBits	O6,8
+Binary Value	Acked_Transitions	BACnetEventTransitionBits	O6,8
+Binary Value	Notify_Type	BACnetNotifyType	O6,8
+Binary Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O6,8
+Binary Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O8
+Binary Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O8
+Binary Value	Event_Detection_Enable	BOOLEAN	O6,8
+Binary Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O8
+Binary Value	Event_Algorithm_Inhibit	BOOLEAN	O8,9
+Binary Value	Time_Delay_Normal	Unsigned	O8
+Binary Value	Reliability_Evaluation_Inhibit	BOOLEAN	O10
+Binary Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Binary Value	Current_Command_Priority	BACnetOptionalUnsigned	O5
+Binary Value	Value_Source	BACnetValueSource	O11,13,15
+Binary Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O12,14
+Binary Value	Last_Command_Time	BACnetTimeStamp	O12,14
+Binary Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O14
+Binary Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Binary Value	Profile_Location	CharacterString	O
+Binary Value	Profile_Name	CharacterString	O
+Calendar	Object_Identifier	BACnetObjectIdentifier	R
+Calendar	Object_Name	CharacterString	R
+Calendar	Object_Type	BACnetObjectType	R
+Calendar	Description	CharacterString	O
+Calendar	Present_Value	BOOLEAN	R
+Calendar	Date_List	BACnetLIST of BACnetCalendarEntry	R
+Calendar	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Calendar	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Calendar	Profile_Location	CharacterString	O
+Calendar	Profile_Name	CharacterString	O
+Command	Object_Identifier	BACnetObjectIdentifier	R
+Command	Object_Name	CharacterString	R
+Command	Object_Type	BACnetObjectType	R
+Command	Description	CharacterString	O
+Command	Present_Value	Unsigned	W
+Command	In_Process	BOOLEAN	R
+Command	All_Writes_Successful	BOOLEAN	R
+Command	Action	BACnetARRAY[N] of BACnetActionList	R
+Command	Action_Text	BACnetARRAY[N] of CharacterString	O
+Command	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Command	Status_Flags	BACnetStatusFlags	O1
+Command	Event_State	BACnetEventState	O1
+Command	Reliability	BACnetReliability	O1
+Command	Event_Detection_Enable	BOOLEAN	O1,2
+Command	Notification_Class	Unsigned	O1,2
+Command	Event_Enable	BACnetEventTransitionBits	O1,2
+Command	Acked_Transitions	BACnetEventTransitionBits	O1,2
+Command	Notify_Type	BACnetNotifyType	O1,2
+Command	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O1,2
+Command	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O2
+Command	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O2
+Command	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+Command	Value_Source	BACnetValueSource	O4,5,6
+Command	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Command	Profile_Location	CharacterString	O
+Command	Profile_Name	CharacterString	O
+Device	Object_Identifier	BACnetObjectIdentifier	R
+Device	Object_Name	CharacterString	R
+Device	Object_Type	BACnetObjectType	R
+Device	System_Status	BACnetDeviceStatus	R
+Device	Vendor_Name	CharacterString	R
+Device	Vendor_Identifier	Unsigned16	R
+Device	Model_Name	CharacterString	R
+Device	Firmware_Revision	CharacterString	R
+Device	Application_Software_Version	CharacterString	R
+Device	Location	CharacterString	O
+Device	Description	CharacterString	O
+Device	Protocol_Version	Unsigned	R
+Device	Protocol_Revision	Unsigned	R
+Device	Protocol_Services_Supported	BACnetServicesSupported	R
+Device	Protocol_Object_Types_Supported	BACnetObjectTypesSupported	R
+Device	Object_List	BACnetARRAY[N] of BACnetObjectIdentifier	R
+Device	Structured_Object_List	BACnetARRAY[N] of BACnetObjectIdentifier	O
+Device	Max_APDU_Length_Accepted	Unsigned	R
+Device	Segmentation_Supported	BACnetSegmentation	R
+Device	Max_Segments_Accepted	Unsigned	O1
+Device	VT_Classes_Supported	BACnetLIST of BACnetVTClass	O2
+Device	Active_VT_Sessions	BACnetLIST of BACnetVTSession	O2
+Device	Local_Time	Time	O3,4,15
+Device	Local_Date	Date	O3,4,15
+Device	UTC_Offset	INTEGER	O4
+Device	Daylight_Savings_Status	BOOLEAN	O4
+Device	APDU_Segment_Timeout	Unsigned	O1
+Device	APDU_Timeout	Unsigned	R
+Device	Number_Of_APDU_Retries	Unsigned	R
+Device	Time_Synchronization_Recipients	BACnetLIST of BACnetRecipient	O5
+Device	Max_Master	Unsigned8 (0..127)	O6
+Device	Max_Info_Frames	Unsigned	O6
+Device	Device_Address_Binding	BACnetLIST of BACnetAddressBinding	R
+Device	Database_Revision	Unsigned	R
+Device	Configuration_Files	BACnetARRAY[N] of BACnetObjectIdentifier	O7
+Device	Last_Restore_Time	BACnetTimeStamp	O7
+Device	Backup_Failure_Timeout	Unsigned16	O8
+Device	Backup_Preparation_Time	Unsigned16	O16
+Device	Restore_Preparation_Time	Unsigned16	O16
+Device	Restore_Completion_Time	Unsigned16	O16
+Device	Backup_And_Restore_State	BACnetBackupState	O7
+Device	Active_COV_Subscriptions	BACnetLIST of BACnetCOVSubscription	O9
+Device	Last_Restart_Reason	BACnetRestartReason	O13
+Device	Time_Of_Device_Restart	BACnetTimeStamp	O13
+Device	Restart_Notification_Recipients	BACnetLIST of BACnetRecipient	O17
+Device	UTC_Time_Synchronization_Recipients	BACnetLIST of BACnetRecipient	O5
+Device	Time_Synchronization_Interval	Unsigned	O5
+Device	Align_Intervals	BOOLEAN	O5
+Device	Interval_Offset	Unsigned	O5
+Device	Serial_Number	CharacterString	O
+Device	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Device	Status_Flags	BACnetStatusFlags	O18
+Device	Event_State	BACnetEventState	O18
+Device	Reliability	BACnetReliability	O18
+Device	Event_Detection_Enable	BOOLEAN	O18,19
+Device	Notification_Class	Unsigned	O18,19
+Device	Event_Enable	BACnetEventTransitionBits	O18,19
+Device	Acked_Transitions	BACnetEventTransitionBits	O18,19
+Device	Notify_Type	BACnetNotifyType	O18,19
+Device	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O18,19
+Device	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O19
+Device	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O19
+Device	Reliability_Evaluation_Inhibit	BOOLEAN	O20
+Device	Active_COV_Multiple_Subscriptions	BACnetLIST of BACnetCOVMultipleSubscription	O21
+Device	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Device	Profile_Location	CharacterString	O
+Device	Deployed_Profile_Location	CharacterString	O22
+Device	Profile_Name	CharacterString	O
+Event Enrollment	Object_Identifier	BACnetObjectIdentifier	R
+Event Enrollment	Object_Name	CharacterString	R
+Event Enrollment	Object_Type	BACnetObjectType	R
+Event Enrollment	Description	CharacterString	O
+Event Enrollment	Event_Type	BACnetEventType	R
+Event Enrollment	Notify_Type	BACnetNotifyType	R
+Event Enrollment	Event_Parameters	BACnetEventParameter	R
+Event Enrollment	Object_Property_Reference	BACnetDeviceObjectPropertyReference	R
+Event Enrollment	Event_State	BACnetEventState	R
+Event Enrollment	Event_Enable	BACnetEventTransitionBits	R
+Event Enrollment	Acked_Transitions	BACnetEventTransitionBits	R
+Event Enrollment	Notification_Class	Unsigned	R
+Event Enrollment	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	R
+Event Enrollment	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O
+Event Enrollment	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O
+Event Enrollment	Event_Detection_Enable	BOOLEAN	R
+Event Enrollment	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O
+Event Enrollment	Event_Algorithm_Inhibit	BOOLEAN	O2
+Event Enrollment	Time_Delay_Normal	Unsigned	O
+Event Enrollment	Status_Flags	BACnetStatusFlags	R
+Event Enrollment	Reliability	BACnetReliability	R
+Event Enrollment	Fault_Type	BACnetFaultType	O3
+Event Enrollment	Fault_Parameters	BACnetFaultParameter	O3
+Event Enrollment	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Event Enrollment	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Event Enrollment	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Event Enrollment	Profile_Location	CharacterString	O
+Event Enrollment	Profile_Name	CharacterString	O
+File	Object_Identifier	BACnetObjectIdentifier	R
+File	Object_Name	CharacterString	R
+File	Object_Type	BACnetObjectType	R
+File	Description	CharacterString	O
+File	File_Type	CharacterString	R
+File	File_Size	Unsigned	R1
+File	Modification_Date	BACnetDateTime	R
+File	Archive	BOOLEAN	W
+File	Read_Only	BOOLEAN	R
+File	File_Access_Method	BACnetFileAccessMethod	R
+File	Record_Count	Unsigned	O2
+File	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+File	Tags	BACnetARRAY[N] of BACnetNameValue	O
+File	Profile_Location	CharacterString	O
+File	Profile_Name	CharacterString	O
+Group	Object_Identifier	BACnetObjectIdentifier	R
+Group	Object_Name	CharacterString	R
+Group	Object_Type	BACnetObjectType	R
+Group	Description	CharacterString	O
+Group	List_Of_Group_Members	BACnetLIST of ReadAccessSpecification	R
+Group	Present_Value	BACnetLIST of ReadAccessResult	R
+Group	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Group	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Group	Profile_Location	CharacterString	O
+Group	Profile_Name	CharacterString	O
+Life Safety Point	Object_Identifier	BACnetObjectIdentifier	R
+Life Safety Point	Object_Name	CharacterString	R
+Life Safety Point	Object_Type	BACnetObjectType	R
+Life Safety Point	Present_Value	BACnetLifeSafetyState	R
+Life Safety Point	Tracking_Value	BACnetLifeSafetyState	R1
+Life Safety Point	Description	CharacterString	O
+Life Safety Point	Device_Type	CharacterString	O
+Life Safety Point	Status_Flags	BACnetStatusFlags	R
+Life Safety Point	Event_State	BACnetEventState	R
+Life Safety Point	Reliability	BACnetReliability	R1
+Life Safety Point	Out_Of_Service	BOOLEAN	R
+Life Safety Point	Mode	BACnetLifeSafetyMode	W
+Life Safety Point	Accepted_Modes	BACnetLIST of BACnetLifeSafetyMode	R
+Life Safety Point	Time_Delay	Unsigned	O2,5
+Life Safety Point	Notification_Class	Unsigned	O2,5
+Life Safety Point	Life_Safety_Alarm_Values	BACnetLIST of BACnetLifeSafetyState	O2,5
+Life Safety Point	Alarm_Values	BACnetLIST of BACnetLifeSafetyState	O2,5
+Life Safety Point	Fault_Values	BACnetLIST of BACnetLifeSafetyState	O
+Life Safety Point	Event_Enable	BACnetEventTransitionBits	O2,5
+Life Safety Point	Acked_Transitions	BACnetEventTransitionBits	O2,5
+Life Safety Point	Notify_Type	BACnetNotifyType	O2,5
+Life Safety Point	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,5
+Life Safety Point	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Life Safety Point	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Life Safety Point	Event_Detection_Enable	BOOLEAN	O2,5
+Life Safety Point	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+Life Safety Point	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+Life Safety Point	Time_Delay_Normal	Unsigned	O5
+Life Safety Point	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Life Safety Point	Silenced	BACnetSilencedState	R
+Life Safety Point	Operation_Expected	BACnetLifeSafetyOperation	R
+Life Safety Point	Maintenance_Required	BACnetMaintenance	O
+Life Safety Point	Setting	Unsigned8	O
+Life Safety Point	Direct_Reading	REAL	O3
+Life Safety Point	Units	BACnetEngineeringUnits	O3
+Life Safety Point	Member_Of	BACnetLIST of BACnetDeviceObjectReference	O
+Life Safety Point	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Life Safety Point	Value_Source	BACnetValueSource	O7,8,9
+Life Safety Point	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Life Safety Point	Profile_Location	CharacterString	O
+Life Safety Point	Profile_Name	CharacterString	O
+Life Safety Zone	Object_Identifier	BACnetObjectIdentifier	R
+Life Safety Zone	Object_Name	CharacterString	R
+Life Safety Zone	Object_Type	BACnetObjectType	R
+Life Safety Zone	Present_Value	BACnetLifeSafetyState	R
+Life Safety Zone	Tracking_Value	BACnetLifeSafetyState	R1
+Life Safety Zone	Description	CharacterString	O
+Life Safety Zone	Device_Type	CharacterString	O
+Life Safety Zone	Status_Flags	BACnetStatusFlags	R
+Life Safety Zone	Event_State	BACnetEventState	R
+Life Safety Zone	Reliability	BACnetReliability	R1
+Life Safety Zone	Out_Of_Service	BOOLEAN	R
+Life Safety Zone	Mode	BACnetLifeSafetyMode	W
+Life Safety Zone	Accepted_Modes	BACnetLIST of BACnetLifeSafetyMode	R
+Life Safety Zone	Time_Delay	Unsigned	O2,4
+Life Safety Zone	Notification_Class	Unsigned	O2,4
+Life Safety Zone	Life_Safety_Alarm_Values	BACnetLIST of BACnetLifeSafetyState	O2,4
+Life Safety Zone	Alarm_Values	BACnetLIST of BACnetLifeSafetyState	O2,4
+Life Safety Zone	Fault_Values	BACnetLIST of BACnetLifeSafetyState	O
+Life Safety Zone	Event_Enable	BACnetEventTransitionBits	O2,4
+Life Safety Zone	Acked_Transitions	BACnetEventTransitionBits	O2,4
+Life Safety Zone	Notify_Type	BACnetNotifyType	O2,4
+Life Safety Zone	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,4
+Life Safety Zone	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O4
+Life Safety Zone	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O4
+Life Safety Zone	Event_Detection_Enable	BOOLEAN	O2,4
+Life Safety Zone	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O4
+Life Safety Zone	Event_Algorithm_Inhibit	BOOLEAN	O4,5
+Life Safety Zone	Time_Delay_Normal	Unsigned	O4
+Life Safety Zone	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Life Safety Zone	Silenced	BACnetSilencedState	R
+Life Safety Zone	Operation_Expected	BACnetLifeSafetyOperation	R
+Life Safety Zone	Maintenance_Required	BOOLEAN	O
+Life Safety Zone	Zone_Members	BACnetLIST of BACnetDeviceObjectReference	R
+Life Safety Zone	Member_Of	BACnetLIST of BACnetDeviceObjectReference	O
+Life Safety Zone	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Life Safety Zone	Value_Source	BACnetValueSource	O6,7,8
+Life Safety Zone	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Life Safety Zone	Profile_Location	CharacterString	O
+Life Safety Zone	Profile_Name	CharacterString	O
+Loop	Object_Identifier	BACnetObjectIdentifier	R
+Loop	Object_Name	CharacterString	R
+Loop	Object_Type	BACnetObjectType	R
+Loop	Present_Value	REAL	R7
+Loop	Description	CharacterString	O
+Loop	Status_Flags	BACnetStatusFlags	R
+Loop	Event_State	BACnetEventState	R
+Loop	Reliability	BACnetReliability	O7
+Loop	Out_Of_Service	BOOLEAN	R
+Loop	Update_Interval	Unsigned	O
+Loop	Output_Units	BACnetEngineeringUnits	R
+Loop	Manipulated_Variable_Reference	BACnetObjectPropertyReference	R
+Loop	Controlled_Variable_Reference	BACnetObjectPropertyReference	R
+Loop	Controlled_Variable_Value	REAL	R
+Loop	Controlled_Variable_Units	BACnetEngineeringUnits	R
+Loop	Setpoint_Reference	BACnetSetpointReference	R
+Loop	Setpoint	REAL	R
+Loop	Action	BACnetAction	R
+Loop	Proportional_Constant	REAL	O1
+Loop	Proportional_Constant_Units	BACnetEngineeringUnits	O1
+Loop	Integral_Constant	REAL	O2
+Loop	Integral_Constant_Units	BACnetEngineeringUnits	O2
+Loop	Derivative_Constant	REAL	O3
+Loop	Derivative_Constant_Units	BACnetEngineeringUnits	O3
+Loop	Bias	REAL	O
+Loop	Maximum_Output	REAL	O
+Loop	Minimum_Output	REAL	O
+Loop	Priority_For_Writing	Unsigned (1..16)	R
+Loop	COV_Increment	REAL	O4
+Loop	Time_Delay	Unsigned	O5,8
+Loop	Notification_Class	Unsigned	O5,8
+Loop	Error_Limit	REAL	O5,8
+Loop	Deadband	REAL	O5,8
+Loop	Event_Enable	BACnetEventTransitionBits	O5,8
+Loop	Acked_Transitions	BACnetEventTransitionBits	O5,8
+Loop	Notify_Type	BACnetNotifyType	O5,8
+Loop	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O5,8
+Loop	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O8
+Loop	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O8
+Loop	Event_Detection_Enable	BOOLEAN	O5,8
+Loop	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O8
+Loop	Event_Algorithm_Inhibit	BOOLEAN	O8,9
+Loop	Time_Delay_Normal	Unsigned	O8
+Loop	Reliability_Evaluation_Inhibit	BOOLEAN	O10
+Loop	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Loop	Low_Diff_Limit	BACnetOptionalREAL	O
+Loop	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Loop	Profile_Location	CharacterString	O
+Loop	Profile_Name	CharacterString	O
+Multi-state Input	Object_Identifier	BACnetObjectIdentifier	R
+Multi-state Input	Object_Name	CharacterString	R
+Multi-state Input	Object_Type	BACnetObjectType	R
+Multi-state Input	Present_Value	Unsigned	R1
+Multi-state Input	Description	CharacterString	O
+Multi-state Input	Device_Type	CharacterString	O
+Multi-state Input	Status_Flags	BACnetStatusFlags	R
+Multi-state Input	Event_State	BACnetEventState	R
+Multi-state Input	Reliability	BACnetReliability	O
+Multi-state Input	Out_Of_Service	BOOLEAN	R
+Multi-state Input	Number_Of_States	Unsigned	R
+Multi-state Input	State_Text	BACnetARRAY[N] of CharacterString	O
+Multi-state Input	Time_Delay	Unsigned	O3,5
+Multi-state Input	Notification_Class	Unsigned	O3,5
+Multi-state Input	Alarm_Values	BACnetLIST of Unsigned	O3,5
+Multi-state Input	Fault_Values	BACnetLIST of Unsigned	O7
+Multi-state Input	Event_Enable	BACnetEventTransitionBits	O3,5
+Multi-state Input	Acked_Transitions	BACnetEventTransitionBits	O3,5
+Multi-state Input	Notify_Type	BACnetNotifyType	O3,5
+Multi-state Input	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+Multi-state Input	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Multi-state Input	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Multi-state Input	Event_Detection_Enable	BOOLEAN	O3,5
+Multi-state Input	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+Multi-state Input	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+Multi-state Input	Time_Delay_Normal	Unsigned	O5
+Multi-state Input	Reliability_Evaluation_Inhibit	BOOLEAN	O7
+Multi-state Input	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Multi-state Input	Interface_Value	BACnetOptionalUnsigned	O
+Multi-state Input	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Multi-state Input	Profile_Location	CharacterString	O
+Multi-state Input	Profile_Name	CharacterString	O
+Multi-state Output	Object_Identifier	BACnetObjectIdentifier	R
+Multi-state Output	Object_Name	CharacterString	R
+Multi-state Output	Object_Type	BACnetObjectType	R
+Multi-state Output	Present_Value	Unsigned	W
+Multi-state Output	Description	CharacterString	O
+Multi-state Output	Device_Type	CharacterString	O
+Multi-state Output	Status_Flags	BACnetStatusFlags	R
+Multi-state Output	Event_State	BACnetEventState	R
+Multi-state Output	Reliability	BACnetReliability	O
+Multi-state Output	Out_Of_Service	BOOLEAN	R
+Multi-state Output	Number_Of_States	Unsigned	R
+Multi-state Output	State_Text	BACnetARRAY[N] of CharacterString	O
+Multi-state Output	Priority_Array	BACnetPriorityArray	R
+Multi-state Output	Relinquish_Default	Unsigned	R
+Multi-state Output	Time_Delay	Unsigned	O1,3
+Multi-state Output	Notification_Class	Unsigned	O1,3
+Multi-state Output	Feedback_Value	Unsigned	O1
+Multi-state Output	Event_Enable	BACnetEventTransitionBits	O1,3
+Multi-state Output	Acked_Transitions	BACnetEventTransitionBits	O1,3
+Multi-state Output	Notify_Type	BACnetNotifyType	O1,3
+Multi-state Output	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O1,3
+Multi-state Output	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O3
+Multi-state Output	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O3
+Multi-state Output	Event_Detection_Enable	BOOLEAN	O1,3
+Multi-state Output	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O3
+Multi-state Output	Event_Algorithm_Inhibit	BOOLEAN	O3,4
+Multi-state Output	Time_Delay_Normal	Unsigned	O3
+Multi-state Output	Reliability_Evaluation_Inhibit	BOOLEAN	O5
+Multi-state Output	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Multi-state Output	Interface_Value	BACnetOptionalUnsigned	O
+Multi-state Output	Current_Command_Priority	BACnetOptionalUnsigned	R
+Multi-state Output	Value_Source	BACnetValueSource	O6,8,10
+Multi-state Output	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+Multi-state Output	Last_Command_Time	BACnetTimeStamp	O7,9
+Multi-state Output	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+Multi-state Output	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Multi-state Output	Profile_Location	CharacterString	O
+Multi-state Output	Profile_Name	CharacterString	O
+Multi-state Value	Object_Identifier	BACnetObjectIdentifier	R
+Multi-state Value	Object_Name	CharacterString	R
+Multi-state Value	Object_Type	BACnetObjectType	R
+Multi-state Value	Present_Value	Unsigned	R1
+Multi-state Value	Description	CharacterString	O
+Multi-state Value	Status_Flags	BACnetStatusFlags	R
+Multi-state Value	Event_State	BACnetEventState	R
+Multi-state Value	Reliability	BACnetReliability	O
+Multi-state Value	Out_Of_Service	BOOLEAN	R
+Multi-state Value	Number_Of_States	Unsigned	R
+Multi-state Value	State_Text	BACnetARRAY[N] of CharacterString	O
+Multi-state Value	Priority_Array	BACnetPriorityArray	O3
+Multi-state Value	Relinquish_Default	Unsigned	O3
+Multi-state Value	Time_Delay	Unsigned	O4,6
+Multi-state Value	Notification_Class	Unsigned	O4,6
+Multi-state Value	Alarm_Values	BACnetLIST of Unsigned	O4,6
+Multi-state Value	Fault_Values	BACnetLIST of Unsigned	O8
+Multi-state Value	Event_Enable	BACnetEventTransitionBits	O4,6
+Multi-state Value	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Multi-state Value	Notify_Type	BACnetNotifyType	O4,6
+Multi-state Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Multi-state Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Multi-state Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Multi-state Value	Event_Detection_Enable	BOOLEAN	O4,6
+Multi-state Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Multi-state Value	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Multi-state Value	Time_Delay_Normal	Unsigned	O6
+Multi-state Value	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Multi-state Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Multi-state Value	Current_Command_Priority	BACnetOptionalUnsigned	O3
+Multi-state Value	Value_Source	BACnetValueSource	O9,11,13
+Multi-state Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O10,12
+Multi-state Value	Last_Command_Time	BACnetTimeStamp	O10,12
+Multi-state Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O12
+Multi-state Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Multi-state Value	Profile_Location	CharacterString	O
+Multi-state Value	Profile_Name	CharacterString	O
+Notification Class	Object_Identifier	BACnetObjectIdentifier	R
+Notification Class	Object_Name	CharacterString	R
+Notification Class	Object_Type	BACnetObjectType	R
+Notification Class	Description	CharacterString	O
+Notification Class	Notification_Class	Unsigned	R
+Notification Class	Priority	BACnetARRAY[3] of Unsigned	R
+Notification Class	Ack_Required	BACnetEventTransitionBits	R
+Notification Class	Recipient_List	BACnetLIST of BACnetDestination	R
+Notification Class	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Notification Class	Status_Flags	BACnetStatusFlags	O1
+Notification Class	Event_State	BACnetEventState	O1
+Notification Class	Reliability	BACnetReliability	O1
+Notification Class	Event_Detection_Enable	BOOLEAN	O1,2
+Notification Class	Event_Enable	BACnetEventTransitionBits	O1,2
+Notification Class	Acked_Transitions	BACnetEventTransitionBits	O1,2
+Notification Class	Notify_Type	BACnetNotifyType	O1,2
+Notification Class	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O1,2
+Notification Class	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O2
+Notification Class	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O2
+Notification Class	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+Notification Class	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Notification Class	Profile_Location	CharacterString	O
+Notification Class	Profile_Name	CharacterString	O
+Program	Object_Identifier	BACnetObjectIdentifier	R
+Program	Object_Name	CharacterString	R
+Program	Object_Type	BACnetObjectType	R
+Program	Program_State	BACnetProgramState	R
+Program	Program_Change	BACnetProgramRequest	W
+Program	Reason_For_Halt	BACnetProgramError	O1
+Program	Description_Of_Halt	CharacterString	O1
+Program	Program_Location	CharacterString	O
+Program	Description	CharacterString	O
+Program	Instance_Of	CharacterString	O
+Program	Status_Flags	BACnetStatusFlags	R
+Program	Reliability	BACnetReliability	O
+Program	Out_Of_Service	BOOLEAN	R
+Program	Event_Detection_Enable	BOOLEAN	O2,3
+Program	Notification_Class	Unsigned	O2,3
+Program	Event_Enable	BACnetEventTransitionBits	O2,3
+Program	Event_State	BACnetEventState	O2,3
+Program	Acked_Transitions	BACnetEventTransitionBits	O2,3
+Program	Notify_Type	BACnetNotifyType	O2,3
+Program	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,3
+Program	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O3
+Program	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O3
+Program	Reliability_Evaluation_Inhibit	BOOLEAN	O4
+Program	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Program	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Program	Profile_Location	CharacterString	O
+Program	Profile_Name	CharacterString	O
+Pulse Converter	Object_Identifier	BACnetObjectIdentifier	R
+Pulse Converter	Object_Name	CharacterString	R
+Pulse Converter	Object_Type	BACnetObjectType	R
+Pulse Converter	Description	CharacterString	O
+Pulse Converter	Present_Value	REAL	R1
+Pulse Converter	Input_Reference	BACnetObjectPropertyReference	O
+Pulse Converter	Status_Flags	BACnetStatusFlags	R
+Pulse Converter	Event_State	BACnetEventState	R
+Pulse Converter	Reliability	BACnetReliability	O
+Pulse Converter	Out_Of_Service	BOOLEAN	R
+Pulse Converter	Units	BACnetEngineeringUnits	R
+Pulse Converter	Scale_Factor	REAL	R
+Pulse Converter	Adjust_Value	REAL	W
+Pulse Converter	Count	Unsigned	R
+Pulse Converter	Update_Time	BACnetDateTime	R
+Pulse Converter	Count_Change_Time	BACnetDateTime	R
+Pulse Converter	Count_Before_Change	Unsigned	R
+Pulse Converter	COV_Increment	REAL	O2
+Pulse Converter	COV_Period	Unsigned	O2
+Pulse Converter	Notification_Class	Unsigned	O3,5
+Pulse Converter	Time_Delay	Unsigned	O3,5
+Pulse Converter	High_Limit	REAL	O3,5
+Pulse Converter	Low_Limit	REAL	O3,5
+Pulse Converter	Deadband	REAL	O3,5
+Pulse Converter	Limit_Enable	BACnetLimitEnable	O3,5
+Pulse Converter	Event_Enable	BACnetEventTransitionBits	O3,5
+Pulse Converter	Acked_Transitions	BACnetEventTransitionBits	O3,5
+Pulse Converter	Notify_Type	BACnetNotifyType	O3,5
+Pulse Converter	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+Pulse Converter	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Pulse Converter	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Pulse Converter	Event_Detection_Enable	BOOLEAN	O3,5
+Pulse Converter	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+Pulse Converter	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+Pulse Converter	Time_Delay_Normal	Unsigned	O5
+Pulse Converter	Reliability_Evaluation_Inhibit	BOOLEAN	O7
+Pulse Converter	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Pulse Converter	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Pulse Converter	Profile_Location	CharacterString	O
+Pulse Converter	Profile_Name	CharacterString	O
+Schedule	Object_Identifier	BACnetObjectIdentifier	R
+Schedule	Object_Name	CharacterString	R
+Schedule	Object_Type	BACnetObjectType	R
+Schedule	Present_Value	Any	R
+Schedule	Description	CharacterString	O
+Schedule	Effective_Period	BACnetDateRange	R
+Schedule	Weekly_Schedule	BACnetARRAY[7] of BACnetDailySchedule	O1
+Schedule	Exception_Schedule	BACnetARRAY[N] of BACnetSpecialEvent	O1
+Schedule	Schedule_Default	Any	R
+Schedule	List_Of_Object_Property_References	BACnetLIST of BACnetDeviceObjectPropertyReference	R
+Schedule	Priority_For_Writing	Unsigned (1..16)	R
+Schedule	Status_Flags	BACnetStatusFlags	R
+Schedule	Reliability	BACnetReliability	R
+Schedule	Out_Of_Service	BOOLEAN	R
+Schedule	Event_Detection_Enable	BOOLEAN	O2,3
+Schedule	Notification_Class	Unsigned	O2,3
+Schedule	Event_Enable	BACnetEventTransitionBits	O2,3
+Schedule	Event_State	BACnetEventState	O2,3
+Schedule	Acked_Transitions	BACnetEventTransitionBits	O2,3
+Schedule	Notify_Type	BACnetNotifyType	O2,3
+Schedule	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,3
+Schedule	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O3
+Schedule	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O3
+Schedule	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Schedule	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Schedule	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Schedule	Profile_Location	CharacterString	O
+Schedule	Profile_Name	CharacterString	O
+Trend Log	Object_Identifier	BACnetObjectIdentifier	R
+Trend Log	Object_Name	CharacterString	R
+Trend Log	Object_Type	BACnetObjectType	R
+Trend Log	Description	CharacterString	O
+Trend Log	Enable	BOOLEAN	W
+Trend Log	Start_Time	BACnetDateTime	O1,2
+Trend Log	Stop_Time	BACnetDateTime	O1,2
+Trend Log	Log_Device_Object_Property	BACnetDeviceObjectPropertyReference	O8
+Trend Log	Log_Interval	Unsigned	O1,3
+Trend Log	COV_Resubscription_Interval	Unsigned	O
+Trend Log	Client_COV_Increment	BACnetClientCOV	O
+Trend Log	Stop_When_Full	BOOLEAN	R
+Trend Log	Buffer_Size	Unsigned32	R
+Trend Log	Log_Buffer	BACnetLIST of BACnetLogRecord	R
+Trend Log	Record_Count	Unsigned32	W
+Trend Log	Total_Record_Count	Unsigned32	R
+Trend Log	Logging_Type	BACnetLoggingType	R
+Trend Log	Align_Intervals	BOOLEAN	O5
+Trend Log	Interval_Offset	Unsigned	O5
+Trend Log	Trigger	BOOLEAN	O
+Trend Log	Status_Flags	BACnetStatusFlags	R
+Trend Log	Reliability	BACnetReliability	O
+Trend Log	Notification_Threshold	Unsigned32	O4,7
+Trend Log	Records_Since_Notification	Unsigned32	O4,7
+Trend Log	Last_Notify_Record	Unsigned32	O4,7
+Trend Log	Event_State	BACnetEventState	R
+Trend Log	Notification_Class	Unsigned	O4,7
+Trend Log	Event_Enable	BACnetEventTransitionBits	O4,7
+Trend Log	Acked_Transitions	BACnetEventTransitionBits	O4,7
+Trend Log	Notify_Type	BACnetNotifyType	O4,7
+Trend Log	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,7
+Trend Log	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O7
+Trend Log	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O7
+Trend Log	Event_Detection_Enable	BOOLEAN	O4,7
+Trend Log	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O7
+Trend Log	Event_Algorithm_Inhibit	BOOLEAN	O7,9
+Trend Log	Reliability_Evaluation_Inhibit	BOOLEAN	O10
+Trend Log	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Trend Log	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Trend Log	Profile_Location	CharacterString	O
+Trend Log	Profile_Name	CharacterString	O
+Access Door	Object_Identifier	BACnetObjectIdentifier	R
+Access Door	Object_Name	CharacterString	R
+Access Door	Object_Type	BACnetObjectType	R
+Access Door	Present_Value	BACnetDoorValue	W
+Access Door	Description	CharacterString	O
+Access Door	Status_Flags	BACnetStatusFlags	R
+Access Door	Event_State	BACnetEventState	R
+Access Door	Reliability	BACnetReliability	R
+Access Door	Out_Of_Service	BOOLEAN	R
+Access Door	Priority_Array	BACnetPriorityArray	R
+Access Door	Relinquish_Default	BACnetDoorValue	R
+Access Door	Door_Status	BACnetDoorStatus	O1,2
+Access Door	Lock_Status	BACnetLockStatus	O1
+Access Door	Secured_Status	BACnetDoorSecuredStatus	O
+Access Door	Door_Members	BACnetARRAY[N] of BACnetDeviceObjectReference	O
+Access Door	Door_Pulse_Time	Unsigned	R
+Access Door	Door_Extended_Pulse_Time	Unsigned	R
+Access Door	Door_Unlock_Delay_Time	Unsigned	O
+Access Door	Door_Open_Too_Long_Time	Unsigned	R
+Access Door	Door_Alarm_State	BACnetDoorAlarmState	O1,3
+Access Door	Masked_Alarm_Values	BACnetLIST of BACnetDoorAlarmState	O
+Access Door	Maintenance_Required	BACnetMaintenance	O
+Access Door	Time_Delay	Unsigned	O3,5
+Access Door	Notification_Class	Unsigned	O3,5
+Access Door	Alarm_Values	BACnetLIST of BACnetDoorAlarmState	O3,5
+Access Door	Fault_Values	BACnetLIST of BACnetDoorAlarmState	O
+Access Door	Event_Enable	BACnetEventTransitionBits	O3,5
+Access Door	Acked_Transitions	BACnetEventTransitionBits	O3,5
+Access Door	Notify_Type	BACnetNotifyType	O3,5
+Access Door	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+Access Door	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Access Door	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Access Door	Event_Detection_Enable	BOOLEAN	O3,5
+Access Door	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+Access Door	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+Access Door	Time_Delay_Normal	Unsigned	O5
+Access Door	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Access Door	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Access Door	Current_Command_Priority	BACnetOptionalUnsigned	R
+Access Door	Value_Source	BACnetValueSource	O7,9,11
+Access Door	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O8,10
+Access Door	Last_Command_Time	BACnetTimeStamp	O8,10
+Access Door	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O10
+Access Door	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Access Door	Profile_Location	CharacterString	O
+Access Door	Profile_Name	CharacterString	O
+Event Log	Object_Identifier	BACnetObjectIdentifier	R
+Event Log	Object_Name	CharacterString	R
+Event Log	Object_Type	BACnetObjectType	R
+Event Log	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Event Log	Description	CharacterString	O
+Event Log	Status_Flags	BACnetStatusFlags	R
+Event Log	Event_State	BACnetEventState	R
+Event Log	Reliability	BACnetReliability	O
+Event Log	Enable	BOOLEAN	W
+Event Log	Start_Time	BACnetDateTime	O1,2
+Event Log	Stop_Time	BACnetDateTime	O1,2
+Event Log	Stop_When_Full	BOOLEAN	R
+Event Log	Buffer_Size	Unsigned32	R
+Event Log	Log_Buffer	BACnetLIST of BACnetEventLogRecord	R
+Event Log	Record_Count	Unsigned32	W
+Event Log	Total_Record_Count	Unsigned32	R
+Event Log	Notification_Threshold	Unsigned32	O3,5
+Event Log	Records_Since_Notification	Unsigned32	O3,5
+Event Log	Last_Notify_Record	Unsigned32	O3,5
+Event Log	Notification_Class	Unsigned	O3,5
+Event Log	Event_Enable	BACnetEventTransitionBits	O3,5
+Event Log	Acked_Transitions	BACnetEventTransitionBits	O3,5
+Event Log	Notify_Type	BACnetNotifyType	O3,5
+Event Log	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+Event Log	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Event Log	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Event Log	Event_Detection_Enable	BOOLEAN	O3,5
+Event Log	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+Event Log	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+Event Log	Reliability_Evaluation_Inhibit	BOOLEAN	O7
+Event Log	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Event Log	Profile_Location	CharacterString	O
+Event Log	Profile_Name	CharacterString	O
+Load Control	Object_Identifier	BACnetObjectIdentifier	R
+Load Control	Object_Name	CharacterString	R
+Load Control	Object_Type	BACnetObjectType	R
+Load Control	Description	CharacterString	O
+Load Control	Present_Value	BACnetShedState	R
+Load Control	State_Description	CharacterString	O
+Load Control	Status_Flags	BACnetStatusFlags	R
+Load Control	Event_State	BACnetEventState	R
+Load Control	Reliability	BACnetReliability	O
+Load Control	Requested_Shed_Level	BACnetShedLevel	W
+Load Control	Start_Time	BACnetDateTime	W
+Load Control	Shed_Duration	Unsigned	W
+Load Control	Duty_Window	Unsigned	W
+Load Control	Enable	BOOLEAN	W
+Load Control	Full_Duty_Baseline	REAL	O
+Load Control	Expected_Shed_Level	BACnetShedLevel	R
+Load Control	Actual_Shed_Level	BACnetShedLevel	R
+Load Control	Shed_Levels	BACnetARRAY[N] of Unsigned	W1
+Load Control	Shed_Level_Descriptions	BACnetARRAY[N] of CharacterString	R
+Load Control	Notification_Class	Unsigned	O2,4
+Load Control	Time_Delay	Unsigned	O2,4
+Load Control	Event_Enable	BACnetEventTransitionBits	O2,4
+Load Control	Acked_Transitions	BACnetEventTransitionBits	O2,4
+Load Control	Notify_Type	BACnetNotifyType	O2,4
+Load Control	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,4
+Load Control	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O4
+Load Control	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O4
+Load Control	Event_Detection_Enable	BOOLEAN	O2,4
+Load Control	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O4
+Load Control	Event_Algorithm_Inhibit	BOOLEAN	O4,5
+Load Control	Time_Delay_Normal	Unsigned	O4
+Load Control	Reliability_Evaluation_Inhibit	BOOLEAN	O6
+Load Control	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Load Control	Value_Source	BACnetValueSource	O7,8,9
+Load Control	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Load Control	Profile_Location	CharacterString	O
+Load Control	Profile_Name	CharacterString	O
+Structured View	Object_Identifier	BACnetObjectIdentifier	R
+Structured View	Object_Name	CharacterString	R
+Structured View	Object_Type	BACnetObjectType	R
+Structured View	Description	CharacterString	O
+Structured View	Node_Type	BACnetNodeType	R
+Structured View	Node_Subtype	CharacterString	O
+Structured View	Subordinate_List	BACnetARRAY[N] of BACnetDeviceObjectReference	R
+Structured View	Subordinate_Annotations	BACnetARRAY[N] of CharacterString	O
+Structured View	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Structured View	Subordinate_Tags	BACnetARRAY[N] of BACnetNameValueCollection	O
+Structured View	Subordinate_Node_Types	BACnetARRAY[N] of BACnetNodeType	O
+Structured View	Subordinate_Relationships	BACnetARRAY[N] of BACnetRelationship	O
+Structured View	Default_Subordinate_Relationship	BACnetRelationship	O
+Structured View	Represents	BACnetDeviceObjectReference	O
+Structured View	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Structured View	Profile_Location	CharacterString	O
+Structured View	Profile_Name	CharacterString	O
+Trend Log Multiple	Object_Identifier	BACnetObjectIdentifier	R
+Trend Log Multiple	Object_Name	CharacterString	R
+Trend Log Multiple	Object_Type	BACnetObjectType	R
+Trend Log Multiple	Description	CharacterString	O
+Trend Log Multiple	Status_Flags	BACnetStatusFlags	R
+Trend Log Multiple	Event_State	BACnetEventState	R
+Trend Log Multiple	Reliability	BACnetReliability	O
+Trend Log Multiple	Enable	BOOLEAN	W
+Trend Log Multiple	Start_Time	BACnetDateTime	O1
+Trend Log Multiple	Stop_Time	BACnetDateTime	O1
+Trend Log Multiple	Log_Device_Object_Property	BACnetARRAY[N] of BACnetDeviceObjectPropertyReference	R
+Trend Log Multiple	Logging_Type	BACnetLoggingType	R
+Trend Log Multiple	Log_Interval	Unsigned	R2
+Trend Log Multiple	Align_Intervals	BOOLEAN	O3
+Trend Log Multiple	Interval_Offset	Unsigned	O3
+Trend Log Multiple	Trigger	BOOLEAN	O
+Trend Log Multiple	Stop_When_Full	BOOLEAN	R
+Trend Log Multiple	Buffer_Size	Unsigned32	R
+Trend Log Multiple	Log_Buffer	BACnetLIST of BACnetLogMultipleRecord	R
+Trend Log Multiple	Record_Count	Unsigned32	W
+Trend Log Multiple	Total_Record_Count	Unsigned32	R
+Trend Log Multiple	Notification_Threshold	Unsigned32	O4,6
+Trend Log Multiple	Records_Since_Notification	Unsigned32	O4,6
+Trend Log Multiple	Last_Notify_Record	Unsigned32	O4,6
+Trend Log Multiple	Notification_Class	Unsigned	O4,6
+Trend Log Multiple	Event_Enable	BACnetEventTransitionBits	O4,6
+Trend Log Multiple	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Trend Log Multiple	Notify_Type	BACnetNotifyType	O4,6
+Trend Log Multiple	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Trend Log Multiple	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Trend Log Multiple	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Trend Log Multiple	Event_Detection_Enable	BOOLEAN	O4,6
+Trend Log Multiple	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Trend Log Multiple	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Trend Log Multiple	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Trend Log Multiple	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Trend Log Multiple	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Trend Log Multiple	Profile_Location	CharacterString	O
+Trend Log Multiple	Profile_Name	CharacterString	O
+Access Point	Object_Identifier	BACnetObjectIdentifier	R
+Access Point	Object_Name	CharacterString	R
+Access Point	Object_Type	BACnetObjectType	R
+Access Point	Description	CharacterString	O
+Access Point	Status_Flags	BACnetStatusFlags	R
+Access Point	Event_State	BACnetEventState	R
+Access Point	Reliability	BACnetReliability	R
+Access Point	Out_Of_Service	BOOLEAN	R
+Access Point	Authentication_Status	BACnetAuthenticationStatus	R
+Access Point	Active_Authentication_Policy	Unsigned	R
+Access Point	Number_Of_Authentication_Policies	Unsigned	R
+Access Point	Authentication_Policy_List	BACnetARRAY[N] of BACnetAuthenticationPolicy	O1
+Access Point	Authentication_Policy_Names	BACnetARRAY[N] of CharacterString	O1
+Access Point	Authorization_Mode	BACnetAuthorizationMode	R
+Access Point	Verification_Time	Unsigned	O
+Access Point	Lockout	BOOLEAN	O2
+Access Point	Lockout_Relinquish_Time	Unsigned	O
+Access Point	Failed_Attempts	Unsigned	O
+Access Point	Failed_Attempt_Events	BACnetLIST of BACnetAccessEvent	O
+Access Point	Max_Failed_Attempts	Unsigned	O3
+Access Point	Failed_Attempts_Time	Unsigned	O3
+Access Point	Threat_Level	BACnetAccessThreatLevel	O
+Access Point	Occupancy_Upper_Limit_Enforced	BOOLEAN	O
+Access Point	Occupancy_Lower_Limit_Enforced	BOOLEAN	O
+Access Point	Occupancy_Count_Adjust	BOOLEAN	O
+Access Point	Accompaniment_Time	Unsigned	O
+Access Point	Access_Event	BACnetAccessEvent	R
+Access Point	Access_Event_Tag	Unsigned	R
+Access Point	Access_Event_Time	BACnetTimeStamp	R
+Access Point	Access_Event_Credential	BACnetDeviceObjectReference	R
+Access Point	Access_Event_Authentication_Factor	BACnetAuthenticationFactor	O
+Access Point	Access_Doors	BACnetARRAY[N] of BACnetDeviceObjectReference	R
+Access Point	Priority_For_Writing	Unsigned (1..16)	R
+Access Point	Muster_Point	BOOLEAN	O
+Access Point	Zone_To	BACnetDeviceObjectReference	O
+Access Point	Zone_From	BACnetDeviceObjectReference	O
+Access Point	Notification_Class	Unsigned	O4,6
+Access Point	Transaction_Notification_Class	Unsigned	O
+Access Point	Access_Alarm_Events	BACnetLIST of BACnetAccessEvent	O4,6
+Access Point	Access_Transaction_Events	BACnetLIST of BACnetAccessEvent	O4,6
+Access Point	Event_Enable	BACnetEventTransitionBits	O4,6
+Access Point	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Access Point	Notify_Type	BACnetNotifyType	O4,6
+Access Point	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Access Point	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Access Point	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Access Point	Event_Detection_Enable	BOOLEAN	O4,6
+Access Point	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Access Point	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Access Point	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Access Point	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Access Point	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Access Point	Profile_Location	CharacterString	O
+Access Point	Profile_Name	CharacterString	O
+Access Zone	Object_Identifier	BACnetObjectIdentifier	R
+Access Zone	Object_Name	CharacterString	R
+Access Zone	Object_Type	BACnetObjectType	R
+Access Zone	Description	CharacterString	O
+Access Zone	Global_Identifier	Unsigned32	W
+Access Zone	Occupancy_State	BACnetAccessZoneOccupancyState	R
+Access Zone	Status_Flags	BACnetStatusFlags	R
+Access Zone	Event_State	BACnetEventState	R
+Access Zone	Reliability	BACnetReliability	R1
+Access Zone	Out_Of_Service	BOOLEAN	R
+Access Zone	Occupancy_Count	Unsigned	O1,3,4
+Access Zone	Occupancy_Count_Enable	BOOLEAN	O3,4
+Access Zone	Adjust_Value	INTEGER	O3,4,5
+Access Zone	Occupancy_Upper_Limit	Unsigned	O
+Access Zone	Occupancy_Lower_Limit	Unsigned	O
+Access Zone	Credentials_In_Zone	BACnetLIST of BACnetDeviceObjectReference	O
+Access Zone	Last_Credential_Added	BACnetDeviceObjectReference	O
+Access Zone	Last_Credential_Added_Time	BACnetDateTime	O
+Access Zone	Last_Credential_Removed	BACnetDeviceObjectReference	O
+Access Zone	Last_Credential_Removed_Time	BACnetDateTime	O
+Access Zone	Passback_Mode	BACnetAccessPassbackMode	O
+Access Zone	Passback_Timeout	Unsigned	O2
+Access Zone	Entry_Points	BACnetLIST of BACnetDeviceObjectReference	R
+Access Zone	Exit_Points	BACnetLIST of BACnetDeviceObjectReference	R
+Access Zone	Time_Delay	Unsigned	O3,7
+Access Zone	Notification_Class	Unsigned	O3,7
+Access Zone	Alarm_Values	BACnetLIST of BACnetAccessZoneOccupancyState	O3,7
+Access Zone	Event_Enable	BACnetEventTransitionBits	O3,7
+Access Zone	Acked_Transitions	BACnetEventTransitionBits	O3,7
+Access Zone	Notify_Type	BACnetNotifyType	O3,7
+Access Zone	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,7
+Access Zone	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O7
+Access Zone	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O7
+Access Zone	Event_Detection_Enable	BOOLEAN	O3,7
+Access Zone	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O7
+Access Zone	Event_Algorithm_Inhibit	BOOLEAN	O7,8
+Access Zone	Time_Delay_Normal	Unsigned	O7
+Access Zone	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Access Zone	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Access Zone	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Access Zone	Profile_Location	CharacterString	O
+Access Zone	Profile_Name	CharacterString	O
+Access User	Object_Identifier	BACnetObjectIdentifier	R
+Access User	Object_Name	CharacterString	R
+Access User	Object_Type	BACnetObjectType	R
+Access User	Description	CharacterString	O
+Access User	Global_Identifier	Unsigned32	W
+Access User	Status_Flags	BACnetStatusFlags	R
+Access User	Reliability	BACnetReliability	R
+Access User	User_Type	BACnetAccessUserType	R
+Access User	User_Name	CharacterString	O
+Access User	User_External_Identifier	CharacterString	O
+Access User	User_Information_Reference	CharacterString	O
+Access User	Members	BACnetLIST of BACnetDeviceObjectReference	O
+Access User	Member_Of	BACnetLIST of BACnetDeviceObjectReference	O
+Access User	Credentials	BACnetLIST of BACnetDeviceObjectReference	R
+Access User	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Access User	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Access User	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Access User	Profile_Location	CharacterString	O
+Access User	Profile_Name	CharacterString	O
+Access Rights	Object_Identifier	BACnetObjectIdentifier	R
+Access Rights	Object_Name	CharacterString	R
+Access Rights	Object_Type	BACnetObjectType	R
+Access Rights	Description	CharacterString	O
+Access Rights	Global_Identifier	Unsigned32	W
+Access Rights	Status_Flags	BACnetStatusFlags	R
+Access Rights	Reliability	BACnetReliability	R
+Access Rights	Enable	BOOLEAN	R
+Access Rights	Negative_Access_Rules	BACnetARRAY[N] of BACnetAccessRule	R
+Access Rights	Positive_Access_Rules	BACnetARRAY[N] of BACnetAccessRule	R
+Access Rights	Accompaniment	BACnetDeviceObjectReference	O
+Access Rights	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Access Rights	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Access Rights	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Access Rights	Profile_Location	CharacterString	O
+Access Rights	Profile_Name	CharacterString	O
+Access Credential	Object_Identifier	BACnetObjectIdentifier	R
+Access Credential	Object_Name	CharacterString	R
+Access Credential	Object_Type	BACnetObjectType	R
+Access Credential	Description	CharacterString	O
+Access Credential	Global_Identifier	Unsigned32	W
+Access Credential	Status_Flags	BACnetStatusFlags	R
+Access Credential	Reliability	BACnetReliability	R
+Access Credential	Credential_Status	BACnetBinaryPV	R
+Access Credential	Reason_For_Disable	BACnetLIST of BACnetAccessCredentialDisableReason	R
+Access Credential	Authentication_Factors	BACnetARRAY[N] of BACnetCredentialAuthenticationFactor	R
+Access Credential	Activation_Time	BACnetDateTime	R
+Access Credential	Expiration_Time	BACnetDateTime	R
+Access Credential	Credential_Disable	BACnetAccessCredentialDisable	R
+Access Credential	Days_Remaining	INTEGER	O1
+Access Credential	Uses_Remaining	INTEGER	O
+Access Credential	Absentee_Limit	Unsigned	O1
+Access Credential	Belongs_To	BACnetDeviceObjectReference	O
+Access Credential	Assigned_Access_Rights	BACnetARRAY[N] of BACnetAssignedAccessRights	R
+Access Credential	Last_Access_Point	BACnetDeviceObjectReference	O
+Access Credential	Last_Access_Event	BACnetAccessEvent	O
+Access Credential	Last_Use_Time	BACnetDateTime	O
+Access Credential	Trace_Flag	BOOLEAN	O
+Access Credential	Threat_Authority	BACnetAccessThreatLevel	O
+Access Credential	Extended_Time_Enable	BOOLEAN	O
+Access Credential	Authorization_Exemptions	BACnetLIST of BACnetAuthorizationExemption	O
+Access Credential	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Access Credential	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Access Credential	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Access Credential	Profile_Location	CharacterString	O
+Access Credential	Profile_Name	CharacterString	O
+Credential Data Input	Object_Identifier	BACnetObjectIdentifier	R
+Credential Data Input	Object_Name	CharacterString	R
+Credential Data Input	Object_Type	BACnetObjectType	R
+Credential Data Input	Present_Value	BACnetAuthenticationFactor	R1
+Credential Data Input	Description	CharacterString	O
+Credential Data Input	Status_Flags	BACnetStatusFlags	R
+Credential Data Input	Reliability	BACnetReliability	R1
+Credential Data Input	Out_Of_Service	BOOLEAN	R
+Credential Data Input	Supported_Formats	BACnetARRAY[N] of BACnetAuthenticationFactorFormat	R
+Credential Data Input	Supported_Format_Classes	BACnetARRAY[N] of Unsigned	O2
+Credential Data Input	Update_Time	BACnetTimeStamp	R
+Credential Data Input	Event_Detection_Enable	BOOLEAN	O3,4
+Credential Data Input	Notification_Class	Unsigned	O3,4
+Credential Data Input	Event_Enable	BACnetEventTransitionBits	O3,4
+Credential Data Input	Event_State	BACnetEventState	O3,4
+Credential Data Input	Acked_Transitions	BACnetEventTransitionBits	O3,4
+Credential Data Input	Notify_Type	BACnetNotifyType	O3,4
+Credential Data Input	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,4
+Credential Data Input	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O4
+Credential Data Input	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O4
+Credential Data Input	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Credential Data Input	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Credential Data Input	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Credential Data Input	Profile_Location	CharacterString	O
+Credential Data Input	Profile_Name	CharacterString	O
+CharacterString Value	Object_Identifier	BACnetObjectIdentifier	R
+CharacterString Value	Object_Name	CharacterString	R
+CharacterString Value	Object_Type	BACnetObjectType	R
+CharacterString Value	Description	CharacterString	O
+CharacterString Value	Present_Value	CharacterString	R1
+CharacterString Value	Status_Flags	BACnetStatusFlags	R
+CharacterString Value	Event_State	BACnetEventState	O3
+CharacterString Value	Reliability	BACnetReliability	O
+CharacterString Value	Out_Of_Service	BOOLEAN	O
+CharacterString Value	Priority_Array	BACnetPriorityArray	O2
+CharacterString Value	Relinquish_Default	CharacterString	O2
+CharacterString Value	Time_Delay	Unsigned	O3,5
+CharacterString Value	Notification_Class	Unsigned	O3,5
+CharacterString Value	Alarm_Values	BACnetARRAY[N] of BACnetOptionalCharacterString	O3,5
+CharacterString Value	Fault_Values	BACnetARRAY[N] of BACnetOptionalCharacterString	O7
+CharacterString Value	Event_Enable	BACnetEventTransitionBits	O3,5
+CharacterString Value	Acked_Transitions	BACnetEventTransitionBits	O3,5
+CharacterString Value	Notify_Type	BACnetNotifyType	O3,5
+CharacterString Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+CharacterString Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+CharacterString Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+CharacterString Value	Event_Detection_Enable	BOOLEAN	O3,5
+CharacterString Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+CharacterString Value	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+CharacterString Value	Time_Delay_Normal	Unsigned	O5
+CharacterString Value	Reliability_Evaluation_Inhibit	BOOLEAN	O7
+CharacterString Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+CharacterString Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+CharacterString Value	Value_Source	BACnetValueSource	O8,10,12
+CharacterString Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O9,11
+CharacterString Value	Last_Command_Time	BACnetTimeStamp	O9,11
+CharacterString Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O11
+CharacterString Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+CharacterString Value	Profile_Location	CharacterString	O
+CharacterString Value	Profile_Name	CharacterString	O
+DateTime Value	Object_Identifier	BACnetObjectIdentifier	R
+DateTime Value	Object_Name	CharacterString	R
+DateTime Value	Object_Type	BACnetObjectType	R
+DateTime Value	Description	CharacterString	O
+DateTime Value	Present_Value	BACnetDateTime	R1
+DateTime Value	Status_Flags	BACnetStatusFlags	R
+DateTime Value	Event_State	BACnetEventState	O
+DateTime Value	Reliability	BACnetReliability	O
+DateTime Value	Out_Of_Service	BOOLEAN	O
+DateTime Value	Priority_Array	BACnetPriorityArray	O2
+DateTime Value	Relinquish_Default	BACnetDateTime	O2
+DateTime Value	Is_UTC	BOOLEAN	O
+DateTime Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+DateTime Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+DateTime Value	Event_Detection_Enable	BOOLEAN	O4,5
+DateTime Value	Notification_Class	Unsigned	O4,5
+DateTime Value	Event_Enable	BACnetEventTransitionBits	O4,5
+DateTime Value	Acked_Transitions	BACnetEventTransitionBits	O4,5
+DateTime Value	Notify_Type	BACnetNotifyType	O4,5
+DateTime Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,5
+DateTime Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+DateTime Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+DateTime Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+DateTime Value	Value_Source	BACnetValueSource	O6,8,10
+DateTime Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+DateTime Value	Last_Command_Time	BACnetTimeStamp	O7,9
+DateTime Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+DateTime Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+DateTime Value	Profile_Location	CharacterString	O
+DateTime Value	Profile_Name	CharacterString	O
+Large Analog Value	Object_Identifier	BACnetObjectIdentifier	R
+Large Analog Value	Object_Name	CharacterString	R
+Large Analog Value	Object_Type	BACnetObjectType	R
+Large Analog Value	Description	CharacterString	O
+Large Analog Value	Present_Value	Double	R1
+Large Analog Value	Status_Flags	BACnetStatusFlags	R
+Large Analog Value	Event_State	BACnetEventState	O4
+Large Analog Value	Reliability	BACnetReliability	O
+Large Analog Value	Out_Of_Service	BOOLEAN	O
+Large Analog Value	Units	BACnetEngineeringUnits	R
+Large Analog Value	Priority_Array	BACnetPriorityArray	O2
+Large Analog Value	Relinquish_Default	Double	O2
+Large Analog Value	COV_Increment	Double	O3
+Large Analog Value	Time_Delay	Unsigned	O4,6
+Large Analog Value	Notification_Class	Unsigned	O4,6
+Large Analog Value	High_Limit	Double	O4,6
+Large Analog Value	Low_Limit	Double	O4,6
+Large Analog Value	Deadband	Double	O4,6
+Large Analog Value	Limit_Enable	BACnetLimitEnable	O4,6
+Large Analog Value	Event_Enable	BACnetEventTransitionBits	O4,6
+Large Analog Value	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Large Analog Value	Notify_Type	BACnetNotifyType	O4,6
+Large Analog Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Large Analog Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Large Analog Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Large Analog Value	Event_Detection_Enable	BOOLEAN	O4,6
+Large Analog Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Large Analog Value	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Large Analog Value	Time_Delay_Normal	Unsigned	O6
+Large Analog Value	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Large Analog Value	Min_Pres_Value	Double	O
+Large Analog Value	Max_Pres_Value	Double	O
+Large Analog Value	Resolution	Double	O
+Large Analog Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Large Analog Value	Fault_High_Limit	Double	O9
+Large Analog Value	Fault_Low_Limit	Double	O9
+Large Analog Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+Large Analog Value	Value_Source	BACnetValueSource	O10,12,14
+Large Analog Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O11,13
+Large Analog Value	Last_Command_Time	BACnetTimeStamp	O11,13
+Large Analog Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O13
+Large Analog Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Large Analog Value	Profile_Location	CharacterString	O
+Large Analog Value	Profile_Name	CharacterString	O
+BitString Value	Object_Identifier	BACnetObjectIdentifier	R
+BitString Value	Object_Name	CharacterString	R
+BitString Value	Object_Type	BACnetObjectType	R
+BitString Value	Description	CharacterString	O
+BitString Value	Present_Value	BIT STRING	R1
+BitString Value	Bit_Text	BACnetARRAY[N] of CharacterString	O
+BitString Value	Status_Flags	BACnetStatusFlags	R
+BitString Value	Event_State	BACnetEventState	O3
+BitString Value	Reliability	BACnetReliability	O
+BitString Value	Out_Of_Service	BOOLEAN	O
+BitString Value	Priority_Array	BACnetPriorityArray	O2
+BitString Value	Relinquish_Default	BIT STRING	O2
+BitString Value	Time_Delay	Unsigned	O3,5
+BitString Value	Notification_Class	Unsigned	O3,5
+BitString Value	Alarm_Values	BACnetARRAY[N] of BIT STRING	O3,5
+BitString Value	Bit_Mask	BIT STRING	O3,5
+BitString Value	Event_Enable	BACnetEventTransitionBits	O3,5
+BitString Value	Acked_Transitions	BACnetEventTransitionBits	O3,5
+BitString Value	Notify_Type	BACnetNotifyType	O3,5
+BitString Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,5
+BitString Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+BitString Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+BitString Value	Event_Detection_Enable	BOOLEAN	O3,5
+BitString Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O5
+BitString Value	Event_Algorithm_Inhibit	BOOLEAN	O5,6
+BitString Value	Time_Delay_Normal	Unsigned	O5
+BitString Value	Reliability_Evaluation_Inhibit	BOOLEAN	O7
+BitString Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+BitString Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+BitString Value	Value_Source	BACnetValueSource	O
+BitString Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O
+BitString Value	Last_Command_Time	BACnetTimeStamp	O
+BitString Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O
+BitString Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+BitString Value	Profile_Location	CharacterString	O
+BitString Value	Profile_Name	CharacterString	O
+OctetString Value	Object_Identifier	BACnetObjectIdentifier	R
+OctetString Value	Object_Name	CharacterString	R
+OctetString Value	Object_Type	BACnetObjectType	R
+OctetString Value	Description	CharacterString	O
+OctetString Value	Present_Value	OCTET STRING	R1
+OctetString Value	Status_Flags	BACnetStatusFlags	R
+OctetString Value	Event_State	BACnetEventState	O
+OctetString Value	Reliability	BACnetReliability	O
+OctetString Value	Out_Of_Service	BOOLEAN	O
+OctetString Value	Priority_Array	BACnetPriorityArray	O2
+OctetString Value	Relinquish_Default	OCTET STRING	O2
+OctetString Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+OctetString Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+OctetString Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+OctetString Value	Value_Source	BACnetValueSource	O4,6,8
+OctetString Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O5,7
+OctetString Value	Last_Command_Time	BACnetTimeStamp	O5,7
+OctetString Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O7
+OctetString Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+OctetString Value	Profile_Location	CharacterString	O
+OctetString Value	Profile_Name	CharacterString	O
+Time Value	Object_Identifier	BACnetObjectIdentifier	R
+Time Value	Object_Name	CharacterString	R
+Time Value	Object_Type	BACnetObjectType	R
+Time Value	Description	CharacterString	O
+Time Value	Present_Value	Time	R1
+Time Value	Status_Flags	BACnetStatusFlags	R
+Time Value	Event_State	BACnetEventState	O
+Time Value	Reliability	BACnetReliability	O
+Time Value	Out_Of_Service	BOOLEAN	O
+Time Value	Priority_Array	BACnetPriorityArray	O2
+Time Value	Relinquish_Default	Time	O2
+Time Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+Time Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Time Value	Event_Detection_Enable	BOOLEAN	O4,5
+Time Value	Notification_Class	Unsigned	O4,5
+Time Value	Event_Enable	BACnetEventTransitionBits	O4,5
+Time Value	Acked_Transitions	BACnetEventTransitionBits	O4,5
+Time Value	Notify_Type	BACnetNotifyType	O4,5
+Time Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,5
+Time Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Time Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Time Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+Time Value	Value_Source	BACnetValueSource	O6,8,10
+Time Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+Time Value	Last_Command_Time	BACnetTimeStamp	O7,9
+Time Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+Time Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Time Value	Profile_Location	CharacterString	O
+Time Value	Profile_Name	CharacterString	O
+Integer Value	Object_Identifier	BACnetObjectIdentifier	R
+Integer Value	Object_Name	CharacterString	R
+Integer Value	Object_Type	BACnetObjectType	R
+Integer Value	Description	CharacterString	O
+Integer Value	Present_Value	INTEGER	R1
+Integer Value	Status_Flags	BACnetStatusFlags	R
+Integer Value	Event_State	BACnetEventState	O4
+Integer Value	Reliability	BACnetReliability	O
+Integer Value	Out_Of_Service	BOOLEAN	O
+Integer Value	Units	BACnetEngineeringUnits	R
+Integer Value	Priority_Array	BACnetPriorityArray	O2
+Integer Value	Relinquish_Default	INTEGER	O2
+Integer Value	COV_Increment	Unsigned	O3
+Integer Value	Time_Delay	Unsigned	O4,6
+Integer Value	Notification_Class	Unsigned	O4,6
+Integer Value	High_Limit	INTEGER	O4,6
+Integer Value	Low_Limit	INTEGER	O4,6
+Integer Value	Deadband	Unsigned	O4,6
+Integer Value	Limit_Enable	BACnetLimitEnable	O4,6
+Integer Value	Event_Enable	BACnetEventTransitionBits	O4,6
+Integer Value	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Integer Value	Notify_Type	BACnetNotifyType	O4,6
+Integer Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Integer Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Integer Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Integer Value	Event_Detection_Enable	BOOLEAN	O4,6
+Integer Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Integer Value	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Integer Value	Time_Delay_Normal	Unsigned	O6
+Integer Value	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Integer Value	Min_Pres_Value	INTEGER	O
+Integer Value	Max_Pres_Value	INTEGER	O
+Integer Value	Resolution	INTEGER	O
+Integer Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Integer Value	Fault_High_Limit	INTEGER	O9
+Integer Value	Fault_Low_Limit	INTEGER	O9
+Integer Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+Integer Value	Value_Source	BACnetValueSource	O10,12,14
+Integer Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O11,13
+Integer Value	Last_Command_Time	BACnetTimeStamp	O11,13
+Integer Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O13
+Integer Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Integer Value	Profile_Location	CharacterString	O
+Integer Value	Profile_Name	CharacterString	O
+Positive Integer Value	Object_Identifier	BACnetObjectIdentifier	R
+Positive Integer Value	Object_Name	CharacterString	R
+Positive Integer Value	Object_Type	BACnetObjectType	R
+Positive Integer Value	Description	CharacterString	O
+Positive Integer Value	Present_Value	Unsigned	R1
+Positive Integer Value	Status_Flags	BACnetStatusFlags	R
+Positive Integer Value	Event_State	BACnetEventState	O4
+Positive Integer Value	Reliability	BACnetReliability	O
+Positive Integer Value	Out_Of_Service	BOOLEAN	O
+Positive Integer Value	Units	BACnetEngineeringUnits	R
+Positive Integer Value	Priority_Array	BACnetPriorityArray	O2
+Positive Integer Value	Relinquish_Default	Unsigned	O2
+Positive Integer Value	COV_Increment	Unsigned	O3
+Positive Integer Value	Time_Delay	Unsigned	O4,6
+Positive Integer Value	Notification_Class	Unsigned	O4,6
+Positive Integer Value	High_Limit	Unsigned	O4,6
+Positive Integer Value	Low_Limit	Unsigned	O4,6
+Positive Integer Value	Deadband	Unsigned	O4,6
+Positive Integer Value	Limit_Enable	BACnetLimitEnable	O4,6
+Positive Integer Value	Event_Enable	BACnetEventTransitionBits	O4,6
+Positive Integer Value	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Positive Integer Value	Notify_Type	BACnetNotifyType	O4,6
+Positive Integer Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Positive Integer Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Positive Integer Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Positive Integer Value	Event_Detection_Enable	BOOLEAN	O4,6
+Positive Integer Value	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Positive Integer Value	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Positive Integer Value	Time_Delay_Normal	Unsigned	O6
+Positive Integer Value	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Positive Integer Value	Min_Pres_Value	Unsigned	O
+Positive Integer Value	Max_Pres_Value	Unsigned	O
+Positive Integer Value	Resolution	Unsigned	O
+Positive Integer Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Positive Integer Value	Fault_High_Limit	Unsigned	O9
+Positive Integer Value	Fault_Low_Limit	Unsigned	O9
+Positive Integer Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+Positive Integer Value	Value_Source	BACnetValueSource	O10,12,14
+Positive Integer Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O11,13
+Positive Integer Value	Last_Command_Time	BACnetTimeStamp	O11,13
+Positive Integer Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O13
+Positive Integer Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Positive Integer Value	Profile_Location	CharacterString	O
+Positive Integer Value	Profile_Name	CharacterString	O
+Date Value	Object_Identifier	BACnetObjectIdentifier	R
+Date Value	Object_Name	CharacterString	R
+Date Value	Object_Type	BACnetObjectType	R
+Date Value	Description	CharacterString	O
+Date Value	Present_Value	Date	R1
+Date Value	Status_Flags	BACnetStatusFlags	R
+Date Value	Event_State	BACnetEventState	O
+Date Value	Reliability	BACnetReliability	O
+Date Value	Out_Of_Service	BOOLEAN	O
+Date Value	Priority_Array	BACnetPriorityArray	O2
+Date Value	Relinquish_Default	Date	O2
+Date Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+Date Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Date Value	Event_Detection_Enable	BOOLEAN	O4,5
+Date Value	Notification_Class	Unsigned	O4,5
+Date Value	Event_Enable	BACnetEventTransitionBits	O4,5
+Date Value	Acked_Transitions	BACnetEventTransitionBits	O4,5
+Date Value	Notify_Type	BACnetNotifyType	O4,5
+Date Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,5
+Date Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+Date Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+Date Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+Date Value	Value_Source	BACnetValueSource	O6,8,10
+Date Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+Date Value	Last_Command_Time	BACnetTimeStamp	O7,9
+Date Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+Date Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Date Value	Profile_Location	CharacterString	O
+Date Value	Profile_Name	CharacterString	O
+DateTimePattern Value	Object_Identifier	BACnetObjectIdentifier	R
+DateTimePattern Value	Object_Name	CharacterString	R
+DateTimePattern Value	Object_Type	BACnetObjectType	R
+DateTimePattern Value	Description	CharacterString	O
+DateTimePattern Value	Present_Value	BACnetDateTime	R1
+DateTimePattern Value	Status_Flags	BACnetStatusFlags	R
+DateTimePattern Value	Event_State	BACnetEventState	O
+DateTimePattern Value	Reliability	BACnetReliability	O
+DateTimePattern Value	Out_Of_Service	BOOLEAN	O
+DateTimePattern Value	Is_UTC	BOOLEAN	O
+DateTimePattern Value	Priority_Array	BACnetPriorityArray	O2
+DateTimePattern Value	Relinquish_Default	BACnetDateTime	O2
+DateTimePattern Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+DateTimePattern Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+DateTimePattern Value	Event_Detection_Enable	BOOLEAN	O4,5
+DateTimePattern Value	Notification_Class	Unsigned	O4,5
+DateTimePattern Value	Event_Enable	BACnetEventTransitionBits	O4,5
+DateTimePattern Value	Acked_Transitions	BACnetEventTransitionBits	O4,5
+DateTimePattern Value	Notify_Type	BACnetNotifyType	O4,5
+DateTimePattern Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,5
+DateTimePattern Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+DateTimePattern Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+DateTimePattern Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+DateTimePattern Value	Value_Source	BACnetValueSource	O6,8,10
+DateTimePattern Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+DateTimePattern Value	Last_Command_Time	BACnetTimeStamp	O7,9
+DateTimePattern Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+DateTimePattern Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+DateTimePattern Value	Profile_Location	CharacterString	O
+DateTimePattern Value	Profile_Name	CharacterString	O
+TimePattern Value	Object_Identifier	BACnetObjectIdentifier	R
+TimePattern Value	Object_Name	CharacterString	R
+TimePattern Value	Object_Type	BACnetObjectType	R
+TimePattern Value	Description	CharacterString	O
+TimePattern Value	Present_Value	Time	R1
+TimePattern Value	Status_Flags	BACnetStatusFlags	R
+TimePattern Value	Event_State	BACnetEventState	O
+TimePattern Value	Reliability	BACnetReliability	O
+TimePattern Value	Out_Of_Service	BOOLEAN	O
+TimePattern Value	Priority_Array	BACnetPriorityArray	O2
+TimePattern Value	Relinquish_Default	Time	O2
+TimePattern Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+TimePattern Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+TimePattern Value	Event_Detection_Enable	BOOLEAN	O4,5
+TimePattern Value	Notification_Class	Unsigned	O4,5
+TimePattern Value	Event_Enable	BACnetEventTransitionBits	O4,5
+TimePattern Value	Acked_Transitions	BACnetEventTransitionBits	O4,5
+TimePattern Value	Notify_Type	BACnetNotifyType	O4,5
+TimePattern Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,5
+TimePattern Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+TimePattern Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+TimePattern Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+TimePattern Value	Value_Source	BACnetValueSource	O6,8,10
+TimePattern Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+TimePattern Value	Last_Command_Time	BACnetTimeStamp	O7,9
+TimePattern Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+TimePattern Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+TimePattern Value	Profile_Location	CharacterString	O
+TimePattern Value	Profile_Name	CharacterString	O
+DatePattern Value	Object_Identifier	BACnetObjectIdentifier	R
+DatePattern Value	Object_Name	CharacterString	R
+DatePattern Value	Object_Type	BACnetObjectType	R
+DatePattern Value	Description	CharacterString	O
+DatePattern Value	Present_Value	Date	R1
+DatePattern Value	Status_Flags	BACnetStatusFlags	R
+DatePattern Value	Event_State	BACnetEventState	O
+DatePattern Value	Reliability	BACnetReliability	O
+DatePattern Value	Out_Of_Service	BOOLEAN	O
+DatePattern Value	Priority_Array	BACnetPriorityArray	O2
+DatePattern Value	Relinquish_Default	Date	O2
+DatePattern Value	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+DatePattern Value	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+DatePattern Value	Event_Detection_Enable	BOOLEAN	O4,5
+DatePattern Value	Notification_Class	Unsigned	O4,5
+DatePattern Value	Event_Enable	BACnetEventTransitionBits	O4,5
+DatePattern Value	Acked_Transitions	BACnetEventTransitionBits	O4,5
+DatePattern Value	Notify_Type	BACnetNotifyType	O4,5
+DatePattern Value	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,5
+DatePattern Value	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O5
+DatePattern Value	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O5
+DatePattern Value	Current_Command_Priority	BACnetOptionalUnsigned	O2
+DatePattern Value	Value_Source	BACnetValueSource	O6,8,10
+DatePattern Value	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+DatePattern Value	Last_Command_Time	BACnetTimeStamp	O7,9
+DatePattern Value	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+DatePattern Value	Tags	BACnetARRAY[N] of BACnetNameValue	O
+DatePattern Value	Profile_Location	CharacterString	O
+DatePattern Value	Profile_Name	CharacterString	O
+Network Security	Object_Identifier	BACnetObjectIdentifier	R
+Network Security	Object_Name	CharacterString	R
+Network Security	Object_Type	BACnetObjectType	R
+Network Security	Description	CharacterString	O
+Network Security	Base_Device_Security_Policy	BACnetSecurityLevel	W
+Network Security	Network_Access_Security_Policies	BACnetARRAY[N] of BACnetNetworkSecurityPolicy	W
+Network Security	Security_Time_Window	Unsigned	W
+Network Security	Packet_Reorder_Time	Unsigned	W
+Network Security	Distribution_Key_Revision	Unsigned8	R
+Network Security	Key_Sets	BACnetARRAY[2] of BACnetSecurityKeySet	R
+Network Security	Last_Key_Server	BACnetAddressBinding	W
+Network Security	Security_PDU_Timeout	Unsigned16	W
+Network Security	Update_Key_Set_Timeout	Unsigned16	R
+Network Security	Supported_Security_Algorithms	BACnetLIST of Unsigned8	R
+Network Security	Do_Not_Hide	BOOLEAN	W
+Network Security	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Network Security	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Network Security	Profile_Location	CharacterString	O
+Network Security	Profile_Name	CharacterString	O
+Global Group	Object_Identifier	BACnetObjectIdentifier	R
+Global Group	Object_Name	CharacterString	R
+Global Group	Object_Type	BACnetObjectType	R
+Global Group	Description	CharacterString	O
+Global Group	Group_Members	BACnetARRAY[N] of BACnetDeviceObjectPropertyReference	R
+Global Group	Group_Member_Names	BACnetARRAY[N] of CharacterString	O
+Global Group	Present_Value	BACnetARRAY[N] of BACnetPropertyAccessResult	R
+Global Group	Status_Flags	BACnetStatusFlags	R
+Global Group	Event_State	BACnetEventState	R
+Global Group	Member_Status_Flags	BACnetStatusFlags	R
+Global Group	Reliability	BACnetReliability	O
+Global Group	Out_of_Service	BOOLEAN	R
+Global Group	Update_Interval	Unsigned	O
+Global Group	Requested_Update_Interval	Unsigned	O
+Global Group	COV_Resubscription_Interval	Unsigned	O
+Global Group	Client_COV_Increment	BACnetClientCOV	O
+Global Group	Time_Delay	Unsigned	O1,4
+Global Group	Notification_Class	Unsigned	O1,4
+Global Group	Event_Enable	BACnetEventTransitionBits	O1,4
+Global Group	Acked_Transitions	BACnetEventTransitionBits	O1,4
+Global Group	Notify_Type	BACnetNotifyType	O1,4
+Global Group	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O1,4
+Global Group	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O4
+Global Group	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O4
+Global Group	Event_Detection_Enable	BOOLEAN	O1,4
+Global Group	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O4
+Global Group	Event_Algorithm_Inhibit	BOOLEAN	O4,5
+Global Group	Time_Delay_Normal	Unsigned	O4
+Global Group	COVU_Period	Unsigned	O2
+Global Group	COVU_Recipients	BACnetLIST of BACnetRecipient	O2
+Global Group	Reliability_Evaluation_Inhibit	BOOLEAN	O6
+Global Group	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Global Group	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Global Group	Profile_Location	CharacterString	O
+Global Group	Profile_Name	CharacterString	O
+Notification Forwarder	Object_Identifier	BACnetObjectIdentifier	R
+Notification Forwarder	Object_Name	CharacterString	R
+Notification Forwarder	Object_Type	BACnetObjectType	R
+Notification Forwarder	Description	CharacterString	O
+Notification Forwarder	Status_Flags	BACnetStatusFlags	R
+Notification Forwarder	Reliability	BACnetReliability	R
+Notification Forwarder	Out_Of_Service	BOOLEAN	R
+Notification Forwarder	Recipient_List	BACnetLIST of BACnetDestination	R
+Notification Forwarder	Subscribed_Recipients	BACnetLIST of BACnetEventNotificationSubscription	W
+Notification Forwarder	Process_Identifier_Filter	BACnetProcessIdSelection	R
+Notification Forwarder	Port_Filter	BACnetARRAY[N] of BACnetPortPermission	O1
+Notification Forwarder	Local_Forwarding_Only	BOOLEAN	R
+Notification Forwarder	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Notification Forwarder	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Notification Forwarder	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Notification Forwarder	Profile_Location	CharacterString	O
+Notification Forwarder	Profile_Name	CharacterString	O
+Alert Enrollment	Object_Identifier	BACnetObjectIdentifier	R
+Alert Enrollment	Object_Name	CharacterString	R
+Alert Enrollment	Object_Type	BACnetObjectType	R
+Alert Enrollment	Description	CharacterString	O
+Alert Enrollment	Present_Value	BACnetObjectIdentifier	R
+Alert Enrollment	Event_State	BACnetEventState	R
+Alert Enrollment	Event_Detection_Enable	BOOLEAN	R
+Alert Enrollment	Notification_Class	Unsigned	R
+Alert Enrollment	Event_Enable	BACnetEventTransitionBits	R
+Alert Enrollment	Acked_Transitions	BACnetEventTransitionBits	R
+Alert Enrollment	Notify_Type	BACnetNotifyType	R
+Alert Enrollment	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	R
+Alert Enrollment	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O
+Alert Enrollment	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O
+Alert Enrollment	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O
+Alert Enrollment	Event_Algorithm_Inhibit	BOOLEAN	O
+Alert Enrollment	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Alert Enrollment	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Alert Enrollment	Profile_Location	CharacterString	O
+Alert Enrollment	Profile_Name	CharacterString	O
+Channel	Object_Identifier	BACnetObjectIdentifier	R
+Channel	Object_Name	CharacterString	R
+Channel	Object_Type	BACnetObjectType	R
+Channel	Description	CharacterString	O
+Channel	Present_Value	BACnetChannelValue	W
+Channel	Last_Priority	Unsigned	R
+Channel	Write_Status	BACnetWriteStatus	R
+Channel	Status_Flags	BACnetStatusFlags	R
+Channel	Reliability	BACnetReliability	O
+Channel	Out_Of_Service	BOOLEAN	R
+Channel	List_Of_Object_Property_References	BACnetARRAY[N] of BACnetDeviceObjectPropertyReference	W1
+Channel	Execution_Delay	BACnetARRAY[N] of Unsigned	O1
+Channel	Allow_Group_Delay_Inhibit	BOOLEAN	O
+Channel	Channel_Number	Unsigned16	W
+Channel	Control_Groups	BACnetARRAY[N] of Unsigned32	W
+Channel	Event_Detection_Enable	BOOLEAN	O2,3
+Channel	Notification_Class	Unsigned	O2,3
+Channel	Event_Enable	BACnetEventTransitionBits	O2,3
+Channel	Event_State	BACnetEventState	O2,3
+Channel	Acked_Transitions	BACnetEventTransitionBits	O2,3
+Channel	Notify_Type	BACnetNotifyType	O2,3
+Channel	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,3
+Channel	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O3
+Channel	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O3
+Channel	Reliability_Evaluation_Inhibit	BOOLEAN	O4
+Channel	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Channel	Value_Source	BACnetValueSource	O5,6,7
+Channel	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Channel	Profile_Location	CharacterString	O
+Channel	Profile_Name	CharacterString	O
+Lighting Output	Object_Identifier	BACnetObjectIdentifier	R
+Lighting Output	Object_Name	CharacterString	R
+Lighting Output	Object_Type	BACnetObjectType	R
+Lighting Output	Present_Value	REAL	W
+Lighting Output	Tracking_Value	REAL	R
+Lighting Output	Lighting_Command	BACnetLightingCommand	W
+Lighting Output	In_Progress	BACnetLightingInProgress	R
+Lighting Output	Description	CharacterString	O
+Lighting Output	Status_Flags	BACnetStatusFlags	R
+Lighting Output	Reliability	BACnetReliability	O
+Lighting Output	Out_Of_Service	BOOLEAN	R
+Lighting Output	Blink_Warn_Enable	BOOLEAN	R
+Lighting Output	Egress_Time	Unsigned	R
+Lighting Output	Egress_Active	BOOLEAN	R
+Lighting Output	Default_Fade_Time	Unsigned	R
+Lighting Output	Default_Ramp_Rate	REAL	R
+Lighting Output	Default_Step_Increment	REAL	R
+Lighting Output	Transition	BACnetLightingTransition	O
+Lighting Output	Feedback_Value	REAL	O
+Lighting Output	Priority_Array	BACnetPriorityArray	R
+Lighting Output	Relinquish_Default	REAL	R
+Lighting Output	Power	REAL	O
+Lighting Output	Instantaneous_Power	REAL	O
+Lighting Output	Min_Actual_Value	REAL	O1
+Lighting Output	Max_Actual_Value	REAL	O1
+Lighting Output	Lighting_Command_Default_Priority	Unsigned	R
+Lighting Output	COV_Increment	REAL	O2
+Lighting Output	Reliability_Evaluation_Inhibit	BOOLEAN	O3
+Lighting Output	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Lighting Output	Current_Command_Priority	BACnetOptionalUnsigned	R
+Lighting Output	Value_Source	BACnetValueSource	O4,6,8
+Lighting Output	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O5,7
+Lighting Output	Last_Command_Time	BACnetTimeStamp	O5,7
+Lighting Output	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O7
+Lighting Output	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Lighting Output	Profile_Location	CharacterString	O
+Lighting Output	Profile_Name	CharacterString	O
+Binary Lighting Output	Object_Identifier	BACnetObjectIdentifier	R
+Binary Lighting Output	Object_Name	CharacterString	R
+Binary Lighting Output	Object_Type	BACnetObjectType	R
+Binary Lighting Output	Present_Value	BACnetBinaryLightingPV	W
+Binary Lighting Output	Description	CharacterString	O
+Binary Lighting Output	Status_Flags	BACnetStatusFlags	R
+Binary Lighting Output	Reliability	BACnetReliability	O
+Binary Lighting Output	Out_Of_Service	BOOLEAN	R
+Binary Lighting Output	Blink_Warn_Enable	BOOLEAN	R
+Binary Lighting Output	Egress_Time	Unsigned	R
+Binary Lighting Output	Egress_Active	BOOLEAN	R
+Binary Lighting Output	Feedback_Value	BACnetBinaryLightingPV	O
+Binary Lighting Output	Priority_Array	BACnetPriorityArray	R
+Binary Lighting Output	Relinquish_Default	BACnetBinaryLightingPV	R
+Binary Lighting Output	Power	REAL	O
+Binary Lighting Output	Polarity	BACnetPolarity	O
+Binary Lighting Output	Elapsed_Active_Time	Unsigned32	O1
+Binary Lighting Output	Time_Of_Active_Time_Reset	BACnetDateTime	O1
+Binary Lighting Output	Strike_Count	Unsigned	O2
+Binary Lighting Output	Time_Of_Strike_Count_Reset	BACnetDateTime	O2
+Binary Lighting Output	Event_Detection_Enable	BOOLEAN	O3,4
+Binary Lighting Output	Notification_Class	Unsigned	O3,4
+Binary Lighting Output	Event_Enable	BACnetEventTransitionBits	O3,4
+Binary Lighting Output	Acked_Transitions	BACnetEventTransitionBits	O3,4
+Binary Lighting Output	Notify_Type	BACnetNotifyType	O3,4
+Binary Lighting Output	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,4
+Binary Lighting Output	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O4
+Binary Lighting Output	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O4
+Binary Lighting Output	Reliability_Evaluation_Inhibit	BOOLEAN	O5
+Binary Lighting Output	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Binary Lighting Output	Current_Command_Priority	BACnetOptionalUnsigned	R
+Binary Lighting Output	Value_Source	BACnetValueSource	O6,8,10
+Binary Lighting Output	Value_Source_Array	BACnetARRAY[16] of BACnetValueSource	O7,9
+Binary Lighting Output	Last_Command_Time	BACnetTimeStamp	O7,9
+Binary Lighting Output	Command_Time_Array	BACnetARRAY[16] of BACnetTimeStamp	O9
+Binary Lighting Output	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Binary Lighting Output	Profile_Location	CharacterString	O
+Binary Lighting Output	Profile_Name	CharacterString	O
+Network Port	Object_Identifier	BACnetObjectIdentifier	R
+Network Port	Object_Name	CharacterString	R
+Network Port	Object_Type	BACnetObjectType	R
+Network Port	Description	CharacterString	O
+Network Port	Status_Flags	BACnetStatusFlags	R
+Network Port	Reliability	BACnetReliability	R
+Network Port	Out_Of_Service	BOOLEAN	R
+Network Port	Network_Type	BACnetNetworkType	R
+Network Port	Protocol_Level	BACnetProtocolLevel	R
+Network Port	Reference_Port	Unsigned	O
+Network Port	Network_Number	Unsigned16	R1
+Network Port	Network_Number_Quality	BACnetNetworkNumberQuality	R
+Network Port	Changes_Pending	BOOLEAN	R
+Network Port	Command	BACnetNetworkPortCommand	O2
+Network Port	MAC_Address	OCTET STRING	O3
+Network Port	APDU_Length	Unsigned	R
+Network Port	Link_Speed	REAL	R
+Network Port	Link_Speeds	BACnetARRAY[N] of REAL	O4
+Network Port	Link_Speed_Autonegotiate	BOOLEAN	O
+Network Port	Network_Interface_Name	CharacterString	O
+Network Port	BACnet_IP_Mode	BACnetIPMode	O5
+Network Port	IP_Address	OCTET STRING	O6
+Network Port	BACnet_IP_UDP_Port	Unsigned16	O5
+Network Port	IP_Subnet_Mask	OCTET STRING	O6
+Network Port	IP_Default_Gateway	OCTET STRING	O6
+Network Port	BACnet_IP_Multicast_Address	OCTET STRING	O7
+Network Port	IP_DNS_Server	BACnetARRAY[N] of OCTET STRING	O6
+Network Port	IP_DHCP_Enable	BOOLEAN	O8
+Network Port	IP_DHCP_Lease_Time	Unsigned	O
+Network Port	IP_DHCP_Lease_Time_Remaining	Unsigned	O
+Network Port	IP_DHCP_Server	OCTET STRING	O
+Network Port	BACnet_IP_NAT_Traversal	BOOLEAN	O9
+Network Port	BACnet_IP_Global_Address	BACnetHostNPort	O10
+Network Port	BBMD_Broadcast_Distribution_Table	BACnetLIST of BACnetBDTEntry	O11
+Network Port	BBMD_Accept_FD_Registrations	BOOLEAN	O11
+Network Port	BBMD_Foreign_Device_Table	BACnetLIST of BACnetFDTEntry	O12
+Network Port	FD_BBMD_Address	BACnetHostNPort	O13
+Network Port	FD_Subscription_Lifetime	Unsigned16	O13
+Network Port	BACnet_IPv6_Mode	BACnetIPMode	O14
+Network Port	IPv6_Address	OCTET STRING	O15
+Network Port	IPv6_Prefix_Length	Unsigned8	O15
+Network Port	BACnet_IPv6_UDP_Port	Unsigned16	O14
+Network Port	IPv6_Default_Gateway	OCTET STRING	O15
+Network Port	BACnet_IPv6_Multicast_Address	OCTET STRING	O14
+Network Port	IPv6_DNS_Server	BACnetARRAY[N] of OCTET STRING	O15
+Network Port	IPv6_Auto_Addressing_Enable	BOOLEAN	O16
+Network Port	IPv6_DHCP_Lease_Time	Unsigned	O
+Network Port	IPv6_DHCP_Lease_Time_Remaining	Unsigned	O
+Network Port	IPv6_DHCP_Server	OCTET STRING	O
+Network Port	IPv6_Zone_Index	CharacterString	O17
+Network Port	Max_Master	Unsigned8 (0..127)	O18
+Network Port	Max_Info_Frames	Unsigned8	O18
+Network Port	Slave_Proxy_Enable	BOOLEAN	O19
+Network Port	Manual_Slave_Address_Binding	BACnetLIST of BACnetAddressBinding	O19
+Network Port	Auto_Slave_Discovery	BOOLEAN	O20
+Network Port	Slave_Address_Binding	BACnetLIST of BACnetAddressBinding	O21
+Network Port	Virtual_MAC_Address_Table	BACnetLIST of BACnetVMACEntry	O22
+Network Port	Routing_Table	BACnetLIST of BACnetRouterEntry	O
+Network Port	Event_Detection_Enable	BOOLEAN	O23,24
+Network Port	Notification_Class	Unsigned	O23,24
+Network Port	Event_Enable	BACnetEventTransitionBits	O23,24
+Network Port	Acked_Transitions	BACnetEventTransitionBits	O23,24
+Network Port	Notify_Type	BACnetNotifyType	O23,24
+Network Port	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O23,24
+Network Port	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O24
+Network Port	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O24
+Network Port	Event_State	BACnetEventState	O23
+Network Port	Reliability_Evaluation_Inhibit	BOOLEAN	O
+Network Port	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Network Port	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Network Port	Profile_Location	CharacterString	O
+Network Port	Profile_Name	CharacterString	O
+Timer	Object_Identifier	BACnetObjectIdentifier	R
+Timer	Object_Name	CharacterString	R
+Timer	Object_Type	BACnetObjectType	R
+Timer	Description	CharacterString	O
+Timer	Present_Value	Unsigned	R1
+Timer	Status_Flags	BACnetStatusFlags	R
+Timer	Event_State	BACnetEventState	O3
+Timer	Reliability	BACnetReliability	O1
+Timer	Out_Of_Service	BOOLEAN	O
+Timer	Timer_State	BACnetTimerState	R2
+Timer	Timer_Running	BOOLEAN	R2
+Timer	Update_Time	BACnetDateTime	O3
+Timer	Last_State_Change	BACnetTimerTransition	O
+Timer	Expiration_Time	BACnetDateTime	O
+Timer	Initial_Timeout	Unsigned	O
+Timer	Default_Timeout	Unsigned	O
+Timer	Min_Pres_Value	Unsigned	O4
+Timer	Max_Pres_Value	Unsigned	O4
+Timer	Resolution	Unsigned	O
+Timer	State_Change_Values	BACnetARRAY[7] of BACnetTimerStateChangeValue	O5
+Timer	List_Of_Object_Property_References	BACnetLIST of BACnetDeviceObjectPropertyReference	O5
+Timer	Priority_For_Writing	Unsigned (1..16)	O5
+Timer	Event_Detection_Enable	BOOLEAN	O3,6
+Timer	Notification_Class	Unsigned	O3,6
+Timer	Time_Delay	Unsigned	O3,6
+Timer	Time_Delay_Normal	Unsigned	O3,6
+Timer	Alarm_Values	BACnetLIST of BACnetTimerState	O3,6
+Timer	Event_Enable	BACnetEventTransitionBits	O3,6
+Timer	Acked_Transitions	BACnetEventTransitionBits	O3,6
+Timer	Notify_Type	BACnetNotifyType	O3,6
+Timer	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O3,6
+Timer	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Timer	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Timer	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Timer	Event_Algorithm_Inhibit	BOOLEAN	O6,7
+Timer	Reliability_Evaluation_Inhibit	BOOLEAN	O8
+Timer	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Timer	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Timer	Profile_Location	CharacterString	O
+Timer	Profile_Name	CharacterString	O
+Elevator Group	Object_Identifier	BACnetObjectIdentifier	R
+Elevator Group	Object_Name	CharacterString	R
+Elevator Group	Object_Type	BACnetObjectType	R
+Elevator Group	Description	CharacterString	O
+Elevator Group	Machine_Room_ID	BACnetObjectIdentifier	R
+Elevator Group	Group_ID	Unsigned8	R
+Elevator Group	Group_Members	BACnetARRAY[N] of BACnetObjectIdentifier	R
+Elevator Group	Group_Mode	BACnetLiftGroupMode	O1
+Elevator Group	Landing_Calls	BACnetLIST of BACnetLandingCallStatus	O1
+Elevator Group	Landing_Call_Control	BACnetLandingCallStatus	O1
+Elevator Group	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Elevator Group	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Elevator Group	Profile_Location	CharacterString	O
+Elevator Group	Profile_Name	CharacterString	O
+Lift	Object_Identifier	BACnetObjectIdentifier	R
+Lift	Object_Name	CharacterString	R
+Lift	Object_Type	BACnetObjectType	R
+Lift	Description	CharacterString	O
+Lift	Status_Flags	BACnetStatusFlags	R
+Lift	Elevator_Group	BACnetObjectIdentifier	R
+Lift	Group_ID	Unsigned8	R
+Lift	Installation_ID	Unsigned8	R
+Lift	Floor_Text	BACnetARRAY[N] of CharacterString	O
+Lift	Car_Door_Text	BACnetARRAY[N] of CharacterString	O
+Lift	Assigned_Landing_Calls	BACnetARRAY[N] of BACnetAssignedLandingCalls	O
+Lift	Making_Car_Call	BACnetARRAY[N] of Unsigned8	O
+Lift	Registered_Car_Call	BACnetARRAY[N] of BACnetLiftCarCallList	O
+Lift	Car_Position	Unsigned8	R
+Lift	Car_Moving_Direction	BACnetLiftCarDirection	R
+Lift	Car_Assigned_Direction	BACnetLiftCarDirection	O
+Lift	Car_Door_Status	BACnetARRAY[N] of BACnetDoorStatus	R
+Lift	Car_Door_Command	BACnetARRAY[N] of BACnetLiftCarDoorCommand	O
+Lift	Car_Door_Zone	BOOLEAN	O
+Lift	Car_Mode	BACnetLiftCarMode	O
+Lift	Car_Load	REAL	O
+Lift	Car_Load_Units	BACnetEngineeringUnits	O1
+Lift	Next_Stopping_Floor	Unsigned8	O
+Lift	Passenger_Alarm	BOOLEAN	R
+Lift	Time_Delay	Unsigned	O2,3
+Lift	Time_Delay_Normal	Unsigned	O3
+Lift	Energy_Meter	REAL	O
+Lift	Energy_Meter_Ref	BACnetDeviceObjectReference	O
+Lift	Reliability	BACnetReliability	O
+Lift	Out_Of_Service	BOOLEAN	R
+Lift	Car_Drive_Status	BACnetLiftCarDriveStatus	O
+Lift	Fault_Signals	BACnetLIST of BACnetLiftFault	R
+Lift	Landing_Door_Status	BACnetARRAY[N] of BACnetLandingDoorStatus	O
+Lift	Higher_Deck	BACnetObjectIdentifier	O
+Lift	Lower_Deck	BACnetObjectIdentifier	O
+Lift	Event_Detection_Enable	BOOLEAN	O2,3
+Lift	Notification_Class	Unsigned	O2,3
+Lift	Event_Enable	BACnetEventTransitionBits	O2,3
+Lift	Event_State	BACnetEventState	O2,3
+Lift	Acked_Transitions	BACnetEventTransitionBits	O2,3
+Lift	Notify_Type	BACnetNotifyType	O2,3
+Lift	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O2,3
+Lift	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O3
+Lift	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O3
+Lift	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O3
+Lift	Event_Algorithm_Inhibit	BOOLEAN	O3,4
+Lift	Reliability_Evaluation_Inhibit	BOOLEAN	O5
+Lift	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Lift	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Lift	Profile_Location	CharacterString	O
+Lift	Profile_Name	CharacterString	O
+Escalator	Object_Identifier	BACnetObjectIdentifier	R
+Escalator	Object_Name	CharacterString	R
+Escalator	Object_Type	BACnetObjectType	R
+Escalator	Description	CharacterString	O
+Escalator	Status_Flags	BACnetStatusFlags	R
+Escalator	Elevator_Group	BACnetObjectIdentifier	R
+Escalator	Group_ID	Unsigned8	R
+Escalator	Installation_ID	Unsigned8	R
+Escalator	Power_Mode	BOOLEAN	O
+Escalator	Operation_Direction	BACnetEscalatorOperationDirection	R
+Escalator	Escalator_Mode	BACnetEscalatorMode	O
+Escalator	Energy_Meter	REAL	O
+Escalator	Energy_Meter_Ref	BACnetDeviceObjectReference	O
+Escalator	Reliability	BACnetReliability	O
+Escalator	Out_Of_Service	BOOLEAN	R
+Escalator	Fault_Signals	BACnetLIST of BACnetEscalatorFault	O
+Escalator	Passenger_Alarm	BOOLEAN	R
+Escalator	Time_Delay	Unsigned	O1,2
+Escalator	Time_Delay_Normal	Unsigned	O2
+Escalator	Event_Detection_Enable	BOOLEAN	O1,2
+Escalator	Notification_Class	Unsigned	O1,2
+Escalator	Event_Enable	BACnetEventTransitionBits	O1,2
+Escalator	Event_State	BACnetEventState	O1,2
+Escalator	Acked_Transitions	BACnetEventTransitionBits	O1,2
+Escalator	Notify_Type	BACnetNotifyType	O1,2
+Escalator	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O1,2
+Escalator	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O2
+Escalator	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O2
+Escalator	Event_Algorithm_Inhibit	BOOLEAN	O2,3
+Escalator	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O2
+Escalator	Reliability_Evaluation_Inhibit	BOOLEAN	O4
+Escalator	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Escalator	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Escalator	Profile_Location	CharacterString	O
+Escalator	Profile_Name	CharacterString	O
+Accumulator	Object_Identifier	BACnetObjectIdentifier	R
+Accumulator	Object_Name	CharacterString	R
+Accumulator	Object_Type	BACnetObjectType	R
+Accumulator	Present_Value	Unsigned	R1
+Accumulator	Description	CharacterString	O
+Accumulator	Device_Type	CharacterString	O
+Accumulator	Status_Flags	BACnetStatusFlags	R
+Accumulator	Event_State	BACnetEventState	R
+Accumulator	Reliability	BACnetReliability	O
+Accumulator	Out_Of_Service	BOOLEAN	R
+Accumulator	Scale	BACnetScale	R
+Accumulator	Units	BACnetEngineeringUnits	R
+Accumulator	Prescale	BACnetPrescale	O
+Accumulator	Max_Pres_Value	Unsigned	R
+Accumulator	Value_Change_Time	BACnetDateTime	O2
+Accumulator	Value_Before_Change	Unsigned	O2,3
+Accumulator	Value_Set	Unsigned	O2,3
+Accumulator	Logging_Record	BACnetAccumulatorRecord	O
+Accumulator	Logging_Object	BACnetObjectIdentifier	O
+Accumulator	Pulse_Rate	Unsigned	O1,4,7
+Accumulator	High_Limit	Unsigned	O4,6
+Accumulator	Low_Limit	Unsigned	O4,6
+Accumulator	Limit_Monitoring_Interval	Unsigned	O4,7
+Accumulator	Notification_Class	Unsigned	O4,6
+Accumulator	Time_Delay	Unsigned	O4,6
+Accumulator	Limit_Enable	BACnetLimitEnable	O4,6
+Accumulator	Event_Enable	BACnetEventTransitionBits	O4,6
+Accumulator	Acked_Transitions	BACnetEventTransitionBits	O4,6
+Accumulator	Notify_Type	BACnetNotifyType	O4,6
+Accumulator	Event_Time_Stamps	BACnetARRAY[3] of BACnetTimeStamp	O4,6
+Accumulator	Event_Message_Texts	BACnetARRAY[3] of CharacterString	O6
+Accumulator	Event_Message_Texts_Config	BACnetARRAY[3] of CharacterString	O6
+Accumulator	Event_Detection_Enable	BOOLEAN	O4,6
+Accumulator	Event_Algorithm_Inhibit_Ref	BACnetObjectPropertyReference	O6
+Accumulator	Event_Algorithm_Inhibit	BOOLEAN	O6,8
+Accumulator	Time_Delay_Normal	Unsigned	O6
+Accumulator	Reliability_Evaluation_Inhibit	BOOLEAN	O9
+Accumulator	Property_List	BACnetARRAY[N] of BACnetPropertyIdentifier	R
+Accumulator	Fault_High_Limit	Unsigned	O10
+Accumulator	Fault_Low_Limit	Unsigned	O10
+Accumulator	Tags	BACnetARRAY[N] of BACnetNameValue	O
+Accumulator	Profile_Location	CharacterString	O
+Accumulator	Profile_Name	CharacterString	O

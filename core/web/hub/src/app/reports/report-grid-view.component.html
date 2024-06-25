@@ -1,0 +1,21 @@
+<style>
+    body o3-reporting-layout {
+        width: inherit;
+        max-width: inherit;
+    }
+</style>
+
+<div class="grid {{measurement}}" [style.width]="(columnCount * columnWidth) + measurement">
+    <div class="grid-rows">
+        <div class="grid-row" *ngFor="let r of rows">
+            <div class="grid-cell" *ngFor="let c of columns">
+                <small *ngIf="(r == 1)">{{c}}</small>
+                <small *ngIf="(c == 1 && r != 1)">{{r}}</small>
+            </div>
+        </div>
+    </div>
+    <div class="grid-legend">
+        Grid: {{columnCount}} Columns x {{rowCount}} Rows<br/>
+        Size: {{(columnCount * columnWidth)}}{{measurement}} x {{((rowCount * columnWidth) + borderWidth)}}{{measurement}}<br/>
+    </div>
+</div>

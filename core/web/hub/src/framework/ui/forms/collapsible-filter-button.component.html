@@ -1,0 +1,11 @@
+<div class="o3-collapsible-filter-button--input" [class.show]="searchVisible">
+    <form>
+        <mat-form-field>
+            <input matInput #searchInput [style.font-size.px]="fontPx" autocomplete="off"
+                   name="searchText" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange($event)">
+        </mat-form-field>
+    </form>
+</div>
+<button mat-icon-button type="button" class="o3-collapsible-filter-button--toggle" (click)="toggle()" [disableRipple]="disableRipple">
+    <i class="o3 o3-search area-primary-color"></i>
+</button>

@@ -1,0 +1,23 @@
+<div class="o3-watermark-caption" *ngIf="!hasPoint">
+    No control point
+</div>
+
+<div class="o3-control-point-widget--container" #container>
+    <o3-content-with-subtext [text]="timestampDisplay" [showText]="config.timestampEnabled" [fontSize]="timestampFontSize"
+                             (mousemove)="renderTooltip($event)" (mouseleave)="renderTooltip(null)">
+        <div class="o3-control-point-widget--values"
+             [class.o3-control-point-widget--2-entries]="config.nameEnabled && config.valueEnabled"
+             [ngStyle]="entryStyling">
+            <ng-container *ngIf="hasPoint && entryStyling['font-size']">
+                <div *ngIf="config.nameEnabled" [style.justify-content]="entryJustifyContents[0]" [style.padding.px]="entryPadding">
+                    <div>{{name || ""}}</div>
+                </div>
+                <div *ngIf="config.valueEnabled" [style.justify-content]="entryJustifyContents[1]" [style.padding.px]="entryPadding" [style.color]="entryColor">
+                    <div>{{valueDisplay || ""}}</div>
+                </div>
+            </ng-container>
+        </div>
+    </o3-content-with-subtext>
+</div>
+
+<o3-chart-tooltip #tooltip [targetElement]="container"></o3-chart-tooltip>

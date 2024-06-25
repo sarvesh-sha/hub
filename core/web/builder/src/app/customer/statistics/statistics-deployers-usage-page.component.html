@@ -1,0 +1,58 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab label="Details about jobs used by Agents">
+
+            <div class="row" *ngIf="!usages">
+                <div class="col-sm-12">
+                    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+                </div>
+            </div>
+
+            <mat-accordion *ngIf="usages">
+
+                <mat-expansion-panel *ngFor="let usage of usages" (expandedChange)="usage.bindTable()">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span matTooltip="{{usage.job.desc}}" matTooltipShowDelay="500">{{usage.job.name}}</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <span>Built on {{usage.job.createdOn | o3ShortDate}} at {{usage.job.createdOn | o3ShortTime}}</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    {{usage.hosts.length}} host(s)
+                                </div>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <i>{{usage.job.desc}}</i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Filter Hosts" [(ngModel)]="usage.filter" name="filter">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <o3-datatable [table]="usage.table" [showViewIcons]="false">
+                        <o3-datatable-column id="customerName" prop="customerName" name="Customer"></o3-datatable-column>
+                        <o3-datatable-column id="serviceName" prop="serviceName" name="Service"></o3-datatable-column>
+                        <o3-datatable-column id="displayName" prop="ext.displayName" name="Host"></o3-datatable-column>
+                    </o3-datatable>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

@@ -1,0 +1,18 @@
+<o3-overlay [config]="overlayConfig">
+    <o3-tab-group cardClass="no-content-padding" noUnderline>
+        <o3-tab [label]="label">
+            <table class="o3-table-striped">
+                <tbody>
+                <tr *ngFor="let chip of chips; let i = index">
+                    <td class="o3-chip-list--label" [matTooltip]="chip.tooltip || ''" [matTooltipDisabled]="!withTooltip">{{chip.label}}</td>
+                    <td class="o3-chip-list--remove">
+                        <button mat-icon-button (click)="deleteChip(i)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

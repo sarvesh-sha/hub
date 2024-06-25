@@ -1,0 +1,20 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="Truncate To Last Month" (click)="truncate(30)"></o3-tab-action>
+        <o3-tab-action label="Truncate To Last Week" (click)="truncate(7)"></o3-tab-action>
+        <o3-tab-action label="Truncate All" (click)="truncate()"></o3-tab-action>
+
+        <o3-tab label="Service Log" (selected)="log.enableKeyDownHandler()" (unselected)="log.disableKeyDownHandler()">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+            <o3-tab-action label="Download Log" priority="secondary" (click)="prepareDownload()"></o3-tab-action>
+
+            <section o3-expand>
+                <o3-console-log #log [scrollLockEnabled]="logLockScroll"></o3-console-log>
+            </section>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

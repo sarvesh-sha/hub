@@ -1,0 +1,34 @@
+<o3-tab-subsection *ngIf="parent || pointIds" [label]="label" [withFiltering]="true" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable *ngIf="table" [table]="table" (onShowingContextMenu)="contextMenu($event)">
+    <o3-datatable-column id="name" sortId="!name" [grow]="2" name="Name" prop="extended.model.name">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+        <ng-container *o3DatatableCellSuffix="let row">
+            <o3-datatable-cell-button *ngIf="row.hasWorkflows" icon="flag" matTooltip="Item has associated workflows" (click)="goToWorkflows(row)"></o3-datatable-cell-button>
+        </ng-container>
+        <o3-preview-invoker *o3DatatableCellSuffix="let row" [id]="row.extended.typedModel.sysId"></o3-preview-invoker>
+    </o3-datatable-column>
+    <o3-datatable-column id="physicalName" sortId="physicalName" prop="extended.model.physicalName" name="Physical Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="logicalName" sortId="logicalName" prop="extended.model.logicalName" name="Logical Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="normalizedName" prop="extended.model.normalizedName" name="Normalized Name" sortId="normalizedName" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="displayName" prop="extended.model.displayName" name="Display Name" sortId="displayName" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="description" prop="extended.description" name="Description" sortId="description" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="pointClass" sortId="pointClassId" [grow]="1.5" prop="pointClass" name="Point Class">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="equipment" prop="equipment" secondaryProp="equipmentPath" name="Equipment" sortId="equipment"></o3-datatable-column>
+    <o3-datatable-column id="equipmentClass" prop="equipmentClass" name="Equipment Class" sortId="parentEquipmentClassId" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="location" sortId="location" prop="location.model.name" secondaryProp="locationPath" name="Location"></o3-datatable-column>
+    <o3-datatable-column id="instanceId" prop="bacnet.instanceNumber" name="Instance ID" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="networkId" prop="bacnet.networkNumber" name="Network ID" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="identifier" sortId="identifier" prop="extended.typedModel.identifier" name="Identifier"></o3-datatable-column>
+    <o3-datatable-column id="isSampling" sortId="hasSampling" prop="extended.hasSamplingSettings" name="Sampling" format="YESNO">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="creationDate" sortId="createdOn" prop="extended.model.createdOn" name="Creation Date" format="DATE" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="lastUpdated" sortId="updatedOn" prop="extended.model.updatedOn" name="Last Updated" format="DATE" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="sysId" prop="extended.model.sysId" name="GUID" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="hidden" sortId="hidden" prop="extended.model.hidden" name="Hidden" format="YESNO" [enabled]="!excludeHidden">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+</o3-datatable>

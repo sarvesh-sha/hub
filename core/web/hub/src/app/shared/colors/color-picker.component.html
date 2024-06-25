@@ -1,0 +1,10 @@
+<button #test_trigger mat-flat-button type="button" [style.background-color]="value" (click)="toggleColorOverlay()" [disabled]="disabled"></button>
+
+<o3-overlay [config]="overlayConfig">
+    <o3-tab-group *cdkPortal noUnderline>
+        <o3-tab label="Configure Color">
+            <o3-color-picker-flat #test_color [(color)]="value" (colorChange)="submitChange()" [onlyPalette]="false" [disabled]="disabled"
+                                  [(palette)]="palette" (paletteChange)="paletteChange.emit($event)"></o3-color-picker-flat>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

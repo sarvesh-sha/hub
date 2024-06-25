@@ -1,0 +1,162 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Accelerometer Frequency" [(ngModel)]="data.ipn.accelerometerFrequency" name="ipn_accelerometerFrequency">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Accelerometer Range (millig)" [(ngModel)]="data.ipn.accelerometerRange" name="ipn_accelerometerRange">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Accelerometer Threshold" matTooltip="Percent delta to trigger a new sample" [(ngModel)]="data.ipn.accelerometerThreshold"
+                       name="ipn_accelerometerThreshold">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="BlueSky Port" [(ngModel)]="data.ipn.ipnPort" name="ipn_ipnPort">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="BlueSky baud rate" [(ngModel)]="data.ipn.ipnBaudrate" name="ipn_ipnBaudrate" required>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2 slide-toggle">
+            <mat-slide-toggle [(ngModel)]="data.ipn.ipnInvert" name="ipn_ipnInvert">Flip wires</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="CAN port" [(ngModel)]="data.ipn.canPort" name="ipn_canPort">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Clock Speed" [(ngModel)]="data.ipn.canFrequency" name="ipn_canFrequency" required>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1 slide-toggle">
+            <mat-slide-toggle [(ngModel)]="data.ipn.canNoTermination" name="ipn_canNoTermination">Disable Termination</mat-slide-toggle>
+        </div>
+        <div class="col-sm-1 slide-toggle">
+            <mat-slide-toggle [(ngModel)]="data.ipn.canInvert" name="ipn_canInvert">Flip wires</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="EpSolar Port" [(ngModel)]="data.ipn.epsolarPort" name="ipn_epsolarPort">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2 slide-toggle">
+            <mat-slide-toggle [(ngModel)]="data.ipn.epsolarInvert" name="ipn_epsolarInvert">Flip wires</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <mat-form-field>
+                <input matInput type="text" placeholder="GPS Port" [(ngModel)]="data.ipn.gpsPort" name="ipn_gpsPort">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Holykell Port" [(ngModel)]="data.ipn.holykellPort" name="ipn_holykellPort">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2 slide-toggle">
+            <mat-slide-toggle [(ngModel)]="data.ipn.holykellInvert" name="ipn_holykellInvert">Flip wires</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <mat-form-field>
+                <input matInput type="text" placeholder="OBD-II Port" [(ngModel)]="data.ipn.obdiiPort" name="ipn_obdiiPort">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <input matInput type="number" placeholder="OBD-II bitrate" [(ngModel)]="data.ipn.obdiiFrequency" name="ipn_obdiiFrequency">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="ArgoHytos Port" [(ngModel)]="data.ipn.argohytosPort" name="ipn_argoHytosPort">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Montage Bluetooth Gateway Port" [(ngModel)]="data.ipn.montageBluetoothGatewayPort" name="ipn_montageBluetoothGatewayPort">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="StealthPower Port" [(ngModel)]="data.ipn.stealthpowerPort" name="ipn_stealthpowerPort">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="TriStar Port" [(ngModel)]="data.ipn.tristarPort" name="ipn_tristarPort">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Victron Port" [(ngModel)]="data.ipn.victronPort" name="ipn_victronPort">
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                List of I2C Temperature/Humidity Sensors
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <o3-i2c-SHT30x-table #ipn_i2c_SHT3x [rows]="data.ipn_i2c_SHT3x"></o3-i2c-SHT30x-table>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                List of I2C Analog Digital Converters
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <o3-i2c-MCP3428-table #ipn_i2c_MCP3428 [rows]="data.ipn_i2c_MCP3428"></o3-i2c-MCP3428-table>
+
+    </mat-expansion-panel>
+
+</ng-template>

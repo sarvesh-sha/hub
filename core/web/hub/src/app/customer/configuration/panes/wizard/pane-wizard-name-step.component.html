@@ -1,0 +1,11 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="data">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Name" [(ngModel)]="data.pane.model.name" name="paneName" required>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</ng-template>

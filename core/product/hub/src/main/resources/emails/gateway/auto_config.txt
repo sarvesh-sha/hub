@@ -1,0 +1,14 @@
+####################
+# Hub notification #
+####################
+
+AUTO DISCOVERY REPORT
+
+Gateway '${param.GATEWAY_ID}' has performed a successful autodiscovery:
+
+${param.EXTRA_DETAILS}
+
+Details: ${param.SITE_URL}/#/gateways/gateway/${param.GATEWAY_SYSID}
+
+
+Optio3

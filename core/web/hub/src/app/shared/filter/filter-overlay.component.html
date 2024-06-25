@@ -1,0 +1,16 @@
+<o3-standard-form-overlay label="Select Filter Criteria"
+                          [actions]="actions"
+                          [overlayConfig]="overlayConfig"
+                          [showSecondary]="false"
+                          [primaryButtonDisabled]="primaryDisabled()"
+                          [primaryButtonText]="primaryLabel()"
+                          [closeOnPrimaryPress]="primaryClose()"
+                          [showExtraButton]="true"
+                          extraButtonText="Reset Filters"
+                          extraButtonPriority="tertiary"
+                          [extraButtonDisabled]="resetFilterButtonDisabled"
+                          (submitted)="filterApplied.emit(); submitted.emit();"
+                          (extraButtonPressed)="filterCleared.emit()">
+    <ng-content></ng-content>
+</o3-standard-form-overlay>
+

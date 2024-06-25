@@ -1,0 +1,26 @@
+<div class="o3-select--container">
+    <button class="o3-select--button" type="button" cdkOverlayOrigin #overlayOrigin="cdkOverlayOrigin"
+            [disabled]="disabled" [class.readonly]="readonly" (click)="toggleDropdown()">
+        <span>{{valueText}}&nbsp;</span>
+    </button>
+</div>
+<o3-overlay #dropdown [overlayOrigin]="overlayOrigin" [config]="overlayConfig" (opened)="onDropdownOpen()" (closed)="onDropdownClose()">
+    <ng-container *cdkPortal>
+        <div class="o3-select--tree-container">
+            <o3-filterable-tree #tree [nodes]="nodes" [hideLoadingMessage]="true" [useCheckboxes]="false"
+                                [useDisabledStyling]="false" [autoExpandSelected]="false" [autoExpandAll]="false"
+                                [filterPlaceholder]="filterHint" [requireFilterText]="false" [filterSubmitFn]="onNewTextFn">
+                <ng-template #nodePostTemplate let-node="node" let-index="index">
+                    <div class="pull-right hidden-xs-down">
+                        <button mat-icon-button type="button" (click)="removeTerm(node)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </ng-template>
+            </o3-filterable-tree>
+        </div>
+        <div class="button-container o3-default-border-top">
+            <button mat-raised-button color="primary" type="button" (click)="submit(tree.filter)">Ok</button>
+        </div>
+    </ng-container>
+</o3-overlay>

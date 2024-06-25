@@ -1,0 +1,43 @@
+section.bs {
+    mat-expansion-panel {
+        margin-bottom: 10px;
+
+        mat-panel-title {
+            margin: 0px !important;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+
+            > i.o3-lg {
+                margin-right: 5px;
+            }
+        }
+
+        mat-panel-description {
+            margin: 0px;
+            max-width: 250px;
+            padding-right: 20px !important;
+            padding-top: 5px;
+
+            o3-collapsible-filter-button {
+                color: rgba(0, 0, 0, 0.87);
+            }
+        }
+
+        .bookmark-table {
+            display: flex;
+            flex-flow: wrap;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+            > o3-bookmark-row-set {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 649px) {
+    mat-panel-description {
+        display: none !important;
+    }
+}

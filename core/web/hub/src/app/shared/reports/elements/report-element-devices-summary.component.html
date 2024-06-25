@@ -1,0 +1,25 @@
+<h2>Here is the device summary:</h2>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="row">
+            <div class="col">
+                <div class="report-box">
+                    <span>{{data.aggregates?.addedLast30}}</span>
+                    <label>Devices Added</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="report-box">
+                    <span>{{data.aggregates?.missing}}</span>
+                    <label>Devices Removed</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="report-box">
+                    <span>{{data.aggregates?.total}}</span>
+                    <label>Total Devices</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

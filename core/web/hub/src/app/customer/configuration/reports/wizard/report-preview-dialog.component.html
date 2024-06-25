@@ -1,0 +1,7 @@
+<o3-standard-form label="Report Preview" cardClass="fill-height" [showPrimary]="false" [showSecondary]="false">
+    <div class="loading-container" *ngIf="!reportUrl">
+        <h4 *ngIf="!data.failed">Generating Report <i class="fa fa-spin fa-spinner"></i></h4>
+        <h4 *ngIf="data.failed">Generating Report Failed</h4>
+    </div>
+    <iframe *ngIf="reportUrl" [src]="reportUrl" frameborder="0"></iframe>
+</o3-standard-form>

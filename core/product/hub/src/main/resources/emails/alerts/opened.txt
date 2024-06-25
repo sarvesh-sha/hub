@@ -1,0 +1,11 @@
+#############################
+# Notification of new issue #
+#############################
+
+A new issue has been detected at ${param.TIME}.
+
+${param.ALERT_BODY}
+
+Details: ${param.SITE_URL}/#/alerts/alert/${param.ALERT_SYSID}
+
+Optio3

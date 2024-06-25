@@ -1,0 +1,27 @@
+<ng-template o3-wizard-step-template>
+    <p>{{stepDescription}}</p>
+    <div>
+        <o3-range-selector #test_rangeSelector [(selection)]="data.editor.selectedRanges[0].range" [allowCustom]="true" [allowTimezone]="true"></o3-range-selector>
+        <button *o3MinWidth="886" mat-icon-button (click)="openFilterDialog()" matTooltipPosition="above"
+                matTooltip="Configure {{data.editor.selectedRanges[0].name || 'Filter'}}"
+                [class.filter-on]="data.editor.selectedRanges[0].isFilterApplied">
+            <i class="o3 o3-filter-outline"></i>
+        </button>
+    </div>
+    <div *ngIf="aggregationSummary">
+        <mat-slide-toggle #test_showRange [(ngModel)]="showRange" name="show-hide-range">Show range</mat-slide-toggle>
+    </div>
+    <div *ngIf="aggregationTrend">
+        <mat-form-field matTooltip="Select average per">
+            <mat-select placeholder="Average per" name="group-granularity" [(ngModel)]="granularityOption">
+                <mat-option value="Hour">Hour</mat-option>
+                <mat-option value="Day">Day</mat-option>
+                <mat-option value="Week">Week</mat-option>
+                <mat-option value="Month">Month</mat-option>
+                <mat-option value="Quarter">Quarter</mat-option>
+                <mat-option value="Year">Year</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <o3-schedule-selector-overlay [model]="data.editor.selectedRanges[0]"></o3-schedule-selector-overlay>
+</ng-template>

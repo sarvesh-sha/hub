@@ -1,0 +1,414 @@
+/*
+Contains imports of Daemonite Material styles and mixins, as well as fixes and overrides.
+*/
+@import "app.theme";
+
+//----------------------------------------------------------------------------------------------------------------------
+// Daemonite Imports
+//----------------------------------------------------------------------------------------------------------------------
+body.light section.bs,
+body.dark section.bs {
+    @import '~daemonite-material/assets/scss/colors';
+    @import '~daemonite-material/assets/scss/functions';
+    @import '~daemonite-material/assets/scss/mixins';
+    $grid-gutter-width: 24px !default;
+    @import '~daemonite-material/assets/scss/variables';
+    @import '~daemonite-material/assets/scss/base/base';
+
+    label {
+        color: unset;
+        font-size: unset;
+        font-weight: unset;
+        letter-spacing: unset;
+        line-height: unset;
+        margin-bottom: .5rem;
+    }
+
+    @import '~daemonite-material/assets/scss/base/grid';
+    @import '~daemonite-material/assets/scss/base/typography';
+    // Bootstrap components
+    // Components covered in Bootstrap's css but not in Material design
+    @import '~daemonite-material/assets/scss/bootstrap/alert';
+    @import '~daemonite-material/assets/scss/bootstrap/badge';
+    @import '~daemonite-material/assets/scss/bootstrap/breadcrumb';
+    @import '~daemonite-material/assets/scss/bootstrap/carousel';
+    @import '~daemonite-material/assets/scss/bootstrap/close';
+    @import '~daemonite-material/assets/scss/bootstrap/code';
+    @import '~daemonite-material/assets/scss/bootstrap/form';
+    @import '~daemonite-material/assets/scss/bootstrap/image';
+    @import '~daemonite-material/assets/scss/bootstrap/jumbotron';
+    @import '~daemonite-material/assets/scss/bootstrap/media';
+    @import '~daemonite-material/assets/scss/bootstrap/nav';
+    @import '~daemonite-material/assets/scss/bootstrap/pagination';
+    @import '~daemonite-material/assets/scss/bootstrap/popover';
+    @import '~daemonite-material/assets/scss/bootstrap/responsive-embed';
+    @import '~daemonite-material/assets/scss/bootstrap/transition';
+    // Material components
+    // Components covered in Material design (https://material.google.com/components)
+    @import '~daemonite-material/assets/scss/material/button';
+    @import '~daemonite-material/assets/scss/material/button-flat';
+    @import '~daemonite-material/assets/scss/material/button-float';
+    @import '~daemonite-material/assets/scss/material/button-group';
+    @import '~daemonite-material/assets/scss/material/card';
+    @import '~daemonite-material/assets/scss/material/chip';
+    @import '~daemonite-material/assets/scss/material/data-table';
+    @import '~daemonite-material/assets/scss/material/dialog';
+    @import '~daemonite-material/assets/scss/material/expansion-panel';
+    @import '~daemonite-material/assets/scss/material/menu';
+    @import '~daemonite-material/assets/scss/material/navdrawer';
+    @import '~daemonite-material/assets/scss/material/picker';
+    @import '~daemonite-material/assets/scss/material/progress';
+    @import '~daemonite-material/assets/scss/material/progress-circular';
+    @import '~daemonite-material/assets/scss/material/selection-control';
+    @import '~daemonite-material/assets/scss/material/stepper';
+    @import '~daemonite-material/assets/scss/material/tab';
+    @import '~daemonite-material/assets/scss/material/text-field';
+    @import '~daemonite-material/assets/scss/material/text-field-box';
+    @import '~daemonite-material/assets/scss/material/text-field-floating-label';
+    @import '~daemonite-material/assets/scss/material/text-field-input-group';
+    @import '~daemonite-material/assets/scss/material/toolbar';
+    @import '~daemonite-material/assets/scss/material/tooltip';
+    // Utilities
+    @import '~daemonite-material/assets/scss/utilities';
+    //------------------------------------------------------------------------------------------------------------------
+    // Bootstrap & Material compatibility
+    //------------------------------------------------------------------------------------------------------------------
+    .table {
+        margin-bottom: 0;
+    }
+
+    .mat-input-element {
+        color: unset;
+    }
+
+    a, a:hover {
+        color: inherit;
+    }
+
+    button {
+        padding: 12px;
+
+        &.mat-button-toggle-button {
+            padding: 0px;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    // Override for restore Azure Maps behavior
+    button.popup-close {
+        padding: 0;
+    }
+
+    .btn-link,
+    .btn-link:hover {
+        color: #2196f3;
+        text-decoration: none;
+    }
+
+    .btn-secondary {
+        color: rgba(0, 0, 0, .87) !important;
+    }
+
+    .form-control:hover,
+    .form-control-file:hover,
+    .custom-select:hover,
+    .form-control:hover,
+    .form-control-file:hover,
+    .custom-select:hover {
+        border-color: rgba(0, 0, 0, 0.42);
+        box-shadow: none;
+    }
+
+    .carousel-indicators li {
+        border-color: rgba(0, 0, 0, .12);
+    }
+
+    .carousel-control-next,
+    .carousel-control-prev {
+        &:hover {
+            background-color: rgba(153, 153, 153, 0.4);
+        }
+    }
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .pager li > a, .pager li > span {
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 15px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .table tr td.cell-detail .cell-detail-description {
+        display: block;
+        font-size: 11px;
+    }
+
+    .table tr td.cell-avatar span {
+        padding-left: 48px;
+        display: block;
+    }
+
+    .table tr td.cell-detail span {
+        display: block;
+    }
+
+    .table tr td.cell-detail img {
+        float: left;
+    }
+
+    .table td {
+        line-height: unset;
+    }
+
+    .table td:last-child,
+    .table th:last-child {
+        padding-right: 1.5rem !important;
+    }
+
+    .table-bordered {
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    .table-striped tr:nth-of-type(odd) {
+        background-color: #fafafa;
+    }
+
+    td.user-avatar {
+        img {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+
+    .material-icons {
+        font-size: 24px;
+        line-height: inherit;
+        vertical-align: inherit;
+    }
+
+    .alert {
+        margin-bottom: 4px;
+    }
+
+    .overlay-input button.btn-secondary {
+        color: currentColor;
+        border-color: rgba(0, 0, 0, 0.42);
+        padding-right: 0;
+        border-radius: 0;
+
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            background-image: none !important;
+        }
+
+        &:after {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid rgba(0, 0, 0, .54);
+            position: absolute;
+            right: 7px;
+            top: 10px;
+        }
+    }
+
+    .mat-checkbox-container > label {
+        font-size: 75% !important;
+    }
+
+    .overlay-input label {
+        font-size: 14px;
+    }
+
+    .mat-checkbox-container > label,
+    .overlay-input label {
+        color: rgba(0, 0, 0, 0.54);
+        text-transform: uppercase;
+    }
+
+    .mat-checkbox-label {
+        color: #333c44;
+    }
+
+    .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+    .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus,
+    .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+    .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus {
+        background-color: initial;
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Bootstrap media and image fixes
+//----------------------------------------------------------------------------------------------------------------------
+
+// Fixes for the Daemonite Material package. Firefox cannot render data URIs with a '#' character, the following variables use an encoded hash.
+$breadcrumb-divider: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23ffffff' fill-opacity='1' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$caret-bg: "data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" !default;
+$caret-bg-inverse: "data:image/svg+xml;charset=utf8,%3Csvg fill='%23ffffff' fill-opacity='0.7' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" !default;
+$custom-file-button-bg: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 12.5C2 9.46 4.46 7 7.5 7H18c2.21 0 4 1.79 4 4s-1.79 4-4 4H9.5C8.12 15 7 13.88 7 12.5S8.12 10 9.5 10H17v2H9.41c-.55 0-.55 1 0 1H18c1.1 0 2-.9 2-2s-.9-2-2-2H7.5C5.57 9 4 10.57 4 12.5S5.57 16 7.5 16H17v2H7.5C4.46 18 2 15.54 2 12.5z'/%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3C/svg%3E") !default;
+$toolbar-toggler-bg-dark: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.87' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E") !default;
+$toolbar-toggler-bg-light: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23ffffff' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E") !default;
+$selection-control-checkbox-bg: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$selection-control-checkbox-bg-checked: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23{$brand-color-accent}' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") !default;
+$selection-control-checkbox-bg-disabled: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.26' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$selection-control-checkbox-bg-disabled-checked: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.26' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") !default;
+$selection-control-checkbox-bg-indeterminate: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cpath d='M0 0h24v24H0z' id='a'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse overflow='visible' xlink:href='%23a'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z'/%3E%3C/svg%3E") !default;
+$selection-control-radio-bg: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$selection-control-radio-bg-checked: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23{$brand-color-accent}' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$selection-control-radio-bg-disabled: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.26' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$selection-control-radio-bg-disabled-checked: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.26' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+
+.hidden-xs-up {
+    display: none !important;
+}
+
+@media (max-width: 599px) {
+    .hidden-xs-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .hidden-sm-up {
+        display: none !important;
+    }
+}
+
+@media (max-width: 959px) {
+    .hidden-sm-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 960px) {
+    .hidden-md-up {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1279px) {
+    .hidden-md-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .hidden-lg-up {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1919px) {
+    .hidden-lg-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .hidden-xl-up {
+        display: none !important;
+    }
+}
+
+.hidden-xl-down {
+    display: none !important;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    background-image: $breadcrumb-divider !important;
+}
+
+select.form-control {
+
+    @media screen and (-webkit-min-device-pixel-ratio: 0), (min--moz-device-pixel-ratio: 0) {
+        background-image: url($caret-bg);
+    }
+}
+
+.custom-file-control {
+
+    &::before {
+        background-image: $custom-file-button-bg;
+    }
+}
+
+.navbar-toggler-icon {
+    background-image: $toolbar-toggler-bg-dark;
+}
+
+.navbar-inverse {
+
+    .navbar-toggler-icon {
+        background-image: $toolbar-toggler-bg-light;
+    }
+}
+
+.custom-checkbox {
+
+    .custom-control-indicator {
+        background-image: $selection-control-checkbox-bg;
+    }
+
+    .custom-control-input {
+
+        &:checked ~ .custom-control-indicator {
+            background-image: $selection-control-checkbox-bg-checked;
+        }
+
+        &:disabled {
+
+            ~ .custom-control-indicator {
+                background-image: $selection-control-checkbox-bg-disabled;
+            }
+
+            &:checked ~ .custom-control-indicator {
+                background-image: $selection-control-checkbox-bg-disabled-checked;
+            }
+        }
+
+        // indeterminate
+        &:indeterminate ~ .custom-control-indicator {
+            background-image: $selection-control-checkbox-bg-indeterminate;
+        }
+    }
+}
+
+.custom-radio {
+
+    .custom-control-indicator {
+        background-image: $selection-control-radio-bg;
+    }
+
+    .custom-control-input {
+
+        &:checked ~ .custom-control-indicator {
+            background-image: $selection-control-radio-bg-checked;
+        }
+
+        &:disabled {
+
+            ~ .custom-control-indicator {
+                background-image: $selection-control-radio-bg-disabled;
+            }
+
+            &:checked ~ .custom-control-indicator {
+                background-image: $selection-control-radio-bg-disabled-checked;
+            }
+        }
+    }
+}

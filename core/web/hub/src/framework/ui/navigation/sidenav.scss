@@ -1,0 +1,84 @@
+﻿@import "../app.variables.scss";
+
+@mixin sidenav($theme) {
+
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Side Nav
+    //-----------------------------
+
+    .mat-sidenav-container div.sidenav-container {
+        width: 216px; // 216 is inbox's width
+
+        .mat-line i {
+            line-height: 20px;
+        }
+    }
+
+    mat-sidenav-container mat-sidenav.mat-sidenav-opened.mat-sidenav-side,
+    mat-sidenav-container mat-sidenav.mat-sidenav-side.mat-sidenav-opening {
+        box-shadow: none;
+    }
+
+    .mat-sidenav {
+        //background-color: #333C44;
+        background-color: #fff;
+
+        .mat-nav-list {
+            margin-top: 0px;
+
+            .mat-list-item {
+                //color: #a1a1a1;
+                color: #616161;
+                margin-right: 0px;
+                border-radius: 2.5px;
+
+                .mat-list-item-content {
+                    padding: 0px 10px;
+                }
+
+                .mat-list-text > * {
+                    font-weight: 100;
+                    font-size: var(--base-font-size);
+                }
+
+                .mat-list-text i {
+                    text-align: center;
+                    width: 24px;
+                }
+
+                &.active {
+                    background-color: rgba(0, 0, 0, .07);
+                    outline: none;
+
+                    .mat-list-text > * {
+                        font-weight: 600;
+                    }
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+                &:hover {
+                    //color: #fff;
+                    //color: #a1a1a1;
+                    background-color: rgba(0, 0, 0, .03);
+                }
+
+                &.sidenav-menu-sub {
+                    margin-left: 44px;
+                }
+            }
+        }
+    }
+
+    .mat-sidenav-container {
+        background-color: #f5f5f5;
+    }
+}

@@ -1,0 +1,18 @@
+﻿<o3-datatable [table]="table">
+    <o3-datatable-column id="name" name="Name" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.ext.model.name}}" matTooltipShowDelay="500">{{row.ext.model.name}}</span>
+            <small>{{row.ext.model.url}}</small>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="instanceType" prop="ext.instanceTypeDisplay" name="Instance Type"></o3-datatable-column>
+
+    <o3-datatable-column id="operationalStatus" prop="ext.model.operationalStatus" name="Status"></o3-datatable-column>
+    <o3-datatable-column id="heapStatus" prop="heapStatus" name="Heap Status"></o3-datatable-column>
+    <o3-datatable-column id="jobs" prop="jobs" name="Builds"></o3-datatable-column>
+    <o3-datatable-column id="pendingActivity" prop="pendingActivity" name="Current Activity"></o3-datatable-column>
+
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="ext.model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="updatedOn" prop="ext.model.updatedOn" name="Updated" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

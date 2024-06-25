@@ -1,0 +1,29 @@
+<mat-card class="controls" [class.o3-time-series-set-toolbar--embedded]="embedded">
+    <mat-card-content>
+        <div class="split-justified">
+            <div class="o3-time-series-set-toolbar--range">
+                <o3-range-selector [selection]="range" (selectionChange)="rangeChanged($event)"
+                                   [allowCustom]="true" [allowTimezone]="true"
+                                   [readonly]="staticRange" [readonlyTooltip]="staticRangeTooltip"></o3-range-selector>
+            </div>
+
+            <div>
+                <button #test_addChartButton mat-icon-button type="button" matTooltip="Add a chart" matTooltipShowDelay="750" (click)="addHandler()">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+                <button mat-icon-button type="button" matTooltip="Delete all charts" matTooltipShowDelay="750" (click)="deleteHandler(false)" [disabled]="!hasVisualizations || !canDeleteAllCharts">
+                    <mat-icon>delete_sweep</mat-icon>
+                </button>
+                <button *ngIf="actions?.length" type="button" mat-icon-button [matMenuTriggerFor]="listMenu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+
+            <mat-menu #listMenu="matMenu" style="display: none">
+                <button *ngFor="let action of actions" mat-menu-item (click)="action.onClick($event)" [disabled]="action.disabled" [matTooltip]="action.tooltip" matTooltipShowDelay="500"
+                        matTooltipClass="o3-wide-tooltip">{{action.label}}
+                </button>
+            </mat-menu>
+        </div>
+    </mat-card-content>
+</mat-card>

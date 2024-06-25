@@ -1,0 +1,7 @@
+<div class="field--container">
+    <o3-report-element-container *ngIf="model" [model]="model"></o3-report-element-container>
+    <div *ngIf="!model">Loading...</div>
+    <div class="o3-content-protector">
+        <div *ngIf="showTruncationFade" class="truncation-fade"></div>
+    </div>
+</div>

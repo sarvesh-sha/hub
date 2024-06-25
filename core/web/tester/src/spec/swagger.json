@@ -1,0 +1,329 @@
+{
+  "swagger": "2.0",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "info": {
+    "title": "Api documentation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/tests": {
+      "post": {
+        "operationId": "getTests",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestCase"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TestsInitializeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1/tests/start": {
+      "post": {
+        "operationId": "startTests",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestCase"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TestsRunRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1/tests/cancel": {
+      "post": {
+        "operationId": "cancelTests",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1/tests/cancel/{id}": {
+      "post": {
+        "operationId": "cancelTest",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1/tests/run-all": {
+      "post": {
+        "operationId": "runAll",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TestsInitializeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1/tests/progress": {
+      "get": {
+        "operationId": "checkProgress",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestResult"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1/tests/video/{id}": {
+      "get": {
+        "operationId": "getVideo",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "produces": [
+          "video/mp4"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tests"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Tests"
+    }
+  ],
+  "definitions": {
+    "TestCase": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "number"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TestsInitializeRequest": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "TestsRunRequest": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "TestResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "x-optio3-enum-type": "com.optio3.tester.TestResultStatus",
+          "enum": [
+            "Pending",
+            "Running",
+            "Cancelled",
+            "Passed",
+            "Failed"
+          ]
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "consoleLogs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "testStart": {
+          "type": "string"
+        },
+        "testEnd": {
+          "type": "string"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

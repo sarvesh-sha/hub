@@ -1,0 +1,258 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Manage an active subscriber's functionality and services (<em>products</em>).</p><p>You can use these endpoints to retrieve a list of&#58;</p><ul><li>Attached products (associated with the subscriber's tariff and enabled)</li><li>Available products (associated with the subscriber's tariff but not yet enabled)</li></ul><p>You can also use these endpoints to enable or disable an active subscriber's products.</p><p><em>Products</em> are functional options, such as&#58;</p><ul><li>Network access</li><li>SMS services</li><li>Voice services</li></ul><p>The available products vary depending on the subscriber's tariff, and changing a subscriber's products can incur additional fees.</p>",
+    "title": "Subscriber Products",
+    "version": "1.0.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/subscribers/{physicalId}/products": {
+      "parameters": [
+        {
+          "description": "The unique subscriber identifier.",
+          "in": "path",
+          "name": "physicalId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnableDisableRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful response - the product has been successfully enabled or disabled for the given subscriber."
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Error - an internal server error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "subscribers"
+        ],
+        "description": "You must provide the subscriber''s <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p>You specify the product to enable or disable in the request body's <em>product</em> field. This value must be identical to the value returned in the <em>product</em> field of the /subscribers/{physicalId}/products/active endpoint's response body.<p><br>You can only enable and disable products when the subscriber is in an active state. <p><br>To use this endpoint, your user must be assigned with the <strong>Add a Product to a Device</strong> and <strong>Remove a Product From a Device</strong> permissions.\n",
+        "operationId": "enable-or-disable-products",
+        "summary": "Enables or disables products that are attached to a specified subscriber."
+      }
+    },
+    "/subscribers/{physicalId}/products/active": {
+      "parameters": [
+        {
+          "description": "The unique subscriber identifier.",
+          "in": "path",
+          "name": "physicalId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response - this either returns an array of the products that are attached to the subscriber, or an empty array (meaning no products are attached).",
+            "schema": {
+              "$ref": "#/definitions/ValidResponse"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "subscribers"
+        ],
+        "description": "You must provide the subscriber''s <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p> To use this endpoint, your user must be assigned with the <strong>View Device Products</strong> permission.",
+        "operationId": "get-active-products",
+        "summary": "Returns a list of products that are attached to the specified subscriber."
+      }
+    },
+    "/subscribers/{physicalId}/products/available": {
+      "parameters": [
+        {
+          "description": "The unique subscriber identifier.",
+          "in": "path",
+          "name": "physicalId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response - this either returns an array of the products that can be attached to the subscriber or an empty array (meaning no products are available to be attached).",
+            "schema": {
+              "$ref": "#/definitions/ValidResponse"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "subscribers"
+        ],
+        "description": "You must provide the subscriber''s <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><p> To use this endpoint, your user must be assigned with the <strong>View Device Products</strong> permission.",
+        "operationId": "get-available-products",
+        "summary": "Returns a list of products that can be attached to the specified subscriber."
+      }
+    }
+  },
+  "definitions": {
+    "EnableDisableRequestBody": {
+      "properties": {
+        "action": {
+          "description": "The action to perform on the product. This can either be 'enable' or 'disable'.",
+          "example": "enable",
+          "type": "string"
+        },
+        "product": {
+          "description": "The name of the product to be enabled or disabled.",
+          "example": "Product Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service",
+        "action"
+      ]
+    },
+    "ErrorResponse": {
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorResponseBody",
+          "description": "Key name of the error body"
+        }
+      },
+      "required": [
+        "error"
+      ]
+    },
+    "ErrorResponseBody": {
+      "properties": {
+        "children": {
+          "description": "Any child errors that are related to the request.",
+          "example": "[]",
+          "type": "string"
+        },
+        "code": {
+          "description": "The error's code.",
+          "example": "BAD_REQUEST",
+          "type": "integer"
+        },
+        "message": {
+          "description": "The error message.",
+          "example": "Unable to find :resourceName with identifier :resourceId.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "message",
+        "code",
+        "children"
+      ]
+    },
+    "SubscriberProduct": {
+      "properties": {
+        "description": {
+          "description": "The product's description.",
+          "example": "This product allows subscribers to ...",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Whether the product is enabled on the subscriber.",
+          "example": "true",
+          "type": "boolean"
+        },
+        "product": {
+          "description": "The product's name.",
+          "example": "Product Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "enabled",
+        "product"
+      ]
+    },
+    "ValidResponse": {
+      "properties": {
+        "content": {
+          "description": "The response to a valid request is either an array of the subscriber's attached products or an empty array (meaning no products are attached to the subscriber).",
+          "items": {
+            "$ref": "#/definitions/SubscriberProduct"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "content"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "subscribers"
+    }
+  ],
+  "x-components": {}
+}

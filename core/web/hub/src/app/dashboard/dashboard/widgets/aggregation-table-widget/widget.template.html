@@ -1,0 +1,55 @@
+<o3-data-aggregation
+    [config]="config"
+    [overrideMode]="activeMode"
+    [rangeIdx]="selectedRange"
+    [enableTooltips]="focus"
+    [viewport]="viewport"
+    (itemSelected)="handleSelection($event.significantElement, $event.range, $event.rootAssetId, $event.nodeId)"
+    (interactableCharts)="interactableCharts = $event">
+</o3-data-aggregation>
+
+<o3-overlay *ngIf="paneConfig" [config]="paneOverlayConfig">
+    <o3-dynamic-pane *cdkPortal [range]="paneRange" [models]="paneModels" [loading]="!paneModels"></o3-dynamic-pane>
+</o3-overlay>
+
+<ng-container *ngIf="config.columns.length">
+    <o3-tab-action [label]="bindingTableViewAsLabel" (click)="toggleBindingTableMode()"></o3-tab-action>
+</ng-container>
+
+<ng-container *ngIf="config.groups.length">
+    <o3-tab-action label="Export to Excel" (click)="exportToExcel()"></o3-tab-action>
+
+    <o3-tab-action *ngFor="let mode of modeOptions" labelFirstLevel="View as">
+        <ng-template #optionTemplate>
+            <div mat-menu-item class="o3-sub-menu-entry" [class.selected]="isModeSelected(mode.id)" (click)="showMode(mode.id)">
+                {{mode.label}}
+            </div>
+        </ng-template>
+    </o3-tab-action>
+
+    <ng-container *ngIf="showMenuRanges()">
+        <o3-tab-action *ngFor="let range of aggregationGroups?.processedTimeRanges" labelFirstLevel="Time Range">
+            <ng-template #optionTemplate>
+                <div mat-menu-item class="o3-sub-menu-entry" [class.selected]="isRangeSelected(range)" (click)="showRange(range)">
+                    {{range.label}}
+                </div>
+            </ng-template>
+        </o3-tab-action>
+    </ng-container>
+
+    <o3-tab-action *ngIf="showMenuLegend()">
+        <ng-template #optionTemplate>
+            <button mat-menu-item class="o3-source-menu-entry">
+                <o3-consolidated-source-chip
+                    #sourceChip
+                    disableConsolidatedRipple
+                    [charts]="interactableCharts"
+                    [embedded]="true"
+                    [sortSources]="false"
+                    [deletable]="false"
+                    [showSingleChipTooltips]="true">
+                </o3-consolidated-source-chip>
+            </button>
+        </ng-template>
+    </o3-tab-action>
+</ng-container>

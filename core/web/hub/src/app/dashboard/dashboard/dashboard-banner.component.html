@@ -1,0 +1,71 @@
+<div *ngIf="editRows" class="o3-dashboard-banner--container">
+    <ng-container *ngFor="let segment of editRows">
+        <o3-image-frame *ngIf="!segment.forText"
+                        class="o3-dashboard-banner--segment"
+                        [ngStyle]="segment.styles"
+                        [imageBase64]="segment.logoBase64"
+                        [horizontalAlignment]="segment.horizontalAlignment"
+                        [verticalAlignment]="segment.verticalAlignment"></o3-image-frame>
+        <div *ngIf="segment.forText" class="o3-dashboard-banner--segment" [ngStyle]="segment.styles">
+            <div class="o3-dashboard-banner--segment-text">{{segment.model.branding.text}}</div>
+        </div>
+    </ng-container>
+</div>
+
+<o3-standard-form-overlay [overlayConfig]="overlayConfig" label="Edit Banner" internalCardClass="no-content-padding"
+                          primaryButtonText="Apply" [primaryButtonDisabled]="pristine" (submitted)="updateCfgExt()"
+                          [showSecondary]="true" [secondaryButtonText]="pristine ? 'Close' : 'Cancel'" (cancelled)="resetEditRows()">
+    <ng-container *cdkPortal>
+        <o3-modifiable-table [rows]="editRows" [limit]="5" itemName="banner segment" [placeholderHeightPx]="65"
+                             allowAdding (rowAddRequested)="trigger.openMenu()"
+                             allowReordering (rowsReordered)="updatePristineState()"
+                             allowDeleting (rowRemoved)="updatePristineState()">
+            <ng-container *o3ModifiableTableRow="let segment; type: DashboardBannerSegmentExtended">
+                <td *ngIf="segment.forText">
+                    <mat-form-field floatLabel="always" class="o3-dashboard-banner--segment-content">
+                        <input matInput type="text" placeholder="Text" [name]="segment.id + 'Text'"
+                               [(ngModel)]="segment.model.branding.text" (ngModelChange)="updatePristineState()"/>
+                    </mat-form-field>
+                </td>
+                <td *ngIf="!segment.forText" class="o3-dashboard-banner--segment-content o3-dashboard-banner--segment-image">
+                    <div class="o3-dashboard-banner--image-upload">
+                        <label class="input-label">Image</label>
+                        <button mat-raised-button type="button" (click)="uploadLogo(segment)">Upload</button>
+                    </div>
+
+                    <div class="o3-dashboard-banner--image-preview">
+                        <o3-safe-image [data]="segment.model.branding.logoBase64"></o3-safe-image>
+                    </div>
+                </td>
+
+                <td class="o3-dashboard-banner--segment-configs">
+                    <mat-form-field class="o3-dashboard-banner--width">
+                        <input matInput type="number" min="1" max="99" placeholder="Width Ratio" [name]="segment.id + 'Width'"
+                               [(ngModel)]="segment.widthRatio" (ngModelChange)="updatePristineState()"/>
+                    </mat-form-field>
+                    <mat-form-field class="o3-dashboard-banner--placement">
+                        <o3-select [(ngModel)]="segment.placement" (ngModelChange)="updatePristineState()"
+                                   [options]="placementOptions" [multiSelect]="false" [preventDeselection]="true" [singleClick]="true"
+                                   [placeholder]="segment.forText ? 'Text Placement' : 'Image Placement'" [name]="segment.id + 'Placement'"></o3-select>
+                    </mat-form-field>
+                    <div class="o3-dashboard-banner--color" [class.o3-dashboard-banner--no-text-color]="!segment.forText">
+                        <mat-form-field class="o3-dashboard-banner--background-color">
+                            <o3-color-picker [(ngModel)]="segment.model.branding.primaryColor" (ngModelChange)="updatePristineState()"
+                                             placeholder="Background" [name]="segment.id + 'Primary'"></o3-color-picker>
+                        </mat-form-field>
+                        <mat-form-field class="o3-dashboard-banner--text-color">
+                            <o3-color-picker [(ngModel)]="segment.model.branding.secondaryColor" (ngModelChange)="updatePristineState()"
+                                             placeholder="Text" [name]="segment.id + 'Secondary'" [disabled]="!segment.forText"></o3-color-picker>
+                        </mat-form-field>
+                    </div>
+                </td>
+            </ng-container>
+        </o3-modifiable-table>
+
+        <span #trigger="matMenuTrigger" class="new-segment-trigger" [matMenuTriggerFor]="newSegment"></span>
+        <mat-menu #newSegment="matMenu">
+            <button mat-menu-item (click)="addNewSegment(true)">Text</button>
+            <button mat-menu-item (click)="addNewSegment(false)">Image</button>
+        </mat-menu>
+    </ng-container>
+</o3-standard-form-overlay>

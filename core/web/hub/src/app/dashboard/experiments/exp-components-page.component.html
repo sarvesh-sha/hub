@@ -1,0 +1,122 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab label="Progress Icon">
+
+            <label>Different Sizes</label>
+            <div class="sample-section">
+                <div class="sample-set">
+                    <o3-progress-icon [percent]="75" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="75" [size]="32" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="75" [size]="64" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                </div>
+            </div>
+
+            <label>Different Thicknesses</label>
+            <div class="sample-section">
+                <div class="sample-set">
+                    <o3-progress-icon [percent]="percent" [size]="32" [progressBarWidth]="1" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="percent" [size]="32" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="percent" [size]="32" [progressBarWidth]="6" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                </div>
+            </div>
+
+            <label>Different Icons/Images</label>
+            <div class="sample-section">
+                <div class="sample-set">
+                    <o3-progress-icon [percent]="percent" [size]="32" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="percent" [size]="32" icon="assets/img/google-gcp-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="percent" [size]="32" icon="assets/img/microsoft-azure-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="percent" [size]="32" icon="assets/img/oracle-oci-icon.png"></o3-progress-icon>
+                </div>
+            </div>
+
+            <label>Progress Colors</label>
+            <div class="sample-section">
+                <div class="sample-set">
+                    <o3-progress-icon [percent]="1" [size]="32" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="50" [size]="32" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                    <o3-progress-icon [percent]="100" [size]="32" icon="assets/img/amazon-aws-icon.png"></o3-progress-icon>
+                </div>
+            </div>
+
+            <label>Custom Table Cell</label>
+            <div class="sample-section">
+                <div class="sample-set" style="width: 100%">
+                    <o3-datatable [table]="table" [showRowNumbers]="false" [showViewIcons]="false" [compact]="compact" style="width: 100%">
+                        <o3-datatable-column id="label" sortId="label" prop="label" name="Label"></o3-datatable-column>
+                        <o3-datatable-column id="status" sortId="status" prop="status" name="Status">
+                            <ng-template o3-datatable-cell-template let-row="row">
+                                <div class="demo-indicator" [style.background-color]="row.status"></div>
+                            </ng-template>
+                        </o3-datatable-column>
+                        <o3-datatable-column id="progress" sortId="progres" prop="progress" name="Progress">
+                            <ng-template o3-datatable-cell-template let-row="row">
+                                <div class="progress-cell">
+                                    <o3-progress-icon *ngFor="let value of row.progress; let i = index" [percent]="value" [icon]="getIcon(i)"></o3-progress-icon>
+                                </div>
+                            </ng-template>
+                        </o3-datatable-column>
+                        <o3-datatable-column id="updatedOn" sortId="!updatedOn" sortStart="desc" prop="updatedOn" name="Updated On" format="DATE"></o3-datatable-column>
+                        <o3-datatable-column id="createdOn" sortId="createdOn" sortStart="desc" prop="createdOn" name="Created On" format="DATE"></o3-datatable-column>
+                    </o3-datatable>
+                </div>
+
+                <button mat-raised-button class="mat-raised-button" (click)="progressDemo()">Add Progress</button>
+                <button mat-raised-button class="mat-raised-button" (click)="randomize()">Randomize</button>
+                <button mat-raised-button class="mat-raised-button" (click)="compact = !compact">Toggle Compact</button>
+
+            </div>
+
+        </o3-tab>
+
+        <o3-tab label="Progress Bar">
+
+            <label>Progress Colors</label>
+            <div class="sample-section">
+                <div class="sample-set">
+                    <o3-progress-bar [percent]="1"></o3-progress-bar>
+                    <o3-progress-bar [percent]="50"></o3-progress-bar>
+                    <o3-progress-bar [percent]="100"></o3-progress-bar>
+                </div>
+            </div>
+
+            <label>Progress Context</label>
+            <div class="sample-section">
+                <div class="sample-set">
+                    <o3-progress-bar [percent]="percent" context="Example"></o3-progress-bar>
+                </div>
+            </div>
+
+            <label>Custom Table Cell</label>
+            <div class="sample-section">
+                <div class="sample-set" style="width: 100%">
+                    <o3-datatable [table]="table" [showRowNumbers]="false" [showViewIcons]="false" [compact]="compact" style="width: 100%">
+                        <o3-datatable-column id="label" sortId="label" prop="label" name="Label"></o3-datatable-column>
+                        <o3-datatable-column id="status" sortId="status" prop="status" name="Status">
+                            <ng-template o3-datatable-cell-template let-row="row">
+                                <div class="demo-indicator" [style.background-color]="row.status"></div>
+                            </ng-template>
+                        </o3-datatable-column>
+                        <o3-datatable-column id="progress" sortId="progress" prop="progress" name="Progress">
+                            <ng-template o3-datatable-cell-template let-row="row">
+                                <div class="progress-cell">
+                                    <o3-progress-bar [percent]="row.progress[0]"></o3-progress-bar>
+                                </div>
+                            </ng-template>
+                        </o3-datatable-column>
+                        <o3-datatable-column id="updatedOn" sortId="!updatedOn" sortStart="desc" prop="updatedOn" name="Updated On" format="DATE"></o3-datatable-column>
+                        <o3-datatable-column id="createdOn" sortId="createdOn" sortStart="desc" prop="createdOn" name="Created On" format="DATE"></o3-datatable-column>
+                    </o3-datatable>
+                </div>
+
+                <button mat-raised-button class="mat-raised-button" (click)="progressDemo()">Add Progress</button>
+                <button mat-raised-button class="mat-raised-button" (click)="randomize()">Randomize</button>
+                <button mat-raised-button class="mat-raised-button" (click)="compact = !compact">Toggle Compact</button>
+
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

@@ -1,0 +1,46 @@
+<o3-filter-overlay [pristine]="pristine" [resetFilterButtonDisabled]="!hasEditFilters"
+                   (filterApplied)="applyFilterEdits()" (filterCleared)="clearFilterEdits()">
+    <ng-container *ngIf="initialized && optionsLoaded">
+        <mat-form-field *ngIf="!excludeLocation">
+            <o3-select [o3LocationSelector]="true" name="locations" defaultValueDescription="Select Locations"
+                       [(ngModel)]="editRequest.locationIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="like_manufacturer" placeholder="Manufacturer"  [(ngModel)]="editRequest.likeDeviceManufacturerName" (ngModelChange)="updatePristine()">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="like_product" placeholder="Product"  [(ngModel)]="editRequest.likeDeviceProductName" (ngModelChange)="updatePristine()">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="like_model" placeholder="Model #"  [(ngModel)]="editRequest.likeDeviceModelName" (ngModelChange)="updatePristine()">
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="alert-states" placeholder="Alert State" defaultValueDescription="Select Alert States"
+                       [options]="alertStatusOptions" [(ngModel)]="editRequest.alertStatusIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="alert-types" placeholder="Alert Type" defaultValueDescription="Select Alert Types"
+                       [options]="alertTypeOptions" [(ngModel)]="editRequest.alertTypeIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="alert-rules" placeholder="Alert Rule" defaultValueDescription="Select Alert Rules"
+                       [options]="alertRuleOptions" [(ngModel)]="alertRules" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="alert-severities" placeholder="Alert Severity" defaultValueDescription="Select Alert Severities"
+                       [options]="alertSeverityOptions" [(ngModel)]="editRequest.alertSeverityIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+    </ng-container>
+</o3-filter-overlay>

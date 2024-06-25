@@ -1,0 +1,28 @@
+﻿<o3-standard-layout *ngIf="isStandardLayout">
+    <o3-standard-layout-menu id="home" label="Home" faIcon="o3-home" link="/home" [exact]=true></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="jobs" label="Jobs" link="/jobs"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="job_definitions" label="Job Definitions" link="/job-definitions"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="repositories" label="Repositories" link="/repositories"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="images" label="Images" link="/images"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="deployments" label="Deployments" link="/deployments"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="customers" label="Customers" link="/customers"></o3-standard-layout-menu>
+    <o3-standard-layout-menu id="statistics" label="Statistics" faIcon="o3-view">
+        <o3-standard-layout-menu id="statistics_cellular_charges" label="Cellular Charges" link="/statistics/cellular-charges"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_datagram_sessions" label="Datagram Sessions" link="/statistics/datagram-sessions"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_jobs_summary" label="Jobs Summary" link="/statistics/jobs-summary"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_images_summary" label="Images Summary" link="/statistics/images-summary"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_image-pulls_summary" label="Image Pulls" link="/statistics/image-pulls-summary"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_jobs_usage" label="Service Summary" link="/statistics/jobs-usage"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_agents_usage" label="Agent Summary" link="/statistics/agents-usage"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_backups_usage" label="Backup Summary" link="/statistics/backups-usage"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="statistics_upgrade" label="Upgrade Status" link="/statistics/upgrade-status"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+    <o3-standard-layout-menu id="configuration" label="Settings" faIcon="o3-configure">
+        <o3-standard-layout-menu id="configuration_user_management" label="User Management" link="/configuration/users"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="background_activity_management" label="Background Activities" link="/background-activities"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="hosts" label="Hosts" link="/hosts/summary" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="logging_config" label="Logging" link="/configuration/loggers" [roles]="['SYS.ADMIN']"></o3-standard-layout-menu>
+        <o3-standard-layout-menu id="dump_threads" label="Threads" link="/configuration/threads"></o3-standard-layout-menu>
+    </o3-standard-layout-menu>
+</o3-standard-layout>
+<o3-reporting-layout *ngIf="isReportingLayout"></o3-reporting-layout>

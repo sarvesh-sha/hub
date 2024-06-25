@@ -1,0 +1,20 @@
+<div class="pane-header" [style.backgroundColor]="branding.primaryColor" [style.color]="branding.secondaryColor" [style.flexDirection]="flexDirection">
+    <span class="pane-logo" *ngIf="branding.logoBase64">
+        <o3-safe-image [data]="branding.logoBase64" alt="logo"></o3-safe-image>
+    </span>
+    <span class="pane-title" *ngIf="paneTitle">
+        {{paneTitle}}
+        <div class="pane-subtitle" *ngIf="subtitle">
+            {{subtitle}}
+        </div>
+    </span>
+
+    <span *ngIf="editing && !paneTitle && !branding.logoBase64" class="pane-title clickable" style="text-transform: none">Click to configure</span>
+</div>
+
+<div class="pane-custom-header">
+    <ng-content select="o3-context-pane-header"></ng-content>
+</div>
+<div class="pane-container">
+    <ng-content></ng-content>
+</div>

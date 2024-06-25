@@ -1,0 +1,21 @@
+.file-connector {
+    margin: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-bottom: 4px;
+    padding-top: 4px;
+
+    button {
+        width: 107px;
+        margin-right: 10px;
+    }
+
+    label {
+        margin: 0;
+    }
+
+    .error {
+        color: red;
+    }
+}

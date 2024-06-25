@@ -1,0 +1,38 @@
+<div class="chart-set--container">
+    <o3-time-series-set-toolbar *ngIf="!readonly" #toolbar [class.not-embedded]="!embedded"
+                                [chartsExt]="configExts" (chartsExtChange)="chartsChanged($event)"
+                                [(range)]="range" (rangeChange)="rangeChange.emit($event)"
+                                [embedded]="embedded" [canDeleteAllCharts]="canDeleteAllCharts"
+                                [staticRange]="staticRange" [staticRangeTooltip]="staticRangeTooltip">
+        <o3-time-series-set-toolbar-action *ngFor="let action of actions" [label]="action.label" [icon]="action.icon" [disabled]="action.disabled"
+                                           [tooltip]="action.tooltip" (click)="action.onClick($event)"></o3-time-series-set-toolbar-action>
+    </o3-time-series-set-toolbar>
+
+    <o3-time-series-set [class.empty]="!hasCharts"
+                        [range]="range"
+                        [configExts]="configExts"
+                        [externalGraphsHost]="externalGraphsHost"
+                        [viewWindow]="viewWindow"
+                        [readonly]="readonly"
+                        [canDeleteAllCharts]="canDeleteAllCharts"
+                        [canDeleteAllSources]="canDeleteAllSources"
+                        [resizable]="resizable"
+                        [handleInteractions]="handleInteractions"
+                        [zoomable]="zoomable"
+                        [allowDashboardAdd]="allowDashboardAdd"
+                        [allowConsolidatedSources]="allowConsolidatedSources"
+                        [embedded]="embedded"
+                        [printable]="printable"
+                        (configExtsChange)="chartsChanged($event)"
+                        (chartUpdated)="chartUpdated.emit($event)"
+                        (sourcesConsolidatedUpdated)="sourcesConsolidatedUpdated.emit()"
+                        (startedFetchingData)="startedFetchingData.emit()"
+                        (stoppedFetchingData)="stoppedFetchingData.emit()">
+    </o3-time-series-set>
+
+    <div *ngIf="!hasCharts && !readonly" class="o3-watermark-caption">
+        Add a chart using the add button above.
+    </div>
+</div>
+
+

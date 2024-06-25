@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="HubApplication (hub.yml)" type="Application" factoryName="Application" folderName="Hub" singleton="true">
+    <option name="MAIN_CLASS_NAME" value="com.optio3.cloud.hub.HubApplication" />
+    <module name="optio3-product-hub" />
+    <option name="PROGRAM_PARAMETERS" value="server hub.yml" />
+    <option name="VM_PARAMETERS" value="-Xmx600m -Djdk.attach.allowAttachSelf --add-reads java.base=java.instrument" />
+    <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Enhance Hibernate entities in Hub" />
+    </method>
+  </configuration>
+</component>

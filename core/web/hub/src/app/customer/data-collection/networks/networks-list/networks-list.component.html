@@ -1,0 +1,10 @@
+<o3-tab-subsection *ngIf="withFiltering" [withFiltering]="withFiltering" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable [table]="table" (onShowingContextMenu)="contextMenu($event)">
+    <o3-datatable-column id="instanceName" sortId="!name" prop="extended.model.name" name="Instance Name"></o3-datatable-column>
+    <o3-datatable-column id="location" sortId="location" prop="locationName" name="Location"></o3-datatable-column>
+    <o3-datatable-column id="state" sortId="state" prop="extended.model.state" name="State"></o3-datatable-column>
+    <o3-datatable-column id="samplingPeriod" prop="extended.typedModel.samplingPeriod" name="Sampling Period" format="NUMBER"></o3-datatable-column>
+    <o3-datatable-column id="updatedOn" sortId="updatedOn" prop="extended.model.updatedOn" name="Last Updated" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="extended.model.createdOn" name="Created On" format="DATE"></o3-datatable-column>
+</o3-datatable>

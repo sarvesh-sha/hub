@@ -1,0 +1,35 @@
+<section class="bs">
+    <div *ngIf="userOptions && deliveryOptions">
+        <mat-form-field>
+            <o3-select
+                placeholder="Users"
+                [options]="userOptions"
+                [(ngModel)]="deliveryOptions.selectedUsers"
+                defaultValueDescription="Select Users"
+                (ngModelChange)="deliveryOptions.refresh()">
+            </o3-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="groupOptions && deliveryOptions">
+        <mat-form-field>
+            <o3-select
+                placeholder="Groups"
+                [options]="groupOptions"
+                [(ngModel)]="deliveryOptions.selectedGroups"
+                defaultValueDescription="Select Groups"
+                (ngModelChange)="deliveryOptions.refresh()">
+            </o3-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="roleOptions && deliveryOptions">
+        <mat-form-field>
+            <o3-select
+                placeholder="Roles"
+                [options]="roleOptions"
+                [(ngModel)]="deliveryOptions.selectedRoles"
+                defaultValueDescription="Select Roles"
+                (ngModelChange)="deliveryOptions.refresh()">
+            </o3-select>
+        </mat-form-field>
+    </div>
+</section>

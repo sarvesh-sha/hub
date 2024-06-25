@@ -1,0 +1,20 @@
+<div *ngFor="let segment of legendSegments; let i = index" class="legend-segment" [style.background]="segment.backgroundCss">
+    <div *ngIf="i === 0" class="stop-label first-label">
+        <div class="stop-value">
+            {{segment.startValue}}
+            <div class="center-bar">
+                <div class="center-bar-top"></div>
+                <div class="center-bar-bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="stop-label" [class.last-label]="i === legendSegments.length - 1">
+        <div class="stop-value">
+            {{segment.endValue}}
+            <div class="center-bar">
+                <div class="center-bar-top"></div>
+                <div class="center-bar-bottom"></div>
+            </div>
+        </div>
+    </div>
+</div>

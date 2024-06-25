@@ -1,0 +1,14 @@
+mat-button-toggle-group {
+    height: 31px;
+
+    mat-button-toggle {
+        width: 26px;
+
+        mat-icon {
+            position: absolute;
+            top: -13px;
+            left: 0px;
+            font-size: 18px;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+<ng-template o3-wizard-step-template>
+    <p>{{stepDescription}}</p>
+    <o3-modifiable-table #test_ranges [rows]="selectedRanges" itemName="range" [placeholderHeightPx]="82"
+                         allowReordering allowDeleting allowAdding [limit]="maxNumRanges"
+                         (rowRemoved)="logRangeRemoval($event.row)" (rowAddRequested)="addRange()">
+        <ng-container *o3ModifiableTableRow="let range; let i = index">
+            <td>
+                <section class="bs stacked-range">
+                    <o3-range-selector [selection]="range.range" [allowCustom]="true" [allowTimezone]="true"
+                                       (selectionChange)="rangeChange($event, i)"></o3-range-selector>
+                </section>
+            </td>
+
+            <ng-container *ngIf="isAggregationTable">
+                <td class="o3-ranges-step--filters">
+                    <button *o3MinWidth="886" mat-icon-button
+                            class="o3-ranges-step--button" [class.filter-on]="range.isFilterApplied"
+                            matTooltip="Configure {{range.name || 'Filter'}}" matTooltipPosition="above"
+                            (click)="openWeeklyFilterDialog(i)">
+                        <i class="o3 o3-filter-outline"></i>
+                    </button>
+                </td>
+
+                <o3-schedule-selector-overlay [model]="selectedRanges[i]" (selectionChange)="syncCustomFilters()"
+                                              [otherFilters]="customFilters"></o3-schedule-selector-overlay>
+            </ng-container>
+        </ng-container>
+    </o3-modifiable-table>
+
+    <div class="additional-options" *ngIf="isAggregationTable">
+        <mat-form-field class="o3-ranges-step--presets col-sm-4">
+            <mat-select placeholder="Preset configs">
+                <mat-option (click)="setToPreset('default')">Default</mat-option>
+                <mat-option (click)="setToPreset('Last7Days')">Last 7 Days</mat-option>
+                <mat-option (click)="setToPreset('Week')">This Week</mat-option>
+                <mat-option (click)="setToPreset('PreviousWeek')">Last Week</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div style="height: 58px; padding-top: 24px;">
+            <mat-slide-toggle [ngModel]="rangeMode" (ngModelChange)="setRangeMode($event)">Always Show Ranges</mat-slide-toggle>
+        </div>
+    </div>
+</ng-template>

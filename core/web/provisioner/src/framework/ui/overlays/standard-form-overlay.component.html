@@ -1,0 +1,28 @@
+<o3-overlay [config]="overlayConfig" [overlayOrigin]="overlayOrigin" (open)="form.markAsPristine()" (close)="formSubmitted(false, false)">
+    <o3-standard-form #form
+                      [label]="label"
+                      [text]="text"
+                      [cardClass]="internalCardClass"
+                      [showPrimary]="showPrimary"
+                      [primaryButtonText]="primaryButtonText"
+                      [primaryButtonTooltip]="primaryButtonTooltip"
+                      [primaryButtonDisabled]="primaryButtonDisabled"
+                      [closeOnPrimaryPress]="closeOnPrimaryPress"
+                      [showSecondary]="showSecondary"
+                      [secondaryButtonText]="secondaryButtonText"
+                      [secondaryButtonDisabled]="secondaryButtonDisabled"
+                      [showExtraButton]="extraButtonText && showExtraButton"
+                      [extraButtonText]="extraButtonText"
+                      [extraButtonPriority]="extraButtonPriority"
+                      [extraButtonDisabled]="extraButtonDisabled"
+                      [hideActions]="hideActions"
+                      [actions]="actions"
+                      [formControls]="formControlsList"
+                      (scrolled)="scrolled.emit($event)"
+                      (submitted)="formSubmitted(true, false)"
+                      (cancelled)="formSubmitted(false, true)"
+                      (extraButton)="extraButtonPressed.emit()">
+        <ng-content></ng-content>
+        <ng-template [cdkPortalOutlet]="portal"></ng-template>
+    </o3-standard-form>
+</o3-overlay>

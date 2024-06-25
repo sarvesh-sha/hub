@@ -1,0 +1,156 @@
+@import "../app.variables.scss";
+
+@mixin page($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Page
+    //-----------------------------
+    .page-content {
+        padding: 10px 8px 8px 8px;
+        .mat-card.page-card {
+            margin: 0px 2px 10px;
+            border-top-left-radius: 0px;
+        }
+    }
+
+    @media only screen and (min-width: $xl) {
+        .page-content {
+            max-width: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .mat-toolbar.page-footer {
+        position: absolute;
+        bottom: 0px;
+        min-height: 36px;
+        border-top: 1px solid #e0e0e0;
+
+        .mat-toolbar-row {
+            height: 36px;
+            text-transform: uppercase;
+            font-size: 12px;
+
+            .mat-button {
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .mat-toolbar .mat-toolbar-row h1.page-card-flexible-title {
+        padding-left: 0px;
+        font-size: 24px;
+        margin-top: -16px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+        width: 100%;
+    }
+
+    .page-card-flexible-tabs {
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media only screen and (min-width: $xl) {
+        .page-card-flexible-tabs {
+            max-width: 800px;
+        }
+    }
+    // Sidebars
+    // ------------------------------
+    .page-sidebar-container {
+        position: absolute;
+        width: 100%;
+        top: 0px;
+        bottom: 0px;
+
+        .page-sidebar-backdrop {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            display: block;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .page-sidebar-page {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+        }
+
+        .page-sidebar {
+            position: fixed;
+            right: -260px;
+            width: 260px;
+            top: 57px;
+            bottom: 0px;
+            background-color: #f5f5f5;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, .14), 0px 0px 5px 0px rgba(0, 0, 0, .12);
+            z-index: 300;
+            opacity: 0;
+            overflow: hidden;
+            overflow-y: auto;
+            padding: 8px 16px;
+            transition: right .4s cubic-bezier(.25, .8, .25, 1), opacity .2s cubic-bezier(.25, .8, .25, 1);
+
+            .sidebar-title {
+                font-size: 14px;
+                font-weight: bold;
+                margin: 1rem 0rem 1.25rem;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .mat-select {
+                display: block;
+                margin-top: 10px;
+                margin-bottom: 5px;
+            }
+        }
+
+        &.open {
+
+            .page-sidebar-backdrop {
+                visibility: visible;
+                opacity: 1;
+                transition: opacity .4s cubic-bezier(.25, .8, .25, 1);
+            }
+
+            .page-sidebar {
+                opacity: 1;
+                right: 0px;
+
+                .page-sidebar-template-container {
+                    // create a fixed size container so a "expanding"
+                    // effect doesnt occur for elements inside template
+                    // (260px - 16px - 16px)
+                    width: 228px;
+                    font-size: 14px;
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+    }
+
+    .o3-sticky-top {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0px;
+    }
+}

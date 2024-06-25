@@ -1,0 +1,16 @@
+﻿<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            Jobs
+        </mat-card-title>
+        <mat-card-content>
+
+            <o3-jobs-list #childList>
+            </o3-jobs-list>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button type="button" (click)="childList.purgeOldJobs()" [disabled]="childList.table.isRefreshDisabled">Delete Old Jobs</button>
+        </mat-card-actions>
+    </mat-card>
+</section>

@@ -1,0 +1,48 @@
+<o3-console-log-filter *ngIf="filterable" (requestChange)="onFilterUpdate($event)"></o3-console-log-filter>
+<div class="console-log-container" [class.filtered]="filterable">
+    <div class="console-log" console-log-scroller (startReached)="previous($event)" (endReached)="next($event)" (consoleKeydown)="onConsoleKeydown($event)">
+        <table class="selectable">
+            <tr *ngIf="log.view.length && configurable">
+                <td *ngFor="let column of enabledColumns; let i = index">
+                    <span class="resizer" #resizer>{{column.name}}</span>
+                </td>
+                <td>
+                    <span>Message</span>
+                </td>
+            </tr>
+            <tr *ngFor="let entry of log.view">
+                <td *ngFor="let column of enabledColumns; let i = index">
+                    <div class="entry-cell" [ngStyle]="column.columnStyle" [innerHTML]="entry.columns.get(column.type)" #cell (contextmenu)="onContextMenu($event, column.type, cell.innerText, entry)">
+                        &nbsp;
+                    </div>
+                </td>
+                <td>
+                    <div class="entry-cell" [innerHTML]="entry.columns.get(messageColumn.type)" #cell2 (contextmenu)="onContextMenu($event, messageColumn.type, cell2.innerText, entry)">
+                        &nbsp;
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="interactive" class="console-log-input">
+                <td>
+                    <div class="entry-cell">
+                        <form (submit)="submitInput()" autocomplete="off">
+                            <div class="console-input-container">
+                                <span class="console-log-prompt">&gt;&gt;</span>&nbsp;<input type="text" [(ngModel)]="inputText" name="console-input"/>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button *ngIf="configurable" class="clickable configure-button" disableRipple type="button" mat-icon-button (click)="columnManager.open(columns)">
+        <i class="o3 o3-configure"></i>
+    </button>
+    <o3-console-log-virtual-scroll #scrollbar></o3-console-log-virtual-scroll>
+    <!-- Context Menu -->
+    <span class="o3-context-menu--trigger-wrapper" #contextMenuTriggerWrapper>
+        <o3-context-menu #contextMenu></o3-context-menu>
+    </span>
+</div>
+
+<o3-console-log-column-manager #columnManager (columnsUpdated)="updateColumns($event)"></o3-console-log-column-manager>

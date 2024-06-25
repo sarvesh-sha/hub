@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropForeignKeyConstraint baseTableName="BACKGROUND_ACTIVITY" constraintName="SUB_ACTIVITY__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropColumn columnName="sub_activity" tableName="BACKGROUND_ACTIVITY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <createTable tableName="TASK_TO_SUBTASK">
+            <column name="task" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sub_task" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <addPrimaryKey columnNames="task, sub_task" constraintName="PRIMARY_v8" tableName="TASK_TO_SUBTASK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createIndex indexName="FK9x2vuif1vc0p6ieuuhh7fphe7" tableName="TASK_TO_SUBTASK">
+            <column name="sub_task"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <addForeignKeyConstraint baseColumnNames="task" baseTableName="TASK_TO_SUBTASK" constraintName="FK4s1q4ldfkv674l80d41ms8ewv" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="BACKGROUND_ACTIVITY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <addForeignKeyConstraint baseColumnNames="sub_task" baseTableName="TASK_TO_SUBTASK" constraintName="FK9x2vuif1vc0p6ieuuhh7fphe7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="BACKGROUND_ACTIVITY"/>
+    </changeSet>
+</databaseChangeLog>

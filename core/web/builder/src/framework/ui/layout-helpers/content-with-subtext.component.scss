@@ -1,0 +1,28 @@
+$subtext-height: 32px;
+
+.o3-subtext--container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    > .o3-subtext--content, > .o3-subtext--text {
+        width: 100%;
+    }
+
+    > .o3-subtext--content {
+        flex: 1 1 0px;
+        min-height: 0; // Allow content to shrink when its children are very large (prevent overflowing parent container)
+    }
+
+    > .o3-subtext--text {
+        flex: 0 0 $subtext-height;
+        padding: 0px;
+        display: none;
+    }
+
+    &.o3-subtext--show > .o3-subtext--text {
+        display: flex;
+    }
+}

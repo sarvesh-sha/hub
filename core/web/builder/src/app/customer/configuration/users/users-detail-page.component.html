@@ -1,0 +1,44 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Details">
+
+            <o3-tab-action label="Update" priority="primary" type="submit" [form]="userForm" *ngIf="!userForm.pristine" [disabled]="!userForm.valid"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="userForm.pristine"></o3-tab-action>
+            <o3-tab-action label="Cancel" priority="secondary" (click)="exit()" *ngIf="!userForm.pristine"></o3-tab-action>
+
+            <o3-tab-action label="Delete" icon="delete" priority="tertiary" (click)="remove()" [disabled]="isCurrentUser"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #userForm="ngForm" novalidate>
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="email" placeholder="Email Address" [(ngModel)]="user.emailAddress" name="emailAddress" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="tel" placeholder="Phone Number" [(ngModel)]="user.phoneNumber" name="phoneNumber">
+                        </mat-form-field>
+
+                        <div class="mat-checkbox-container">
+                            <label>Roles</label>
+                            <span *ngFor="let role of roles">
+                                <mat-checkbox [(ngModel)]="userRoles[role.model.sysId]" [name]="role.model.name">{{role.model.displayName}}</mat-checkbox>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+

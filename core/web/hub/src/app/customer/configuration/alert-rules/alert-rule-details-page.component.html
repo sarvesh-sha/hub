@@ -1,0 +1,120 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <o3-tab-action label="Import..." (click)="importVersion()"></o3-tab-action>
+        <o3-tab-action label="Export..." (click)="exportDefinition()"></o3-tab-action>
+        <o3-tab-action label="Copy..." (click)="copy()"></o3-tab-action>
+
+        <o3-tab-action labelFirstLevel="Log" label="View..." (click)="logDialog.toggleOverlay(); refreshLog()"></o3-tab-action>
+        <o3-tab-action labelFirstLevel="Log" label="Download..." (click)="prepareLogDownload()"></o3-tab-action>
+
+        <o3-tab-action *ngIf="isAdmin" labelFirstLevel="Log" label="Truncate To Last Month..." (click)="truncateLog(30)"></o3-tab-action>
+        <o3-tab-action *ngIf="isAdmin" labelFirstLevel="Log" label="Truncate To Last Week..." (click)="truncateLog(7)"></o3-tab-action>
+        <o3-tab-action *ngIf="isAdmin" labelFirstLevel="Log" label="Truncate All..." (click)="truncateLog()"></o3-tab-action>
+
+        <o3-tab label="Alert Rule Details">
+
+            <o3-tab-action priority="secondary" label="Edit" (click)="edit()"></o3-tab-action>
+            <o3-tab-action priority="secondary" label="Close" (click)="exit()"></o3-tab-action>
+            <o3-tab-action priority="tertiary" icon="delete" label="Delete" (click)="remove()"></o3-tab-action>
+
+            <form (ngSubmit)="saveTitle()" #alertForm="ngForm" novalidate>
+                <section *ngIf="alertDefinition?.model && selectedVersion">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Purpose" [ngModel]="alertDefinition.model.purpose" name="purpose" readonly>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Alert Rule Title" [ngModel]="alertDefinition.model.title" name="title" readonly>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <textarea matInput placeholder="Alert Rule Description" [ngModel]="alertDefinition.model.description" name="description" readonly></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field *ngIf="selectedVersion && alertVersions">
+                                <mat-select placeholder="Version" [ngModel]="selectedVersion.model.sysId" (valueChange)="versionChange($event)" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngIf="hasEditSession" [value]="head.model.sysId">Draft</mat-option>
+                                    <mat-option *ngFor="let version of alertVersions" [value]="version.model.sysId">v{{version.model.version}} - {{version.model.createdOn | o3LongDateTime}}
+                                        <span *ngIf="isRelease(version.model.sysId)">(active)</span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="button-row">
+                                <button mat-raised-button type="button" (click)="testAlertOverlay.toggleOverlay()" *ngIf="isPristine && selectedVersion">Test Alert</button>
+                                <button mat-raised-button type="button" (click)="blocklyDialog.toggleOverlay()" *ngIf="areInputFieldsPristine" [disabled]="!blocklyWorkspace">Edit Logic</button>
+                                <button mat-raised-button type="button" (click)="createNewVersion()" *ngIf="!isPristine">Save New Version</button>
+                                <button mat-raised-button type="button" color="accent" (click)="makeRelease()" *ngIf="isPristine && !isReleaseSelected && !isInEditSession">
+                                    <mat-icon class="button-icon">warning</mat-icon>
+                                    Make v{{selectedVersion?.model.version}} active
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <section *ngIf="inputs?.length > 0">
+                        <hr/>
+                        <h4>Options</h4>
+                        <div class="row">
+                            <div class="col-sm-6" *ngFor="let input of inputs">
+                                <o3-alert-rule-input-field [inputParam]="input"></o3-alert-rule-input-field>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </form>
+        </o3-tab>
+
+        <o3-standard-form-overlay label="Logs" [showPrimary]="false" [showSecondary]="false" [overlayConfig]="logDialogConfig" #logDialog>
+            <o3-console-log #log [scrollLockEnabled]="logLockScroll"></o3-console-log>
+        </o3-standard-form-overlay>
+
+        <o3-overlay [config]="blocklyDialogConfig" #blocklyDialog (opened)="blocklyWorkspace.refreshSize()" (closed)="rebuildInputs()">
+            <form (ngSubmit)="save()" #alertForm2="ngForm" novalidate style="height: 100%;">
+                <div *ngIf="currentDetails" style="display: flex; flex-direction: column; height: 100%;">
+                    <o3-app-blockly-workspace #blocklyWorkspace
+                                              [blocks]="blocks"
+                                              [data]="currentDetails.data"
+                                              (updated)="changeListener.emit()">
+                        <button mat-icon-button matTooltip="Undo" type="button" (click)="undo()" [disabled]="!isPristine || !canUndo">
+                            <mat-icon>undo</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Redo" type="button" (click)="redo()" [disabled]="!isPristine || !canRedo">
+                            <mat-icon>redo</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Debug alert" type="button" (click)="debug.openOverlay()" [disabled]="!isPristine">
+                            <mat-icon>bug_report</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Save New Version" type="button" (click)="saveEditSession()" [disabled]="!isPristine || !isInEditSession">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <span class="status">
+                            <span *ngIf="isPristine && isInEditSession">Draft Saved</span>
+                            <span *ngIf="!isPristine">Saving <i class="fa fa-spin fa-spinner"></i></span>
+                        </span>
+                    </o3-app-blockly-workspace>
+                </div>
+            </form>
+        </o3-overlay>
+
+        <o3-overlay [config]="testResultsDialogConfig" #testResultsDialog (closed)="resetTestResults()">
+            <o3-engine-test-results [testResults]="testResults" [logLines]="testLogs" [workspace]="blocklyWorkspace"></o3-engine-test-results>
+        </o3-overlay>
+
+        <o3-standard-form-overlay label="Select Time" primaryButtonText="Debug" (submitted)="test()" #debug>
+            <o3-date-picker [(model)]="lastExecutionTime"></o3-date-picker>
+            <mat-form-field>
+                <input matInput name="maxSteps" placeholder="Max Steps" [(ngModel)]="maxSteps"/>
+            </mat-form-field>
+        </o3-standard-form-overlay>
+
+        <o3-report-live-preview #reportLivePreview [config]="reportConfig"></o3-report-live-preview>
+    </o3-tab-group>
+</section>
+
+<o3-standard-form-overlay #testAlertOverlay
+                          label="Select Time Range"
+                          primaryButtonText="Test Alert"
+                          [primaryButtonDisabled]="!testTimeRange" (submitted)="runAlert()"
+                          [showSecondary]="false">
+    <o3-range-selector [(selection)]="testTimeRange" [allowCustom]="true" [allowTimezone]="true"></o3-range-selector>
+</o3-standard-form-overlay>

@@ -1,0 +1,14 @@
+div {
+    display: flex;
+    align-items: center;
+
+    .mat-icon-button {
+        &.filter-on {
+            background-color: #2196f3;
+
+            i {
+                color: white;
+            }
+        }
+    }
+}

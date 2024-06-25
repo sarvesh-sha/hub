@@ -1,0 +1,42 @@
+td {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 12px;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.type-toggle {
+    display: flex;
+    width: calc(100% + 24px);
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    padding-bottom: 7px;
+    margin: -12px -12px 0px -12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.structure-setup {
+    display: flex;
+    width: 100%;
+
+    > mat-form-field, > button {
+        flex: 1 1 0px;
+    }
+
+    > button {
+        margin: 6px 0px 12px 12px;
+    }
+}
+
+o3-modifiable-table {
+    display: block;
+    margin-top: 12px;
+}

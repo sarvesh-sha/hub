@@ -1,0 +1,5 @@
+/dist
+/node_modules
+*.mp4
+testoutput/
+/public

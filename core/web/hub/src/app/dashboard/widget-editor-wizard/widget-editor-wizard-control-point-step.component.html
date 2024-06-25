@@ -1,0 +1,83 @@
+<ng-template o3-wizard-step-template>
+    <o3-widget-editor-wizard-widget-preview [config]="previewConfig"
+                                            [verticalViewThreshold]="940" [manualFontScalar]="fontScalar"
+                                            [colWidth]="colWidth" [targetWidth]="widgetWidth" [height]="widgetHeight">
+        <div class="o3-control-point-step--config">
+            <div class="o3-control-point-step--selected-cp">
+                <mat-form-field matTooltip="Asset structure binding name" [matTooltipDisabled]="!typedWidget?.pointInput">
+                    <input matInput type="text" placeholder="Control Point" [value]="cpName" readonly/>
+
+                    <button #test_cpTrigger mat-icon-button matSuffix (click)="configureControlPoint()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+
+            <div class="o3-control-point-step--name">
+                <div class="input-label">Name</div>
+                <mat-slide-toggle [(ngModel)]="nameEnabled" name="show-name" matTooltip="Show name"></mat-slide-toggle>
+
+                <mat-form-field>
+                    <o3-select name="name-display" [(ngModel)]="nameDisplay" [options]="displayOptions" placeholder="Display"
+                               [multiSelect]="false" [preventDeselection]="true" [singleClick]="true" [disabled]="!nameEnabled"></o3-select>
+                </mat-form-field>
+
+                <o3-text-alignment-selector [(alignment)]="nameAlignment" matTooltip="Text alignment"
+                                            [disabled]="!nameEnabled" [matTooltipDisabled]="!nameEnabled"></o3-text-alignment-selector>
+            </div>
+
+            <div class="o3-control-point-step--value">
+                <div class="input-label">Value</div>
+                <mat-slide-toggle [(ngModel)]="valueEnabled" name="show-value" matTooltip="Show value"></mat-slide-toggle>
+
+                <mat-form-field [matTooltip]="precisionTooltip">
+                    <input matInput type="number" placeholder="Precision" min="0" max="5"
+                           name="value-precision" [(ngModel)]="valuePrecision" [disabled]="isEnumeratedSource"/>
+                </mat-form-field>
+
+                <o3-text-alignment-selector [(alignment)]="valueAlignment" matTooltip="Value text alignment"
+                                            [disabled]="!valueEnabled" [matTooltipDisabled]="!valueEnabled"></o3-text-alignment-selector>
+            </div>
+
+            <div class="o3-control-point-step--units">
+                <div class="input-label">Units</div>
+                <mat-slide-toggle [(ngModel)]="valueUnitsEnabled" name="show-units" [disabled]="isEnumeratedSource || !valueEnabled" matTooltip="Show units"></mat-slide-toggle>
+
+                <o3-equivalent-units-selector *ngIf="cpUnits" [unitsFactors]="cpUnits" [(units)]="unitsExt" placeholder=""></o3-equivalent-units-selector>
+                <mat-form-field *ngIf="!cpUnits">
+                    <input matInput type="text" placeholder="Units" [value]="noUnitText" readonly/>
+                </mat-form-field>
+            </div>
+
+            <div class="o3-control-point-step--timestamp">
+                <div class="input-label">Timestamp</div>
+                <mat-slide-toggle #test_timestampToggle [(ngModel)]="timestampEnabled" name="show-timestamp" matTooltip="Show timestamp"></mat-slide-toggle>
+
+                <mat-form-field floatLabel="never" [matTooltip]="formatterTooltip">
+                    <input matInput type="text" [placeholder]="formatterPlaceholder" [(ngModel)]="timestampFormat" [disabled]="!timestampEnabled"/>
+                </mat-form-field>
+
+                <o3-text-alignment-selector [(alignment)]="timestampAlignment" matTooltip="Timestamp text alignment"
+                                            [disabled]="!timestampEnabled" [matTooltipDisabled]="!timestampEnabled"></o3-text-alignment-selector>
+            </div>
+
+            <div class="o3-control-point-step--color">
+                <div class="input-label">{{mappingSegments.length > 2 ? 'Mapped' : ''}} Value Color</div>
+                <o3-color-picker-gradient-stop [(stops)]="mappingSegments" (stopsChange)="applyColorConfig($event)" [maxStops]="4"
+                                               [disableMidpoint]="true" [lockEndModes]="true" [interpolation]="interpolation"
+                                               [matTooltip]="colorMappingTooltip" [matTooltipDisabled]="mappingSegments.length <= 2"></o3-color-picker-gradient-stop>
+            </div>
+
+            <div class="o3-control-point-step--font-multiplier">
+                <div class="input-label">Manually Scale Text</div>
+                <mat-slide-toggle #test_fontScalingToggle name="font-size-scaling-manual" [(ngModel)]="manualFontScaling"></mat-slide-toggle>
+
+                <o3-widget-editor-wizard-manual-font-scaling-field
+                    *ngIf="manualFontScaling"
+                    [(fontMultiplier)]="fontMultiplier"
+                    (fontMultiplierValid)="fontMultiplierValid = $event">
+                </o3-widget-editor-wizard-manual-font-scaling-field>
+            </div>
+        </div>
+    </o3-widget-editor-wizard-widget-preview>
+</ng-template>

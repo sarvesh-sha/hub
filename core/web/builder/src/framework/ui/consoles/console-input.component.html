@@ -1,0 +1,7 @@
+<div class="console-input-container">
+    <form (submit)="submitInput()" autocomplete="off">
+        <mat-form-field>
+            <input matInput type="text" [(ngModel)]="inputText" name="console-input" (keydown)="onKeyDown($event)" [placeholder]="placeholder"/>
+        </mat-form-field>
+    </form>
+</div>

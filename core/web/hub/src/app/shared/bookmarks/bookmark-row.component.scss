@@ -1,0 +1,131 @@
+$sm: 600px;
+
+.o3-bookmark-row--container {
+    display: flex;
+    position: relative;
+    padding: 5px 0px 5px 12px;
+    overflow: hidden;
+
+    &:hover {
+        background-color: #f5f5f5;
+    }
+
+    &.o3-bookmark-row--filtered-out {
+        display: none;
+    }
+
+    .o3-bookmark-row--name-description {
+        width: 0px;
+        flex-grow: 1;
+        position: relative;
+        padding-bottom: 2px;
+
+        > div {
+            margin-bottom: 2px;
+        }
+
+        > div, small {
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        small {
+            display: block;
+            line-height: 130%;
+        }
+    }
+
+    .o3-bookmark-row--created-on {
+        flex-grow: 0;
+        padding: 0px 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .o3-bookmark-row--buttons {
+        display: flex;
+        flex: 0 0 70px;
+        max-width: 70px;
+        text-align: center;
+        margin: auto;
+
+        > div.o3-bookmark-row--navigation-indicator {
+            display: flex;
+            align-items: center;
+            width: 24px;
+
+            > i.view-bookmark-icon {
+                margin-top: -1px;
+            }
+        }
+
+        > button.mat-icon-button {
+
+            &.o3-bookmark-row--cancel-deletion {
+                display: none;
+            }
+
+            &.menu-open {
+                visibility: visible !important;
+            }
+        }
+    }
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        background-color: black;
+    }
+
+    &.o3-bookmark-row--deleting {
+        &::after {
+            width: 0;
+            opacity: 0.12;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            animation-name: shading-progress-bar;
+            animation-duration: 7.5s;
+            animation-timing-function: linear;
+        }
+
+        @keyframes shading-progress-bar {
+            from {
+                width: 100%;
+            }
+            to {
+                width: 0;
+            }
+        }
+
+        > .o3-bookmark-row--buttons {
+            > .hover-item-vis {
+                visibility: hidden;
+                pointer-events: none;
+            }
+
+            > .o3-bookmark-row--navigation-indicator {
+                display: none;
+            }
+
+            > .o3-bookmark-row--cancel-deletion {
+                display: inline-block !important;
+                margin-left: -10px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $sm) {
+    .o3-bookmark-row--container > .o3-bookmark-row--created-on {
+        display: none;
+    }
+}

@@ -1,0 +1,25 @@
+<section class="bs" style="height: 100%;">
+    <form #form="ngForm" (ngSubmit)="submitted.emit()" style="height: 100%;">
+        <o3-tab-group [noUnderline]="true" [fitContainer]="true" [cardClass]="cardClass" (scrolled)="scrolled.emit($event)">
+
+            <o3-tab-action *ngFor="let action of actions" [label]="action.label" [labelFirstLevel]="action.labelFirstLevel" (click)="action.callback()"></o3-tab-action>
+
+            <o3-tab [label]="label">
+                <ng-container *ngIf="!hideActions">
+                    <o3-tab-action *ngIf="showPrimary" [disabled]="!form.valid || primaryButtonDisabled" type="submit"
+                                   [tooltip]="primaryButtonTooltip || ''"
+                                   [label]="primaryButtonText.trim() || 'Save'" [form]="form"></o3-tab-action>
+                    <o3-tab-action *ngIf="showExtraButton" type="button" (click)="extraButton.emit()"
+                                   [priority]="extraButtonPriority" [label]="extraButtonText" [disabled]="extraButtonDisabled"></o3-tab-action>
+                    <o3-tab-action *ngIf="showSecondary" type="button" priority="secondary" (click)="cancelled.emit()"
+                                   [label]="secondaryButtonText.trim() || 'Cancel'" [disabled]="secondaryButtonDisabled"></o3-tab-action>
+                    <o3-tab-action *ngIf="showExtraText" priority="informative" [label]="extraText"></o3-tab-action>
+                </ng-container>
+                <div *ngIf="text" [innerHTML]="text"></div>
+
+                <ng-content></ng-content>
+            </o3-tab>
+        </o3-tab-group>
+    </form>
+</section>
+

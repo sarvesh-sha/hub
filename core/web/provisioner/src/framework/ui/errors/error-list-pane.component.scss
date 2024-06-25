@@ -1,0 +1,66 @@
+.error-list {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: transparent !important;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            padding: 15px 30px;
+            color: #fff;
+            cursor: pointer;
+
+            button {
+                margin-left: 5px;
+                margin-top: -10px;
+                font-size: 16px;
+            }
+
+            button.mat-primary {
+                border: 2px solid #fff;
+                color: #303030;
+                background-color: #fff;
+            }
+
+            button.mat-secondary {
+                border: 2px solid #fff;
+                color: #fff;
+                background-color: transparent;
+            }
+        }
+
+        li.error {
+            background-color: #d54949;
+
+            button.mat-primary {
+                color: #d54949;
+            }
+        }
+
+        li.success {
+            background-color: #303030;
+        }
+
+        li.warn {
+            background-color: #E4A14A;
+
+            button.mat-primary {
+                color: #303030;
+            }
+        }
+    }
+
+    &.fab-visible {
+        ul {
+            li {
+                padding-right: 100px;
+            }
+        }
+    }
+}

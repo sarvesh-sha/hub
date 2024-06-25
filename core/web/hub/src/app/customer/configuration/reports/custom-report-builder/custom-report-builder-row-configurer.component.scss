@@ -1,0 +1,26 @@
+.row-layout-outer-container {
+    height: 350px;
+    overflow: hidden;
+
+    > .row-layout-container {
+        display: flex;
+
+        > .inner-container {
+            height: unset;
+            width: 0px !important;
+            padding: 0px 4px;
+            flex: 1 1 0px;
+            display: flex;
+            flex-direction: column;
+
+            > mat-form-field {
+                min-width: 0px;
+                width: 100%;
+            }
+
+            > .layout-col {
+                width: 100%;
+            }
+        }
+    }
+}

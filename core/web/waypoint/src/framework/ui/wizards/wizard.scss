@@ -1,0 +1,188 @@
+@import "../app.variables.scss";
+
+@mixin wizard($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Wizard General UI
+    //-----------------------------
+    .wizard-tabs {
+        overflow: hidden;
+        box-shadow: none;
+        height: 100%;
+
+        &.o3-one-tab {
+            .mat-tab-header .mat-tab-labels .mat-tab-label::after {
+                display: none;
+            }
+        }
+
+        >.mat-tab-header {
+            border-bottom: none;
+
+            .mat-tab-labels {
+                justify-content: center;
+
+                .mat-tab-label {
+                    line-height: 36px;
+                    height: 60px;
+                    background-color: transparent;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    opacity: 1;
+                    display: block;
+
+                    .mat-tab-label-content {
+                        display: block;
+                    }
+
+                    .wizard-step-num {
+                        line-height: 24px;
+                        margin: 0 auto;
+                        width: 24px;
+                        height: 24px;
+                        background-color: #607D8B;
+                        color: #fff;
+                        border-radius: 50%;
+                        outline: 10px solid #fff;
+                    }
+
+                    &:focus {
+                        background-color: transparent;
+                    }
+
+                    &.mat-tab-disabled {
+                        opacity: .6;
+
+                        &.mat-tab-label-active {
+                            opacity: 1;
+                        }
+                    }
+
+                    &::after {
+                        content: "";
+                        width: 100%;
+                        border-top: 1px solid #E0E0E0;
+                        position: absolute;
+                        top: 12px;
+                        left: 0;
+                        z-index: -1;
+                    }
+
+                    &:first-child::after {
+                        left: 50%;
+                    }
+
+                    &:last-child::after {
+                        width: 50%;
+                    }
+                }
+            }
+
+            .mat-ink-bar {
+                background-color: #607d8b !important;
+            }
+        }
+
+        .mat-tab-body {
+            .tab-body-content {
+                p {
+                    margin-bottom: .4286em;
+                }
+            }
+        }
+    }
+    // Wizard Tree
+    //-----------------------------
+    .o3-wizard-tree {
+        .tree-label {
+            display: inline-block;
+            width: 70%;
+
+            @media only screen and (min-width: $md) {
+                width: 32%;
+            }
+        }
+
+        .tree-checkbox {
+            display: inline-block;
+            text-align: right;
+            width: 30%;
+
+            @media only screen and (min-width: $md) {
+                text-align: left;
+                width: 68%;
+            }
+        }
+
+        tree-viewport {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+            tree-node {
+                .tree-node {
+                    border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    padding: .3rem 0 .3rem .5rem;
+
+                    .toggle-children-wrapper {
+                        line-height: 2.2em;
+                    }
+
+                    .tree-children {
+                        .tree-node {
+                            @media only screen and (min-width: $md) {
+                                padding-right: 3.4rem;
+                            }
+                        }
+                    }
+
+                    .node-content-wrapper {
+                        padding-right: 1.5rem;
+                        width: 100%;
+
+                        @media only screen and (min-width: $md) {
+                            padding-right: 0;
+                        }
+                    }
+
+                    .node-content-wrapper-active,
+                    .node-content-wrapper-focused,
+                    .node-content-wrapper:hover {
+                        background: transparent;
+                        box-shadow: none;
+                    }
+
+                    &.tree-node-expanded {
+                        padding-bottom: 0;
+                    }
+
+                    &.tree-node-expanded > tree-node-wrapper > .node-wrapper {
+                        margin-bottom: .5em;
+                    }
+
+                    &.tree-node-active > tree-node-wrapper > .node-wrapper {
+                        background-color: transparent;
+                    }
+
+                    mat-checkbox > label {
+                        margin-bottom: .35rem;
+                        margin-top: .25rem
+                    }
+
+                    mat-radio-button > label {
+                        margin-bottom: .2rem;
+                        margin-top: .1rem;
+                    }
+                }
+
+                &:nth-of-type(odd) .tree-node {
+                    background-color: #fafafa;
+                }
+            }
+        }
+    }
+}

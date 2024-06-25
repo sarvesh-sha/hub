@@ -1,0 +1,31 @@
+.disabled {
+    color: #dddddd;
+}
+
+section {
+    padding: 0 10px;
+}
+
+mat-expansion-panel {
+    margin-bottom: 10px;
+}
+
+.panel-content {
+    max-width: 600px;
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.controls {
+    display: flex !important;
+    align-items: center;
+
+    mat-slider {
+        flex-grow: 1;
+    }
+}
+
+.clickable:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}

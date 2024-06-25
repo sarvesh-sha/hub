@@ -1,0 +1,33 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+  
+#  # Logger-specific levels.
+#  loggers:
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+    
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 9998
+  adminConnectors:
+    - type: http
+      port: 9999
+
+##########################################
+
+webSocketPackage: com.optio3.test.cloud.messagebus.
+
+scratchDirectory: ${env.HOME}/optio3.test/mb.test.1.tmp

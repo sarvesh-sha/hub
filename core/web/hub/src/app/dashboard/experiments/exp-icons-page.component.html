@@ -1,0 +1,40 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab label="Icons">
+
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-striped table-padded">
+                        <thead>
+                        <tr>
+                            <th>Icon</th>
+                            <th>Set</th>
+                            <th>Element</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let icon of icons">
+                            <td>
+                                <mat-icon *ngIf="icon.type == 'Material'">{{icon.iconClass}}</mat-icon>
+                                <i [ngClass]="icon.iconClass" *ngIf="icon.type != 'Material'"></i>
+                            </td>
+                            <td>{{icon.type}}</td>
+                            <td>
+                                <ng-container *ngIf="icon.type == 'Material'">&lt;mat-icon&gt;{{icon.iconClass}}&lt;/mat-icon&gt;</ng-container>
+                                <ng-container *ngIf="icon.type != 'Material'">&lt;i class="{{icon.iconClass}}"&gt;&lt;/i&gt;</ng-container>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

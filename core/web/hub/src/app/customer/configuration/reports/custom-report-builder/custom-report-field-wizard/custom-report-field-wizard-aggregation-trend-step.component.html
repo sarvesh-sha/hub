@@ -1,0 +1,23 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="typedElement as aggregationTrend">
+        <o3-control-point-grouping-step
+            forReport
+            isAggregationTrend
+            [controlPointGroups]="data.controlPointGroups"
+            [(aggregationTrendShowYAxis)]="aggregationTrend.showY"
+            [(aggregationTrendShowLegend)]="aggregationTrend.showLegend"
+            [(aggregationTrendVisualizationMode)]="aggregationTrend.visualizationMode"
+            [graphsHost]="data.graphsHost">
+        </o3-control-point-grouping-step>
+        <mat-form-field matTooltip="Select average per" style="display: flex">
+            <mat-select placeholder="Average per" name="group-granularity" [(ngModel)]="aggregationTrend.granularity">
+                <mat-option value="Hour">Hour</mat-option>
+                <mat-option value="Day">Day</mat-option>
+                <mat-option value="Week">Week</mat-option>
+                <mat-option value="Month">Month</mat-option>
+                <mat-option value="Quarter">Quarter</mat-option>
+                <mat-option value="Year">Year</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+</ng-template>

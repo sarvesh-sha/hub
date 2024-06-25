@@ -1,0 +1,48 @@
+.suffix {
+    display: flex;
+    flex-direction: row;
+
+    mat-chip {
+        max-width: 225px; // keep synced with searchFilterChipMaxWidth constant
+
+        &.o3-device-element-search-filters--consolidated-chip {
+            margin-right: 0px;
+        }
+
+        > .o3-device-element-search-filters--label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        > button.mat-icon-button {
+            top: 0px;
+            font-size: 24px;
+            width: 24px;
+            margin-left: 2px;
+            margin-right: -8px;
+
+            mat-icon {
+                color: rgba(0, 0, 0, 0.35);
+
+                &:hover {
+                    color: rgba(0, 0, 0, 0.47);
+                }
+            }
+        }
+    }
+
+    .o3-device-element-search-filters--options {
+        font-size: 24px;
+        margin-left: 7px;
+        padding: 0px;
+        height: 36px !important;
+        width: 36px !important;
+        top: -2px !important;
+        line-height: unset !important;
+
+        mat-icon {
+            margin-top: -3px;
+        }
+    }
+}

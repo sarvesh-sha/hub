@@ -1,0 +1,4 @@
+reports:
+  directory: /home/pptruser/scratch
+  storageTimeMinutes: 10
+  maxConcurrentPages: 1

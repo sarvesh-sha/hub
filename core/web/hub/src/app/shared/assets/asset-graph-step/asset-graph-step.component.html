@@ -1,0 +1,39 @@
+<div class="step-container">
+    <div class="button-container button-container-left">
+        <button mat-fab color="primary" type="button" #test_importButton
+                [disabled]="!hasSavedStructures" [o3-dialog-toggle]="importDialog">
+            <mat-icon [matTooltip]="copyFromSharedTooltip">import_export</mat-icon>
+        </button>
+        <button mat-fab color="primary" matTooltip="Create Shared Asset Structure" type="button" (click)="structureName = graphExtended.suggestName()" [o3-dialog-toggle]="saveDialog">
+            <mat-icon>save_alt</mat-icon>
+        </button>
+        <button mat-fab color="primary" matTooltip="Reset zoom" type="button" (click)="editor.panZoom.autoZoom()">
+            <mat-icon>zoom_in</mat-icon>
+        </button>
+    </div>
+    <div class="button-container button-container-right" *ngIf="stateHistory.active">
+        <button [o3UndoButton]="stateHistory" [matTooltip]="stateHistory?.undoDescription()" mat-fab color="primary" type="button">
+            <mat-icon>undo</mat-icon>
+        </button>
+        <button [o3RedoButton]="stateHistory" [matTooltip]="stateHistory?.redoDescription()" mat-fab color="primary" type="button">
+            <mat-icon>redo</mat-icon>
+        </button>
+    </div>
+    <div class="graph-container">
+        <o3-asset-graph-editor #editor [host]="host" [graphId]="graphId"
+                               [stateHistory]="stateHistory" [normalization]="normalization"
+                               [(data)]="graphExtended" (dataChange)="graphExtUpdated()"></o3-asset-graph-editor>
+    </div>
+</div>
+
+<o3-standard-form-overlay #test_importStandardForm label="Copy Shared Asset Structure" #importDialog primaryButtonText="Import" (submitted)="importStructure()">
+    <mat-form-field *cdkPortal>
+        <o3-select #test_importSelect o3AssetGraphSelector [(ngModel)]="sharedGraphId"></o3-select>
+    </mat-form-field>
+</o3-standard-form-overlay>
+
+<o3-standard-form-overlay label="Export Shared Asset Structure" #saveDialog primaryButtonText="Export" (submitted)="saveStructure()">
+    <mat-form-field>
+        <input matInput required placeholder="Structure Name" [(ngModel)]="structureName"/>
+    </mat-form-field>
+</o3-standard-form-overlay>

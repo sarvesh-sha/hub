@@ -1,0 +1,14 @@
+:host {
+    display: block;
+}
+
+mat-form-field {
+    min-width: 230px;
+    margin-top: -3px;
+
+    .o3-manual-font-scaling-label {
+        position: absolute;
+        bottom: -3px;
+        right: 18px;
+    }
+}

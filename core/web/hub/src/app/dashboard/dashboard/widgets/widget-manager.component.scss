@@ -1,0 +1,281 @@
+:host {
+    display: block;
+    height: fit-content;
+
+    // don't use padding on widget-manager: it will mess with calculations contained widgets rely on based upon clientWidth/height
+    padding: 0px !important;
+}
+
+.o3-widget-manager--container {
+    height: 100%;
+    position: relative;
+
+    > .o3-widget-manager--widget-outline {
+        position: absolute;
+        padding: var(--widget-padding);
+        z-index: 0;
+
+        > o3-widget-container {
+            position: relative;
+            display: block;
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        &.focus-widget {
+            z-index: 1;
+        }
+
+        &.hover-widget {
+            z-index: 2;
+        }
+
+        > .drag-placeholder {
+            display: none;
+            position: absolute;
+            background: #ccc;
+            border: dotted 2px #999;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        &.dragging {
+            z-index: 1;
+
+            > o3-widget-container {
+                visibility: hidden;
+            }
+
+            > .drag-placeholder {
+                display: block;
+            }
+
+            &.transferred-out > .drag-placeholder {
+                display: none;
+            }
+        }
+
+        > .resize-outline {
+            display: none;
+            transform: none !important;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            height: 7px;
+            width: 7px;
+
+            > .resize-border {
+                position: absolute;
+                border: 0px dashed #8d8d8d;
+                z-index: -1;
+            }
+
+            &.top.left, &.top.right, &.bot.right, &.bot.left {
+                height: 10px;
+                width: 10px;
+
+                > .resize-border {
+                    display: none;
+                }
+            }
+
+            &.top, &.bot {
+                left: 10px;
+                width: calc(100% - 20px);
+                cursor: ns-resize;
+
+                > .resize-border {
+                    width: 100%;
+                }
+            }
+
+            &.left, &.right {
+                top: 10px;
+                height: calc(100% - 20px);
+                cursor: ew-resize;
+
+                > .resize-border {
+                    height: 100%;
+                }
+            }
+
+            &.top {
+                top: 1.5px;
+
+                &.left, &.right {
+                    top: 0px;
+                }
+
+                > .resize-border {
+                    border-top-width: 1px;
+                }
+            }
+
+            &.bot {
+                top: calc(100% - 8.5px);
+
+                &.left, &.right {
+                    top: calc(100% - 10.5px);
+                }
+
+                > .resize-border {
+                    border-bottom-width: 1px;
+                }
+            }
+
+            &.left {
+                left: 1.5px;
+
+                > .resize-border {
+                    border-left-width: 1px;
+                }
+            }
+
+            &.right {
+                left: calc(100% - 8.5px);
+
+                > .resize-border {
+                    border-right-width: 1px;
+                }
+            }
+
+            &.top.left, &.bot.left {
+                left: 0px;
+            }
+
+            &.top.right, &.bot.right {
+                left: calc(100% - 10.5px);
+            }
+
+            &.bot.left, &.top.right {
+                cursor: nesw-resize;
+            }
+
+            &.bot.right, &.top.left {
+                cursor: nwse-resize;
+            }
+
+            > .resize-grip {
+                width: 7px;
+                height: 7px;
+                border-radius: 3.5px;
+                border: 1px solid rgba(0, 0, 0, 0.75);
+                background-color: white;
+            }
+        }
+    }
+
+    &.hide-padding:not(.editing) > .o3-widget-manager--widget-outline {
+        padding: 0px;
+
+        > o3-widget-container {
+            border-radius: 0px;
+        }
+    }
+
+    &.editing {
+        @mixin widget-resize($cursor) {
+            cursor: $cursor;
+            > .o3-widget-manager--widget-outline {
+                cursor: $cursor;
+
+                > o3-widget-container, > .resize-outline {
+                    cursor: $cursor !important;
+                }
+            }
+        }
+
+        &.resizing {
+            &.widget-resize-bot, &.widget-resize-top {
+                @include widget-resize(ns-resize);
+            }
+
+            &.widget-resize-left, &.widget-resize-right {
+                @include widget-resize(ew-resize);
+            }
+
+            &.widget-resize-bot.widget-resize-left, &.widget-resize-top.widget-resize-right {
+                @include widget-resize(nesw-resize);
+            }
+
+            &.widget-resize-bot.widget-resize-right, &.widget-resize-top.widget-resize-left {
+                @include widget-resize(nwse-resize);
+            }
+        }
+
+        > .o3-widget-manager--widget-outline {
+            > o3-widget-container {
+                cursor: all-scroll;
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            @mixin colored-resize-borders($color) {
+                > .resize-outline {
+                    > .resize-border {
+                        border-color: $color;
+                    }
+
+                    &.top > .resize-border {
+                        border-top-width: 2px;
+                    }
+
+                    &.right > .resize-border {
+                        border-right-width: 2px;
+                    }
+
+                    &.bot > .resize-border {
+                        border-bottom-width: 2px;
+                    }
+
+                    &.left > .resize-border {
+                        border-left-width: 2px;
+                    }
+                }
+            }
+
+            &.focus-related-widget {
+                @include colored-resize-borders(#31bb19);
+            }
+
+            &.focus-widget {
+                @include colored-resize-borders(#2196f3);
+            }
+
+            > div.resize-outline {
+                display: flex;
+            }
+
+            &.dragging > div.resize-outline {
+                display: none; // remove resize grabbers on widget being dragged
+            }
+        }
+
+        &.is-dragging {
+            cursor: all-scroll;
+        }
+
+        > .o3-widget-manager--widget-outline.dragging > o3-widget-container {
+            border-color: rgba(0, 0, 0, 0);
+        }
+
+        &.columnar > .o3-widget-manager--widget-outline > o3-widget-container {
+            cursor: auto;
+        }
+    }
+
+    &.columnar > .o3-widget-manager--widget-outline {
+        position: relative;
+        top: 0px !important;
+        left: 0px !important;
+    }
+}
+
+o3-widget-container.cdk-drag-preview {
+    opacity: 0.8;
+}

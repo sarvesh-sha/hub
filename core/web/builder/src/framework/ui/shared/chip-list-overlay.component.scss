@@ -1,0 +1,38 @@
+table {
+    width: 100%;
+
+    tr {
+        display: flex;
+        padding-left: 10px;
+        height: 40px;
+
+        &, > td {
+            align-items: center;
+
+            &.o3-chip-list--label {
+                flex-grow: 1;
+            }
+
+            &.o3-chip-list--remove {
+                padding-top: 0px;
+                flex: 0 0 30px;
+
+                button {
+                    height: 30px;
+                    width: 30px;
+                    top: 0px;
+                    padding: 4px 0px 0px 1px;
+                    color: rgba(0, 0, 0, 0.35);
+
+                    &:hover {
+                        color: rgba(0, 0, 0, 0.47);
+                    }
+
+                    mat-icon {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

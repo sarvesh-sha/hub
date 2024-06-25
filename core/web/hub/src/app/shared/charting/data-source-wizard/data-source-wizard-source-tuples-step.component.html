@@ -1,0 +1,87 @@
+<ng-template o3-wizard-step-template>
+    <div *ngIf="ready" cdkDropList (cdkDropListDropped)="panelsReordered($event)" [class.o3--is-dragging]="dragInProgress">
+        <mat-card *ngFor="let tupleCollection of tupleCollections; let panelIndex = index"
+                  cdkDrag [cdkDragDisabled]="tupleCollections.length < 2" (cdkDragStarted)="dragInProgress = true" (cdkDragEnded)="dragInProgress = false">
+            <div *cdkDragPlaceholder class="o3-data-source-wizard-source-tuples-step--panel-placeholder"></div>
+            <mat-card-title>
+                <span>Panel {{panelIndex + 1}}</span>
+                <mat-icon *ngIf="tupleCollections.length > 1" cdkDragHandle>drag_handle</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+                <div cdkDropList [cdkDropListData]="tupleCollection" id="{{tupleListIdPrefix}}{{panelIndex}}" [cdkDropListConnectedTo]="tupleListsConnectedTo(panelIndex)"
+                     (cdkDropListDropped)="moveTuple($event.item.data, $event.previousContainer.data.panelIdx, panelIndex, $event.currentIndex)">
+                    <div *ngFor="let tuple of tupleCollection.tuples" class="o3-data-source-wizard-source-tuples-step--tuple" [cdkDragData]="tuple"
+                         cdkDrag (cdkDragStarted)="dragInProgress = true; overNewPanel = false" (cdkDragEnded)="dragInProgress = false" (cdkDragReleased)="setAnimationDelay()">
+                        <div *cdkDragPlaceholder class="o3-data-source-wizard-source-tuples-step--tuple-placeholder"></div>
+                        <div class="o3-data-source-wizard-source-tuples-step--tuple-info">
+                            <mat-form-field>
+                                <input matInput placeholder="Name" [name]="getName(tuple, 'name')" [(ngModel)]="tuple.name"/>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <o3-select *ngIf="data.type == 'SCATTER'" #test_xStandard
+                                           placeholder="X Axis" [options]="standardOptions" [multiSelect]="false" [singleClick]="true"
+                                           [name]="getName(tuple, 'x')" [(ngModel)]="tuple.sourceX.deviceElementId" (ngModelChange)="runCheck()"
+                                           required [o3UniqueValuesWithCallback]="uniqueFn(tuple, 'x')"
+                                           [o3EquivalentValues]="getXIds(tupleCollection, tuple)" [o3AllEquivalentMappingFn]="idToUnits"></o3-select>
+                                <o3-select *ngIf="data.type == 'GRAPH_SCATTER'" #test_xGraph
+                                           placeholder="X Axis" [options]="graphOptions" [multiSelect]="false" [singleClick]="true" [autoExpandAll]="true"
+                                           [name]="getName(tuple, 'x')" [ngModel]="getBindingId(tuple.sourceX)" (ngModelChange)="setBindingId(tuple.sourceX, $event)"
+                                           required [o3UniqueValuesWithCallback]="uniqueFn(tuple, 'x')"
+                                           [o3EquivalentValues]="getXIds(tupleCollection, tuple)" [o3AllEquivalentMappingFn]="idToUnits"></o3-select>
+                                <mat-error>{{getError(tuple, 'x')}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <o3-select *ngIf="data.type == 'SCATTER'" #test_yStandard
+                                           placeholder="Y Axis" [options]="standardOptions" [multiSelect]="false" [singleClick]="true"
+                                           [name]="getName(tuple, 'y')" [(ngModel)]="tuple.sourceY.deviceElementId" (ngModelChange)="runCheck()"
+                                           required [o3UniqueValuesWithCallback]="uniqueFn(tuple, 'y')"
+                                           [o3EquivalentValues]="getYIds(tupleCollection, tuple)" [o3AllEquivalentMappingFn]="idToUnits"></o3-select>
+                                <o3-select *ngIf="data.type == 'GRAPH_SCATTER'" #test_yGraph
+                                           placeholder="Y Axis" [options]="graphOptions" [multiSelect]="false" [singleClick]="true" [autoExpandAll]="true"
+                                           [name]="getName(tuple, 'y')" [ngModel]="getBindingId(tuple.sourceY)" (ngModelChange)="setBindingId(tuple.sourceY, $event)"
+                                           required [o3UniqueValuesWithCallback]="uniqueFn(tuple, 'y')"
+                                           [o3EquivalentValues]="getYIds(tupleCollection, tuple)" [o3AllEquivalentMappingFn]="idToUnits"></o3-select>
+                                <mat-error>{{getError(tuple, 'y')}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field *ngIf="showZOptions">
+                                <o3-select *ngIf="data.type == 'SCATTER'" #test_zStandard
+                                           placeholder="Color Axis" [options]="standardOptions" [multiSelect]="false" [singleClick]="true"
+                                           [name]="getName(tuple, 'z')" [(ngModel)]="tuple.sourceZ.deviceElementId" (ngModelChange)="runCheck()"
+                                           [o3UniqueValuesWithCallback]="uniqueFn(tuple, 'z')"
+                                           [o3EquivalentValues]="getZIds(tupleCollection, tuple)" [o3AllEquivalentMappingFn]="idToUnits"></o3-select>
+                                <o3-select *ngIf="data.type == 'GRAPH_SCATTER'" #test_zGraph
+                                           placeholder="Color Axis" [options]="graphOptions" [multiSelect]="false" [singleClick]="true" [autoExpandAll]="true"
+                                           [name]="getName(tuple, 'z')" [ngModel]="getBindingId(tuple.sourceZ)" (ngModelChange)="setBindingId(tuple.sourceZ, $event)"
+                                           [o3UniqueValuesWithCallback]="uniqueFn(tuple, 'z')"
+                                           [o3EquivalentValues]="getZIds(tupleCollection, tuple)" [o3AllEquivalentMappingFn]="idToUnits"></o3-select>
+                                <mat-error>{{getError(tuple, 'z')}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="o3-data-source-wizard-source-tuples-step--icons">
+                            <button mat-icon-button class="mat-icon-medium"
+                                    [disabled]="data.sourceTuples.length === 1" (click)="removeTuple(panelIndex, tuple)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <mat-icon class="o3-data-source-wizard-source-tuples-step--reorder-handle" cdkDragHandle>drag_handle</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-icon-button class="mat-icon-medium" (click)="addTuple(panelIndex)" matTooltip="Add tuple to this panel">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+
+        <div class="add-new-panel" [@expand]>
+            <div id="{{addPanelId}}" cdkDropList (cdkDropListExited)="overNewPanel = false" (cdkDropListEntered)="overNewPanel = true"
+                 (cdkDropListDropped)="moveTuple($event.item.data, $event.previousContainer.data.panelIdx, tupleCollections.length)">
+                <mat-icon>add_box</mat-icon>
+                <span>Drop tuple here to create a new panel</span>
+            </div>
+        </div>
+    </div>
+</ng-template>

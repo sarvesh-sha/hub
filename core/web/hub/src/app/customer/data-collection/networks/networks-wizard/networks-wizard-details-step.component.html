@@ -1,0 +1,24 @@
+<ng-template o3-wizard-step-template>
+    <div class="row" *ngIf="data.networkModel">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Name" [(ngModel)]="data.networkModel.physicalName" name="instance_name" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Subnet Mask" [(ngModel)]="data.networkModel.cidr" name="network_address" cidrRequired required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Static Address" ipAddress [(ngModel)]="data.networkModel.staticAddress" name="static_address">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Network Interface" [(ngModel)]="data.networkModel.networkInterface" name="network_interface">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" placeholder="Sampling Period (in seconds)" [(ngModel)]="data.networkModel.samplingPeriod" name="sampling_period" required>
+            </mat-form-field>
+            <mat-form-field>
+                <o3-select [o3LocationSelector]="true" defaultValueDescription="Select Location" [multiSelect]="false" [(ngModel)]="data.locationId" name="location"></o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

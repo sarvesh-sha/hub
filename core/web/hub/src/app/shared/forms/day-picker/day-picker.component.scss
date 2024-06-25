@@ -1,0 +1,25 @@
+$default-border-color: rgba(0, 0, 0, 0.54);
+$default-color: rgba(0, 0, 0, 0.7);
+$selected-color: #ffc107;
+
+.day-container {
+    display: flex;
+
+    .day-option {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 8px;
+        padding: 0px;
+        text-align: center;
+        border: 2px solid $default-border-color;
+        color: $default-color;
+        background: white;
+
+        &.selected {
+            color: white;
+            background: $selected-color;
+            border-color:  $selected-color;
+        }
+    }
+}

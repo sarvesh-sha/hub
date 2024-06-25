@@ -1,0 +1,4 @@
+tester:
+  record: true
+  headless: true
+  outputDirectory: /home/pptruser/test-output

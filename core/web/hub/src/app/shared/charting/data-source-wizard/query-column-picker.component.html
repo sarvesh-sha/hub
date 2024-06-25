@@ -1,0 +1,13 @@
+<div class="columns" *ngIf="virtualNodes && virtualGrouping">
+    <mat-expansion-panel [expanded]="true" *ngFor="let group of virtualGrouping.groups">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="column-title">{{group.nodeLabel}} COLUMN DIMENSIONS</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="options">
+            <mat-checkbox *ngFor="let option of optionTypes" [disabled]="virtualNodes.length <= 1 && group.typeSelected(option.id)"
+                          [ngModel]="group.typeSelected(option.id)" (ngModelChange)="toggleVirtualNode(group, option.id)">
+                {{option.label}}
+            </mat-checkbox>
+        </div>
+    </mat-expansion-panel>
+</div>

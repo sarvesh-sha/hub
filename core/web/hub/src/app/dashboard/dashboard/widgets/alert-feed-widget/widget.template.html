@@ -1,0 +1,3 @@
+<o3-timeline [history]="alerts" (itemSelected)="viewAlert($event)" (initialized)="timelineInitialized = $event"></o3-timeline>
+
+<o3-tab-action label="Export to Excel" (click)="exportToExcel()"></o3-tab-action>

@@ -1,0 +1,38 @@
+body {
+    overflow: auto;
+    background-color: #fff;
+    max-height: none;
+
+    // print helpers: ------------------------------------------------------------
+    // Add to elements to force page-break behaviour.
+    .page-break-before {
+        page-break-before: always !important;
+        float: none;
+    }
+
+    // This is usually the solution you need. Add this to anything, and the page should not break inside it. If this didn't work, you have a child element with a 'float:' set. Remove it.
+    .page-break-avoid {
+        page-break-inside: avoid !important;
+        float: none;
+    }
+
+    .page-break-after {
+        page-break-after: always !important;
+        float: none;
+    }
+}
+
+@media print {
+
+    .hide-on-print {
+        display: none;
+    }
+
+    @page {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    // bottom has good print style sheet example
+    //https://github.com/ariya/phantomjs/issues/12685
+}

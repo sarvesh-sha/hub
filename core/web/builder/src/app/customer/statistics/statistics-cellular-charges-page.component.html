@@ -1,0 +1,23 @@
+﻿<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="Export Charges Report..." (click)="getChargesReport()"></o3-tab-action>
+
+        <o3-tab label="Details about cellular charges">
+
+            <div class="row" *ngIf="!charges">
+                <div class="col-sm-12">
+                    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="charges">
+                <div class="col-sm-12">
+                    <o3-deployment-charges-summary [topHosts]="true" [charges]="charges"></o3-deployment-charges-summary>
+                </div>
+            </div>
+
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

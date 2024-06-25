@@ -1,0 +1,58 @@
+.o3-widget-editor-wizard-grid--container-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    > .o3-widget-editor-wizard-grid--container-inner {
+        max-width: 600px;
+        flex-grow: 1;
+
+        > .o3-widget-editor-wizard-grid--config {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            > .o3-widget-editor-wizard-grid--dimensions {
+                display: flex;
+                justify-content: center;
+
+                > mat-form-field {
+                    max-width: 150px !important;
+                    padding: 10px 20px
+                }
+            }
+
+            > .o3-widget-editor-wizard-grid--density-container {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 37px;
+                width: 73px;
+                padding-right: 20px;
+                margin-bottom: -13px;
+
+                > .input-label {
+                    position: absolute;
+                    white-space: nowrap;
+                    top: -12px;
+                }
+
+                .mat-icon-small {
+                    margin: -18%;
+                }
+            }
+        }
+
+        > .o3-widget-editor-wizard-grid--layout {
+            position: relative;
+            height: 400px;
+
+            > o3-widget-manager {
+                height: 100%;
+            }
+        }
+    }
+}

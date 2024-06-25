@@ -1,0 +1,112 @@
+<o3-modifiable-table [rows]="controlPointGroupExts" [placeholderHeightPx]="71" itemName="control point group"
+                     allowReordering allowDeleting [allowAdding]="!isAggregationSummary"
+                     (rowsReordered)="groupsReordered($event)" (rowRemoved)="removeGroup($event.index)" (rowAddRequested)="addGroup()">
+    <ng-container *o3ModifiableTableRow="let groupExt; type: ControlPointsGroupExtended; let i = index">
+        <td class="row">
+            <section class="bs">
+                <div *ngIf="isAggregationSummary" class="o3-grouping-step--static">
+                    {{singleGroupName}}
+                </div>
+                <div *ngIf="!isAggregationSummary" class="o3-grouping-step--name-editable">
+                    <mat-form-field>
+                        <input #test_groupName required matInput [placeholder]="getNamePlaceholder(i)" name="group-name-{{i}}" [(ngModel)]="groupExt.model.name"/>
+                    </mat-form-field>
+                </div>
+
+                <div (click)="configureGroupSources(groupExt)"
+                     class="o3-grouping-step--select-control-points o3-grouping-step--static clickable"
+                     [class.o3-button-invalid]="groupExt.numControlPoints === 0 && !sourcesUpdating && !unconfiguredGroup(groupExt)">
+                    <div>
+                        <i #test_configureSources class="o3 o3-filter-outline"></i>
+                    </div>
+                    {{groupExt.numControlPoints}} selected
+                </div>
+
+                <div>
+                    <o3-equivalent-units-selector *ngIf="!groupExt.desc?.noDimensions"
+                                                  [unitsFactors]="groupExt.model.unitsFactors" [updatePreferred]="false"
+                                                  [(units)]="groupExt.desc" (unitsChange)="unitsChanged(groupExt)"></o3-equivalent-units-selector>
+
+                    <mat-form-field *ngIf="groupExt.desc?.noDimensions">
+                        <input matInput placeholder="Override Units Display"
+                               [(ngModel)]="groupExt.model.unitsDisplay" (ngModelChange)="unitsUpdated.emit()"/>
+                    </mat-form-field>
+                </div>
+
+                <div class="o3-grouping-step--row-message o3-grouping-step--static">
+                    <div>{{getAggregationMessage(groupExt)}}</div>
+                </div>
+            </section>
+        </td>
+        <td class="buttons" [class.o3-grouping-step--can-delete]="controlPointGroupExts.length > 1" [class.o3-grouping-step--multiple]="!isAggregationSummary">
+            <button #test_configureGroup mat-icon-button (click)="configureGroup(groupExt)"
+                    class="hideable topnav-menu-btn" [class.o3-button-invalid]="!groupExt.settingsValid"
+                    [matTooltip]="groupExt.settingsTooltip" matTooltipShowDelay="750">
+                <mat-icon>settings</mat-icon>
+            </button>
+            <button *ngIf="!isAggregationSummary" #test_copyGroup mat-icon-button (click)="addCopyGroup(i)"
+                    matTooltip="Add a copy of this group" matTooltipShowDelay="750">
+                <mat-icon>library_add</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+</o3-modifiable-table>
+
+<o3-standard-form-overlay *ngIf="graph" label="Pick Source" dialogClass="dialog-lg"
+                          (submitted)="initializeGroup(groupToConfigure)" (closed)="groupToConfigure = null">
+    <mat-form-field *ngIf="groupToConfigure">
+        <o3-select placeholder="Source" required [multiSelect]="false"
+                   [ngModel]="getId(groupToConfigure.model.pointInput)" (ngModelChange)="groupToConfigure.model.pointInput = getInput($event)"
+                   [o3AssetGraphNodeSelector]="graph" [o3AssetGraphNodeSelectorOnlyLeaves]="true"></o3-select>
+    </mat-form-field>
+</o3-standard-form-overlay>
+
+<ng-container *ngIf="!isAggregationSummary">
+    <div class="additional-options">
+        <ng-container *ngIf="isAggregationTable">
+            <mat-form-field>
+                <o3-select placeholder="Control Point Display Type" [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"
+                           [options]="displayOptions" [(ngModel)]="controlPointDisplayType" (ngModelChange)="controlPointDisplayTypeChange.emit($event)"></o3-select>
+            </mat-form-field>
+            <mat-form-field>
+                <o3-select placeholder="Visualization Mode" [multiSelect]="false" [singleClick]="true" [preventDeselection]="true"
+                           [options]="visualizationOptions" [(ngModel)]="visualizationMode" (ngModelChange)="visualizationModeChanged($event)"></o3-select>
+            </mat-form-field>
+            <div class="slide-toggle-options">
+                <mat-slide-toggle [(ngModel)]="visualizationLegend" (ngModelChange)="visualizationLegendChange.emit($event)">
+                    Always Show Legend
+                </mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="compareBetweenGroups" (ngModelChange)="compareBetweenGroupsChange.emit($event)"
+                                  [matTooltip]="compareBetweenGroupsTooltip" [matTooltipDisabled]="!showCompareBetweenGroupsTooltip"
+                                  [disabled]="!allUnitsIdentical">
+                    Compare Between Groups
+                </mat-slide-toggle>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="isAggregationTrend">
+            <mat-form-field>
+                <o3-select #test_trendType placeholder="Visualization Mode" [options]="visualizationModeOptions"
+                           [(ngModel)]="aggregationTrendVisualizationMode" (ngModelChange)="aggregationTrendVisualizationModeChange.emit($event)"
+                           [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+
+            <div class="slide-toggle-options">
+                <mat-slide-toggle name="agg-trend-y-axis" [(ngModel)]="aggregationTrendShowYAxis" (ngModelChange)="aggregationTrendShowYAxisChange.emit($event)">
+                    Show Y Axis
+                </mat-slide-toggle>
+                <mat-slide-toggle name="agg-trend-legend" [(ngModel)]="aggregationTrendShowLegend" (ngModelChange)="aggregationTrendShowLegendChange.emit($event)">
+                    Show Legend
+                </mat-slide-toggle>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>
+
+<o3-control-points-group-configurer [group]="groupToConfigure" [groupType]="groupType"></o3-control-points-group-configurer>
+
+<div class="mt-2" *ngIf="timeRange">
+    <button mat-raised-button (click)="schedule.openOverlay()">{{timeRange.isFilterApplied ? 'Edit' : 'Add'}} time filter</button>
+    <o3-schedule-selector-overlay #schedule [model]="timeRange" (selectionChange)="updateTimeRange($event)"></o3-schedule-selector-overlay>
+</div>
+

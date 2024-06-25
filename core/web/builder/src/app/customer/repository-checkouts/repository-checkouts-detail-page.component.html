@@ -1,0 +1,37 @@
+﻿<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            Repository Checkout
+
+        </mat-card-title>
+        <mat-card-content>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Current Branch" [value]="extended.model.currentBranch" name="currentBranch" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <input matInput type="url" placeholder="Current Commit" [value]="extended.model.currentCommit" name="currentCommit">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="button" (click)="exit()">Close</button>
+
+            <button mat-icon-button type="button" class="pull-right" (click)="remove()"
+                    [disabled]="extendedNoRemoveReason != null" [matTooltip]="extendedNoRemoveReason" matTooltipShowDelay="500" matTooltipClass="o3-wide-tooltip">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+</section>

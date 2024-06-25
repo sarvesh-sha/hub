@@ -1,0 +1,33 @@
+<o3-standard-form label="Legacy Import Run" primaryButtonText="Close" [showSecondary]="false" (submitted)="dialogRef.close()" (cancelled)="dialogRef.close()">
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Devices To Process" [value]="data.devicesToProcess" name="devicesToProcess" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Devices Processed" [value]="data.devicesProcessed" name="devicesProcessed" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Control Points Processed" [value]="data.elementsProcessed" name="elementsProcessed" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Control Points Modified" [value]="data.elementsModified" name="elementsModified" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3" *ngIf="data.processing">
+            <span>Processing...</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="height: 4px"> <!-- This spacing is necessary to properly show the shadow in the previous accordion -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</o3-standard-form>

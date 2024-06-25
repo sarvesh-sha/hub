@@ -1,0 +1,11 @@
+<p>{{behaviorHeader}}</p>
+<o3-control-option-list [options]="behaviorOptions" [(selection)]="behaviorSelections" (selectionChange)="behaviorChanged()"
+                        [single]="true" style="margin-bottom: 10px"></o3-control-option-list>
+
+<div *ngIf="paneOptions?.length && paneSelected" class="row">
+    <mat-form-field class="col-lg-3 col-md-6">
+        <o3-select [(ngModel)]="selectedPane" (ngModelChange)="selectedPaneChange.emit($event)"
+                   [options]="paneOptions" placeholder="Select Pane Configuration" name="pane-id"
+                   singleClick preventDeselection [multiSelect]="false"></o3-select>
+    </mat-form-field>
+</div>

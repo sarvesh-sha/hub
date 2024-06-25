@@ -1,0 +1,52 @@
+.o3-text-step--config {
+    min-width: 300px;
+    flex-grow: 1;
+
+    .o3-text-step--text-config-1 {
+        display: flex;
+        align-items: center;
+
+        > o3-text-alignment-selector, > mat-form-field {
+            margin-right: 8px;
+        }
+
+        > mat-form-field {
+            max-width: 30px;
+            margin-top: -12px;
+
+            o3-color-picker {
+                height: 30px;
+            }
+        }
+
+        > .o3-text-step--wrap {
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .o3-text-step--text-config-2 > .o3-text-step--scaling {
+        position: relative;
+        display: flex;
+        margin-top: 3px;
+        flex-wrap: wrap;
+        align-items: center;
+        height: 54px;
+        width: 515px;
+
+        > .input-label {
+            position: absolute;
+            top: 4px;
+        }
+
+        > mat-slide-toggle {
+            margin-top: 16px;
+            margin-right: 96px;
+        }
+
+        > o3-widget-editor-wizard-manual-font-scaling-field {
+            margin-top: -4px;
+        }
+    }
+}

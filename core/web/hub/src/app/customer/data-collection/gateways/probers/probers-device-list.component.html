@@ -1,0 +1,22 @@
+﻿<mat-form-field *ngIf="enableFiltering">
+    <input matInput type="text" placeholder="Filter Discovered Devices" [(ngModel)]="filterDevices">
+</mat-form-field>
+
+<o3-datatable [table]="table" [showRowNumbers]="true">
+    <o3-datatable-column id="transport" sortId="transport" prop="transport" name="Transport" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <div *ngIf="allowSelection">
+                <mat-checkbox [(ngModel)]="row.selected" (change)="selectionChanged()">
+                    <span matTooltip="{{row.result.textForTransport}}" matTooltipShowDelay="500">{{row.result.textForTransport}}</span>
+                </mat-checkbox>
+            </div>
+            <div *ngIf="!allowSelection">
+                <span matTooltip="{{row.result.textForTransport}}" matTooltipShowDelay="500">{{row.result.textForTransport}}</span>
+            </div>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="MAC" sortId="mac" prop="result.textForMAC" name="MAC"></o3-datatable-column>
+    <o3-datatable-column id="identity" sortId="identity" prop="result.textForIdentity" name="Device Id"></o3-datatable-column>
+    <o3-datatable-column id="annotations" sortId="annotations" prop="result.annotations" name="Annotations"></o3-datatable-column>
+</o3-datatable>

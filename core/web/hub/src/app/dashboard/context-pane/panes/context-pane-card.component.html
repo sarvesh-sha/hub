@@ -1,0 +1,11 @@
+<mat-card class="pane-card">
+    <mat-card-title [style.backgroundColor]="primaryColor" [style.color]="secondaryColor">
+        <mat-form-field>
+            <input matInput type="text" style="text-transform: uppercase" [readonly]="!editing"
+                   [(ngModel)]="cardTitle" (ngModelChange)="cardTitleChange.emit($event)">
+        </mat-form-field>
+    </mat-card-title>
+    <mat-card-content>
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,35 @@
+:host {
+    flex-grow: 1;
+}
+
+.o3-progress--texts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    font-size: 90%;
+
+    .o3-progress--context {
+        flex-grow: 1;
+        width: 0px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .o3-progress--value {
+        padding-left: 4px;
+        color: rgba(0, 0, 0, 0.45);
+        text-align: right;
+    }
+}
+
+.o3-progress--bar {
+    height: 6px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    > div {
+        height: 100%;
+        border-radius: inherit;
+    }
+}

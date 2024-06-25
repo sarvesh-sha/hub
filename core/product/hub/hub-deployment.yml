@@ -1,0 +1,93 @@
+##########################################
+#
+# Database settings:
+#
+
+database:
+${param.DB_CONFIG}
+
+  enableEvents: true
+
+  hibernateSearchIndexLocation: /optio3-scratch/hibernate-search-index
+
+  # any properties specific to your JDBC driver:
+  properties:
+# Uncomment to see all the queries sent to the database.
+#    hibernate.show_sql: true
+#
+# Comment to turn *on* statistics, since Dropwizard defaults to generating statistics.
+    hibernate.generate_statistics: false
+
+
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+#  # Logger-specific levels.
+#  loggers:
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: optio3-h2
+      port: 8443
+      keyStorePath: /optio3-config${param.KEY_STORE_LOCATION}
+      keyStorePassword: ${param.KEY_STORE_PASSWORD}
+      validateCerts: false
+  adminConnectors:
+    - type: http
+      port: 8181
+  requestLog:
+    type: optio3
+
+##########################################
+
+masterEncryptionKey: ${param.MASTER_KEY}
+
+communicatorConnectionUrl: ${param.COMMUNICATOR_URL?https://builder.dev.optio3.io}
+communicatorId: ${param.COMMUNICATOR_ID}
+communicatorAccessKey: ${param.COMMUNICATOR_KEY}
+
+cloudConnectionUrl: ${param.REST_CONNECTION_URL}
+
+scratchDirectory: /optio3-scratch
+
+backupLocation: /optio3-scratch/backups
+
+hostId: ${param.HOST_ID}
+buildId: ${param.BUILD_ID}
+
+##########################################
+
+developerSettings:
+  includeDemoData: ${param.DEMODATA?true}
+
+data:
+  - resource: demodata/defaultConfiguration.json
+    isDemo: true
+  - resource: demodata/defaultNormalizationRules.json
+    loadIfMissing: true
+  - resource: demodata/defaultSamplingTemplate.json
+    loadIfMissing: true
+  - resource: demodata/defaultUsers.json
+    isDemo: true
+  - resource: demodata/defaultLocations.json
+    isDemo: true
+  - resource: demodata/defaultDevices.json
+    isDemo: true
+  - resource: demodata/defaultAlerts.json
+    isDemo: true
+  - resource: demodata/defaultNetworks.json
+    isDemo: true

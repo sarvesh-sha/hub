@@ -1,0 +1,25 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+
+# In production, this needs to be mapped to a volume, or Docker-on-Docker won't work properly.
+scratchDirectory: ${env.HOME}/optio3.test/deployer${env.DEPLOYER_TMP}.tmp
+
+# To override, configure the environment variable DEPLOYER_ENDPOINT, e.g. set DEPLOYER_ENDPOINT=ws://localhost:8180
+connectionUrl: ${env.DEPLOYER_ENDPOINT?wss://builder.dev.optio3.io}/api/v1/message-bus
+
+hostId: ${env.DEPLOYER_HOSTID?01:02:03:04:05:06}
+instanceId: v1
+
+IMSI: 732123200004356
+IMEI: 866425037997097
+ICCID: 89883234500011916277
+
+bootConfig: ../../../infra/gateway-image-generation/stage2/04-optio3/files/optio3_config.txt

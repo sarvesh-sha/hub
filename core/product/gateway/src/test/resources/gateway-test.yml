@@ -1,0 +1,30 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+
+# To override, configure the environment variable GATEWAY_ENDPOINT, e.g. set GATEWAY_ENDPOINT=ws://localhost:8080
+connectionUrl: ${env.GATEWAY_ENDPOINT?ws://localhost:8080}/api/v1/message-bus
+
+connectionUsername: machine@demo.optio3.com
+connectionPassword: machinePwd
+
+instanceId: v1
+
+##########################################
+
+scratchDirectory: ${env.HOME}/optio3.test/gateway.tmp
+
+persistenceDirectory: ${env.HOME}/optio3.test/gateway.db/persistence
+
+# Create a batch at least every 10 seconds
+batchPeriodInSeconds: 10
+
+# After 30 seconds, start flushing batches to disk.
+flushToDiskDelayInSeconds: 30

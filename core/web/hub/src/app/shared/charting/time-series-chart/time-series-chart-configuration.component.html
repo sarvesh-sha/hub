@@ -1,0 +1,51 @@
+<o3-standard-form-overlay label="Configure Line Chart" internalCardClass="no-content-padding" [overlayConfig]="overlayConfig"
+                          [primaryButtonDisabled]="pristine" [primaryButtonConfirmationMessage]="annotationImpactMessage"
+                          [showSecondary]="true" [secondaryButtonText]="pristine ? 'Close' : 'Cancel'" [confirmSecondaryButton]="!pristine"
+                          (submitted)="write()" (cancelled)="revert(true)">
+    <div *cdkPortal class="config-container">
+        <ng-container *ngIf="editConfigExt">
+            <o3-tab-group #test_tabGroup fitContainer cardClass="no-content-padding">
+                <o3-tab class="config-tab" label="Sources">
+                    <o3-time-series-chart-sources-configuration
+                        #test_sources
+                        [chartElement]="chartElement"
+                        [host]="host"
+                        [panels]="panels"
+                        [annotations]="annotations"
+                        (configureSource)="configureSource($event)"
+                        (updated)="updated($event)">
+                    </o3-time-series-chart-sources-configuration>
+                </o3-tab>
+
+                <o3-tab class="config-tab" label="Options">
+                    <div class="option">
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Chart Title" name="chart-title" [(ngModel)]="editConfigExt.model.display.title" (ngModelChange)="updated(true)"/>
+                        </mat-form-field>
+                    </div>
+                    <div class="option">
+                        <mat-slide-toggle name="chart-type" [(ngModel)]="editConfigExt.model.display.fillArea" (ngModelChange)="updated(false)">
+                            Fill area under curve
+                        </mat-slide-toggle>
+                        <mat-slide-toggle name="aggregation-visualization" [(ngModel)]="showDecimation" (ngModelChange)="updated(false)">
+                            Show spread
+                        </mat-slide-toggle>
+                        <mat-slide-toggle name="automatic-aggregation" [(ngModel)]="editConfigExt.model.display.automaticAggregation" (ngModelChange)="updated(false)">
+                            Coarse averaging
+                        </mat-slide-toggle>
+                        <mat-slide-toggle name="show-alerts" [(ngModel)]="editConfigExt.model.display.showAlerts" (ngModelChange)="updated(false)">
+                            Show alerts
+                        </mat-slide-toggle>
+                        <mat-slide-toggle name="hide-legends" [(ngModel)]="showSources" (ngModelChange)="updated(false)">
+                            Show Legend
+                        </mat-slide-toggle>
+                    </div>
+                </o3-tab>
+            </o3-tab-group>
+
+            <o3-source-configurer [source]="sourceToConfigure" [sources]="editConfigExt.sourcesExt"
+                                  primaryButtonText="Apply" [disableAddSource]="editConfigExt.model.type == 'GRAPH'"
+                                  (addSource)="addSource($event)" (updated)="updated(false)"></o3-source-configurer>
+        </ng-container>
+    </div>
+</o3-standard-form-overlay>

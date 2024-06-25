@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    height: 100%;
+
+    .time-series-container {
+        height: 100%;
+    }
+}
+
+.o3-time-series-widget--select-option mat-form-field {
+    margin-top: -4px;
+}
+
+.o3-time-series-widget--sources-option {
+    padding: 4px 8px;
+}
+
+.o3-time-series-widget--annotation-icon {
+    margin-left: -1px;
+    margin-right: 4px;
+}

@@ -1,0 +1,23 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="New Metric..." (click)="new()"></o3-tab-action>
+        <o3-tab-action label="Import..." (click)="import()"></o3-tab-action>
+        <o3-tab-action label="Export..." (click)="export()"></o3-tab-action>
+        <o3-tab-action label="Delete All..." (click)="deleteAll()" *ngIf="isMaint"></o3-tab-action>
+
+        <o3-tab label="Metrics">
+            <o3-datatable [table]="table">
+                <o3-datatable-column id="description" name="Description" sortId="!title">
+                    <ng-template o3-datatable-cell-template let-row="row">
+                        <span>{{row.metrics.model.title}}</span>
+                        <small>{{row.metrics.model.description}}</small>
+                    </ng-template>
+                </o3-datatable-column>
+                <o3-datatable-column id="createdOn" sortId="createdOn" sortStart="desc" prop="metrics.model.createdOn" name="Creation Date" format="DATE"></o3-datatable-column>
+                <o3-datatable-column id="updatedOn" sortId="updatedOn" sortStart="desc" prop="metrics.model.updatedOn" name="Update Date" format="DATE"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

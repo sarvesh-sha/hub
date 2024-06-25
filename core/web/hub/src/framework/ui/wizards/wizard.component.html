@@ -1,0 +1,77 @@
+<mat-card class="o3-wizard page-card" [class.modal-mode]="modalMode">
+    <mat-card-title *ngIf="label">
+        <span>{{label}}</span>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="isMobile">
+        <div>
+            <div class="o3-wizard--mobile-step-label">{{mobileStepLabel()}}</div>
+            <div class="o3-wizard--mobile-step-number">{{mobileStepNumber()}}</div>
+        </div>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <mat-tab-group *ngIf="!loadingSteps" class="wizard-tabs" [class.o3-one-tab]="availableSteps.length === 1" [animationDuration]="animationDuration"
+                       [(selectedIndex)]="selectedIndex" (selectedTabChange)="onStepSelected()">
+            <mat-tab *ngFor="let step of availableSteps; trackBy: getStepId; let i = index;" [disabled]="!canJumpToStep(i)">
+                <ng-template mat-tab-label>
+                    <div class="wizard-step-num">{{(i + 1)}}</div>
+                    {{step.component.getLabel()}}
+                </ng-template>
+                <div class="tab-body-content" #tabContent>
+                    <form #stepForm="ngForm" *ngIf="i === selectedIndex">
+                        <ng-template [ngTemplateOutlet]="step.component.contentTemplate"></ng-template>
+                    </form>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions *ngIf="!isMobile" class="web-mode">
+        <button mat-raised-button class="o3-wizard--navigation-button" (click)="cancel()">
+            CANCEL
+        </button>
+
+        <div class="o3-wizard--actions-right">
+            <button mat-raised-button class="o3-wizard--navigation-button" [disabled]="!hasPrev()" (click)="prev()">
+                PREV
+            </button>
+            <div class="o3-tooltip-wrapper" [matTooltipDisabled]="isValid()" [matTooltip]="getInvalidExplanation()">
+                <button #test_next mat-raised-button class="o3-wizard--navigation-button"
+                        (click)="next()" [disabled]="!isValid() || !hasNext()">
+                    NEXT
+                </button>
+            </div>
+            <div class="o3-tooltip-wrapper" [matTooltipDisabled]="isValid()" [matTooltip]="getInvalidExplanation()">
+                <button #test_finish mat-raised-button class="o3-wizard--navigation-button" color="primary"
+                        (click)="save()" [disabled]="!isValid() || !allStepsValid()">
+                    {{finishButtonText}}
+                </button>
+            </div>
+        </div>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="isMobile" class="icon-mode">
+        <button mat-icon-button
+                (click)="cancel()"
+                matTooltip="Discard changes">
+            <mat-icon>close</mat-icon>
+        </button>
+        <button mat-icon-button
+                [disabled]="!hasPrev()"
+                [matTooltipDisabled]="!hasPrev()"
+                [matTooltip]="getPreviousStepLabel()"
+                (click)="prev()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button mat-icon-button
+                [matTooltipDisabled]="!hasNext()"
+                [matTooltip]="getNextStepLabel()"
+                (click)="next()"
+                [disabled]="!isValid() || !hasNext()">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button mat-icon-button
+                [matTooltip]="getSaveTooltip()"
+                (click)="save()"
+                [disabled]="!isValid() || !allStepsValid()">
+            <mat-icon>done</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,1543 @@
+{
+  "solarChargeData" : null,
+  "BatteryChargeData" : null,
+  "doorData" : null,
+  "gatewayHeader" : [ {
+    "protocolVersion" : 0,
+    "sequenceNumber" : 0,
+    "gatewayFirmwareVer" : "v0",
+    "customerID" : "cust0",
+    "gatewayID" : "gw0"
+  }, {
+    "protocolVersion" : 1,
+    "sequenceNumber" : 1,
+    "gatewayFirmwareVer" : "v1",
+    "customerID" : "cust1",
+    "gatewayID" : "gw1"
+  }, {
+    "protocolVersion" : 2,
+    "sequenceNumber" : 2,
+    "gatewayFirmwareVer" : "v2",
+    "customerID" : "cust2",
+    "gatewayID" : "gw2"
+  }, {
+    "protocolVersion" : 3,
+    "sequenceNumber" : 3,
+    "gatewayFirmwareVer" : "v3",
+    "customerID" : "cust3",
+    "gatewayID" : "gw3"
+  }, {
+    "protocolVersion" : 4,
+    "sequenceNumber" : 4,
+    "gatewayFirmwareVer" : "v4",
+    "customerID" : "cust4",
+    "gatewayID" : "gw4"
+  }, {
+    "protocolVersion" : 5,
+    "sequenceNumber" : 5,
+    "gatewayFirmwareVer" : "v5",
+    "customerID" : "cust5",
+    "gatewayID" : "gw5"
+  }, {
+    "protocolVersion" : 6,
+    "sequenceNumber" : 6,
+    "gatewayFirmwareVer" : "v6",
+    "customerID" : "cust6",
+    "gatewayID" : "gw6"
+  }, {
+    "protocolVersion" : 7,
+    "sequenceNumber" : 7,
+    "gatewayFirmwareVer" : "v7",
+    "customerID" : "cust7",
+    "gatewayID" : "gw7"
+  }, {
+    "protocolVersion" : 8,
+    "sequenceNumber" : 8,
+    "gatewayFirmwareVer" : "v8",
+    "customerID" : "cust8",
+    "gatewayID" : "gw8"
+  }, {
+    "protocolVersion" : 9,
+    "sequenceNumber" : 9,
+    "gatewayFirmwareVer" : "v9",
+    "customerID" : "cust9",
+    "gatewayID" : "gw9"
+  } ],
+  "configStreamHeader" : [ {
+    "streamType" : 0,
+    "unused1" : 0,
+    "peripheralCount" : 0,
+    "unused2" : 0,
+    "timestamp" : 1719230833
+  }, {
+    "streamType" : 1,
+    "unused1" : 1,
+    "peripheralCount" : 1,
+    "unused2" : 1,
+    "timestamp" : 1719363087
+  }, {
+    "streamType" : 2,
+    "unused1" : 2,
+    "peripheralCount" : 2,
+    "unused2" : 2,
+    "timestamp" : 1719565170
+  }, {
+    "streamType" : 3,
+    "unused1" : 3,
+    "peripheralCount" : 3,
+    "unused2" : 3,
+    "timestamp" : 1719178799
+  }, {
+    "streamType" : 4,
+    "unused1" : 4,
+    "peripheralCount" : 4,
+    "unused2" : 4,
+    "timestamp" : 1719885518
+  }, {
+    "streamType" : 5,
+    "unused1" : 5,
+    "peripheralCount" : 5,
+    "unused2" : 5,
+    "timestamp" : 1719724402
+  }, {
+    "streamType" : 6,
+    "unused1" : 6,
+    "peripheralCount" : 6,
+    "unused2" : 6,
+    "timestamp" : 1719919583
+  }, {
+    "streamType" : 7,
+    "unused1" : 7,
+    "peripheralCount" : 7,
+    "unused2" : 7,
+    "timestamp" : 1719827117
+  }, {
+    "streamType" : 8,
+    "unused1" : 8,
+    "peripheralCount" : 8,
+    "unused2" : 8,
+    "timestamp" : 1719790945
+  }, {
+    "streamType" : 9,
+    "unused1" : 9,
+    "peripheralCount" : 9,
+    "unused2" : 9,
+    "timestamp" : 1719403278
+  } ],
+  "peripheralEntry" : [ {
+    "parentIndex" : 0,
+    "deviceType" : 0,
+    "manufacturerCode" : 0,
+    "modelCode" : 0,
+    "lastSeen" : 1.719167035722E9,
+    "healthValue" : 0
+  }, {
+    "parentIndex" : 1,
+    "deviceType" : 1,
+    "manufacturerCode" : 1,
+    "modelCode" : 1,
+    "lastSeen" : 1.719167135722E9,
+    "healthValue" : 1
+  }, {
+    "parentIndex" : 2,
+    "deviceType" : 2,
+    "manufacturerCode" : 2,
+    "modelCode" : 2,
+    "lastSeen" : 1.719167235722E9,
+    "healthValue" : 2
+  }, {
+    "parentIndex" : 3,
+    "deviceType" : 3,
+    "manufacturerCode" : 3,
+    "modelCode" : 3,
+    "lastSeen" : 1.719167335722E9,
+    "healthValue" : 3
+  }, {
+    "parentIndex" : 4,
+    "deviceType" : 4,
+    "manufacturerCode" : 4,
+    "modelCode" : 4,
+    "lastSeen" : 1.719167435722E9,
+    "healthValue" : 4
+  }, {
+    "parentIndex" : 5,
+    "deviceType" : 5,
+    "manufacturerCode" : 5,
+    "modelCode" : 5,
+    "lastSeen" : 1.719167535722E9,
+    "healthValue" : 5
+  }, {
+    "parentIndex" : 6,
+    "deviceType" : 6,
+    "manufacturerCode" : 6,
+    "modelCode" : 6,
+    "lastSeen" : 1.719167635722E9,
+    "healthValue" : 6
+  }, {
+    "parentIndex" : 7,
+    "deviceType" : 7,
+    "manufacturerCode" : 7,
+    "modelCode" : 7,
+    "lastSeen" : 1.719167735722E9,
+    "healthValue" : 7
+  }, {
+    "parentIndex" : 8,
+    "deviceType" : 8,
+    "manufacturerCode" : 8,
+    "modelCode" : 8,
+    "lastSeen" : 1.719167835722E9,
+    "healthValue" : 8
+  }, {
+    "parentIndex" : 9,
+    "deviceType" : 9,
+    "manufacturerCode" : 9,
+    "modelCode" : 9,
+    "lastSeen" : 1.719167935722E9,
+    "healthValue" : 9
+  } ],
+  "diagnosticStreamHeader" : [ {
+    "streamType" : 0.0,
+    "bytesPayload" : 0.0,
+    "dataType" : 0.0,
+    "peripheralID" : 0.0,
+    "startTimestamp" : 1.719167035723E9
+  }, {
+    "streamType" : 1.0,
+    "bytesPayload" : 1.0,
+    "dataType" : 1.0,
+    "peripheralID" : 1.0,
+    "startTimestamp" : 1.719167135723E9
+  }, {
+    "streamType" : 2.0,
+    "bytesPayload" : 2.0,
+    "dataType" : 2.0,
+    "peripheralID" : 2.0,
+    "startTimestamp" : 1.719167235723E9
+  }, {
+    "streamType" : 3.0,
+    "bytesPayload" : 3.0,
+    "dataType" : 3.0,
+    "peripheralID" : 3.0,
+    "startTimestamp" : 1.719167335723E9
+  }, {
+    "streamType" : 4.0,
+    "bytesPayload" : 4.0,
+    "dataType" : 4.0,
+    "peripheralID" : 4.0,
+    "startTimestamp" : 1.719167435723E9
+  }, {
+    "streamType" : 5.0,
+    "bytesPayload" : 5.0,
+    "dataType" : 5.0,
+    "peripheralID" : 5.0,
+    "startTimestamp" : 1.719167535723E9
+  }, {
+    "streamType" : 6.0,
+    "bytesPayload" : 6.0,
+    "dataType" : 6.0,
+    "peripheralID" : 6.0,
+    "startTimestamp" : 1.719167635723E9
+  }, {
+    "streamType" : 7.0,
+    "bytesPayload" : 7.0,
+    "dataType" : 7.0,
+    "peripheralID" : 7.0,
+    "startTimestamp" : 1.719167735723E9
+  }, {
+    "streamType" : 8.0,
+    "bytesPayload" : 8.0,
+    "dataType" : 8.0,
+    "peripheralID" : 8.0,
+    "startTimestamp" : 1.719167835723E9
+  }, {
+    "streamType" : 9.0,
+    "bytesPayload" : 9.0,
+    "dataType" : 9.0,
+    "peripheralID" : 9.0,
+    "startTimestamp" : 1.719167935723E9
+  } ],
+  "dataStreamHeader" : [ {
+    "streamType" : 0.0,
+    "bytesPayload" : 0.0,
+    "dataType" : 0.0,
+    "peripheralID" : 0.0,
+    "startTimestamp" : 1.719167035724E9
+  }, {
+    "streamType" : 1.0,
+    "bytesPayload" : 1.0,
+    "dataType" : 1.0,
+    "peripheralID" : 1.0,
+    "startTimestamp" : 1.719167135724E9
+  }, {
+    "streamType" : 2.0,
+    "bytesPayload" : 2.0,
+    "dataType" : 2.0,
+    "peripheralID" : 2.0,
+    "startTimestamp" : 1.719167235724E9
+  }, {
+    "streamType" : 3.0,
+    "bytesPayload" : 3.0,
+    "dataType" : 3.0,
+    "peripheralID" : 3.0,
+    "startTimestamp" : 1.719167335724E9
+  }, {
+    "streamType" : 4.0,
+    "bytesPayload" : 4.0,
+    "dataType" : 4.0,
+    "peripheralID" : 4.0,
+    "startTimestamp" : 1.719167435724E9
+  }, {
+    "streamType" : 5.0,
+    "bytesPayload" : 5.0,
+    "dataType" : 5.0,
+    "peripheralID" : 5.0,
+    "startTimestamp" : 1.719167535724E9
+  }, {
+    "streamType" : 6.0,
+    "bytesPayload" : 6.0,
+    "dataType" : 6.0,
+    "peripheralID" : 6.0,
+    "startTimestamp" : 1.719167635724E9
+  }, {
+    "streamType" : 7.0,
+    "bytesPayload" : 7.0,
+    "dataType" : 7.0,
+    "peripheralID" : 7.0,
+    "startTimestamp" : 1.719167735724E9
+  }, {
+    "streamType" : 8.0,
+    "bytesPayload" : 8.0,
+    "dataType" : 8.0,
+    "peripheralID" : 8.0,
+    "startTimestamp" : 1.719167835724E9
+  }, {
+    "streamType" : 9.0,
+    "bytesPayload" : 9.0,
+    "dataType" : 9.0,
+    "peripheralID" : 9.0,
+    "startTimestamp" : 1.719167935724E9
+  } ],
+  "cpuData" : [ {
+    "ramUsed" : 0.0,
+    "storageUsed" : 0.0,
+    "avgCpuUtilization" : 0.0,
+    "cpuAwakePortion" : 0.0
+  }, {
+    "ramUsed" : 10.0,
+    "storageUsed" : 20.0,
+    "avgCpuUtilization" : 30.0,
+    "cpuAwakePortion" : 40.0
+  }, {
+    "ramUsed" : 20.0,
+    "storageUsed" : 40.0,
+    "avgCpuUtilization" : 60.0,
+    "cpuAwakePortion" : 80.0
+  }, {
+    "ramUsed" : 30.0,
+    "storageUsed" : 60.0,
+    "avgCpuUtilization" : 90.0,
+    "cpuAwakePortion" : 120.0
+  }, {
+    "ramUsed" : 40.0,
+    "storageUsed" : 80.0,
+    "avgCpuUtilization" : 120.0,
+    "cpuAwakePortion" : 160.0
+  }, {
+    "ramUsed" : 50.0,
+    "storageUsed" : 100.0,
+    "avgCpuUtilization" : 150.0,
+    "cpuAwakePortion" : 200.0
+  }, {
+    "ramUsed" : 60.0,
+    "storageUsed" : 120.0,
+    "avgCpuUtilization" : 180.0,
+    "cpuAwakePortion" : 240.0
+  }, {
+    "ramUsed" : 70.0,
+    "storageUsed" : 140.0,
+    "avgCpuUtilization" : 210.0,
+    "cpuAwakePortion" : 280.0
+  }, {
+    "ramUsed" : 80.0,
+    "storageUsed" : 160.0,
+    "avgCpuUtilization" : 240.0,
+    "cpuAwakePortion" : 320.0
+  }, {
+    "ramUsed" : 90.0,
+    "storageUsed" : 180.0,
+    "avgCpuUtilization" : 270.0,
+    "cpuAwakePortion" : 360.0
+  } ],
+  "powerData" : [ {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 1,
+      "dayOfYear" : 183,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 1,
+      "minute" : 18,
+      "second" : 2,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 0.0,
+    "avgVoltage" : 0.0,
+    "avgCurrent" : 0.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 24,
+      "dayOfYear" : 176,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 4,
+      "minute" : 55,
+      "second" : 22,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 10.0,
+    "avgVoltage" : 20.0,
+    "avgCurrent" : 30.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 3,
+      "dayOfYear" : 185,
+      "dayOfWeek" : "WEDNESDAY",
+      "hour" : 2,
+      "minute" : 58,
+      "second" : 40,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 20.0,
+    "avgVoltage" : 40.0,
+    "avgCurrent" : 60.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 29,
+      "dayOfYear" : 181,
+      "dayOfWeek" : "SATURDAY",
+      "hour" : 23,
+      "minute" : 36,
+      "second" : 12,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 30.0,
+    "avgVoltage" : 60.0,
+    "avgCurrent" : 90.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 24,
+      "dayOfYear" : 176,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 2,
+      "minute" : 54,
+      "second" : 44,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 40.0,
+    "avgVoltage" : 80.0,
+    "avgCurrent" : 120.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 2,
+      "dayOfYear" : 184,
+      "dayOfWeek" : "TUESDAY",
+      "hour" : 15,
+      "minute" : 2,
+      "second" : 58,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 50.0,
+    "avgVoltage" : 100.0,
+    "avgCurrent" : 150.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 2,
+      "dayOfYear" : 184,
+      "dayOfWeek" : "TUESDAY",
+      "hour" : 1,
+      "minute" : 8,
+      "second" : 58,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 60.0,
+    "avgVoltage" : 120.0,
+    "avgCurrent" : 180.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 24,
+      "dayOfYear" : 176,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 8,
+      "minute" : 3,
+      "second" : 5,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 70.0,
+    "avgVoltage" : 140.0,
+    "avgCurrent" : 210.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 29,
+      "dayOfYear" : 181,
+      "dayOfWeek" : "SATURDAY",
+      "hour" : 22,
+      "minute" : 31,
+      "second" : 22,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 80.0,
+    "avgVoltage" : 160.0,
+    "avgCurrent" : 240.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 1,
+      "dayOfYear" : 183,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 7,
+      "minute" : 14,
+      "second" : 40,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "voltage" : 90.0,
+    "avgVoltage" : 180.0,
+    "avgCurrent" : 270.0
+  } ],
+  "trhData" : [ {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 2,
+      "dayOfYear" : 184,
+      "dayOfWeek" : "TUESDAY",
+      "hour" : 1,
+      "minute" : 30,
+      "second" : 1,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 0.0,
+    "relativeHumidity" : 0.0,
+    "voltage" : 0.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 1,
+      "dayOfYear" : 183,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 14,
+      "minute" : 16,
+      "second" : 47,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 10.0,
+    "relativeHumidity" : 20.0,
+    "voltage" : 30.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 29,
+      "dayOfYear" : 181,
+      "dayOfWeek" : "SATURDAY",
+      "hour" : 16,
+      "minute" : 15,
+      "second" : 58,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 20.0,
+    "relativeHumidity" : 40.0,
+    "voltage" : 60.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 24,
+      "dayOfYear" : 176,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 4,
+      "minute" : 27,
+      "second" : 40,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 30.0,
+    "relativeHumidity" : 60.0,
+    "voltage" : 90.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 30,
+      "dayOfYear" : 182,
+      "dayOfWeek" : "SUNDAY",
+      "hour" : 7,
+      "minute" : 16,
+      "second" : 41,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 40.0,
+    "relativeHumidity" : 80.0,
+    "voltage" : 120.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 30,
+      "dayOfYear" : 182,
+      "dayOfWeek" : "SUNDAY",
+      "hour" : 7,
+      "minute" : 43,
+      "second" : 14,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 50.0,
+    "relativeHumidity" : 100.0,
+    "voltage" : 150.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 29,
+      "dayOfYear" : 181,
+      "dayOfWeek" : "SATURDAY",
+      "hour" : 2,
+      "minute" : 18,
+      "second" : 42,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 60.0,
+    "relativeHumidity" : 120.0,
+    "voltage" : 180.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 30,
+      "dayOfYear" : 182,
+      "dayOfWeek" : "SUNDAY",
+      "hour" : 23,
+      "minute" : 15,
+      "second" : 7,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 70.0,
+    "relativeHumidity" : 140.0,
+    "voltage" : 210.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 3,
+      "dayOfYear" : 185,
+      "dayOfWeek" : "WEDNESDAY",
+      "hour" : 11,
+      "minute" : 55,
+      "second" : 22,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 80.0,
+    "relativeHumidity" : 160.0,
+    "voltage" : 240.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 24,
+      "dayOfYear" : 176,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 8,
+      "minute" : 4,
+      "second" : 38,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "temperature" : 90.0,
+    "relativeHumidity" : 180.0,
+    "voltage" : 270.0
+  } ],
+  "gnssData" : [ {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 26,
+      "dayOfYear" : 178,
+      "dayOfWeek" : "WEDNESDAY",
+      "hour" : 23,
+      "minute" : 35,
+      "second" : 41,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 0.0,
+    "latitude" : 0.0,
+    "longitude" : 0.0,
+    "speed" : 0.0,
+    "status" : 0.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 3,
+      "dayOfYear" : 185,
+      "dayOfWeek" : "WEDNESDAY",
+      "hour" : 3,
+      "minute" : 40,
+      "second" : 31,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 10.0,
+    "latitude" : 20.0,
+    "longitude" : 30.0,
+    "speed" : 40.0,
+    "status" : 50.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 30,
+      "dayOfYear" : 182,
+      "dayOfWeek" : "SUNDAY",
+      "hour" : 16,
+      "minute" : 56,
+      "second" : 3,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 20.0,
+    "latitude" : 40.0,
+    "longitude" : 60.0,
+    "speed" : 80.0,
+    "status" : 100.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 26,
+      "dayOfYear" : 178,
+      "dayOfWeek" : "WEDNESDAY",
+      "hour" : 15,
+      "minute" : 10,
+      "second" : 35,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 30.0,
+    "latitude" : 60.0,
+    "longitude" : 90.0,
+    "speed" : 120.0,
+    "status" : 150.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 7,
+      "month" : "JULY",
+      "dayOfMonth" : 1,
+      "dayOfYear" : 183,
+      "dayOfWeek" : "MONDAY",
+      "hour" : 22,
+      "minute" : 26,
+      "second" : 50,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 40.0,
+    "latitude" : 80.0,
+    "longitude" : 120.0,
+    "speed" : 160.0,
+    "status" : 200.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 30,
+      "dayOfYear" : 182,
+      "dayOfWeek" : "SUNDAY",
+      "hour" : 22,
+      "minute" : 53,
+      "second" : 40,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 50.0,
+    "latitude" : 100.0,
+    "longitude" : 150.0,
+    "speed" : 200.0,
+    "status" : 250.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 28,
+      "dayOfYear" : 180,
+      "dayOfWeek" : "FRIDAY",
+      "hour" : 5,
+      "minute" : 38,
+      "second" : 30,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 60.0,
+    "latitude" : 120.0,
+    "longitude" : 180.0,
+    "speed" : 240.0,
+    "status" : 300.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 25,
+      "dayOfYear" : 177,
+      "dayOfWeek" : "TUESDAY",
+      "hour" : 18,
+      "minute" : 46,
+      "second" : 27,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 70.0,
+    "latitude" : 140.0,
+    "longitude" : 210.0,
+    "speed" : 280.0,
+    "status" : 350.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 27,
+      "dayOfYear" : 179,
+      "dayOfWeek" : "THURSDAY",
+      "hour" : 0,
+      "minute" : 10,
+      "second" : 53,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 80.0,
+    "latitude" : 160.0,
+    "longitude" : 240.0,
+    "speed" : 320.0,
+    "status" : 400.0
+  }, {
+    "timeStamp" : {
+      "offset" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "zone" : {
+        "totalSeconds" : 0,
+        "id" : "Z",
+        "rules" : {
+          "fixedOffset" : true,
+          "transitions" : [ ],
+          "transitionRules" : [ ]
+        }
+      },
+      "year" : 2024,
+      "monthValue" : 6,
+      "month" : "JUNE",
+      "dayOfMonth" : 28,
+      "dayOfYear" : 180,
+      "dayOfWeek" : "FRIDAY",
+      "hour" : 16,
+      "minute" : 33,
+      "second" : 21,
+      "nano" : 0,
+      "chronology" : {
+        "id" : "ISO",
+        "calendarType" : "iso8601"
+      }
+    },
+    "altitude" : 90.0,
+    "latitude" : 180.0,
+    "longitude" : 270.0,
+    "speed" : 360.0,
+    "status" : 450.0
+  } ],
+  "absData" : null,
+  "tpsData" : null,
+  "fuelData" : null,
+  "lightingData" : null,
+  "cargoSensorData" : null,
+  "wiliotData" : null,
+  "EventProcessedUtcTime" : null,
+  "PartitionId" : null,
+  "EventEnqueuedUtcTime" : null
+}

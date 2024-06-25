@@ -1,0 +1,113 @@
+<section class="bs page-content container-fluid dashboard-container" [class.mobile-mode]="mobileView" [ngClass]="cursorClasses">
+    <ng-container *ngIf="cfg">
+        <div class="o3-dashboard-page--sticky o3-dashboard-page--sticky-top">
+            <div *ngIf="cfg.model.showTitle" class="o3-dashboard-page--banner-bar">
+                <o3-dashboard-banner [cfgExt]="cfg" [editable]="editing && !mobileView"
+                                     (updated)="recordChange('change banner')"></o3-dashboard-banner>
+            </div>
+
+            <div class="o3-content-protector"></div>
+        </div>
+
+        <span *ngIf="!widgetsExist" class="o3-watermark-caption">No widgets to display</span>
+
+        <o3-widget-manager [class.hidden]="!widgetsExist"
+                           [manipulator]="widgetManipulator" [widgets]="cfg.model.widgets"
+                           [disableEditing]="mobileView && !editing"
+                           [widgetPrimaryColor]="cfg.model.widgetPrimaryColor" [widgetSecondaryColor]="cfg.model.widgetSecondaryColor"
+                           (configChange)="recordChange($event)" (cursorClassChange)="cursorClasses = $event"
+                           (widgetsLoaded)="updateWidgetLayout()"
+                           (widgetDelete)="deleteWidgets($event)" (widgetEdit)="editWidget($event)"></o3-widget-manager>
+
+        <div *ngIf="editing" class="o3-dashboard-page--sticky o3-dashboard-page--sticky-bot">
+            <div class="o3-dashboard-page--edit-banner">
+                <div class="o3-dashboard-page--exit-edit">
+                    <label class="input-label">Apply Changes</label>
+
+                    <div>
+                        <button #test_save mat-icon-button class="o3-dashboard-page--save mat-icon-medium"
+                                [disabled]="!versionStateResolved" (click)="saveEdits()">
+                            <mat-icon>done</mat-icon>
+                        </button>
+                        <button #test_cancel mat-icon-button (click)="cancelEdits()" class="o3-dashboard-page--cancel mat-icon-medium">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="o3-dashboard-page--undo-redo">
+                    <label class="input-label">Undo, Redo</label>
+                    <o3-undo-redo #test_undoRedo [stateHistory]="versionManager.stateHistory" [size]="editBannerIconSize"></o3-undo-redo>
+                </div>
+
+                <mat-form-field class="o3-dashboard-page--version" *ngIf="!mobileView">
+                    <o3-select #test_versionSelect placeholder="Version" [options]="versionManager.options" [minDropdownWidth]="290"
+                               name="version-select" [(ngModel)]="activeVersionId"
+                               [multiSelect]="false" [preventDeselection]="true" [singleClick]="true">
+                        <ng-template #nodePostTemplate let-node="node">
+                            <div class="o3-dashboard-page--version-date" *ngIf="versionManager.getVersion(node.id) as version">
+                                <span class="text-muted">{{version.model.createdOn | o3ShortDate}}  {{version.model.createdOn | o3ShortTime}}</span>
+                            </div>
+                        </ng-template>
+                    </o3-select>
+                </mat-form-field>
+
+                <div class="o3-dashboard-page--banner-configure">
+                    <label class="input-label">Show Banner</label>
+
+                    <div>
+                        <mat-slide-toggle name="show-banner" [(ngModel)]="cfg?.model.showTitle" (ngModelChange)="bannerToggled()"></mat-slide-toggle>
+
+                        <button *ngIf="!mobileView && cfg.model.showTitle" mat-icon-button class="mat-icon-medium" (click)="banner.editBanner()">
+                            <i class="o3 o3-configure"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="o3-dashboard-page--add-widget">
+                    <label class="input-label">Add Widget</label>
+
+                    <button #test_addWidget mat-icon-button class="mat-icon-medium" (click)="newWidget()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+                <ng-container *ngIf="!mobileView">
+                    <mat-form-field class="o3-dashboard-page--name-edit" (keydown)="$event.stopPropagation()">
+                        <input #test_dashboardName matInput placeholder="Dashboard Name" name="title" [(ngModel)]="cfg.model.title"
+                               (ngModelChange)="titleChangedDebouncer.invoke()" (blur)="titleChangedDebouncer.forceProcessing()"/>
+                    </mat-form-field>
+                    <mat-form-field class="o3-dashboard-page--widget-primary">
+                        <o3-color-picker placeholder="Header Background" name="widgetPrimary"
+                                         [(ngModel)]="cfg.model.widgetPrimaryColor" (ngModelChange)="recordChange('widget banner color change')"></o3-color-picker>
+                    </mat-form-field>
+                    <mat-form-field class="o3-dashboard-page--widget-secondary">
+                        <o3-color-picker placeholder="Header Text" name="widgetSecondary"
+                                         [(ngModel)]="cfg.model.widgetSecondaryColor" (ngModelChange)="recordChange('widget title color change')"></o3-color-picker>
+                    </mat-form-field>
+                </ng-container>
+
+                <mat-menu #editMenu="matMenu">
+                    <button mat-menu-item (click)="importWidget()">Import Widget</button>
+                    <button mat-menu-item (click)="pasteWidgets()" *ngIf="hasPastable">Paste Widget(s)</button>
+                    <button mat-menu-item (click)="clearWidgets()">Clear Widgets</button>
+                    <button mat-menu-item (click)="collapseVertically()" *ngIf="!widgetManipulator.columnar">Collapse Vertically</button>
+                    <button mat-menu-item (click)="assetStructuresOverlay.toggleOverlay()">Edit Asset Structures</button>
+                </mat-menu>
+                <button #test_editBarMenu mat-icon-button [matMenuTriggerFor]="editMenu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+
+            <div class="o3-content-protector"></div>
+        </div>
+    </ng-container>
+</section>
+
+<o3-overlay #assetStructuresOverlay [config]="assetStructuresOverlayConfig">
+    <o3-tab-group noUnderline>
+        <o3-tab label="Edit Asset Structures">
+            <o3-multiple-graph-configuration [host]="cfg?.graphConfigurationHost"></o3-multiple-graph-configuration>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

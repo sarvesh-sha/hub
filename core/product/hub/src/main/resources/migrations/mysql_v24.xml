@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <addColumn tableName="ASSET">
+            <column defaultValueComputed="NULL" name="metadata_compressed" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <addColumn tableName="DATA_CONNECTION">
+            <column defaultValueComputed="NULL" name="metadata_compressed" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-12">
+        <addColumn tableName="IMPORTED_METADATA">
+            <column defaultValueComputed="NULL" name="metadata_compressed" type="LONGBLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropNotNullConstraint columnDataType="clob" columnName="metadata" tableName="IMPORTED_METADATA"/>
+        <addDefaultValue columnDataType="clob" columnName="metadata" defaultValue="NULL" tableName="IMPORTED_METADATA"/>
+    </changeSet>
+</databaseChangeLog>

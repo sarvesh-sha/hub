@@ -1,0 +1,14 @@
+<o3-datatable [table]="table" (onShowingContextMenu)="contextMenu($event)">
+    <o3-datatable-column id="title" sortId="description" prop="extended.model.description" name="Title"></o3-datatable-column>
+    <o3-datatable-column id="alertType" sortId="type" prop="typeLabel" name="Alert Type"></o3-datatable-column>
+    <o3-datatable-column id="severity" sortId="severity" prop="severityLabel" name="Severity"></o3-datatable-column>
+    <o3-datatable-column id="status" sortId="status" prop="extended.model.status" name="Status">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="updatedOn" sortId="!updatedOn" sortStart="desc" prop="extended.model.updatedOn" name="Last Update" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" sortStart="desc" prop="extended.model.createdOn" name="First Occurred" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="location" sortId="device.location" prop="location.model.name" secondaryProp="locationPath" name="Location"></o3-datatable-column>
+    <o3-datatable-column id="context" prop="contextName" name="Context"></o3-datatable-column>
+    <o3-datatable-column id="productName" prop="productName" name="Product Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="modelNumber" prop="modelName" name="Model #" [enabled]="false"></o3-datatable-column>
+</o3-datatable>

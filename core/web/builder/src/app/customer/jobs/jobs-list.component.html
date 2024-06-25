@@ -1,0 +1,88 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false" (onShowingContextMenu)="handleContextMenu($event)">
+    <o3-datatable-column id="name" prop="extended.model.name" name="Name"></o3-datatable-column>
+
+    <o3-datatable-column id="inUse" name="In Use" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.markedDetails}}" matTooltipShowDelay="500">{{row.marked}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="inServices" name="In Services" prop="usedInServices.values.length"></o3-datatable-column>
+
+    <o3-datatable-column id="inBackups" name="In Backups" prop="usedInBackups.values.length"></o3-datatable-column>
+
+    <o3-datatable-column id="inTasks" name="In Tasks" prop="usedInTasks.values.length"></o3-datatable-column>
+
+    <o3-datatable-column id="triggeredBy" prop="extended.model.triggeredBy" name="Triggered By"></o3-datatable-column>
+    <o3-datatable-column id="status" prop="extended.model.status" name="Status" [width]="120" [maxWidth]="120" [minWidth]="110"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" prop="extended.model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="duration" prop="duration" name="Duration" [width]="140" [maxWidth]="140"></o3-datatable-column>
+</o3-datatable>
+
+<o3-deployment-agent-upgrade></o3-deployment-agent-upgrade>
+
+<o3-overlay #servicesOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Services associated with job">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Filter Services" [(ngModel)]="selectedServices.filter" name="filter">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-datatable [table]="selectedServices.table" [showViewIcons]="false" [clickableRows]="true">
+                <o3-datatable-column id="customerName" sortId="customerName" name="Customer Name" prop="customer.name" tooltip="Go to Customer"></o3-datatable-column>
+                <o3-datatable-column id="serviceName" sortId="serviceName" name="Service Name" prop="service.name" tooltip="Go to Service"></o3-datatable-column>
+                <o3-datatable-column id="serviceUrl" sortId="serviceUrl" name="Service URL" prop="service.url" tooltip="Go to Service"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #backupsOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Backups associated with job">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Filter Backups" [(ngModel)]="selectedBackups.filter" name="filter">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-datatable [table]="selectedBackups.table" [showViewIcons]="false" [clickableRows]="true">
+                <o3-datatable-column id="serviceName" sortId="serviceName" name="Service Name" prop="service.name" tooltip="Go to Service"></o3-datatable-column>
+                <o3-datatable-column id="serviceUrl" name="Service URL" prop="service.url" tooltip="Go to Service"></o3-datatable-column>
+                <o3-datatable-column id="fileId" sortId="fileId" name="File" prop="backup.fileId" tooltip="Go to Backup"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>
+
+<o3-overlay #tasksOverlay>
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Tasks associated with job">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Filter Tasks" [(ngModel)]="selectedTasks.filter" name="filter">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-datatable [table]="selectedTasks.table" [showViewIcons]="false" [clickableRows]="true">
+                <o3-datatable-column id="hostName" sortId="hostName" name="Host Name" prop="host.hostName" tooltip="Go to Host"></o3-datatable-column>
+                <o3-datatable-column id="hostId" sortId="hostId" name="Host ID" prop="host.hostId" tooltip="Go to Host"></o3-datatable-column>
+                <o3-datatable-column id="heartbeat" sortId="heartbeat" name="Heartbeat" prop="host.lastHeartbeat" [width]="100" [maxWidth]="100" format="DATE"></o3-datatable-column>
+                <o3-datatable-column id="taskName" sortId="taskName" name="Task" prop="task.name" tooltip="Go to Task"></o3-datatable-column>
+                <o3-datatable-column id="operationalStatus" sortId="operationalStatus" name="Status" prop="host.operationalStatus"></o3-datatable-column>
+                <o3-datatable-column id="voltage" name="Input Voltage" prop="batteryVoltage"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

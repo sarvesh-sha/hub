@@ -1,0 +1,170 @@
+<section class="bs page-content">
+    <o3-tab-group>
+        <o3-tab-action [label]="bookmarkOptionLabel" (click)="openBookmarkOverlay()"></o3-tab-action>
+        <o3-tab-action label="Export Data to Excel" (click)="exportToExcel()"></o3-tab-action>
+        <o3-tab-action label="Request Change" (click)="workflowOverlay.toggleOverlay()"></o3-tab-action>
+        <o3-tab-action *ngIf="isMaint" label="Keep One Month of Samples" (click)="trimSamples(30)"></o3-tab-action>
+        <o3-tab-action *ngIf="isMaint" label="Keep One Week of Samples" (click)="trimSamples(7)"></o3-tab-action>
+        <o3-tab-action *ngIf="isMaint" label="Keep One Day of Samples" (click)="trimSamples(1)"></o3-tab-action>
+        <o3-tab-action *ngIf="isMaint" label="Delete All Samples" (click)="trimSamples(0)"></o3-tab-action>
+
+        <o3-tab label="Control Point Details">
+            <o3-tab-action label="Update" priority="primary" [disabled]="isPristine || !!deviceElementNoUpdateReason"
+                           [tooltip]="deviceElementNoUpdateReason" (click)="save()"></o3-tab-action>
+            <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+            <o3-tab-action label="View in Data Explorer" priority="secondary" (click)="visualize()"></o3-tab-action>
+
+            <div class="border-wrapper">
+                <form #deviceElementForm="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Name" [(ngModel)]="deviceElement.typedModel.name" (ngModelChange)="deviceElement.refreshDisplayName()" name="name">
+                            </mat-form-field>
+                            <div class="row pt-0">
+                                <div class="col-12" *ngIf="locationModel">
+                                    <mat-form-field>
+                                        <o3-select [o3LocationSelector]="true" enableNavigation name="location" [multiSelect]="false"
+                                                   [ready]="locationModelReady" [(ngModel)]="locationModel.sysId" (ngModelChange)="locationChanged($event)"></o3-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Identifier" [value]="deviceElement.typedModel.identifier" name="identifier" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Point Class" readonly [value]="pointClassDisplayName" name="point-class">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <o3-string-set [(value)]="deviceElement.model.classificationTags" placeholder="Classification Tags" readonly></o3-string-set>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field>
+                                        <o3-string-set [(value)]="deviceElement.model.manualTags" placeholder="Manual Tags"></o3-string-set>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Created On" [value]="(deviceElement.model.createdOn | o3LongDate) || 'No Date Specified'"
+                                       name="created_on_date" readonly>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Last Updated" [value]="(deviceElement.model.lastUpdatedDate | o3LongDate) || 'No Date Specified'"
+                                       name="last_updated_date" readonly>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Last Checked" [value]="(deviceElement.model.lastCheckedDate | o3LongDate) || 'No Date Specified'"
+                                       name="last_checked_date" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div *ngIf="currValue" class="bottom-row">
+                        <div class="row">
+                            <mat-form-field class="col-sm-6">
+                                <input matInput type="text" placeholder="Current Value" name="input" [value]="currValue" readonly>
+                            </mat-form-field>
+                            <o3-equivalent-units-selector class="col-sm-6" [unitsFactors]="unitsFactors" [standaloneNgModel]="true"
+                                                          [(units)]="currUnits" (unitsChange)="getCurrValue()"></o3-equivalent-units-selector>
+                        </div>
+                        <div class="row" *ngIf="canSetValue">
+                            <mat-form-field class="col-sm-6">
+                                <input matInput type="text" placeholder="Desired Value" name="input" [value]="desiredValue" readonly>
+                            </mat-form-field>
+                            <mat-form-field class="col-sm-5" *ngIf="isAdmin || isMaint">
+                                <mat-select *ngIf="isEnumeratedValue" placeholder="New Value" [(ngModel)]="newValue" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngFor="let possibleValue of possibleValues" [value]="possibleValue.value">{{possibleValue.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <input *ngIf="isNumberValue" matInput type="number" placeholder="New Value" name="input" autocomplete="off"
+                                       [(ngModel)]="newValue" [ngModelOptions]="{standalone: true}">
+                                <input *ngIf="isTextValue" matInput type="text" placeholder="New Value" name="input" autocomplete="off"
+                                       [(ngModel)]="newValue" [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                            <div class="col-sm-1" *ngIf="isAdmin || isMaint">
+                                <button mat-raised-button type="button" [disabled]="newValue == undefined" (click)="updateDesiredValue()">Set Value</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <ng-container *ngIf="cpDetailProvider">
+                <o3-tab-subsection *ngIf="cpDetailsAvailable > 5" [withFiltering]="true" [(filterText)]="cpDetailProvider.filter"></o3-tab-subsection>
+
+                <div class="datatable-resizer" o3-expand [min]="200" container=".page-sidebar-container" [expand-off]="!detailDatatable || !detailDatatable.hasScrollbar">
+                    <o3-datatable #detailDatatable [table]="cpDetailProvider.table" [showViewIcons]="false">
+                        <o3-datatable-column id="key" [name]="cpDetailProvider.labelForKey" prop="keyText"></o3-datatable-column>
+                        <o3-datatable-column id="value" [name]="cpDetailProvider.labelForValue" [minWidth]="130">
+                            <ng-template o3-datatable-cell-template let-row>
+                                <div class="expandable-container">
+                                            <span #textElem class="expandable-cell" [class.expanded]="cpPropertyExpanded[row.key]"
+                                                  (click)="cpPropertyExpanded[row.key] = !cpPropertyExpanded[row.key]" [matTooltip]="row.text"
+                                                  [matTooltipDisabled]="cpPropertyExpanded[row.key]">{{row.text}}</span>
+                                    <o3-clipboard-copy-notify [copyValue]="row.text" [notificationMessage]="'Value of ' + row.keyText + ' copied to clipboard.'"></o3-clipboard-copy-notify>
+                                </div>
+                            </ng-template>
+                        </o3-datatable-column>
+                    </o3-datatable>
+                </div>
+            </ng-container>
+        </o3-tab>
+
+        <o3-tab label="Alert History">
+            <o3-timeline [history]="history" (itemSelected)="viewAlert($event)"></o3-timeline>
+        </o3-tab>
+
+        <o3-tab label="Control Point Sampling">
+            <ng-container *ngIf="deviceElementForm && sampling">
+                <o3-tab-action label="Update" priority="primary" [disabled]="isPristine" (click)="save()"></o3-tab-action>
+                <o3-tab-action label="Close" priority="secondary" (click)="exit()"></o3-tab-action>
+
+                <o3-datatable [rows]="sampling" [showViewIcons]="false">
+                    <o3-datatable-column id="name" prop="info.name" name="Property" [grow]="2">
+                        <ng-template o3-datatable-cell-template let-row="row">
+                            <div style="text-overflow: clip">
+                                <mat-checkbox [disabled]="!isMaint" [(ngModel)]="row.enabled" name="{{row.info.name}}" [disableRipple]="true"
+                                              class="o3-no-ripple">{{row.info.name}}</mat-checkbox>
+                            </div>
+                        </ng-template>
+                    </o3-datatable-column>
+                    <o3-datatable-column id="period" prop="model.samplingPeriod" name="Period">
+                        <ng-template o3-datatable-cell-template let-row="row">
+                            <mat-form-field>
+                                <input matInput type="number" [disabled]="!isMaint" [(ngModel)]="row.samplingPeriod" name="samplingPeriod_{{row.info.name}}">
+                            </mat-form-field>
+                        </ng-template>
+                    </o3-datatable-column>
+                    <o3-datatable-column id="type" prop="info.type" name="Type"></o3-datatable-column>
+                    <o3-datatable-column id="units" prop="units" name="Units"></o3-datatable-column>
+                    <o3-datatable-column id="possibles" prop="info.values" name="Possible Values">
+                        <ng-template o3-datatable-cell-template let-row="row">
+                                    <span class="expandable-cell" [class.expanded]="row.expanded" (click)="row.expanded = !row.expanded"
+                                          [matTooltip]="getSamplePossibleValues(row.info.values)" [matTooltipDisabled]="row.expanded">{{getSamplePossibleValues(row.info.values)}}</span>
+                        </ng-template>
+                    </o3-datatable-column>
+                </o3-datatable>
+            </ng-container>
+        </o3-tab>
+    </o3-tab-group>
+</section>
+
+<o3-overlay #workflowOverlay [config]="workflowOverlayConfig">
+    <div *cdkPortal>
+        <o3-workflow-wizard [deviceElementContext]="deviceElement" (wizardFinished)="workflowOverlay.closeOverlay()"></o3-workflow-wizard>
+    </div>
+</o3-overlay>

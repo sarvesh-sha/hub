@@ -1,0 +1,218 @@
+/*
+Contains imports of Daemonite Material styles and mixins, as well as fixes and overrides.
+*/
+@import "app.theme";
+
+//----------------------------------------------------------------------------------------------------------------------
+// Daemonite Imports
+//----------------------------------------------------------------------------------------------------------------------
+body.light {
+
+    label {
+        color: unset;
+        font-size: unset;
+        font-weight: unset;
+        letter-spacing: unset;
+        line-height: unset;
+        margin-bottom: .5rem;
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Bootstrap & Material compatibility
+    //------------------------------------------------------------------------------------------------------------------
+    .table {
+        margin-bottom: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .mat-input-element {
+        color: unset;
+    }
+
+    a, a:hover {
+        color: inherit;
+    }
+
+    button:not(.mat-icon-button):not(.mat-menu-item) {
+        padding: 12px;
+
+        &.mat-button-toggle-button {
+            padding: 0px;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button.mat-icon-button {
+        line-height: 1 !important;
+    }
+
+    // Override for restore Azure Maps behavior
+    button.popup-close {
+        padding: 0;
+    }
+
+    .btn-link,
+    .btn-link:hover {
+        color: #2196f3;
+        text-decoration: none;
+    }
+
+    .form-control:hover,
+    .form-control-file:hover,
+    .form-control:hover,
+    .form-control-file:hover {
+        border-color: rgba(0, 0, 0, 0.42);
+        box-shadow: none;
+    }
+
+
+
+    .table tr td.cell-detail .cell-detail-description {
+        display: block;
+        font-size: 11px;
+    }
+
+    .table tr td.cell-avatar span {
+        padding-left: 48px;
+        display: block;
+    }
+
+    .table tr td.cell-detail span {
+        display: block;
+    }
+
+    .table tr td.cell-detail img {
+        float: left;
+    }
+
+    .table td {
+        line-height: unset;
+    }
+
+    .table td:last-child,
+    .table th:last-child {
+        padding-right: 1.5rem !important;
+    }
+
+    .table-bordered {
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    td.user-avatar {
+        img {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+
+    .alert {
+        margin-bottom: 4px;
+    }
+
+    .mat-checkbox-container > label {
+        font-size: 75% !important;
+    }
+
+    .overlay-input label {
+        font-size: 14px;
+    }
+
+    .mat-checkbox-container > label,
+    .overlay-input > label {
+        color: rgba(0, 0, 0, 0.54);
+        text-transform: uppercase;
+    }
+
+    .mat-checkbox-label {
+        color: #333c44;
+    }
+
+    .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+    .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus,
+    .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+    .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus {
+        background-color: initial;
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Bootstrap media and image fixes
+//----------------------------------------------------------------------------------------------------------------------
+
+// Fixes for the Daemonite Material package. Firefox cannot render data URIs with a '#' character, the following variables use an encoded hash.
+$breadcrumb-divider: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23ffffff' fill-opacity='1' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+$caret-bg: "data:image/svg+xml;charset=utf8,%3Csvg fill='%23000000' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" !default;
+$caret-bg-inverse: "data:image/svg+xml;charset=utf8,%3Csvg fill='%23ffffff' fill-opacity='0.7' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" !default;
+
+.hidden-xs-up {
+    display: none !important;
+}
+
+@media (max-width: 599px) {
+    .hidden-xs-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .hidden-sm-up {
+        display: none !important;
+    }
+}
+
+@media (max-width: 959px) {
+    .hidden-sm-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 960px) {
+    .hidden-md-up {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1279px) {
+    .hidden-md-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .hidden-lg-up {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1919px) {
+    .hidden-lg-down {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .hidden-xl-up {
+        display: none !important;
+    }
+}
+
+.hidden-xl-down {
+    display: none !important;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    background-image: $breadcrumb-divider !important;
+}
+
+select.form-control {
+    @media screen and (-webkit-min-device-pixel-ratio: 0), (min--moz-device-pixel-ratio: 0) {
+        background-image: url($caret-bg);
+    }
+}

@@ -1,0 +1,38 @@
+<section class="row">
+    <div class="col-sm-12">
+        <mat-form-field *ngIf="numberValue">
+            <input [placeholder]="title" matInput type="number" [(ngModel)]="numberValue.value" [readonly]="readonly"/>
+            <mat-hint>{{description}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="stringValue">
+            <input [placeholder]="title" matInput type="text" [(ngModel)]="stringValue.value" [readonly]="readonly"/>
+            <mat-hint>{{description}}</mat-hint>
+        </mat-form-field>
+
+        <div *ngIf="booleanValue">
+            <mat-checkbox [(ngModel)]="booleanValue.value" [disabled]="readonly">{{title}}</mat-checkbox>
+            <div class="hint-label">{{description}}</div>
+        </div>
+
+        <div *ngIf="dateTimeValue">
+            <o3-date-picker [(model)]="dateTimeValue.value" label="Pick a Date & Time" [hintLabel]="description" [readonly]="readonly">
+            </o3-date-picker>
+        </div>
+
+        <div *ngIf="durationValue">
+            <o3-duration-selector [readonly]="readonly" [unitPlaceholder]="title" [hintLabel]="description" [(units)]="durationValue.unitsValue" [(amount)]="durationValue.amountValue"
+                                  [excludes]="[]"></o3-duration-selector>
+        </div>
+
+        <div *ngIf="scalarValue" style="display: flex">
+            <mat-form-field>
+                <input matInput type="number" [placeholder]="title" [readonly]="readonly" [(ngModel)]="scalarValue.value" />
+                <mat-hint>{{description}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <o3-unit-editor [(ngModel)]="scalarValue.units" [readonly]="readonly"></o3-unit-editor>
+            </mat-form-field>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,298 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p>Activate a subscriber and assign a tariff.<p><strong>Note&#58;</strong> If you want to perform bulk activations, you must use the Connectivity Management platform user interface.</p></p><p>You can use these endpoints to&#58;</p> <ul> <li>View a list of tariffs that you can assign to a stock subscriber</li> <li>Activate a stock subscriber and assign a tariff</li> </ul> <p><em>Stock</em> refers to subscribers (physical devices or virtual profiles) that are available ('in stock') and not yet activated. The Provisioning endpoints apply only to subscribers with a status of 'stock'. For any other subscriber state, such as 'active' or 'terminated', the endpoints return an error.</p> <p>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</p><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul> <p><strong>Note&#58;</strong> You should allow between 24 and 48 hours for the network operator to process activation requests.</p>",
+    "title": "Provisioning",
+    "version": "1.0.0"
+  },
+  "host": "api.iot-x.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/provisioning/{physicalId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns a list of the available tariffs for the specified stock subscriber.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "items": {
+                    "$ref": "#/definitions/getTariffSuccessfulResponse"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        },
+        "tags": [
+          "provisioning"
+        ],
+        "description": "<p>The following requirements apply to this endpoint&#58;</p><ul><li>You can only query the tariffs for a 'stock' subscriber (available in your inventory and not yet activated). The endpoint returns an error if you query an active subscriber.</li><li>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</li><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul></li><li>To use this endpoint, your user account must have the <strong>View All Tariffs</strong> and <strong>View Tariff Information</strong> permissions enabled.</li></ul>",
+        "operationId": "get available tariffs",
+        "summary": "Returns a list of the available tariffs for the specified stock subscriber."
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "The unique subscriber identifier.",
+            "in": "path",
+            "name": "physicalId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/activationRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - returns the newly activated subscriber details.",
+            "schema": {
+              "properties": {
+                "content": {
+                  "$ref": "#/definitions/activationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error - invalid request.",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Error - resource not found.",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Error - an internal server error occurred.",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        },
+        "tags": [
+          "provisioning"
+        ],
+        "description": "<p>The following requirements apply to this endpoint&#58;</p><ul><li>You can only activate a 'stock' subscriber (available in your inventory and not yet activated).</li><li>You must provide the subscriber's <em>physicalId</em> as a parameter in the request. This value varies depending on the subscriber type&#58;</li><ul><li><em>Cellular</em> - use the ICCID</li><li><em>Non-IP</em> - use the Device EUI</li><li><em>Satellite</em> - use the IMEI</li></ul><li>In the request body, you must provide the <em>productSetId</em> for the tariff you want to assign.</li><li>For a satellite subscriber, you must also provide the iridium <em>type</em> and <em>target</em> values.</li><li>To use this endpoint, your user account must have the <strong>Activate a SIM</strong>, <strong>Activate a Single Device</strong> and <strong> Perform Bulk Device Activations</strong> permissions enabled.</li></ul>",
+        "operationId": "activate subscriber",
+        "summary": "Activates the specified stock subscriber."
+      }
+    }
+  },
+  "definitions": {
+    "activationRequestBody": {
+      "properties": {
+        "imei": {
+          "description": "The subscriber IMEI (for a satellite subscriber).",
+          "example": 990000862471854,
+          "type": "string"
+        },
+        "iridium": {
+          "items": {
+            "$ref": "#/definitions/iridiumTarget"
+          },
+          "type": "array"
+        },
+        "productSetId": {
+          "description": "The tariff identifier, unique within your company.",
+          "example": 99,
+          "type": "integer"
+        },
+        "subscriberNickname": {
+          "description": "The subscriber nickname.",
+          "example": "Example Nickname",
+          "type": "string"
+        },
+        "zipCode": {
+          "description": "The location at which the subscriber is registered (used for US MNOs).",
+          "example": "78701",
+          "type": "string"
+        }
+      },
+      "required": [
+        "productSetId"
+      ]
+    },
+    "activationResponse": {
+      "properties": {
+        "dataNumber": {
+          "description": "If the subscriber uses Circuit Switched Data (CSD), this field displays its data number. If the subscriber does not use CSD, this field is null.",
+          "example": "9999",
+          "type": "string"
+        },
+        "imsi": {
+          "description": "The subscriber IMSI.",
+          "example": "234150000000001",
+          "type": "string"
+        },
+        "ip": {
+          "description": "The subscriber IP address.",
+          "example": "172.0.0.1",
+          "type": "string"
+        },
+        "physicalId": {
+          "description": "<p>The unique <em>physical</em> subscriber identifier&#58;</p><ul><li><em>Cellular</em> - the ICCID</li><li><em>Non-IP</em> - the  EUI</li><li><em>Satellite</em> - the IMEI</li></ul>",
+          "example": "8944000000000000001",
+          "type": "string"
+        },
+        "subscriberId": {
+          "description": "<p>The unique <em>network</em> subscriber identifier&#58;</p><ul><li>Cellular subscriber - the MSISDN</li><li>Non-IP subscriber - the Device EUI</li><li>Satellite subscriber - the Subscription ID</li></ul>",
+          "example": "447000000001",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dataNumber",
+        "physicalId",
+        "imsi",
+        "ip",
+        "status",
+        "subscriberId"
+      ]
+    },
+    "errorResponse": {
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/errorResponseBody"
+        }
+      },
+      "required": [
+        "error"
+      ]
+    },
+    "errorResponseBody": {
+      "properties": {
+        "children": {
+          "description": "Any child errors that are related to the request.",
+          "example": "[]",
+          "type": "string"
+        },
+        "code": {
+          "description": "The error code.",
+          "example": "BAD_REQUEST",
+          "type": "integer"
+        },
+        "message": {
+          "description": "The error message.",
+          "example": "Unable to find :resourceName with identifier :resourceId.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "children",
+        "code",
+        "message"
+      ]
+    },
+    "getTariffSuccessfulResponse": {
+      "properties": {
+        "{operatorName}": {
+          "description": "An array of tariff objects named by the operator.",
+          "items": {
+            "$ref": "#/definitions/tariffObject"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "{operatorName}"
+      ]
+    },
+    "iridiumTarget": {
+      "example": [
+        {
+          "target": "8.8.8.8",
+          "type": "tcp"
+        },
+        {
+          "target": "Example@examples.com",
+          "type": "email"
+        }
+      ],
+      "properties": {
+        "target": {
+          "description": "The TCP or email address to which Iridium messages are forwarded.",
+          "example": "Example@examples.com",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of Iridium endpoint, either TCP or email.",
+          "example": "email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "target"
+      ]
+    },
+    "tariffObject": {
+      "properties": {
+        "lineRentalPrice": {
+          "description": "The cost of line rental for the tariff expressed in pence (or in the smallest unit of the tariff currency).",
+          "example": "1000",
+          "type": "number"
+        },
+        "productSetID": {
+          "description": "The tariff identifier, unique within your company.",
+          "example": "1",
+          "type": "integer"
+        },
+        "tariffName": {
+          "description": "The tariff name.",
+          "example": "TARIFF ABC",
+          "type": "string"
+        }
+      },
+      "required": [
+        "lineRentalPrice",
+        "productSetID",
+        "tariffName"
+      ]
+    }
+  },
+  "x-components": {}
+}

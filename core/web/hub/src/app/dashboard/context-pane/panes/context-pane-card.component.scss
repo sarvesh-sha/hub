@@ -1,0 +1,12 @@
+:host {
+    margin-bottom: 10px;
+    display: block;
+}
+
+mat-card {
+    overflow: hidden;
+
+    mat-card-title > mat-form-field {
+        margin: -28px 0px -14px 0px;
+    }
+}

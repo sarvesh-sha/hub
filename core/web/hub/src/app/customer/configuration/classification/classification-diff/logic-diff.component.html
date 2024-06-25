@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-3">
+        <mat-form-field>
+            <o3-select placeholder="Function" [options]="functions" [multiSelect]="false" singleClick preventDeselection [(ngModel)]="selectedFunction" (ngModelChange)="functionChange()"></o3-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="row" style="height: 800px">
+    <div class="col-6">
+        <o3-app-blockly-workspace #blocklyWorkspaceA
+                                  style="height: 100%"
+                                  [blocks]="blocks"
+                                  [readonly]="true"
+                                  [data]="currentDetailsA.data">
+        </o3-app-blockly-workspace>
+    </div>
+    <div class="col-6">
+        <o3-app-blockly-workspace #blocklyWorkspaceB
+                                  style="height: 100%"
+                                  [blocks]="blocks"
+                                  [readonly]="true"
+                                  [data]="currentDetailsB.data">
+        </o3-app-blockly-workspace>
+    </div>
+</div>
+
+

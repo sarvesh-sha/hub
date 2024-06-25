@@ -1,0 +1,104 @@
+<div class="o3-watermark-caption" *ngIf="!panels.length">There are no sources to configure</div>
+
+<div class="panel-container" [class.hidden]="!panels.length" cdkScrollable
+     cdkDropList [cdkDropListData]="panels" (cdkDropListDropped)="movePanel($event)">
+    <mat-card *ngFor="let panel of panels; let i = index"
+              class="panel" [class.dragging-source]="draggingSource"
+              cdkDrag [cdkDragDisabled]="panels.length < 2">
+        <div class="panel panel-drag-placeholder" *cdkDragPlaceholder></div>
+        <mat-card-title class="flex-justified">
+            <mat-icon cdkDragHandle>drag_handle</mat-icon>
+        </mat-card-title>
+        <mat-card-content class="panel-content flex-justified">
+            <!-- Left axis settings -->
+            <div class="left-axis">
+                <mat-form-field floatLabel="always">
+                    <input matInput placeholder="Left Axis Label"
+                           name="{{i}}-left-label" [(ngModel)]="panel.left.label" (ngModelChange)="updated.emit(true)"/>
+                </mat-form-field>
+                <mat-radio-group [class.single-group]="panel.left.groups.length === 1" name="{{i}}-left-factors" [(ngModel)]="panel.left.factors" (ngModelChange)="updated.emit()">
+                    <div *ngFor="let group of panel.left.groups" class="groups o3-default-border-bottom">
+                        <ng-container *ngIf="group.unitsFactors">
+                            <div class="selector">
+                                <mat-radio-button [value]="group.keyFactors" matTooltip="Display on axis" matTooltipShowDelay="750"></mat-radio-button>
+                            </div>
+                            <div class="group-config">
+                                <div class="units">
+                                    <o3-equivalent-units-selector [(units)]="group.selectedFactors" (unitsChange)="updated.emit()"
+                                                                  [unitsFactors]="group.unitsFactors"
+                                                                  [placeholder]="group.dimensionlessUnits ? 'Units' : group.label"></o3-equivalent-units-selector>
+                                </div>
+                                <o3-range-override [(model)]="group.override" (modelChange)="updated.emit()"
+                                                   toggleLabel="Custom Range" [vertical]="true" [hide]="true"></o3-range-override>
+                            </div>
+                        </ng-container>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <!-- Sources settings -->
+            <div class="sources">
+                <div #test_panel
+                     cdkDropList [cdkDropListData]="panel" [id]="computeDropListId(panel)"
+                     [cdkDropListConnectedTo]="getConnectedDropLists()" (cdkDropListDropped)="moveSource($event)">
+
+                    <div class="source flex-justified" [class.dragging]="draggingSource" *ngFor="let source of panel.sources"
+                         cdkDrag [cdkDragData]="source" [cdkDragDisabled]="!scroller" (cdkDragMoved)="onSourceDragMove($event.pointerPosition.y)"
+                         (cdkDragStarted)="onSourceDragStart()" (cdkDragEnded)="onSourceDragEnd()">
+                        <div *cdkDragPlaceholder class="source-drag-placeholder"></div>
+                        <div class="left" [class.selected]="isOnAxis(panel.left, source)">
+                            <button mat-icon-button class="topnav-menu-btn" (click)="assignToAxis(panel, 0, source)"
+                                    type="button" matTooltip="Assign to left axis" matTooltipShowDelay="750">
+                                <mat-icon>arrow_back</mat-icon>
+                            </button>
+                        </div>
+                        <div class="center flex-justified">
+                            <div class="info">
+                                <o3-source-chip #test_source [chart]="chartElement" [sourceId]="source.identifier" [deletable]="false" [actions]="sourceActions"></o3-source-chip>
+                            </div>
+                            <div class="actions">
+                                <mat-icon #test_sourceDrag cdkDragHandle>drag_handle</mat-icon>
+                            </div>
+                        </div>
+                        <div class="right" [class.selected]="isOnAxis(panel.right, source)">
+                            <button #test_toRightAxis mat-icon-button class="topnav-menu-btn" (click)="assignToAxis(panel, 1, source)"
+                                    type="button" matTooltip="Assign to right axis" matTooltipShowDelay="750">
+                                <mat-icon>arrow_forward</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right axis setting -->
+            <div class="right-axis">
+                <mat-form-field floatLabel="always">
+                    <input matInput placeholder="Right Axis Label" name="{{i}}-right-label" [(ngModel)]="panel.right.label" (ngModelChange)="updated.emit(true)"/>
+                </mat-form-field>
+                <mat-radio-group [class.single-group]="panel.right.groups.length === 1" name="{{i}}-right-factors" [(ngModel)]="panel.right.factors" (ngModelChange)="updated.emit()">
+                    <div *ngFor="let group of panel.right.groups" class="groups o3-default-border-bottom">
+                        <ng-container *ngIf="group.unitsFactors">
+                            <div class="selector">
+                                <mat-radio-button [value]="group.keyFactors" matTooltip="Display on axis" matTooltipShowDelay="750"></mat-radio-button>
+                            </div>
+                            <div class="group-config">
+                                <div class="units">
+                                    <o3-equivalent-units-selector [(units)]="group.selectedFactors" (unitsChange)="updated.emit()"
+                                                                  [unitsFactors]="group.unitsFactors"
+                                                                  [placeholder]="group.dimensionlessUnits ? 'Units' : group.label"></o3-equivalent-units-selector>
+                                </div>
+                                <o3-range-override [(model)]="group.override" (modelChange)="updated.emit()"
+                                                   toggleLabel="Custom Range" [vertical]="true" [hide]="true"></o3-range-override>
+                            </div>
+                        </ng-container>
+                    </div>
+                </mat-radio-group>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="add-new-panel" [@expand]>
+        <div #test_newPanel [id]="addNewPanelId" class="add-zone" cdkDropList (cdkDropListDropped)="addNewPanel($event)">
+            <mat-icon>add_box</mat-icon>
+            <span>Drop source here to create a new panel</span>
+        </div>
+    </div>
+</div>

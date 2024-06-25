@@ -1,0 +1,5 @@
+<o3-datatable [table]="table" [showRowNumbers]="false">
+    <o3-datatable-column id="version" sortId="version" prop="extended.model.version" name="Version" formatString="v{value}"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" prop="extended.model.createdOn" name="Creation Date" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="active" prop="extended.model.active" name="Active" format="YESNO"></o3-datatable-column>
+</o3-datatable>

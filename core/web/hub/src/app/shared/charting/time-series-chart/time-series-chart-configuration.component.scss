@@ -1,0 +1,17 @@
+.config-container {
+    height: 100%;
+}
+
+.option {
+    padding: 0px 12px;
+
+    .mat-form-field {
+        width: 100%;
+        padding: 8px 0px;
+    }
+
+    > mat-slide-toggle {
+        display: block;
+        margin-top: 20px;
+    }
+}

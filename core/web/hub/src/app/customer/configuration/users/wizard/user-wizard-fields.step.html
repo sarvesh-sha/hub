@@ -1,0 +1,36 @@
+<ng-template o3-wizard-step-template>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input matInput type="tel" placeholder="Phone Number" [(ngModel)]="data.user.phoneNumber" name="phoneNumber">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <o3-select #test_roleSelection
+                           name="userRoles"
+                           placeholder="Roles"
+                           defaultValueDescription="Select Roles"
+                           [options]="data.roleOptions"
+                           [(ngModel)]="data.user.roles">
+                </o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <o3-select name="userGroups"
+                           placeholder="Groups"
+                           defaultValueDescription="Select Groups"
+                           [options]="data.groupOptions"
+                           [(ngModel)]="data.user.groups">
+                </o3-select>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

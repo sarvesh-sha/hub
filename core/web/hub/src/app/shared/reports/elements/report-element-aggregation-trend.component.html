@@ -1,0 +1,7 @@
+<h2>{{config?.label}}</h2>
+
+<o3-aggregation-trend-chart [aggregations]="data?.results"
+                            [mode]="$any(config?.visualizationMode)"
+                            [showY]="config?.showY"
+                            [showLegend]="config?.showLegend"
+                            style="height: 400px"></o3-aggregation-trend-chart>

@@ -1,0 +1,47 @@
+.container {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    form {
+        width: 300px;
+        margin: auto;
+    }
+
+    .title
+    {
+        text-align: center;
+    }
+
+    label, input {
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+
+    input[disabled] {
+        border: 1px solid #999;
+        background-color: #ddd;
+    }
+
+    button[type=submit]
+    {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 5px;
+    }
+
+    .form-field {
+        margin-bottom: 10px;
+    }
+
+    .alert
+    {
+        color: red;
+    }
+
+    .advanced-link
+    {
+        font-size: 10px;
+    }
+}

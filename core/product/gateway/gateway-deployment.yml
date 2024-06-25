@@ -1,0 +1,29 @@
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+##########################################
+
+connectionUrl: ${param.WS_CONNECTION_URL}/api/v1/message-bus
+
+instanceId: ${param.INSTANCE_ID}
+
+##########################################
+
+scratchDirectory: /optio3-scratch
+
+persistenceDirectory: /optio3-scratch/persistence
+
+# Create a batch at least every 10 minutes
+batchPeriodInSeconds: 600
+
+# After 15 minutes, start flushing batches to disk.
+flushToDiskDelayInSeconds: 900
+
+dnsHints:
+${param.DNS_HINTS}

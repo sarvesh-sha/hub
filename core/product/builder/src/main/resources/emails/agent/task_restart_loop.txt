@@ -1,0 +1,11 @@
+########################
+# Builder notification #
+########################
+
+Host '${param.HOST_ID}' has a task stuck in a restart loop, detected at ${param.TIME}.
+
+Details: https://builder.dev.optio3.io/#/deployments/item/${param.HOST_SYSID}
+
+Provisioning: https://builder.dev.optio3.io/#/provision?hostId=${param.HOST_SYSID}
+
+Optio3

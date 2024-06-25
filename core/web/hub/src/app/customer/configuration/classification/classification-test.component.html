@@ -1,0 +1,52 @@
+<o3-classification-test-form [sample]="sample" (sampleChange)="sampleChange.emit($event)"></o3-classification-test-form>
+
+<div>&nbsp;</div>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Normalization Test
+        </mat-panel-title>
+        <mat-panel-description>
+            Normalize sample text
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="actions-container mt-3">
+        <button mat-raised-button type="button" (click)="normalizationTest()" [disabled]="!sample">
+            Convert
+        </button>
+    </div>
+    <div class="row selectable" *ngFor="let line of conversionOutput">
+        <div class="col-sm-12">
+            <pre style="font-size: inherit; font-family: inherit;">{{line}}</pre>
+        </div>
+    </div>
+
+</mat-expansion-panel>
+
+<div>&nbsp;</div>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Classification Test
+        </mat-panel-title>
+        <mat-panel-description>
+            Classify sample text
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="actions-container mt-3">
+        <button mat-raised-button type="button" (click)="classificationTest()" [disabled]="!sample">
+            Convert
+        </button>
+    </div>
+
+    <div class="row selectable" *ngFor="let line of mappingOutput">
+        <div class="col-sm-12">
+            <span>{{line}}</span>
+        </div>
+    </div>
+
+</mat-expansion-panel>

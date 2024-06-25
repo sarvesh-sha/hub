@@ -1,0 +1,54 @@
+.summary-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > hr {
+        width: 100%;
+        margin-top: -3px;
+        margin-bottom: 6px;
+    }
+
+    .summary-chart {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        position: relative;
+        width: 100%;
+
+        .chart-title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+
+            .chart-title-time {
+                margin: -22px 0px -10px 0px;
+            }
+        }
+
+        .chart-content {
+            flex-grow: 1;
+        }
+    }
+
+    .summary-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &.horizontal {
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 0px;
+        }
+    }
+
+    .summary-alternative {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+}

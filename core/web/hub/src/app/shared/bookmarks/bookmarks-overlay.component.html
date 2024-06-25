@@ -1,0 +1,15 @@
+<o3-overlay [config]="overlayConfig" (closed)="filterText = ''">
+    <o3-tab-group noUnderline cardClass="no-content-padding">
+        <o3-tab [label]="label">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Filter" autocomplete="off" name="bookmarkFilter"
+                       [(ngModel)]="filterText" (ngModelChange)="overlay.pullIntoView(0)">
+            </mat-form-field>
+
+            <div class="bookmark-list">
+                <o3-bookmark-row-set *ngFor="let bookmarkSet of bookmarks" [bookmarkSet]="bookmarkSet"
+                                     [host]="this" [filterText]="filterText"></o3-bookmark-row-set>
+            </div>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

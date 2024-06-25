@@ -1,0 +1,63 @@
+.error-list {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: transparent !important;
+
+    > ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li.item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            color: #fff;
+            cursor: pointer;
+
+            > .error-actions-container {
+                margin: -10px;
+            }
+
+            button {
+                &.mat-primary, &.mat-seconary {
+                    border: 2px solid #fff;
+                }
+            }
+
+            button.mat-primary {
+                color: #303030;
+                background-color: #fff;
+            }
+
+            button.mat-secondary {
+                color: #fff;
+                background-color: transparent;
+            }
+
+            &.error {
+                background-color: #d54949;
+
+                button.mat-primary {
+                    color: #d54949;
+                }
+            }
+
+            &.success {
+                background-color: #303030;
+            }
+
+            &.warn {
+                background-color: #E4A14A;
+
+                button.mat-primary {
+                    color: #303030;
+                }
+            }
+        }
+    }
+}

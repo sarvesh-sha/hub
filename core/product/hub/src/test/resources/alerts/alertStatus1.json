@@ -1,0 +1,139 @@
+{
+  "definition": {
+    "title": "AlertStatusComparison",
+    "purpose": "Definition",
+    "description": "1",
+    "active": true
+  },
+  "details": {
+    "__type": "AlertDefinitionDetailsForUserProgram",
+    "temporary": false,
+    "tabs": [
+      {
+        "name": "Start",
+        "blockChains": [
+          [
+            {
+              "__type": "EngineThread",
+              "id": ")=]NF^Kq$(37qdF=c`n%",
+              "x": 16,
+              "y": 10,
+              "variables": [
+                {
+                  "name": "activeEqualsActive",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "activeNotEqualsActive",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "activeNotEqualsMuted",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "activeLessThanClosed",
+                  "type": "Boolean"
+                }
+              ],
+              "statements": [
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "|xw@I*dx`@Q~a$*c)ply",
+                  "variable": {
+                    "name": "activeEqualsActive",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "*9vzrJE0D%eQIL`O`}dm",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "]G#~!wozR%nySM0jl`sH",
+                      "value": "active"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "VN}h/sLiLq16;o)Fj?j#",
+                      "value": "active"
+                    },
+                    "operation": "Equal"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "tBuAj~|1kx)IvDMpGep]",
+                  "variable": {
+                    "name": "activeNotEqualsActive",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "%B[a1*^m0+Cg.KtDF,xt",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "2LIL#.XT@~[@;5SQ)7tm",
+                      "value": "active"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "VTotsE9S9Dkv5pPBy@1B",
+                      "value": "active"
+                    },
+                    "operation": "NotEqual"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "Tr?~%tS=]*?fVWs;{^{F",
+                  "variable": {
+                    "name": "activeNotEqualsMuted",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "*k{~cGkdY~Fo[}wh2:^8",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "m^|dr1p0eioW9^V6n78P",
+                      "value": "active"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "0XP+o7R?y~C/sG;d)sg+",
+                      "value": "muted"
+                    },
+                    "operation": "NotEqual"
+                  }
+                },
+                {
+                  "__type": "EngineVariableAssignment",
+                  "id": "Tr?~%tS=]*?fVWs;{^{2",
+                  "variable": {
+                    "name": "activeLessThanClosed",
+                    "type": "Boolean"
+                  },
+                  "value": {
+                    "__type": "EngineExpressionBinaryLogicCompare",
+                    "id": "*k{~cGkdY~Fo[}wh2:^2",
+                    "a": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "m^|dr1p0eioW9^V6n782",
+                      "value": "active"
+                    },
+                    "b": {
+                      "__type": "AlertEngineLiteralAlertStatus",
+                      "id": "0XP+o7R?y~C/sG;d)sg2",
+                      "value": "closed"
+                    },
+                    "operation": "LessThan"
+                  }
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="typedElement as alertFeed">
+        <mat-slide-toggle [(ngModel)]="allLocations" (ngModelChange)="updateLocationSelection()" name="alert-feed-all-locations">
+            Select All Locations
+        </mat-slide-toggle>
+        <mat-form-field class="col-sm-6 no-padding">
+            <o3-select [o3LocationSelector]="true" defaultValueDescription="Select Locations" [disabled]="allLocations"
+                       name="alert-feed-locations" [(ngModel)]="alertFeed.locations"></o3-select>
+        </mat-form-field>
+
+        <br>
+
+        <mat-slide-toggle [(ngModel)]="allAlertTypes" (ngModelChange)="updateAlertTypeSelection()" name="alert-feed-all-types">
+            Select All Alert Types
+        </mat-slide-toggle>
+        <mat-form-field class="col-sm-6 no-padding">
+            <o3-select placeholder="Alert Types" [options]="data.alertTypeOptions" [disabled]="allAlertTypes"
+                       name="alert-feed-types" [(ngModel)]="alertFeed.alertTypes"></o3-select>
+        </mat-form-field>
+    </ng-container>
+</ng-template>

@@ -1,0 +1,101 @@
+﻿<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="New Service..." (click)="newService()"></o3-tab-action>
+        <o3-tab-action label="New User..." (click)="newSharedUser()"></o3-tab-action>
+        <o3-tab-action label="New Secret..." (click)="newSharedSecret()"></o3-tab-action>
+        <o3-tab-action label="Schedule upgrades to RC build..." (click)="upgradeToRC()" *ngIf="isAdmin"></o3-tab-action>
+        <o3-tab-action label="Schedule upgrades to RTM build..." (click)="upgradeToRTM()" *ngIf="isAdmin"></o3-tab-action>
+        <o3-tab-action label="New Agents From RC Build" (click)="startNewAgents(true)" [disabled]="!hasRC" *ngIf="isAdmin"></o3-tab-action>
+        <o3-tab-action label="New Agents From RTM Build" (click)="startNewAgents(false)" [disabled]="!hasRTM" *ngIf="isAdmin"></o3-tab-action>
+        <o3-tab-action label="Export Charges Report..." (click)="getChargesReport()"></o3-tab-action>
+        <o3-tab-action label="Export Resources to Excel" (click)="exportToExcel()"></o3-tab-action>
+        <o3-tab-action label="Compact Time Series" (click)="compactTimeSeries()"></o3-tab-action>
+        <o3-tab-action label="Search Keyword Usages..." (click)="checkUsagesOverlay.toggleOverlay()"></o3-tab-action>
+
+        <o3-tab-action label="Create" priority="primary" type="submit" [form]="modelForm" [disabled]="!isValid || !isDirty" *ngIf="isNew"></o3-tab-action>
+        <o3-tab-action label="Update" priority="primary" type="submit" [form]="modelForm" [disabled]="!isValid || !isDirty" *ngIf="!isNew"></o3-tab-action>
+        <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="!isDirty && !isNew"></o3-tab-action>
+        <o3-tab-action label="Cancel" priority="secondary" (click)="cancel(); " *ngIf="isDirty || isNew"></o3-tab-action>
+
+        <o3-tab label="Customer Details">
+
+            <o3-tab-action label="Remove" icon="delete" priority="tertiary" (click)="remove()" [disabled]="extendedNoRemoveReason != null"
+                           [tooltip]="extendedNoRemoveReason"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #modelForm="ngForm" novalidate>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Name" [(ngModel)]="extended.model.name" name="custName" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <o3-customer-services-list #childServices [extended]="extended" *ngIf="extended">
+                        </o3-customer-services-list>
+                    </div>
+                </div>
+
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Shared Users">
+
+            <o3-tab-action label="Push To Services..." priority="secondary" (click)="pushSharedUsers()" *ngIf="!isDirty && !isNew"></o3-tab-action>
+
+            <o3-customer-shared-users-list #childUsers [extended]="extended" *ngIf="extended">
+            </o3-customer-shared-users-list>
+
+        </o3-tab>
+
+        <o3-tab label="Shared Secrets">
+
+            <o3-tab-action label="Push To Services..." priority="secondary" (click)="pushSharedSecrets()" *ngIf="!isDirty && !isNew"></o3-tab-action>
+
+            <o3-customer-shared-secrets-list #childSecrets [extended]="extended" *ngIf="extended">
+            </o3-customer-shared-secrets-list>
+
+        </o3-tab>
+
+        <o3-tab label="Charges" (selected)="fetchCharges()">
+
+            <o3-deployment-charges-summary [topHosts]="true" [charges]="charges"></o3-deployment-charges-summary>
+
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>
+
+<o3-deployment-agent-upgrade></o3-deployment-agent-upgrade>
+
+<o3-overlay #checkUsagesOverlay [config]="checkUsagesDialogConfig">
+    <o3-tab-group [noUnderline]="true">
+        <o3-tab label="Checking Usages">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Words to search" [(ngModel)]="checkUsagesFilter" name="checkUsagesFilter" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <textarea matInput placeholder="Results" [value]="checkUsagesResults" name="checkUsagesResults" rows="20" readonly>
+                        </textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <o3-tab-action label="Search" priority="primary" (click)="checkUsages();" [disabled]="!isValidCheckUsages()"></o3-tab-action>
+        </o3-tab>
+    </o3-tab-group>
+</o3-overlay>

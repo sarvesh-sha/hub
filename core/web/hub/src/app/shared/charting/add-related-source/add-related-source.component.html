@@ -1,0 +1,12 @@
+<o3-standard-form-overlay label="Add Related Source" [overlayConfig]="config"
+                          primaryButtonText="Add" [primaryButtonDisabled]="!selectedId"
+                          (submitted)="requestNewSource()" (cancelled)="resetInputs()">
+    <mat-form-field *ngIf="lazyLoader">
+        <o3-select placeholder="Select Source" [(ngModel)]="selectedId" [lazyLoader]="lazyLoader"
+                   [singleClick]="true" [multiSelect]="false" [hierarchicalContext]="true"></o3-select>
+    </mat-form-field>
+
+    <o3-duration-selector *ngIf="isSameSource()" amountPlaceholder="Time Shift Amount" unitPlaceholder="Time Shift Unit"
+                          [(amount)]="shiftAmount.amount" [(units)]="shiftAmount.unit">
+    </o3-duration-selector>
+</o3-standard-form-overlay>

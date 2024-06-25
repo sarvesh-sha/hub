@@ -1,0 +1,28 @@
+<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            <span>User Management</span>
+
+            <button mat-button class="pull-right hidden-sm-down" (click)="new()">
+                <mat-icon>add_circle_outline</mat-icon>
+                New User
+            </button>
+
+            <mat-menu #userListMenu="matMenu">
+                <button mat-menu-item (click)="new()"> New User</button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="userListMenu" type="button" class="pull-right hidden-md-up">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+        </mat-card-title>
+        <mat-card-content>
+            <o3-datatable #mydatatable [table]="table">
+                <o3-datatable-column id="firstName" prop="ext.model.firstName" name="First Name"></o3-datatable-column>
+                <o3-datatable-column id="lastName" prop="ext.model.lastName" name="Last Name"></o3-datatable-column>
+                <o3-datatable-column id="email" prop="ext.model.emailAddress" name="Email Address"></o3-datatable-column>
+                <o3-datatable-column id="role" prop="rolesText" name="Role"></o3-datatable-column>
+            </o3-datatable>
+        </mat-card-content>
+    </mat-card>
+</section>

@@ -1,0 +1,19 @@
+<o3-standard-form-overlay label="Log Column Selector" [overlayConfig]="dialogConfig"
+                          primaryButtonText="Apply" [primaryButtonDisabled]="pristine" (submitted)="save()" [closeOnPrimaryPress]="false"
+                          [showSecondary]="false"
+                          [showExtraButton]="true"
+                          extraButtonPriority="tertiary"
+                          extraButtonText="Reset"
+                          [extraButtonDisabled]="isDefault && pristine" (extraButtonPressed)="reset()">
+    <o3-modifiable-table [rows]="columns" [placeholderHeightPx]="42" (onItemClick)="handleToggle($event)"
+                         allowReordering (onRowReorder)="updatePristineState()">
+        <ng-container *o3ModifiableTableRow="let colInfo">
+            <td class="check" [class.clickable]="!colInfo.enabled || numActiveColumns > 1">
+                <mat-checkbox [name]="colInfo.type" [(ngModel)]="colInfo.enabled" (click)="$event.preventDefault()" [disabled]="colInfo.enabled && numActiveColumns === 1"></mat-checkbox>
+            </td>
+            <td class="name" [class.clickable]="!colInfo.enabled || numActiveColumns > 1">
+                {{colInfo.name}}
+            </td>
+        </ng-container>
+    </o3-modifiable-table>
+</o3-standard-form-overlay>

@@ -1,0 +1,30 @@
+<o3-wizard [data]="data" label="Configure Widget" [modalMode]="true" (viewWindowUpdated)="viewWindow = $event"
+           (wizardCancelled)="wizardCancel()" (wizardCommitted)="wizardCommit()">
+    <o3-widget-editor-wizard-type-step></o3-widget-editor-wizard-type-step>
+    <o3-widget-editor-wizard-data-aggregation-type-step></o3-widget-editor-wizard-data-aggregation-type-step>
+    <o3-widget-editor-wizard-time-series-step [viewWindow]="viewWindow"></o3-widget-editor-wizard-time-series-step>
+    <o3-widget-editor-wizard-graphs-step name="graphs"></o3-widget-editor-wizard-graphs-step>
+    <o3-widget-editor-wizard-control-point-step></o3-widget-editor-wizard-control-point-step>
+    <o3-widget-editor-wizard-control-point-grouping-step name="cp-grouping"></o3-widget-editor-wizard-control-point-grouping-step>
+    <o3-widget-editor-wizard-aggregation-node-configurer-step></o3-widget-editor-wizard-aggregation-node-configurer-step>
+    <o3-widget-editor-wizard-ranges-step [selectedRanges]="data.editor.selectedRanges"></o3-widget-editor-wizard-ranges-step>
+    <o3-widget-editor-wizard-aggregation-range-step></o3-widget-editor-wizard-aggregation-range-step>
+    <o3-widget-editor-wizard-device-state-step></o3-widget-editor-wizard-device-state-step>
+    <o3-widget-editor-wizard-text-step></o3-widget-editor-wizard-text-step>
+    <o3-widget-editor-wizard-grid-step></o3-widget-editor-wizard-grid-step>
+    <o3-widget-editor-wizard-alert-rule-step></o3-widget-editor-wizard-alert-rule-step>
+    <o3-widget-editor-wizard-alert-type-step></o3-widget-editor-wizard-alert-type-step>
+    <o3-widget-editor-wizard-alert-range-step></o3-widget-editor-wizard-alert-range-step>
+    <o3-widget-editor-wizard-alert-status-step></o3-widget-editor-wizard-alert-status-step>
+    <o3-widget-editor-wizard-interaction-behavior-step></o3-widget-editor-wizard-interaction-behavior-step>
+    <o3-widget-editor-wizard-pin-config-step></o3-widget-editor-wizard-pin-config-step>
+    <o3-widget-editor-wizard-locations-step></o3-widget-editor-wizard-locations-step>
+    <o3-widget-editor-wizard-alert-severity-step></o3-widget-editor-wizard-alert-severity-step>
+    <o3-widget-editor-wizard-alert-table-display-step></o3-widget-editor-wizard-alert-table-display-step>
+    <o3-widget-editor-wizard-refresh-step></o3-widget-editor-wizard-refresh-step>
+    <o3-widget-editor-wizard-graph-selector-step></o3-widget-editor-wizard-graph-selector-step>
+    <o3-widget-editor-wizard-image-step></o3-widget-editor-wizard-image-step>
+    <o3-widget-editor-wizard-time-series-graphs-step></o3-widget-editor-wizard-time-series-graphs-step>
+    <o3-widget-editor-wizard-font-scaling-step></o3-widget-editor-wizard-font-scaling-step>
+    <o3-widget-editor-wizard-name-description-step></o3-widget-editor-wizard-name-description-step>
+</o3-wizard>

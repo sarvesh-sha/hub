@@ -1,0 +1,28 @@
+<o3-context-pane *ngIf="model && !loading" [paneTitle]="model.title" [branding]="model.branding">
+    <o3-context-pane-header>
+        <mat-form-field *ngIf="options?.length > 1">
+            <o3-select [options]="options" placeholder="Asset" [multiSelect]="false" singleClick preventDeselection [(ngModel)]="model"></o3-select>
+        </mat-form-field>
+        <o3-range-selector [selection]="range" (selectionChange)="rangeId = $event.range" [allowCustom]="false" [allowTimezone]="false" [rangeOptionType]="ranges"></o3-range-selector>
+    </o3-context-pane-header>
+
+    <ng-container *ngFor="let card of model.cards">
+        <o3-context-pane-card [cardTitle]="card.title"
+                              [primaryColor]="model.branding.primaryColor"
+                              [secondaryColor]="model.branding.secondaryColor">
+            <ng-container *ngFor="let field of card.fields">
+                <o3-dynamic-pane-field [aggRange]="range" [field]="field"></o3-dynamic-pane-field>
+            </ng-container>
+        </o3-context-pane-card>
+    </ng-container>
+</o3-context-pane>
+
+<o3-context-pane *ngIf="loading">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center mt-4 mb-4">
+                <i class="fa fa-refresh fa-spin fa-4x o3-configure"></i>
+            </div>
+        </div>
+    </div>
+</o3-context-pane>

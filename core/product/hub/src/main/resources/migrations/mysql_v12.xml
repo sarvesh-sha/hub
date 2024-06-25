@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-1">
+        <createTable tableName="RESULT_STAGING">
+            <column name="sys_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_created_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sys_updated_on" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="contents" type="LONGBLOB"/>
+            <column name="objects_processed" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_end" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_start" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="samples_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="samples_processed" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-2">
+        <addPrimaryKey columnNames="sys_id" constraintName="PRIMARY_v12" tableName="RESULT_STAGING"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-3">
+        <createIndex indexName="IDX3gvuvsq4cc44tnvbskmjgyn3l" tableName="RESULT_STAGING">
+            <column name="sys_created_on"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-4">
+        <createIndex indexName="IDX5r2yqh80h5kwufd07sads850n" tableName="RESULT_STAGING">
+            <column name="range_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createIndex indexName="IDX94k3iv2bfuojrvwy68w121xah" tableName="RESULT_STAGING">
+            <column name="range_end"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

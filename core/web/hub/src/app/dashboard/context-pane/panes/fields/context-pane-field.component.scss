@@ -1,0 +1,25 @@
+:host {
+    display: inline-block;
+    font-size: 12px;
+    width: 50%;
+}
+
+:host-context(.wide) {
+    width: 100%;
+}
+
+.field-value {
+    margin-top: -20px;
+
+    .field-text {
+        font-family: sans-serif;
+        font-size: 16px;
+        font-stretch: 100%;
+        font-weight: 400;
+        color: currentColor;
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+}

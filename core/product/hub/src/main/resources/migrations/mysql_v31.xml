@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <dropIndex indexName="IDXlxltt8hdvfq9fsseohfakwbgh" tableName="ASSET_DEVICE_IPN"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropIndex indexName="IDXtrl0nmeav1l0e7774p2wp0pyc" tableName="ASSET_DEVICE_BACNET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <dropColumn columnName="device_identifier" tableName="ASSET_DEVICE_IPN"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <dropColumn columnName="instance_id" tableName="ASSET_DEVICE_BACNET"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <dropColumn columnName="network_id" tableName="ASSET_DEVICE_BACNET"/>
+    </changeSet>
+</databaseChangeLog>

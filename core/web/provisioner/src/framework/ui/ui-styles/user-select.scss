@@ -1,0 +1,26 @@
+@mixin user-select($theme) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .o3--is-dragging {
+        cursor: grabbing !important;
+    }
+
+    .selectable {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    .mat-card-title,
+    .mat-expansion-panel-header,
+    .status-text {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+}

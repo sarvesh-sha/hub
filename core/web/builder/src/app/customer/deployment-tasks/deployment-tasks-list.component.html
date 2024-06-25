@@ -1,0 +1,21 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false">
+    <o3-datatable-column id="name" name="Name" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.extended.model.name}}" matTooltipShowDelay="500">{{row.extended.model.name}}</span>
+            <small>{{row.extended.model.dockerId}}</small>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="image" name="Image" format="TEMPLATE">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span matTooltip="{{row.extended.model.image}}" matTooltipShowDelay="500">{{row.extended.getFirstImageTag() | async}}</span>
+        </ng-container>
+    </o3-datatable-column>
+
+    <o3-datatable-column id="status" prop="extended.model.status" name="Status"></o3-datatable-column>
+
+    <o3-datatable-column id="restartCount" prop="extended.model.restartCount" name="Restart Count" format="NUMBER"></o3-datatable-column>
+
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="extended.model.createdOn" name="Created" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="updatedOn" prop="extended.model.updatedOn" name="Updated" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+</o3-datatable>

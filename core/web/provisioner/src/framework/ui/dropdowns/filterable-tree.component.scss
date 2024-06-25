@@ -1,0 +1,76 @@
+:host {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.input-container {
+    padding-bottom: 2px;
+}
+
+div.node-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+div.divider > label {
+    color: rgba(0, 0, 0, 0.54)
+}
+
+div.loading-message {
+    padding-left: 10px;
+}
+
+div.option-row, div.divider {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+div.option-row {
+    // Do not use flex layout, it breaks nodePostTemplate's ability to right align...
+    outline: none;
+
+    label {
+        width: 100%;
+        line-height: 36px;
+        text-transform: none;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 0;
+
+        &.o3-filterable-tree--disabled-node.o3-filterable-tree--not-expandable {
+            color: rgba(0, 0, 0, 0.38);
+        }
+
+        mat-checkbox > label {
+            display: inline-flex;
+            padding-bottom: 3px;
+        }
+    }
+
+    &:hover {
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.node-wrapper {
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-children-wrapper-custom {
+    flex: 0 0 30px;
+    padding: 2px 0px 0px 5px;
+    height: 28px;
+    z-index: 1;
+}
+
+.toggle-children-placeholder-custom {
+    flex: 0 0 30px;
+}

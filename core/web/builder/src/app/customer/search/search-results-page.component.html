@@ -1,0 +1,96 @@
+<section class="bs page-content">
+
+    <mat-card class="page-card">
+        <mat-card-content>
+            <div class="container-fluid">
+                <form class="row mb-2" name="searchForm" (submit)="performSearch()">
+                    <div class="col-lg-9 col-sm-8">
+                        <label class="sr-only" for="searchInput">Search</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="searchInput" name="searchInput" placeholder="Enter your search..."
+                               [(ngModel)]="searchText"
+                               style="display: block; width: 95%;">
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <div class="actions-container text-right">
+                            <button mat-raised-button color="primary" type="submit" [disabled]="searching">Search</button>
+                            <button mat-raised-button type="button" (click)="exit()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="container" *ngIf="searching">
+        <div class="row">
+            <div class="col text-center mt-4 mb-4">
+                <i class="fa fa-refresh fa-spin fa-2x o3-configure"></i>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="searchResults && searchResults.hasResults">
+        <div *ngFor="let group of searchResults.groups">
+            <div *ngIf="group.hasResults">
+                <mat-expansion-panel [expanded]="group.initiallyExpanded" class="title-as-header" style="margin-bottom: 10px;" #expansionPanel>
+
+                    <mat-expansion-panel-header class="display-expanded">
+                        <mat-panel-title>
+                            {{group.name}} Results
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span *ngIf="(group.total > 1)">{{group.total}} Results</span>
+                            <span *ngIf="(group.total == 1)">1 Result</span>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <o3-datatable [rows]="group.displayedResults"
+                                  [clickableRows]="true"
+                                  [showRowNumbers]="false"
+                                  [showViewIcons]="true"
+                                  [externalPaging]="true"
+                                  [count]="group.total"
+                                  [offset]="group.pageIndex"
+                                  [limit]="group.pageSize"
+                                  (activate)="viewResult($event)"
+                                  (page)="onPage($event, group)">
+                        <o3-datatable-column id="icon" name=" " [minWidth]="45" [width]="45" [grow]="0">
+                            <div *o3-datatable-cell-template="let result" class="text-center">
+                                <i class="o3 o3-lg o3-alert" *ngIf="(result.type == 'ALERT')"></i>
+                                <i class="o3 o3-lg o3-device" *ngIf="(result.type == 'DEVICE')"></i>
+                                <i class="o3 o3-lg o3-device" *ngIf="(result.type == 'DEVICE_ELEMENT')"></i>
+                                <i class="o3 o3-lg o3-device" *ngIf="(result.type == 'DEVICE_INFO')"></i>
+                                <i class="fa fa-plug o3-equipment" *ngIf="(result.type == 'EQUIPMENT')"></i>
+                                <i class="fa fa-lg o3-configure fa-building-o" *ngIf="(result.type == 'LOCATION')"></i>
+                                <i class="fa fa-lg o3-configure fa-user-o" *ngIf="(result.type == 'USER')"></i>
+                                <i class="o3 o3-lg o3-configure" *ngIf="(result.type == 'GATEWAY')"></i>
+                                <i class="o3 o3-lg o3-configure" *ngIf="(result.type == 'NETWORK')"></i>
+                            </div>
+                        </o3-datatable-column>
+                        <o3-datatable-column id="results" name="Results">
+                            <div *o3-datatable-cell-template="let result">
+                                {{ result.text }}
+                                <small>{{result.subtext}}</small>
+                            </div>
+                        </o3-datatable-column>
+                    </o3-datatable>
+
+                    <mat-action-row class="clickable" (click)="toggle(expansionPanel)">
+                        <span class="mat-expansion-indicator" style="transform: rotate(180deg); margin-right: 16px;"></span>
+                    </mat-action-row>
+
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="hasSearched && !searching && !(searchResults && searchResults.hasResults)">
+        <div class="row">
+            <div class="col text-center mt-4 mb-4">
+                <p>There are no results to show.</p>
+            </div>
+        </div>
+    </div>
+
+</section>

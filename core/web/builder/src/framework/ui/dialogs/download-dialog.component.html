@@ -1,0 +1,35 @@
+<div class="form-container">
+    <o3-standard-form [label]="data.title" [hideActions]="true" overflow="hidden">
+        <section *ngIf="hasGenerator && !isDownloadReady()">
+            <div class="message" *ngFor="let message of progressMessage">
+                {{message}}
+            </div>
+        </section>
+        <div class="message" *ngIf="isDownloadReady()">
+            Your download is ready!
+        </div>
+        <div class="message error" *ngIf="downloadEmpty">
+            Download generated no data. Please adjust your settings.
+        </div>
+
+        <a mat-flat-button class="download-button" color="primary" [disabled]="!isDownloadReady()" [download]="data.fileName" [href]="urlForDownload">
+            <div class="download-content">
+                <div class="download-text">
+                    <div class="download-primary">Download</div>
+                    <div class="download-secondary">{{data.fileName}}</div>
+                </div>
+                <div class="download-icon">
+                    <mat-icon>cloud_download</mat-icon>
+                </div>
+            </div>
+        </a>
+    </o3-standard-form>
+</div>
+
+<div *ngIf="hasGenerator">
+    <mat-progress-bar class="bar" *ngIf="!isDeterminate" mode="buffer" [value]="indeterminatePercent()"></mat-progress-bar>
+    <mat-progress-bar class="bar" *ngIf="isDeterminate" mode="determinate" [value]="progressPercent"></mat-progress-bar>
+</div>
+<div *ngIf="!hasGenerator">
+    <mat-progress-bar class="bar" mode="determinate" [value]="100"></mat-progress-bar>
+</div>

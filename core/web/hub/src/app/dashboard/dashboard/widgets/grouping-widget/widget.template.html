@@ -1,0 +1,16 @@
+<div *ngIf="config.widgets.length == 0" [hidden]="editing" class="o3-watermark-caption">Add widgets to group</div>
+
+<o3-widget-manager [manipulator]="widgetManipulator" [widgets]="config.widgets" [nested]="true"
+                   [disableEditing]="container.readonly" [alwaysShowShadow]="false" [useWidgetPadding]="false"
+                   [widgetPrimaryColor]="container.primaryColor" [widgetSecondaryColor]="container.secondaryColor"
+                   (widgetEdit)="editNestedWidget($event.editConfig)" (widgetDelete)="widgetDelete.emit($event)"
+                   (cursorClassChange)="cursorClassChange.emit($event)" (gridUpdated)="gridChanged()" (configChange)="contentUpdated.emit()"></o3-widget-manager>
+
+<ng-container *ngIf="!container.readonly">
+    <o3-tab-action labelFirstLevel="Add widget" label="New" toBeginning
+                   (click)="editNestedWidget()" [disabled]="!minOutline" [tooltip]="addWidgetTooltip"></o3-tab-action>
+    <o3-tab-action labelFirstLevel="Add widget" label="Import" toBeginning
+                   (click)="importWidget()" [disabled]="!minOutline" [tooltip]="addWidgetTooltip"></o3-tab-action>
+    <o3-tab-action labelFirstLevel="Add widget" label="Paste" toBeginning (click)="paste()"
+                   [disabled]="!minOutline || !!notPastableTooltip" [tooltip]="addWidgetTooltip || notPastableTooltip"></o3-tab-action>
+</ng-container>

@@ -1,0 +1,4 @@
+<o3-standard-form #test_standardForm [label]="data.title" [text]="data.text"
+                  [primaryButtonText]="confirmText" [secondaryButtonText]="denyText"
+                  (submitted)="dialogRef.close(true)" (cancelled)="dialogRef.close(false)">
+</o3-standard-form>

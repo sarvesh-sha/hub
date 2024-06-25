@@ -1,0 +1,32 @@
+<section class="bs page-content">
+    <o3-tab-group>
+
+        <o3-tab-action label="New Alert Rule..." (click)="new()"></o3-tab-action>
+        <o3-tab-action label="Import..." (click)="import()"></o3-tab-action>
+        <o3-tab-action label="Export..." (click)="export()"></o3-tab-action>
+        <o3-tab-action label="Delete All..." (click)="deleteAll()" *ngIf="isMaint"></o3-tab-action>
+        <!-- Disabled for now until we revisit library concept -->
+        <!--<o3-tab-action label="Manage Library..." (click)="manageLibrary()" *ngIf="!isLibrary"></o3-tab-action>-->
+
+        <o3-tab [label]="label()">
+            <o3-datatable [table]="table">
+                <o3-datatable-column id="description" name="Description" sortId="!title">
+                    <ng-template o3-datatable-cell-template let-row="row">
+                        <span>{{row.alert.model.title}}</span>
+                        <small>{{row.alert.model.description}}</small>
+                    </ng-template>
+                </o3-datatable-column>
+                <o3-datatable-column id="active" *ngIf="!isLibrary" name="Active" [maxWidth]="100" [minWidth]="100">
+                    <ng-template o3-datatable-cell-template let-value="value" let-row="row">
+                        <mat-slide-toggle [(ngModel)]="row.alert.model.active" name="isActive" (change)="row.alert.save()">
+                            <span class="hidden-sm-up">Active</span>
+                        </mat-slide-toggle>
+                    </ng-template>
+                </o3-datatable-column>
+                <o3-datatable-column id="createdOn" sortId="createdOn" sortStart="desc" prop="alert.model.createdOn" name="Creation Date" format="DATE"></o3-datatable-column>
+                <o3-datatable-column id="updatedOn" sortId="updatedOn" sortStart="desc" prop="alert.model.updatedOn" name="Update Date" format="DATE"></o3-datatable-column>
+            </o3-datatable>
+        </o3-tab>
+
+    </o3-tab-group>
+</section>

@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+//----------------------------------------------------------------------------------------------------------------------
+// Global style configuration
+//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------
+// Core style sheet
+//---------------------------------------------------------
+@import "framework/ui/app.theme.bootstrap.scss";
+@import "framework/ui/app.theme.material";
+//---------------------------------------------------------
+// Custom style sheet
+// You can write your style sheet in this file,
+// or import 3rd party plugin style sheet here.
+//---------------------------------------------------------
+@import "framework/ui/app.theme.custom";
+
+:root {
+    --base-font-size: 14px;
+    --widget-padding: 4px;
+    --widget-toolbar-height: 41px;
+}

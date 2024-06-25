@@ -1,0 +1,7 @@
+<o3-context-pane-field [label]="label" class="wide">
+    <div *ngIf="hasData()" class="visualization" style="margin: 0px -10px -10px -10px; width: calc(100% + 20px)">
+        <o3-time-series-chart [configExt]="chartExt" [range]="range" [showSources]="true"
+                              [zoomable]="false" [noVerticalPadding]="true"></o3-time-series-chart>
+    </div>
+</o3-context-pane-field>
+

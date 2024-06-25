@@ -1,0 +1,9 @@
+$font-size: 14px;
+$font-family: "Open Sans", "Helvetica Neue", sans-serif;
+$breadcrumb-divider: url("data:image/svg+xml;charset=utf8,%3Csvg fill='%23FFFFFF' fill-opacity='0.54' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E") !default;
+
+// responsive breakpoints
+$sm: 600px;
+$md: 960px;
+$lg: 1280px;
+$xl: 1410px;

@@ -1,0 +1,77 @@
+<section class="bs page-content">
+
+    <o3-tab-group>
+
+        <o3-tab-action label="Update" priority="primary" type="submit" [form]="alertForm" [disabled]="!alertForm.valid || pristine"></o3-tab-action>
+        <o3-tab-action label="Close" priority="secondary" (click)="exit()" *ngIf="pristine"></o3-tab-action>
+        <o3-tab-action label="Cancel" priority="secondary" (click)="cancel()" *ngIf="!pristine"></o3-tab-action>
+        <o3-tab-action label="Go to Context" priority="secondary" *ngIf="canNavigateTo()" (click)="navigateTo()"></o3-tab-action>
+
+        <o3-tab label="Alert Details">
+            <o3-tab-action label="Mute Alert" priority="tertiary" *ngIf="canMute" (click)="muteAlert()"></o3-tab-action>
+            <o3-tab-action label="Unmute Alert" priority="tertiary" *ngIf="canUnmute" (click)="unmuteAlert()"></o3-tab-action>
+            <o3-tab-action label="Resolve Alert" priority="tertiary" *ngIf="canResolve" (click)="resolveAlert()"></o3-tab-action>
+            <o3-tab-action label="Close Alert" priority="tertiary" *ngIf="canClose" (click)="closeAlert()"></o3-tab-action>
+
+            <form (ngSubmit)="save()" #alertForm="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-form-field>
+                                    <o3-select [o3LocationSelector]="true" enableNavigation name="locationName" placeholder="Location" readonly [multiSelect]="false"
+                                               [ngModel]="alertLocation?.model?.sysId">
+                                    </o3-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Last Occurred" [value]="((occurredDate|o3LongDate) || 'No Date Specified')" name="dateOccurred"
+                                           readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-2">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Alert Status" [value]="alertData?.typedModel.status" name="alertStatus" readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-5">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Alert Type" [value]="(alertData.getDisplayType() | async)" name="alertTypeName"
+                                           readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-2">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Alert Severity" [value]="(alertSeverityLabel || 'No Alert Severity Specified')" name="alertSeverityName"
+                                           readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Alert Summary" [(ngModel)]="alertData?.model.description" name="description">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </o3-tab>
+
+        <o3-tab label="Notes">
+            <mat-form-field class="o3-textarea-border o3-page-color-border">
+                <textarea matInput type="text" placeholder="Notes" rows="20" [(ngModel)]="alertData.model.extendedDescription" name="extendedDescription"></textarea>
+            </mat-form-field>
+        </o3-tab>
+
+        <o3-tab label="History">
+            <o3-timeline *cdkPortal [history]="history" [showLinks]="false"></o3-timeline>
+        </o3-tab>
+
+    </o3-tab-group>
+
+</section>

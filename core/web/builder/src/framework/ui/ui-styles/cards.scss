@@ -1,0 +1,393 @@
+@import "../app.variables.scss";
+
+@mixin cards($theme) {
+    // mapped colors from theme
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // Material Utilities
+    //----------------------------------
+    .justify-start {
+        // justify a single item on the left when placed inside an actions panel
+        margin-right: auto !important;
+    }
+
+    // Cards
+    //----------------------------------
+    .mat-card {
+        padding: 0;
+
+        &.no-content-padding > .mat-card-content {
+            padding: 0px !important;
+        }
+
+        $default-card-padding: 8px 12px;
+
+        .o3-default-card-padding {
+            padding: $default-card-padding !important;
+        }
+
+        .mat-card-title {
+            border-bottom: 1px solid #EAEAEA;
+            padding: $default-card-padding;
+            margin-bottom: 0;
+            font-size: 18px;
+            text-transform: uppercase;
+
+            i.o3 {
+                font-size: 20px;
+                margin-right: 5px;
+            }
+
+            > .mat-button {
+                height: 40px;
+            }
+        }
+
+        .mat-card-subtitle {
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+        .mat-action-row {
+            padding: $default-card-padding;
+        }
+
+        .mat-card-content {
+            padding: $default-card-padding;
+            margin-bottom: 0;
+
+            .mat-form-field-prefix,
+            .mat-form-field-suffix {
+                button.mat-icon-button {
+                    top: .84375em; // Match form-field padding
+                    width: 2em;
+                    height: 2em;
+                    padding: 0;
+                    line-height: 2em;
+                }
+            }
+
+            .mat-tab-header {
+                background-color: transparent;
+
+                .mat-tab-link.active,
+                .mat-tab-label.mat-tab-label-active {
+                    box-shadow: none;
+                }
+
+                .mat-tab-list .mat-ink-bar {
+                    top: auto;
+                    bottom: 0;
+                }
+            }
+
+            @media only screen and (max-width: $sm) {
+                overflow: auto;
+
+                .mat-tab-header {
+                    display: none;
+                }
+            }
+        }
+
+        .mat-card-filters {
+            margin-bottom: 8px;
+            padding: $default-card-padding;
+        }
+
+        .mat-select {
+            min-width: 100%;
+        }
+
+        .mat-card-actions {
+            margin: 0;
+            padding: $default-card-padding;
+            border-top: 1px solid #EAEAEA;
+        }
+
+        .mat-card-actions.secondary-fields {
+            background-color: #fafafa;
+            border-top: none;
+            border-bottom: 1px solid #eaeaea;
+            text-transform: uppercase;
+            font-size: 14px;
+            height: unset;
+
+            label {
+                margin-bottom: 0;
+                color: #8A8A8A;
+                text-transform: inherit;
+
+                span {
+                    color: rgba(0, 0, 0, 0.85);
+                    margin-left: 15px;
+                }
+            }
+
+            @media only screen and (max-width: $sm) {
+                text-align: center;
+            }
+        }
+
+        .informative {
+            display: inline-block;
+
+            .o3-tooltip-wrapper {
+                height: 45px;
+                display: flex;
+                align-items: center;
+
+                > div {
+                    font-size: 16px;
+                    color: rgba(0, 0, 0, 0.87);
+                }
+            }
+        }
+
+        @media only screen and (min-width: $sm) {
+            .mat-card-actions,
+            .actions-container {
+                height: 61px;
+                box-sizing: border-box;
+
+                button {
+                    margin-right: 8px !important;
+                }
+
+                .o3-tooltip-wrapper:last-child button {
+                    margin-right: 0px !important;
+                }
+
+                .tab-group-tertiary {
+                    > button:last-child, .o3-tooltip-wrapper:last-child button {
+                        margin-right: 2px;
+                    }
+                }
+
+                &.full-mode {
+                    display: block;
+                }
+
+                &.icon-mode {
+                    display: none;
+                }
+            }
+        }
+
+        @media only screen and (max-width: $sm) {
+            .mat-card-actions,
+            .actions-container {
+                padding: 13px 0 0 0;
+
+
+                > div {
+                    display: block;
+                    width: 100%;
+                }
+
+                button {
+                    box-sizing: border-box;
+                    margin-bottom: 16px !important;
+                    margin-left: 16px !important;
+                    margin-right: 16px !important;
+                    width: calc(100% - 32px);
+                }
+
+                &.full-mode {
+                    display: none;
+                }
+
+                &.icon-mode {
+                    height: 61px;
+                    padding: 8px !important;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    button {
+                        box-sizing: border-box;
+                        margin: 8px !important;
+                        width: unset;
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-width: $sm) {
+            max-height: 100%;
+
+            .mat-card-title {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .mat-card-subtitle {
+                margin-bottom: 0px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .mat-card-content {
+                padding: 13px;
+            }
+
+            .mat-card-filters {
+                padding: 13px;
+            }
+
+            .mat-card-actions {
+                margin: 0;
+            }
+        }
+    }
+    .mat-card.o3-flex {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        mat-card-content {
+            min-height: 0px;
+            position: relative;
+            flex-grow: 1;
+            overflow: auto;
+        }
+
+        &.fill-height {
+            mat-card-content {
+                flex-basis: 0;
+            }
+        }
+    }
+
+    // Expansion Panels
+    //----------------------------------
+    .mat-expansion-panel {
+
+        .mat-expansion-panel-header {
+
+            .mat-expansion-panel-header-title {
+                display: block;
+                flex-grow: initial;
+                width: 30%;
+
+                &:only-child {
+                    width: 100%;
+                }
+
+                & + .mat-expansion-panel-header-description {
+                    width: 70%;
+                }
+            }
+
+            .mat-expansion-panel-header-description {
+                display: block;
+                flex-grow: initial;
+            }
+
+            @media only screen and (max-width: $sm) {
+                height: unset !important;
+                min-height: 48px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+
+                .mat-content {
+                    display: block;
+
+                    .mat-expansion-panel-header-title {
+                        margin-bottom: 12px;
+                        padding-right: 16px;
+                        width: 100%;
+
+                        & + .mat-expansion-panel-header-description {
+                            padding-right: 16px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.title-as-header {
+
+            & > .mat-expansion-panel-header {
+
+                .mat-expansion-panel-header-title {
+                    text-transform: uppercase;
+                }
+
+                .mat-expansion-panel-header-description {
+                    display: block;
+                    text-align: right;
+                    padding-right: 10px;
+                }
+
+                @media only screen and (max-width: $sm) {
+
+                    .mat-content {
+
+                        .mat-expansion-panel-header-title {
+                            border-bottom: none;
+                            margin-bottom: 12px;
+                            padding-right: 16px;
+                            width: 100%;
+
+                            & + .mat-expansion-panel-header-description {
+                                border-bottom: none;
+                                padding-right: 16px;
+                                text-align: left;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.mat-expanded {
+
+                & > .mat-expansion-panel-header {
+
+                    .mat-expansion-panel-header-title {
+                        border-bottom: 1px solid #EAEAEA;
+                        margin-top: -5px;
+                        padding-bottom: 5px;
+                    }
+
+                    .mat-expansion-panel-header-description {
+                        display: none;
+                    }
+
+                    &.display-expanded {
+                        .mat-expansion-panel-header-title {
+                            margin-right: 0;
+                        }
+
+                        .mat-expansion-panel-header-description {
+                            display: block;
+                            border-bottom: 1px solid #EAEAEA;
+                            margin-top: -5px;
+                            padding-bottom: 5px;
+                        }
+                    }
+
+                    @media only screen and (max-width: $sm) {
+
+                        .mat-content {
+
+                            .mat-expansion-panel-header-title {
+                                border-bottom: none;
+
+                                & + .mat-expansion-panel-header-description {
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

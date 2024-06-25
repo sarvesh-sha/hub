@@ -1,0 +1,22 @@
+<o3-tab-subsection *ngIf="withFiltering" [withFiltering]="withFiltering" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable [table]="table" (onShowingContextMenu)="contextMenu($event)">
+    <o3-datatable-column id="name" sortId="!name" prop="extended.model.name" name="Name" [grow]="2">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="physicalName" sortId="physicalName" prop="extended.model.physicalName" name="Physical Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="logicalName" sortId="logicalName" prop="extended.model.logicalName" name="Logical Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="normalizedName" sortId="normalizedName" prop="extended.model.normalizedName" name="Normalized Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="displayName" sortId="displayName" prop="extended.model.displayName" name="Display Name" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="identifier" sortId="identityDescriptor" prop="identityDescriptor" name="Identifier"></o3-datatable-column>
+    <o3-datatable-column id="transport" sortId="transportDescriptor" prop="transportDescriptor" name="Transport" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="isReachable" prop="extended.model.reachable" name="Is Reachable" format="YESNO"></o3-datatable-column>
+    <o3-datatable-column id="product" sortId="productName" prop="productName" name="Product" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="modelNumber" sortId="modelName" prop="modelName" name="Model #" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="manufacturer" sortId="manufacturerName" prop="manufacturerName" name="Manufacturer" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="location" sortId="location" prop="location.model.name" secondaryProp="locationPath" name="Location">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="creationDate" sortId="createdOn" prop="extended.model.createdOn" name="Creation Date" format="DATE" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="updateDate" sortId="updatedOn" prop="extended.model.updatedOn" name="Update Date" format="DATE" [enabled]="false"></o3-datatable-column>
+</o3-datatable>

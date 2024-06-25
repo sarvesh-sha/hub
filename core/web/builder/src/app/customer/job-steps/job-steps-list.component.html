@@ -1,0 +1,12 @@
+﻿<o3-datatable [table]="table" [showRowNumbers]="false">
+    <o3-datatable-column id="name" prop="model.name" name="Name"></o3-datatable-column>
+    <o3-datatable-column id="status" prop="model.status" name="Status" [width]="120" [maxWidth]="120" [minWidth]="110"></o3-datatable-column>
+
+    <o3-datatable-column id="createdOn" prop="model.createdOn" name="Started" [width]="90" [maxWidth]="90" format="DATE"></o3-datatable-column>
+
+    <o3-datatable-column id="duration" name="Duration" format="TEMPLATE" [width]="140" [maxWidth]="140">
+        <ng-container *o3DatatableCellTemplate="let row">
+            <span>{{row.model.updatedOn|o3Elapsed: row.model.createdOn}}</span>
+        </ng-container>
+    </o3-datatable-column>
+</o3-datatable>

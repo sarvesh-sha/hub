@@ -1,0 +1,11 @@
+########################
+# Builder notification #
+########################
+
+Job '${param.JOB} - ${param.JOB_ID}' started on ${param.TIME} failed!!
+
+Link: ${param.URL}
+
+The job was building branch '${param.BRANCH}', commit '${param.COMMIT}'
+
+Optio3

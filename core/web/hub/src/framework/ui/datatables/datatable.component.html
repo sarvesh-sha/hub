@@ -1,0 +1,260 @@
+<div #topContainer
+     class="o3-datatable mat-elevation-z2"
+     [class.o3-datatable--resizing]="resizing"
+     [class.flexible-rows]="!constantRowLayout"
+     [class.compact]="compact">
+    <div class="table-container">
+        <mat-table
+            *ngIf="columns"
+            [dataSource]="getDataSource()"
+            [ngClass]="tableClass"
+            [class.expandable-rows]="hasDetails"
+            [class.clickable-rows]="showViewIcons || clickableRows"
+            [class.o3-datatable--showing-grippers]="showGrippers"
+            matSort matSortDisableClear
+            [matSortActive]="activeSort"
+            [matSortDirection]="activeSortDirection"
+            (matSortChange)="onSort($event)"
+            multiTemplateDataRows>
+
+            <!-- Dynamic Columns -->
+            <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.id">
+                <!-- Sortable header -->
+                <ng-container *ngIf="column.sortId">
+                    <mat-header-cell *matHeaderCellDef
+                                     [ngStyle]="getSizingStyling(column)"
+                                     [start]="column.sortStart"
+                                     [mat-sort-header]="column.id"
+                                     (mouseover)="setMouseoverHeader(true)" (mouseleave)="setMouseoverHeader(false)"
+                                     (contextmenu)="onTableContextMenu($event, null, column.id)">
+                        <div *ngIf="hasGripper(column)" class="gripper" cdkDrag cdkDragLockAxis="x"
+                             (mousedown)="setCursorDragStart($event)" (click)="$event.stopPropagation()"
+                             (cdkDragStarted)="resizePrep(column)" [cdkDragConstrainPosition]="resizeFn" (cdkDragEnded)="resizeComplete($event)">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span *ngIf="column.name" class="cell">{{column.name}}</span>
+                    </mat-header-cell>
+                </ng-container>
+
+                <!-- Regular header -->
+                <ng-container *ngIf="!column.sortId">
+                    <mat-header-cell *matHeaderCellDef
+                                     [ngStyle]="getSizingStyling(column)"
+                                     (mouseover)="setMouseoverHeader(true)" (mouseleave)="setMouseoverHeader(false)"
+                                     (contextmenu)="onTableContextMenu($event, null, column.id)">
+                        <div *ngIf="hasGripper(column)" class="gripper" cdkDrag cdkDragLockAxis="x"
+                             (mousedown)="setCursorDragStart($event)" (cdkDragStarted)="resizePrep(column)" [cdkDragConstrainPosition]="resizeFn" (cdkDragEnded)="resizeComplete($event)"
+                             (click)="$event.stopPropagation()">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="cell" *ngIf="column.name && !column.sortId">{{column.name}}</span>
+                        <ng-container *ngIf="column.headerTemplate">
+                            <ng-container *ngTemplateOutlet="column.headerTemplate.templateRef"></ng-container>
+                        </ng-container>
+                    </mat-header-cell>
+                </ng-container>
+
+                <mat-cell *matCellDef="let row;"
+                          [ngStyle]="getSizingStyling(column)"
+                          (click)="rowClicked(row, column.name, column.id)"
+                          (contextmenu)="onTableContextMenu($event, row, column.id)">
+                    <span class="mobile-label">{{column.name}}</span>
+                    <ng-container *ngIf="column.isValue">
+                        <o3-datatable-subtext-cell
+                            [primary]="getValue(row, column)"
+                            [secondary]="getValue(row, column, 'secondaryProp')"
+                            [matTooltip]="getValue(row, column, 'tooltip') || getValue(row, column)"
+                            matTooltipShowDelay="500"
+                            [matTooltipDisabled]="column.hideTooltip">
+                        </o3-datatable-subtext-cell>
+                    </ng-container>
+                    <ng-container *ngIf="column.isNumber">
+                        <span class="selectable">{{getValue(row, column) | number}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="column.isPercent">
+                        <span class="selectable">{{getValue(row, column) | percent:'1.0-1'}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="column.isDate">
+                        <span class="selectable">
+                            <span matTooltip="{{getValue(row, column)|o3ShortDate}} {{getValue(row, column)|o3ShortTime}}"
+                                  matTooltipShowDelay="500" [matTooltipDisabled]="column.hideTooltip">{{getValue(row, column)|o3ShortDate}}</span>
+                            <small>{{getValue(row, column)|o3ShortTime}}</small>
+                        </span>
+                    </ng-container>
+                    <ng-container *ngIf="column.isDateLong">
+                        <span class="selectable">
+                            <span matTooltip="{{getValue(row, column)|o3ShortDate}} {{getValue(row, column)|o3Time}}"
+                                  matTooltipShowDelay="500" [matTooltipDisabled]="column.hideTooltip">{{getValue(row, column)|o3ShortDate}}</span>
+                            <small>{{getValue(row, column)|o3Time}}</small>
+                        </span>
+                    </ng-container>
+                    <ng-container *ngIf="column.isYesNo">
+                        <span class="selectable">{{getValue(row, column) ? "Yes" : "No"}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="column.isFormat">
+                        <span class="selectable" matTooltip="{{column.tooltip || column.getFormattedValue(getValue(row, column))}}"
+                              matTooltipShowDelay="500" [matTooltipDisabled]="column.hideTooltip">
+                            <pre>{{column.getFormattedValue(getValue(row, column))}}</pre>
+                        </span>
+                    </ng-container>
+                    <ng-container *ngIf="column.isImage">
+                        <o3-safe-image [data]="getValue(row, column, 'image')"></o3-safe-image>
+                    </ng-container>
+                    <ng-container *ngIf="column.isTemplate">
+                        <span class="selectable">
+                            <ng-container *ngTemplateOutlet="column.template?.templateRef; context: { value: getValue(row, column), row: row, $implicit: row }"></ng-container>
+                        </span>
+                    </ng-container>
+                    <ng-container *ngFor="let suffix of column.suffixes">
+                        <span class="o3-column-suffix" *ngIf="!suffix.hide" [class.hover-only]="suffix.hoverOnly">
+                            <ng-container *ngTemplateOutlet="suffix.templateRef; context: { value: getValue(row, column), row: row, $implicit: row }"></ng-container>
+                        </span>
+                    </ng-container>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Expand toggle column -->
+            <ng-container matColumnDef="expandToggle" *ngIf="table?.expansionManager">
+                <mat-header-cell *matHeaderCellDef (mouseover)="setMouseoverHeader(true)" (mouseleave)="setMouseoverHeader(false)">
+                    <div class="clickable o3-datatable-icon" *ngIf="table.expansionManager.showExpandAll && !table.expansionManager.single && table.count > 0">
+                        <mat-icon *ngIf="table.expansionManager.indeterminateExpanded || table.expansionManager.allExpanded"
+                                  (click)="table.expansionManager.allExpanded = false">
+                            unfold_less
+                        </mat-icon>
+                        <mat-icon *ngIf="!table.expansionManager.indeterminateExpanded && !table.expansionManager.allExpanded"
+                                  (click)="table.expansionManager.allExpanded = true">
+                            unfold_more
+                        </mat-icon>
+                    </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" (click)="table.expansionManager.itemExpanded(row, null)" (contextmenu)="onTableContextMenu($event, row, 'expandToggle')">
+                    <div class="collapse-right text-center o3-datatable-icon" *ngIf="table.expansionManager.canExpand(row)">
+                        <mat-icon *ngIf="!table.expansionManager.isExpanded(row)">expand_more</mat-icon>
+                        <mat-icon *ngIf="table.expansionManager.isExpanded(row)">expand_less</mat-icon>
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Number Column -->
+            <ng-container matColumnDef="rowNumber" *ngIf="showRowNumbers">
+                <mat-header-cell *matHeaderCellDef class="hidden-xs-down"
+                                 (mouseover)="setMouseoverHeader(true)" (mouseleave)="setMouseoverHeader(false)" (contextmenu)="onTableContextMenu($event,null, null)">
+                    &nbsp;
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row;" class="hidden-xs-down" (click)="rowClicked(row, ' ', 'rowNumber')" (contextmenu)="onTableContextMenu($event, null, null)">
+                    <div class="text-center">{{row.rowNumber || tableDataSource.filteredData.indexOf(row) + 1}}</div>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Selection column -->
+            <ng-container matColumnDef="selection" *ngIf="table?.selectionManager">
+                <mat-header-cell *matHeaderCellDef (mouseover)="setMouseoverHeader(true)" (mouseleave)="setMouseoverHeader(false)">
+                    <div class="selectable" *ngIf="table.selectionManager.showSelectAll && !table.selectionManager.single">
+                        <mat-checkbox [(ngModel)]="table.selectionManager.allChecked" [(indeterminate)]="table.selectionManager.indeterminateChecked"></mat-checkbox>
+                    </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <span class="selectable">
+                        <ng-container *ngIf="table.selectionManager.single">
+                            <mat-radio-button [checked]="rowChecked(row)" (change)="table.selectionManager.itemChecked(row)"></mat-radio-button>
+                        </ng-container>
+                        <ng-container *ngIf="!table.selectionManager.single">
+                            <mat-checkbox [ngModel]="rowChecked(row)" (change)="table.selectionManager.itemChecked(row)"></mat-checkbox>
+                        </ng-container>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Click column -->
+            <ng-container matColumnDef="viewIcon" *ngIf="showViewIcons">
+                <mat-header-cell *matHeaderCellDef (mouseover)="setMouseoverHeader(true)" (mouseleave)="setMouseoverHeader(false)">&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let row" (click)="rowClicked(row, '', 'viewIcon')" (contextmenu)="onTableContextMenu($event, row, 'viewIcon')">
+                    <div class="collapse-right text-center o3-datatable-icon">
+                        <mat-icon>navigate_next</mat-icon>
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Expanded details Column -->
+            <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let row"
+                          (click)="rowClicked(row, '', 'expandedDetail')">
+                    <div [@detailExpand]="'expanded'"
+                         class="expanded-detail"
+                         *ngIf="isExpanded(row)">
+                        <ng-container *ngTemplateOutlet="details?.templateRef; context: { row: row, $implicit: row }"></ng-container>
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Header row -->
+            <ng-container *ngIf="showHeader">
+                <mat-header-row *matHeaderRowDef="columnIds; sticky: true;"></mat-header-row>
+            </ng-container>
+
+            <!-- Standard row -->
+            <mat-row *matRowDef="let row; columns: columnIds;"
+                     class="standard-row"
+                     [class.expanded-row]="isExpanded(row)"
+                     [class.checked-row]="rowChecked(row)">
+            </mat-row>
+
+            <!-- Expanded details row -->
+            <ng-container *ngIf="hasDetails">
+                <mat-row *matRowDef="let row; columns: ['expandedDetail']"
+                         class="detail-row">
+                </mat-row>
+            </ng-container>
+
+            <ng-container *ngIf="tableDataSource">
+                <div class="mat-row empty-row" *matNoDataRow>
+                    No data matched filter
+                </div>
+            </ng-container>
+        </mat-table>
+    </div>
+    <div class="empty-row" *ngIf="!tableDataSource && getCount() === 0 && !getLoadingIndicator()">
+        {{getMessages()["emptyMessage"]}}
+    </div>
+
+    <div class="footer-row" [ngClass]="tableClass" *ngIf="showFooter">
+        <div class="loading-row" *ngIf="getLoadingIndicator()">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+
+        <div>
+            <span class="total-items">
+                {{getCount()}} {{getMessages()["totalMessage"]}}
+            </span>
+            <span class="footer-warning" *ngIf="hasMessage('warningMessage')" [style.color]="warningColor">
+                {{getMessages()["warningMessage"]}}
+            </span>
+        </div>
+
+        <div class="pages">
+            <mat-paginator [length]="getCount()"
+                           [pageIndex]="getOffset()"
+                           [pageSizeOptions]="[5, 10, 20, 50, 75, 100]"
+                           [hidePageSize]="!enableLimit"
+                           [pageSize]="getLimit()"
+                           showFirstLastButtons
+                           (page)="onPage($event)">
+            </mat-paginator>
+
+            <ng-container *o3MinWidth="600">
+                <button class="clickable" type="button" *ngIf="table?.getTableConfigId() && showConfig" mat-icon-button (click)="tableConfigureToggle()">
+                    <i class="o3 o3-configure"></i>
+                </button>
+            </ng-container>
+        </div>
+    </div>
+
+    <o3-datatable-column-manager (columnsUpdated)="processColumnChanges($event)"></o3-datatable-column-manager>
+
+    <!-- Context Menu -->
+    <span class="o3-context-menu--trigger-wrapper" #contextMenuTriggerWrapper>
+        <o3-context-menu #contextMenu></o3-context-menu>
+    </span>
+</div>

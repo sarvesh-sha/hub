@@ -1,0 +1,25 @@
+<o3-tab-subsection *ngIf="withFiltering" [label]="label" [withFiltering]="withFiltering" [(filterText)]="filterText"></o3-tab-subsection>
+
+<o3-datatable *ngIf="table" [table]="table" (activate)="handleRowClick($event)" (onShowingContextMenu)="contextMenu($event)" [useExpandToggle]="tree" [details]="details">
+    <o3-datatable-column id="name" sortId="!name" [grow]="2" name="Name" prop="extended.model.name">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+        <ng-container *o3DatatableCellSuffix="let row">
+            <o3-datatable-cell-button *ngIf="row.hasWorkflows" icon="flag" matTooltip="Item has associated workflows" (click)="goToWorkflows(row)"></o3-datatable-cell-button>
+        </ng-container>
+    </o3-datatable-column>
+    <o3-datatable-column id="equipmentClass" sortId="equipmentClassId" [grow]="1.5" prop="equipmentClass" name="Equipment Class">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="numChildEquipment" prop="numChildEquipment" name="# Child Equipment"></o3-datatable-column>
+    <o3-datatable-column id="numControlPoints" prop="numChildControlPoints" name="# Control Points"></o3-datatable-column>
+    <o3-datatable-column id="location" sortId="location" prop="location.model.name" secondaryProp="locationPath" name="Location">
+        <o3-datatable-cell-button *o3DatatableCellSuffix="let row; hoverOnly: true; hide: !isCRE" icon="more_vert" [contextMenuRow]="row"></o3-datatable-cell-button>
+    </o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" sortStart="desc" prop="extended.model.createdOn" name="Creation Date" format="DATE"></o3-datatable-column>
+    <o3-datatable-column id="lastUpdated" sortId="updatedOn" sortStart="desc" prop="extended.model.updatedOn" name="Last Updated" format="DATE" [enabled]="false"></o3-datatable-column>
+    <o3-datatable-column id="sysId" prop="extended.model.sysId" name="GUID" [enabled]="false"></o3-datatable-column>
+</o3-datatable>
+
+<ng-template o3-datatable-details-template let-outerRow="row" #detailsTemplate="o3DatatableDetails">
+    <o3-equipment-list [parent]="outerRow.extended.model" style="width: 100%;" [tree]="tree"></o3-equipment-list>
+</ng-template>

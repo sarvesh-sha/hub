@@ -1,0 +1,9 @@
+####################
+# Hub notification #
+####################
+
+Successfully booted image '${param.BUILD_ID}' on host '${param.HOST_ID}', at ${param.TIME}.
+
+Site address: ${param.REST_CONNECTION_URL}
+
+Optio3

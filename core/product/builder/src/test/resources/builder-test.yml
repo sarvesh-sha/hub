@@ -1,0 +1,88 @@
+##########################################
+#
+# Database settings:
+#
+
+database:
+
+  enableEvents: true
+
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+
+  # the JDBC URL (use DB2 mode for 'offset x rows' support)
+  url: jdbc:h2:mem:builder_db_test;MODE=DB2;IGNORECASE=TRUE
+#;TRACE_LEVEL_SYSTEM_OUT=3;TRACE_LEVEL_FILE=3
+
+#  driverClass: org.mariadb.jdbc.Driver
+#  url: jdbc:mysql://localhost:3306/builder_db_test?createDatabaseIfNotExist=true
+#  user: root
+#  password: 
+
+  # For testing, don't use Liquibase by default
+  skipMigration: true
+
+##########################################
+#
+# Logging settings:
+#
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+  
+#  # Logger-specific levels.
+#  loggers:
+#
+# Uncomment to see the queries that Hibernate sends to the database. 
+#    "org.hibernate.SQL": DEBUG
+# Uncomment to see the parameters as well. 
+#    "org.hibernate.type": TRACE
+    
+#    # This logger is very chatty in its default settings.
+#    "org.hibernate.engine.internal.StatisticalLoggingSessionEventListener": WARN
+   
+##########################################
+#
+# Application Server settings:
+#
+
+server:
+  rootPath: /api/*
+  applicationConnectors:
+    - type: http
+      port: 9998
+  adminConnectors:
+    - type: http
+      port: 9999
+  requestLog:
+    type: optio3
+
+##########################################
+
+host:
+  sysId: TestId
+  domainName: localhost
+
+scratchDirectory: ${env.HOME}/optio3.test/builder.tmp
+
+managedDirectoriesRoot: ${env.HOME}/optio3.test/builder.db
+
+masterEncryptionKey: JustATest
+
+enableMessageBusOverUDP: false
+
+####
+
+developerSettings:
+  unitTestMode: true
+
+  useLocalMaven: true
+#  useLocalhostAsNexus: true
+
+#  sourceRepo: ${env.HOME}/git/core
+
+  disableImagePruning: true
+
+  disableEmails: true

@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <p>Which alert types should be included?</p>
+    <o3-control-option-list #test_alerts [options]="alertTypeOptions" [single]="false" [(selection)]="alertTypeSelection"
+                            (selectionChangeSummary)="onOptionChange($event)"></o3-control-option-list>
+</ng-template>

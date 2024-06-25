@@ -1,0 +1,97 @@
+<mat-menu #newFieldMenu="matMenu">
+    <button mat-menu-item (click)="paste()" *ngIf="canPaste">Paste</button>
+    <button mat-menu-item (click)="beginWidgetAdd()">Add widget</button>
+    <button mat-menu-item (click)="addRow()" *ngIf="canAddRow">Add row</button>
+    <button mat-menu-item (click)="addColumn()" *ngIf="canAddColumn">Add column</button>
+</mat-menu>
+
+<section class="report-layout bs">
+    <section class="report" *ngIf="container">
+        <section class="report-section" [class.o3-report-builder--dragging]="dragging">
+            <span class="report-actions">
+                <o3-undo-redo [stateHistory]="stateHistory" disableRipple></o3-undo-redo>
+            </span>
+            <ng-container *ngFor="let child of container.children; index as i">
+                <button class="o3-custom-report--button add-new top-level o3-no-ripple" disableRipple mat-icon-button
+                        [matMenuTriggerFor]="newFieldMenu" (click)="addLayoutPrep(container, undefined, i)">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </button>
+                <div class="drop-area top-level" cdkDropList [id]="getDropListId(child)"
+                     [cdkDropListData]="container" [cdkDropListConnectedTo]="connectedDropLists"
+                     (cdkDropListDropped)="dropBefore($event, child)">
+                </div>
+                <div class="layout-row">
+                    <ng-template [ngTemplateOutlet]="layoutTemplate" [ngTemplateOutletContext]="{parent: container, layout: child}"></ng-template>
+                </div>
+            </ng-container>
+
+            <button class="o3-custom-report--button add-new top-level o3-no-ripple" disableRipple mat-icon-button
+                    [matMenuTriggerFor]="newFieldMenu" #trigger="matMenuTrigger" (click)="addLayoutPrep(container)">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </button>
+            <div class="drop-area top-level" [class.only]="container.children.length == 0" [id]="getDropListId(container) + '-inner'"
+                 cdkDropList [cdkDropListData]="container" [cdkDropListConnectedTo]="connectedDropLists" (cdkDropListDropped)="dropBefore($event, null)">
+            </div>
+        </section>
+    </section>
+</section>
+
+<ng-template #layoutTemplate let-parent="parent" let-layout="layout" let-configuringColumnWidths="configuringColumnWidths">
+    <div class="self-drop-area" cdkDropList [cdkDropListData]="parent" [cdkDropListConnectedTo]="connectedDropLists">
+        <div class="item-frame" [class.column-like]="!asColumn(parent)"
+             cdkDrag [cdkDragData]="layout" [cdkDragDisabled]="!parent || configuringColumnWidths"
+             (cdkDragStarted)="dragStarted(layout)" (cdkDragEnded)="dragEnded()">
+            <ng-container *ngIf="!asItem(layout)">
+                <div class="inner-container" [class.layout-row]="!!asRow(layout)" [class.layout-col]="!!asColumn(layout)">
+                    <ng-container *ngFor="let child of layout.children; let i = index">
+                        <div class="drop-area" cdkDropList [id]="getDropListId(child)"
+                             [cdkDropListData]="layout" [cdkDropListConnectedTo]="connectedDropLists"
+                             (cdkDropListDropped)="dropBefore($event, child)">
+                        </div>
+                        <div [class.layout-col]="!!asRow(layout)" [class.layout-row]="!!asColumn(layout)" [style.flex-grow]="child.widthRatio || 1">
+                            <ng-template [ngTemplateOutlet]="layoutTemplate"
+                                         [ngTemplateOutletContext]="{ parent: layout, layout: child, configuringColumnWidths: configuringColumnWidths }"></ng-template>
+                        </div>
+                    </ng-container>
+                    <div class="drop-area" [class.only]="layout.children.length == 0" [id]="getDropListId(layout) + '-inner'"
+                         cdkDropList [cdkDropListData]="layout"
+                         [cdkDropListConnectedTo]="connectedDropLists"
+                         (cdkDropListDropped)="dropBefore($event, null)">
+                        <span>Empty {{getLayoutString(layout)}}</span>
+                    </div>
+                </div>
+            </ng-container>
+
+            <o3-custom-report-builder-field *ngIf="asItem(layout) as item" [model]="models.get(item.element)"
+                                            [range]="rangeExt.model" [element]="item.element"></o3-custom-report-builder-field>
+
+            <div *cdkDragPreview>{{getPreviewText(layout)}}</div>
+            <div class="o3-custom-report-builder--button-row" *ngIf="!configuringColumnWidths">
+                <button class="o3-custom-report--button copy-item o3-no-ripple" disableRipple mat-icon-button [matTooltip]="getCopyTooltip(layout)" (click)="copy(layout)">
+                    <mat-icon>content_copy</mat-icon>
+                </button>
+                <button *ngIf="isEditable(layout)" class="o3-custom-report--button item-edit o3-no-ripple" disableRipple mat-icon-button
+                        [matTooltip]="editableTooltip(layout)" (click)="editLayout(parent, layout)">
+                    <i class="o3 o3-configure" aria-hidden="true"></i>
+                </button>
+                <button class="o3-custom-report--button remove o3-no-ripple" disableRipple mat-icon-button
+                        [matTooltip]="getRemoveTooltip(layout)" (click)="removeLayout(parent, layout)">
+                    <i class="o3 o3-delete" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <button *ngIf="!configuringColumnWidths && !isLineBreak(layout)" class="o3-custom-report--button add-new o3-no-ripple" disableRipple mat-icon-button
+                    [matTooltip]="getAddTooltip(layout)" [matMenuTriggerFor]="newFieldMenu" (click)="addLayoutPrep(layout, parent)">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<o3-overlay [config]="editItemConfig">
+    <o3-custom-report-field-wizard *cdkPortal [model]="editItem" [withPageBreak]="addOrigin == data.model.container"
+                                   [graphs]="graphs" [units]="units" [range]="rangeExt.model"
+                                   (submitted)="updateItem($event)" (cancelled)="itemConfigOverlay.toggleOverlay()"></o3-custom-report-field-wizard>
+</o3-overlay>
+
+<o3-custom-report-builder-row-configurer [layoutTemplate]="layoutTemplate" (rowUpdated)="rowUpdated()"></o3-custom-report-builder-row-configurer>

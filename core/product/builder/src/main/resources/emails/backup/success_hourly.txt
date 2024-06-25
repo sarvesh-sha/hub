@@ -1,0 +1,11 @@
+########################
+# Builder notification #
+########################
+
+UPDATE!
+
+Resumed Hourly Backup of Service '${param.SERVICE}' for Customer '${param.CUSTOMER}'.
+
+Details: https://builder.dev.optio3.io/#/customers/item/${param.CUSTOMER_SYSID}/service/${param.SERVICE_SYSID}
+
+Optio3

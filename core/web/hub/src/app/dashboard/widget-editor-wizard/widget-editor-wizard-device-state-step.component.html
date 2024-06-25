@@ -1,0 +1,5 @@
+<ng-template o3-wizard-step-template>
+    <p>Which device states should be included?</p>
+    <o3-control-option-list [options]="deviceStateOptions" [single]="false" [(selection)]="deviceStateSelection"
+                            (selectionChangeSummary)="onOptionChange($event)"></o3-control-option-list>
+</ng-template>

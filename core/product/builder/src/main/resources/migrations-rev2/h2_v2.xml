@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-1">
+        <dropForeignKeyConstraint baseTableName="CUSTOMER_SERVICE_ROLE" constraintName="CUSTOMER_SERVICE_ROLE__CUSTOMER_SERVICE__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-2">
+        <dropForeignKeyConstraint baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKE5J36X6R3WJP7VQL4B67Y0535"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropForeignKeyConstraint baseTableName="SERVICE_TO_IMAGE_V2" constraintName="FKI9FIH11AYHVJFRWPVOQVCDSBY"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropForeignKeyConstraint baseTableName="BACKUP_TO_IMAGE_V2" constraintName="FKLMQU70R6VENY60S5OBSY3HTDU"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropForeignKeyConstraint baseTableName="SERVICE_TO_IMAGE_V2" constraintName="FKRC1OH47VA97XLS8S99KRKIETR"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropForeignKeyConstraint baseTableName="ROLE_TO_HOST_V2" constraintName="ROLE_TO_HOST__HOST__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropForeignKeyConstraint baseTableName="ROLE_TO_HOST_V2" constraintName="ROLE_TO_HOST__ROLE__FK"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <dropTable tableName="BACKUP_TO_IMAGE_V2"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropTable tableName="CUSTOMER_SERVICE_ROLE"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropTable tableName="ROLE_TO_HOST_V2"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-11">
+        <dropTable tableName="SERVICE_TO_IMAGE_V2"/>
+    </changeSet>
+</databaseChangeLog>

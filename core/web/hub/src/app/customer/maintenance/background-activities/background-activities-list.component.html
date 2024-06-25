@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form class="row mb-2" name="filterForm">
+            <div class="col-sm-8">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Filter List..." name="filterInput" [(ngModel)]="filterText">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field>
+                    <o3-select placeholder="Status"
+                               defaultValueDescription="Select Status"
+                               [multiSelect]="false"
+                               [singleClick]="true"
+                               [options]="states"
+                               [(ngModel)]="filterStatus"
+                               [ngModelOptions]="{standalone: true}">
+                    </o3-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</div>
+
+<o3-datatable [table]="table">
+    <o3-datatable-column id="title" sortId="title" prop="model.title" name="Title"></o3-datatable-column>
+    <o3-datatable-column id="status" sortId="status" prop="model.status" name="Status" [width]="115" [maxWidth]="200"></o3-datatable-column>
+    <o3-datatable-column id="nextActivation" sortId="!-nextActivation" prop="model.nextActivation" name="Next Activation" [width]="150" [maxWidth]="150" format="DATELONG"></o3-datatable-column>
+    <o3-datatable-column id="lastActivation" sortId="lastActivation" prop="model.lastActivation" name="Last Activation" [width]="150" [maxWidth]="150" format="DATELONG"></o3-datatable-column>
+    <o3-datatable-column id="updatedOn" prop="model.updatedOn" name="Last Updated" [width]="90" [maxWidth]="90" [minWidth]="90" format="DATELONG"></o3-datatable-column>
+    <o3-datatable-column id="createdOn" sortId="createdOn" prop="model.createdOn" name="Creation Date" [width]="90" [maxWidth]="90" [minWidth]="90" format="DATELONG"></o3-datatable-column>
+</o3-datatable>

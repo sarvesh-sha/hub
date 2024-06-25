@@ -1,0 +1,91 @@
+<div class="component-container" [class.fit-mode]="!isFixed">
+    <div *ngIf="tableDisplay" class="component-display" [style.minHeight.px]="minChartHeight">
+        <o3-interactive-tree [table]="tableDisplay" (rows)="onRows($event)"
+                             (minHeightChanged)="onHeight($event)" (widthChanged)="onWidth($event)"></o3-interactive-tree>
+        <div class="visualizations-container" [style.max-width]="rowsMaxWidthCss">
+            <div class="header-space">
+                <o3-chart-timeline [timeRange]="chartRange" (zoomStateGenerated)="zoomState = $event"
+                                   [offsetLeft]="timelinePadding" [offsetRight]="timelinePadding"></o3-chart-timeline>
+            </div>
+
+            <o3-skeleton-screen [loading]="!!numRowsLoading" [numRows]="numRowsLoading" [viewWindow]="viewWindow" [fadeInOut]="true">
+                <div class="rows-container" #rowsContainer>
+                    <div class="row-container" #rowElement *ngFor="let row of rows; let i = index; trackBy: rowId" [ngStyle]="row.styles">
+                        <div class="row-chart" [class.hidden]="!row.interactiveRow.displayContent" (click)="handleRowClick(row)">
+                            <o3-skeleton-screen [loading]="!row.fetched" [inView]="row.inView" [fadeInOut]="true">
+                                <div class="row-chart-inner" [class.hidden]="!row.isValid || !row.inView">
+                                    <o3-time-series-chart
+                                        *ngIf="bindingInfoLookup[row.leafNodeId].isTrendline"
+                                        [configExt]="row.lineConfigExt"
+                                        [range]="range"
+                                        [externalZoomState]="zoomState"
+                                        [noVerticalPadding]="true"
+                                        [zoomable]="false"
+                                        [hideAxes]="true"
+                                        (startedFetchingData)="startedFetchingData.emit()"
+                                        (stoppedFetchingData)="rowFetched(i, row)">
+                                    </o3-time-series-chart>
+                                    <div *ngIf="bindingInfoLookup[row.leafNodeId].isHeatmap" class="heatmap-container" [style.padding]="heatmapPadding">
+                                        <o3-heatmap
+                                            [sources]="row.heatmapSources"
+                                            [dataRange]="bindingInfoLookup[row.leafNodeId].sharedRange"
+                                            [range]="chartRange"
+                                            [zoomState]="zoomState"
+                                            [colorMapper]="bindingInfoLookup[row.leafNodeId].colorMapper"
+                                            [hideLabels]="true"
+                                            [shrinkToFit]="true"
+                                            (startedFetchingData)="startedFetchingData.emit()"
+                                            (stoppedFetchingData)="rowFetched(i, row)">
+                                        </o3-heatmap>
+                                    </div>
+                                </div>
+                            </o3-skeleton-screen>
+                        </div>
+                        <div class="row-blank"></div>
+                    </div>
+                </div>
+            </o3-skeleton-screen>
+        </div>
+    </div>
+    <p *ngIf="!tableDisplay" class="text-center">No data in selected time range</p>
+
+    <o3-overlay #colorDialog [config]="editColorConfig">
+        <ng-container *cdkPortal>
+            <mat-form-field *ngIf="leafNodeOptions.length > 1" class="col node-color">
+                <o3-select placeholder="Binding" [options]="leafNodeOptions" [(ngModel)]="selectedLeafNodeId" name="edit-binding"
+                           [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+            <div *ngIf="bindingInfoLookup[selectedLeafNodeId] as bindingInfo">
+                <o3-color-picker-configuration
+                    [(model)]="bindingInfo.color" (modelChange)="colorsChanged(bindingInfo)"
+                    [onlyEmitWhenValid]="true"
+                    [forFlat]="usingPalette" [onlyPalette]="true"
+                    [forGradient]="!usingPalette" [maxStops]="5">
+                </o3-color-picker-configuration>
+            </div>
+        </ng-container>
+    </o3-overlay>
+
+    <o3-overlay #optionsDialog [config]="chartOptionsConfig">
+        <o3-tab-group *cdkPortal noUnderline>
+            <o3-tab label="Configure Visualization">
+                <ng-container *ngIf="leafNodeOptions.length > 1">
+                    <mat-form-field class="col node-options">
+                        <o3-select #test_editBinding placeholder="Binding" [options]="leafNodeOptions"
+                                   [(ngModel)]="selectedLeafNodeId" name="edit-binding"
+                                   [multiSelect]="false" singleClick preventDeselection></o3-select>
+                    </mat-form-field>
+                    <hr/>
+                </ng-container>
+                <o3-hierarchical-visualization-configuration
+                    *ngIf="bindingInfoLookup[selectedLeafNodeId] as bindingInfo" #test_configurer
+                    [(model)]="bindingInfo.options" (modelChange)="optionsChanged(bindingInfo)">
+                </o3-hierarchical-visualization-configuration>
+            </o3-tab>
+        </o3-tab-group>
+    </o3-overlay>
+</div>
+
+<o3-overlay #paneOverlay *ngIf="paneConfig" [config]="paneOverlayConfig">
+    <o3-dynamic-pane *cdkPortal [range]="range" [models]="paneModels" [loading]="!paneModels"></o3-dynamic-pane>
+</o3-overlay>

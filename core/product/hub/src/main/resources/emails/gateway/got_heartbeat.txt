@@ -1,0 +1,12 @@
+####################
+# Hub notification #
+####################
+
+UPDATE!
+
+Gateway '${param.GATEWAY_ID}' has resumed communication with Hub after ${param.EXTRA_DETAILS} (at ${param.LAST_HEARTBEAT}).
+
+Details: ${param.SITE_URL}/#/gateways/gateway/${param.GATEWAY_SYSID}
+
+
+Optio3

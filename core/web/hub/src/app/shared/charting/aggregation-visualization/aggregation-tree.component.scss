@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.tree-chart-container {
+    position: relative;
+    flex-grow: 1;
+}
+
+.o3-watermark-caption {
+    height: 100%;
+}
+
+o3-consolidated-source-chip {
+    position: absolute;
+    bottom: 0px;
+    height: 56px;
+    padding: 8px;
+}

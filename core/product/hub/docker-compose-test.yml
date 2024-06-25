@@ -1,0 +1,17 @@
+services:
+  hub:
+    image: "${HUB_IMAGE}"
+    ports:
+      - "8080:8080"
+    command: server hub-test.yml
+    volumes:
+      - type: bind
+        source: "./hub-test.yml"
+        target: "/app/hub-test.yml"
+  tester:
+    image: "${TESTER_IMAGE}"
+    ports:
+      - "3100:3100"
+    command: ["npm", "run", "serve:docker"]
+    volumes:
+      - "${OUTPUT}:/home/pptruser/test-output"

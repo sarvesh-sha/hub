@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-3">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_TASK__MOUNTS" constraintName="FK712l49vqklry4w3k0gd7vbp1q"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-4">
+        <dropForeignKeyConstraint baseTableName="DEPLOYMENT_TASK__LABELS" constraintName="FK8uoh5kc6dqlkqv9rgsc7n26l8"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-5">
+        <dropForeignKeyConstraint baseTableName="REGISTRY_IMAGE__LABELS" constraintName="FKcq093op02ovidg6hhjdbp3mrf"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-6">
+        <dropForeignKeyConstraint baseTableName="CUSTOMER_SERVICE_BACKUP__PROPERTIES" constraintName="FKfutq7w4p536nh000ivs0wevix"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-7">
+        <dropTable tableName="CUSTOMER_SERVICE_BACKUP__PROPERTIES"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-8">
+        <dropTable tableName="DEPLOYMENT_TASK__LABELS"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-9">
+        <dropTable tableName="DEPLOYMENT_TASK__MOUNTS"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="builder-10">
+        <dropTable tableName="REGISTRY_IMAGE__LABELS"/>
+    </changeSet>
+</databaseChangeLog>

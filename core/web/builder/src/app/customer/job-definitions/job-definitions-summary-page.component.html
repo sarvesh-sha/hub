@@ -1,0 +1,26 @@
+﻿<section class="bs page-content">
+    <mat-card class="page-card">
+        <mat-card-title>
+            Job Definitions
+
+            <button mat-button class="pull-right hidden-sm-down" (click)="newJobDefinition()">
+                <mat-icon>add_circle_outline</mat-icon>
+                New Entry
+            </button>
+
+            <mat-menu #catalogListMenu="matMenu">
+                <button mat-menu-item (click)="newJobDefinition()"> New Entry</button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="catalogListMenu" type="button" class="pull-right hidden-md-up">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+        </mat-card-title>
+        <mat-card-content>
+
+            <o3-job-definitions-list #childList>
+            </o3-job-definitions-list>
+
+        </mat-card-content>
+    </mat-card>
+</section>

@@ -1,0 +1,199 @@
+export class {{classname}} {{#parent}}extends models.{{{parent}}} {{/parent}}{
+{{!                                                                                             }}
+{{!#############################################################################################}}
+{{! Declare discriminator used for inheritance                                                  }}
+{{!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+{{#discriminator}}
+    {{discriminator}}: string;
+    
+    protected setDiscriminator(type: string) {
+        this.{{discriminator}} = type;
+    }
+
+{{/discriminator}}
+{{!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}}
+{{!                                                                                             }}
+{{#vendorExtensions}}
+{{!                                                                                             }}
+{{!#############################################################################################}}
+{{! If this class is part of a type hierarchy, create constructor to set discriminator          }}
+{{!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+    {{#x-optio3-type-name}}
+    constructor() {
+{{#parent}}
+        super();
+{{/parent}}
+        this.setDiscriminator("{{{x-optio3-type-name}}}");
+    }
+
+    {{/x-optio3-type-name}}
+{{!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}}
+{{!                                                                                             }}
+{{!#############################################################################################}}
+{{! If this class is a model for a table, emit the external identifier for the table            }}
+{{!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+    {{#x-optio3-external-record-id}}
+    static readonly RECORD_IDENTITY: string = "{{{x-optio3-external-record-id}}}";
+
+    {{/x-optio3-external-record-id}}
+{{!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}}
+{{!                                                                                             }}
+{{!#############################################################################################}}
+{{! If this class is the root of a type hierarchy, create static method to handle discriminator }}
+{{!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+    {{#x-optio3-fixup}}
+    getFixupPrototypeFunction() { return {{classname}}.fixupPrototype; }
+
+    static newInstance(model: Partial<{{classname}}>): {{classname}} {
+        let obj = Object.assign(new {{classname}}(), model);
+        {{classname}}.fixupPrototype(obj);
+        return obj;
+    }
+
+    static deepClone(model: Partial<{{classname}}>): {{classname}} {
+        if (!model) return null;
+        return {{classname}}.newInstance(<{{classname}}> JSON.parse(JSON.stringify(model)));
+    }
+
+    static fixupPrototype(obj: {{classname}}) {
+        {{#x-optio3-type-name-super}}
+        models.{{parent}}.fixupPrototype(obj);
+        {{/x-optio3-type-name-super}}
+        {{^x-optio3-type-name-super}}
+        if (!obj) return;
+
+        {{#x-optio3-subtypes}}
+        {{#-first}}
+        switch (obj.{{discriminator}})
+        {
+            {{#x-optio3-type-name}}
+            case "{{{x-optio3-type-name}}}":
+                Object.setPrototypeOf(obj, models.{{x-optio3-type-name}}.prototype);
+                break;
+            {{/x-optio3-type-name}}
+        {{/-first}}
+            case "{{subtype_name}}":
+                Object.setPrototypeOf(obj, models.{{subtype_model}}.prototype);
+                break;
+        {{#-last}}
+        }
+        {{/-last}}
+        {{/x-optio3-subtypes}}
+        {{^x-optio3-subtypes}}
+        Object.setPrototypeOf(obj, models.{{classname}}.prototype);
+        {{/x-optio3-subtypes}}
+
+        obj.fixupFields();
+        {{/x-optio3-type-name-super}}
+    }
+
+    {{/x-optio3-fixup}}
+{{!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}}
+{{!                                                                                             }}
+{{/vendorExtensions}}
+{{#vendorExtensions}}
+{{#x-optio3-fixup}}
+    fixupFields() {
+{{#parent}}
+        super.fixupFields();
+{{/parent}}
+{{!                                                                                             }}
+{{!#############################################################################################}}
+{{! If this class is part of a type hierarchy, create constructor to set discriminator          }}
+{{!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+    {{#x-optio3-fixup-number}}
+        if (this.{{field}} === undefined) {
+            this.{{field}} = 0;
+        }
+    {{/x-optio3-fixup-number}}
+    {{#x-optio3-fixup-date}}
+        if (typeof this.{{field}} === "string") {
+            this.{{field}} = new Date(<string><any>this.{{field}});
+        }
+    {{/x-optio3-fixup-date}}
+    {{#x-optio3-fixup-simple}}
+        if (this.{{field}}) {
+            models.{{type}}.fixupPrototype(this.{{field}});
+        }
+    {{/x-optio3-fixup-simple}}
+    {{#x-optio3-fixup-array}}
+        if (this.{{field}}) {
+            for (let val of this.{{field}}) {
+                models.{{type}}.fixupPrototype(val);
+            }
+        }
+    {{/x-optio3-fixup-array}}
+    {{#x-optio3-fixup-array-date}}
+        if (this.{{field}}) {
+            for (let i = 0; i < this.{{field}}.length; i++) {
+                let val = this.{{field}}[i];
+                if (typeof val === "string") {
+                    this.{{field}}[i] = new Date(<string><any>val);
+                }
+            }
+        }
+    {{/x-optio3-fixup-array-date}}
+    {{#x-optio3-fixup-array-array}}
+        if (this.{{field}}) {
+            for (let val of this.{{field}}) {
+                if (val) {
+                    for (let subVal of val) {
+                        models.{{type}}.fixupPrototype(subVal);
+                    }
+                }
+            }
+        }
+    {{/x-optio3-fixup-array-array}}
+    {{#x-optio3-fixup-map}}
+        if (this.{{field}}) {
+            for (let key in this.{{field}}) {
+                let val = this.{{field}}[key];
+                if (val) {
+                    models.{{type}}.fixupPrototype(val);
+                }
+            }
+        }
+    {{/x-optio3-fixup-map}}
+{{!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}}
+{{!                                                                                             }}
+    }
+
+{{/x-optio3-fixup}}
+{{/vendorExtensions}}
+{{!                                                                                             }}
+{{!#############################################################################################}}
+{{! Emit fields of Map<> type                                                                   }}
+{{!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+{{#additionalPropertiesType}}
+    [key: string]: {{{additionalPropertiesType}}}{{#hasVars}} | any{{/hasVars}};
+
+{{/additionalPropertiesType}}
+{{!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}}
+{{!                                                                                             }}
+{{#vars}}
+    {{#description}}
+    /**
+     * {{{description}}}
+     */
+    {{/description}}
+    {{name}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}};
+
+{{/vars}}
+}{{#hasEnums}}
+// OPTIO3_ENUM_EXPORT_START: {{classname}}
+export namespace {{classname}} {
+{{#vars}}
+    {{#isEnum}}
+    // OPTIO3_ENUM_DEF_START: {{enumName}} {{#allowableValues}}{{{values}}}{{/allowableValues}}
+    export enum {{enumName}} {
+    {{#allowableValues}}
+        {{#enumVars}}
+        {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
+        {{/enumVars}}
+    {{/allowableValues}}
+    }
+    // OPTIO3_ENUM_DEF_END: {{enumName}}
+    {{/isEnum}}
+{{/vars}}
+}
+// OPTIO3_ENUM_EXPORT_END{{/hasEnums}}

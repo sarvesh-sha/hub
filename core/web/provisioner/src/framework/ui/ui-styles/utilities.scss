@@ -1,0 +1,65 @@
+@import "../app.variables.scss";
+
+@mixin utilities {
+    // Utilites
+    //-----------------------------
+    .clickable {
+        cursor: pointer;
+    }
+
+    .not-clickable {
+        cursor: default;
+    }
+
+    .not-selectable {
+        cursor: default;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .pull-right-sm-up {
+        @media only screen and (min-width: $sm) {
+            float: right;
+        }
+    }
+
+    .pull-left-sm-up {
+        @media only screen and (min-width: $sm) {
+            float: left;
+        }
+    }
+
+    .hover-item-container:not(:hover) {
+        @media only screen and (min-width: $sm) {
+            .hover-item {
+                display: none;
+            }
+
+            .hover-item-vis {
+                visibility: hidden;
+            }
+        }
+    }
+
+    .row.o3-navigable {
+        > .col-11 {
+            padding-right: 0;
+        }
+
+        > .col-1 {
+            padding: 9px 0 0 0;
+            border-radius: 0;
+            right: 0;
+            top: 0 !important;
+            height: initial;
+        }
+    }
+}

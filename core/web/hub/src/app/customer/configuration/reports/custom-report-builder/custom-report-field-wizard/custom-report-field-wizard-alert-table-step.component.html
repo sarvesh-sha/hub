@@ -1,0 +1,61 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="typedElement as alertTable">
+        <mat-slide-toggle [(ngModel)]="allAlertRules" (ngModelChange)="updateAlertRuleSelection()" name="alert-table-all-rules">
+            Select All Alert Rules
+        </mat-slide-toggle>
+        <mat-form-field class="col-sm-6 no-padding">
+            <o3-select placeholder="Alert Rules" [options]="data.alertRuleOptions" [disabled]="allAlertRules"
+                       name="alert-table-rules" [(ngModel)]="selectedAlertRules"></o3-select>
+        </mat-form-field>
+
+        <br>
+
+        <mat-slide-toggle [(ngModel)]="allLocations" (ngModelChange)="updateLocationSelection()" name="alert-table-all-locations">
+            Select All Locations
+        </mat-slide-toggle>
+        <mat-form-field class="col-sm-6 no-padding">
+            <o3-select [o3LocationSelector]="true" defaultValueDescription="Select Locations" [disabled]="allLocations"
+                       name="alert-table-locations" [(ngModel)]="alertTable.locations"></o3-select>
+        </mat-form-field>
+
+        <br>
+
+        <mat-slide-toggle [(ngModel)]="allAlertTypes" (ngModelChange)="updateAlertTypeSelection()" name="alert-table-all-types">
+            Select All Alert Types
+        </mat-slide-toggle>
+        <mat-form-field class="col-sm-6 no-padding">
+            <o3-select placeholder="Alert Types" [options]="data.alertTypeOptions" [disabled]="allAlertTypes"
+                       name="alert-table-types" [(ngModel)]="alertTable.alertTypeIDs"></o3-select>
+        </mat-form-field>
+
+        <br>
+
+        <mat-slide-toggle [(ngModel)]="allAlertStatuses" (ngModelChange)="updateAlertStatusSelection()" name="alert-table-all-statuses">
+            Consider All Alert Statuses
+        </mat-slide-toggle>
+        <mat-form-field class="col-sm-6 no-padding">
+            <o3-select placeholder="Alert Statuses" [options]="data.alertStatusOptions" [disabled]="allAlertStatuses"
+                       name="alert-table-statuses" [(ngModel)]="alertTable.alertStatusIDs"></o3-select>
+        </mat-form-field>
+
+        <br>
+
+        <o3-alert-severity-configurer [(selectedSeverities)]="alertTable.alertSeverityIDs" [severityColors]="alertTable.severityColors"></o3-alert-severity-configurer>
+
+        <br>
+
+        <div class="row">
+            <mat-form-field class="col-sm-3">
+                <o3-select placeholder="Group By" [options]="data.groupByOptions"
+                           name="group-by" [(ngModel)]="alertTable.groupBy"
+                           [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="alertTable.groupBy == 'location'" class="col-sm-3">
+                <o3-select placeholder="Rollup Type" [options]="data.rollupOptions"
+                           name="rollup" [(ngModel)]="rollupType"
+                           [multiSelect]="false" singleClick preventDeselection></o3-select>
+            </mat-form-field>
+        </div>
+    </ng-container>
+</ng-template>

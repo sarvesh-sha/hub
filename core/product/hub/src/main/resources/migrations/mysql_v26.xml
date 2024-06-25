@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-5">
+        <createTable tableName="ASSET_LOGICAL_GROUP_to_ASSET">
+            <column name="LogicalGroupRecord_sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="logicalNestedAssets_sys_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-6">
+        <createIndex indexName="FK1v2bu749x4qy4yro2djvqutdm" tableName="ASSET_LOGICAL_GROUP_to_ASSET">
+            <column name="logicalNestedAssets_sys_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-7">
+        <addForeignKeyConstraint baseColumnNames="logicalNestedAssets_sys_id" baseTableName="ASSET_LOGICAL_GROUP_to_ASSET" constraintName="FK1v2bu749x4qy4yro2djvqutdm" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-8">
+        <addForeignKeyConstraint baseColumnNames="LogicalGroupRecord_sys_id" baseTableName="ASSET_LOGICAL_GROUP_to_ASSET" constraintName="FKi1gfxogk0w472gh61ojbsa7eg" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="sys_id" referencedTableName="ASSET_LOGICAL_GROUP" validate="true"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-9">
+        <dropForeignKeyConstraint baseTableName="ASSET_LOGICAL_GROUP_ASSET" constraintName="FKadbaup47rs6cfsi3y9xxpy0bi"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-10">
+        <dropForeignKeyConstraint baseTableName="ASSET_LOGICAL_GROUP_ASSET" constraintName="FKqaubwu5v535oeo4aheue2iftw"/>
+    </changeSet>
+    <changeSet author="Optio3 Dropwizard Shell" id="hub-11">
+        <dropTable tableName="ASSET_LOGICAL_GROUP_ASSET"/>
+    </changeSet>
+</databaseChangeLog>

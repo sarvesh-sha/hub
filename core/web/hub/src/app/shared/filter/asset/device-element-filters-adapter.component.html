@@ -1,0 +1,49 @@
+<o3-filter-overlay [pristine]="pristine" [resetFilterButtonDisabled]="!hasEditFilters" [isStep]="isStep"
+                   [serializer]="getSerializer()"
+                   (filterApplied)="applyFilterEdits()" (filterCleared)="clearFilterEdits()" (submitted)="onSubmit()">
+    <ng-container *ngIf="initialized">
+        <mat-form-field *ngIf="!excludeLocation">
+            <o3-select [o3LocationSelector]="true" name="locations" defaultValueDescription="Select Locations"
+                       [(ngModel)]="editRequest.locationIDs" (ngModelChange)="updatePristine()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="includeDevices">
+            <o3-select [o3DeviceSelector]="true" name="devices" [(ngModel)]="editRequest.parentIDs" (ngModelChange)="updatePristine()"></o3-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="includeEquipment">
+            <mat-form-field>
+                <o3-select [o3EquipmentSelector]="true" name="equipments" [(ngModel)]="equipmentIDs" (ngModelChange)="updateTagsQuery()"></o3-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <o3-select [o3EquipmentClassSelector]="true" [onlyUsed]="true" [allowMultipleClasses]="true" name="equipmentClasses" [(ngModel)]="equipmentClassIDs"
+                           (ngModelChange)="updateTagsQuery()"></o3-select>
+            </mat-form-field>
+        </ng-container>
+
+        <mat-form-field>
+            <o3-select [o3PointClassSelector]="true" name="point-classes" placeholder="Point Class" defaultValueDescription="Select Point Classes"
+                       [onlyUsed]="true" [(ngModel)]="pointClassIDs" (ngModelChange)="updateTagsQuery()"></o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="sampling" placeholder="Sampling" defaultValueDescription="Select Sampling State" [multiSelect]="false"
+                       [options]="samplingOptions" [(ngModel)]="samplingState" (ngModelChange)="updateSampling()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <o3-select name="classified" placeholder="Classified" defaultValueDescription="Select Classified State" [multiSelect]="false"
+                       [options]="classifiedOptions" [(ngModel)]="classifiedState" (ngModelChange)="updateTagsQuery()">
+            </o3-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="includeVisibility">
+            <o3-select name="visibility" placeholder="Hidden" defaultValueDescription="Select Hidden State" [multiSelect]="false"
+                       [options]="visibilityOptions" [(ngModel)]="visibilityState" (ngModelChange)="updateVisibility()">
+            </o3-select>
+        </mat-form-field>
+    </ng-container>
+</o3-filter-overlay>

@@ -1,0 +1,15 @@
+<ng-template o3-wizard-step-template>
+    <ng-container *ngIf="stepSelected">
+        <ng-container *ngIf="showInternalGraphs">
+            {{localGraphHeader}}
+            <o3-multiple-graph-configuration #test_localGraphs [host]="data.graphsHost"
+                                             [singularGraph]="singularLocalGraph" [readonlyGraphNames]="readonlyLocalGraphNames"></o3-multiple-graph-configuration>
+        </ng-container>
+
+        <ng-container *ngIf="showExternalGraphs">
+            <br/>
+            Asset Structures Shared With {{data.externalGraphsHost.hostContext}}
+            <o3-multiple-graph-configuration #test_externalGraphs [host]="data.externalGraphsHost"></o3-multiple-graph-configuration>
+        </ng-container>
+    </ng-container>
+</ng-template>
